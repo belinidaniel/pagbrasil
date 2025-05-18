@@ -1,0 +1,11 @@
+/* flowFooterComponent.css */
+.footer-container {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    padding: 0.7rem;
+    border-top: 1px solid #d8dde6;
+}
+
+.footer-button {
+    margin: 0 0.2rem;
+}

@@ -1,0 +1,115 @@
+<!--
+  @description       :
+  @author            : Hersilio Belini de Oliveira
+  @group             :
+  @last modified on  : 2025-01-13
+  @last modified by  : Hersilio Belini de Oliveira
+-->
+<template>
+    <div class="slds-form-element__control">
+        <div class="slds-combobox_container">
+
+            <!-- Search Input -->
+            <lightning-input
+                label="Find Organization"
+                type="search"
+                value={selectedOrganizationName}
+                onchange={handleInputChange}
+                onblur={handleOnBlur}
+                is-loading={isLoading}>
+            </lightning-input>
+
+            <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                        <template for:each={organizations} for:item="option">
+                            <li key={option.name} role="presentation" class="slds-listbox__item"
+                                onclick={handleOptionClick} data-value={option.id} data-name={option.name}>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                    <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-truncate" title="Option">{option.name}</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <template if:false={hasSelectedOrganization}>
+            <br/>
+            <div class="slds-illustration slds-illustration_small" aria-hidden="true">
+                <img src="/img/chatter/OpenRoad.svg" class="slds-illustration__svg" alt=""/>
+            </div>
+        </template>
+        <template if:true={hasSelectedOrganization}>
+            <lightning-card>
+                <h3 slot="title">
+                    <lightning-icon icon-name="standard:account_info" size="small"></lightning-icon>&nbsp;&nbsp;Organization Details
+                </h3>
+                <div class="slds-p-around_medium">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">Field</th>
+                                <th scope="col">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Id</th>
+                                <td>{selectedOrganization.id}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td>{selectedOrganization.name}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">VAT/CNPJ</th>
+                                <td>{selectedOrganization.organization_fields.vat_cnpj}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Domain Names</th>
+                                <td>{selectedOrganization.domain_names}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tags</th>
+                                <td>{selectedOrganization.tags}</td>
+                            </tr>
+                            <!-- Organization Fields -->
+                            <tr>
+                                <th scope="row">Business Size</th>
+                                <td>{selectedOrganization.organization_fields.business_size}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Country</th>
+                                <td>{selectedOrganization.organization_fields.country}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Client Status Comment</th>
+                                <td>{selectedOrganization.organization_fields.client_status_comment}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Company Name</th>
+                                <td>{selectedOrganization.organization_fields.comany_name}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Product Description</th>
+                                <td>{selectedOrganization.organization_fields.product_description}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Website</th>
+                                <td>{selectedOrganization.organization_fields.website}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Integration Type</th>
+                                <td>{selectedOrganization.organization_fields.integration_type}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </lightning-card>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,782 @@
+<template>
+    <lightning-spinner if:true={isLoading} alternative-text="Enviando dados..." size="medium"></lightning-spinner>
+    <div class="slds-grid slds-wrap slds-grid_align-center slds-grid_vertical-align-center">
+        <img src={logoUrl} alt="Logotipo da empresa" />
+    </div>
+    <lightning-card title={cardTitle} icon-name="standard:opportunity">
+        <div class="slds-p-around_medium">
+            <template if:true={opportunity}>
+                <p><strong>{textContent.oppName}</strong> {opportunity.Name}</p>
+                <p><strong>{textContent.oppValue}</strong> {opportunity.Amount}</p>
+                <p><strong>{textContent.oppCloseDate}</strong> {opportunity.CloseDate}</p>
+            </template>
+        </div>
+        <div class="slds-p-around_medium">
+            <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.firstTopic}</h2>
+            
+            <lightning-combobox
+                label={textContent.passwordText}
+                placeholder={textContent.selectText}
+                options={yesNoOptions}
+                value={selectedYesNo}
+                onchange={handleYesNoChange}
+                required>
+            </lightning-combobox>
+
+            <template if:true={showTextInputs}>
+                <lightning-input
+                    label={fieldLabels.Login__c}
+                    name="Login__c"
+                    value={Login}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-input>
+
+                <lightning-input
+                    label={fieldLabels.Password__c}
+                    name="Password__c"
+                    value={Senha}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-input>
+            </template>
+            <lightning-checkbox-group
+                label={fieldLabels.CompanyDetails__c}
+                name="CompanyDetails__c"
+                options={checkboxOptionsCompany}
+                value={selectedCheckboxesCompany}
+                onchange={handleCheckboxChange}
+                required>
+            </lightning-checkbox-group>
+
+            <lightning-input
+                label={fieldLabels.EvidenceCompanyDetails__c}
+                placeholder={textContent.placeholderText}
+                data-field="EvidenceCompanyDetails__c"
+                value={linkOrImageCompany}
+                onchange={handleLinkChange}
+                >
+            </lightning-input>
+            <lightning-input
+            type="file"
+            label={textContent.imagesText}
+            data-field="EvidenceCompanyDetails__c"
+            onchange={handleFileChange}>
+        </lightning-input>
+            <lightning-checkbox-group
+                label={fieldLabels.ContactInformation__c}
+                name="ContactInformation__c"
+                options={checkboxOptionsContact}
+                value={selectedCheckboxesContact}
+                onchange={handleCheckboxChange}
+                required>
+            </lightning-checkbox-group>
+
+            <lightning-input
+                label={fieldLabels.EvidenceContactInformation__c}
+                placeholder={textContent.placeholderText}
+                value={linkOrImageContact}
+                data-field="EvidenceContactInformation__c"
+                onchange={handleLinkChange}
+                >
+            </lightning-input>
+            <lightning-input
+                type="file"
+                label={textContent.imagesText}
+                data-field="EvidenceContactInformation__c"
+                onchange={handleFileChange}>
+            </lightning-input>
+            <p><strong>{textContent.responseTimeTitle}</strong>
+                {textContent.responseTimeText}</p>
+            <lightning-input
+                label={fieldLabels.RequirementResponseTime__c}
+                name="RequirementResponseTime__c"
+                type="checkbox"
+                checked={checkboxResponseTime}
+                onchange={handleUniqueCheckboxChange}
+                required>
+            </lightning-input>
+
+            <lightning-input
+                label={fieldLabels.EvidenceResponseTime__c}
+                placeholder={textContent.placeholderText}
+                value={linkOrImageResponseTime}
+                data-field="EvidenceResponseTime__c"
+                onchange={handleLinkChange}
+                >
+            </lightning-input>
+            <lightning-input
+                type="file"
+                label={textContent.imagesText}
+                data-field="EvidenceResponseTime__c"
+                onchange={handleFileChange}>
+            </lightning-input>
+
+            <p><strong>{textContent.priceFormatTitle}</strong>
+                {textContent.priceFormatText}
+                </p>
+            
+            <lightning-input
+                label={fieldLabels.RequirementResponseTime__c}
+                name="RequirementPriceFormat__c"
+                type="checkbox"
+                checked={checkboxPricingFormat}
+                onchange={handleUniqueCheckboxChange}
+                required>
+            </lightning-input>
+
+            <lightning-input
+                label={fieldLabels.EvidencePriceFormat__c}
+                placeholder={textContent.placeholderText}
+                data-field="EvidencePriceFormat__c"
+                value={linkOrImagePricingFormat}
+                onchange={handleLinkChange}
+                >
+            </lightning-input>
+            <lightning-input
+                type="file"
+                label={textContent.imagesText}
+                data-field="EvidencePriceFormat__c"
+                onchange={handleFileChange}>
+            </lightning-input>
+
+            
+            <template if:true={isCrossborder}>
+
+                <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.fourthTopic} </h2>
+                <p>
+                    <b>{textContent.describeSalesText}</b>
+                    
+                </br>
+                    <i>{textContent.exampleText}</i>
+                </br>
+                    <i>{textContent.storeReceiveText}</i>
+                </br>
+                    <i>{textContent.storePrepareText}</i>
+                </br>
+                    <i>{textContent.storeNotifyText}</i>
+                </p>
+
+                <lightning-input
+                label={fieldLabels.SalesProcess__c}
+                name="SalesProcess__c"
+                value={Login}
+                onchange={handleInputChange}
+                required>
+                </lightning-input>
+
+                <p>
+                    <b>{textContent.reimbursementPolicyTitle}</b>{textContent.reimbursementPolicyText}
+                </p>
+                
+                <lightning-input
+                label={fieldLabels.ReimbursementPolicy__c}
+                name="ReimbursementPolicy__c"
+                value={Login}
+                onchange={handleInputChange}
+                required>
+                </lightning-input>
+
+            </template>
+
+
+            
+            
+            
+            <template if:true={PhysicalProductType}>
+            
+                <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.secondTopic}</h2>
+
+                <lightning-checkbox-group
+                    label={fieldLabels.DeliveryTime__c}
+                    name="DeliveryTime__c"
+                    options={checkboxOptionsDeliveryTime}
+                    value={selectedCheckboxesDeliveryTime}
+                    onchange={handleOptionsDeliveryChange}
+                    required>
+                </lightning-checkbox-group>
+                <p if:true={showErrorDelivery} class="slds-text-color_error">{textContent.errorMsgTwoOptions}</p>
+
+                <lightning-input
+                    label={fieldLabels.EvidenceDeliveryTime__c}
+                    data-field="EvidenceDeliveryTime__c"
+                    placeholder={textContent.placeholderText}
+                    value={linkOrImageDeliveryTime}
+                    onchange={handleLinkChange}
+                    >
+                </lightning-input>
+                <lightning-input
+                    type="file"
+                    label={textContent.imagesText}
+                    data-field="EvidenceDeliveryTime__c"
+                    onchange={handleFileChange}>
+                </lightning-input>
+            </template>
+
+            <template if:true={industryDropshipping}>
+
+                <lightning-radio-group
+                    label={fieldLabels.ShippingProofPod__c}
+                    options={podOptions}
+                    name="ShippingProofPod__c"
+                    value={selectedPodOption}
+                    onchange={handleEnviosPODChange}
+                    required>
+                </lightning-radio-group>
+
+
+                <template if:true={showEvidencePODInput}>
+                    <lightning-input
+                        label={fieldLabels.EvidenceShippingProofPod__c}
+                        placeholder="Por favor, liste também alguns exemplos de localizadores de envios realizados anteriormente:"
+                        name="EvidenceShippingProofPod__c"
+                        value={evidencePOD}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+
+                </template>
+
+                <p><strong>{textContent.contactPod}</strong></p>
+                <lightning-input
+                    label={fieldLabels.EmailsPodManager__c}
+                    placeholder="Insira os e-mails separados por ponto e virgula (;)"
+                    name="EmailsPodManager__c"
+                    type="text"
+                    value={podManagerEmails}
+                    onchange={handleInputChange}
+                    required>
+                </lightning-input>
+
+                <p><strong>{textContent.customsFeeTitle}</strong> {textContent.customsFeeFirstText} 
+                </p>
+                <p>{textContent.customsFeeSecondText}</p>
+                <lightning-checkbox-group
+                    label={fieldLabels.CustomsFee__c}
+                    name="CustomsFee__c"
+                    options={checkboxOptionsCustoms}
+                    value={selectedCheckboxesCustoms}
+                    onchange={handleOptionsTaxes}    
+                    required>
+                </lightning-checkbox-group>
+                <p if:true={showErrorTaxe} class="slds-text-color_error">{textContent.errorMsgTwoOptions}</p>
+
+
+                <lightning-input
+                    label={fieldLabels.EvidenceCustomsFee__c}
+                    placeholder={textContent.placeholderText}
+                    data-field="EvidenceCustomsFee__c"
+                    value={linkOrImageCustoms}
+                    onchange={handleLinkChange}
+                    >
+                </lightning-input>
+                <lightning-input
+                    type="file"
+                    label={textContent.imagesText}
+                    data-field="EvidenceCustomsFee__c	"
+                    onchange={handleFileChange}>
+                </lightning-input>
+
+            </template>
+
+
+            <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.thirdTopic} </h2>
+
+            <template if:true={IntegrationJSorAPI}>
+                <p><strong>{textContent.addressValidatorTitle}</strong>
+                    {textContent.addressValidatorText}
+                </p>
+
+                <lightning-input
+                    label={fieldLabels.RequirementResponseTime__c}
+                    name="RequirementZipCodeValidator__c"
+                    type="checkbox"
+                    checked={checkboxCEPVerification}
+                    onchange={handleUniqueCheckboxChange}
+                    required>
+                </lightning-input>
+
+                <lightning-input
+                    label={fieldLabels.EvidenceZipCodeValidator__c}
+                    placeholder="Insira aqui a página onde a informação é encontrada"
+                    data-field="EvidenceZipCodeValidator__c"
+                    value={linkOrImageCEPVerification}
+                    onchange={handleLinkChange}
+                    >
+                </lightning-input>
+                <lightning-input
+                    type="file"
+                    label={textContent.imagesText}
+                    data-field="EvidenceZipCodeValidator__c"
+                    onchange={handleFileChange}>
+                </lightning-input>
+
+                <p><strong>{textContent.fieldsAndValidatorTitle}</strong>
+                    {textContent.fieldsAndValidatorText}</p>
+                
+                <lightning-input
+                    label={fieldLabels.RequirementResponseTime__c}
+                    type="checkbox"
+                    name="RequirementInfoValidator__c"
+                    checked={checkboxInfosVerification}
+                    onchange={handleUniqueCheckboxChange}
+                    required>
+                </lightning-input>
+                
+                <lightning-input
+                    label={fieldLabels.EvidenceZipCodeValidator__c}
+                    placeholder="Insira aqui imagens e a página onde a informação é encontrada"
+                    data-field="EvidenceInfoValidator__c"
+                    value={linkOrImageInfoVerification}
+                    onchange={handleLinkChange}
+                    >
+                </lightning-input>
+                <lightning-input
+                    type="file"
+                    label={textContent.imagesText}
+                    data-field="EvidenceInfoValidator__c"
+                    onchange={handleFileChange}>
+                </lightning-input>
+            </template>
+
+            <template if:true={IntegrationShopifyOrPBCheckout}>
+                <p><strong>{textContent.configTaxTitle}</strong> 
+                    {textContent.configTaxText}
+                </p>
+
+                <lightning-combobox    
+                label={fieldLabels.PagBrasilSolutionForTransferringFee__c}
+                name="PagBrasilSolutionForTransferringFee__c"
+                placeholder={textContent.selectText}
+                options={yesNoOptions}
+                value={checkboxPagBrasilSolution}
+                onchange={handleSolucaoPagBrasil}
+                required
+                >
+                </lightning-combobox>
+
+                <template if:true={SolucaoPagBrasil}>
+
+                    <lightning-combobox
+                        label={fieldLabels.MinimumInstallmentsForInterest__c}
+                        placeholder={textContent.selectText}
+                        name="MinimumInstallmentsForInterest__c"
+                        options={ParcelasOptions}
+                        value={selectedParcelas}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-combobox>
+                    
+                    <p><strong>{textContent.finalClientTitle}</strong></p>
+                    <p><strong>{textContent.automaticTitle}</strong>{textContent.automaticText}</p>
+                    <p><strong>{textContent.manualTitle}</strong>{textContent.manualText}</p>
+                    <lightning-combobox
+                        label={fieldLabels.InterestRepassMethodToCustomer__c}
+                        placeholder=" "
+                        name="InterestRepassMethodToCustomer__c"
+                        options={repasseJurosOptions}
+                        value={selectedrepasseJuros}
+                        onchange={handleOptionsFeesChange}
+                        required>
+                    </lightning-combobox>
+
+                    <template if:true={showJurosMensal}>
+
+                        <lightning-input
+                            label={fieldLabels.MonthlyInterestOnCustomerInstallments__c}
+                            name="MonthlyInterestOnCustomerInstallments__c"
+                            placeholder="%"
+                            type="number"
+                            value={jurosMensal}
+                            onchange={handleInputChange}
+                            required>
+                        </lightning-input>
+
+                    </template>
+                    
+                </template>
+
+            </template>
+
+            <template if:true={IntegrationShopifyOrPBCheckout}>
+
+                <p><strong>{textContent.paymentMethodTitle}</strong>
+                    {textContent.paymentMethodText}
+                </p>
+                
+                <lightning-combobox
+                label={fieldLabels.NotInterestedInOfferingDiscount__c}
+                placeholder={textContent.selectText}
+                name="NotInterestedInOfferingDiscount__c"
+                options={interesseOptions}
+                value={checkboxSemInteresseDesconto}
+                onchange={handleInteresseDescontoChange}
+                required
+                >
+                </lightning-combobox>
+            
+
+            <template if:true={tenhoInteresseDesconto}>
+
+                    <lightning-input
+                        label={fieldLabels.ShopifyDiscount__c}
+                        name="ShopifyDiscount__c"
+                        placeholder="%"
+                        type="number"
+                        value={descontoShopify}
+                        onchange={handleInputChange}
+                        >
+                    </lightning-input>
+                    
+                    <lightning-input
+                        label={fieldLabels.FlashBoleto__c}
+                        name="FlashBoleto__c"
+                        placeholder="%"
+                        type="number"
+                        value=boletoFlash}
+                        onchange={handleInputChange}
+                        >
+                    </lightning-input>
+
+                    <lightning-input
+                        label="PagBrasil Pix: "
+                        name="PagBrasilPix__c"
+                        placeholder="%"
+                        type="number"
+                        value={pagBrasilPix}
+                        onchange={handleInputChange}
+                        >
+                    </lightning-input>
+
+                    <lightning-input
+                        label={fieldLabels.PbCheckoutDiscount__c}
+                        name="PbCheckoutDiscount__c"
+                        placeholder="%"
+                        type="number"
+                        value={descontoPBCheckout}
+                        onchange={handleInputChange}
+                        >
+                    </lightning-input>
+
+                </template>
+            </template>
+
+            <template if:true={haveGateway}>
+
+                <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.fourthTopic} </h2>
+
+
+                <lightning-combobox
+                label="Cielo 3.0"
+                name="Cielo30__c"
+                options={yesNoOptions}
+                value={checkboxCielo}
+                onchange={handleCieloChange}
+                >
+                </lightning-combobox>
+
+                <template if:true={haveCielo}>
+
+                    <lightning-input
+                        label="Merchant ID"
+                        name="MerchantId__c"
+                        value={merchantId}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+                    <lightning-input
+                        label="Merchant Key"
+                        name="MerchantKey__c"
+                        value={merchantKey}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+
+                </template>
+
+                <lightning-combobox
+                label="e-Rede"
+                name="ERede__c"
+                options={yesNoOptions}
+                value={checkboxERede}
+                onchange={handleERedeChange}
+                >
+                </lightning-combobox>
+
+                <template if:true={haveERede}>
+
+                    <lightning-input
+                        label="PV"
+                        name="Pv__C"
+                        value={PV}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+                    <lightning-input
+                        label="Token"
+                        name="Token__c"
+                        value={token}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+
+                </template>
+
+                <lightning-combobox
+                label="Stone"
+                name="Stone__c"
+                options={yesNoOptions}
+                value={checkboxStone}
+                onchange={handleStoneChange}
+                >
+                </lightning-combobox>
+                
+                <template if:true={haveStone}>
+                
+                    <lightning-input
+                        label="MID (Merchant ID)"
+                        name="MidMerchantId__c"
+                        value={MIDMerchantId}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+
+                    <lightning-input
+                        label="Terminal ID"
+                        name="TerminalId__c"
+                        value={textInputTerminalID}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+
+                    <lightning-input
+                        label="RegKey"
+                        name="Regkey__c"
+                        value={textInputRegKey}
+                        onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+                </template>
+                
+            </template>
+            <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.fiveTopic} </h2>
+
+            <p>
+                {textContent.reclameAquiText}     
+            </br>
+            </p>
+             
+            <lightning-input
+                label={fieldLabels.AlreadyRequestedReclameAqui__c}
+                name="AlreadyRequestedReclameAqui__c"
+                type="checkbox"
+                checked={soliciteiReclameAqui}
+                onchange={handleCheckboxReclameAqui}
+                required
+                >
+            </lightning-input>
+
+
+            <lightning-input
+                label={fieldLabels.EvidenceZipCodeValidator__c}
+                placeholder={textContent.placeholderText}
+                data-field="EvidenceReclameAqui__c"
+                value={linkOrImageReclameAqui}
+                onchange={handleLinkChange}
+                >
+            </lightning-input>
+            <lightning-input
+                type="file"
+                label={textContent.imagesText}
+                data-field="EvidenceReclameAqui__c"
+                onchange={handleFileChange}>
+            </lightning-input>
+
+            <template if:true={isCrossborder}>
+                <div>
+                    <p>If you do not have an active account, please complete all the required information below and send it to cadastro@reclameaqui.com.br. Afterward, kindly send a copy of the email to your account manager at PagBrasil.  
+                    </br>
+                        The data will be reviewed, and if the company meets Reclame Aqui registration policy, the access details will be sent to you in 48 hours. 
+                    </br>
+                        Please use the following email template to register on “Reclame Aqui”: 
+                    </br>
+                    <b><i>Note: Do not delete the information in Portuguese, as they are mandatory for registration.</i></b> 
+                    </p>
+                    </br>
+                    </br>
+                </div>
+                <div>
+                    <p><i>Prezados, 
+                        </br>
+                        </br>
+                        Embora não sejamos uma empresa brasileira e não possuamos um CNPJ ou endereço físico no Brasil, operamos ativamente no Brasil por meio de vendas online (ecommerce) e de representantes comerciais locais, atendendo consumidores brasileiros com nossos produtos/serviço. Para poder oferecer um atendimento adequado e transparente aos nossos clientes no Brasil, reconhecemos a importância de estar presentes no ReclameAqui, que é uma plataforma amplamente utilizada para a resolução de dúvidas e reclamações.  
+                        </br>
+                        </br>
+                        Porém, para que uma conta seja criada através do site do ReclameAqui, é necessário o preenchimento de CNPJ. Conforme foi orientado pelo suporte de atendimento ao cliente de vocês, para poder melhor atender aos nossos consumidores brasileiros, solicitamos que vocês procedam com a criação de nossa conta.  
+                        </br>
+                        </br>                    
+                        Saliento, mais uma vez, a importância de possuirmos um cadastro em seu site, pois, precisamos ser capazes de responder a eventuais reclamações ou questionamentos sobre os nossos produtos/serviços.  
+                        </br>
+                        </br>    
+                        Vocês poderão encontrar as informações relacionadas a minha empresa abaixo:  
+                        </br>
+                        </br>
+                        Nome da Empresa (Business name): FILL IN  
+                        </br>
+                        </br>    
+                        Nome Fantasia (Business name): FILL IN  
+                        </br>
+                        </br>    
+                        E-mail da empresa (Business Email): FILL IN  
+                        </br>
+                        </br>    
+                        Outro e-mail da empresa (Another Business Email): FILL IN  
+                        </br>
+                        </br>    
+                        Site da empresa (Business website): FILL IN  
+                        </br>
+                        </br>    
+                        Endereço (Address): FILL IN  
+                        </br>
+                        </br>    
+                        Código Postal (Post code): FILL IN  
+                        </br>
+                        </br>    
+                        Cidade (City): FILL IN  
+                        </br>
+                        </br>    
+                        Pais (Country): FILL IN  
+                        </br>
+                        </br>    
+                        Nome do Responsável (Business contact): FILL IN  
+                        </br>
+                        </br>    
+                        E-mail do Responsável (Business email contact): FILL IN  
+                        </br>
+                        </br>    
+                        Obrigado desde já.  
+                    </i></p>
+                </div>
+            </template>
+
+            
+            <h2 class="slds-text-heading_medium slds-m-top_medium">{textContent.sixTopic} </h2>
+
+            <p>{textContent.defineUsersText}</p>
+
+            <lightning-card icon-name="standard:user">
+                <div class="slds-p-around_medium">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr>
+                                <th scope="col"> </th>
+                                <th scope="col">{textContent.completeUserText}</th>
+                                <th scope="col">{textContent.restrictUserText}</th>
+                                <th scope="col">{textContent.visualizationUserText}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{textContent.consultOrderText}</td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: red;">X</td>
+                            </tr>
+                            <tr>
+                                <td>{textContent.refundText}</td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: red;">X</td>
+                            </tr>
+                            <tr>
+                                <td>{textContent.viewReportText}</td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: red;">X</td>
+                                <td style="color: red;">X</td>
+                            </tr>
+                            <tr>
+                                <td>{textContent.accessTabText}<strong>{textContent.resourceText}</strong></td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: red;">X</td>
+                                <td style="color: red;">X</td>
+                            </tr>
+                            <tr>
+                                <td>{textContent.configTabText}<strong>{textContent.accText}</strong></td>
+                                <td style="color: green; font-weight: bold">✓</td>
+                                <td style="color: red;">X</td>
+                                <td style="color: red;">X</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </lightning-card>
+
+            <lightning-card title={textContent.createUserText}>
+                <div class="slds-box slds-p-around_medium">
+                    <lightning-input
+                        label={fieldLabels.nameField}
+                        data-id="FirstName"
+                        value={contactFields.FirstName}
+                        onchange={handleInputContactChange}
+                        required>
+
+                    </lightning-input>
+            
+                    <lightning-input
+                        label={fieldLabels.lastNameField}
+                        data-id="LastName"
+                        value={contactFields.LastName}
+                        onchange={handleInputContactChange}
+                        required>
+                    </lightning-input>
+            
+                    <lightning-input
+                        label="Email"
+                        type="email"
+                        data-id="Email"
+                        value={contactFields.Email}
+                        onchange={handleInputContactChange}
+                        required>
+                    </lightning-input>
+            
+                    <lightning-combobox
+                        label={fieldLabels.languageField}
+                        placeholder={textContent.selectText}
+                        data-id="Language__c"
+                        options={idiomaOptions}
+                        value={contactFields.idioma}
+                        onchange={handleInputContactChange}
+                        required>
+                    </lightning-combobox>
+
+                                
+                    <lightning-combobox
+                        label={fieldLabels.accessLevelField}
+                        placeholder={textContent.selectText}
+                        data-id="Access_Level__c"
+                        options={nivelAcessoOptions}
+                        value={contactFields.nivelAcesso}
+                        onchange={handleInputContactChange}
+                        required>
+                    </lightning-combobox>
+            
+                    <lightning-button
+                        label={textContent.createUserText}
+                        onclick={handleCreateContact}
+                        class="slds-m-left_x-small">
+                    </lightning-button>
+                </div>
+            </lightning-card>
+            
+
+        </div>
+
+        <lightning-button 
+            label={textContent.sendLabel} 
+            variant="brand" 
+            onclick={handleSubmit}
+            class="slds-m-left_medium"
+            disabled={isLoading}>
+        </lightning-button>
+    </lightning-card>
+</template>

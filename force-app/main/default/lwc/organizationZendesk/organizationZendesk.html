@@ -1,0 +1,67 @@
+<!--
+  @description       :
+  @author            : Hersilio Belini de Oliveira
+  @group             :
+  @last modified on  : 2025-01-08
+  @last modified by  : Hersilio Belini de Oliveira
+-->
+<template>
+    <template if:false={showCreateOrg}>
+        <c-search-organization-zendesk
+            onselectedorganization={handleSelectedOrganization}></c-search-organization-zendesk>
+    </template>
+    <template if:true={showCreateOrg}>
+        <c-create-organization
+            opportunity-id={opportunityId}
+            organization-id={organizationId}
+            oncreatedorganization={handleCreatedOrganization}></c-create-organization>
+    </template>
+    <div class="slds-form-element__control">
+        <footer class="footer-container slds-clearfix">
+            <div>
+                <template if:false={showCreateOrg}>
+                    <lightning-button
+                        label="Cancel"
+                        variant="neutral"
+                        class="footer-button"
+                        onclick={handleCancel}>
+                    </lightning-button>
+                </template>
+                <template if:true={showCreateOrg}>
+                    <lightning-button
+                        label="Cancel"
+                        variant="neutral"
+                        class="footer-button"
+                        onclick={handleCancelCreate}>
+                    </lightning-button>
+                </template>
+            </div>
+
+            <!-- Select Button on the Right -->
+            <div>
+                <template if:false={showCreateOrg}>
+                    <lightning-button if:true={hasrganization}
+                        label="Select Organization"
+                        variant="brand"
+                        class="footer-button"
+                        onclick={handleSelect}>
+                    </lightning-button>
+                    <lightning-button if:false={hasrganization}
+                        label="New Organization"
+                        variant="brand"
+                        class="footer-button"
+                        onclick={handleCreate}>
+                    </lightning-button>
+                </template>
+                <template if:true={showCreateOrg}>
+                    <lightning-button
+                        label="Save"
+                        variant="success"
+                        class="footer-button"
+                        onclick={handleSave}>
+                    </lightning-button>
+                </template>
+            </div>
+        </footer>
+    </div>
+</template>

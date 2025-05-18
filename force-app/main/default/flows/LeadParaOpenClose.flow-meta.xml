@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Calls an action that removes the opted-out lead from all cadences and sets the completion reason to ManuallyRemoved.</description>
+        <name>RemoveLead</name>
+        <label>Remove Lead</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <actionName>removeTargetFromSalesCadenceNotFound</actionName>
+        <actionType>removeTargetFromSalesCadence</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>completionReasonCode</name>
+            <value>
+                <stringValue>ManuallyRemoved</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <constants>
+        <description>Stores the cadence ID used to retrieve the cadence. Update this value with a valid cadence ID from your org.</description>
+        <name>CadenceId</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>77C790000008OVeEAM</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>Stores the primary sales engagement permission set ID used to retrieve the permission set assignment. Update this value with a valid permission set ID from your org.</description>
+        <name>PrimarySalesEngagementPermissionSetId</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0PS8W000000KkjnWAC</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>Stores the secondary sales engagement permission set ID used to retrieve the permission set assignment. Update this value with a valid permission set ID from your org. If you&apos;re checking for only one permission set, delete this constant.</description>
+        <name>SecondarySalesEnagementPermissionSetId</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0PS8W000000KkjlWAC</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>Determines whether the ID of the GetActiveCadenceTrackerRecord exists.</description>
+        <name>HasCadenceTrackerId</name>
+        <label>Has Cadence Tracker ID?</label>
+        <locationX>182</locationX>
+        <locationY>455</locationY>
+        <defaultConnectorLabel>No (Default)</defaultConnectorLabel>
+        <rules>
+            <name>CadenceTrackerIdExists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetActiveCadenceTrackerRecord.Id__NotFound</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>RemoveLead</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Remove o lead de Ritmos quando em estágio &quot;Open - Not contacted&quot; ou &quot;Closed Not Converted&quot;.</description>
+    <environments>Default</environments>
+    <interviewLabel>Lead para Open ou Close {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead para Open ou Close</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Gets a cadence tracker record with a Target ID matching the Lead ID of the triggering record and with a State not equal to Complete or Error. Stores the ID of the returned record in the GetActiveCadenceTrackerRecord record variable.</description>
+        <name>GetActiveCadenceTrackerRecord</name>
+        <label>Get Active Cadence Tracker Record</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>HasCadenceTrackerId</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TargetId__NotFound</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>State__NotFound</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Complete</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>State__NotFound</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ActionCadenceTracker__NotFound</object>
+        <queriedFields>Id__NotFound</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GetActiveCadenceTrackerRecord</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Open - Not Contacted</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed - Not converted</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed - Converted</stringValue>
+            </value>
+        </filters>
+        <object>Lead</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Stores the ID of the user record access record from GetUserRecordAccess.</description>
+        <name>UserRecordAccessId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

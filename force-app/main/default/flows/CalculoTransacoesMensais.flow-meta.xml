@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>VerificarSeAverageSalesTicketMaiorQue0</name>
+        <label>Verificar se AverageSalesTicket é maior que 0</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Pode_Calcular</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.AverageSalesTicket__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AtualizarTransacoesMensais</targetReference>
+            </connector>
+            <label>Pode Calcular</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>calculo</name>
+        <dataType>Number</dataType>
+        <expression>IF(
+    OR(
+        {!$Record.previs_fat_rs__c} = 0,
+        {!$Record.AverageSalesTicket__c} = 0
+    ),
+    0,
+    ROUND(
+        {!$Record.previs_fat_rs__c} / {!$Record.AverageSalesTicket__c}, 
+        0
+    )
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>CalculoTransaçõesMensais {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CalculoTransacoesMensais</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>AtualizarTransacoesMensais</name>
+        <label>Atualizar Transacoes_Mensais</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Transacoes_Mensais__c</field>
+            <value>
+                <elementReference>calculo</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>VerificarSeAverageSalesTicketMaiorQue0</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

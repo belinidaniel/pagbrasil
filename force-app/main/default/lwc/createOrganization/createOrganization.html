@@ -1,0 +1,72 @@
+<!--
+  @description       :
+  @author            : Hersilio Belini de Oliveira
+  @group             :
+  @last modified on  : 2025-01-13
+  @last modified by  : Hersilio Belini de Oliveira
+-->
+<template>
+    <lightning-spinner if:true={isLoading} alternative-text="Loading" size="large"></lightning-spinner>
+    <template if:true={opportunity.data}>
+        <div class="slds-box slds-theme_default">
+            <h2 class="slds-text-heading_medium">{accountName}</h2>
+            <br />
+            <p><strong>Company Name :</strong> {accountCompanyName}</p>
+
+            <p><strong>VAT/CNPJ:</strong> {accountVatCnpj}</p>
+            <p><strong>Stage:</strong> {opportunityStage}</p>
+            <p><strong>Country:</strong> {opportunityCountry}</p>
+            <p><strong>Product Type:</strong> {opportunityProductType}</p>
+            <p><strong>Product Class:</strong> {opportunityProductClass}</p>
+            <p><strong>Website:</strong> {opportunityWebSite}</p>
+            <p><strong>Tier:</strong> {opportunityTier}</p>
+            <p><strong>Remittance Currency:</strong> {opportunityCurrency}</p>
+            <p><strong>IntegrationType:</strong> {opportunityIntegrationType}</p>
+        </div>
+    </template>
+    <template if:true={opportunity.error}>
+        <div class="slds-box slds-theme_error">
+            <p>Error loading opportunity details: {opportunity.error.body.message}</p>
+        </div>
+    </template>
+    <div class="slds-box">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="form-element-01">Select Timezone:</label>
+            <div class="slds-form-element__control">
+                <select id="timezone" class="slds-input input50" value={timezone} onchange={handleTimezoneChange}>
+                    <option value="">Select</option>
+                    <option value="timezone_americas">Americas</option>
+                    <option value="timezone_brazil">Brazil</option>
+                    <option value="timezone_rotw">Rest of the World</option>
+                    <option value="timezone_asia">Asia</option>
+                </select>
+            </div>
+        </div>
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="form-element-02">Domains:</label>
+            <div class="slds-form-element__control">
+                <input type="text" class="slds-input input50" id="textInput" value={newDomain} oninput={handleDomainChange} aria-labelledby="fixed-text-label fixed-text-addon-post"/>
+				<lightning-button-icon icon-name="action:new" variant="brand" class="slds-m-left_xx-small" title="Add" onclick={addDomainToList}></lightning-button-icon>
+            </div>
+        </div>
+        <template if:true={domainList.length}>
+            <ul class="slds-has-dividers_bottom-space">
+            <template for:each={domainList} for:item="domain">
+                <li class="slds-item" key={domain}>
+                    <lightning-button-icon icon-name="utility:delete" variant="bare" alternative-text="Delete" class="slds-m-left_xx-small" title="Delete" data-index={domain} onclick={removeDomainFromList}></lightning-button-icon>
+                    &nbsp;&nbsp;{domain}
+                </li>
+            </template>
+            </ul>
+        </template>
+    </div>
+    <template if:true={errorMessages.length}>
+        <div class="slds-box slds-theme_error">
+            <ul>
+                <template for:each={errorMessages} for:item="error" for:index="index">
+                    <li key={error}>{error}</li>
+                </template>
+            </ul>
+        </div>
+    </template>
+</template>

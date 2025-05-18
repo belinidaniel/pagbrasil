@@ -1,0 +1,45 @@
+.slds-modal {
+    display: block;
+    position: fixed;
+    z-index: 9000;
+    top: 5%; /* Slightly reduce the top margin for better view */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 95%; /* Increase the modal width */
+    max-height: 95%; /* Increase the modal height */
+    width: 95%; /* Explicitly set modal width */
+    height: 95%; /* Explicitly set modal height */
+    overflow: hidden; /* Prevent scrolling outside the modal */
+}
+
+.slds-modal__container {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Ensure the content does not exceed the container */
+}
+
+.slds-modal__content {
+    padding: 0; /* Remove padding for full iframe coverage */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slds-modal__content iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove iframe border for seamless integration */
+}
+
+.slds-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 8000;
+}

@@ -1,0 +1,18 @@
+<template>
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">Frequency Confirmation</h2>
+                </header>
+                <div class="slds-modal__content">
+                    <lightning-flow flow-api-name="Opportunity_Confirm_Frequencies" flow-input-variables={inputVariables} onstatuschange={handleStatusChange}></lightning-flow>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Close</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

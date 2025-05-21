@@ -529,6 +529,13 @@ public class ContractController {
             );
             insert cv;
 
+            // Atualizando a flag de Opportunity
+            Opportunity oppToUpdate = new Opportunity(
+                Id = opportunityId,
+                Was_Contract_PDF_Generated__c = true
+            );
+            update oppToUpdate;
+
             return 'PDF gerado e salvo com sucesso!';
         } catch (Exception e) {
             throw new AuraHandledException('Erro ao gerar ou salvar PDF: ' + e.getMessage());

@@ -37,7 +37,7 @@ export default class GenerateContract extends LightningElement {
         const currentYear = new Date().getFullYear();
         this.yearOptions = [];
 
-        for (let i = -1; i <= 1; i++) {
+        for (let i = 0; i <= 1; i++) {
             this.yearOptions.push({
                 label: `${currentYear + i}`,
                 value: `${currentYear + i}`

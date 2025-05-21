@@ -2,8 +2,8 @@
  * @description       : 
  * @author            : aydhan.passos
  * @group             : 
- * @last modified on  : 04-10-2025
- * @last modified by  : aydhan.passos
+ * @last modified on  : 05-16-2025
+ * @last modified by  : eduardo.teixeira
 **/
 public with sharing class QuotePdfService {
     
@@ -84,14 +84,34 @@ public with sharing class QuotePdfService {
         QuoteDocument qd = new QuoteDocument();
         qd.QuoteId = quoteId;
         qd.Document = pdfBlob;
-        // qd.Name = fileName;
-        List<QuoteDocument> oldDocs = [SELECT Id From QuoteDocument WHERE QuoteId = :quoteID];
-        if(!oldDocs.isEmpty()){
-          delete oldDocs;
-        }
         insert qd;
 
-        // 7. Atualiza estágio da oportunidade, se necessário
+        // Atualiza o campo Acceptable__c da respectiva Quote para true
+        Quote quoteToUpdate = new Quote(Id = quoteId, Acceptable__c = true);
+        update quoteToUpdate;
+
+        // 7. Cria link do mesmo arquivo para a Opportunity
+        if (proposta.OpportunityId != null) {
+            List<ContentDocumentLink> cdLinks = [
+                SELECT ContentDocumentId 
+                FROM ContentDocumentLink 
+                WHERE LinkedEntityId = :quoteId 
+                ORDER BY SystemModstamp DESC 
+                LIMIT 1
+            ];
+
+            if (!cdLinks.isEmpty()) {
+                ContentDocumentLink oppLink = new ContentDocumentLink(
+                    ContentDocumentId = cdLinks[0].ContentDocumentId,
+                    LinkedEntityId = proposta.OpportunityId,
+                    ShareType = 'V',
+                    Visibility = 'AllUsers'
+                );
+                insert oppLink;
+            }
+        }
+
+        // 8. Atualiza estágio da oportunidade (código existente)
         if (proposta.OpportunityId != null) {
             Opportunity opp = new Opportunity(Id = proposta.Opportunity.Id, StageName = 'Negotiation');
             update opp;

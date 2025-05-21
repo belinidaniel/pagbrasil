@@ -11,7 +11,7 @@ export default class KYCApproval extends LightningElement {
         this.dispatchEvent(
           new ShowToastEvent({
             title: 'Success',
-            message: rccStatus === 'Approval Requested' ? 'Forms submitted for legal approval.' : 'Waiting for RCC to send to legal approval.',
+            message: (rccStatus === 'Approval Requested' || rccStatus === 'Approved') ? 'Forms submitted for legal approval.' : 'Waiting for RCC to send to legal approval.',
             variant: 'success'
           })
         );

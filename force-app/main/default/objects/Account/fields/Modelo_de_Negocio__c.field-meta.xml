@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Modelo_de_Negocio__c</fullName>
+    <label>Modelo de Negócio</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intermediação (processamento técnico e coleta de valores)</fullName>
+                <default>false</default>
+                <label>Intermediação (processamento técnico e coleta de valores)</label>
+            </value>
+            <value>
+                <fullName>Gateway (somente processamento técnico - disponível apenas para cartão de crédito)</fullName>
+                <default>false</default>
+                <label>Gateway (somente processamento técnico - disponível apenas para cartão de crédito)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

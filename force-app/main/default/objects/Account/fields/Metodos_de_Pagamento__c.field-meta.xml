@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Metodos_de_Pagamento__c</fullName>
+    <description>Em geral, recomendamos o uso de todos os nossos métodos de pagamento para maximizar as conversões.</description>
+    <inlineHelpText>Em geral, recomendamos o uso de todos os nossos métodos de pagamento para maximizar as conversões.</inlineHelpText>
+    <label>Métodos de Pagamento Utilizados</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Boleto bancário</fullName>
+                <default>false</default>
+                <label>Boleto bancário</label>
+            </value>
+            <value>
+                <fullName>Cartão de crédito</fullName>
+                <default>false</default>
+                <label>Cartão de crédito</label>
+            </value>
+            <value>
+                <fullName>Cartão de débito</fullName>
+                <default>false</default>
+                <label>Cartão de débito</label>
+            </value>
+            <value>
+                <fullName>Transferência Bancária</fullName>
+                <default>false</default>
+                <label>Transferência Bancária</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

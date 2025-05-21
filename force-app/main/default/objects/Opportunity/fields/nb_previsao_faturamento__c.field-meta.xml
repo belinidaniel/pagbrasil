@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>nb_previsao_faturamento__c</fullName>
+    <label>NB - Previsão de faturamento</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Até R$10 mil</fullName>
+                <default>false</default>
+                <label>Até R$10 mil</label>
+            </value>
+            <value>
+                <fullName>R$10 mil até R$30 mil</fullName>
+                <default>false</default>
+                <label>R$10 mil até R$30 mil</label>
+            </value>
+            <value>
+                <fullName>R$30 mil até R$50 mil</fullName>
+                <default>false</default>
+                <label>R$30 mil até R$50 mil</label>
+            </value>
+            <value>
+                <fullName>R$50 mil até R$100 mil</fullName>
+                <default>false</default>
+                <label>R$50 mil até R$100 mil</label>
+            </value>
+            <value>
+                <fullName>Acima de R$100 mil</fullName>
+                <default>false</default>
+                <label>Acima de R$100 mil</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

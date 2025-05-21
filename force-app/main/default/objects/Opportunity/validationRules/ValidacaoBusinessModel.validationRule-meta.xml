@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidacaoBusinessModel</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISBLANK(BusinessModelType__c),
+    OR(
+        $RecordType.Name = &quot;Nacional&quot;,
+        $RecordType.Name = &quot;Cross Border&quot;
+    )
+)</errorConditionFormula>
+    <errorDisplayField>BusinessModelType__c</errorDisplayField>
+    <errorMessage>The Business Model Type field is empty, fill it in to continue.</errorMessage>
+</ValidationRule>

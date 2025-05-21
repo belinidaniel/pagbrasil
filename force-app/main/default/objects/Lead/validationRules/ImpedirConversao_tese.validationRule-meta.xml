@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirConversao_tese</fullName>
+    <active>true</active>
+    <description>Permitir a conversão de um lead para oportunidade apenas com o campo tese de prospecção preenchido.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Status, &apos;Closed - Converted&apos;),
+    ISCHANGED(Status),
+    ISBLANK(TeseProspeccao__c)
+)</errorConditionFormula>
+    <errorDisplayField>TeseProspeccao__c</errorDisplayField>
+    <errorMessage>Preencha o campo &quot;Tese de prospecção&quot;.</errorMessage>
+</ValidationRule>

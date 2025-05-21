@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tier</fullName>
+    <columns>NAME</columns>
+    <columns>FieldApiName__c</columns>
+    <columns>ObjectName__c</columns>
+    <columns>SalesforceValue__c</columns>
+    <columns>ZendeskValue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FieldApiName__c</field>
+        <operation>contains</operation>
+        <value>Tier</value>
+    </filters>
+    <label>Tier</label>
+    <language>en_US</language>
+</ListView>

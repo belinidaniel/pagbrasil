@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>teste2</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(OpportunityId)),
+    LOWER(Opportunity.RecordType.DeveloperName) = &quot;national&quot;,
+    OR(
+        ISBLANK(Opportunity.BusinessModelType__c),
+        ISBLANK(Opportunity.previs_fat_rs__c),
+        ISBLANK(Opportunity.Transacoes_Mensais__c),
+        ISBLANK(Opportunity.AverageSalesTicket__c),
+        ISPICKVAL(Opportunity.PaymentRecurrence__c, &quot;&quot;),
+        ISPICKVAL(Opportunity.Product_Type__c, &quot;&quot;),
+        ISPICKVAL(Opportunity.Segmento__c, &quot;&quot;),
+        ISBLANK(Opportunity.Categoria_de_Produto__c),
+        ISBLANK(Opportunity.BusinessModel__c),
+        ISPICKVAL(Opportunity.IntegrationType__c, &quot;&quot;),
+        ISBLANK(Opportunity.NationalPaymentMethod__c),
+        ISPICKVAL(Opportunity.Settlement_Frequency_1__c, &quot;&quot;),
+        ISPICKVAL(Opportunity.Settlement_Frequency_2__c, &quot;&quot;),
+        ISPICKVAL(Opportunity.Antecipation_Frequency_1__c, &quot;&quot;),
+        ISPICKVAL(Opportunity.Antecipation_Frequency_2__c, &quot;&quot;)
+    )
+)</errorConditionFormula>
+    <errorMessage>Existem campos vazios na oportunidade.</errorMessage>
+</ValidationRule>

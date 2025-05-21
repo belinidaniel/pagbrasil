@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hubspot_Life_Cycle_Stage__c</fullName>
+    <label>Hubspot Life Cycle Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>subscriber</fullName>
+                <default>false</default>
+                <label>Assinante</label>
+            </value>
+            <value>
+                <fullName>lead</fullName>
+                <default>false</default>
+                <label>Lead</label>
+            </value>
+            <value>
+                <fullName>marketingqualifiedlead</fullName>
+                <default>false</default>
+                <label>Lead qualificado para marketing</label>
+            </value>
+            <value>
+                <fullName>salesqualifiedlead</fullName>
+                <default>false</default>
+                <label>Lead qualificado para venda</label>
+            </value>
+            <value>
+                <fullName>opportunity</fullName>
+                <default>false</default>
+                <label>Oportunidade</label>
+            </value>
+            <value>
+                <fullName>customer</fullName>
+                <default>false</default>
+                <label>Cliente</label>
+            </value>
+            <value>
+                <fullName>evangelist</fullName>
+                <default>false</default>
+                <label>Promotor</label>
+            </value>
+            <value>
+                <fullName>other</fullName>
+                <default>false</default>
+                <label>Outro</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

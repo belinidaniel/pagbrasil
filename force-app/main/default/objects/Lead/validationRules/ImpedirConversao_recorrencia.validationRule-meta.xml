@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirConversao_recorrencia</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISPICKVAL(Status, &apos;Closed - Converted&apos;),
+ISCHANGED(Status),
+ISBLANK (TEXT(Recorrencia__c))
+)</errorConditionFormula>
+    <errorDisplayField>Recorrencia__c</errorDisplayField>
+    <errorMessage>Por favor, preencha o campo &quot;Recorrência&quot;</errorMessage>
+</ValidationRule>

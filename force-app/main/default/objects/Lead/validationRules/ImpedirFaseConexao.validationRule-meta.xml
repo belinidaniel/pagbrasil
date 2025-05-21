@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirFaseConexao</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISPICKVAL(PRIORVALUE(Status), &apos;Prospection&apos;),
+    ISPICKVAL(Status, &apos;Connection&apos;),
+    ISCHANGED(Status),
+				CONTAINS(TEXT(Qualificador__c), &apos;Outbound&apos;),
+    ISBLANK ( Email   ) || ISBLANK ( Product_or_service_website_URL__c )
+)</errorConditionFormula>
+    <errorMessage>Para avançar de fase, preencha o Email e o Site da Web.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deca0GVA000002njsT2AQ</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Envio de Contrato Docusign Cross</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>{!URLFOR(IF($Site.Prefix == &apos;/s&apos;, $Site.Prefix + &apos;/apex/dfsle__sending&apos;, &apos;/apex/dfsle__sending&apos;), null, [sId = Opportunity.Id, sendingExperience = &apos;null&apos;, isEmbedded = false, templateId = &apos;a0GVA000002njsT2AQ&apos;, recordId = Opportunity.Id, title = &apos;Envio de Contrato Docusign Cross&apos;])}</url>
+</WebLink>

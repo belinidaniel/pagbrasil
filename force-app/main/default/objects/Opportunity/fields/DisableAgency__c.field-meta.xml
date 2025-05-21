@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DisableAgency__c</fullName>
+    <description>Campo para ser usado para não mostrar na criação do record</description>
+    <formula>if(AND(RecordType.DeveloperName =&apos;Crossborder&apos;,  Id == null),true,false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Disable Agency</label>
+    <type>Checkbox</type>
+</CustomField>

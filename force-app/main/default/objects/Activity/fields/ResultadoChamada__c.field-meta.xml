@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ResultadoChamada__c</fullName>
+    <description>Registra o resultado da chamada realizada</description>
+    <label>Resultado da chamada</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sem resposta</fullName>
+                <default>false</default>
+                <label>Sem resposta</label>
+            </value>
+            <value>
+                <fullName>Deixou correio de voz</fullName>
+                <default>false</default>
+                <label>Deixou correio de voz</label>
+            </value>
+            <value>
+                <fullName>Conectado</fullName>
+                <default>false</default>
+                <label>Conectado</label>
+            </value>
+            <value>
+                <fullName>Não interessado</fullName>
+                <default>false</default>
+                <label>Não interessado</label>
+            </value>
+            <value>
+                <fullName>Número errado</fullName>
+                <default>false</default>
+                <label>Número errado</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

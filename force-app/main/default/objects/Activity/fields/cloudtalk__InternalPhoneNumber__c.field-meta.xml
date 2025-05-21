@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cloudtalk__InternalPhoneNumber__c</fullName>
+    <deprecated>false</deprecated>
+    <description>CloudTalk number on which was a call made</description>
+    <label>Internal phone number</label>
+    <required>false</required>
+    <type>Phone</type>
+</CustomField>

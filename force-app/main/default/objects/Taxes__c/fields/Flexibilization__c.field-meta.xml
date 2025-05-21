@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Flexibilization__c</fullName>
+    <label>Nível de flexibilização</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Com Autonomia</fullName>
+                <default>false</default>
+                <label>Com Autonomia</label>
+            </value>
+            <value>
+                <fullName>Com Flexibilização</fullName>
+                <default>false</default>
+                <label>Com Flexibilização</label>
+            </value>
+            <value>
+                <fullName>Sem Autonomia</fullName>
+                <default>false</default>
+                <label>Sem Autonomia</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

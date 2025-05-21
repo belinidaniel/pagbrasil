@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Segmento_Outros__c</fullName>
+    <description>Preenchimento do campo aberto do formulário quando o lead selecionou &quot;outros&quot; no segmento.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Campo aberto &quot;outros&quot; formulário NB.</inlineHelpText>
+    <label>Segmento Detalhe Outros NB</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirConversao_previsaofaturamento</fullName>
+    <active>true</active>
+    <description>Permitir a conversão de um lead para oportunidade apenas com uma data de agendamento.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Status, &apos;Closed - Converted&apos;),
+    ISCHANGED(Status),
+    ISBLANK(previs_fat_rs__c)
+)</errorConditionFormula>
+    <errorDisplayField>previs_fat_rs__c</errorDisplayField>
+    <errorMessage>Preencha o campo &quot;Previsão de faturamento (R$)&quot;.</errorMessage>
+</ValidationRule>

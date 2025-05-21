@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UnitPriceIsNotFlexibility</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED(UnitPrice), Flexibilization__c = &apos;Sem Autonomia&apos;)</errorConditionFormula>
+    <errorDisplayField>ListPrice</errorDisplayField>
+    <errorMessage>Valor não tem autonomia para alteração</errorMessage>
+</ValidationRule>

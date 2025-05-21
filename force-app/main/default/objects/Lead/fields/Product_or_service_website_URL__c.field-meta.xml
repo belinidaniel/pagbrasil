@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_or_service_website_URL__c</fullName>
+    <description>Site em que o produto ou serviço será comercializado. Mesmo que o KYC.</description>
+    <inlineHelpText>Site em que o produto ou serviço será comercializado. Mesmo que o KYC.</inlineHelpText>
+    <label>Product or service website URL</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Url</type>
+</CustomField>

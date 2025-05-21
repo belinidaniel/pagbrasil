@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chargeback__c</fullName>
+    <description>Chargeback: devolução dos valores solicitada pelo cliente final,diretamente à adquirente ou banco emissor do cartão.</description>
+    <inlineHelpText>Chargeback: devolução dos valores solicitada pelo cliente final,diretamente à adquirente ou banco emissor do cartão.</inlineHelpText>
+    <label>Taxa de Chargeback Atual</label>
+    <precision>7</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Percent</type>
+</CustomField>

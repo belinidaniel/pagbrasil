@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loss_Reason__c</fullName>
+    <label>Loss Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>StageName</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Non Responsive – Unable to Qualify</fullName>
+                <default>false</default>
+                <label>Non Responsive – Unable to Qualify</label>
+            </value>
+            <value>
+                <fullName>Non responsive – Qualified</fullName>
+                <default>false</default>
+                <label>Non responsive – Qualified</label>
+            </value>
+            <value>
+                <fullName>Refused - Prohibited Category</fullName>
+                <default>false</default>
+                <label>Refused - Prohibited Category</label>
+            </value>
+            <value>
+                <fullName>Refused – Minimum Revenue</fullName>
+                <default>false</default>
+                <label>Refused – Minimum Revenue</label>
+            </value>
+            <value>
+                <fullName>Refused – Not a Business Customer</fullName>
+                <default>false</default>
+                <label>Refused – Not a Business Customer</label>
+            </value>
+            <value>
+                <fullName>Refused - Digital Immature Customer</fullName>
+                <default>false</default>
+                <label>Refused - Digital Immature Customer</label>
+            </value>
+            <value>
+                <fullName>Refused - Tax Havens</fullName>
+                <default>false</default>
+                <label>Refused - Tax Havens</label>
+            </value>
+            <value>
+                <fullName>Refused - Not investing in Brazil</fullName>
+                <default>false</default>
+                <label>Refused - Not investing in Brazil</label>
+            </value>
+            <value>
+                <fullName>Platform not Supported</fullName>
+                <default>false</default>
+                <label>Platform not Supported</label>
+            </value>
+            <value>
+                <fullName>Feature not Supported</fullName>
+                <default>false</default>
+                <label>Feature not Supported</label>
+            </value>
+            <value>
+                <fullName>Fees</fullName>
+                <default>false</default>
+                <label>Fees</label>
+            </value>
+            <value>
+                <fullName>Settlement terms</fullName>
+                <default>false</default>
+                <label>Settlement terms</label>
+            </value>
+            <value>
+                <fullName>Currency</fullName>
+                <default>false</default>
+                <label>Currency</label>
+            </value>
+            <value>
+                <fullName>Project On hold</fullName>
+                <default>false</default>
+                <label>Project On hold</label>
+            </value>
+            <value>
+                <fullName>Coverage</fullName>
+                <default>false</default>
+                <label>Coverage</label>
+            </value>
+            <value>
+                <fullName>Terminated – Desinvesting in Brazil</fullName>
+                <default>false</default>
+                <label>Terminated – Desinvesting in Brazil</label>
+            </value>
+            <value>
+                <fullName>Terminated – Changed to competitor</fullName>
+                <default>false</default>
+                <label>Terminated – Changed to competitor</label>
+            </value>
+            <value>
+                <fullName>Terminated – Risk Department</fullName>
+                <default>false</default>
+                <label>Terminated – Risk Department</label>
+            </value>
+            <value>
+                <fullName>Terminated – Inactive</fullName>
+                <default>false</default>
+                <label>Terminated – Inactive</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Duplicate Log</fullName>
+                <default>false</default>
+                <label>Duplicate Log</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Non Responsive – Unable to Qualify</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Non responsive – Qualified</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Refused - Prohibited Category</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Refused – Minimum Revenue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Refused – Not a Business Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Refused - Digital Immature Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Refused - Tax Havens</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Refused - Not investing in Brazil</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Platform not Supported</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Feature not Supported</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Fees</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Settlement terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Currency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Project On hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Coverage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Terminated – Desinvesting in Brazil</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Terminated – Changed to competitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Terminated – Risk Department</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Terminated – Inactive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed Lost</controllingFieldValue>
+            <controllingFieldValue>Frozen</controllingFieldValue>
+            <controllingFieldValue>Closed Terminated</controllingFieldValue>
+            <valueName>Duplicate Log</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

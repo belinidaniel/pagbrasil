@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Receita_Mensal_Cross_Border__c</fullName>
+    <description>Campo criado para atender o formulário cross-border, onde o cliente tem mais de uma opção de moeda para informar a receita mensal.</description>
+    <label>Receita Mensal Cross-Border</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>TextArea</type>
+</CustomField>

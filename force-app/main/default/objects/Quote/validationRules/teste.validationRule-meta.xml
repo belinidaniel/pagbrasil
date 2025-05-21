@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>teste</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK(Opportunity.Transacoes_Mensais__c)</errorConditionFormula>
+    <errorMessage>teste</errorMessage>
+</ValidationRule>

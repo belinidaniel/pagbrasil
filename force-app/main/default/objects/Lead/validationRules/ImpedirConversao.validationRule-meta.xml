@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirConversao</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Status, &apos;Closed - Converted&apos;),
+    ISCHANGED(Status),
+    ISBLANK (  NotaReclameAqui__c  ) || 
+				ISBLANK ( LinkedIn__c ) || 
+				ISBLANK ( SeguidoresInstagram__c ) ||  
+				NOT (
+				ISPICKVAL(CheckoutTransparente__c, &apos;Sim&apos;) || 	ISPICKVAL(CheckoutTransparente__c, &apos;Não&apos;)|| ISPICKVAL(CheckoutTransparente__c, &apos;Checkout inacessível&apos;) ||
+				INCLUDES ( Metodos_Pagamento__c, &apos;Boleto Flash®&apos; ) || INCLUDES ( Metodos_Pagamento__c, &apos;Pix&apos; ) || INCLUDES ( Metodos_Pagamento__c, &apos;	Cartão de Crédito Nacional&apos; ) || INCLUDES ( Metodos_Pagamento__c, &apos;Cartão de Débito Nacional&apos; ) || INCLUDES ( Metodos_Pagamento__c, &apos;Link de Pagamento&apos; ) || INCLUDES ( Metodos_Pagamento__c, &apos;PEC Flash&apos; ) || INCLUDES ( Metodos_Pagamento__c, &apos;Transferência Bancária Online&apos; ) ||
+				ISPICKVAL ( TemValidadeCPF__c, &apos;Sim&apos; ) ||  ISPICKVAL ( TemValidadeCPF__c, &apos;Não&apos; ) ||
+				ISPICKVAL ( PIXmanualOuQRCode__c, &apos;Manual&apos;) || ISPICKVAL ( PIXmanualOuQRCode__c, &apos;QRCode&apos;) ||
+				ISPICKVAL ( TemAutocompleteCEP__c, &apos;Sim&apos; ) || 	ISPICKVAL ( TemAutocompleteCEP__c, &apos;Não&apos; ) 
+								)
+)</errorConditionFormula>
+    <errorMessage>Preencha todos os campos de Qualificação do Lead para converter.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,717 @@
+<apex:page controller="KYCBoostController">
+	<head>
+		<style>
+				* {
+					font-family: Arial, Arial, sans-serif !important;
+					font-size: 14px;
+				}
+
+				body {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					width: 80vw;
+				}
+
+				.logo {
+					align-self: center;
+				}
+
+				.main-btn {
+					color: #fff;
+					background: #007bff;
+					border-color: #007bff;
+					border: 1px solid transparent;
+					padding: .375rem .75rem;
+					font-size: 1rem;
+					line-height: 1.5;
+					border-radius: .25rem;
+					width: max-content;
+					align-self: end;
+					cursor: pointer;
+				}
+
+				.form-title {
+					margin-top: 16px;
+					font-weight: 700;
+					font-size: 14px;
+					align-self: center;
+				}
+
+				h3 {
+					display: flex;
+					box-sizing: border-box;
+					color: #878685;
+					padding: 8px 8px 2px 8px;
+					font-size: 12px;
+					font-weight: 700;
+				}
+
+				.title-container {
+					display: flex;
+					box-sizing: border-box;
+					border-radius: 4px;
+					padding: 4px;
+					height: 36px;
+					align-items: center;
+					margin-top: 8px;
+					margin-bottom: 8px;
+				}
+
+				.title {
+					font-size: 1rem;
+					color: black;
+					font-weight: 600;
+				}
+
+				.data-container {
+					display: grid;
+					grid-template-columns: 0.9fr 0.9fr;
+					gap: 4px;
+					transform: translateX(8px);
+				}
+
+				.three-part-container {
+					display: grid;
+					grid-template-columns: 0.9fr 0.9fr 0.9fr;
+					gap: 4px;
+					transform: translateX(8px);
+				}
+
+				.activity-container {
+					display: grid;
+					grid-template-columns: 0.4fr 2.0fr 0.4fr;
+					gap: 4px;
+					transform: translateX(8px);
+				}
+
+				.value {
+					font-weight: 400;
+					margin: 4px 0px 12px 2px;
+				}
+
+				.value-url {
+					line-break: anywhere;
+					font-weight: 400;
+					margin: 4px 0px 12px 2px;
+				}
+
+				.contact-container {
+					display: flex;
+					flex-direction: column;
+					box-sizing: border-box;
+					padding: 8px 12px;
+					border-radius: 4px;
+					border: solid #ededed 1px;
+					margin-top: 2px;
+					margin-bottom: 8px;
+					break-inside: avoid;
+				}
+
+				.small-title {
+					display: flex;
+					box-sizing: border-box;
+					color: #878685;
+					padding: 8px 8px 2px 8px;
+					font-size: 11px;
+					font-weight: 500;
+					margin: 0px;
+				}
+
+				.file-links {
+					transform: translateX(16px);
+				}
+
+				.no-break {
+					break-inside: avoid;
+				}
+
+				.break-after {
+					break-after: page;
+				}
+
+				@media (min-width: 1440px) {
+					body {
+						width: 60vw;
+					}
+				}
+
+				@media (max-width: 425px) {
+					.data-container {
+						display: grid;
+						grid-template-columns: 1fr;
+						gap: 4px;
+					}
+				}
+
+				@media print {
+					.main-btn {
+						display: none;
+					}
+				}
+		</style>
+	</head>
+	<body>
+		<button class="main-btn" onclick="window.print()">
+			Gerar PDF
+		</button>
+		<div class="logo">
+			<svg width="149.209786px" height="33.2492043px" viewBox="0 0 149.209786 33.2492043" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					<g id="Logos" transform="translate(-369.7902, -298.4241)" fill-rule="nonzero">
+						<g id="PagBrasil-Color" transform="translate(369.7902, 298.4241)">
+							<path d="M92.9751599,11.8406674 L90.9256266,11.8406674 C89.8362841,11.8406674 88.9530816,12.7238698 88.9530816,13.8121333 L88.9530816,25.0426537 L84.1992583,25.0426537 L84.1992583,13.5739745 C84.1992583,10.2422691 86.8999508,7.54085708 90.2316566,7.54085708 L95.4571199,7.54085708 L92.9751599,11.8406674 Z M127.464661,14.331262 C131.410471,14.934214 133.327613,16.6347833 133.327613,19.530104 C133.327613,21.3252892 132.615655,22.7725898 131.212604,23.8313533 C129.809913,24.8897571 127.837368,25.4265138 125.349652,25.4265138 C122.221209,25.4265138 119.51584,24.733263 117.616685,23.4464138 L119.635638,19.9485008 L119.653986,19.9596533 C121.313543,21.0094229 123.242198,21.5415028 125.385627,21.5415028 C127.518264,21.5415028 128.599692,20.9910753 128.599692,19.9056898 C128.599692,19.4880124 128.370168,19.1491218 127.916875,18.8987313 C127.456387,18.6447431 126.735074,18.4508343 125.708329,18.3058524 L124.291967,18.1087058 C120.251542,17.5546808 118.286912,15.8303676 118.286912,12.8389918 C118.286912,11.0675506 118.941308,9.66126225 120.230316,8.66221825 C121.521842,7.66389383 123.334656,7.15771633 125.61839,7.15771633 C128.13057,7.15771633 130.765427,7.768583 132.952027,8.80504158 L130.944586,12.2828083 C130.385164,12.0597592 129.294382,11.6359659 128.63279,11.4542889 C127.633747,11.1812337 126.667081,11.0369713 125.762652,11.0247396 C124.8942,11.0247396 124.222175,11.1664837 123.769961,11.4460145 C123.316308,11.7269843 123.086423,12.11768 123.086423,12.6062293 C123.086423,13.0537665 123.329259,13.3930169 123.788668,13.5869258 C124.253474,13.7833528 124.971907,13.9556762 125.923104,14.09778 L127.464661,14.331262 L127.464661,14.331262 Z M136.269342,25.0422939 L141.023885,25.0422939 L141.023885,7.54085708 L136.269342,7.54085708 L136.269342,25.0422939 Z M138.645894,5.21035415 C137.209387,5.21035415 136.041617,4.04186487 136.041617,2.60607647 C136.041617,1.16956855 137.209387,0 138.645894,0 C140.082402,0 141.250892,1.16884903 141.250892,2.60535695 C141.250892,4.04186487 140.082402,5.21035415 138.645894,5.21035415 L138.645894,5.21035415 Z M74.3437274,20.725575 L68.7106599,20.725575 L68.7106599,14.3622011 L73.7055191,14.3622011 L73.7069582,14.3622011 L74.3437274,14.3622011 C75.9665891,14.3622011 77.2861766,15.7897151 77.2861766,17.5449673 C77.2861766,19.2984207 75.9665891,20.725575 74.3437274,20.725575 L74.3437274,20.725575 Z M68.7106599,5.0293966 L73.7062391,5.0293966 C74.9571124,5.0293966 75.9748641,6.15507483 75.9748641,7.53833883 C75.9748641,8.9205235 74.9571124,10.0447627 73.7062391,10.0447627 L68.7106599,10.0447627 L68.7106599,5.0293966 Z M77.8578299,12.1637288 C79.7979966,11.0653921 80.5308208,9.13062133 80.5308208,7.53689975 C80.5308208,3.76773037 77.4754083,0.711958217 73.7055191,0.711958217 L63.9550374,0.711958217 L63.9550374,25.0430134 L74.3437274,25.0430134 C78.4852449,25.0430134 81.8424932,21.6850457 81.8424932,17.5442478 C81.8424932,15.1910802 80.3048941,12.8774858 77.8578299,12.1637288 L77.8578299,12.1637288 Z M149.209786,25.0426537 L144.455243,25.0426537 L144.455243,0.000719508333 C147.081107,0.000719508333 149.209786,2.12939903 149.209786,4.75598162 L149.209786,25.0426537 Z M105.150401,21.6537469 C102.31408,21.6537469 100.006602,19.2998597 100.006602,16.4059781 C100.006602,13.5124561 102.31408,11.158569 105.150401,11.158569 C107.987441,11.158569 110.29456,13.5124561 110.29456,16.4059781 C110.29456,19.2998597 107.987441,21.6537469 105.150401,21.6537469 L105.150401,21.6537469 Z M110.522286,7.54121683 L110.522286,9.345396 C108.869204,7.932632 106.772543,7.15735658 104.592418,7.15735658 C99.5554666,7.15735658 95.4571199,11.2553435 95.4571199,16.292295 C95.4571199,21.3292465 99.5554666,25.4268737 104.592418,25.4268737 C106.772543,25.4268737 108.869204,24.6512385 110.522286,23.2384745 L110.522286,25.0426537 L114.822816,25.0426537 L114.822816,7.54121683 L110.522286,7.54121683 Z" id="Fill-13" fill="#54CA30"></path>
+							<path d="M50.5256491,21.6535311 C47.6886091,21.6535311 45.3811307,19.2996439 45.3811307,16.4057623 C45.3811307,13.5122403 47.6886091,11.1583532 50.5256491,11.1583532 C53.3619699,11.1583532 55.6694482,13.5122403 55.6694482,16.4057623 C55.6694482,19.2996439 53.3619699,21.6535311 50.5256491,21.6535311 L50.5256491,21.6535311 Z M55.8971741,7.54064125 L55.8971741,9.34553983 C54.2437333,7.93241617 52.1467124,7.15786025 49.9676666,7.15786025 C44.9299957,7.15786025 40.8327282,11.2551277 40.8327282,16.2920792 C40.8327282,21.3290307 44.9299957,25.426298 49.9676666,25.426298 C52.1467124,25.426298 54.2437333,24.6510227 55.8971741,23.2378989 L55.8971741,24.9417059 C55.8971741,28.3957286 52.2201024,28.9109 50.0281057,28.9109 C48.0847007,28.9109 45.9991924,28.2359967 44.2299099,27.1865868 L42.0490657,30.9640307 C45.4696307,32.9516856 48.8455866,33.2492043 50.3508074,33.2492043 C51.9880599,33.2492043 60.1225149,32.8502343 60.1941066,25.0424378 L60.1973441,25.0424378 L60.1973441,7.54064125 L55.8971741,7.54064125 Z M28.4437921,21.6535311 C25.6067519,21.6535311 23.2992734,19.3000037 23.2992734,16.406122 C23.2992734,13.5126 25.6067519,11.1583532 28.4437921,11.1583532 C31.2801128,11.1583532 33.5875916,13.5126 33.5875916,16.406122 C33.5875916,19.3000037 31.2801128,21.6535311 28.4437921,21.6535311 L28.4437921,21.6535311 Z M33.8149574,7.541001 L33.8149574,9.34553983 C32.1618761,7.93277592 30.0648551,7.1575005 27.8850902,7.1575005 C22.8481387,7.1575005 18.7508713,11.2554874 18.7508713,16.2924389 C18.7508713,21.3293904 22.8481387,25.4266578 27.8850902,25.4266578 C30.0648551,25.4266578 32.1618761,24.6513824 33.8149574,23.2382587 L33.8149574,25.0427975 L38.1154874,25.0427975 L38.1154874,7.541001 L33.8149574,7.541001 Z M9.83106733,12.0886836 L4.68582908,12.0886836 L4.68582908,5.02918075 L9.83106733,5.02918075 C11.6453196,5.02918075 13.1217605,6.61282908 13.1217605,8.55947183 C13.1217605,10.5064743 11.6453196,12.0886836 9.83106733,12.0886836 L9.83106733,12.0886836 Z M9.83034783,0.711742358 L0,0.711742358 L0,25.0435171 L4.68582908,25.0435171 L4.68582908,16.406122 L9.83034783,16.406122 C14.164335,16.406122 17.676998,12.8923798 17.676998,8.5583925 C17.676998,4.22548461 14.164335,0.711742358 9.83034783,0.711742358 L9.83034783,0.711742358 Z" id="Fill-15" fill="#0058B5"></path>
+						</g>
+					</g>
+				</g>
+			</svg>
+		</div>
+		<h1 class="form-title">RELATÓRIO DE EMPRESA BIGBOOST</h1>
+        <main>
+			<apex:outputPanel rendered="{!hasBasicBB}">
+			    <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Dados Básicos</h2>
+                    </header>
+                    <article class="data-container">
+                        <div class="field">
+                            <strong class="label">CNPJ:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxIdNumber'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">País:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxIdCountry'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Natureza legal:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['LegalNature']['Activity'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Status:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxIdStatus'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Nome Oficial:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['OfficialName'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Nome Fantasia:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TradeName'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Data de fundação:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['FoundedDate'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Regime tributário:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxRegime'], '')}"/></p>
+                        </div>
+                    </article>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasActivityBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Atividades</h2>
+                    </header>
+                   <apex:repeat value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['Activities'], null)}" var="activity">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(activity))}">
+                            <span class="contact-container">
+                                <article class="activity-container">
+                                    <div class="field">
+                                        <strong class="label">Código:</strong>
+                                        <p class="value"><apex:outputText value="{!activity['Code']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Atividade:</strong>
+                                        <p class="value"><apex:outputText value="{!activity['Activity']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Principal?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(activity['IsMain'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasAddressesBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Endereços</h2>
+                    </header>
+                     <apex:repeat value="{!IF(NOT(ISBLANK(addressesBB['Result'])), addressesBB['Result'][0]['ExtendedAddresses']['Addresses'], null)}" var="address">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(address))}">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Endereço:</strong>
+                                        <p class="value"><apex:outputText value="{!address['AddressMain']}, {!address['Number']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Complemento:</strong>
+                                        <p class="value"><apex:outputText value="{!address['Complement']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">UF:</strong>
+                                        <p class="value"><apex:outputText value="{!address['State']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Cidade:</strong>
+                                        <p class="value"><apex:outputText value="{!address['City']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Bairro:</strong>
+                                        <p class="value"><apex:outputText value="{!address['Neighborhood']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">CEP:</strong>
+                                        <p class="value"><apex:outputText value="{!address['ZipCode']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Endereço principal?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(address['IsMainForEntity'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Está ativo?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(address['IsActive'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Endereço recente?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(address['IsRecentForEntity'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasPhonesBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Telefones</h2>
+                    </header>
+                    <apex:repeat value="{!IF(NOT(ISBLANK(phonesBB['Result'])), phonesBB['Result'][0]['ExtendedPhones']['Phones'], null)}" var="phone">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(phone))}">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Telefone:</strong>
+                                        <p class="value">+ <apex:outputText value="{!phone['CountryCode']}"/> (<apex:outputText value="{!phone['AreaCode']}"/>) <apex:outputText value="{!phone['Number']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Tipo:</strong>
+                                        <p class="value"><apex:outputText value="{!phone['Type']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Telefone principal?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(phone['IsMainForEntity'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Está ativo?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(phone['IsActive'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">É recente?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(phone['IsRecentForEntity'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasEmailsBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">E-mails</h2>
+                    </header>
+                    <apex:repeat value="{!emailsBB}" var="email">
+                        <span class="contact-container">
+                            <article class="data-container">
+                                <div class="field">
+                                    <strong class="label">Email:</strong>
+                                    <p class="value"><apex:outputText value="{!email['EmailAddress']}"/></p>
+                                </div>
+                                <div class="field">
+                                    <strong class="label">Email principal?</strong>
+                                    <p class="value"><apex:outputText value="{!IF(email['IsMainForEntity'], 'Sim', 'Não')}"/></p>
+                                </div>
+                                <div class="field">
+                                    <strong class="label">Está ativo?</strong>
+                                    <p class="value"><apex:outputText value="{!IF(email['IsActive'], 'Sim', 'Não')}"/></p>
+                                </div>
+                                <div class="field">
+                                    <strong class="label">É recente?</strong>
+                                    <p class="value"><apex:outputText value="{!IF(email['IsRecentForEntity'], 'Sim', 'Não')}"/></p>
+                                </div>
+                            </article>
+                        </span>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasDomainsBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Domínios</h2>
+                    </header>
+                    <apex:repeat value="{!IF(NOT(ISBLANK(domainsBB['Result'])), domainsBB['Result'][0]['Domains'], null)}" var="domain">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(domain))}">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Host:</strong>
+                                        <p class="value"><apex:outputText value="{!domain['HostName']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Nome:</strong>
+                                        <p class="value"><apex:outputText value="{!domain['DomainName']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Classificação:</strong>
+                                        <p class="value"><apex:outputText value="{!domain['DomainClass']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Segmento:</strong>
+                                        <p class="value"><apex:outputText value="{!domain['DomainMainSegment']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Local de hospedagem:</strong>
+                                        <p class="value"><apex:outputText value="{!domain['IspRegion']}, {!domain['IspCountry']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Está ativo?</strong>
+                                        <p class="value"><apex:outputText value="{!IF(domain['IsActive'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasOwnersBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">KYC e Compliance</h2>
+                    </header>
+                    <article class="three-part-container">
+                        <div class="field">
+                            <strong class="label">Politicamente exposta: </strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(kycBB['Result'])), IF(kycBB['Result'][0]['KycData']['IsCurrentlyPEP'], 'Sim', 'Não'), '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Sancionada atualmente: </strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(kycBB['Result'])), IF(kycBB['Result'][0]['KycData']['IsCurrentlySanctioned'], 'Sim', 'Não'), '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Doadora eleitoral recente: </strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(kycBB['Result'])), IF(kycBB['Result'][0]['KycData']['IsCurrentlyElectoralDonor'], 'Sim', 'Não'), '')}"/></p>
+                        </div>
+                    </article>
+                </section>
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">KYC e Compliance dos Sócios</h2>
+                    </header>
+                    <apex:outputPanel rendered="{!hasOwnersBB}">
+                        <apex:repeat value="{!ownersList}" var="owner">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Documento do Sócio:</strong>
+                                        <p class="value"><apex:outputText value="{!owner['TaxId']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Politicamente exposta:</strong>
+                                        <p class="value"><apex:outputText value="{!IF(owner['IsCurrentlyPEP'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Sancionada atualmente:</strong>
+                                        <p class="value"><apex:outputText value="{!IF(owner['IsCurrentlySanctioned'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Doadora eleitoral recente:</strong>
+                                        <p class="value"><apex:outputText value="{!IF(owner['IsCurrentlyElectoralDonor'], 'Sim', 'Não')}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:repeat>
+                    </apex:outputPanel>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasAppsBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Presença em Apps e Plataformas</h2>
+                    </header>
+					<article class="data-container">
+						<div class="field">
+							<strong class="label">Total de redes sociais: </strong>
+							<p class="value"><apex:outputText value="{!appsSummary.totalSocialNetworks}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Total de resultados de buscas: </strong>
+							<p class="value"><apex:outputText value="{!appsSummary.totalSearchResults}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Total de posts em mídias sociais: </strong>
+							<p class="value"><apex:outputText value="{!appsSummary.totalSocialMediaPosts}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Percentual nas mídias sociais de seguidores/seguindo: </strong>
+							<p class="value"><apex:outputText value="{!appsSummary.followerToFollowingRatio}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Possui Facebook? </strong>
+							<p class="value"><apex:outputText value="{!IF(appsSummary.hasFacebook, 'Sim', 'Não')}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Possui Twitter? </strong>
+							<p class="value"><apex:outputText value="{!IF(appsSummary.hasTwitter, 'Sim', 'Não')}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Possui LinkedIn? </strong>
+							<p class="value"><apex:outputText value="{!IF(appsSummary.hasLinkedIn, 'Sim', 'Não')}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Possui Instagram? </strong>
+							<p class="value"><apex:outputText value="{!IF(appsSummary.hasInstagram, 'Sim', 'Não')}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Possui OLX? </strong>
+							<p class="value"><apex:outputText value="{!IF(appsSummary.hasOLX, 'Sim', 'Não')}"/></p>
+						</div>
+						<div class="field">
+							<strong class="label">Possui MercadoLivre? </strong>
+							<p class="value"><apex:outputText value="{!IF(appsSummary.hasMercadoLivre, 'Sim', 'Não')}"/></p>
+						</div>
+					</article>
+                </section>
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Perfis</h2>
+                    </header>
+                    <apex:repeat value="{!appProfiles}" var="app">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(app))}">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Nome do App:</strong>
+                                        <p class="value"><apex:outputText value="{!app['AppName']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">URL:</strong>
+                                        <p class="value"><apex:outputText value="{!app['ProfileUrl']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">MatchRate de nome de perfil:</strong>
+                                        <p class="value"><apex:outputText value="{!app['DisplayNameMatchRate']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">MatchRate de nome de usuário:</strong>
+                                        <p class="value"><apex:outputText value="{!app['UserNameMatchRate']}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+                <section>
+                    <header class="title-container">
+                        <h2 class="title">Resultados de busca</h2>
+                    </header>
+                     <apex:repeat value="{!searchEngineResults}" var="engine">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(engine))}">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Motor de busca:</strong>
+                                        <p class="value"><apex:outputText value="{!engine['SearchEngineName']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Título da página:</strong>
+                                        <p class="value"><apex:outputText value="{!engine['PageTitle']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Descrição da página:</strong>
+                                        <p class="value"><apex:outputText value="{!engine['PageDescription']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">URL da página:</strong>
+                                        <p class="value-url"><apex:outputText value="{!engine['PageUrl']}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasMediaBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Exposição e Perfil na Mídia</h2>
+                    </header>
+                    <article class="three-part-container">
+                        <div class="field">
+                            <strong class="label">Nível de celebridade:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(mediaBB['Result'])), mediaBB['Result'][0]['MediaProfileAndExposure']['CelebrityLevel'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Nível de explosição:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(mediaBB['Result'])), mediaBB['Result'][0]['MediaProfileAndExposure']['MediaExposureLevel'], '')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Nível de impopularidade:</strong>
+                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(mediaBB['Result'])), mediaBB['Result'][0]['MediaProfileAndExposure']['UnpopularityLevel'], '')}"/></p>
+                        </div>
+					</article>
+				</section>
+			</apex:outputPanel>
+			<apex:outputPanel rendered="{!hasProcessesBB}">
+				<section class="section">
+					<header class="title-container">
+						<h2 class="title">Ações Judiciais</h2>
+					</header>
+					<article class="data-container">
+            			<div class="field">
+						<strong class="label">Total de processos:</strong>
+							<p class="value">
+								<apex:outputText value="{!lawsuits['TotalLawsuits']}"/>
+							</p>
+            			</div>
+            			<div class="field">
+							<strong class="label">Processos como autor:</strong>
+							<p class="value">
+								<apex:outputText value="{!lawsuits['TotalLawsuitsAsAuthor']}"/>
+							</p>
+            			</div>
+            			<div class="field">
+							<strong class="label">Processos como réu:</strong>
+							<p class="value">
+								<apex:outputText value="{!lawsuits['TotalLawsuitsAsDefendant']}"/>
+							</p>
+						</div>
+						<div class="field">
+							<strong class="label">Data do último processo:</strong>
+							<p class="value">
+								<apex:outputText value="{!LastLawsuitDate}"/>
+							</p>
+						</div>
+						<div class="field">
+							<strong class="label">Data do primeiro processo:</strong>
+							<p class="value">
+								<apex:outputText value="{!FirstLawsuitDate}"/>
+							</p>
+						</div>
+					</article>
+					<apex:repeat value="{!processesBB}" var="process">
+						<apex:outputPanel rendered="{!NOT(ISNULL(process))}">
+							<span class="contact-container">
+								<article class="data-container">
+									<div class="field">
+										<strong class="label">Número:</strong>
+										<p class="value"><apex:outputText value="{!process['Number']}"/></p>
+									</div>
+									<div class="field">
+										<strong class="label">Tipo:</strong>
+										<p class="value"><apex:outputText value="{!process['Type']}"/></p>
+									</div>
+									<div class="field">
+										<strong class="label">Assunto:</strong>
+										<p class="value"><apex:outputText value="{!process['MainSubject']}"/></p>
+									</div>
+									<div class="field">
+										<strong class="label">Status:</strong>
+										<p class="value"><apex:outputText value="{!process['Status']}"/></p>
+									</div>
+									<div class="field">
+										<strong class="label">Data de publicação:</strong>
+										<p class="value"><apex:outputText value="{!process['PublicationDate']}"/></p>
+									</div>
+								</article>
+							</span>
+						</apex:outputPanel>
+					</apex:repeat>
+				</section>
+			</apex:outputPanel>
+            <apex:outputPanel rendered="{!hasActivityBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Indicadores de Atividade</h2>
+                    </header>
+                    <article class="data-container">
+                        <div class="field">
+                            <strong class="label">Nível de atividade:</strong>
+                            <p class="value"><apex:outputText value="{!activityBB['Result'][0]['ActivityIndicators']['ActivityLevel']}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Quantidade de funcionários:</strong>
+                            <p class="value"><apex:outputText value="{!activityBB['Result'][0]['ActivityIndicators']['EmployeesRange']}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Estimativa de faturamento anual:</strong>
+                            <p class="value"><apex:outputText value="{!activityBB['Result'][0]['ActivityIndicators']['IncomeRange']}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Empresa Ativa:</strong>
+                            <p class="value"><apex:outputText value="{!IF(activityBB['Result'][0]['ActivityIndicators']['HasActivity'], 'Sim', 'Não')}"/></p>
+                        </div>
+                        <div class="field">
+                            <strong class="label">Número de filiais:</strong>
+                            <p class="value"><apex:outputText value="{!activityBB['Result'][0]['ActivityIndicators']['NumberOfBranches']}"/></p>
+                        </div>
+                    </article>
+                </section>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!hasRelationshipsBB}">
+                <section class="section">
+                    <header class="title-container">
+                        <h2 class="title">Relacionamentos</h2>
+                    </header>
+                    <apex:repeat value="{!IF(NOT(ISBLANK(relationshipsBB['Result'])), relationshipsBB['Result'][0]['Relationships']['Relationships'], null)}" var="relationship">
+                         <apex:outputPanel rendered="{!NOT(ISNULL(relationship))}">
+                            <span class="contact-container">
+                                <article class="data-container">
+                                    <div class="field">
+                                        <strong class="label">Entidade relacionada:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelatedEntityName']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Tipo de documento:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelatedEntityTaxIdType']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Número do documento:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelatedEntityTaxIdNumber']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Nível do relacionamento:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelationshipLevel']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Nome do relacionamento:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelationshipName']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Tipo do relacionamento:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelationshipType']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Data de início:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelationshipStartDate']}"/></p>
+                                    </div>
+                                    <div class="field">
+                                        <strong class="label">Data de término:</strong>
+                                        <p class="value"><apex:outputText value="{!relationship['RelationshipEndDate']}"/></p>
+                                    </div>
+                                </article>
+                            </span>
+                        </apex:outputPanel>
+                    </apex:repeat>
+                </section>
+            </apex:outputPanel>
+        </main>
+    </body>
+</apex:page>

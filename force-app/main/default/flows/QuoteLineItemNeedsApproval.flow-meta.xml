@@ -5,17 +5,17 @@
     <decisions>
         <name>Percent_Value_is_changed</name>
         <label>Percent Value is changed</label>
-        <locationX>501</locationX>
+        <locationX>545</locationX>
         <locationY>287</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>YesPercent_Value_is_changed</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record__Prior.PercentValue__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>$Record.PercentValue__c</leftValueReference>
+                <operator>IsChanged</operator>
                 <rightValue>
-                    <elementReference>$Record.PercentValue__c</elementReference>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -130,7 +130,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>375</locationX>
+        <locationX>419</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Percent_Value_is_changed</targetReference>
@@ -138,9 +138,9 @@
         <filterLogic>and</filterLogic>
         <filters>
             <field>PercentValue__c</field>
-            <operator>GreaterThanOrEqualTo</operator>
+            <operator>IsChanged</operator>
             <value>
-                <numberValue>0.0</numberValue>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>QuoteLineItem</object>

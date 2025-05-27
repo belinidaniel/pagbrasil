@@ -59,9 +59,7 @@ global class ContactXBService {
 
 					if (key == 'Birthdate') {
 						String inputDate = String.valueOf(requestBody.get(key));
-						List<String> dateParts = inputDate.split('/');
-						String outputDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
-						Date foundingDate = date.valueOf(outputDate);
+						Date foundingDate = date.valueOf(inputDate);
 						contactRecord.put(key, foundingDate);
 						continue;
 					}

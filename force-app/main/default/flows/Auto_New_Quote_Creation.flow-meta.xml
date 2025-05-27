@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Unsychronize_Quote</name>
+        <label>Unsychronize Quote</label>
+        <locationX>314</locationX>
+        <locationY>890</locationY>
+        <actionName>OpportunityUtils</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Create_Quote</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>opportunityIds</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>OpportunityUtils</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Quote_Version</name>
         <label>Quote Version</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>QuoteVersionNumber</assignToReference>
@@ -68,9 +88,9 @@
         </connector>
     </assignments>
     <decisions>
-        <name>Have_a_Synced_Quote</name>
-        <label>Have a Synced Quote?</label>
-        <locationX>182</locationX>
+        <name>Is_the_proposal_acceptable</name>
+        <label>Is the proposal acceptable?</label>
+        <locationX>248</locationX>
         <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Quote_Version</targetReference>
@@ -80,14 +100,39 @@
             <name>Yes</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Opportunity.SyncedQuoteId</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>Get_Opportunity.Acceptable_Proposal__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>You_Can_Not_Create_a_New_Quote</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_there_a_synchronized_quote</name>
+        <label>Is there a synchronized quote?</label>
+        <locationX>446</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <targetReference>Create_Quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Has_Synced_Quote__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Warning</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -122,8 +167,11 @@
     <recordCreates>
         <name>Create_Quote</name>
         <label>Create Quote</label>
-        <locationX>314</locationX>
-        <locationY>674</locationY>
+        <locationX>446</locationX>
+        <locationY>1082</locationY>
+        <connector>
+            <targetReference>Redirect_To_New_Quote</targetReference>
+        </connector>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -142,11 +190,11 @@
     <recordLookups>
         <name>Get_Actual_Quotes</name>
         <label>Get Actual Quotes</label>
-        <locationX>182</locationX>
+        <locationX>248</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Have_a_Synced_Quote</targetReference>
+            <targetReference>Is_the_proposal_acceptable</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -164,7 +212,7 @@
     <recordLookups>
         <name>Get_Opportunity</name>
         <label>Get Opportunity</label>
-        <locationX>182</locationX>
+        <locationX>248</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -185,13 +233,13 @@
     <screens>
         <name>New_Quote</name>
         <label>New Quote</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>566</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Create_Quote</targetReference>
+            <targetReference>Is_there_a_synchronized_quote</targetReference>
         </connector>
         <fields>
             <name>New_Quote_Message</name>
@@ -203,6 +251,50 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
+        <name>Redirect_To_New_Quote</name>
+        <label>Redirect To New Quote</label>
+        <locationX>446</locationX>
+        <locationY>1190</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>redirectQuote</name>
+            <extensionName>c:redirectToQuote</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>quoteId</name>
+                <value>
+                    <elementReference>Create_Quote</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Warning</name>
+        <label>Warning</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Unsychronize_Quote</targetReference>
+        </connector>
+        <fields>
+            <name>WarningText</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 204, 0); font-size: 18px;&quot;&gt;The current synchronized quote will be desynchronized.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 204, 0); font-size: 18px;&quot;&gt;You can manually sync it again.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>You_Can_Not_Create_a_New_Quote</name>
         <label>You Can&apos;t Create a New Quote</label>
         <locationX>50</locationX>
@@ -212,7 +304,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Sorry</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px; color: rgb(255, 0, 0);&quot;&gt;It is not possible to create a new quote, as there is another one already synchronized with the current opportunity.&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 0, 0); font-size: 18px;&quot;&gt;It is not possible to create a new quote, as there is another already synchronized with the current opportunity that can be accepted at the moment.&lt;/strong&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>Back to Opportunity</nextOrFinishButtonLabel>
@@ -220,7 +312,7 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>56</locationX>
+        <locationX>122</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Opportunity</targetReference>

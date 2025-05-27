@@ -4,7 +4,7 @@
         <name>Filled_Toast_Message</name>
         <label>Filled Toast Message</label>
         <locationX>842</locationX>
-        <locationY>3974</locationY>
+        <locationY>4406</locationY>
         <actionName>c:ShowToastFlow</actionName>
         <actionType>component</actionType>
         <connector>
@@ -31,7 +31,7 @@
         <name>Not_Filled_Toast_Message</name>
         <label>Not Filled Toast Message</label>
         <locationX>1106</locationX>
-        <locationY>3974</locationY>
+        <locationY>4406</locationY>
         <actionName>c:ShowToastFlow</actionName>
         <actionType>component</actionType>
         <connector>
@@ -57,26 +57,26 @@
     <apiVersion>62.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
-        <name>Assignment_20</name>
-        <label>Assignment 20</label>
-        <locationX>1106</locationX>
+        <name>Assign_Legal_Status</name>
+        <label>Assign Legal Status</label>
+        <locationX>1062</locationX>
         <locationY>3374</locationY>
         <assignmentItems>
-            <assignToReference>Created</assignToReference>
+            <assignToReference>Get_RCC.LegalApprovalStatus__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <stringValue>Approval Requested</stringValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Is_Opp_National_OR_Crossborder</targetReference>
+            <targetReference>block_editing</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assignment_Results_Questions</name>
         <label>Assignment Results Questions</label>
         <locationX>974</locationX>
-        <locationY>3050</locationY>
+        <locationY>3158</locationY>
         <assignmentItems>
             <assignToReference>SavedQuestion_1</assignToReference>
             <operator>Assign</operator>
@@ -169,14 +169,30 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Validate_Exist_RCC</targetReference>
+            <targetReference>Was_RCC_already_sent_to_approval</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>block_editing</name>
+        <label>block editing</label>
+        <locationX>974</locationX>
+        <locationY>3566</locationY>
+        <assignmentItems>
+            <assignToReference>EditFields</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_RCC</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Calculate_Score_Em_Partes</name>
         <label>Calculate Score Em Partes</label>
         <locationX>2470</locationX>
-        <locationY>2138</locationY>
+        <locationY>2246</locationY>
         <assignmentItems>
             <assignToReference>Result_Score</assignToReference>
             <operator>Add</operator>
@@ -192,7 +208,7 @@
         <name>Calculate_Score_No</name>
         <label>Calculate Score No</label>
         <locationX>2734</locationX>
-        <locationY>2138</locationY>
+        <locationY>2246</locationY>
         <assignmentItems>
             <assignToReference>Result_Score</assignToReference>
             <operator>Add</operator>
@@ -208,7 +224,7 @@
         <name>Calculate_Score_Yes</name>
         <label>Calculate Score Yes</label>
         <locationX>2206</locationX>
-        <locationY>2138</locationY>
+        <locationY>2246</locationY>
         <assignmentItems>
             <assignToReference>Result_Score</assignToReference>
             <operator>Add</operator>
@@ -224,7 +240,7 @@
         <name>Change_Risk_Score</name>
         <label>Change Risk / Score</label>
         <locationX>1502</locationX>
-        <locationY>974</locationY>
+        <locationY>1082</locationY>
         <assignmentItems>
             <assignToReference>SavedFinalRisk</assignToReference>
             <operator>Assign</operator>
@@ -240,7 +256,7 @@
         <name>Clear_Lists</name>
         <label>Clear Lists</label>
         <locationX>974</locationX>
-        <locationY>4166</locationY>
+        <locationY>4598</locationY>
         <assignmentItems>
             <assignToReference>QuestionAndResponse</assignToReference>
             <operator>RemoveAll</operator>
@@ -253,7 +269,7 @@
         <name>Clear_Score</name>
         <label>Clear Score</label>
         <locationX>446</locationX>
-        <locationY>1382</locationY>
+        <locationY>1490</locationY>
         <assignmentItems>
             <assignToReference>Result_Score</assignToReference>
             <operator>Assign</operator>
@@ -268,7 +284,7 @@
     <assignments>
         <name>Liberate_Edit_Fields</name>
         <label>Liberate Edit Fields</label>
-        <locationX>1106</locationX>
+        <locationX>842</locationX>
         <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>EditFields</assignToReference>
@@ -278,14 +294,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_Risk</targetReference>
+            <targetReference>Population_Fields_Form_Edit</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>PopulateListQuestionAndResponse</name>
         <label>Populate List Question And Response</label>
         <locationX>446</locationX>
-        <locationY>1274</locationY>
+        <locationY>1382</locationY>
         <assignmentItems>
             <assignToReference>QuestionAndResponse</assignToReference>
             <operator>Add</operator>
@@ -370,7 +386,7 @@
     <assignments>
         <name>Population_Fields_Form</name>
         <label>Population Fields Form</label>
-        <locationX>842</locationX>
+        <locationX>1106</locationX>
         <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>SavedQuestion_1</assignToReference>
@@ -496,10 +512,131 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Population_Fields_Form_Edit</name>
+        <label>Population Fields Form</label>
+        <locationX>842</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.MerchantDemand__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.ForecastSales__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_3</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.DescriptionIsClear__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_4</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.QualityProduct__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_5</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.ActivityRestricted__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_6</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.PresenceMarket__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_7</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.Reputation__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_8</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.RealisticForecast__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_9</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.WhoNegotiated__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_10</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.CheckID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Result_Score</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.Result__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Risk</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.Risk__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedRisk</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.Risk__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedFinalRisk</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.Final_Risk__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SavedQuestion_11</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.ContactDirectOrBusinessMail__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Revision</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_RCC.Revision__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Risk</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Edit</name>
         <label>Set Edit</label>
         <locationX>314</locationX>
-        <locationY>1082</locationY>
+        <locationY>1190</locationY>
         <assignmentItems>
             <assignToReference>EditFields</assignToReference>
             <operator>Assign</operator>
@@ -515,7 +652,7 @@
         <name>Set_Edit_False_2</name>
         <label>Set Edit False 2</label>
         <locationX>578</locationX>
-        <locationY>1082</locationY>
+        <locationY>1190</locationY>
         <assignmentItems>
             <assignToReference>EditFields</assignToReference>
             <operator>Assign</operator>
@@ -531,7 +668,7 @@
         <name>Set_Edit_Fields</name>
         <label>Set Edit Fields</label>
         <locationX>50</locationX>
-        <locationY>1082</locationY>
+        <locationY>1190</locationY>
         <assignmentItems>
             <assignToReference>EditFields</assignToReference>
             <operator>Assign</operator>
@@ -547,7 +684,7 @@
         <name>Set_Revision_Extreme</name>
         <label>Set Revision Extreme</label>
         <locationX>1898</locationX>
-        <locationY>1598</locationY>
+        <locationY>1706</locationY>
         <assignmentItems>
             <assignToReference>Revision</assignToReference>
             <operator>Assign</operator>
@@ -570,7 +707,7 @@
         <name>Set_Revision_High</name>
         <label>Set Revision High</label>
         <locationX>1634</locationX>
-        <locationY>1598</locationY>
+        <locationY>1706</locationY>
         <assignmentItems>
             <assignToReference>Revision</assignToReference>
             <operator>Assign</operator>
@@ -593,7 +730,7 @@
         <name>Set_Revision_Low</name>
         <label>Set Revision Low</label>
         <locationX>1106</locationX>
-        <locationY>1598</locationY>
+        <locationY>1706</locationY>
         <assignmentItems>
             <assignToReference>Revision</assignToReference>
             <operator>Assign</operator>
@@ -616,7 +753,7 @@
         <name>Set_Revision_Medium</name>
         <label>Set Revision Medium</label>
         <locationX>1370</locationX>
-        <locationY>1598</locationY>
+        <locationY>1706</locationY>
         <assignmentItems>
             <assignToReference>Revision</assignToReference>
             <operator>Assign</operator>
@@ -639,7 +776,7 @@
         <name>SetExtreme</name>
         <label>SetExtreme</label>
         <locationX>842</locationX>
-        <locationY>2774</locationY>
+        <locationY>2882</locationY>
         <assignmentItems>
             <assignToReference>Risk</assignToReference>
             <operator>Assign</operator>
@@ -655,7 +792,7 @@
         <name>SetHigh</name>
         <label>SetHigh</label>
         <locationX>578</locationX>
-        <locationY>2774</locationY>
+        <locationY>2882</locationY>
         <assignmentItems>
             <assignToReference>Risk</assignToReference>
             <operator>Assign</operator>
@@ -671,7 +808,7 @@
         <name>SetLow</name>
         <label>SetLow</label>
         <locationX>50</locationX>
-        <locationY>2774</locationY>
+        <locationY>2882</locationY>
         <assignmentItems>
             <assignToReference>Risk</assignToReference>
             <operator>Assign</operator>
@@ -687,7 +824,7 @@
         <name>SetMedium</name>
         <label>SetMedium</label>
         <locationX>314</locationX>
-        <locationY>2774</locationY>
+        <locationY>2882</locationY>
         <assignmentItems>
             <assignToReference>Risk</assignToReference>
             <operator>Assign</operator>
@@ -791,7 +928,7 @@
         <name>Decision_3</name>
         <label>Decision 3</label>
         <locationX>2470</locationX>
-        <locationY>2030</locationY>
+        <locationY>2138</locationY>
         <defaultConnector>
             <targetReference>Calculate_Score_No</targetReference>
         </defaultConnector>
@@ -831,19 +968,33 @@
         <name>Is_KYC_Already_Filled</name>
         <label>Is KYC Already Filled</label>
         <locationX>974</locationX>
-        <locationY>3866</locationY>
+        <locationY>4298</locationY>
         <defaultConnector>
             <targetReference>Not_Filled_Toast_Message</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Is Not Filled</defaultConnectorLabel>
         <rules>
             <name>Is_Filled</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>KYCStatusFromOPP</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>KYCStatusFromOPP</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending Approval Legal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>KYCStatusFromOPP</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -856,7 +1007,7 @@
         <name>Is_Opp_National_OR_Crossborder</name>
         <label>Is Opp National OR Crossborder</label>
         <locationX>974</locationX>
-        <locationY>3566</locationY>
+        <locationY>3998</locationY>
         <defaultConnector>
             <targetReference>Get_KYC_XB_From_Opp</targetReference>
         </defaultConnector>
@@ -881,7 +1032,7 @@
         <name>Set_Final_Risk</name>
         <label>Set Final Risk</label>
         <locationX>446</locationX>
-        <locationY>2666</locationY>
+        <locationY>2774</locationY>
         <defaultConnector>
             <targetReference>SetExtreme</targetReference>
         </defaultConnector>
@@ -950,7 +1101,7 @@
         <name>Validate_Change_Risk_Final_Edit_Fields</name>
         <label>Validate Change Risk Final / Edit Fields</label>
         <locationX>974</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <defaultConnector>
             <targetReference>Change_Risk_Score</targetReference>
         </defaultConnector>
@@ -975,7 +1126,7 @@
         <name>Validate_Edit_Fields</name>
         <label>Validate Edit Fields</label>
         <locationX>446</locationX>
-        <locationY>974</locationY>
+        <locationY>1082</locationY>
         <defaultConnector>
             <targetReference>PopulateListQuestionAndResponse</targetReference>
         </defaultConnector>
@@ -1058,7 +1209,7 @@
         <name>Validate_empty</name>
         <label>Validate empty</label>
         <locationX>1502</locationX>
-        <locationY>1190</locationY>
+        <locationY>1298</locationY>
         <defaultConnector>
             <targetReference>Validate_Risk_To_Create_Task</targetReference>
         </defaultConnector>
@@ -1080,67 +1231,49 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Validate_Exist_RCC</name>
-        <label>Validate Exist RCC</label>
-        <locationX>974</locationX>
-        <locationY>3158</locationY>
-        <defaultConnector>
-            <targetReference>Create_RCC</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Found</defaultConnectorLabel>
-        <rules>
-            <name>Found</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_RCC.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Created</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_RCC</targetReference>
-            </connector>
-            <label>Found</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Validate_Existing_RCC</name>
-        <label>Validate Existing RCC</label>
+        <name>Validate_RCC_Legal_Status</name>
+        <label>Validate RCC Legal Status</label>
         <locationX>974</locationX>
         <locationY>350</locationY>
         <defaultConnector>
-            <targetReference>Liberate_Edit_Fields</targetReference>
+            <targetReference>Population_Fields_Form</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not Exist</defaultConnectorLabel>
+        <defaultConnectorLabel>Can Not Edt Form</defaultConnectorLabel>
         <rules>
-            <name>Exist</name>
+            <name>Can_Edit_Form</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_RCC.Id</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>Get_RCC.LegalApprovalStatus__c</leftValueReference>
+                <operator>NotEqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_RCC.LegalApprovalStatus__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending Approval Legal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_RCC.LegalApprovalStatus__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Population_Fields_Form</targetReference>
+                <targetReference>Liberate_Edit_Fields</targetReference>
             </connector>
-            <label>Exist</label>
+            <label>Can Edit Form</label>
         </rules>
     </decisions>
     <decisions>
         <name>Validate_Risk_To_Create_Task</name>
         <label>Validate Risk To Create Task</label>
         <locationX>1502</locationX>
-        <locationY>1490</locationY>
+        <locationY>1598</locationY>
         <defaultConnector>
             <targetReference>Set_Revision_Extreme</targetReference>
         </defaultConnector>
@@ -1195,7 +1328,7 @@
         <name>Verify_Calculate_Score</name>
         <label>Verify Calculate Score</label>
         <locationX>2734</locationX>
-        <locationY>1922</locationY>
+        <locationY>2030</locationY>
         <defaultConnector>
             <targetReference>Loop_Question_and_Response</targetReference>
         </defaultConnector>
@@ -1227,7 +1360,7 @@
         <name>Verify_Question</name>
         <label>Verify_Question</label>
         <locationX>2954</locationX>
-        <locationY>1814</locationY>
+        <locationY>1922</locationY>
         <defaultConnector>
             <targetReference>Loop_Question_and_Response</targetReference>
         </defaultConnector>
@@ -1253,6 +1386,31 @@
                 <targetReference>Verify_Calculate_Score</targetReference>
             </connector>
             <label>Same Question</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_RCC_already_sent_to_approval</name>
+        <label>Was RCC already sent to approval</label>
+        <locationX>974</locationX>
+        <locationY>3266</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Legal_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_RCC_Sent</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_RCC.LegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending Approval Legal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>block_editing</targetReference>
+            </connector>
+            <label>Yes</label>
         </rules>
     </decisions>
     <dynamicChoiceSets>
@@ -1493,7 +1651,7 @@
         <name>Loop_Question</name>
         <label>Loop Question</label>
         <locationX>446</locationX>
-        <locationY>1598</locationY>
+        <locationY>1706</locationY>
         <collectionReference>Get_Questions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -1507,7 +1665,7 @@
         <name>Loop_Question_and_Response</name>
         <label>Loop Question and Response</label>
         <locationX>2118</locationX>
-        <locationY>1706</locationY>
+        <locationY>1814</locationY>
         <collectionReference>QuestionAndResponse</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -1537,111 +1695,10 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
-        <name>Create_RCC</name>
-        <label>Create RCC</label>
-        <locationX>1106</locationX>
-        <locationY>3266</locationY>
-        <connector>
-            <targetReference>Assignment_20</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Account__c</field>
-            <value>
-                <elementReference>Get_Opportunity.AccountId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ActivityRestricted__c</field>
-            <value>
-                <elementReference>SavedQuestion_5</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>CheckID__c</field>
-            <value>
-                <elementReference>SavedQuestion_10</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ContactDirectOrBusinessMail__c</field>
-            <value>
-                <elementReference>SavedQuestion_11</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>DescriptionIsClear__c</field>
-            <value>
-                <elementReference>SavedQuestion_3</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Final_Risk__c</field>
-            <value>
-                <elementReference>Risco_Final</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>ForecastSales__c</field>
-            <value>
-                <elementReference>SavedQuestion_2</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>LegalApprovalStatus__c</field>
-            <value>
-                <stringValue>Approval Requested</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>MerchantDemand__c</field>
-            <value>
-                <elementReference>SavedQuestion_1</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Opportunity__c</field>
-            <value>
-                <elementReference>Get_Opportunity.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>PresenceMarket__c</field>
-            <value>
-                <elementReference>SavedQuestion_6</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>QualityProduct__c</field>
-        </inputAssignments>
-        <inputAssignments>
-            <field>RealisticForecast__c</field>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Reputation__c</field>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Result__c</field>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Revision__c</field>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Risk__c</field>
-            <value>
-                <elementReference>Risk</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>WhoNegotiated__c</field>
-        </inputAssignments>
-        <object>RCC__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordCreates>
         <name>Create_Task</name>
         <label>Create Task</label>
         <locationX>1502</locationX>
-        <locationY>1790</locationY>
+        <locationY>1898</locationY>
         <connector>
             <targetReference>Assignment_Results_Questions</targetReference>
         </connector>
@@ -1676,7 +1733,7 @@
         <name>Delete_Tasks</name>
         <label>Delete Tasks</label>
         <locationX>1370</locationX>
-        <locationY>1298</locationY>
+        <locationY>1406</locationY>
         <connector>
             <targetReference>Validate_Risk_To_Create_Task</targetReference>
         </connector>
@@ -1686,7 +1743,7 @@
         <name>Get_KYC_NB_From_Opp</name>
         <label>Get KYC NB From Opp</label>
         <locationX>842</locationX>
-        <locationY>3674</locationY>
+        <locationY>4106</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_KYC_Already_Filled</targetReference>
@@ -1709,7 +1766,7 @@
         <name>Get_KYC_XB_From_Opp</name>
         <label>Get KYC XB From Opp</label>
         <locationX>1106</locationX>
-        <locationY>3674</locationY>
+        <locationY>4106</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_KYC_Already_Filled</targetReference>
@@ -1753,7 +1810,7 @@
         <name>Get_Questions</name>
         <label>Get Questions</label>
         <locationX>446</locationX>
-        <locationY>1490</locationY>
+        <locationY>1598</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Question</targetReference>
@@ -1769,7 +1826,7 @@
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Validate_Existing_RCC</targetReference>
+            <targetReference>Validate_RCC_Legal_Status</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1787,7 +1844,7 @@
         <name>Get_Risk</name>
         <label>Get Risk</label>
         <locationX>974</locationX>
-        <locationY>650</locationY>
+        <locationY>758</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>FormularioRCC</targetReference>
@@ -1808,7 +1865,7 @@
         <name>Get_Tasks</name>
         <label>Get Tasks</label>
         <locationX>1502</locationX>
-        <locationY>1082</locationY>
+        <locationY>1190</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Validate_empty</targetReference>
@@ -1839,13 +1896,34 @@
         <object>Task</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Updated_or_Created_RCC</name>
+        <label>Get Updated or Created RCC</label>
+        <locationX>974</locationX>
+        <locationY>3782</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Updating_RCC_Legal_Approval_Status_on_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Opportunity.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RCC__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_RCC</name>
         <label>Update RCC</label>
-        <locationX>842</locationX>
-        <locationY>3266</locationY>
+        <locationX>974</locationX>
+        <locationY>3674</locationY>
         <connector>
-            <targetReference>Is_Opp_National_OR_Crossborder</targetReference>
+            <targetReference>Get_Updated_or_Created_RCC</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1965,11 +2043,35 @@
         </inputAssignments>
         <object>RCC__c</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>Updating_RCC_Legal_Approval_Status_on_Opportunity</name>
+        <label>Updating RCC Legal Approval Status on Opportunity</label>
+        <locationX>974</locationX>
+        <locationY>3890</locationY>
+        <connector>
+            <targetReference>Is_Opp_National_OR_Crossborder</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>OpportunityRCCLegalApprovalStatus__c</field>
+            <value>
+                <elementReference>Get_Updated_or_Created_RCC.LegalApprovalStatus__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
     <screens>
         <name>FormularioRCC</name>
         <label>Formulario RCC</label>
         <locationX>974</locationX>
-        <locationY>758</locationY>
+        <locationY>866</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>

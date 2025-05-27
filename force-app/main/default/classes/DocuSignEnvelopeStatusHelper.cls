@@ -19,7 +19,7 @@ public with sharing class DocuSignEnvelopeStatusHelper {
             return;
 
         List<Opportunity> oppList = [SELECT Id, StageName FROM Opportunity WHERE Id IN :oppToValidate];
-        List<HomologationForm__c> homologationFormsToValidate = [SELECT Id, Opportunity__c,Completed__c FROM HomologationForm__c WHERE Opportunity__c IN :oppToValidate];
+        List<HomologationForm__c> homologationFormsToValidate = [SELECT Id, Opportunity__c,Required_Fields__c FROM HomologationForm__c WHERE Opportunity__c IN :oppToValidate];
         List<dfsle__EnvelopeStatus__c> envelopeStatusList = [SELECT Id, dfsle__Status__c,dfsle__SourceId__c FROM dfsle__EnvelopeStatus__c WHERE dfsle__SourceId__c IN :oppToValidate];
 
         Map<Id, List<HomologationForm__c>> homologationFormsMap = new Map<Id, List<HomologationForm__c>>();
@@ -53,7 +53,7 @@ public with sharing class DocuSignEnvelopeStatusHelper {
 
 
             for(HomologationForm__c homologationForm : homologationForms){
-                if(homologationForm.Completed__c){
+                if(homologationForm.Required_Fields__c == null || homologationForm.Required_Fields__c == ''){
                     hasContractBeenSignedAndHomologationCompleted.put(opportunity, true);
                 } else{
                     hasContractBeenSignedAndHomologationCompleted.put(opportunity, false);

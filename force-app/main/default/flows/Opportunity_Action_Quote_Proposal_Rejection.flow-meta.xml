@@ -129,6 +129,12 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Acceptable__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>CustomerAcceptance__c</field>
             <value>
                 <booleanValue>false</booleanValue>
@@ -147,6 +153,11 @@
         <connector>
             <targetReference>Update_selected_quote</targetReference>
         </connector>
+        <fields>
+            <name>Quote_Name</name>
+            <fieldText>&lt;p&gt;You are rejecting the quote: &lt;strong style=&quot;font-size: 16px;&quot;&gt;{!get_Opportunity.SyncedQuote.Name}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <fields>
             <name>field_ReasonToNoAccepted</name>
             <fieldText>Reason to reject</fieldText>

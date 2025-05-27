@@ -2,8 +2,8 @@
   @description       : 
   @author            : aydhan.passos
   @group             : 
-  @last modified on  : 04-11-2025
-  @last modified by  : aydhan.passos
+  @last modified on  : 05-23-2025
+  @last modified by  : Daniel Belini
 -->
 <aura:component  controller="QuotePdfService" implements="force:lightningQuickAction,force:hasRecordId" access="global" >
     <!--  flexipage:availableForRecordAction, force:lightningQuickAction, lightning:actionOverride-->
@@ -49,26 +49,28 @@
                         </div>
                     </aura:if>
 
-                    <!-- <div class="slds-modal__content slds-p-around_medium" style="min-height: 150px; max-height: 80vh; overflow-y: auto;"> -->
-                    <aura:if isTrue="{!v.canGenerateProposal}">
-                        <iframe src="{!v.vfUrl}" width="100%" height="100%" style="border:none;"></iframe>
-                    </aura:if>
-                    <aura:if isTrue="{!not(v.canGenerateProposal)}">
-                        <div class="slds-text-align_center slds-text-color_error slds-text-heading_small  slds-m-vertical_xx-large slds-p-vertical_xx-large slds-text-title_bold">
-                            {!v.quoteValidationMessage}
-                        </div>
+                    <aura:if isTrue="{!not(v.isLoading)}">
+                        <aura:if isTrue="{!v.canGenerateProposal}">
+                            <iframe src="{!v.vfUrl}" width="100%" height="100%" style="border:none;"></iframe>
+                        </aura:if>
+                        <aura:if isTrue="{!not(v.canGenerateProposal)}">
+                            <div class="slds-text-align_center slds-text-color_error slds-text-heading_small  slds-m-vertical_xx-large slds-p-vertical_xx-large slds-text-title_bold">
+                                {!v.quoteValidationMessage}
+                            </div>
+                        </aura:if>
                     </aura:if>
                 </div>
 
                 <!-- Footer -->
-                <div class="slds-modal__footer slds-grid slds-grid_align-center">
-                    <lightning:button label="Cancel" variant="neutral" onclick="{!c.closeModal}" />
-                    <aura:if isTrue="{!v.quoteStatus == 'Approved'}">
-                        <lightning:button variant="neutral" label="Send by Email" onclick="{!c.handleSendEmail}" />
-                        <lightning:button disabled="{!not(v.canGenerateProposal)}" label="Save" variant="brand" onclick="{!c.handleSave}" />
-                    </aura:if>
-                </div>
-
+                <aura:if isTrue="{!not(v.isLoading)}">
+                    <div class="slds-modal__footer slds-grid slds-grid_align-center">
+                        <lightning:button label="Cancel" variant="neutral" onclick="{!c.closeModal}" />
+                        <aura:if isTrue="{!v.quoteStatus == 'Approved'}">
+                            <lightning:button variant="neutral" label="Send by Email" onclick="{!c.handleSendEmail}" />
+                            <lightning:button disabled="{!not(v.canGenerateProposal)}"   label="Save" variant="brand" onclick="{!c.handleSave}" />
+                        </aura:if>
+                    </div>
+                </aura:if>
             </div>
     </div>
 

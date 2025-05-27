@@ -89,14 +89,17 @@
                     mode: "dismissible"
                 }).fire();
 
-                // Reaproveita o método de fechar o modal
+                // Fecha o modal
                 $A.get("e.force:closeQuickAction").fire();
+
+                // Força refresh da página para atualizar a lista de arquivos
+                $A.get('e.force:refreshView').fire();
 
             } else {
                 // Toast de erro
                 const errors = response.getError();
                 const message = errors && errors[0] && errors[0].message ? errors[0].message : "Erro ao salvar PDF";
-    
+
                 $A.get("e.force:showToast").setParams({
                     title: "Erro",
                     message: message,

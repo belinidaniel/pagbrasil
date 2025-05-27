@@ -8,6 +8,8 @@ export default class KYCApproval extends LightningElement {
   @api async invoke() {
     await updateApprovalStatus({ recordId: this.recordId })
       .then(rccStatus => {
+        console.log('rccStatus: ', rccStatus);
+        
         this.dispatchEvent(
           new ShowToastEvent({
             title: 'Success',

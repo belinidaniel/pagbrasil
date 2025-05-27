@@ -1,60 +1,14 @@
 <template>
     <template if:true={hasRecords}>
-        <article class="slds-card card-custom">
-            <div class="slds-card__header slds-grid custom-card__header">
-                <header class="slds-media slds-media_center slds-has-flexi-truncate">
-                    <div class="slds-media__figure">
-                        <lightning-icon
-                            icon-name="standard:process"
-                            size="small"
-                            alternative-text="Process">
-                        </lightning-icon>
-                    </div>
-                    <div class="slds-media__body">
-                        <h2 class="slds-card__header-title">
-                        <a href="#" class="slds-card__header-link slds-truncate" title="Homologation Forms">
-                            <span>Homologation Forms</span>
-                        </a>
-                        </h2>
-                    </div>
-                </header>
-            </div>
-            <div class="slds-card__body slds-card__body_inner">
-                <template if:true={forms}>
-                    <template for:each={forms} for:item="form">
-                        <div key={form.Id} class="form-item">
-                            <a href={form.Id}
-                                target="_blank"
-                                class="form-link">
-                                {form.Name}
-                            </a>
-                            <lightning-button-icon
-                                icon-name="utility:edit"
-                                alternative-text="Edit"
-                                title="Edit"
-                                onclick={handleEditForm}
-                                data-url={form.Name}>
-                            </lightning-button-icon>
-                        </div>
-                    </template>
-                </template>
-
-                <template if:true={forms.error}>
-                    <div class="error-message">
-                        Erro ao carregar formulários
-                    </div>
-                </template>
-            </div>
-            <footer class="slds-card__footer">
-                    <lightning-button
-                        variant="brand"
-                        label="Send Forms" 
-                        title="Send Forms" 
-                        icon-name="utility:send"
-                        onclick={handleSendForms}
-                        disabled={completed}
-                    ></lightning-button></footer>
-        </article>
+        
+        <button 
+            class="slds-button slds-button_brand slds-button_stretch" 
+            title="Send Homologation Forms"
+            onclick={handleSendForms}
+            disabled={completed}>
+            <lightning-icon icon-name="utility:send" size="small" variant="inverse"></lightning-icon>
+            Send Homologation Forms
+        </button>
         <template if:true={showSendHomologationFormFlowModal}>
             <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
@@ -74,24 +28,4 @@
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </template>
-        <template if:true={showCreateHomologationFormFlowModal}>
-            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
-                <div class="slds-modal__container">
-                    <div class="slds-modal__header">
-                        <button class="slds-button slds-button_icon" title="Fechar" onclick={closeCreateHomologationFormFlowModal}>
-                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
-                        </button>
-                    </div>
-                    <div class="slds-modal__content slds-p-around_medium">
-                        <lightning-flow 
-                            flow-api-name="createHomologationForm"
-                            flow-input-variables={flowCreateHomologationFormInputVariables}
-                            onstatuschange={handleCreateHomologationFormFlowStatusChange}>
-                        </lightning-flow>
-                    </div>
-                </div>
-            </section>
-            <div class="slds-backdrop slds-backdrop_open"></div>
-        </template>
-    </template>
 </template>

@@ -25,8 +25,8 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <name>Reset_XB_KYC_Legal_Status_and_Stage</name>
-        <label>Reset XB KYC Legal Status and Stage</label>
+        <name>Reset_XB_KYC_Stage_and_Status</name>
+        <label>Reset XB KYC Stage and Status</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
         <inputAssignments>
@@ -47,7 +47,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Reset_XB_KYC_Legal_Status_and_Stage</targetReference>
+            <targetReference>Reset_XB_KYC_Stage_and_Status</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

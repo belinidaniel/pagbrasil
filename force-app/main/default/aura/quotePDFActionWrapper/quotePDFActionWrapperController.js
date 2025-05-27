@@ -21,6 +21,7 @@
     },
 
     handleSave : function(component, event, helper) {
+        component.set("v.isLoading", true); // Show spinner
         helper.savePDF(component);
     },
 

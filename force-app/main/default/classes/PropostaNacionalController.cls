@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-03-06
- * @last modified by  : Hersilio Belini de Oliveira
+ * @last modified on  : 05-21-2025
+ * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
 

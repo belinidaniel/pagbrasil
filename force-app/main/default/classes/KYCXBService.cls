@@ -16,7 +16,7 @@ global class KYCXBService {
 				return JSON.serialize(new Map<String, Object>{ 'error' => 'Invalid or missing KYC record ID' });
 			}
 			String fields = String.join(new List<String>(Schema.getGlobalDescribe().get('KYC_XB__c').getDescribe().fields.getMap().keySet()), ',');
-			String contactFields = 'Id, Name, Email, Phone, Birthdate, Registration_Number__c, Role__c, KYC_Fiscal_Code__c, KYC_Role__c, MailingAddress, Nationality__c, Ownership_Percentage__c, Linkedin__c, Channel_URL__c';
+			String contactFields = 'Id, Name, Email, Phone, Birthdate, Registration_Number__c, Role__c, KYC_Fiscal_Code__c, KYC_Role__c, MailingAddress, Nationality__c, Ownership_Percentage__c, Linkedin__c, Channel_URL__c, Shareholder_Type__c, Same_Address_As__c';
 			String query = 
                 'SELECT ' + 
                 fields + 

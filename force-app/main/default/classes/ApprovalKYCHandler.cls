@@ -2,7 +2,7 @@ public with sharing class ApprovalKYCHandler {
     @AuraEnabled
     public static String updateApprovalStatus(Id recordId) {
         SObject record = Database.query(
-            'SELECT LegalApprovalStatus__c, Opportunity__c FROM ' + (recordId.getSObjectType() == KYC_XB__c.SObjectType ? 'KYC_XB__c' : 'KYC_NB__c') + ' WHERE Id = :recordId LIMIT 1'
+            '' + (recordId.getSObjectType() == KYC_XB__c.SObjectType ? 'SELECT LegalApprovalStatus__c, Opportunity__c FROM KYC_XB__c' : 'SELECT Legal_Approval_Status__c, Opportunity__c FROM KYC__c') + ' WHERE Id = :recordId LIMIT 1'
         );
 
         Id opportunityId;
@@ -15,12 +15,12 @@ public with sharing class ApprovalKYCHandler {
 
                 xbRecord.LegalApprovalStatus__c = 'Approval Requested';
                 update xbRecord;
-            } else if (record instanceof KYC_NB__c) {
-                KYC_NB__c nbRecord = (KYC_NB__c) record;
+            } else if (record instanceof KYC__c) {
+                KYC__c nbRecord = (KYC__c) record;
 
                 opportunityId = nbRecord.Opportunity__c;
 
-                nbRecord.LegalApprovalStatus__c = 'Approval Requested';
+                nbRecord.Legal_Approval_Status__c = 'Approval Requested';
                 update nbRecord;
             }
         } else {

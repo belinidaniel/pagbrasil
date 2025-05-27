@@ -1,39 +1,26 @@
 import { LightningElement, api, wire, track } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getByOpportunityId from '@salesforce/apex/HomologationFormSelector.getByOpportunityId';
 
 export default class HomologationFormList extends LightningElement {
     @api recordId;
-    @track showCreateHomologationFormFlowModal = false;
-    @track flowCreateHomologationFormInputVariables = [];
     @track showSendHomologationFormFlowModal = false;
     @track flowSendHomologationFormInputVariables = [];
     @track hasRecords = false;
     @track completed = false;
-
-    @track forms;
 
     @wire(getByOpportunityId, { opportunityId: '$recordId' })
     wiredForms({ error, data }) {
         if (data) {
             this.forms = data;
             this.hasRecords = data && data.length > 0;
-            this.completed = data.every(form => form.Completed__c === true);
+            this.completed = data.every(form => !form.Required_Fields__c);
         } else if (error) {
             console.error('Error loading forms:', error);
             this.hasRecords = false;
         }
     }
 
-    handleEditForm(event) {
-        event.preventDefault();
-        const formUrl = event.currentTarget.dataset.url;
-        
-        this.flowCreateHomologationFormInputVariables = [
-            { name: 'recordId', type: 'String', value: this.recordId },
-            { name: 'URL', type: 'String', value: formUrl }
-        ];
-        this.showCreateHomologationFormFlowModal = true;
-    }
 
     handleSendForms(event) {
         event.preventDefault();
@@ -43,17 +30,7 @@ export default class HomologationFormList extends LightningElement {
         ];
         this.showSendHomologationFormFlowModal = true;
     }
-
-    closeCreateHomologationFormFlowModal() {
-        this.showCreateHomologationFormFlowModal = false;
-    }
-
-    handleCreateHomologationFormFlowStatusChange(event) {
-        if (event.detail.status === 'FINISHED') {
-            this.closeCreateHomologationFormFlowModal();
-        }
-    }
-
+    
     closeSendHomologationFormFlowModal() {
         this.showSendHomologationFormFlowModal = false;
     }
@@ -61,6 +38,21 @@ export default class HomologationFormList extends LightningElement {
     handleSendHomologationFormFlowStatusChange(event) {
         if (event.detail.status === 'FINISHED') {
             this.closeSendHomologationFormFlowModal();
+            this.showToast('Sucess', 'Email sent successfully!', 'success');
         }
+
+        if (event.detail.status === 'ERROR') {
+            this.closeSendHomologationFormFlowModal();
+            this.showToast('Error', 'An error occurred while sending the email', 'error');
+        }
+    }
+
+    showToast(title, message, variant) {
+        const toastEvent = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant,
+        });
+        this.dispatchEvent(toastEvent);
     }
 }

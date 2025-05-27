@@ -143,13 +143,13 @@ public class OpportunityWrapper {
     public class HomologationFormWrapper {
         public Id id { get; set; }
         public String login { get; set; }
-        public Boolean cielo30 { get; set; }
+        public String cielo30 { get; set; }
         public Decimal monthlyInterestOnCustomerInstallments { get; set; }
         public Decimal pbCheckoutDiscount { get; set; }
-        public Boolean pagBrasilSolutionForTransferringFee { get; set; }
+        public String pagBrasilSolutionForTransferringFee { get; set; }
         public Decimal shopifyDiscount { get; set; }
         public Decimal pagBrasilPix { get; set; }
-        public Boolean notInterestedInOfferingDiscount { get; set; }
+        public String notInterestedInOfferingDiscount { get; set; }
         public String evidenceCompanyDetails { get; set; }
         public String evidenceContactInformation { get; set; }
         public String evidenceResponseTime { get; set; }
@@ -163,16 +163,16 @@ public class OpportunityWrapper {
         public String evidenceReclameAqui { get; set; }
         public String companyDetails { get; set; }
         public String contactInformation { get; set; }
-        public Boolean requirementResponseTime { get; set; }
-        public Boolean requirementPriceFormat { get; set; }
+        public String requirementResponseTime { get; set; }
+        public String requirementPriceFormat { get; set; }
         public String deliveryTime { get; set; }
         public String shippingProofPod { get; set; }
         public String customsFee { get; set; }
-        public Boolean requirementZipCodeValidator { get; set; }
-        public Boolean requirementInfoValidator { get; set; }
+        public String requirementZipCodeValidator { get; set; }
+        public String requirementInfoValidator { get; set; }
         public String minimumInstallmentsForInterest { get; set; }
         public String interestRepassMethodToCustomer { get; set; }
-        public Boolean alreadyRequestedReclameAqui { get; set; }
+        public String alreadyRequestedReclameAqui { get; set; }
         public String podReminder { get; set; }
         public String automaticCancellation { get; set; }
         public String creditCardRecurrence { get; set; }

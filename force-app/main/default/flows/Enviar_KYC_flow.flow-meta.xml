@@ -47,7 +47,7 @@
     </decisions>
     <environments>Default</environments>
     <interviewLabel>Enviar KYC flow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Enviar KYC flow</label>
+    <label>Enviar KYC flow (NEW)</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -85,7 +85,7 @@
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>KYC_NB__c</object>
+        <object>KYC__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>

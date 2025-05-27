@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : Daniel Belini
+  @group             : 
+  @last modified on  : 05-21-2025
+  @last modified by  : Daniel Belini
+-->
 <apex:page pageStyle=""
     showHeader="false" 
     applyHtmlTag="false" 
@@ -226,6 +233,15 @@
                 z-index: 0;
                 background-color: white;
                 width: 100%;
+                height: 100%;
+            }
+
+            .background-color-white {
+                position: absolute;
+                background-color: white;  
+                z-index: 1;
+                top: 0;
+                right: 0;
                 height: 100%;
             }
 
@@ -621,11 +637,11 @@
             
         <!-- Page 7 -->
         <div class="page">
-            <img src="{!$Resource.PNPagina6}" class="background-image"/>
-            <div class="background-color-grey" style="width: 576px;">
+            <img src="{!$Resource.PNPagina6}" class="background-image" />
+            <div class="background-color-white" style="width: 576px;">
             </div>
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 121px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                <p style="position: absolute; top: 4px; left: 121px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
                 <div style="position: absolute; top: 40px; left: 650px; width: 300px;">
                     <div class="row" style="margin-top: 20px;">
                         <div class="col" style="width: 30%">
@@ -701,7 +717,7 @@
                     </div>
                 </div>
             </div>
-            <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            <img src="{!$Resource.Logo2025Preta}" style="background-color: #f6f6f6; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
             <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
             <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
             <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
@@ -1273,12 +1289,17 @@
                             Termos<br/> <strong>complementares</strong>
                         </p>
                         <ul class="terms-list">
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagShield))}">
                             <li>
                                 <strong>PagShield®</strong> - Serviço de Prevenção de Fraude da PagBrasil: R${!pagShield} por transação de cartão analisada
                             </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(transferFee))}">
                             <li>
                                 <strong>Taxa de transferência</strong>: R${!transferFee}
                             </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagBrasilSolutionFeeRange))}">
                             <li>
                                 <strong>Taxa de Solução PagBrasil</strong>:
                                 <ul class="terms-sublist">
@@ -1287,15 +1308,25 @@
                                     </apex:repeat>
                                 </ul>
                             </li>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
                             <li>
                                 <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação)
                             </li>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
                             <li>
                                 <strong>Taxa de adesão</strong>: R${!adherenceFee}
                             </li>
+                            </apex:outputPanel>
+
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(minimumMaintenanceFee))}">
                             <li>
                                 <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
                             </li>
+                            </apex:outputPanel>
                         </ul>
                         
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 615px; color: #202020; font-size: 36px;">
@@ -1305,21 +1336,38 @@
                             <li>
                                 <strong>Link de Pagamento</strong>: Incluído
                             </li>
+
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagShieldPremium))}">
                             <li>
                                 <strong>PagShield® Premium</strong> - Serviço de Prevenção de Fraude: R${!pagShieldPremium} por análise e {!pagShieldPremiumPercent}% da transação revisada (opcional)
                             </li>
+                            </apex:outputPanel>
+                            
                             <li>
                                 <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: gratuito
                             </li>
+                          
+                            <li>
+                                <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: gratuito
+                            </li>
+                            
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(refundCardOrPixAcquirer))}">
                             <li>
                                 <strong>Reembolso via adquirente de cartão ou Pix</strong>: R${!refundCardOrPixAcquirer}
                             </li>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(refundTransfer))}">
                             <li>
                                 <strong>Reembolso via transferência</strong>: R${!refundTransfer}
                             </li>
-                            <li>
-                                <strong>Taxa de chargeback</strong>: R${!chargebackTax} (fixo, por chargeback)
-                            </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(chargebackTax))}">
+                                <li>
+                                    <strong>Taxa de chargeback</strong>: R${!chargebackTax} (fixo, por chargeback)
+                                </li>
+                            </apex:outputPanel>
+                            
                         </ul>
                         <p style="position: absolute; top: 500px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
                             * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
@@ -1371,21 +1419,29 @@
                             <li>
                                 <strong>Link de Pagamento</strong>: Incluído
                             </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagShieldPremium))}">
                             <li>
                                 <strong>PagShield® Premium</strong> - Serviço de Prevenção de Fraude: R${!pagShieldPremium} por análise e {!pagShieldPremiumPercent}% da transação revisada (opcional)
                             </li>
+                            </apex:outputPanel>
                             <li>
                                 <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: consultar pacotes e valores
                             </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(refundCardOrPixAcquirer))}">
                             <li>
                                 <strong>Reembolso via adquirente de cartão ou Pix</strong>: R${!refundCardOrPixAcquirer}
                             </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(refundTransfer))}">
                             <li>
-                                <strong>Reembolso via transferência</strong>: R${!refundTransfer}
+                                <strong>Reembolso via transferência2</strong>: R${!refundTransfer}
                             </li>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(chargebackTax))}">
                             <li>
                                 <strong>Taxa de chargeback</strong>: R${!chargebackTax} (fixo, por chargeback)
                             </li>
+                            </apex:outputPanel>
                         </ul>
                         <p style="position: absolute; top: 430px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
                             * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
@@ -1411,10 +1467,12 @@
                         Termos<br/> <strong>complementares</strong>
                     </p>
                     <ul class="terms-list">
-                        
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagShield))}">
                         <li>
                             <strong>PagShield®</strong> - Serviço de Prevenção de Fraude da PagBrasil: R${!pagShield} por transação de cartão analisada
                         </li>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagBrasilSolutionFeeRange))}">
                         <li>
                             <strong>Taxa de Solução PagBrasil</strong>:
                             <ul class="terms-sublist">
@@ -1423,15 +1481,22 @@
                                 </apex:repeat>
                             </ul>
                         </li>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
                         <li>
                             <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação)
                         </li>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(creditCardIntegrationFee))}">
                         <li>
                             <strong>Taxa de Integração Cartão de Crédito</strong>: R${!creditCardIntegrationFee}
                         </li>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(transferFee))}">
                         <li>
                             <strong>Taxa de transferência</strong>: R${!transferFee}
                         </li>
+                        </apex:outputPanel>
                     </ul>
                     
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 615px; color: #202020; font-size: 36px;">
@@ -1441,18 +1506,25 @@
                         <li>
                             <strong>Link de Pagamento</strong>: Incluído
                         </li>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(pagShieldPremium))}">
                         <li>
                             <strong>PagShield® Premium</strong> - Serviço de Prevenção de Fraude: R${!pagShieldPremium} por análise e {!pagShieldPremiumPercent}% da transação revisada (opcional)
                         </li>
+                        </apex:outputPanel>
                         <li>
                             <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: consultar pacotes e valores
                         </li>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(refundCardOrPixAcquirer))}">
                         <li>
                             <strong>Reembolso via adquirente de cartão ou Pix</strong>: R${!refundCardOrPixAcquirer}
                         </li>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(refundTransfer))}">
                         <li>
-                            <strong>Reembolso via transferência</strong>: R${!refundTransfer} (quando aplicável)
+                            <strong>Reembolso via transferência3</strong>: R${!refundTransfer} (quando aplicável)
                         </li>
+                        </apex:outputPanel>
+                        
                     </ul>
                 </div>
             </div>
@@ -1463,35 +1535,24 @@
             <div class="page">
                 <img src="{!$Resource.PNPagina17}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
-                    <p style="position: absolute; top: 70px; left: 85px; font-weight: bold; white-space: nowrap; font-size: 34px;">PagStream®️</p>
-                    <apex:outputText value="Crie e gerencie assinaturas diretamente do " style="position: absolute; top: 182px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;" escape="false" />
-                    <apex:outputText value="dashboard ou via API" style="position: absolute; top: 202px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                    <apex:outputText value="Crie quantos planos de assinatura precisar" style="position: absolute; top: 256px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                    <apex:outputText value="Combine compras avulsas (cobrança única) e " style="position: absolute; top: 312px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;" escape="false"/>
-                    <apex:outputText value="assinaturas (recorrentes) em um mesmo pedido" style="position: absolute; top: 332px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                    <apex:outputText value="Gerencie um motor de promoções e aumente a " style="position: absolute; top: 388px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;" escape="false"/>
-                    <apex:outputText value="retenção dos seus clientes recorrentes" style="position: absolute; top: 408px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                    <apex:outputText value="Dê autonomia aos seus clientes para editar e " style="position: absolute; top: 460px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;" escape="false"/>
-                    <apex:outputText value="gerenciar suas assinaturas através da área do" style="position: absolute; top: 480px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;" escape="false"/>
-                    <apex:outputText value="assinante" style="position: absolute; top: 500px; left: 100px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                    <p style="position: absolute; top: 70px; left: 761px; white-space: nowrap; font-weight: bold; color:white; font-size: 34px;">Termos</p>
-                    <apex:outputText value="{!taxaPagStream} sobre o volume mensal de pagamentos " style="position: absolute; top: 182px; left: 785px; white-space: nowrap; color: #C5D9ED; font-size: 15px;"/>
-                    <apex:outputText value="recorrentes" style="position: absolute; top: 202px; left: 785px; white-space: nowrap; color: #C5D9ED; font-size: 15px;"/>
-                    <apex:outputText value="Taxa mínima de manutenção do PagStream® " style="position: absolute; top: 256px; left: 785px; white-space: nowrap; color: #C5D9ED; font-size: 15px;" escape="false"/>
-                    <apex:outputText value="de {!taxaMinPagStream}" style="position: absolute; top: 276px; left: 785px; white-space: nowrap; color: #C5D9ED; font-size: 15px;"/>
-                    <p style="position: absolute; top: 330px; left: 761px; width: 340px; color: #C5D9ED; font-size: 10px;">
+                    <p style="position: absolute; top: 5px; left: 124px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 68px; left: 756px; white-space: nowrap; font-weight: bold; background-color:#0058b5; color:white; font-size: 40px;">Termos</p>
+                    <apex:outputText value="{!taxaPagStream} sobre o volume mensal de pagamentos " style="position: absolute; top: 183px; left: 782px; white-space: nowrap; background-color:#0058b5;  color: #C5D9ED; font-size: 16px;"/>
+                    <apex:outputText value="recorrentes" style="position: absolute; top: 202px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 16px;"/>
+                    <apex:outputText value="Taxa mínima de manutenção do PagStream® " style="position: absolute; top: 258px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 16px;" escape="false"/>
+                    <apex:outputText value="de {!taxaMinPagStream}" style="position: absolute; top: 276px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 15px;"/>
+                    <p style="position: absolute; top: 323px; left: 755px; width: 340px; background-color:#0058b5; color: #C5D9ED; font-size: 10px;">
                         * Haverá redução da taxa de 3,0% para 2,0% no PagStream® se processar todos os seus pagamentos online, incluindo pagamentos recorrentes e únicos, por meio da PagBrasil.
                     </p>
-                    <p style="position: absolute; top: 370px; left: 761px; width: 340px; color: #C5D9ED; font-size: 10px;">
+                    <p style="position: absolute; top: 370px; left: 755px; width: 340px; background-color:#0058b5; color: #C5D9ED; font-size: 10px;">
                         ** Caso as taxas da solução referentes ao volume mensal transacionado através do PagStream® não superarem esta taxa mínima, a diferença para este valor será cobrada.
                     </p>
-                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
-                    <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
-                    <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap;background-color:#ffffff; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; background-color:#ffffff; color: #909090; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="position: absolute; top: 609px; left: 1058px; white-space: nowrap; background-color:#ffffff; color: #808080; font-size: 10px; font-weight: bold;"/>
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color:#ffffff; position: absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
-                <img src="{!$Resource.PNPagina17PagStream}" style="position:absolute; z-index: 3; top:20px; left: 400px; width: 33%; height: 33%;"/>
+                
             </div>
         </apex:panelGroup>
 
@@ -1593,7 +1654,7 @@
                 <p style="position: absolute; top: 100px; left: 58px; font-weight: bold; font-size: 35px; white-space: nowrap; color:#030303">Proposta Comercial</p>
                 <p style="position: absolute; top: 220px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color:#030303">{!oppName}</p>
                 <p style="position: absolute; top: 285px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color: #030303;">{!stringDate}</p>
-                <p style="position: absolute; top: 420px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #828181;">*Esta proposta é válida por 30 dias após a data do envio.</p>
+                <p style="position: absolute; top: 350px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #828181;">*Esta proposta é válida por 30 dias após a data do envio.</p>
                 <p style="position: absolute; top: 220px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerName}</p>
                 <p style="position: absolute; top: 250px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">Account Manager</p>
                 <img src="{!$Resource.PNLocationIcon}" style="position: absolute; top: 345px; left: 680px; width: 35px;"/>

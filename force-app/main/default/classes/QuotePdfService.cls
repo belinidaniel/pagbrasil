@@ -67,7 +67,7 @@ public with sharing class QuotePdfService {
        
         // 4. Monta nome do arquivo
         String baseName = proposta.Name != null ? proposta.Name : 'Quote';
-        String fileName = baseName + '_V' + nextVersion ;
+        String fileName = 'proposta_' + baseName + '_V' + nextVersion ;
 
         // OBS: ContentVersion = moderno, QuoteDocument = legado, ambos criam o link automático(contentDocumentLink)
 

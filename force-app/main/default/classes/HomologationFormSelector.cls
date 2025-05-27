@@ -24,7 +24,8 @@ public with sharing class HomologationFormSelector {
             OneClickBuyingTokenization__c,
             AccountModel__c,
             ReviewPayeeRegistration__c,
-            TransactionType__c
+            TransactionType__c,
+            Required_Fields__c
             FROM HomologationForm__c 
             WHERE Opportunity__c = :opportunityId 
             ORDER BY CreatedDate DESC

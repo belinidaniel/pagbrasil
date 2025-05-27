@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>RCC can only be submitted individually if KYC is already approved</description>
+        <name>Is_KYC_Already_Approved</name>
+        <label>Is KYC already approved?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_KYC_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OpportunityKYCLegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Submit_RCC_Only_Outcome</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>KYC can only be submitted individually if RCC is already approved</description>
+        <name>Is_RCC_Already_Approved</name>
+        <label>Is RCC already approved?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_RCC_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OpportunityRCCLegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Submit_KYC_Only_Outcome</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Were_Both_Objects_Submitted</name>
+        <label>Were both objects submitted?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yessssssss</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OpportunityKYCLegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OpportunityRCCLegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Submit_KYC_Both_Outcome</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+        <rules>
+            <name>Only_KYC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OpportunityKYCLegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OpportunityRCCLegalApprovalStatus__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_RCC_Already_Approved</targetReference>
+            </connector>
+            <label>Only KYC</label>
+        </rules>
+        <rules>
+            <name>Only_RCC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OpportunityKYCLegalApprovalStatus__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.OpportunityRCCLegalApprovalStatus__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval Requested</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_KYC_Already_Approved</targetReference>
+            </connector>
+            <label>Only RCC</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>KYC/RCC Submit Handler {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>KYC/RCC submit for approval handler</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Were_Both_Objects_Submitted</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>OpportunityKYCLegalApprovalStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approval Requested</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>OpportunityRCCLegalApprovalStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approval Requested</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Submit_KYC_Both_Outcome</name>
+        <label>Submit KYC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Submit_RCC_Both_Outcome</targetReference>
+        </connector>
+        <flowName>Submit_KYC_for_approval</flowName>
+        <inputAssignments>
+            <name>currentOpportunity</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Submit_KYC_Only_Outcome</name>
+        <label>Submit KYC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Submit_KYC_for_approval</flowName>
+        <inputAssignments>
+            <name>currentOpportunity</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Submit_RCC_Both_Outcome</name>
+        <label>Submit RCC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Submit_RCC_for_approval</flowName>
+        <inputAssignments>
+            <name>currentOpportunity</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Submit_RCC_Only_Outcome</name>
+        <label>Submit RCC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Submit_RCC_for_approval</flowName>
+        <inputAssignments>
+            <name>currentOpportunity</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

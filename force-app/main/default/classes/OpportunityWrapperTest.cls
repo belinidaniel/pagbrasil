@@ -64,18 +64,18 @@ public class OpportunityWrapperTest {
 
         HomologationForm__c testForm = new HomologationForm__c(
             Login__c = 'testlogin',
-            Cielo30__c = true,
+            Cielo30__c = 'Yes',
             MonthlyInterestOnCustomerInstallments__c = 1.5,
             PbCheckoutDiscount__c = 2.0,
-            PagBrasilSolutionForTransferringFee__c = true,
+            PagBrasilSolutionForTransferringFee__c = 'Yes',
             ShopifyDiscount__c = 3.0,
             PagBrasilPix__c = 4.0,
-            NotInterestedInOfferingDiscount__c = true,
-            RequirementResponseTime__c = true,
-            RequirementPriceFormat__c = true,
-            RequirementZipCodeValidator__c = true,
-            RequirementInfoValidator__c = true,
-            AlreadyRequestedReclameAqui__c = true,
+            NotInterestedInOfferingDiscount__c = 'Yes',
+            RequirementResponseTime__c = 'Yes',
+            RequirementPriceFormat__c = 'Yes',
+            RequirementZipCodeValidator__c = 'Yes',
+            RequirementInfoValidator__c = 'Yes',
+            AlreadyRequestedReclameAqui__c = 'Yes',
             Opportunity__c = testOpportunity.Id,
             Account__c = testAccount.Id
         );

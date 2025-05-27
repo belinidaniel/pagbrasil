@@ -24,10 +24,12 @@ public with sharing class HomologationFormTriggerHandler extends TriggerHandler 
 
     public override void beforeUpdate() {
         System.debug('HomologationFormTriggerHandler beforeUpdate');
+        HomologationFormHelper.updateRequiredFields(this.newHomologationList);
     }    
 
     public override void afterUpdate() {
         HomologationFormHelper.hasContractBeenSignedAndHomologationCompleted(this.newHomologationList, this.oldHomologationMap);
+        HomologationFormHelper.updateOppStatusWhenApprovalCompleted(this.newHomologationList);
         System.debug('HomologationFormTriggerHandler afterUpdate');
     }
 }

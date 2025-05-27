@@ -20,7 +20,8 @@ global without sharing class FileXBService {
 					ContentDocument.Title, 
 					ContentDocument.FileType, 
 					ContentDocument.LatestPublishedVersion.CreatedDate, 
-					ContentDocument.LatestPublishedVersion.PathOnClient 
+					ContentDocument.LatestPublishedVersion.PathOnClient,
+					ContentDocument.LatestPublishedVersion.VersionData
 				FROM 
 					ContentDocumentLink 
 				WHERE 
@@ -44,8 +45,10 @@ global without sharing class FileXBService {
 			String requestURI = req.requestURI;
 			String[] uriParts = requestURI.split('/');
 			String fileId = uriParts[uriParts.size() - 1];
-
+			System.debug('file id: ' + fileId);
 			ContentDocument docToDelete = [SELECT Id FROM ContentDocument WHERE Id = :fileId LIMIT 1];
+            System.debug('doc to delete: ');
+            System.debug(docToDelete);
 			delete docToDelete;
 
 			res.statusCode = 200;

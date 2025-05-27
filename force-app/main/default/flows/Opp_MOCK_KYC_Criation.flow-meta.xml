@@ -3,19 +3,69 @@
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
+        <name>does_rcc_already_exist</name>
+        <label>does rcc already exist</label>
+        <locationX>182</locationX>
+        <locationY>863</locationY>
+        <defaultConnector>
+            <targetReference>create_RCC_when_KYC_XB</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>no</defaultConnectorLabel>
+        <rules>
+            <name>yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_existing_rcc_xb</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>link_existing_rcc_to_the_new_opp_xb</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>does_rcc_already_exist_nb</name>
+        <label>does rcc already exist</label>
+        <locationX>710</locationX>
+        <locationY>863</locationY>
+        <defaultConnector>
+            <targetReference>create_RCC_when_KYC_NB</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>no</defaultConnectorLabel>
+        <rules>
+            <name>yes_nb</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_existing_rcc_nb</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>link_existing_rcc_to_the_new_opp_nb</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>type</name>
         <label>type</label>
-        <locationX>314</locationX>
-        <locationY>323</locationY>
+        <locationX>644</locationX>
+        <locationY>539</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>KYC_XB</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Account.Type</leftValueReference>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Cross Border (XB)</stringValue>
+                    <stringValue>Crossborder</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -27,10 +77,10 @@
             <name>KYC_NB</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Account.Type</leftValueReference>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Nacional (NB)</stringValue>
+                    <stringValue>NaTional</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -46,7 +96,7 @@
         <expression>&quot;UniqueID&quot; + {!$Record.Id}</expression>
     </formulas>
     <interviewLabel>Opp - MOCK - KYC Criation {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Opp - MOCK - KYC Criation</label>
+    <label>Opp - KYC and RCC Criation (NEW)</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -69,8 +119,11 @@
     <recordCreates>
         <name>create_KYC_XB</name>
         <label>create KYC XB</label>
-        <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationX>182</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>get_existing_rcc_xb</targetReference>
+        </connector>
         <inputAssignments>
             <field>Client_Account__c</field>
             <value>
@@ -105,10 +158,53 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
+        <name>create_RCC_when_KYC_NB</name>
+        <label>create RCC when KYC NB</label>
+        <locationX>842</locationX>
+        <locationY>971</locationY>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Opportunity__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>RCC__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>create_RCC_when_KYC_XB</name>
+        <label>create RCC when KYC XB</label>
+        <locationX>314</locationX>
+        <locationY>971</locationY>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Opportunity__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>RCC__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
         <name>KYC_NB_Record</name>
         <label>KYC - NB</label>
-        <locationX>314</locationX>
-        <locationY>431</locationY>
+        <locationX>710</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>get_existing_rcc_nb</targetReference>
+        </connector>
         <inputAssignments>
             <field>Client_Account__c</field>
             <value>
@@ -139,14 +235,145 @@
                 <elementReference>formulaUniqueID</elementReference>
             </value>
         </inputAssignments>
-        <object>KYC_NB__c</object>
+        <object>KYC__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <start>
-        <locationX>188</locationX>
-        <locationY>0</locationY>
+    <recordLookups>
+        <name>get_existing_rcc_nb</name>
+        <label>get existing rcc nb</label>
+        <locationX>710</locationX>
+        <locationY>755</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>does_rcc_already_exist_nb</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RCC__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>get_existing_rcc_xb</name>
+        <label>get existing rcc xb</label>
+        <locationX>182</locationX>
+        <locationY>755</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>does_rcc_already_exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RCC__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>link_existing_rcc_to_the_new_opp_nb</name>
+        <label>link existing rcc to the new opp</label>
+        <locationX>578</locationX>
+        <locationY>971</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Opportunity__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>RCC__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>link_existing_rcc_to_the_new_opp_xb</name>
+        <label>link existing rcc to the new opp</label>
+        <locationX>50</locationX>
+        <locationY>971</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Opportunity__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>RCC__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_New_Opportunity</name>
+        <label>Update New Opportunity</label>
+        <locationX>644</locationX>
+        <locationY>323</locationY>
+        <connector>
+            <targetReference>Update_Old_Opportunities</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Is_Opportunity_Valid__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Old_Opportunities</name>
+        <label>Update Old Opportunities</label>
+        <locationX>644</locationX>
+        <locationY>431</locationY>
         <connector>
             <targetReference>type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_Opportunity_Valid__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Is_Opportunity_Valid__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <start>
+        <locationX>518</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_New_Opportunity</targetReference>
         </connector>
         <object>Opportunity</object>
         <recordTriggerType>Create</recordTriggerType>

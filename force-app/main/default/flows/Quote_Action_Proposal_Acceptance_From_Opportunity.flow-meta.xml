@@ -128,6 +128,9 @@
         <label>create history record</label>
         <locationX>50</locationX>
         <locationY>1106</locationY>
+        <connector>
+            <targetReference>Update_opportunity</targetReference>
+        </connector>
         <inputReference>customerProposalHistory</inputReference>
     </recordCreates>
     <recordLookups>
@@ -198,6 +201,41 @@
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_opportunity</name>
+        <label>Update opportunity</label>
+        <locationX>50</locationX>
+        <locationY>1214</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>getOpportunityRecord.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>OpportunityKYCLegalApprovalStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>OpportunityRCCLegalApprovalStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Contract</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
     <recordUpdates>
         <name>Update_other_quotes</name>
         <label>Update other quotes</label>

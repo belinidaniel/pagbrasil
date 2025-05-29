@@ -8,12 +8,12 @@ export default class KYCApproval extends LightningElement {
   @api async invoke() {
     await updateApprovalStatus({ recordId: this.recordId })
       .then(rccStatus => {
-        console.log('rccStatus: ', rccStatus);
+        const alreadyInProcessRccStatuses = ['Pending Approval Legal', 'Approval Requested', 'Approved'];
         
         this.dispatchEvent(
           new ShowToastEvent({
             title: 'Success',
-            message: (rccStatus === 'Approval Requested' || rccStatus === 'Approved') ? 'Forms submitted for legal approval.' : 'Waiting for RCC to send to legal approval.',
+            message: alreadyInProcessRccStatuses.includes(rccStatus) ? 'Forms submitted for legal approval.' : 'Waiting for RCC to send to legal approval.',
             variant: 'success'
           })
         );

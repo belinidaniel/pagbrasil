@@ -17,36 +17,35 @@
                     'Approved'
                 ];
 
-                // checo  is sync
+                // check is sync
                 if (!quote.IsSyncing) {
-                    component.set("v.quoteValidationMessage", "Antes de gerar a proposta, sincronize a cotação.");
+                    component.set("v.quoteValidationMessage", "Please sync the quote before generating the proposal.");
                     component.set("v.canGenerateProposal", false);
                     return;
                 }
 
                 // if(quote.Id === quote.Opportunity.SyncedQuoteId){
 
-                //     // checo  is sync
+                //     // check is sync
                 //     if (!quote.IsSyncing && 'SyncedQuoteId' in quote.Opportunity && quote.Opportunity.SyncedQuoteId === null) {
-                //         component.set("v.quoteValidationMessage", "Antes de gerar a proposta, sincronize a cotação.");
+                //         component.set("v.quoteValidationMessage", "Please sync the quote before generating the proposal.");
                 //         component.set("v.canGenerateProposal", false);
                 //         return;
                 //     }
                 // }
 
                 if(quote.Id != quote.Opportunity.SyncedQuoteId){
-
-                    // checo  is sync
-                     if (!quote.IsSyncing && 'SyncedQuoteId' in quote.Opportunity && 'SyncedQuote' in quote.Opportunity && quote.Opportunity.SyncedQuote.IsSyncing) {
-                        component.set("v.quoteValidationMessage", "Oportunidade sincronizada com outra cotação.");
+                    // check is sync
+                    if (!quote.IsSyncing && 'SyncedQuoteId' in quote.Opportunity && 'SyncedQuote' in quote.Opportunity && quote.Opportunity.SyncedQuote.IsSyncing) {
+                        component.set("v.quoteValidationMessage", "Opportunity is synced with another quote.");
                         component.set("v.canGenerateProposal", false);
                         return;
                     }
                 }
                 
-                // checo status
+                // check status
                 if (!validStatuses.includes(quote.Status)) {
-                    component.set("v.quoteValidationMessage", "Cotação com status igual a "+quote.Status+" não permite gerar proposta.");
+                    component.set("v.quoteValidationMessage", "Quote with status '" + quote.Status + "' does not allow proposal generation.");
                     component.set("v.canGenerateProposal", false);
                     return;
                 }
@@ -81,10 +80,10 @@
             component.set("v.isLoading", false); // Finaliza spinner
             const state = response.getState();
             if (state === "SUCCESS") {
-                // Toast de sucesso
+                // Success toast
                 $A.get("e.force:showToast").setParams({
-                    title: "Sucesso",
-                    message: "PDF salvo com sucesso!",
+                    title: "Success",
+                    message: "PDF saved successfully!",
                     type: "success",
                     mode: "dismissible"
                 }).fire();
@@ -96,12 +95,11 @@
                 $A.get('e.force:refreshView').fire();
 
             } else {
-                // Toast de erro
+                // Error toast
                 const errors = response.getError();
-                const message = errors && errors[0] && errors[0].message ? errors[0].message : "Erro ao salvar PDF";
-
+                const message = errors && errors[0] && errors[0].message ? errors[0].message : "Error saving PDF";
                 $A.get("e.force:showToast").setParams({
-                    title: "Erro",
+                    title: "Error",
                     message: message,
                     type: "error",
                     mode: "sticky"
@@ -124,12 +122,12 @@
                 //     $A.get("e.force:closeQuickAction").fire();
                 // };
     
-                // Botão Salvar
+                // Save button
                 const saveBtn = document.createElement("button");
                 saveBtn.className = "slds-button slds-button_brand";
-                saveBtn.innerText = "Salvar";
+                saveBtn.innerText = "Save";
                 saveBtn.onclick = function () {
-                    component.get("c.handleSave").run(); // invoca método Aura
+                    component.get("c.handleSave").run(); // invoke Aura method
                 };
     
                 footer.innerHTML = ''; // limpa se necessário

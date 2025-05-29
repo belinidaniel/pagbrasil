@@ -805,61 +805,15 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Hibernate__c</fieldItem>
-                <identifier>RecordHibernate_cField</identifier>
+                <fieldItem>Record.Moeda__c</fieldItem>
+                <identifier>RecordMoeda_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Negotiation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Discovery</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Compliance</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Contract</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Homologation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Go Live</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Frozen</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Processing</rightValue>
+                        <rightValue>Crossborder</rightValue>
                     </criteria>
                 </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CurrencyIsoCode</fieldItem>
-                <identifier>RecordCurrencyIsoCodeField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f2e58e27-f3c9-4124-a278-f00ec31d2865</name>
@@ -2835,122 +2789,6 @@
                 <identifier>RecordProductClass_cField</identifier>
                 <visibilityRule>
                     <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Compliance</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Contract</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Homologation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Go Live</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Frozen</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Processing</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Closed Lost</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Closed Terminated</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Moeda__c</fieldItem>
-                <identifier>RecordMoeda_cField</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.RecordType.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Cross-border</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Compliance</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Contract</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Homologation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Go Live</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Frozen</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Processing</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Closed Lost</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Closed Terminated</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Moeda__c</fieldItem>
-                <identifier>RecordMoeda_cField2</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.RecordType.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Cross-border</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>NE</operator>
@@ -5252,122 +5090,6 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Qualificador__c</fieldItem>
-                <identifier>RecordQualificador_cField</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Negotiation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Compliance</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Contract</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Homologation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Go Live</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Frozen</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Processing</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Closed Lost</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Closed Terminated</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Qualificador__c</fieldItem>
-                <identifier>RecordQualificador_cField3</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8 AND 9</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Negotiation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Compliance</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Contract</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Homologation</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Go Live</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Frozen</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Processing</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Closed Lost</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Closed Terminated</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.LeadSource</fieldItem>
                 <identifier>RecordLeadSourceField</identifier>
                 <visibilityRule>
@@ -5495,6 +5217,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.First_Appointment_Status__c</fieldItem>
                 <identifier>RecordFirst_Appointment_Status_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Descricao_Empresa__c</fieldItem>
+                <identifier>RecordDescricao_Empresa_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-ec056c6f-c73d-405f-ad8f-773494d52bee</name>

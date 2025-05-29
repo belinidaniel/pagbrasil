@@ -1646,7 +1646,7 @@
         <expression>IF(TEXT({!$User.LanguageLocaleKey}) = &quot;en_US&quot;, &quot;Yes&quot;, &quot;Sim&quot;)</expression>
     </formulas>
     <interviewLabel>RCC Form {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>RCC Form</label>
+    <label>RCC Form (NEW)</label>
     <loops>
         <name>Loop_Question</name>
         <label>Loop Question</label>
@@ -1756,10 +1756,10 @@
                 <elementReference>Get_Opportunity.Id</elementReference>
             </value>
         </filters>
-        <object>KYC_NB__c</object>
+        <object>KYC__c</object>
         <outputAssignments>
             <assignToReference>KYCStatusFromOPP</assignToReference>
-            <field>LegalApprovalStatus__c</field>
+            <field>Legal_Approval_Status__c</field>
         </outputAssignments>
     </recordLookups>
     <recordLookups>
@@ -1830,10 +1830,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Account__c</field>
+            <field>Opportunity__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Opportunity.AccountId</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -1907,10 +1907,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Account__c</field>
+            <field>Opportunity__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Opportunity.AccountId</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -1927,10 +1927,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Account__c</field>
+            <field>Opportunity__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Opportunity.AccountId</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -2056,7 +2056,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Opportunity.Id</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
         <inputAssignments>

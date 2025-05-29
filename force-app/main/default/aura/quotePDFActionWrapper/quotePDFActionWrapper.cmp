@@ -2,7 +2,7 @@
   @description       : 
   @author            : aydhan.passos
   @group             : 
-  @last modified on  : 05-23-2025
+  @last modified on  : 05-29-2025
   @last modified by  : Daniel Belini
 -->
 <aura:component  controller="QuotePdfService" implements="force:lightningQuickAction,force:hasRecordId" access="global" >
@@ -19,30 +19,12 @@
     <!-- On init, define VF URL -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-    <!-- Modal -->
     <div class="slds-modal slds-fade-in-open slds-modal_large">    
-   
-        
-       
-        
-        <!-- MODAL PDF -->
-        <!-- <aura:if isTrue="{!v.canGenerateProposal}"> -->
             <div class="slds-modal__container" style="min-width: 50rem; width: 110%; margin-left: -4.8rem;  margin-top: -1.8rem; position: relative;">
-                
-                
-                
-                <!-- Botão X de fechar -->
-                <!-- <lightning:buttonIcon iconName="utility:close" variant="bare" alternativeText="Fechar" class="slds-modal__close" onclick="{!c.closeModal}" /> -->
-
-                <!-- Header -->
                 <div class="slds-modal__header">
                     <h2 class="slds-text-heading_medium">PDF Proposal</h2>                    
                 </div>
-
-                <!-- Body -->
                 <div class="slds-modal__content" style="height:550px;">
-                    
-                    <!-- Spinner -->
                     <aura:if isTrue="{!v.isLoading}">
                         <div class="slds-spinner slds-is-fixed">
                             <lightning:spinner alternativeText="Carregando..." size="medium" />
@@ -60,8 +42,6 @@
                         </aura:if>
                     </aura:if>
                 </div>
-
-                <!-- Footer -->
                 <aura:if isTrue="{!not(v.isLoading)}">
                     <div class="slds-modal__footer slds-grid slds-grid_align-center">
                         <lightning:button label="Cancel" variant="neutral" onclick="{!c.closeModal}" />

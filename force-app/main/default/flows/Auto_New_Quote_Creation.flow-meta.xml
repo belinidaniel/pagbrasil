@@ -173,6 +173,12 @@
             <targetReference>Redirect_To_New_Quote</targetReference>
         </connector>
         <inputAssignments>
+            <field>CurrencyIsoCode</field>
+            <value>
+                <elementReference>Get_Opportunity.CurrencyIsoCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Name</field>
             <value>
                 <elementReference>QuoteName</elementReference>
@@ -318,7 +324,7 @@
             <targetReference>Get_Opportunity</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>QuoteName</name>
         <dataType>String</dataType>

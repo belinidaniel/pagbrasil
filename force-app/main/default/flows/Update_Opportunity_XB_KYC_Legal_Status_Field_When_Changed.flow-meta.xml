@@ -43,7 +43,14 @@
         <connector>
             <targetReference>Update_KYC_Opportunity_Legal_Status_Field</targetReference>
         </connector>
-        <filterFormula>TEXT({!$Record.LegalApprovalStatus__c}) != TEXT({!$Record__Prior.LegalApprovalStatus__c})</filterFormula>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LegalApprovalStatus__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>KYC_XB__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

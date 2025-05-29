@@ -8,6 +8,52 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>if_change</name>
+        <label>if change</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Opportunity</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>is_Not_change</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Settlement_Frequency_1__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>get_Opportunity_Old.Settlement_Frequency_1__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>get_Opportunity_Old.Settlement_Frequency_2__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>get_Opportunity_Old.Settlement_Frequency_2__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>get_Opportunity_Old.Antecipation_Frequency_1__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>get_Opportunity_Old.Antecipation_Frequency_1__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Antecipation_Frequency_2__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>get_Opportunity_Old.Antecipation_Frequency_2__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Update_Opportunity</targetReference>
+            </connector>
+            <label>is Not change</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>[Opportunity] Confirm Frequencies {!$Flow.CurrentDateTime}</interviewLabel>
     <label>[Opportunity] Confirm Frequencies</label>
@@ -37,7 +83,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Frequency_Confirmation</targetReference>
+            <targetReference>get_Opportunity_Old</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -51,8 +97,29 @@
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>get_Opportunity_Old</name>
+        <label>get Opportunity Old</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Frequency_Confirmation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
-        <name>Update_Opportunity</name>
+        <name>Copy_1_of_Update_Opportunity</name>
         <label>Update Opportunity</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -72,6 +139,51 @@
         </inputAssignments>
         <object>Opportunity</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Antecipation_Frequency_1__c</field>
+            <value>
+                <elementReference>Get_Opportunity.Antecipation_Frequency_1__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Antecipation_Frequency_2__c</field>
+            <value>
+                <elementReference>Get_Opportunity.Antecipation_Frequency_2__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Settlement_Frequency_1__c</field>
+            <value>
+                <elementReference>Get_Opportunity.Settlement_Frequency_1__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Settlement_Frequency_2__c</field>
+            <value>
+                <elementReference>Get_Opportunity.Settlement_Frequency_2__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Negotiation</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
     <screens>
         <name>Frequency_Confirmation</name>
         <label>Frequency Confirmation</label>
@@ -81,7 +193,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Update_Opportunity</targetReference>
+            <targetReference>if_change</targetReference>
         </connector>
         <fields>
             <name>Frequency_Confirmation_Section1</name>

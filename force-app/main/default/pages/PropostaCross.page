@@ -559,7 +559,7 @@
                                     <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 13px">{!setupFee} {!opportunityCurrency}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 15px 12px; text-align: left; font-size: 13px; font-weight: bold;">Service Fee - Shopify/Woocommerce/Salesforce App</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 15px 12px; text-align: left; font-size: 13px; font-weight: bold;">Service Fee - {!currentIntegrationTypeInCheckoutList}</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 15px 12px; text-align: left; color: #323232; font-size: 13px">0.5 on the total amount processed</td>
                                 </tr>
                                 <tr>
@@ -705,7 +705,7 @@
                         <li>Payment link replication from previous orders to help activate recurring payments, cart recovery, or remarketing strategies</li>
                         <li>PCI/DSS not required</li>
                     </ul>
-                    <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> {!pagBrasilCheckoutServiceFee}% on montly revenue</p>
+                    <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> {!pagBrasilCheckoutServiceFee}% on monthly revenue</p>
                 </div>
             </div>
             <div class="page-footer">

@@ -13,12 +13,22 @@
     <filters>
         <field>CORE.USERS.ALIAS</field>
         <operation>equals</operation>
-        <value>GL</value>
+        <value>JL</value>
     </filters>
     <filters>
         <field>LEAD.STATUS</field>
         <operation>notContain</operation>
         <value>Closed - Not converted,Spam,Refused,Closed - Converted</value>
+    </filters>
+    <filters>
+        <field>Segmento__c</field>
+        <operation>equals</operation>
+        <value>Gaming,Software/Saas B2B</value>
+    </filters>
+    <filters>
+        <field>Operacao__c</field>
+        <operation>equals</operation>
+        <value>Outbound</value>
     </filters>
     <label>Leads GL</label>
 </ListView>

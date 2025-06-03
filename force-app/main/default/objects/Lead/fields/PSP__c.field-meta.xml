@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <label>PSP</label>
     <length>50</length>
-    <required>false</required>
+    <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Text</type>
     <unique>false</unique>

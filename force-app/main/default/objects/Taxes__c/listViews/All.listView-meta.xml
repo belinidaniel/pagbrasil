@@ -17,10 +17,5 @@
     <columns>TaxaBaseAntecipacao__c</columns>
     <columns>IsPercent__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>RecordTypeName__c</field>
-        <operation>equals</operation>
-        <value>TaxaSolucaoPagBrasil</value>
-    </filters>
     <label>All</label>
 </ListView>

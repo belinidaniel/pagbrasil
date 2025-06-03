@@ -2,6 +2,22 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>addList_id</name>
+        <label>addList id</label>
+        <locationX>264</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>listIdsDocs</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>loop_links.ContentDocumentId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loop_links</targetReference>
+        </connector>
+    </assignments>
     <customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
@@ -11,6 +27,20 @@
     <environments>Default</environments>
     <interviewLabel>Opportunity[Action] - Quote Proposal Rejection {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Opportunity[Action] - Quote Proposal Rejection</label>
+    <loops>
+        <name>loop_links</name>
+        <label>loop links</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <collectionReference>get_Quote_Document</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>addList_id</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>get_content</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -34,7 +64,7 @@
         <name>create_history_record</name>
         <label>create history record</label>
         <locationX>176</locationX>
-        <locationY>566</locationY>
+        <locationY>974</locationY>
         <inputAssignments>
             <field>CustomerAcceptance__c</field>
             <value>
@@ -44,13 +74,13 @@
         <inputAssignments>
             <field>Name</field>
             <value>
-                <elementReference>get_Quote_Document.Name</elementReference>
+                <elementReference>get_content.Title</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>QuoteDocumentId__c</field>
             <value>
-                <elementReference>get_Quote_Document.Id</elementReference>
+                <elementReference>get_content.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -68,6 +98,36 @@
         <object>CustomerProposal__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordLookups>
+        <name>get_content</name>
+        <label>get content</label>
+        <locationX>176</locationX>
+        <locationY>650</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>screen_ReasonToNoAccepted</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>listIdsDocs</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Title</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>Proposal_</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ContentDocument</object>
+        <sortField>Title</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <name>get_Opportunity</name>
         <label>get Opportunity</label>
@@ -96,27 +156,25 @@
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>screen_ReasonToNoAccepted</targetReference>
+            <targetReference>loop_links</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>QuoteId</field>
+            <field>LinkedEntityId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>get_Opportunity.SyncedQuote.Id</elementReference>
+                <elementReference>get_Opportunity.SyncedQuoteId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>QuoteDocument</object>
-        <sortField>CreatedDate</sortField>
-        <sortOrder>Desc</sortOrder>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
         <name>Update_selected_quote</name>
         <label>Update selected quote</label>
         <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationY>866</locationY>
         <connector>
             <targetReference>create_history_record</targetReference>
         </connector>
@@ -146,7 +204,7 @@
         <name>screen_ReasonToNoAccepted</name>
         <label>screen_ReasonToNoAccepted</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationY>758</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -178,6 +236,13 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>listIdsDocs</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>

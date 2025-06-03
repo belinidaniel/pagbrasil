@@ -3,12 +3,13 @@
     <fullName>Leads_Custom_Compact_Layout</fullName>
     <fields>Name</fields>
     <fields>Company</fields>
-    <fields>Title</fields>
+    <fields>Lead_Area__c</fields>
+    <fields>OwnerId</fields>
+    <fields>Operacao__c</fields>
     <fields>Phone</fields>
     <fields>MobilePhone</fields>
     <fields>Email</fields>
-    <fields>QualificacaoLead__c</fields>
-    <fields>QualificacaoLeadIndicacao__c</fields>
-    <fields>Pais__c</fields>
+    <fields>Status</fields>
+    <fields>Title</fields>
     <label>Leads Custom Compact Layout</label>
 </CompactLayout>

@@ -3,7 +3,7 @@
     <fullName>Ag_ncia__c</fullName>
     <description>Cite a agência responsável pelo desenvolvimento do site.</description>
     <externalId>false</externalId>
-    <label>Agência</label>
+    <label>Agency</label>
     <length>200</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

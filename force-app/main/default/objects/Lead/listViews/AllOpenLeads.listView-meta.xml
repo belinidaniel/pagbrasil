@@ -11,16 +11,7 @@
     <columns>CORE.USERS.FIRST_NAME</columns>
     <columns>LEAD.CREATED_DATE</columns>
     <columns>LEAD.PHONE</columns>
+    <columns>Qualificador__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>Qualificador__c</field>
-        <operation>equals</operation>
-        <value>Inbound_GM,Inbound_MG,Inbound_YK</value>
-    </filters>
-    <filters>
-        <field>LEAD.STATUS</field>
-        <operation>notEqual</operation>
-        <value>Closed - Converted,Closed - Not converted</value>
-    </filters>
     <label>Todos os Leads Abertos</label>
 </ListView>

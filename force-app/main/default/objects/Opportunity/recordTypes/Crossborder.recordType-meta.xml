@@ -2177,6 +2177,61 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Current_Platform__c</picklist>
+        <values>
+            <fullName>Baggy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Linx Commerce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Loja Integrada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Magento</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nuvemshop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oracle</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shopify</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tray</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vnda</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vtex</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Woocommerce</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>First_Appointment_Status__c</picklist>
         <values>
             <fullName>Completed</fullName>

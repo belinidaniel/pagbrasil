@@ -4,9 +4,42 @@
     <description>Faixa de faturamento mensal das oportunidades internacionais, em U$.</description>
     <inlineHelpText>Faixa de faturamento mensal das oportunidades internacionais, em U$.</inlineHelpText>
     <label>Receita mensal XB</label>
-    <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
     <trackFeedHistory>false</trackFeedHistory>
-    <type>Currency</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Acima de R$5M</fullName>
+                <default>false</default>
+                <label>Acima de R$5M</label>
+            </value>
+            <value>
+                <fullName>R$1M até R$5M</fullName>
+                <default>false</default>
+                <label>R$1M até R$5M</label>
+            </value>
+            <value>
+                <fullName>R$250K até R$1M</fullName>
+                <default>false</default>
+                <label>R$250K até R$1M</label>
+            </value>
+            <value>
+                <fullName>R$100K até R$250K</fullName>
+                <default>false</default>
+                <label>R$100K até R$250K</label>
+            </value>
+            <value>
+                <fullName>Até R$100K</fullName>
+                <default>false</default>
+                <label>Até R$100K</label>
+            </value>
+            <value>
+                <fullName>Não vende para o Brasil ainda</fullName>
+                <default>false</default>
+                <label>Não vende para o Brasil ainda</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>

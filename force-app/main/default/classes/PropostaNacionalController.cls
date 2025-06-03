@@ -32,6 +32,7 @@ public class PropostaNacionalController {
     public Boolean first { get; set; }
     public string reserve {get;set;}
     public String pagBrasilSolutionFeeRange{get;set;}
+    public Boolean showZeroReserveOption { get; set; }
 
     //Taxes
     public String valueOne { get; set; }
@@ -175,6 +176,8 @@ public class PropostaNacionalController {
         productsPopulation(quote);
         fieldsPopulation(quote);
         frequencyPopulation(quote);
+
+        showZeroReserveOption = this.containsGateway;
 
         this.viewPage6 = true;
         this.viewPage11 = false;
@@ -458,7 +461,7 @@ public class PropostaNacionalController {
                 when 'Weekly' {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11S';
                 }
-                when 'Biweekly' {
+                when 'Bimonthly' {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11B';
                 }
                 when 'Monthly' {
@@ -497,8 +500,8 @@ public class PropostaNacionalController {
             setDailyFrequencyPageOne(antecipation);
         } else if (settlement == 'Weekly') {
             setWeeklyFrequencyPageOne(antecipation);
-        } else if (settlement == 'Biweekly') {
-            setBiweeklyFrequencyPageOne(antecipation);
+        } else if (settlement == 'Bimonthly') {
+            setBimonthlyFrequencyPageOne(antecipation);
         } else if (settlement == 'Monthly') {
             setMonthlyFrequencyPageOne(antecipation);
         }
@@ -512,7 +515,7 @@ public class PropostaNacionalController {
     private void setFrequencyPageTwo(String settlement, String antecipation) {
         if (settlement == 'Daily') setDailyFrequencyPageTwo(antecipation);
         else if (settlement == 'Weekly') setWeeklyFrequencyPageTwo(antecipation);
-        else if (settlement == 'Biweekly') setBiweeklyFrequencyPageTwo(antecipation);
+        else if (settlement == 'Bimonthly') setBimonthlyFrequencyPageTwo(antecipation);
         else if (settlement == 'Monthly') setMonthlyFrequencyPageTwo(antecipation);
 
         if (antecipation == 'Fluxo Médio') {
@@ -530,7 +533,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageOne = 'D+7';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'bissemanal';
@@ -546,7 +549,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'bissemanal';
@@ -557,8 +560,8 @@ public class PropostaNacionalController {
         }
     }
 
-    private void setBiweeklyFrequencyPageOne(String antecipation) {
-        if (antecipation == 'Biweekly') {
+    private void setBimonthlyFrequencyPageOne(String antecipation) {
+        if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'bissemanal';
@@ -586,7 +589,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageTwo = 'D+7';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'bissemanal';
@@ -602,7 +605,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'bissemanal';
@@ -613,8 +616,8 @@ public class PropostaNacionalController {
         }
     }
 
-    @TestVisible private void setBiweeklyFrequencyPageTwo(String antecipation) {
-        if (antecipation == 'Biweekly') {
+    @TestVisible private void setBimonthlyFrequencyPageTwo(String antecipation) {
+        if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'bissemanal';

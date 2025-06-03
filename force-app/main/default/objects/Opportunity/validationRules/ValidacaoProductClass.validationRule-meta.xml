@@ -3,10 +3,7 @@
     <fullName>ValidacaoProductClass</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-    OR(
-        LOWER($RecordType.DeveloperName) = &quot;national&quot;,
-        LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;
-    ),
+				LOWER($RecordType.DeveloperName) = &quot;national&quot;,
     ISPICKVAL(ProductClass__c, &quot;&quot;)
 )</errorConditionFormula>
     <errorDisplayField>ProductClass__c</errorDisplayField>

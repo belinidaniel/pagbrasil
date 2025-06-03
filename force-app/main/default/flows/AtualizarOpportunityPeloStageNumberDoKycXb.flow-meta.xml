@@ -55,13 +55,6 @@
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Stage_Number__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <numberValue>8.0</numberValue>
-            </value>
-        </filters>
-        <filters>
             <field>Status__c</field>
             <operator>EqualTo</operator>
             <value>

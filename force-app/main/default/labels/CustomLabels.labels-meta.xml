@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Opportunity_Additional_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Additional Information Section</shortDescription>
+        <value>Informações Adicionais</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Business_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Business Information Section</shortDescription>
+        <value>Informações de Negócio</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Dates_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Dates Section</shortDescription>
+        <value>Datas</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Information Section</shortDescription>
+        <value>Informações da Oportunidade</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Products_and_Services_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Products and Services Section</shortDescription>
+        <value>Produtos e Serviços</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Settlement_and_Antecipation_Frequency_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Settlement and Antecipation Frequency Section</shortDescription>
+        <value>Modelo de Repasse e Antecipação</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_System_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity System Information Section</shortDescription>
+        <value>Informações do Sistema</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>False</shortDescription>
+        <value>Como a demanda do merchant é gerada?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_10</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>False</shortDescription>
+        <value>Como foi realizado ID Check com o representante legal?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_11</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>False</shortDescription>
+        <value>Temos contato direto ou foi informado no KYC o e-mail empresarial do representante legal?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_12</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>-</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>False</shortDescription>
+        <value>Como será alcançado o forecast de vendas ?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>A descrição do produto/serviço enviado ou colocado à disposição é clara?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>Os produtos/serviços podem ser considerados de boa qualidade?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>Nenhuma atividade praticada com produtos/serviços restritos pelas políticas da PagBrasil?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_6</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>O merchant já tem presença no mercado?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>O merchant tem boa reputação no mercado?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_8</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>True</shortDescription>
+        <value>O forecast de vendas previsto é realista para essa categoria de produto/serviço?</value>
+    </labels>
+    <labels>
+        <fullName>RCC_Question_9</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>False</shortDescription>
+        <value>Com quem foi realizada a negociação?</value>
+    </labels>
+    <labels>
+        <fullName>Teste</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RCC Question1</shortDescription>
+        <value>Nenhuma atividade praticada com produtos/serviços restritos pelas políticas da PagBrasil?</value>
+    </labels>
+</CustomLabels>

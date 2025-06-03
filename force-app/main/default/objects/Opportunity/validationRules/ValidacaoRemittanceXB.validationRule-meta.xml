@@ -4,7 +4,7 @@
     <active>true</active>
     <errorConditionFormula>AND(
     LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;,
-    ISPICKVAL(Moeda__c, &quot;&quot;)
+    ISPICKVAL(CurrencyIsoCode, &quot;&quot;)
 )</errorConditionFormula>
     <errorDisplayField>Moeda__c</errorDisplayField>
     <errorMessage>The Remittance Currency field is empty, fill it in to continue.</errorMessage>

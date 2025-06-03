@@ -12,8 +12,8 @@
     <filterScope>Mine</filterScope>
     <filters>
         <field>LEAD.STATUS</field>
-        <operation>notEqual</operation>
-        <value>Nutrition,Closed - Not converted</value>
+        <operation>notContain</operation>
+        <value>Closed - Not converted</value>
     </filters>
     <label>Leads | Pré-Vendas | Gabriele</label>
 </ListView>

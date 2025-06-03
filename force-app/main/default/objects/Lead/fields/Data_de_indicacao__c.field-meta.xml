@@ -3,7 +3,7 @@
     <fullName>Data_de_indicacao__c</fullName>
     <description>Data da indicação do lead</description>
     <inlineHelpText>Data da indicação do lead</inlineHelpText>
-    <label>Data de indicação</label>
+    <label>Date of Indication</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Date</type>

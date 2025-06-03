@@ -11,9 +11,9 @@
     <columns>CORE.USERS.ALIAS</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>LEAD.CREATED_DATE</field>
-        <operation>greaterOrEqual</operation>
-        <value>1/1/2023 12:00 AM</value>
+        <field>LEAD.STATUS</field>
+        <operation>equals</operation>
+        <value>Closed - Converted</value>
     </filters>
     <label>Leads PV</label>
 </ListView>

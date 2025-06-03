@@ -5,6 +5,8 @@
     <columns>PRICEBOOK2.DESCRIPTION</columns>
     <columns>PRICEBOOK2.LAST_UPDATE</columns>
     <columns>PRICEBOOK2.IS_ACTIVE</columns>
+    <columns>IsCrossBoard__c</columns>
+    <columns>BusinessModel__c</columns>
     <filterScope>Everything</filterScope>
     <label>All Price Books</label>
 </ListView>

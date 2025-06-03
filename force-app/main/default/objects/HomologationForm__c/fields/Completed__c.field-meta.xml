@@ -1,71 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Completed__c</fullName>
-    <formula>AND(
-
-  NOT(ISBLANK(Name)),
-  NOT(ISBLANK(MccCode__c)),
-  NOT(ISBLANK(PaymentAlert__c)),
-  NOT(ISPICKVAL(BlockRefund__c, &apos;&apos;)),
-  NOT(ISPICKVAL(BankSlipEmailService__c, &apos;&apos;)),
-  NOT(ISPICKVAL(BankSlipSmsService__c, &apos;&apos;)),
-  NOT(ISPICKVAL(PixEmailService__c, &apos;&apos;)),
-  NOT(ISPICKVAL(EmailPackage__c, &apos;&apos;)),
-  NOT(ISPICKVAL(PaymentConfirmationEmailService__c, &apos;&apos;)),
-  NOT(ISPICKVAL(SmsPackage__c, &apos;&apos;)),
-  NOT(ISPICKVAL(PaymentLinkEmailService__c, &apos;&apos;)),
-  NOT(ISPICKVAL(OneClickBuyingTokenization__c, &apos;&apos;)),
-  
-  OR(
-    NOT(ISPICKVAL(Opportunity__r.Segmento__c, &apos;Dropshipping&apos;)),
-    AND(
-      ISPICKVAL(Opportunity__r.Segmento__c, &apos;Dropshipping&apos;),
-      NOT(ISPICKVAL(PodReminder__c, &apos;&apos;))
-    )
-  ),
-  
-  OR(
-    Opportunity__r.Payout__c = FALSE,
-    AND(
-      Opportunity__r.Payout__c = TRUE,
-      NOT(ISPICKVAL(AccountModel__c, &apos;&apos;)),
-      NOT(ISPICKVAL(ReviewPayeeRegistration__c, &apos;&apos;)),
-      NOT(ISPICKVAL(TransactionType__c, &apos;&apos;))
-    )
-  ),
-  
-  OR(
-    NOT(INCLUDES(Opportunity__r.Metodos_Pagamento__c, &apos;Boleto Flash&apos;)),
-    AND(
-      INCLUDES(Opportunity__r.Metodos_Pagamento__c, &apos;Boleto Flash&apos;),
-      NOT(ISPICKVAL(AutomaticCancellation__c, &apos;&apos;)),
-      NOT(ISBLANK(NumberOfDays__c))
-    )
-  ),
-  
-  OR(
-    NOT(INCLUDES(Opportunity__r.Metodos_Pagamento__c, &apos;Cartão de Crédito Nacional&apos;)),
-    AND(
-      INCLUDES(Opportunity__r.Metodos_Pagamento__c, &apos;Cartão de Crédito Nacional&apos;),
-      NOT(ISBLANK(DefaultSoftDescriptor__c)),
-      
-      OR(
-        NOT(OR(
-          ISPICKVAL(Opportunity__r.IntegrationType__c, &quot;JS&quot;),
-          ISPICKVAL(Opportunity__r.IntegrationType__c, &quot;API&quot;)
-        )),
-        AND(
-          OR(
-            ISPICKVAL(Opportunity__r.IntegrationType__c, &quot;JS&quot;),
-            ISPICKVAL(Opportunity__r.IntegrationType__c, &quot;API&quot;)
-          ),
-          NOT(ISPICKVAL(CreditCardRecurrence__c, &apos;&apos;)),
-          NOT(ISPICKVAL(InstallmentRecurrence__c, &apos;&apos;))
-        )
-      )
-    )
-  )
-)</formula>
+    <formula>true</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Completed</label>
     <trackTrending>false</trackTrending>

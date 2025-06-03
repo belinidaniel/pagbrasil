@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Board__c</fullName>
-    <formula>Tax__r.FlexBoard__c</formula>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(Tax__r.FlexBoard__c),
+  &quot;&quot;,
+  &quot;0.0% Até &quot; &amp;
+  IF(
+    Tax__r.FlexBoard__c &lt; 0.1,
+    &quot;0&quot; &amp; TEXT(ROUND(Tax__r.FlexBoard__c * 100, 2)),
+    TEXT(ROUND(Tax__r.FlexBoard__c * 100, 2))
+  ) &amp; &quot;%&quot;
+)</formula>
     <label>Board</label>
-    <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
     <trackHistory>false</trackHistory>
-    <type>Percent</type>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>

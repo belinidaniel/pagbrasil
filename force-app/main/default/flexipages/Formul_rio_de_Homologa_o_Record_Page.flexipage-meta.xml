@@ -166,16 +166,6 @@
                 <identifier>RecordReimbursementPolicy__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Required_Fields__c</fieldItem>
-                <identifier>RecordRequired_Fields__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</name>
         <type>Facet</type>
     </flexiPageRegions>

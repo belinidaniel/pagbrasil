@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Category__c</fullName>
+    <label>Product Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>5122</fullName>
+                <default>false</default>
+                <label>Drugstores</label>
+            </value>
+            <value>
+                <fullName>5300</fullName>
+                <default>false</default>
+                <label>Wholesale Clubs</label>
+            </value>
+            <value>
+                <fullName>5331</fullName>
+                <default>false</default>
+                <label>Variety Stores</label>
+            </value>
+            <value>
+                <fullName>5499</fullName>
+                <default>false</default>
+                <label>Grocery Stores and Supermarkets</label>
+            </value>
+            <value>
+                <fullName>5651</fullName>
+                <default>false</default>
+                <label>Clothing</label>
+            </value>
+            <value>
+                <fullName>5732</fullName>
+                <default>false</default>
+                <label>Electronics Stores</label>
+            </value>
+            <value>
+                <fullName>5734</fullName>
+                <default>false</default>
+                <label>Computer Software</label>
+            </value>
+            <value>
+                <fullName>5921</fullName>
+                <default>false</default>
+                <label>Beer, Wine, Liquor Stores</label>
+            </value>
+            <value>
+                <fullName>5977</fullName>
+                <default>false</default>
+                <label>Cosmetic Stores</label>
+            </value>
+            <value>
+                <fullName>8299</fullName>
+                <default>false</default>
+                <label>Schools and Educational Services</label>
+            </value>
+            <value>
+                <fullName>8999</fullName>
+                <default>false</default>
+                <label>Professional Services</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

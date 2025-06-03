@@ -1312,7 +1312,7 @@
 
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
                             <li>
-                                <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação)
+                                <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) <apex:outputText rendered="{!NOT(containsIntermediacao)}"> ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação) </apex:outputText>
                             </li>
                             </apex:outputPanel>
 
@@ -1402,7 +1402,7 @@
                                 <strong>Taxa de transferência</strong>: R${!transferFee}
                             </li>
                             <li>
-                                <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação)
+                                <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) <apex:outputText rendered="{!NOT(containsIntermediacao)}"> ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação) </apex:outputText>
                             </li>
                             <li>
                                 <strong>Taxa de adesão</strong>: R${!adherenceFee}
@@ -1484,7 +1484,7 @@
                         </apex:outputPanel>
                         <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
                         <li>
-                            <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação)
+                            <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) <apex:outputText rendered="{!NOT(containsIntermediacao)}"> ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação) </apex:outputText>
                         </li>
                         </apex:outputPanel>
                         <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(creditCardIntegrationFee))}">

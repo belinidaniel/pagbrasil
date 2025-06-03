@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Lead_LC</fullName>
-    <booleanFilter>1 AND 2 AND 3</booleanFilter>
     <columns>FULL_NAME</columns>
     <columns>LEAD.EMAIL</columns>
     <columns>LEAD.COMPANY</columns>
@@ -14,17 +13,12 @@
     <filters>
         <field>CORE.USERS.ALIAS</field>
         <operation>equals</operation>
-        <value>LC</value>
+        <value>RN</value>
     </filters>
     <filters>
-        <field>LEAD.CREATED_DATE</field>
+        <field>CORE.USERS.FIRST_NAME</field>
         <operation>equals</operation>
-        <value>TODAY</value>
+        <value>Ricardo</value>
     </filters>
-    <filters>
-        <field>LEAD.STATUS</field>
-        <operation>equals</operation>
-        <value>Connection</value>
-    </filters>
-    <label>Lead LC</label>
+    <label>Lead Ricardo PS S</label>
 </ListView>

@@ -10,5 +10,5 @@
     ISBLANK(AverageSalesTicket__c)
 )</errorConditionFormula>
     <errorDisplayField>AverageSalesTicket__c</errorDisplayField>
-    <errorMessage>The Average Ticket Price field is empty, fill it in to continue.</errorMessage>
+    <errorMessage>The Average Order Value field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

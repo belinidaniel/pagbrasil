@@ -3,10 +3,26 @@
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
+        <name>docsIds_assign</name>
+        <label>docsIds assign</label>
+        <locationX>270</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>docsIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_1.ContentDocumentId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Record_Initial_Infos</name>
         <label>Set Record Initial Infos</label>
         <locationX>50</locationX>
-        <locationY>566</locationY>
+        <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>customerProposalHistory.QuoteId__c</assignToReference>
             <operator>Assign</operator>
@@ -18,14 +34,14 @@
             <assignToReference>customerProposalHistory.QuoteDocumentId__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>get_Quote_Document.Id</elementReference>
+                <elementReference>get_content.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>customerProposalHistory.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>get_Quote_Document.Name</elementReference>
+                <elementReference>get_content.Title</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -36,7 +52,7 @@
         <name>setRecordInfo</name>
         <label>Set Record Info</label>
         <locationX>50</locationX>
-        <locationY>782</locationY>
+        <locationY>1190</locationY>
         <assignmentItems>
             <assignToReference>customerProposalHistory.QuoteId__c</assignToReference>
             <operator>Assign</operator>
@@ -48,14 +64,14 @@
             <assignToReference>customerProposalHistory.QuoteDocumentId__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>get_Quote_Document.Id</elementReference>
+                <elementReference>get_content.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>customerProposalHistory.Name</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>get_Quote_Document.Name</elementReference>
+                <elementReference>get_content.Title</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -79,7 +95,7 @@
         <name>hasDocumentRelated</name>
         <label>Has Document Related?</label>
         <locationX>182</locationX>
-        <locationY>458</locationY>
+        <locationY>866</locationY>
         <defaultConnector>
             <isGoTo>true</isGoTo>
             <targetReference>screen_NoDocument</targetReference>
@@ -104,6 +120,20 @@
     <environments>Default</environments>
     <interviewLabel>Quote[Action] - Proposal Acceptance from Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Opportunity[Action] - Quote Proposal Acceptance</label>
+    <loops>
+        <name>Loop_1</name>
+        <label>Loop 1</label>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
+        <collectionReference>get_Quote_Document</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>docsIds_assign</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>get_content</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -127,12 +157,42 @@
         <name>create_history_record</name>
         <label>create history record</label>
         <locationX>50</locationX>
-        <locationY>1106</locationY>
+        <locationY>1514</locationY>
         <connector>
             <targetReference>Update_opportunity</targetReference>
         </connector>
         <inputReference>customerProposalHistory</inputReference>
     </recordCreates>
+    <recordLookups>
+        <name>get_content</name>
+        <label>get content</label>
+        <locationX>182</locationX>
+        <locationY>758</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>hasDocumentRelated</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>docsIds</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Title</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>Proposal_</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ContentDocument</object>
+        <sortField>Title</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <name>get_Quote_Document</name>
         <label>get Quote Document</label>
@@ -140,23 +200,21 @@
         <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>hasDocumentRelated</targetReference>
+            <targetReference>Loop_1</targetReference>
         </connector>
         <faultConnector>
             <targetReference>screen_NoDocument</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>QuoteId</field>
+            <field>LinkedEntityId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Synced_Quote_From_Opportunity.Id</elementReference>
+                <elementReference>getOpportunityRecord.SyncedQuoteId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>QuoteDocument</object>
-        <sortField>CreatedDate</sortField>
-        <sortOrder>Desc</sortOrder>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -205,7 +263,7 @@
         <name>Update_opportunity</name>
         <label>Update opportunity</label>
         <locationX>50</locationX>
-        <locationY>1214</locationY>
+        <locationY>1622</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -240,7 +298,7 @@
         <name>Update_other_quotes</name>
         <label>Update other quotes</label>
         <locationX>50</locationX>
-        <locationY>998</locationY>
+        <locationY>1406</locationY>
         <connector>
             <targetReference>create_history_record</targetReference>
         </connector>
@@ -271,7 +329,7 @@
         <name>update_quote</name>
         <label>Update selected quote</label>
         <locationX>50</locationX>
-        <locationY>890</locationY>
+        <locationY>1298</locationY>
         <connector>
             <targetReference>Update_other_quotes</targetReference>
         </connector>
@@ -295,7 +353,7 @@
         <name>screen_AcceptanceForm</name>
         <label>screen_AcceptanceForm</label>
         <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationY>1082</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -388,7 +446,7 @@
                     <name>field_ROQuoteDocumentName</name>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>get_Quote_Document.Name</elementReference>
+                        <elementReference>get_content.Title</elementReference>
                     </defaultValue>
                     <fieldText>Document Name</fieldText>
                     <fieldType>InputField</fieldType>
@@ -444,6 +502,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>CustomerProposal__c</objectType>
+    </variables>
+    <variables>
+        <name>docsIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>recordId</name>

@@ -60,13 +60,6 @@
                 <stringValue>Completed</stringValue>
             </value>
         </filters>
-        <filters>
-            <field>Stage_Number__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <numberValue>6.0</numberValue>
-            </value>
-        </filters>
         <object>KYC__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

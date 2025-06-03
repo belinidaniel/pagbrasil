@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Platform__c</fullName>
+    <label>Current Platform</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shopify</fullName>
+                <default>false</default>
+                <label>Shopify</label>
+            </value>
+            <value>
+                <fullName>Woocommerce</fullName>
+                <default>false</default>
+                <label>Woocommerce</label>
+            </value>
+            <value>
+                <fullName>Magento</fullName>
+                <default>false</default>
+                <label>Magento</label>
+            </value>
+            <value>
+                <fullName>Vtex</fullName>
+                <default>false</default>
+                <label>Vtex</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+            <value>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+                <label>Oracle</label>
+            </value>
+            <value>
+                <fullName>Nuvemshop</fullName>
+                <default>false</default>
+                <label>Nuvemshop</label>
+            </value>
+            <value>
+                <fullName>Loja Integrada</fullName>
+                <default>false</default>
+                <label>Loja Integrada</label>
+            </value>
+            <value>
+                <fullName>Tray</fullName>
+                <default>false</default>
+                <label>Tray</label>
+            </value>
+            <value>
+                <fullName>Baggy</fullName>
+                <default>false</default>
+                <label>Baggy</label>
+            </value>
+            <value>
+                <fullName>Vnda</fullName>
+                <default>false</default>
+                <label>Vnda</label>
+            </value>
+            <value>
+                <fullName>Linx Commerce</fullName>
+                <default>false</default>
+                <label>Linx Commerce</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

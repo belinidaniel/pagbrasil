@@ -15,12 +15,7 @@
     <filters>
         <field>CORE.USERS.ALIAS</field>
         <operation>equals</operation>
-        <value>FB</value>
+        <value>MV</value>
     </filters>
-    <filters>
-        <field>LEAD.STATUS</field>
-        <operation>equals</operation>
-        <value>Pre prospection,Prospection,Connection,Scheduling</value>
-    </filters>
-    <label>Lista da Fran</label>
+    <label>Leads Marjorie</label>
 </ListView>

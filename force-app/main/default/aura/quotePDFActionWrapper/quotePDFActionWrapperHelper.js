@@ -110,6 +110,35 @@
         $A.enqueueAction(action);
     }, 
 
+    sendPDFByEmail : function(component) {
+        component.set("v.isLoading", true); // Start spinner
+        const action = component.get("c.sendToEmail");
+        action.setParams({ quoteId: component.get("v.recordId") });
+        action.setCallback(this, function(response) {
+            component.set("v.isLoading", false); // Stop spinner
+            const state = response.getState();
+            if (state === "SUCCESS") {
+                $A.get("e.force:showToast").setParams({
+                    title: "Success",
+                    message: "PDF sent to quote owner successfully!",
+                    type: "success",
+                    mode: "dismissible"
+                }).fire();
+                $A.get("e.force:closeQuickAction").fire();
+            } else {
+                const errors = response.getError();
+                const message = errors && errors[0] && errors[0].message ? errors[0].message : "Error sending PDF by email";
+                $A.get("e.force:showToast").setParams({
+                    title: "Error",
+                    message: message,
+                    type: "error",
+                    mode: "sticky"
+                }).fire();
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
     injectSaveButtonInOverrideFooter : function(component) {
         const tryInject = () => {
             const footer = document.querySelector('.slds-modal__footer');

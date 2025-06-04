@@ -29,4 +29,8 @@
         $A.get("e.force:closeQuickAction").fire();
     },
     
+    handleSendEmail : function(component, event, helper) {
+        helper.sendPDFByEmail(component);
+    }
+
 });

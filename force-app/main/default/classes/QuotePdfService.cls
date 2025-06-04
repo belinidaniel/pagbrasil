@@ -91,4 +91,38 @@ public with sharing class QuotePdfService {
             update new Opportunity(Id = proposta.Opportunity.Id, StageName = 'Negotiation');
         }
     }
+
+    @AuraEnabled
+    public static void sendToEmail(Id quoteId) {
+        Quote proposta = getOpportunityType(quoteId);
+
+        PageReference pdfPage = (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder')
+            ? Page.PropostaCross
+            : Page.PropostaNacional;
+        pdfPage.getParameters().put('id', quoteId);
+        Blob pdfBlob = pdfPage.getContentAsPDF();
+
+        String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
+        String filePrefix = 'Proposal_' + baseName;
+        String fileName = filePrefix + '.pdf';
+
+        // Get Quote Owner Email
+        String ownerEmail = [SELECT Owner.Email FROM Quote WHERE Id = :quoteId LIMIT 1].Owner.Email;
+        if (String.isBlank(ownerEmail)) {
+            throw new AuraHandledException('Quote owner does not have an email address.');
+        }
+
+        // Prepare email
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        mail.setToAddresses(new String[] { ownerEmail });
+        mail.setSubject('Proposal PDF for Quote: ' + proposta.Name);
+        mail.setPlainTextBody('Please find attached the proposal PDF for quote: ' + proposta.Name);
+        Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+        attachment.setFileName(fileName);
+        attachment.setBody(pdfBlob);
+        attachment.setContentType('application/pdf');
+        mail.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
+
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+    }
 }

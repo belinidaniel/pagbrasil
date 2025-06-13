@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-03-03
- * @last modified by  : Guilherme Schuquel Borges
+ * @last modified on  : 06-11-2025
+ * @last modified by  : Daniel Belini
 **/
 public class ContractController {
 
@@ -20,6 +20,9 @@ public class ContractController {
     public Boolean isGateway { get; set; }
     public Boolean isFluxoMedio { get; set; }
     public Boolean isPayout { get; set; }
+    public Boolean isPhysical { get; set; }
+
+    public Boolean pixGatewayBelowMinimum { get; set; }
 
     public Boolean containsPagBrasilDefinition { get; set; }
     public Boolean containsPix { get; set; }
@@ -71,8 +74,26 @@ public class ContractController {
     public String trasferFee { get; set; }
     public String reserve { get; set; }
     public String pagstreamfee { get; set; }
+    public String pagstreamMin { get; set; }
     public String payoutFee { get; set; }
     public String supplierFee { get; set; }
+    public String pagShield { get; set; }
+    public String pagShieldFee { get; set; }
+    public String pagShieldFeePercent { get; set; }
+    public String pixAuto { get; set; }
+    public String zeroAuthCard { get; set; }
+    public String sms500 { get; set; }
+    public String sms1000 { get; set; }
+    public String sms10000 { get; set; }
+    public String emails1000 { get; set; }
+    public String emails10000 { get; set; }
+    public String emails100000 { get; set; }
+    public String pix { get; set; }
+    public String refundTransfer { get; set; }
+    public String chargeback { get; set; }
+    public String excessChargeback { get; set; }
+    public String currencyExchangeMarkup { get; set; }
+    public String iofTax { get; set; }
 
     public String frequencyPageOneValueOne { get; set; }
     public String frequencyPageOneValueTwo { get; set; }
@@ -100,15 +121,21 @@ public class ContractController {
 
     Boolean isCrossborder = false;
 
+
+    public String termClauses { get; set; }
+    public String termClausesTitle { get; set; }
+
     public ContractController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
-            stdController.addFields(new List<String>{ 'Id', 'Name', 'Integracao__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
+            stdController.addFields(new List<String>{ 'Id', 'Name', 'Integracao__c', 'RequestChangeClause__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
                 'Settlement_Frequency_Test__c', 'Account.CNPJ__c', 'AccountId', 'Account.Nome_Empresarial__c', 'NationalPaymentMethod__c', 'Payout__c',
-                'Antecipation_Frequency_1__c', 'Settlement_Frequency_1__c', 'RecordType.DeveloperName', 'IntegrationType__c' });
+                'Antecipation_Frequency_1__c', 'Settlement_Frequency_1__c', 'RecordType.DeveloperName', 'IntegrationType__c', 'Product_Type__c' });
         }
 
         Opportunity opp = (Opportunity) stdController.getRecord();
+
+        getTermClauses(opp.Id, opp.RequestChangeClause__c);
 
         this.link = String.isBlank(ApexPages.currentPage().getParameters().get('link')) ? 'Link não fornecido' : ApexPages.currentPage().getParameters().get('link');
         this.opportunity = opp;
@@ -134,7 +161,7 @@ public class ContractController {
             'Vtex',
             'Salesforce CC'
         }.contains(opp.IntegrationType__c);
-
+        
 
         this.isFluxoMedio = String.isNotBlank(opp.Antecipation_Frequency_1__c) && opp.Antecipation_Frequency_1__c.contains('Fluxo Médio');
         try {
@@ -147,6 +174,7 @@ public class ContractController {
 
         this.isPayout = this.opportunity.Payout__c;
         this.items = quote.QuoteLineItems;
+        this.isPhysical = this.opportunity.Product_Type__c == 'Physical';
 
         if (!String.isEmpty(this.opportunity.NationalPaymentMethod__c)) {
             this.containsPix = this.opportunity.NationalPaymentMethod__c.contains('Pix');
@@ -266,7 +294,66 @@ public class ContractController {
                     when 'TAXA_TOKENIZACAO' {
                         this.taxaToken = price;
                     }
+                    when 'TAXA_PAGSTREAM' {
+                        this.pagstreamfee = price;
+                    }
+                    when 'TAXA_MIN_PAGSTREAM' {
+                        this.pagstreamMin = price;
+                    }
+                    when 'TAXA_PAGSHIELD'{
+                        this.pagShield = price;
+                    }
+                    when 'TAXA_FIXA_PAGSHIELD'{
+                        this.pagShieldFee = price;
+                    }
+                    when 'TAXA_VAR_PAGSHIELD'{
+                        this.pagShieldFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                    }
+                    when 'PIX_AUTO'{
+                        this.pixAuto = price;
+                    }
+                    when 'ZERO_AUTH_CARTAO'{
+                        this.zeroAuthCard = price;
+                    }
+                    when 'PACKAGE_500_SMS' {
+                        this.sms500 = price;
+                    }
+                    when 'PACKAGE_1000_SMS' {
+                        this.sms1000 = price;
+                    }
+                    when 'PACKAGE_10000_SMS' {
+                        this.sms10000 = price;
+                    }
+                    when 'EMAIL_PACKAGE_1000' {
+                        this.emails1000 = price;
+                    }
+                    when 'PACKAGE_10000_EMAILS' {
+                        this.emails10000 = price;
+                    }
+                    when 'EMAIL_PACKAGE_100000' {
+                        this.emails100000 = price;
+                    }
+                    when 'REFUND_FEE_PIX' {
+                        this.pix = price;
+                    }
+                    when 'REFUND_FEE_TRANSFER' {
+                        this.refundTransfer = price;
+                    }
+                    when 'CHARGEBACK_FEE' {
+                        this.chargeback = price;
+                    }
+                    when 'EXCESS_CHARGEBACK_FEE' {
+                        this.excessChargeback = price;
+                    }
+                    when 'CURRENCY_EXCHANGE_MARKUP_SPREAD'{
+                        this.currencyExchangeMarkup = price;
+                    }
+                    when 'IOF_TAX'{
+                        this.iofTax = price;
+                    }
                     when 'TAXA_GATEWAY_PIX' {
+                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49)
+                            this.pixGatewayBelowMinimum = true;
                         this.pixGateway = price;
                     }
                     when 'PROCESSING_FEES_PIX' {
@@ -354,7 +441,57 @@ public class ContractController {
                     when 'TAXA_TOKENIZACAO' {
                         this.taxaToken = price;
                     }
+                    when 'CUSTO_PAGSHIELD'{
+                        this.pagShield = price;
+                    }
+                    when 'TAXA_FIXA_PAGSHIELD'{
+                        this.pagShieldFee = price;
+                    }
+                    when 'TAXA_VAR_PAGSHIELD'{
+                        this.pagShieldFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                    }
+                    when 'TAXA_MIN_PAGSTREAM'{
+                        this.pagstreamMin = price;
+                    }
+                    when 'PIX_AUTO'{
+                        this.pixAuto = price;
+                    }
+                    when 'ZERO_AUTH_CARTAO'{
+                        this.zeroAuthCard = price;
+                    }
+                    when 'PACOTE_500_SMS' {
+                        this.sms500 = price;
+                    }
+                    when 'PACOTE_1000_SMS' {
+                        this.sms1000 = price;
+                    }
+                    when 'PACOTE_10000_SMS' {
+                        this.sms10000 = price;
+                    }
+                    when 'PACOTE_1000_EMAILS' {
+                        this.emails1000 = price;
+                    }
+                    when 'PACOTE_10000_EMAILS' {
+                        this.emails10000 = price;
+                    }
+                    when 'PACOTE_100000_EMAILS' {
+                        this.emails100000 = price;
+                    }
+                    when 'TAXA_REEMBOLSO_PIX' {
+                        this.pix = price;
+                    }
+                    when 'TAXA_REEMBOLSO_TRANSF' {
+                        this.refundTransfer = price;
+                    }
+                    when 'TAXA_CHARGEBACK' {
+                        this.chargeback = price;
+                    }
+                    when 'TAXA_EXCESSO_CHARGEBACK' {
+                        this.excessChargeback = price;
+                    }
                     when 'TAXA_GATEWAY_PIX' {
+                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49)
+                            this.pixGatewayBelowMinimum = true;
                         this.pixGateway = price;
                     }
                     when 'TAXA_PROCESS_PIX' {
@@ -574,5 +711,19 @@ public class ContractController {
         } catch (Exception e) {
             return isCrossborder ? 'Invalid date format' : 'Formato de data inválido';
         }
+    }
+
+
+    private void getTermClauses(Id opportunityId,Boolean requestChangeClause) {
+        if(requestChangeClause){
+            List<ClausesOpportunity__c> requestChangeClausesList = [SELECT Id,ClauseName__c,ClauseText__c FROM ClausesOpportunity__c WHERE Opportunity__c = :opportunityId AND ClauseName__c in ('Termos e Condições:','Terms and Conditions:')];
+            this.termClauses = requestChangeClausesList[0].ClauseText__c;
+            this.termClausesTitle = requestChangeClausesList[0].ClauseName__c;
+        }else{
+            List<Clauses__c> termClausesList = [SELECT Id,Name,ClauseText__c,ContractType__c FROM Clauses__c WHERE Name in  ('Termos e Condições:','Terms and Conditions:') AND ContractType__c =  : ( this.isCrossborder  ? 'Cross' : 'National')];
+            this.termClauses = termClausesList[0].ClauseText__c;
+            this.termClausesTitle = termClausesList[0].Name;     
+        }
+      
     }
 }

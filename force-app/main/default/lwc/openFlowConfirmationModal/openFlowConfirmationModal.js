@@ -2,6 +2,7 @@ import { LightningElement, api, wire } from 'lwc';
 import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import { getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 import SETTLEMENT_1 from '@salesforce/schema/Opportunity.Settlement_Frequency_1__c';
 import SETTLEMENT_2 from '@salesforce/schema/Opportunity.Settlement_Frequency_2__c';
@@ -11,28 +12,28 @@ import STAGE_NAME from '@salesforce/schema/Opportunity.StageName';
 import ANSWERED from '@salesforce/schema/Opportunity.Answered_Confirmation_Form__c';
 import ACCEPTPROPOSAL from '@salesforce/schema/Opportunity.Acceptable_Proposal__c';
 import SYNCED_QUOTE_ID from '@salesforce/schema/Opportunity.SyncedQuoteId';
+import RECORD_TYPE_ID from '@salesforce/schema/Opportunity.RecordTypeId';
 
-const FIELDS = [SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2, STAGE_NAME, ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID];
+const FIELDS = [SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2, STAGE_NAME, ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID, RECORD_TYPE_ID];
 
 export default class OpenFlowModal extends LightningElement {
     @api recordId;
     showModal = false;
     isLoading = false;
-
+    recordTypeId;
+    
     originalValues = {};
     selectedValues = {};
 
-    frequencyOptions = [
-        { label: 'Weekly', value: 'Weekly' },
-        { label: 'Bimonthly', value: 'Bimonthly' },
-        { label: 'Monthly', value: 'Monthly' }
-    ];
+    @wire(getObjectInfo, { objectApiName: 'Opportunity' })
+    objectInfo;
 
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
     wiredRecord({ data }) {
         if (data) {
             const stage = getFieldValue(data, STAGE_NAME);
             const responded = getFieldValue(data, ANSWERED);
+            this.recordTypeId = getFieldValue(data, RECORD_TYPE_ID);
 
             if (stage === 'Contract' && !responded) {
                 this.showModal = true;
@@ -42,14 +43,99 @@ export default class OpenFlowModal extends LightningElement {
                     a1: getFieldValue(data, ANTECIPATION_1),
                     a2: getFieldValue(data, ANTECIPATION_2)
                 };
-                this.selectedValues = { ...this.originalValues };
+                this.selectedValues = { 
+                    s1: getFieldValue(data, SETTLEMENT_1) || '',
+                    s2: getFieldValue(data, SETTLEMENT_2) || '',
+                    a1: getFieldValue(data, ANTECIPATION_1) || '',
+                    a2: getFieldValue(data, ANTECIPATION_2) || ''
+                };
             }
         }
     }
 
+    get recordTypeApiName() {
+        if (this.objectInfo.data && this.recordTypeId) {
+            const rtInfo = this.objectInfo.data.recordTypeInfos[this.recordTypeId];
+            return rtInfo ? rtInfo.name : '';
+        }
+        return '';
+    }
+
+    get settlementOptions() {
+        const isNational = this.recordTypeApiName === 'National' || 
+                          this.recordTypeApiName === 'NaTional' ||
+                          this.recordTypeApiName.toLowerCase().includes('national');
+        
+        return isNational ? [
+            { label: 'Daily', value: 'Daily' },
+            { label: 'Weekly', value: 'Weekly' },
+            { label: 'Bimonthly', value: 'Bimonthly' },
+            { label: 'Monthly', value: 'Monthly' }
+        ] : [
+            { label: 'Weekly', value: 'Weekly' },
+            { label: 'Bimonthly', value: 'Bimonthly' },
+            { label: 'Monthly', value: 'Monthly' }
+        ];
+    }
+
+    getAnticipationOptions(settlementValue) {
+        const isNational = this.recordTypeApiName === 'National' || 
+                          this.recordTypeApiName === 'NaTional' ||
+                          this.recordTypeApiName.toLowerCase().includes('national');
+        
+        if (!isNational) {
+            // Crossborder
+            switch(settlementValue) {
+                case 'Weekly': return ['Weekly', 'Bimonthly', 'Monthly'];
+                case 'Bimonthly': return ['Bimonthly', 'Monthly'];
+                case 'Monthly': return ['Monthly'];
+                default: return [];
+            }
+        } else {
+            // National
+            switch(settlementValue) {
+                case 'Daily': return ['Daily', 'Weekly', 'Bimonthly', 'Monthly', 'Fluxo Médio'];
+                case 'Weekly': return ['Weekly', 'Bimonthly', 'Monthly', 'Fluxo Médio'];
+                case 'Bimonthly': return ['Bimonthly', 'Monthly', 'Fluxo Médio'];
+                case 'Monthly': return ['Monthly', 'Fluxo Médio'];
+                default: return [];
+            }
+        }
+    }
+
+    get a1Options() {
+        return this.getAnticipationOptions(this.selectedValues.s1)
+            .map(option => ({ label: option, value: option }));
+    }
+
+    get a2Options() {
+        return this.getAnticipationOptions(this.selectedValues.s2)
+            .map(option => ({ label: option, value: option }));
+    }
+
+    get isS1Empty() {
+        return !this.selectedValues.s1;
+    }
+
+    get isS2Empty() {
+        return !this.selectedValues.s2;
+    }
+
     handleChange(event) {
         const { name, value } = event.target;
-        this.selectedValues[name] = value;
+        this.selectedValues = { ...this.selectedValues, [name]: value };
+
+        if (name.startsWith('s')) {
+            const anticipationField = name.replace('s', 'a');
+            const allowedValues = this.getAnticipationOptions(value);
+            
+            this.selectedValues = { 
+                ...this.selectedValues, 
+                [anticipationField]: allowedValues.includes(this.selectedValues[anticipationField]) 
+                    ? this.selectedValues[anticipationField] 
+                    : '' 
+            };
+        }
     }
 
     handleConfirm() {
@@ -69,8 +155,8 @@ export default class OpenFlowModal extends LightningElement {
 
         if (hasChange) {
             fields.StageName = 'Negotiation';
-            fields.Acceptable_Proposal__c = false; // Assuming this field is set to true when moving to Negotiation
-            fields.SyncedQuoteId = null; // Remove sync quote when returning to Negotiation
+            fields.Acceptable_Proposal__c = false;
+            fields.SyncedQuoteId = null;
         } else {
             fields.Answered_Confirmation_Form__c = true;
         }

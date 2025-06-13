@@ -183,4 +183,66 @@ public with sharing class OpportunityTriggerHelper {
             TriggerHandler.clearBypass('QuoteTriggerHandler');
         }
     }
+
+    @future
+    public static void submitKYCAndRCCForApprovalHandler(List<Id> opportunityIds) {
+        List<Opportunity> opportunities = [SELECT Id,
+            OpportunityKYCLegalApprovalStatus__c, 
+            OpportunityRCCLegalApprovalStatus__c,
+            RecordTypeId
+            FROM Opportunity 
+            WHERE Id IN :opportunityIds];
+        for (Opportunity opp : opportunities) {
+            if (opp.OpportunityKYCLegalApprovalStatus__c == 'Approval Requested' && opp.OpportunityRCCLegalApprovalStatus__c == 'Approval Requested') {
+                submitKYCForApproval(opp);
+                submitRCCForApproval(opp);
+            } else if (opp.OpportunityKYCLegalApprovalStatus__c == 'Approval Requested' && opp.OpportunityRCCLegalApprovalStatus__c != 'Approval Requested') {
+                if (opp.OpportunityRCCLegalApprovalStatus__c == 'Approved')
+                    submitKYCForApproval(opp);
+            } else if (opp.OpportunityKYCLegalApprovalStatus__c != 'Approval Requested' && opp.OpportunityRCCLegalApprovalStatus__c == 'Approval Requested') {
+                if (opp.OpportunityKYCLegalApprovalStatus__c == 'Approved')
+                    submitRCCForApproval(opp);
+            } else {
+                continue;
+            }
+        }
+    }
+
+    public static void submitKYCForApproval(opportunity newOpp) {
+        Id opportunityId = newOpp.Id;
+        Id nationalRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('National').getRecordTypeId();
+
+        Boolean isKycXB = nationalRecordTypeId != newOpp.RecordTypeId;
+
+        System.debug('isKycXB: ' + isKycXB);
+        System.debug('newOpp: ' + JSON.serializePretty(newOpp));
+
+        SObject kycToSubmit = Database.query(
+            '' + (isKycXB == true ? 'SELECT LegalApprovalStatus__c, Opportunity__c FROM KYC_XB__c' : 'SELECT Legal_Approval_Status__c, Opportunity__c FROM KYC__c') + ' WHERE Opportunity__c = :opportunityId LIMIT 1'
+        );
+
+        if (kycToSubmit == null)
+            return;
+
+        Approval.ProcessSubmitRequest submitRequest = new Approval.ProcessSubmitRequest();
+        submitRequest.setObjectId(kycToSubmit.Id);
+        submitRequest.setProcessDefinitionNameOrId(isKycXB == true ? 'XB_KYC_Approval' : 'NB_KYC_Approval');
+        submitRequest.setSkipEntryCriteria(true);
+        Approval.process(submitRequest);
+    }
+
+    public static void submitRCCForApproval(opportunity newOpp) {
+        Id opportunityId = newOpp.Id;
+        
+        RCC__c rccToSubmit = [SELECT Id, LegalApprovalStatus__c FROM RCC__c WHERE Opportunity__c = :opportunityId LIMIT 1];
+
+        if (rccToSubmit == null)
+            return;
+
+        Approval.ProcessSubmitRequest submitRequest = new Approval.ProcessSubmitRequest();
+        submitRequest.setObjectId(rccToSubmit.Id);
+        submitRequest.setProcessDefinitionNameOrId('RCC_Approval');
+        submitRequest.setSkipEntryCriteria(true);
+        Approval.process(submitRequest);
+    }
 }

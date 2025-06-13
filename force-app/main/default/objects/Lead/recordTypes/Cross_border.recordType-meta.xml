@@ -258,15 +258,7 @@
     <picklistValues>
         <picklist>Integracao__c</picklist>
         <values>
-            <fullName>ACI</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Computop</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Get Commerce</fullName>
+            <fullName>Baggy</fullName>
             <default>false</default>
         </values>
         <values>
@@ -274,7 +266,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>InHouse %2F API</fullName>
+            <fullName>Linx Commerce</fullName>
             <default>false</default>
         </values>
         <values>
@@ -290,19 +282,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>OpenCart</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Oracle</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Outra</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>PrestaShop</fullName>
+            <fullName>Other</fullName>
             <default>false</default>
         </values>
         <values>
@@ -310,23 +294,15 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Salesforce CC</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Shopify</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Shopify - Buda</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Shopify - CartX</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Tray</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vnda</fullName>
             <default>false</default>
         </values>
         <values>
@@ -902,14 +878,6 @@
         </values>
         <values>
             <fullName>Bouvet Island</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Brasil</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Brazil</fullName>
             <default>false</default>
         </values>
         <values>

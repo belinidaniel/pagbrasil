@@ -5,6 +5,7 @@ import generateAndSavePDF from '@salesforce/apex/ContractController.generateAndS
 import PagLogo from "@salesforce/resourceUrl/Logo2025";
 
 const RECORD_TYPE_NAME_FIELD = 'Opportunity.RecordType.Name';
+const QUARTER_MONTHS = ['01', '04', '07', '10'];
 
 export default class GenerateContract extends LightningElement {
     @api recordId;
@@ -21,11 +22,68 @@ export default class GenerateContract extends LightningElement {
     selectedYear;
     yearOptions = [];
     PagLogoUrl = PagLogo;
+    @track firstReviewYearOptions = [];
 
     @wire(getRecord, { recordId: '$recordId', fields: [RECORD_TYPE_NAME_FIELD] })
     wiredRecord({ error, data }) {
         if (data) {
             this.recordTypeName = data.fields.RecordType.value.fields.Name.value;
+        }
+    }
+
+    get firstReviewOptions() {
+        return [
+            { label: 'January', value: '01' },
+            { label: 'April', value: '04' },
+            { label: 'July', value: '07' },
+            { label: 'October', value: '10' }
+        ];
+    }
+
+    calculateFirstReview() {
+        if (!this.contractMonth || !this.contractYear) return;
+
+        const startDate = new Date(this.contractYear, this.contractMonth - 1, 1);
+        const minDate = new Date(startDate);
+        minDate.setMonth(minDate.getMonth() + 3);
+        
+        const quarterMonths = QUARTER_MONTHS.map(m => parseInt(m));
+        let reviewYear = minDate.getFullYear();
+        let reviewMonth = quarterMonths.find(m => m >= minDate.getMonth() + 1);
+        
+        if (!reviewMonth) {
+            reviewYear++;
+            reviewMonth = 1;
+        }
+
+        this.month = reviewMonth.toString().padStart(2, '0');
+        this.selectedYear = reviewYear.toString();
+        this.updateYearOptions();
+    }
+
+    updateYearOptions() {
+        if (!this.contractYear) return;
+        const baseYear = parseInt(this.contractYear);
+        this.firstReviewYearOptions = [
+            { label: `${baseYear}`, value: `${baseYear}` },
+            { label: `${baseYear + 1}`, value: `${baseYear + 1}` }
+        ];
+    }
+
+    validateSelection() {
+        if (!this.month || !this.selectedYear || !this.contractMonth || !this.contractYear) return;
+
+        const start = new Date(this.contractYear, this.contractMonth - 1, 1);
+        const selected = new Date(this.selectedYear, parseInt(this.month) - 1, 1);
+        
+        const monthDiff = (selected.getFullYear() - start.getFullYear()) * 12 + 
+                         (selected.getMonth() - start.getMonth());
+        
+        if (monthDiff < 3) {
+            this.calculateFirstReview();
+            this.showNotification('Automatic adjustment', 
+                `Minimum review requires 3 months. Date set to ${this.month}/${this.selectedYear}`, 
+                'warning');
         }
     }
 
@@ -152,14 +210,18 @@ export default class GenerateContract extends LightningElement {
 
     handleChange(event) {
         this.month = event.detail.value;
-    }
-
-    handleContractYear(event) {
-        this.contractYear = event.target.value;
+        this.validateSelection();
     }
 
     handleContractMonth(event) {
-        this.contractMonth = event.target.value;
+        this.contractMonth = event.detail.value;
+        this.calculateFirstReview();
+    }
+
+    handleContractYear(event) {
+        this.contractYear = event.detail.value;
+        this.updateYearOptions();
+        this.calculateFirstReview();
     }
 
     handleMaintenanceDate(event) {
@@ -176,5 +238,6 @@ export default class GenerateContract extends LightningElement {
 
     handleYearChange(event) {
         this.selectedYear = event.detail.value;
+        this.validateSelection();
     }
 }

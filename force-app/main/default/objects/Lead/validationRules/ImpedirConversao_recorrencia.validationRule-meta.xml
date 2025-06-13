@@ -5,7 +5,7 @@
     <errorConditionFormula>AND(
 ISPICKVAL(Status, &apos;Closed - Converted&apos;),
 ISCHANGED(Status),
-ISBLANK (TEXT(Recorrencia__c))
+ISBLANK (TEXT(Recurring_Payments__c))
 )</errorConditionFormula>
     <errorDisplayField>Recorrencia__c</errorDisplayField>
     <errorMessage>Por favor, preencha o campo &quot;Recorrência&quot;</errorMessage>

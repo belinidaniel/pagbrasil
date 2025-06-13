@@ -19,23 +19,14 @@ public with sharing class DocuSignEnvelopeStatusHelper {
             return;
 
         List<Opportunity> oppList = [SELECT Id, StageName FROM Opportunity WHERE Id IN :oppToValidate];
-        List<HomologationForm__c> homologationFormsToValidate = [SELECT Id, Opportunity__c,Required_Fields__c FROM HomologationForm__c WHERE Opportunity__c IN :oppToValidate];
         List<dfsle__EnvelopeStatus__c> envelopeStatusList = [SELECT Id, dfsle__Status__c,dfsle__SourceId__c FROM dfsle__EnvelopeStatus__c WHERE dfsle__SourceId__c IN :oppToValidate];
 
-        Map<Id, List<HomologationForm__c>> homologationFormsMap = new Map<Id, List<HomologationForm__c>>();
         Map<Id, List<dfsle__EnvelopeStatus__c>> envelopeStatusMap = new Map<Id, List<dfsle__EnvelopeStatus__c>>();
 
         System.debug('oppList: ' + oppList);
         
         for(Opportunity opportunity : oppList)
             hasContractBeenSignedAndHomologationCompleted.put(opportunity, false);
-
-        for(HomologationForm__c homologationForm : homologationFormsToValidate){
-            if(!homologationFormsMap.containsKey(homologationForm.Opportunity__c))
-                homologationFormsMap.put(homologationForm.Opportunity__c, new List<HomologationForm__c>());
-            
-            homologationFormsMap.get(homologationForm.Opportunity__c).add(homologationForm);
-        }
 
         for(dfsle__EnvelopeStatus__c envelopeStatus : envelopeStatusList){
             if(!envelopeStatusMap.containsKey(envelopeStatus.dfsle__SourceId__c))
@@ -46,20 +37,9 @@ public with sharing class DocuSignEnvelopeStatusHelper {
 
         for(Opportunity opportunity : hasContractBeenSignedAndHomologationCompleted.keySet()){
 
-            List<HomologationForm__c> homologationForms = homologationFormsMap.get(opportunity.Id);
             List<dfsle__EnvelopeStatus__c> envelopeStatusListAux = envelopeStatusMap.get(opportunity.Id);
 
             System.debug('envelopeStatusListAux: '+ envelopeStatusListAux);
-
-
-            for(HomologationForm__c homologationForm : homologationForms){
-                if(homologationForm.Required_Fields__c == null || homologationForm.Required_Fields__c == ''){
-                    hasContractBeenSignedAndHomologationCompleted.put(opportunity, true);
-                } else{
-                    hasContractBeenSignedAndHomologationCompleted.put(opportunity, false);
-                    break;
-                }
-            }
 
             if(envelopeStatusListAux == null || envelopeStatusListAux.isEmpty()){
                 hasContractBeenSignedAndHomologationCompleted.put(opportunity, false);

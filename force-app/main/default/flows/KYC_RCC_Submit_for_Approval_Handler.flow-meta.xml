@@ -168,7 +168,7 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <subflows>
         <name>Submit_KYC_Both_Outcome</name>
         <label>Submit KYC</label>

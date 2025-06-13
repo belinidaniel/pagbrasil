@@ -87,6 +87,9 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Billing_Country__c</field>
+        </inputAssignments>
+        <inputAssignments>
             <field>Type</field>
             <value>
                 <stringValue>Nacional (NB)</stringValue>

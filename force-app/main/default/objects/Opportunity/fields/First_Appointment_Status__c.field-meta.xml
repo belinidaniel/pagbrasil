@@ -15,9 +15,9 @@
                 <label>Completed</label>
             </value>
             <value>
-                <fullName>Requested</fullName>
+                <fullName>Rescheduled</fullName>
                 <default>false</default>
-                <label>Requested</label>
+                <label>Rescheduled</label>
             </value>
             <value>
                 <fullName>No-show</fullName>

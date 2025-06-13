@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>AverageSalesTicket__c</fullName>
-    <inlineHelpText>Average Order Value</inlineHelpText>
+    <inlineHelpText>Average Ticket Price</inlineHelpText>
     <label>Average Order Value</label>
     <precision>17</precision>
     <required>false</required>

@@ -158,7 +158,7 @@
             <targetReference>Is_opp_national_or_crossborder</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>currentOpportunity</name>
         <dataType>SObject</dataType>

@@ -9,15 +9,5 @@
     <columns>CORE.USERS.FIRST_NAME</columns>
     <columns>CORE.USERS.LAST_NAME</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>CONTACT.CREATED_DATE</field>
-        <operation>greaterThan</operation>
-        <value>12/8/2017 12:00 AM</value>
-    </filters>
-    <filters>
-        <field>CORE.USERS.ALIAS</field>
-        <operation>equals</operation>
-        <value>jm</value>
-    </filters>
     <label>Todos os Contatos</label>
 </ListView>

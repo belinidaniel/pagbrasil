@@ -7,8 +7,8 @@
         LOWER($RecordType.DeveloperName) = &quot;national&quot;,
         LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;
     ),
-    ISPICKVAL(Settlement_Frequency_2__c,&quot;&quot;)
+    ISPICKVAL(Settlement_Frequency_2__c,&quot;&quot;),
+				NOT(ISPICKVAL(StageName, &quot;Discovery&quot;))
 )</errorConditionFormula>
-    <errorDisplayField>Settlement_Frequency_2__c</errorDisplayField>
     <errorMessage>The Settlement Frequency 2° field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

@@ -2,6 +2,23 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Screen_Text_Update</name>
+        <label>Screen Text Update</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>screenText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue> You must fill in ALL the fields below:</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Opportunity_Frequencies</targetReference>
+        </connector>
+    </assignments>
     <customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
@@ -9,54 +26,54 @@
         </value>
     </customProperties>
     <decisions>
-        <name>if_change</name>
-        <label>if change</label>
+        <name>Are_all_fields_filled</name>
+        <label>Are all fields filled?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Update_Opportunity</targetReference>
+            <targetReference>Screen_Text_Update</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
-            <name>is_Not_change</name>
+            <name>Yes</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Opportunity.Settlement_Frequency_1__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsBlank</operator>
                 <rightValue>
-                    <elementReference>get_Opportunity_Old.Settlement_Frequency_1__c</elementReference>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>get_Opportunity_Old.Settlement_Frequency_2__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Get_Opportunity.Settlement_Frequency_2__c</leftValueReference>
+                <operator>IsBlank</operator>
                 <rightValue>
-                    <elementReference>get_Opportunity_Old.Settlement_Frequency_2__c</elementReference>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>get_Opportunity_Old.Antecipation_Frequency_1__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Get_Opportunity.Antecipation_Frequency_1__c</leftValueReference>
+                <operator>IsBlank</operator>
                 <rightValue>
-                    <elementReference>get_Opportunity_Old.Antecipation_Frequency_1__c</elementReference>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
                 <leftValueReference>Get_Opportunity.Antecipation_Frequency_2__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsBlank</operator>
                 <rightValue>
-                    <elementReference>get_Opportunity_Old.Antecipation_Frequency_2__c</elementReference>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Copy_1_of_Update_Opportunity</targetReference>
+                <targetReference>Update_Opportunity</targetReference>
             </connector>
-            <label>is Not change</label>
+            <label>Yes</label>
         </rules>
     </decisions>
     <environments>Default</environments>
     <interviewLabel>[Opportunity] Confirm Frequencies {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>[Opportunity] Confirm Frequencies</label>
+    <label>[Quote] Confirm Opportunity Frequencies</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -83,14 +100,14 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>get_Opportunity_Old</targetReference>
+            <targetReference>Opportunity_Frequencies</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>{!recordId}</stringValue>
+                <elementReference>Get_Quote.OpportunityId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -98,13 +115,13 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>get_Opportunity_Old</name>
-        <label>get Opportunity Old</label>
+        <name>Get_Quote</name>
+        <label>Get Quote</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Frequency_Confirmation</targetReference>
+            <targetReference>Get_Opportunity</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -115,91 +132,40 @@
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Opportunity</object>
+        <object>Quote</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordUpdates>
-        <name>Copy_1_of_Update_Opportunity</name>
-        <label>Update Opportunity</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Answered_Confirmation_Form__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
-    </recordUpdates>
     <recordUpdates>
         <name>Update_Opportunity</name>
         <label>Update Opportunity</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Antecipation_Frequency_1__c</field>
-            <value>
-                <elementReference>Get_Opportunity.Antecipation_Frequency_1__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Antecipation_Frequency_2__c</field>
-            <value>
-                <elementReference>Get_Opportunity.Antecipation_Frequency_2__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Settlement_Frequency_1__c</field>
-            <value>
-                <elementReference>Get_Opportunity.Settlement_Frequency_1__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Settlement_Frequency_2__c</field>
-            <value>
-                <elementReference>Get_Opportunity.Settlement_Frequency_2__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>StageName</field>
-            <value>
-                <stringValue>Negotiation</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
+        <connector>
+            <targetReference>RefreshPage</targetReference>
+        </connector>
+        <inputReference>Get_Opportunity</inputReference>
     </recordUpdates>
     <screens>
-        <name>Frequency_Confirmation</name>
-        <label>Frequency Confirmation</label>
+        <name>Opportunity_Frequencies</name>
+        <label>Opportunity Frequencies</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>if_change</targetReference>
+            <targetReference>Are_all_fields_filled</targetReference>
         </connector>
         <fields>
-            <name>Frequency_Confirmation_Section1</name>
+            <name>Text</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 28px;&quot;&gt;{!screenText}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Opportunity_Frequencies_Section1</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Frequency_Confirmation_Section1_Column1</name>
+                <name>Opportunity_Frequencies_Section1_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
@@ -216,7 +182,7 @@
                 <isRequired>false</isRequired>
             </fields>
             <fields>
-                <name>Frequency_Confirmation_Section1_Column2</name>
+                <name>Opportunity_Frequencies_Section1_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
@@ -236,10 +202,10 @@
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
         <fields>
-            <name>Frequency_Confirmation_Section2</name>
+            <name>Opportunity_Frequencies_Section2</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Frequency_Confirmation_Section2_Column1</name>
+                <name>Opportunity_Frequencies_Section2_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
@@ -256,7 +222,7 @@
                 <isRequired>false</isRequired>
             </fields>
             <fields>
-                <name>Frequency_Confirmation_Section2_Column2</name>
+                <name>Opportunity_Frequencies_Section2_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
@@ -275,15 +241,31 @@
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
-        <nextOrFinishButtonLabel>Confirm</nextOrFinishButtonLabel>
+        <nextOrFinishButtonLabel>Update Frequencies</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>RefreshPage</name>
+        <label>RefreshPage</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>RefreshPageText</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 26px;&quot;&gt;&lt;u&gt;Please, refresh the page.&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Opportunity</targetReference>
+            <targetReference>Get_Quote</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -293,5 +275,15 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>screenText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>The following fields must have values ​​before creating a proposal:</stringValue>
+        </value>
     </variables>
 </Flow>

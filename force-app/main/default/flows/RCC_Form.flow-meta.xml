@@ -2152,7 +2152,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question3</name>
@@ -2186,7 +2186,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question7</name>
@@ -2203,7 +2203,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question_9</name>
@@ -2216,7 +2216,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2240,7 +2240,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question4</name>
@@ -2257,7 +2257,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question6</name>
@@ -2274,7 +2274,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question8</name>
@@ -2291,7 +2291,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Question10</name>
@@ -2308,7 +2308,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Anexar_Documento</name>
@@ -2350,7 +2350,7 @@
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>

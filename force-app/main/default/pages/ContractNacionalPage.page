@@ -2,8 +2,8 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 2024-11-27
-  @last modified by  : Hersilio Belini de Oliveira
+  @last modified on  : 06-11-2025
+  @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
            showHeader="false" 
@@ -109,14 +109,8 @@
                 </table>
             </apex:form>
             
-            <p style="font-weight: bold;">Termos e Condições:</p>
-            <p style="text-align: justify;">
-                Este <strong>Contrato</strong> é regido pelos <strong>Termos e Condições</strong> no link 
-                <a href="http://www.xxxx" style="color: #0058B5; text-decoration: none;">www.xxxx</a>. 
-                Ao assinar este <strong>Contrato</strong>, o <strong>Estabelecimento</strong> formaliza sua adesão à integralidade dos 
-                <strong>Termos e Condições Gerais</strong>, declarando ter lido, compreendido e concordado.
-            </p>
-            
+            <p style="font-weight: bold;">{!termClausesTitle}</p>
+            <apex:outputText value="{!termClauses}" escape="false" />
             
             <p style="font-weight: bold;">1. Taxas de processamento e Taxa da Solução PagBrasil:</p>
             
@@ -484,22 +478,22 @@
                 <tbody>
                     <tr>
                         <td style="width: 40%; text-align: left;">Reembolso via adquirente ou Pix</td>
-                        <td style="width: 10%; text-align: center;">3,00</td>
+                        <td style="width: 10%; text-align: center;">{!pix}</td>
                         <td style="width: 50%; text-align: left;">R$ por transação</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Reembolso via transferência bancária</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">9,00</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">25,00</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Taxa adicional de excesso de Chargebacks para transações com Cartão</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">25,00</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback de Cartão</td>
                     </tr>
                     <tr>
@@ -543,12 +537,12 @@
                             pacote de SMS e e-mails
                         </td>
                         <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            199,00<br/>
-                            359,00<br/>
-                            1.790,00<br/><br/>
-                            95,00<br/>
-                            290,00<br/>
-                            1.900,00<br/><br/>
+                            {!sms500}<br/>
+                            {!sms1000}<br/>
+                            {!sms10000}<br/><br/>
+                            {!emails1000}<br/>
+                            {!emails10000}<br/>
+                            {!emails100000}<br/><br/>
                             0,00
                         </td>
                         <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
@@ -569,10 +563,19 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de carteiras digitais como Google Pay, Apple Pay ou Samsung Pay</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix via Open Finance</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,0</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$, adicional sobre transações processadas com sucesso por meio de Pix via Open Finance</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>
                     </tr>
+                    <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
+                    <div class="page-break"></div>
+                    <apex:panelGroup rendered="{!pixGatewayBelowMinimum}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$, adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>    
+                        </tr>
+                    </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">iFrame</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
@@ -580,18 +583,13 @@
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth para Cartão de Crédito</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,49</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação gerada (somente quando a função é utilizada pelo Estabelecimento)</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Conta SFTP</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por mês</td>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Consultoria e programação</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">450,00</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">R$ por hora</td>
                     </tr>
                 </tbody>
             </table>
@@ -602,15 +600,15 @@
             <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="width: 40%; text-align: left;">PagShield prevenção de fraude (mandatório/opcional)</td>
-                        <td style="width: 10%; text-align: center;">0,50</td>
+                        <td style="width: 40%; text-align: left;">PagShield prevenção de fraude ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatório', 'opcional')})</td>
+                        <td style="width: 10%; text-align: center;">{!pagShield}</td>
                         <td style="width: 50%; text-align: left;">R$ por transação analisada</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium (opcional)</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            9,50 <br/>
-                            2,0%
+                            {!pagShieldFee} <br/>
+                            {!pagShieldFeePercent}
                         </td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
                             R$ por transação revisada<br/>
@@ -659,7 +657,7 @@
                         <td style="border-top:1px solid #000; border-bottom: 0px;width: 40%; text-align: left;">
                             Taxa mínima de manutenção do PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
                         </td>
-                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">499,00</td>
+                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">{!pagstreamMin}</td>
                         <td style="border-top:1px solid #000; border-bottom: 0px;width: 50%; text-align: left;">
                             R$ por mês para PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
                         </td>
@@ -684,7 +682,7 @@
                             Pix Automático <br/>
                             *Data estimada de lançamento em junho de 2025
                         </td>
-                        <td style="border-bottom: 0px;width: 10%; text-align: center;">1,00</td>
+                        <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
                             R$ adicional sobre transações processadas com sucesso por meio do Pix Automático 
                         </td>

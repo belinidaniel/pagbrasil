@@ -29,7 +29,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-staging.pagbrasil.com/?id={!get_opportunity.KYC_NB_Number__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
+                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-staging.pagbrasil.com/?id={!get_KYC_NB.Unique_Link__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -86,7 +86,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-staging.pagbrasil.com/?id={!get_opportunity.KYC_XB_Number__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form (URL for XB doesn&apos;t exist yet)&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
+                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-xb-staging.pagbrasil.com/?id={!get_KYC_XB.Unique_Link__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
         <inputParameters>

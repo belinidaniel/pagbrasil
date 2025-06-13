@@ -11,8 +11,8 @@
                         name="monthPicklist"
                         label="Month of first review"
                         placeholder="Select the month"
-                        options={options}
-                        value={selectedValues}
+                        options={firstReviewOptions}
+                        value={month}
                         onchange={handleChange}
                         dropdown-alignment="auto">
                     </lightning-combobox>
@@ -22,7 +22,7 @@
                         name="yearPicklist"
                         label="Year of first review"
                         placeholder="Select the year"
-                        options={yearOptions}
+                        options={firstReviewYearOptions}
                         value={selectedYear}
                         onchange={handleYearChange}>
                     </lightning-combobox>

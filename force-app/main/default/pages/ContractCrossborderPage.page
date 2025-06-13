@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 05-27-2025
+  @last modified on  : 06-11-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -111,13 +111,8 @@
                 </table>
             </apex:form>
             
-            <p style="font-weight: bold;">Terms and Conditions:</p>
-            <p style="text-align: justify;">
-                The <strong>Agreement</strong> is governed by the <strong>Terms and Conditions</strong> at 
-                <a href="http://www.xxxx" style="color: #0058B5; text-decoration: none;">www.xxxx</a>. 
-                By signing the <strong>Agreement</strong>, the <strong>Merchant</strong> formally agrees to the entirety of the 
-                <strong>Terms and Conditions</strong>, declaring that they have read, understood and accepted them.
-            </p>
+            <p style="font-weight: bold;">{!termClausesTitle}</p>
+            <apex:outputText value="{!termClauses}" escape="false" />
             
             
             <p style="font-weight: bold;">1. Processing fees:</p>
@@ -381,12 +376,12 @@
                     </tr>
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left;">Spread for currency conversion</td>
-                        <td style="padding: 10px; width: 10%; text-align: center;">4.98%</td>
+                        <td style="padding: 10px; width: 10%; text-align: center;">{!currencyExchangeMarkup}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on exchange rate</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left;">IOF tax</td>
-                        <td style="padding: 10px; width: 10%; text-align: center;">0.38%</td>
+                        <td style="padding: 10px; width: 10%; text-align: center;">{!iofTax}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on the Transaction Amount</td>
                     </tr>
                     <tr>
@@ -489,22 +484,22 @@
                 <tbody>
                     <tr>
                         <td style="width: 40%; text-align: left;">Refund via card acquirer or Pix</td>
-                        <td style="width: 10%; text-align: center;">3,00</td>
+                        <td style="width: 10%; text-align: center;">{!pix}</td>
                         <td style="width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Refund via bank transfer</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">9,00</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">25,00</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Chargeback</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Additional Chargeback Excess Fee for Card transactions</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">25,00</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Card Chargeback</td>
                     </tr>
                     <tr>
@@ -547,11 +542,11 @@
                         </td>
                         <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
                             199,00<br/>
-                            359,00<br/>
-                            1.790,00<br/><br/>
+                            {!sms1000}<br/>
+                            {!sms10000}<br/><br/>
                             95,00<br/>
-                            290,00<br/>
-                            1.900,00<br/><br/>
+                            {!emails10000}<br/>
+                            1,900<br/><br/>
                             <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
                                 0,00
                             </apex:outputPanel>
@@ -567,7 +562,7 @@
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth for Credit Card</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">1,90</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per generated transaction (only if the function is used by the Merchant)</td>
                     </tr>
                     <tr>
@@ -581,9 +576,10 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay, Apple Pay, or Samsung Pay</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix via Open Finance</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">1-Click Pix</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,10</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with Pix via Open Finance</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
+                        <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">SFTP Account</td>
@@ -606,14 +602,14 @@
                 <tbody>
                     <tr>
                         <td style="width: 40%; text-align: left;">PagShield fraud prevention ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatory', 'optional')})</td>
-                        <td style="width: 10%; text-align: center;">0,50</td>
+                        <td style="width: 10%; text-align: center;">{!pagShield}</td>
                         <td style="width: 50%; text-align: left;">BRL per analyzed transaction</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium fraud prevention (optional)</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            9,50 <br/>
-                            2,0%
+                            {!pagShieldFee} <br/>
+                            {!pagShieldFeePercent}
                         </td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
                             BRL per reviewed transaction<br/>
@@ -663,7 +659,7 @@
                         <td style="border-top:1px solid #000; border-bottom: 0px;width: 40%; text-align: left;">
                             PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span> Maintenance Minimum Fee
                         </td>
-                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">490,00</td>
+                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">{!pagstreamMin}</td>
                         <td style="border-top:1px solid #000; border-bottom: 0px;width: 50%; text-align: left;">
                             BRL per month for PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
                         </td>
@@ -689,7 +685,7 @@
                             Pix Automático (Recurring Pix)<br/>
                             *ETA June, 2025
                         </td>
-                        <td style="border-bottom: 0px;width: 10%; text-align: center;">0,00</td>
+                        <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
                             BRL, additional  on successfully processed transactions with Pix Automático 
                         </td>

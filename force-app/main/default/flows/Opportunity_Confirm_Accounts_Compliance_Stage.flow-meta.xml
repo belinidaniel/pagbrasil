@@ -251,9 +251,6 @@
             <fieldText>Store URL</fieldText>
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isDisabled>
-                <booleanValue>true</booleanValue>
-            </isDisabled>
             <isRequired>false</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Save</nextOrFinishButtonLabel>
@@ -292,9 +289,6 @@
             <fieldText>Store URL</fieldText>
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isDisabled>
-                <booleanValue>true</booleanValue>
-            </isDisabled>
             <isRequired>false</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Save</nextOrFinishButtonLabel>

@@ -35,6 +35,13 @@ public with sharing class OpportunityTriggerHandler extends TriggerHandler {
     }    
 
     public override void afterUpdate() {
-        OpportunityTriggerHelper.updateQuotesOnSyncedQuoteRemoval(this.newOppList, this.oldOppMap);
+            OpportunityTriggerHelper.updateQuotesOnSyncedQuoteRemoval(this.newOppList, this.oldOppMap);
+            List<Id> oppsIds = new List<Id>();
+            for (Opportunity opp : this.newOppList) {
+                oppsIds.add(opp.Id);
+            }
+        if (!System.isFuture()) {
+            OpportunityTriggerHelper.submitKYCAndRCCForApprovalHandler(oppsIds);
+        }
     }
 }

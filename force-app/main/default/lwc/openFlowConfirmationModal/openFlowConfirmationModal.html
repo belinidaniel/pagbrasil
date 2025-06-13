@@ -1,10 +1,3 @@
-<!--
-  @description       : 
-  @author            : Daniel Belini
-  @group             : 
-  @last modified on  : 05-27-2025
-  @last modified by  : Daniel Belini
--->
 <template>
     <template if:true={showModal}>
         <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
@@ -20,7 +13,7 @@
                                 name="s1"
                                 label="Settlement Frequency 1°"
                                 value={selectedValues.s1}
-                                options={frequencyOptions}
+                                options={settlementOptions}
                                 onchange={handleChange}>
                             </lightning-combobox>
                         </div>
@@ -29,8 +22,9 @@
                                 name="a1"
                                 label="Anticipation Frequency 1°"
                                 value={selectedValues.a1}
-                                options={frequencyOptions}
-                                onchange={handleChange}>
+                                options={a1Options}
+                                onchange={handleChange}
+                                disabled={isS1Empty}>
                             </lightning-combobox>
                         </div>
                         <div class="slds-col slds-size_1-of-2">
@@ -38,7 +32,7 @@
                                 name="s2"
                                 label="Settlement Frequency 2°"
                                 value={selectedValues.s2}
-                                options={frequencyOptions}
+                                options={settlementOptions}
                                 onchange={handleChange}>
                             </lightning-combobox>
                         </div>
@@ -47,8 +41,9 @@
                                 name="a2"
                                 label="Anticipation Frequency 2°"
                                 value={selectedValues.a2}
-                                options={frequencyOptions}
-                                onchange={handleChange}>
+                                options={a2Options}
+                                onchange={handleChange}
+                                disabled={isS2Empty}>
                             </lightning-combobox>
                         </div>
                     </div>

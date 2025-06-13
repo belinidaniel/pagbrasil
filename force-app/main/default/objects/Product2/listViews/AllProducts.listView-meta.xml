@@ -7,14 +7,8 @@
     <columns>PRODUCT2.FAMILY</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>PRODUCT2.ACTIVE</field>
-        <operation>equals</operation>
-        <value>1</value>
-    </filters>
-    <filters>
         <field>PRODUCT2.NAME</field>
         <operation>contains</operation>
-        <value>Gateway</value>
     </filters>
     <label>All Products</label>
 </ListView>

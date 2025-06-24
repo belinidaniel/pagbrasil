@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SiteURL</fullName>
+    <active>false</active>
+    <errorConditionFormula>NOT(
+    OR(
+        AND(
+            BEGINS(Product_or_service_website_URL__c, &quot;http://&quot;),
+            CONTAINS(SUBSTITUTE(Product_or_service_website_URL__c, &quot;http://&quot;, &quot;&quot;), &quot;.&quot;)
+        ),
+        AND(
+            BEGINS(Product_or_service_website_URL__c, &quot;https://&quot;),
+            CONTAINS(SUBSTITUTE(Product_or_service_website_URL__c, &quot;https://&quot;, &quot;&quot;), &quot;.&quot;)
+        )
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Product_or_service_website_URL__c</errorDisplayField>
+    <errorMessage>Invalid URL.</errorMessage>
+</ValidationRule>

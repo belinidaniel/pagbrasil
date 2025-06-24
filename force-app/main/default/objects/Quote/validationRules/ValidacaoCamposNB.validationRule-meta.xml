@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidacaoCamposNB</fullName>
+    <active>true</active>
+    <description>Valida os campos da Oportunidade do tipo NB.</description>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK(OpportunityId)),
+    Opportunity.RecordTypeId = &quot;NaTional&quot;,
+    OR(
+        ISBLANK(Opportunity.BusinessModelType__c),
+        ISBLANK(Opportunity.previs_fat_rs__c),
+        ISBLANK(Opportunity.Transacoes_Mensais__c)
+    )
+)</errorConditionFormula>
+    <errorMessage>Existem campos obrigatórios na Oportunidade que não foram preenchidos. Por favor, revise e complete todas as informações antes de continuar.</errorMessage>
+</ValidationRule>

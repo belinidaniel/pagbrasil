@@ -1,0 +1,978 @@
+<apex:page showHeader="false" 
+    applyHtmlTag="false" 
+    applyBodyTag="false" 
+    apiVersion="28.0" 
+    renderAs="pdf"
+    standardController="Quote"
+    extensions="PropostaCrossController"
+>
+
+<apex:variable var="opportunityName" value="{!opportunityName}" />
+<apex:variable var="accountName" value="{!accountName}" />
+<apex:variable var="accountWebsite" value="{!accountWebsite}" />
+<apex:variable var="accountOwnerName" value="{!accountOwnerName}" />
+<apex:variable var="accountOwnerEmail" value="{!accountOwnerEmail}" />
+<apex:variable var="accountOwnerMobilePhone" value="{!accountOwnerMobilePhone}" />
+<apex:variable var="quoteCreatedDate" value="{!quoteCreatedDate}" />
+<apex:variable var="containsPayout" value="{!containsPayout}" />
+<apex:variable var="containsApplePay" value="{!containsApplePay}" />
+<apex:variable var="containsGooglePay" value="{!containsGooglePay}" />
+<apex:variable var="containsPagStream" value="{!containsPagStream}" />
+
+<apex:variable var="containsPixInternational" value="{!containsPixInternational}" />
+<apex:variable var="containsPixRoaming" value="{!containsPixRoaming}" />
+
+<apex:variable var="pagShieldFraudPrevention" value="{!pagShieldFraudPrevention}" />
+<apex:variable var="pagShieldPremiumFixedFee" value="{!pagShieldPremiumFixedFee}" />
+<apex:variable var="pagShieldPremiumVariableFee" value="{!pagShieldPremiumVariableFee}" />
+
+<apex:variable var="pagStreamServiceFee" value="{!pagStreamServiceFee}" />
+<apex:variable var="pagStreamMaintenanceMinimumFee" value="{!pagStreamMaintenanceMinimumFee}" />
+
+<apex:variable var="frequencyOne" value="{!frequencyOne}" />
+<apex:variable var="frequencyTwo" value="{!frequencyTwo}" />
+<apex:variable var="frequencyOneValues" value="{!frequencyOneValues}" />
+<apex:variable var="frequencyTwoValues" value="{!frequencyTwoValues}" />
+
+<apex:variable var="containsPix" value="{!containsPix}" />
+<apex:variable var="containsCreditCard" value="{!containsCreditCard}" />
+<apex:variable var="containsDebitCard" value="{!containsDebitCard}" />
+<apex:variable var="containsBoleto" value="{!containsBoleto}" />
+
+<apex:variable var="highlightLineOne" value="{!highlightLineOne}" />
+<apex:variable var="highlightLineTwo" value="{!highlightLineTwo}" />
+<apex:variable var="highlightLineThree" value="{!highlightLineThree}" />
+<apex:variable var="highlightLineFour" value="{!highlightLineFour}" />
+
+<!-- Fees -->
+<apex:variable var="pixOne" value="{!pixOne}" />
+<apex:variable var="pixTwo" value="{!pixTwo}" />
+<apex:variable var="pixThree" value="{!pixThree}" />
+<apex:variable var="pixFour" value="{!pixFour}" />
+
+<apex:variable var="creditCardOne" value="{!creditCardOne}" />
+<apex:variable var="creditCardTwo" value="{!creditCardTwo}" />
+<apex:variable var="creditCardThree" value="{!creditCardThree}" />
+<apex:variable var="creditCardFour" value="{!creditCardFour}" />
+
+<apex:variable var="debitCardOne" value="{!debitCardOne}" />
+<apex:variable var="debitCardTwo" value="{!debitCardTwo}" />
+<apex:variable var="debitCardThree" value="{!debitCardThree}" />
+<apex:variable var="debitCardFour" value="{!debitCardFour}" />
+
+<apex:variable var="boletoOne" value="{!boletoOne}" />
+<apex:variable var="boletoTwo" value="{!boletoTwo}" />
+<apex:variable var="boletoThree" value="{!boletoThree}" />
+<apex:variable var="boletoFour" value="{!boletoFour}" />
+
+<apex:variable var="valueOne" value="{!valueOne}" />
+<apex:variable var="valueTwo" value="{!valueTwo}" />
+<apex:variable var="valueThree" value="{!valueThree}" />
+<apex:variable var="valueFour" value="{!valueFour}" />
+
+<apex:variable var="minimumTransferAmount" value="{!minimumTransferAmount}" />
+<apex:variable var="reserve" value="{!reserve}" />
+<apex:variable var="currencyExchangeMarkupSpread" value="{!currencyExchangeMarkupSpread}" />
+<apex:variable var="iofTax" value="{!iofTax}" />
+<apex:variable var="remittanceFee" value="{!remittanceFee}" />
+<apex:variable var="opportunityCurrency" value="{!opportunityCurrency}" />
+<apex:variable var="payoutSetupFee" value="{!payoutSetupFee}" />
+<apex:variable var="pagBrasilCheckoutServiceFee" value="{!pagBrasilCheckoutServiceFee}" />
+<apex:variable var="opportunityProductType" value="{!opportunityProductType}" />
+
+<apex:variable var="jsAPIVTexTerms"  value="{!jsAPIVTexTerms}" />
+<apex:variable var="shopifyWoocommerceSalesforcePBCheckoutTerms"  value="{!shopifyWoocommerceSalesforcePBCheckoutTerms}" />
+
+<apex:stylesheet value="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
+
+<html>
+    <head>
+        <style>
+            @page {
+                margin: 0;
+                size: 1143px 644px;
+            }
+
+            body {
+                margin: 0;
+                font-size: 12px;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            .page {
+                position: relative;
+                width: 1143px;
+                height: 644px;
+            }
+
+            .page-background-image {
+                position: absolute;
+                height: 100%;
+            }
+
+            .page-content {
+                position: absolute;
+                z-index: 2;
+            }
+
+            .page-footer {
+                position: absolute;
+                left: 0;
+                z-index: 2;
+                width: 100%;
+                bottom: 13px;
+            }
+
+            .processing-terms-highlight {
+                color: #0000FF;
+                font-weight: bold;
+            }
+
+            ol {
+                counter-reset: list-counter; /* Reseta o contador */
+                margin-left: 20px;
+                padding-left: 20px;
+            }
+
+            ol li {
+                counter-increment: list-counter; /* Incrementa o contador */
+                position: relative;
+                list-style: none;
+                margin-top: 10px; /* Remove a numeração padrão */
+            }
+
+            ol li::before {
+                content: counter(list-counter) "."; /* Insere o número manualmente */
+                color: rgb(83, 156, 220); /* Altera a cor do número */
+                font-weight: bold; /* Deixa o número em negrito */
+                position: absolute;
+                left: -20px; /* Ajusta a posição do número */
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            li:first-child {
+                margin-top: 0;
+            }
+
+            ul > li {
+                position: relative; /* Necessário para posicionar o marcador */
+                margin-top: 20px;
+                padding-left: 30px;
+            }
+
+            ul > li::before {
+                content: "•";
+                font-size: 21px; /* Ajusta o tamanho da bolinha */
+                color: rgb(83, 156, 220); /* Cor do marcador */
+                position: absolute;
+                left: 0; /* Posiciona à esquerda do texto */
+                top: 0;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- Page 1 -->
+        <div class="page">
+            <img src="{!$Resource.CrossMulherDedosEntrelacados}" class="page-background-image"/>
+            <div class="page-content">
+                <div style="width: 100%">
+                    <div style="position: absolute; width: 220px; top: 110px; left: 85px; font-size: 40px; color: white;">
+                        Business <br/>Proposal
+                    </div>
+                    <div style="position: absolute; width: 450px; left: 679px; top: 120px;">
+                        <p style="font-weight: bold; font-size: 40px;">{!opportunityName}</p>
+                        <p style="font-size: 15px; margin-top: 110px;"><strong>{!accountName}</strong></p>
+                        <p style="font-size: 15px; margin-top: 10px;"><strong>{!accountWebsite}</strong></p>
+                        <p style="font-size: 15px; margin-top: 50px;">{!quoteCreatedDate}</p>
+                        
+                        <img src="{!$Resource.Logo2025}?v=1" style="width: 350px; margin-top: 60px; margin-left: 50px;"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+            <img src="{!$Resource.CrossPage2}" class="page-background-image" />
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page">
+            <img src="{!$Resource.CrossHomemCelularMao}" class="page-background-image"/>
+            <div class="page-content">
+                <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                    <p style="font-size: 35px; margin-top: 20px;">Why <strong>PagBrasil?</strong></p>
+                    <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                        <li>The <strong>most comprehensive</strong> set of <strong>local payment methods</strong>: PagBrasil Pix, International Pix, Boleto Flash®, Débito Flash™, Google Pay, and Samsung Pay</li>
+                        <li><strong>Flexible integration</strong>: API, PagBrasil Checkout, Payment Link, and plugins for Shopify, Salesforce, and WooCommerce</li>
+                        <li><strong>End-customers charged in reais brasileiros (BRL)</strong></li>
+                        <li>Cross-border remittances sent in <strong>USD or EUR</strong></li>
+                        <li><strong>World-class technology and customer service</strong>, with dedicated account managers and customer success team</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-footer">
+                <img src="{!$Resource.Logo2025Branco}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page">
+            <img src="{!$Resource.CrossPage4}" class="page-background-image" />
+            <div class="page-footer">
+                <apex:image url="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px; background-color: #fff"/>
+            </div>
+        </div>   
+
+        <!-- Page 5 -->
+        <div class="page">
+            <img src="{!$Resource.CrossPage5}" class="page-background-image" />
+            <div class="page-footer" style="width: 97%; bottom: 13px; background-color: #fff;">
+                <apex:image url="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page">
+            <img src="{!$Resource.CrossPage6}" class="page-background-image" />
+            <div class="page-footer" style="bottom: 13px; background-color: #fff;">
+                <apex:image url="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page">
+            <img src="{!$Resource.CrossPage7}" class="page-background-image" />
+        </div>
+
+        <!-- Page 8 -->
+        <div class="page">
+            <div class="page-content" style="padding: 75px;">
+                <p style="font-size: 40px;">Processing <strong>Terms</strong></p>
+                <table style="border-collapse: collapse; margin-top: 15px; width: 1000px;">
+                    <thead>
+                        <tr>
+                            <th style="border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-weight: bold; font-size: 18px">Monthly Revenue<br/>(BRL)</th>
+                            <apex:panelGroup rendered="{!containsPix}">
+                                <th style="border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-weight: bold; font-size: 18px">
+                                    <img src="{!$Resource.CrossIconePagBrasilPix}" style="width: 50px;"/><br/>
+                                    PagBrasil<br/>
+                                    Pix
+                                </th>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsCreditCard}">
+                                <th style="border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-weight: bold; font-size: 18px">
+                                    <img src="{!$Resource.CrossIconeCartaoCredito}" style="width: 50px;"/><br/>
+                                    Credit<br/>
+                                    Cards
+                                </th>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsDebitCard}">
+                                <th style="border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-weight: bold; font-size: 18px">
+                                    <img src="{!$Resource.CrossIconeDebitoFlash}" style="width: 50px;"/><br/>
+                                    Débito<br/>
+                                    Flash™
+                                </th>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsBoleto}">
+                                <th style="border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-weight: bold; font-size: 18px">
+                                    <img src="{!$Resource.CrossIconeBoletoFlash}" style="width: 50px;"/><br/>
+                                    Boleto<br/>
+                                    Flash®
+                                </th>
+                            </apex:panelGroup>
+                        </tr>
+                    </thead>
+                    <tbody style="color: #808080">
+                        <tr class="{!IF(highlightLineOne, 'processing-terms-highlight', '')}">
+                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!valueOne}</td>
+                            <apex:panelGroup rendered="{!containsPix}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!pixOne}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsCreditCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!creditCardOne}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsDebitCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!debitCardOne}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsBoleto}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!boletoOne}</td>
+                            </apex:panelGroup>
+                        </tr>
+                        <tr class="{!IF(highlightLineTwo, 'processing-terms-highlight', '')}">
+                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!valueTwo}</td>
+                            <apex:panelGroup rendered="{!containsPix}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!pixTwo}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsCreditCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!creditCardTwo}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsDebitCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!debitCardTwo}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsBoleto}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!boletoTwo}</td>
+                            </apex:panelGroup>
+                        </tr>
+                        <tr class="{!IF(highlightLineThree, 'processing-terms-highlight', '')}">
+                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px;">{!valueThree}</td>
+                            <apex:panelGroup rendered="{!containsPix}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px;">{!pixThree}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsCreditCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px;">{!creditCardThree}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsDebitCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px;">{!debitCardThree}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsBoleto}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px;">{!boletoThree}</td>
+                            </apex:panelGroup>
+                        </tr>
+                        <tr class="{!IF(highlightLineFour, 'processing-terms-highlight', '')}">
+                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!valueFour}</td>
+                            <apex:panelGroup rendered="{!containsPix}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!pixFour}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsCreditCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!creditCardFour}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsDebitCard}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!debitCardFour}</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsBoleto}">
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">{!boletoFour}</td>
+                            </apex:panelGroup>
+                        </tr>
+                        <tr class="processing-terms-highlight">
+                            <td style="border-top: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">Fixed Fee</td>
+                            <apex:panelGroup rendered="{!containsPix}">
+                                <td style="border-top: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">1.90 BRL</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsCreditCard}">
+                                <td style="border-top: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">1.90 BRL</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsDebitCard}">
+                                <td style="border-top: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">1.90 BRL</td>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!containsBoleto}">
+                                <td style="border-top: 1px solid #ccc; padding: 18px 12px; text-align: left; font-size: 20px">1.90 BRL</td>
+                            </apex:panelGroup>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page-footer">
+                <apex:image url="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 9 -->
+        <apex:panelGroup rendered="{!containsCreditCard}">
+            <div class="page">
+                <div class="page-content" style="padding: 75px;">
+                    <p style="font-size: 40px;">Antecipation Fees | <strong>Credit Cards</strong></p>
+                    <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyOne}</p>
+                    <table style="border-collapse: collapse; margin-top: 15px;">
+                        <thead>
+                            <tr>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 15px;">Installments</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 15px;">One-Off</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">2x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">3x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">4x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">5x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">6x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">7x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">8x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">9x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">10x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">11x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">12x</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 15px; font-weight: bold;">Fee</td>
+                                <apex:repeat value="{!frequencyOneValues}" var="frequencyOneValue">
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080; font-size: 16px">{!frequencyOneValue}</td>
+                                </apex:repeat>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyTwo}</p>
+                    <table style="border-collapse: collapse; margin-top: 15px;">
+                        <thead>
+                            <tr>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 15px;">Installments</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 15px;">One-Off</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">2x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">3x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">4x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">5x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">6x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">7x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">8x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">9x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">10x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">11x</th>
+                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 15px;">12x</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 15px; font-weight: bold;">Fee</td>
+                                <apex:repeat value="{!frequencyTwoValues}" var="frequencyTwoValue">
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080; font-size: 16px">{!frequencyTwoValue}</td>
+                                </apex:repeat>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-footer">
+                    <apex:image url="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 10 -->
+        <div class="page">
+            <img src="{!$Resource.CrossHomemNotebook}" class="page-background-image" />
+            <div class="page-content">
+                <p style="position: absolute; left: 580px; top: 60px; font-size: 40px; width: 450px;">Settlement <strong>Terms</strong></p>
+                <ul style="position: absolute; left: 530px; top: 150px; width: 450px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.5;">
+                    <li>
+                        <strong>
+                            {!frequencyOne}
+                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyTwo))}"> or {!frequencyTwo}</apex:panelGroup>
+                        </strong> settlements
+                    </li>
+                    <li><strong>Minimum amount for remittance:</strong> {!minimumTransferAmount} BRL (net amount)</li>
+                    <li><strong>Rolling reserve:</strong> {!reserve}% from the previous monthly period (may be reduced after 3 months of processing)</li>
+                    <li><strong>Exchange rate (BRL - USD/EUR):</strong> Central Bank of Brazil's official interbank rate (6-8% lower than the floating exchange rate, or “tourist dollar”)</li>
+                    <li><strong>Currency exchange markup (spread):</strong> {!currencyExchangeMarkupSpread}%</li>
+                    <li><strong>IOF tax rate:</strong> {!iofTax}% of the total transaction amount</li>
+                    <li><strong>Remittance fee:</strong> {!remittanceFee} BRL</li> 
+                </ul>
+            </div>
+            <div class="page-footer">
+                <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 11 -->
+        <div class="page">
+            <div class="page-content">
+                <div style="position: absolute; top: 0; left: 0px; width: 1142px; height: 642px; padding: 50px;">
+                    <div style="float: left; width: 50%; margin-top: 50px;">
+                        <p style="font-size: 40px;">Exchange Rate <strong>Appliance</strong></p>
+                        <ol style="margin-top: 50px; width: 450px; color: #505050; font-size: 18px; line-height: 1.5;">
+                            <li>Access the <strong>Exchange Rate History</strong> on the <a href="https://www.bcb.gov.br/">Central Bank of Brazil's website</a>.</li>
+                            <li><strong>Select the last option</strong>, <em>Boletins intermediários de taxas de câmbio em uma data</em>.</li>
+                            <li><strong>Select the date and currency</strong> of the exchange rate <span>operation</span>.</li>
+                            <li>Click on <em>Pesquisar</em> (Search).</li>
+                            <li><strong>Check the rate</strong> of <em>Venda</em> (Sale), <em>Intermediário</em> (<span>Intermediary</span>), 11:00 (11 AM).</li>
+                            <li><a href="#">Add</a> to this rate the <strong>fixed</strong> spread of {!currencyExchangeMarkupSpread}%.</li>
+                        </ol>
+                    </div>
+                    <div style="float: right; width: 50%; margin-top: 50px;">
+                        <img src="{!$Resource.CrossGraficoBoletins}" style="width: 460px; margin: 0 auto;"/>
+                        <img src="{!$Resource.CrossFormularioCotacoesBoletins}" style="width: 460px; margin: 20px auto 0 auto;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <apex:image url="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+        
+        <!-- Page 12 -->
+        <apex:panelGroup rendered="{!jSAPIVTexTerms}">
+            <div class="page">
+                <img src="{!$Resource.CrossMulherCelularNotebook}" class="page-background-image" />
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 30px 0 0 60px; width: 555px;">
+                        <p style="font-size: 36px;">Additional <strong>Terms</strong></p>
+                        <p style="font-size: 16px; margin-top: 20px; width: 500px;"><strong>Rates and Fees</strong></p>
+                        <table style="border-collapse: collapse; margin-top: 10px;">
+                            <tbody>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Setup Fee</td>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!setupFee} {!opportunityCurrency}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Chargeback Fee</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!chargeback} BRL (according to chargeback rate)</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Refund Fee</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!refundCardAcquirerPix} BRL (via acquirer or Pix)<br/>{!refundBankTransfer} BRL (via wire transfer)</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Notification Services</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">2{!package10000Emails} BRL (10,000 e-mail notifications)<br/>{!package10000Sms} BRL (10,000 SMS notifications)</td>
+                                </tr>
+                                <tr>    
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero Auth</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!zeroAuthCreditCard} BRL (per credit card transaction)</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for Pix</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">0.5% added to the Pix processing fee</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025Branco}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 13 -->
+        <apex:panelGroup rendered="{!shopifyWoocommerceSalesforcePBCheckoutTerms}">
+            <div class="page">
+                <img src="{!$Resource.CrossMulherCelularNotebook}" class="page-background-image" />
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 30px 0 0 60px; width: 555px;">
+                        <p style="font-size: 40px;">Additional <strong>Terms</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Rates and Fees</strong></p>
+                        <table style="border-collapse: collapse; margin-top: 15px;">
+                            <tbody>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Setup Fee</td>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!setupFee} {!opportunityCurrency}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Service Fee - {!currentIntegrationTypeInCheckoutList}</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.5 on the total amount processed</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Chargeback Fee</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!chargeback} BRL (according to chargeback rate)</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Refund Fee</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!refundCardAcquirerPix} BRL (via acquirer or Pix)<br/>{!refundBankTransfer} BRL (via wire transfer)</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Notification Services</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">10,000 e-mail notifications and 100 SMS notifications included, no extra cost</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Zero Auth</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!zeroAuthCreditCard} BRL (per credit card transaction)</td>
+                                </tr>
+                                 <tr>
+                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">3DS2 for Pix</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.5% added to the Pix processing fee</td>
+                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 14 -->
+        <div class="page">
+            <img src="{!$Resource.CrossPage14}" class="page-background-image" />
+        </div>
+
+        <div class="page">
+            <img src="{!$Resource.OneClickPixPage}" class="page-background-image" />
+            <div class="page-content">
+                <p style="font-size: 14px; margin-top: 203px; margin-left: 65px; width: 500px; color: #505050; font-weight: 600"></p>
+            </div>
+            <div class="page-footer">
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 15 -->
+        <apex:panelGroup rendered="{!containsPayout}">
+            <div class="page">
+                <img src="{!$Resource.CrossMulherOrganizando}" class="page-background-image"/>
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Solutions</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>Payouts</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Make payments, optimize the money flow, pay Brazilian suppliers and sellers, run cashback campaigns and much more.</strong></p>
+                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                            <li>Flexible system, suitable to several business models</li>
+                            <li>Avoid double taxation</li>
+                            <li>Compliant with the highest security levels and legal requirements for cross-border payments</li>
+                        </ul>
+                        <!-- <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Payout account setup fee:</strong> {!payoutSetupFee} {!opportunityCurrency}</p> -->
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 16 -->
+        <apex:panelGroup rendered="{!containsPayout}">
+            <div class="page">
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 0px; width: 1142px; height: 642px; padding: 50px;">
+                        <div style="float: left; width: 50%; margin-top: 30px;">
+                            <p style="font-size: 34px; font-weight: 200"><strong>Eligibility </strong>per <br/> payment method</p>
+    
+                            <div style="margin-top: 50px; width: 450px; background-color: #e7e7e7; font-size: 13.5px; line-height: 1.5; display: flex;
+                            flex-direction: column; padding: 15px">
+                                <span style="color: #363636; font-size: 14.5px; margin-left: 23px;">
+                                    After the payment confirmation, the funds are available in the
+                                </span>
+
+                                <span style="color: #363636; font-size: 14.5px; margin-left: 23px;">
+                                    payout account following its defined eligible date:
+                                </span>
+                                <table style="text-align: center; margin-top: 10px; margin-left: 24px;">
+                                    <tr style="background-color: rgb(0, 141, 235); font-weight: 600">
+                                        <td style="padding: 5px; color: white;">Credit cards</td>
+                                        <td style="padding: 5px; color: white;">PagBrasil Pix</td>
+                                        <td style="padding: 5px; color: white;">Boleto Flash®</td>
+                                        <td style="padding: 5px; color: white;">Débito Flash®</td>
+                                    </tr>
+                                    <tr style="background-color: rgb(12, 185, 12); font-weight: 600">
+                                        <td style="padding: 5px; color: white;">D+0</td>
+                                        <td style="padding: 5px; color: white;">D+0</td>
+                                        <td style="padding: 5px; color: white;">D+0</td>
+                                        <td style="padding: 5px; color: white;">D+{!settlementFrequency}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <ul style="margin-top: 20px; margin-bottom: 20px; width: 500px; color: #505050; font-size: 14px;">
+                                <li>When the fund becomes eligible, it can follow two directions:​​</li>
+                                <li style="margin-left: 35px">Proceed with local transfers in BRL​​</li>
+                                <li style="margin-left: 35px">Proceed with international remittances in {!opportunityCurrency}​​​</li>
+                            </ul>
+                        </div>
+                        <div style="float: right; width: 50%; margin-top: 20px;">
+                            <span style="text-align: left; font-size: 40px;">
+                                Payount account <br/> <strong>Settlement Terms</strong>
+                            </span>
+                            <ul style="margin-top: 20px; margin-bottom: 20px; width: 500px; color: #505050; font-size: 14px;">
+                                <li><strong>Rolling reserve:</strong> 15% from the previous monthly period​</li>
+                                <li><strong>IOF tax rate:</strong> 0.38% of the total transaction amount​</li>
+                            </ul>
+                            <span style="text-align: left; font-size: 17px">
+                                <strong>Local transfers in BRL</strong>
+                            </span>
+                            <ul style="margin-top: 20px; margin-bottom: 20px; width: 500px; color: #505050; font-size: 14px;">
+                                <li><strong>Local transfers:</strong> D+3</li>
+                                <li><strong>Payout service fee:</strong> 1,0% on the transaction amount via payout​</li>
+                                <li><strong>Remittance fee to suppliers:</strong> 3,50 BRL</li>
+                            </ul>
+                            <span style="text-align: left; font-size: 17px">
+                                <strong>International transfers in {!opportunityCurrency}</strong>
+                            </span>
+                            <ul style="margin-top: 20px; width: 500px; color: #505050; font-size: 14px;">
+                                <li><strong>International remittances:</strong> Weekly (on the following week)​​</li>
+                                <li><strong>Currency exchange markup (spread):</strong> <span style="font-size: 12.5px;">4.98% (based on the Central Bank of Brazil’s official interbank rate)​​</span></li>
+                                <li><strong>Remittance fee to the Merchant:</strong> 50 USD/EUR​​</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+
+
+        <!-- Page 17 -->
+        <div class="page">
+            <img src="{!$Resource.CrossHomemNotebookAnotando}" class="page-background-image"/>
+            <div class="page-content">
+                <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                    <p style="font-size: 18px; font-weight: 100;">Featured Solutions</p> 
+                    <p style="font-size: 35px; margin-top: 20px;"><strong>PagBrasil Checkout</strong></p>
+                    <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Offer your customers a simple URL for payments, requiring no website or e-commerce infrastructure.</strong></p>
+                    <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                        <li>Flexible integration, online and offline</li>
+                        <li>Autofill enabled</li>
+                        <li>Payment link replication from previous orders to help activate recurring payments, cart recovery, or remarketing strategies</li>
+                        <li>PCI/DSS not required</li>
+                    </ul>
+                    <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> {!pagBrasilCheckoutServiceFee}% on monthly revenue</p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+            </div>
+        </div>
+
+        <!-- Page 18 -->
+         <apex:panelGroup rendered="{!containsGooglePay}">
+            <div class="page">
+                <img src="{!$Resource.PNPagina19GPayCoresLogo}" class="page-background-image" style="left: -36px"/>
+                <img src="{!$Resource.PNPagina19GPayCelular}" class="page-background-image" style="left: 230px"/>
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Solutions</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>Google Pay</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Boost the checkout experience and your store’s reputation with Google’s digital wallet.</strong></p>
+                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                            <li>Tap-to-pay feature for a simplified customer journey</li>
+                            <li>Prevents payment failure and helps increase conversions by retrieving payment information from the user’s Google account</li>
+                            <li>Fosters customer trust with a Google-branded solution</li>
+                        </ul>
+                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> 0.2% added to the credit card processing fees.</p>
+                    </div>
+                </div>
+                <div class="page-footer" style="bottom: 30px">
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 19 -->
+        <apex:panelGroup rendered="{!containsApplePay}">
+            <div class="page">
+                <div style="position: absolute; background-color: #000; width: 420px; height: 100%">
+                    <div style="position: relative; height: 100%; padding-top: 530px;">
+                        <img src="{!$Resource.PNPagina20ApplePay}" style="width: 210px;" />
+                    </div>
+                </div>
+                <!-- <img src="{!$Resource.PNPagina20ApplePay}" style="position: absolute; bottom:20px; left: 0px; width: 210px; border: 1px solid blue" /> -->
+                <img src="{!$Resource.PNPagina20Celular}" class="page-background-image" style="position: absolute; left: 230px;" />
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Solutions</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>Apple Pay</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Boost the checkout experience and your store's reputation with Apple's digital wallet.</strong></p>
+                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                            <li>Tap-to-pay feature for a simplified customer journey</li>
+                            <li>Prevents payment failure and helps increase conversions by retrieving payment information from the user's Apple account</li>
+                            <li>Fosters customer trust with an Apple-branded solution</li>
+                        </ul>
+                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> 0.2% added to the credit card processing fees.</p>
+                    </div>
+                </div>
+                <div class="page-footer" style="bottom: 30px">
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 20 -->
+        <apex:panelGroup rendered="{!containsPixInternational}">
+            <div class="page">
+                <img src="{!$Resource.CrossPage20}" class="page-background-image" />
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025Branco}" style="float: left; width: 133px; margin-left: 25px; background-color: #54CA30;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+    
+        <!-- Page 21 -->
+        <apex:panelGroup rendered="{!containsPixRoaming}">
+            <div class="page">
+                <img src="{!$Resource.CrossPage21}" class="page-background-image" />
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025Branco}" style="float: left; width: 133px; margin-left: 25px; background-color: #0058B5;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Featured Solutions Payout -->
+        <apex:panelGroup rendered="{!containsPayout}">
+            <div class="page">
+                <img src="{!$Resource.PayoutSolution}" class="page-background-image" />
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                    <p style="font-size: 14px; margin-top: 203px; margin-left: 65px; width: 500px; color: #505050; font-weight: 600">{!setupFee} {!opportunityCurrency}</p>
+                    <p style="font-size: 14px; margin-top: 40px; margin-left: 67px; width: 500px; color: #505050; font-weight: 600">{!payoutServiceFee}% of the total payout amount processed by PagBrasil</p>
+                </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025Branco}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 22 -->
+        <apex:panelGroup rendered="{!containsCreditCard}">
+            <div class="page">
+                <img src="{!$Resource.CrossCadeadoTeclado}" class="page-background-image"/>
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Services</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>PagShield®</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Rely on the anti-fraud solution tailored to meet the specific demands of the Brazilian market.</strong></p>
+                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                            <li>Based on exclusive machine learning technology developed to monitor consumer behavior</li>
+                            <li>Evaluates orders by analyzing over 2,000 variables</li>
+                            <li>Pre-authorizations for safe conversion optimization</li>
+                            <li>Cost-effective solution</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 23 -->
+        <apex:panelGroup rendered="{!containsCreditCard}">
+            <div class="page">
+                <img src="{!$Resource.CrossCadeadoTeclado}" class="page-background-image"/>
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Services</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>PagShield®</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Rates and Fees</strong></p>
+                        <table style="border-collapse: collapse; margin-top: 15px;">
+                            <tbody>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px;">
+                                        <strong>PagShield®</strong><br/>
+                                        {!IF(opportunityProductType = 'Physical', 'Required', 'Optional')} for credit card processing
+                                    </td>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">{!pagShieldFraudPrevention} BRL per analysis</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px;">
+                                        <strong>PagShield® Premium</strong><br/>
+                                        Pre-authorizations analyzed by the PagBrasil fraud prevention team
+                                    </td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
+                                        {!pagShieldPremiumFixedFee} BRL per analysis +<br/>
+                                        {!pagShieldPremiumVariableFee}% of the transactional value +<br/>
+                                        {!pagShieldFraudPrevention} BRL (service fee)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+        
+        <!-- Page 24 -->
+        <apex:panelGroup rendered="{!containsPagStream}">
+            <div class="page">
+                <img src="{!$Resource.CrossPage24}" class="page-background-image" />
+                <div class="page-footer" style="bottom: 30px">
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 25 -->
+        <apex:panelGroup rendered="{!containsPagStream}">
+            <div class="page">
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 50px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Services</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>PagStream®</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Boost sales efficiency, revenue, and customer retention with our ready-to-go solution for subscription management.</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Rates and Fees</strong></p>
+                        <table style="border-collapse: collapse; margin-top: 15px;">
+                            <tbody>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px; font-weight: bold;">
+                                        Service Fee
+                                    </td>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
+                                        {!pagStreamServiceFee}% on monthly revenue<br/>
+                                        (if processing one-off and recurrent transactions with PagBrasil)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px; font-weight: bold;">
+                                        Minimum Fee
+                                    </td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
+                                        {!pagStreamMaintenanceMinimumFee} BRL
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="position: absolute; background-color: #000; width: 300px; height: 100%; right: 0;"></div>
+                <img src="{!$Resource.PagStreamLogo}" style="position: absolute; width: 130px; right: 20px; bottom: 20px;" />
+                <img src="{!$Resource.CrossCelularPagStream}" style="position: relative; width: 300px; right: 20px; top: 10px; z-index: 10; left: 695px" />
+            </div>
+        </apex:panelGroup>
+        
+        <!-- Page 26 -->
+        <div class="page">
+            <div style="position: absolute; background-color: #03102F; width: 600px; height: 100%; left: 0;"></div>
+            <img src="{!$Resource.Logo2025BrancoVerde}" style="position:absolute; bottom: 50px; left: 58px; width: 350px;"/>
+            <div>
+                <p style="position: relative; top: 100px; left: 58px; font-weight: bold; font-size: 35px; white-space: nowrap; color:#fff;">
+                    Business<br/>
+                    Proposal
+                </p>
+                <p style="position: absolute; top: 260px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color:#fff;">{!opportunityName}</p>
+                <p style="position: absolute; top: 310px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color: #fff;">{!quoteCreatedDate}</p>
+                <p style="position: absolute; top: 360px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #fff;"><i>*This proposal is valid for 30 days.</i></p>
+                
+                <p style="position: absolute; top: 100px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerName}</p>
+                <p style="position: absolute; top: 125px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">International Account Manager</p>
+                
+                <img src="{!$Resource.PNLocationIcon}" style="position: absolute; top: 200px; left: 680px; width: 35px;"/>
+                <p style="position: absolute; top: 200px; left: 780px; font-size: 16px; white-space: nowrap; color:#030303;">
+                    <strong>PagBrasil Pagamentos Eletrônicos, Ltda.</strong><br/>
+                    Av. Carlos Gomes, 1122 - Torre A - 11° Andar<br/>
+                    90470-282 - Porto Alegre - RS - Brazil
+                </p>
+
+                <img src="{!$Resource.PNSiteIcon}" style="position: absolute; top: 300px; left: 680px; width: 40px;"/>
+                <p style="position: absolute; top: 310px; left: 780px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">www.pagbrasil.com</p>
+                
+                <img src="{!$Resource.CrossHeadsetIcon}" style="position: absolute; top: 400px; left: 680px; width: 40px;"/>
+
+                <img src="{!$Resource.CrossWhatsAppIcon}" style="position: absolute; top: 400px; left: 780px; width: 20px;"/>
+                <p style="position: absolute; top: 400px; left: 805px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerMobilePhone}</p>
+                
+                <img src="{!$Resource.CrossEmailIcon}" style="position: absolute; top: 425px; left: 780px; width: 20px;"/>
+                <p style="position: absolute; top: 425px; left: 805px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerEmail}</p>
+            </div>  
+        </div>
+    </body>
+</html>
+</apex:page>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relatorio_Reconciliacao__c</fullName>
+    <description>Na opção de modelo de negócio Gateway, informar se deseja contratar o serviço de relatório de reconciliação.</description>
+    <inlineHelpText>Na opção de modelo de negócio Gateway, informar se deseja contratar o serviço de relatório de reconciliação.</inlineHelpText>
+    <label>Relatório de Reconciliação</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sim</fullName>
+                <default>false</default>
+                <label>Sim</label>
+            </value>
+            <value>
+                <fullName>Não</fullName>
+                <default>false</default>
+                <label>Não</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

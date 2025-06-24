@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidationRemittanceCurrency</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;,
+ISPICKVAL(Moeda__c,&quot;&quot;),
+NOT(ISPICKVAL(StageName, &quot;Discovery&quot;))
+)</errorConditionFormula>
+    <errorMessage>The Remittance Currency field is empty, fill it in to continue.</errorMessage>
+</ValidationRule>

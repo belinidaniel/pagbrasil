@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(CONTAINS(Product2.ProductCode,&quot;PROCESS_CREDITO&quot;),PricebookEntry.Order__c +(IF(Tax__r.ReceitaMensalInicial__c=0,0.16,IF(Tax__r.ReceitaMensalInicial__c=100000,0.15,(IF(Tax__r.ReceitaMensalInicial__c=500000,0.14,(IF(Tax__r.ReceitaMensalInicial__c=1000000,0.13,IF(Tax__r.ReceitaMensalInicial__c=5000000,0.12,0.11)))))))),
+(IF(CONTAINS(Product2.ProductCode,&quot;PROCESS_BOLETO&quot;),PricebookEntry.Order__c +(IF(Tax__r.ReceitaMensalInicial__c=0,0.26,IF(Tax__r.ReceitaMensalInicial__c=100000,0.25,(IF(Tax__r.ReceitaMensalInicial__c=500000,0.24,(IF(Tax__r.ReceitaMensalInicial__c=1000000,0.23,IF(Tax__r.ReceitaMensalInicial__c=5000000,0.22,0.21)))))))),
+(IF(CONTAINS(Product2.ProductCode,&quot;PROCESS_PIX&quot;),PricebookEntry.Order__c +(IF(Tax__r.ReceitaMensalInicial__c=0,0.36,IF(Tax__r.ReceitaMensalInicial__c=100000,0.35,(IF(Tax__r.ReceitaMensalInicial__c=500000,0.34,(IF(Tax__r.ReceitaMensalInicial__c=1000000,0.33,IF(Tax__r.ReceitaMensalInicial__c=5000000,0.32,0.31)))))))),
+(IF(CONTAINS(Product2.ProductCode,&quot;PROCESS_DEBITO&quot;),PricebookEntry.Order__c +(IF(Tax__r.ReceitaMensalInicial__c=0,0.46,IF(Tax__r.ReceitaMensalInicial__c=100000,0.45,(IF(Tax__r.ReceitaMensalInicial__c=500000,0.44,(IF(Tax__r.ReceitaMensalInicial__c=1000000,0.43,IF(Tax__r.ReceitaMensalInicial__c=5000000,0.42,0.41)))))))),
+(IF(CONTAINS(Product2.ProductCode,&quot;TAXA_PAGBRASIL&quot;),PricebookEntry.Order__c +(IF(Tax__r.ReceitaMensalInicial__c=0,0.76,IF(Tax__r.ReceitaMensalInicial__c=100000,0.75,(IF(Tax__r.ReceitaMensalInicial__c=500000,0.74,(IF(Tax__r.ReceitaMensalInicial__c=1000000,0.73,IF(Tax__r.ReceitaMensalInicial__c=5000000,0.72,0.71)))))))),
+(IF(CONTAINS(Product2.ProductCode,&quot;PROCESSING_FEES&quot;),PricebookEntry.Order__c +(IF(Tax__r.ReceitaMensalInicial__c=0,0.16,IF(Tax__r.ReceitaMensalInicial__c=100000,0.15,(IF(Tax__r.ReceitaMensalInicial__c=500000,0.14,(IF(Tax__r.ReceitaMensalInicial__c=1000000,0.13,IF(Tax__r.ReceitaMensalInicial__c=5000000,0.12,0.11)))))))),
+PricebookEntry.Order__c)))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Ordem</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

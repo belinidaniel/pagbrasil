@@ -1,15 +1,19 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { getRecord } from 'lightning/uiRecordApi';
+import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import generateAndSavePDF from '@salesforce/apex/ContractController.generateAndSavePDF';
 import PagLogo from "@salesforce/resourceUrl/Logo2025";
+import getKycIdByOpportunity from '@salesforce/apex/KYCService.getKycIdByOpportunity';
+import attachContractToRecord from '@salesforce/apex/ContractController.attachContractToRecord';
 
 const RECORD_TYPE_NAME_FIELD = 'Opportunity.RecordType.Name';
+const QUARTER_MONTHS = ['01', '04', '07', '10'];
 
 export default class GenerateContract extends LightningElement {
     @api recordId;
     @track isDropdownOpen = false;
     @track recordTypeName;
+    @track kycId;
     month;
     contractYear;
     contractMonth;
@@ -21,11 +25,106 @@ export default class GenerateContract extends LightningElement {
     selectedYear;
     yearOptions = [];
     PagLogoUrl = PagLogo;
+    @track firstReviewYearOptions = [];
 
-    @wire(getRecord, { recordId: '$recordId', fields: [RECORD_TYPE_NAME_FIELD] })
+    /*@wire(getRecord, { 
+        recordId: '$recordId', 
+        fields: [RECORD_TYPE_NAME_FIELD] 
+    })
     wiredRecord({ error, data }) {
         if (data) {
             this.recordTypeName = data.fields.RecordType.value.fields.Name.value;
+        }
+    }*/
+
+    @wire(getRecord, { 
+        recordId: '$recordId', 
+        fields: [RECORD_TYPE_NAME_FIELD] 
+    })
+    async wiredRecord({ error, data }) {
+        if (data) {
+            this.recordTypeName = data.fields.RecordType.value.fields.Name.value;
+            await this.fetchKycId();
+        }
+    }
+
+    async fetchKycId() {
+        if (!this.recordId || !this.recordTypeName) return;
+        try {
+            const result = await getKycIdByOpportunity({
+                opportunityId: this.recordId,
+                recordTypeName: this.recordTypeName === 'Cross-border' ? 'Crossborder' : this.recordTypeName
+            });
+            this.kycId = result;
+        } catch (error) {
+            this.kycId = null;
+        }
+    }
+
+    get kycFormLinkValue() {
+        const baseUrl = window.location.origin;
+        if (this.recordTypeName === 'National') {
+            return `${baseUrl}/apex/KYCPdfPage?id=${this.kycId}`;
+        }
+        if (this.recordTypeName === 'Crossborder') {
+            return `${baseUrl}/apex/KYCPdfPage?id=${this.kycId}`;
+        }
+        return '';
+    }
+
+    get firstReviewOptions() {
+        return [
+            { label: 'January', value: '01' },
+            { label: 'April', value: '04' },
+            { label: 'July', value: '07' },
+            { label: 'October', value: '10' }
+        ];
+    }
+
+    calculateFirstReview() {
+        if (!this.contractMonth || !this.contractYear) return;
+
+        const startDate = new Date(this.contractYear, this.contractMonth - 1, 1);
+        const minDate = new Date(startDate);
+        minDate.setMonth(minDate.getMonth() + 3);
+        
+        const quarterMonths = QUARTER_MONTHS.map(m => parseInt(m));
+        let reviewYear = minDate.getFullYear();
+        let reviewMonth = quarterMonths.find(m => m >= minDate.getMonth() + 1);
+        
+        if (!reviewMonth) {
+            reviewYear++;
+            reviewMonth = 1;
+        }
+
+        this.month = reviewMonth.toString().padStart(2, '0');
+        this.selectedYear = reviewYear.toString();
+        this.updateYearOptions();
+    }
+
+    updateYearOptions() {
+        if (!this.contractYear) return;
+        const baseYear = parseInt(this.contractYear);
+        this.firstReviewYearOptions = [
+            { label: `${baseYear}`, value: `${baseYear}` },
+            { label: `${baseYear + 1}`, value: `${baseYear + 1}` }
+        ];
+    }
+
+    validateSelection() {
+        if (!this.month || !this.selectedYear || !this.contractMonth || !this.contractYear) return;
+
+        const start = new Date(this.contractYear, this.contractMonth - 1, 1);
+        const selected = new Date(this.selectedYear, parseInt(this.month) - 1, 1);
+        
+        const monthDiff = (selected.getFullYear() - start.getFullYear()) * 12 + 
+                         (selected.getMonth() - start.getMonth());
+        
+        if (monthDiff < 3) {
+            this.calculateFirstReview();
+            this.showNotification('Automatic adjustment', 
+                `Minimum review requires 3 months. Date set to ${this.month}/${this.selectedYear}`, 
+                'warning');
         }
     }
 
@@ -37,7 +136,7 @@ export default class GenerateContract extends LightningElement {
         const currentYear = new Date().getFullYear();
         this.yearOptions = [];
 
-        for (let i = -1; i <= 1; i++) {
+        for (let i = 0; i <= 1; i++) {
             this.yearOptions.push({
                 label: `${currentYear + i}`,
                 value: `${currentYear + i}`
@@ -85,11 +184,21 @@ export default class GenerateContract extends LightningElement {
     }
 
     async generate() {
-        const inputElement = this.template.querySelector('[data-id="kycLinkInput"]');
-        this.link = inputElement.value;
+        // const inputElement = this.template.querySelector('[data-id="kycLinkInput"]');
+        // this.link = inputElement.value;
+
+        console.log('month:', this.month);
+        console.log('selectedYear:', this.selectedYear);
+        console.log('link:', this.link);
+        console.log('contractYear:', this.contractYear);
+        console.log('contractMonth:', this.contractMonth);
+        console.log('maintenanceMonth:', this.maintenanceMonth);
+        console.log('maintenanceYear:', this.maintenanceYear);
+
+        this.link = this.kycFormLinkValue;
         const selectedMonth = this.options.find(option => option.value === this.month);
 
-        if (!this.month || !this.selectedYear || !this.link || !this.contractYear
+        if (!this.month || !this.selectedYear || !this.contractYear
             || !this.contractMonth || !this.maintenanceMonth || !this.maintenanceYear) {
             this.showNotification('Error', 'Fill in all the fields to generate the contract', 'error');
             return;
@@ -122,7 +231,7 @@ export default class GenerateContract extends LightningElement {
         this.showModal = true;
 
         try {
-            await generateAndSavePDF({
+            const contentDocumentId = await generateAndSavePDF({
                 opportunityId: this.recordId,
                 month: monthLabel,
                 contractDate: this.contractDate,
@@ -130,9 +239,20 @@ export default class GenerateContract extends LightningElement {
                 maintenanceDate: this.maintenanceDate
             });
 
-            this.showNotification('Success', 'PDF generated and saved successfully!', 'success');
+            await updateRecord({
+                fields: {
+                    Id: this.recordId,
+                    Contract_File_Id__c: contentDocumentId
+                }
+            });
+
+            this.vfUrl = `${vfBaseURL}?${queryParams.toString()}`;
+            this.showModal = true;
+
+            this.showNotification('Success', 'PDF gerado e salvo!', 'success');
+            
         } catch (error) {
-            this.showNotification('Error', error.body.message, 'error');
+            this.showNotification('Error', error.body?.message || error.message, 'error');
         }
     }
 
@@ -152,14 +272,18 @@ export default class GenerateContract extends LightningElement {
 
     handleChange(event) {
         this.month = event.detail.value;
-    }
-
-    handleContractYear(event) {
-        this.contractYear = event.target.value;
+        this.validateSelection();
     }
 
     handleContractMonth(event) {
-        this.contractMonth = event.target.value;
+        this.contractMonth = event.detail.value;
+        this.calculateFirstReview();
+    }
+
+    handleContractYear(event) {
+        this.contractYear = event.detail.value;
+        this.updateYearOptions();
+        this.calculateFirstReview();
     }
 
     handleMaintenanceDate(event) {
@@ -176,5 +300,6 @@ export default class GenerateContract extends LightningElement {
 
     handleYearChange(event) {
         this.selectedYear = event.detail.value;
+        this.validateSelection();
     }
 }

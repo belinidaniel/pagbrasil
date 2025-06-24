@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContactInformation__c</fullName>
+    <label>Informações de contato</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Formulário de contato e/ou endereço de e-mail</fullName>
+                <default>false</default>
+                <label>Formulário de contato e/ou endereço de e-mail</label>
+            </value>
+            <value>
+                <fullName>Número de telefone brasileiro para contato</fullName>
+                <default>false</default>
+                <label>Número de telefone brasileiro para contato</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

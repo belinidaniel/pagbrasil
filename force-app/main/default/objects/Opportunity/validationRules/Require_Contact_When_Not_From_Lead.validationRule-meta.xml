@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Contact_When_Not_From_Lead</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+				NOT(ISBLANK(AccountId)),
+				ISBLANK(Lead_Owner__c),
+				OR (
+								Account.Contacts_Amount__c = 0,
+        ISBLANK(Account.Contacts_Amount__c)
+				)
+)</errorConditionFormula>
+    <errorDisplayField>AccountId</errorDisplayField>
+    <errorMessage>The account must have at least one contact to manually create an Opportunity. If the account already has a contact, add one more to continue.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Settlement_Frequency_Test__c</fullName>
+    <label>Settlement Frequency Test</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>AntecipationFrequency</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -2,29 +2,7 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <decisions>
-        <name>Encontrou_a_Opportunity</name>
-        <label>Encontrou a Opportunity?</label>
-        <locationX>182</locationX>
-        <locationY>431</locationY>
-        <defaultConnectorLabel>Não</defaultConnectorLabel>
-        <rules>
-            <name>Sim</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Opportunity_Stage_Name_e_Record_Type.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Atualiza_Opportunity</targetReference>
-            </connector>
-            <label>Sim</label>
-        </rules>
-    </decisions>
-    <description>Atualiza o campo de Stage de Opportunity de “Negotiation” para “Compliance” caso o Stage Number seja igual a 7</description>
+    <description>Atualiza o campo de Stage de Opportunity de “Negotiation” para “Compliance” caso o Stage Number seja igual a 8</description>
     <environments>Default</environments>
     <interviewLabel>Atualizar Opportunity pelo Stage Number do KYC XB {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Atualizar Opportunity pelo Stage Number do KYC XB</label>
@@ -47,15 +25,11 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordLookups>
-        <name>Opportunity_Stage_Name_e_Record_Type</name>
-        <label>Opportunity Stage Name e Record Type</label>
-        <locationX>182</locationX>
+    <recordUpdates>
+        <name>Atualiza_Opportunity</name>
+        <label>Atualiza Opportunity</label>
+        <locationX>176</locationX>
         <locationY>323</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Encontrou_a_Opportunity</targetReference>
-        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>StageName</field>
@@ -64,22 +38,6 @@
                 <stringValue>Negotiation</stringValue>
             </value>
         </filters>
-        <filters>
-            <field>RecordTypeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>012Rn0000001oafIAA</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Opportunity</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordUpdates>
-        <name>Atualiza_Opportunity</name>
-        <label>Atualiza Opportunity</label>
-        <locationX>50</locationX>
-        <locationY>539</locationY>
         <inputAssignments>
             <field>StageName</field>
             <value>
@@ -89,20 +47,13 @@
         <inputReference>$Record.Opportunity__r</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Opportunity_Stage_Name_e_Record_Type</targetReference>
+            <targetReference>Atualiza_Opportunity</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
-        <filters>
-            <field>Stage_Number__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <numberValue>7.0</numberValue>
-            </value>
-        </filters>
         <filters>
             <field>Status__c</field>
             <operator>EqualTo</operator>

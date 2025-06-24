@@ -164,7 +164,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <description>Stores the ID of the user record access record from GetUserRecordAccess.</description>
         <name>UserRecordAccessId</name>

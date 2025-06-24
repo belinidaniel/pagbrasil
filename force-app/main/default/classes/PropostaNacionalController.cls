@@ -2,10 +2,12 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-03-06
- * @last modified by  : Hersilio Belini de Oliveira
+ * @last modified on  : 05-27-2025
+ * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
+
+    public Boolean testeNew { get; set; }
 
     public String opportunityName { get; set; }
     public String accountOwnerName { get; set; }
@@ -28,6 +30,9 @@ public class PropostaNacionalController {
     public Boolean jSAPIVTexTerms { get; set; }
     public Boolean show { get; set; }
     public Boolean first { get; set; }
+    public string reserve {get;set;}
+    public String pagBrasilSolutionFeeRange{get;set;}
+    public Boolean showZeroReserveOption { get; set; }
 
     //Taxes
     public String valueOne { get; set; }
@@ -149,9 +154,6 @@ public class PropostaNacionalController {
     public String taxaAntecipacao { get; set; }
     public String payoutServiceFee { get; set; }
     public String payoutTransferFee { get; set; }
-    public String reserve { get; set; }
-
-    public List<String> pagBrasilSolutionFeeRange { get; set; }
 
     public static List<String> integrationTypeShopifyWoocommerceSalesforcePBCheckoutList = new List<String>{'Shopify','Woocommerce','Salesforce','PB Checkout'};
     public static List<String> integrationTypeJSAPIVTex = new List<String>{'JS','API','Vtex'};
@@ -174,6 +176,8 @@ public class PropostaNacionalController {
         productsPopulation(quote);
         fieldsPopulation(quote);
         frequencyPopulation(quote);
+
+        showZeroReserveOption = this.containsGateway;
 
         this.viewPage6 = true;
         this.viewPage11 = false;
@@ -236,10 +240,10 @@ public class PropostaNacionalController {
             else if (quote.Opportunity.previs_fat_rs__c >= 100000) this.highlightedLineThree = true;
             else this.highlightedLineFour = true;
 
-            this.valueOne = '> R$ 1M';
-            this.valueTwo = 'R$ 500K - R$ 1M';
-            this.valueThree = 'R$ 100K - R$ 500K';
-            this.valueFour = '< R$ 100K';
+            this.valueOne = '0,35% p/ R$5MM';
+            this.valueTwo = '0,40% (R$1MM -> R$5MM';
+            this.valueThree = '0,45% (R$500k -> R$1MM';
+            this.valueFour = '0,50% (R$<R$500k)';
         }
     }
 
@@ -321,9 +325,13 @@ public class PropostaNacionalController {
     }
 
     private void productsPopulation(Quote quote) {
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,IsMain__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
-        this.pagBrasilSolutionFeeRange = new List<String>();
+        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
+            processQuoteLineItem(quoteLineItem);
+        }
+    }
+
+    private void processQuoteLineItem(QuoteLineItem quoteLineItem) {
         switch on quoteLineItem.Product2.ProductCode {
             when 'TAXA_ANTECIPACAO' {
                 this.taxaAntecipacao = String.valueof(quoteLineItem.PercentValue__c);
@@ -347,10 +355,7 @@ public class PropostaNacionalController {
                 this.transferFee = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'TAXA_PAGBRASIL' {
-                    String taxAndMonthlyRevenue = validateNumbersWithRegex(quoteLineItem.Price__c) + '% (' + quoteLineItem.MonthlyRevenue__c + ')'; 
-                    this.pagBrasilSolutionFeeRange.add(taxAndMonthlyRevenue);
-                    if (quoteLineItem.IsMain__c)
-                        this.pagBrasilSolutionFee = taxAndMonthlyRevenue;
+                this.pagBrasilSolutionFee = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'TAXA_PAYOUT' {
                 this.payoutServiceFee = validateNumbersWithRegex(quoteLineItem.Price__c);
@@ -411,10 +416,6 @@ public class PropostaNacionalController {
             }
             when 'TAXA_PARC_7A12' {
                 this.additionalInstallmentFee7To12 = '7 a 12 parcelas: +' + validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-                }
-                when 'RESERVA_GIRATORIA' {
-                    this.reserve = validateNumbersWithRegex(quoteLineItem.Price__c);
-                }
             }
         }
     }
@@ -460,7 +461,7 @@ public class PropostaNacionalController {
                 when 'Weekly' {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11S';
                 }
-                when 'Biweekly' {
+                when 'Bimonthly' {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11B';
                 }
                 when 'Monthly' {
@@ -499,8 +500,8 @@ public class PropostaNacionalController {
             setDailyFrequencyPageOne(antecipation);
         } else if (settlement == 'Weekly') {
             setWeeklyFrequencyPageOne(antecipation);
-        } else if (settlement == 'Biweekly') {
-            setBiweeklyFrequencyPageOne(antecipation);
+        } else if (settlement == 'Bimonthly') {
+            setBimonthlyFrequencyPageOne(antecipation);
         } else if (settlement == 'Monthly') {
             setMonthlyFrequencyPageOne(antecipation);
         }
@@ -514,7 +515,7 @@ public class PropostaNacionalController {
     private void setFrequencyPageTwo(String settlement, String antecipation) {
         if (settlement == 'Daily') setDailyFrequencyPageTwo(antecipation);
         else if (settlement == 'Weekly') setWeeklyFrequencyPageTwo(antecipation);
-        else if (settlement == 'Biweekly') setBiweeklyFrequencyPageTwo(antecipation);
+        else if (settlement == 'Bimonthly') setBimonthlyFrequencyPageTwo(antecipation);
         else if (settlement == 'Monthly') setMonthlyFrequencyPageTwo(antecipation);
 
         if (antecipation == 'Fluxo Médio') {
@@ -532,7 +533,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageOne = 'D+7';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'bissemanal';
@@ -548,7 +549,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'bissemanal';
@@ -559,8 +560,8 @@ public class PropostaNacionalController {
         }
     }
 
-    private void setBiweeklyFrequencyPageOne(String antecipation) {
-        if (antecipation == 'Biweekly') {
+    private void setBimonthlyFrequencyPageOne(String antecipation) {
+        if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'bissemanal';
@@ -588,7 +589,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageTwo = 'D+7';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'bissemanal';
@@ -604,7 +605,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'semanal';
-        } else if (antecipation == 'Biweekly') {
+        } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'bissemanal';
@@ -615,8 +616,8 @@ public class PropostaNacionalController {
         }
     }
 
-    @TestVisible private void setBiweeklyFrequencyPageTwo(String antecipation) {
-        if (antecipation == 'Biweekly') {
+    @TestVisible private void setBimonthlyFrequencyPageTwo(String antecipation) {
+        if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'bissemanal';

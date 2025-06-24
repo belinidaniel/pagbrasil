@@ -1,0 +1,31 @@
+<template>
+    <template if:true={hasRecords}>
+        
+        <button 
+            class="slds-button slds-button_brand slds-button_stretch" 
+            title="Send Homologation Forms"
+            onclick={handleSendForms}
+            disabled={completed}>
+            <lightning-icon icon-name="utility:send" size="small" variant="inverse"></lightning-icon>
+            Send Homologation Forms
+        </button>
+        <template if:true={showSendHomologationFormFlowModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <button class="slds-button slds-button_icon" title="Fechar" onclick={closeSendHomologationFormFlowModal}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        </button>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-flow 
+                            flow-api-name="sendHomologationForm"
+                            flow-input-variables={flowSendHomologationFormInputVariables}
+                            onstatuschange={handleSendHomologationFormFlowStatusChange}>
+                        </lightning-flow>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+</template>

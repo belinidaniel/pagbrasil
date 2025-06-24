@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Antecipation_Frequency_2__c</fullName>
+    <label>Anticipation Frequency 2°</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Settlement_Frequency_2__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Daily</fullName>
+                <default>false</default>
+                <label>Daily</label>
+            </value>
+            <value>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+                <label>Weekly</label>
+            </value>
+            <value>
+                <fullName>Biweekly</fullName>
+                <default>false</default>
+                <label>Biweekly</label>
+            </value>
+            <value>
+                <fullName>Bimonthly</fullName>
+                <default>false</default>
+                <label>Bimonthly</label>
+            </value>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>Fluxo Médio</fullName>
+                <default>false</default>
+                <label>Fluxo Médio</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Daily</controllingFieldValue>
+            <valueName>Daily</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Daily</controllingFieldValue>
+            <controllingFieldValue>Weekly</controllingFieldValue>
+            <valueName>Weekly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Daily</controllingFieldValue>
+            <controllingFieldValue>Weekly</controllingFieldValue>
+            <controllingFieldValue>Bimonthly</controllingFieldValue>
+            <valueName>Bimonthly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Daily</controllingFieldValue>
+            <controllingFieldValue>Weekly</controllingFieldValue>
+            <controllingFieldValue>Monthly</controllingFieldValue>
+            <controllingFieldValue>Bimonthly</controllingFieldValue>
+            <valueName>Monthly</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Daily</controllingFieldValue>
+            <controllingFieldValue>Weekly</controllingFieldValue>
+            <controllingFieldValue>Monthly</controllingFieldValue>
+            <controllingFieldValue>Bimonthly</controllingFieldValue>
+            <valueName>Fluxo Médio</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

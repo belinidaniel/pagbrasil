@@ -1,100 +1,128 @@
 /**
  * @description       : 
- * @author            : aydhan.passos
+ * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 04-10-2025
- * @last modified by  : aydhan.passos
+ * @last modified on  : 05-29-2025
+ * @last modified by  : Daniel Belini
 **/
 public with sharing class QuotePdfService {
-    
+
     @AuraEnabled(cacheable=true)
     public static Quote getOpportunityType(Id quoteId) {
-        List<Quote> quotes = [
+        return [
             SELECT Id, Name, Status, OpportunityId, Opportunity.RecordType.DeveloperName,
-            Opportunity.SyncedQuoteId, Opportunity.SyncedQuote.IsSyncing, IsSyncing
+                   Opportunity.SyncedQuoteId, Opportunity.SyncedQuote.IsSyncing, IsSyncing
             FROM Quote
             WHERE Id = :quoteId
             LIMIT 1
         ];
-        
-        if (quotes.isEmpty()) {
-            throw new AuraHandledException('Quote não encontrada com o ID informado.');
-        }
-    
-        return quotes.get(0);
     }
 
     @AuraEnabled
     public static void savePdfVersion(Id quoteId) {
-
-        // Determina qual VF usar dinamicamente
         Quote proposta = getOpportunityType(quoteId);
 
-        // 2. Determina a página VF correta
-        PageReference pdfPage;
-        if (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder') {
-            pdfPage = Page.PropostaCross;
-        } else {
-            pdfPage = Page.PropostaNacional;
-        }
+        PageReference pdfPage = (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder')
+            ? Page.PropostaCross
+            : Page.PropostaNacional;
+
         pdfPage.getParameters().put('id', quoteId);
         Blob pdfBlob = pdfPage.getContentAsPDF();
 
-        // 3. Buscar a maior versão existente vinculada à Quote
-        List<ContentDocumentLink> existingLinks = [
-            SELECT ContentDocument.Title
-            FROM ContentDocumentLink
-            WHERE LinkedEntityId = :quoteId ORDER BY SystemModstamp DESC LIMIT 1
+        String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
+        String filePrefix = 'Proposal_' + baseName;
+
+        // 🔄 Corrigir a busca diretamente por ContentVersion
+        List<ContentVersion> existingVersions = [
+            SELECT Title 
+            FROM ContentVersion 
+            WHERE FirstPublishLocationId = :quoteId 
+              AND Title LIKE :('%' + filePrefix + '%')
         ];
 
+        System.debug('Existing ContentVersions: ' + existingVersions.size());
+
         Integer latestVersion = 0;
-        Integer nextVersion = 0;
-
-        if (existingLinks.isEmpty()) {
-            nextVersion = 1;
-        } else {
-            String title = existingLinks.get(0).ContentDocument.Title;
-            if (title != null && title.contains('_V')) {
+        for (ContentVersion version : existingVersions) {
+            String title = version.Title;
+            if (title != null && title.startsWith(filePrefix + '_V')) {
                 try {
-                    String versionStr = title.substringAfter('_V').replace('.pdf', '');
-                    latestVersion = Integer.valueOf(versionStr);
-                } catch (Exception e) {
-                    // Ignorar arquivos com nome fora do padrão
-                }
+                    // Extract the version number after the last '_V'
+                    Integer parsedVersion = Integer.valueOf(title.substringAfterLast('_V').replace('.pdf', ''));
+                    if (parsedVersion > latestVersion) {
+                        latestVersion = parsedVersion;
+                    }
+                } catch (Exception e) { /* Ignore files with non-standard names */ }
             }
-            nextVersion = latestVersion + 1;
         }
-       
-        // 4. Monta nome do arquivo
-        String baseName = proposta.Name != null ? proposta.Name : 'Quote';
-        String fileName = baseName + '_V' + nextVersion ;
 
-        // OBS: ContentVersion = moderno, QuoteDocument = legado, ambos criam o link automático(contentDocumentLink)
+        Integer nextVersion =  existingVersions.size() + 1;
+        String finalFileName = filePrefix + '_V' + nextVersion;
 
-        // // 5. Cria ContentVersion com link automático à Quote
-        // ContentVersion cv = new ContentVersion(
-        //     Title = fileName,
-        //     PathOnClient = fileName,
-        //     VersionData = pdfBlob,
-        //     FirstPublishLocationId = quoteId
-        // );
-        // insert cv;
+        // 1. Cria ContentVersion com nome correto
+        ContentVersion cv = new ContentVersion(
+            Title = finalFileName,
+            PathOnClient = finalFileName + '.pdf',
+            VersionData = pdfBlob,
+            FirstPublishLocationId = quoteId
+        );
+        insert cv;
 
-        // 6. Cria QuoteDocument (legado, aparece na "Quote PDFs")
-        QuoteDocument qd = new QuoteDocument();
-        qd.QuoteId = quoteId;
-        qd.Document = pdfBlob;
-        // qd.Name = fileName;
-        List<QuoteDocument> oldDocs = [SELECT Id From QuoteDocument WHERE QuoteId = :quoteID];
-        if(!oldDocs.isEmpty()){
-          delete oldDocs;
-        }
-        insert qd;
+        // 2. Linka também na oportunidade
+        ContentVersion contentVersion = [
+            SELECT ContentDocumentId
+            FROM ContentVersion 
+            WHERE Id = :cv.Id 
+            LIMIT 1
+        ];
 
-        // 7. Atualiza estágio da oportunidade, se necessário
         if (proposta.OpportunityId != null) {
-            Opportunity opp = new Opportunity(Id = proposta.Opportunity.Id, StageName = 'Negotiation');
-            update opp;
+            insert new ContentDocumentLink(
+                ContentDocumentId = contentVersion.ContentDocumentId,
+                LinkedEntityId = proposta.OpportunityId,
+                ShareType = 'V',
+                Visibility = 'AllUsers'
+            );
         }
+
+        // 3. Atualiza campo e estágio
+        update new Quote(Id = quoteId, Acceptable__c = true);
+        if (proposta.OpportunityId != null) {
+            update new Opportunity(Id = proposta.Opportunity.Id, StageName = 'Negotiation');
+        }
+    }
+
+    @AuraEnabled
+    public static void sendToEmail(Id quoteId) {
+        Quote proposta = getOpportunityType(quoteId);
+
+        PageReference pdfPage = (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder')
+            ? Page.PropostaCross
+            : Page.PropostaNacional;
+        pdfPage.getParameters().put('id', quoteId);
+        Blob pdfBlob = pdfPage.getContentAsPDF();
+
+        String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
+        String filePrefix = 'Proposal_' + baseName;
+        String fileName = filePrefix + '.pdf';
+
+        // Get Quote Owner Email
+        String ownerEmail = [SELECT Owner.Email FROM Quote WHERE Id = :quoteId LIMIT 1].Owner.Email;
+        if (String.isBlank(ownerEmail)) {
+            throw new AuraHandledException('Quote owner does not have an email address.');
+        }
+
+        // Prepare email
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        mail.setToAddresses(new String[] { ownerEmail });
+        mail.setSubject('Proposal PDF for Quote: ' + proposta.Name);
+        mail.setPlainTextBody('Please find attached the proposal PDF for quote: ' + proposta.Name);
+        Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+        attachment.setFileName(fileName);
+        attachment.setBody(pdfBlob);
+        attachment.setContentType('application/pdf');
+        mail.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
+
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
     }
 }

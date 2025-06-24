@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Modelo_Negocio__c</fullName>
+    <label>Modelo de Negócio Desejado</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Intermediacao</fullName>
+                <default>false</default>
+                <label>Intermediacao</label>
+            </value>
+            <value>
+                <fullName>Gateway</fullName>
+                <default>false</default>
+                <label>Gateway</label>
+            </value>
+            <value>
+                <fullName>Pix Internacional</fullName>
+                <default>false</default>
+                <label>Pix Internacional</label>
+            </value>
+            <value>
+                <fullName>Pix Roaming</fullName>
+                <default>false</default>
+                <label>Pix Roaming</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -23,7 +23,10 @@ public with sharing class QuoteLineItemSelector {
                 TotalPrice,
                 IsMain__c,
                 InitialMonthlyRevenue__c,
-                FinalMonthlyRevenue__c
+                FinalMonthlyRevenue__c,
+                ServiceDate,
+                Product2.ProductCode,
+                PercentValue__c
             FROM QuoteLineItem Where QuoteId =: quoteId
            ORDER BY Order__c
         ];

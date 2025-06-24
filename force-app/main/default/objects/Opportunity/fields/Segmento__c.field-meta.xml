@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Segmento__c</fullName>
+    <label>Industry</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Acessórios</fullName>
+                <default>false</default>
+                <label>Acessories</label>
+            </value>
+            <value>
+                <fullName>Conteúdo Adulto</fullName>
+                <default>false</default>
+                <label>Adult Content</label>
+            </value>
+            <value>
+                <fullName>Bares e Restaurantes</fullName>
+                <default>false</default>
+                <label>Bars &amp; Restaurants</label>
+            </value>
+            <value>
+                <fullName>Bebidas</fullName>
+                <default>false</default>
+                <label>Beverage</label>
+            </value>
+            <value>
+                <fullName>Vestuário</fullName>
+                <default>false</default>
+                <label>Clothing</label>
+            </value>
+            <value>
+                <fullName>Construção civil</fullName>
+                <default>false</default>
+                <label>Construction &amp; Industry</label>
+            </value>
+            <value>
+                <fullName>Cosméticos</fullName>
+                <default>false</default>
+                <label>Cosmetics &amp; Beauty</label>
+            </value>
+            <value>
+                <fullName>Criptomoedas</fullName>
+                <default>false</default>
+                <label>Cryptocurrencies</label>
+            </value>
+            <value>
+                <fullName>D2C</fullName>
+                <default>false</default>
+                <label>D2C</label>
+            </value>
+            <value>
+                <fullName>Decoração</fullName>
+                <default>false</default>
+                <label>Decoration &amp; Home</label>
+            </value>
+            <value>
+                <fullName>Digital</fullName>
+                <default>false</default>
+                <label>Digital Products &amp; Services</label>
+            </value>
+            <value>
+                <fullName>Dropshipping</fullName>
+                <default>false</default>
+                <label>Dropshipping</label>
+            </value>
+            <value>
+                <fullName>Educação</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>E-learning</fullName>
+                <default>false</default>
+                <label>Education &amp; E-learning</label>
+            </value>
+            <value>
+                <fullName>Eletronics</fullName>
+                <default>false</default>
+                <label>Eletronics</label>
+            </value>
+            <value>
+                <fullName>Eventos</fullName>
+                <default>false</default>
+                <label>Events &amp; Ticketing</label>
+            </value>
+            <value>
+                <fullName>Alimentos</fullName>
+                <default>false</default>
+                <label>Food</label>
+            </value>
+            <value>
+                <fullName>Food &amp; Beverage</fullName>
+                <default>false</default>
+                <label>Food &amp; Beverage</label>
+            </value>
+            <value>
+                <fullName>Calçados</fullName>
+                <default>false</default>
+                <label>Footwear</label>
+            </value>
+            <value>
+                <fullName>Móveis e/ou eletrodomésticos</fullName>
+                <default>false</default>
+                <label>Furniture</label>
+            </value>
+            <value>
+                <fullName>Jogos de azar e apostas</fullName>
+                <default>false</default>
+                <label>Gambling &amp; Betting</label>
+            </value>
+            <value>
+                <fullName>Gaming</fullName>
+                <default>false</default>
+                <label>Gaming</label>
+            </value>
+            <value>
+                <fullName>Grocery</fullName>
+                <default>false</default>
+                <label>Grocery</label>
+            </value>
+            <value>
+                <fullName>Home Appliances</fullName>
+                <default>false</default>
+                <label>Home Appliances</label>
+            </value>
+            <value>
+                <fullName>Hotéis</fullName>
+                <default>false</default>
+                <label>Hotels</label>
+            </value>
+            <value>
+                <fullName>Joias/Relógios</fullName>
+                <default>false</default>
+                <label>Jewelry &amp; watches</label>
+            </value>
+            <value>
+                <fullName>Marketplace</fullName>
+                <default>false</default>
+                <label>Marketplace</label>
+            </value>
+            <value>
+                <fullName>PSP</fullName>
+                <default>false</default>
+                <label>Payment Service Providers (PSP)</label>
+            </value>
+            <value>
+                <fullName>Pet</fullName>
+                <default>false</default>
+                <label>Pet Products &amp; Services</label>
+            </value>
+            <value>
+                <fullName>Produtos físicos</fullName>
+                <default>false</default>
+                <label>Physical Products</label>
+            </value>
+            <value>
+                <fullName>Restaurantes</fullName>
+                <default>false</default>
+                <label>Restaurants</label>
+            </value>
+            <value>
+                <fullName>Sexshop</fullName>
+                <default>false</default>
+                <label>Sex Shop &amp; Adult Products</label>
+            </value>
+            <value>
+                <fullName>Software/Saas B2B</fullName>
+                <default>false</default>
+                <label>Software &amp; SaaS</label>
+            </value>
+            <value>
+                <fullName>Sports Betting</fullName>
+                <default>false</default>
+                <label>Sports Betting</label>
+            </value>
+            <value>
+                <fullName>Papelaria</fullName>
+                <default>false</default>
+                <label>Stationery &amp; Office Supplies</label>
+            </value>
+            <value>
+                <fullName>Suplementos/Farmacêuticos</fullName>
+                <default>false</default>
+                <label>Supplements &amp; Vitamins</label>
+            </value>
+            <value>
+                <fullName>Integrador Técnico</fullName>
+                <default>false</default>
+                <label>Technical Integrators</label>
+            </value>
+            <value>
+                <fullName>Turismo</fullName>
+                <default>false</default>
+                <label>Travel &amp; Tourism</label>
+            </value>
+            <value>
+                <fullName>Outros</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>AdultContent</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>AdultContent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

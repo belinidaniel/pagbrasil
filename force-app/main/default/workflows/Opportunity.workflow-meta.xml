@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Alert_Opportunity_Overdue</fullName>
+        <description>Alert - Opportunity Overdue</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_Overdue</template>
+    </alerts>
+    <alerts>
+        <fullName>Inactive_Lead</fullName>
+        <description>Inactive Lead</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Inactive</template>
+    </alerts>
+    <alerts>
+        <fullName>Opp_BR_1MM</fullName>
+        <description>Opp BR &gt; 1MM</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>alexandre.oliveira@pagbrasil.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ralf.germer@pagbrasil.com.sandboxsr12</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opp_1MM</template>
+    </alerts>
+    <alerts>
+        <fullName>Opp_Inactive</fullName>
+        <description>Opp Inactive</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_Inactive</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Closed_Today</fullName>
+        <field>CloseDate</field>
+        <formula>TODAY()</formula>
+        <name>Closed = Today</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>Change_Status</fullName>
+        <apiVersion>49.0</apiVersion>
+        <endpointUrl>https://connect.pagbrasil.com/pb_framework/api.php?class=SalesForce_controller&amp;method=AtualizaStage&amp;system=FaixaTaxa</endpointUrl>
+        <fields>AccountId</fields>
+        <fields>ContactId</fields>
+        <fields>Id</fields>
+        <fields>StageName</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>felipe.muller@pagbrasil.com</integrationUser>
+        <name>Change Status</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <rules>
+        <fullName>Change Status</fullName>
+        <actions>
+            <name>Change_Status</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>notContain</operation>
+            <value>XXXX</value>
+        </criteriaItems>
+        <description>When opportunity has status changed</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Close Date %3D Today</fullName>
+        <actions>
+            <name>Closed_Today</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.IsClosed</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Inactive Opp</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Qualification,Proposal,Contract,Due Diligence,Go Live</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Inactive_Lead</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.LastModifiedDate</offsetFromField>
+            <timeLength>30</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Opp BR %3E 1MM</fullName>
+        <actions>
+            <name>Opp_BR_1MM</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Receita_Mensal__c</field>
+            <operation>equals</operation>
+            <value>&gt; R$ 10.000.001,&gt; R$ 1.000.001 - &lt; R$ 10.000.000</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Close Date Overdue</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Hibernate,Qualification,Proposal,Contract,Due Diligence,Go Live</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>-3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+</Workflow>

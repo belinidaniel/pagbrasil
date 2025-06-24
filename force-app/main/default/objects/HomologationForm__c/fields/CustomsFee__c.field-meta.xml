@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CustomsFee__c</fullName>
+    <label>Taxa alfandegaria</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>O aviso de que impostos podem ser cobrados está na página de checkout antes de finalizar o pagamento</fullName>
+                <default>false</default>
+                <label>O aviso de que impostos podem ser cobrados está na página de checkout antes de finalizar o pagamento</label>
+            </value>
+            <value>
+                <fullName>O aviso de que impostos podem ser cobrados está na página Termos e Condições, Política de Entrega ou FAQ</fullName>
+                <default>false</default>
+                <label>O aviso de que impostos podem ser cobrados está na página Termos e Condições, Política de Entrega ou FAQ</label>
+            </value>
+            <value>
+                <fullName>O aviso de que impostos podem ser cobrados está no e-mail de confirmação do pedido</fullName>
+                <default>false</default>
+                <label>O aviso de que impostos podem ser cobrados está no e-mail de confirmação do pedido</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

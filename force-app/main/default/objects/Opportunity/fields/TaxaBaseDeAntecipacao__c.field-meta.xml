@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TaxaBaseDeAntecipacao__c</fullName>
+    <label>Taxa Base de Antecipação</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>TaxaBaseAntecipacaoNational</valueSetName>
+    </valueSet>
+</CustomField>

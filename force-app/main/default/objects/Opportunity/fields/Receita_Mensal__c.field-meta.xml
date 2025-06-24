@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Receita_Mensal__c</fullName>
+    <inlineHelpText>Clientes Brasileiros - Receita Total/
+Clientes Cross-Border - Receita no Brasil</inlineHelpText>
+    <label>Receita Mensal</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Até R$50k</fullName>
+                <default>false</default>
+                <label>Até R$50k</label>
+            </value>
+            <value>
+                <fullName>R$50k até R$100k</fullName>
+                <default>false</default>
+                <label>R$50k até R$100k</label>
+            </value>
+            <value>
+                <fullName>R$100k até R$200k</fullName>
+                <default>false</default>
+                <label>R$100k até R$200k</label>
+            </value>
+            <value>
+                <fullName>R$200k até R$500k</fullName>
+                <default>false</default>
+                <label>R$200k até R$500k</label>
+            </value>
+            <value>
+                <fullName>R$500k até 1M</fullName>
+                <default>false</default>
+                <label>R$500k até 1M</label>
+            </value>
+            <value>
+                <fullName>Acima de R$1M</fullName>
+                <default>false</default>
+                <label>Acima de R$1M</label>
+            </value>
+            <value>
+                <fullName>Ainda não tem operação online</fullName>
+                <default>false</default>
+                <label>Ainda não tem operação online</label>
+            </value>
+            <value>
+                <fullName>Não vende para o Brasil ainda.</fullName>
+                <default>false</default>
+                <label>Não vende para o Brasil ainda.</label>
+            </value>
+            <value>
+                <fullName>R$100k até R$500k</fullName>
+                <default>false</default>
+                <label>R$100k até R$500k</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

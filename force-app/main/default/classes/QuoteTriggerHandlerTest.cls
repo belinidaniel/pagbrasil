@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-02-19
- * @last modified by  : Hersilio Belini de Oliveira
+ * @last modified on  : 05-27-2025
+ * @last modified by  : Daniel Belini
 **/
 @isTest
 public class QuoteTriggerHandlerTest {
@@ -390,7 +390,6 @@ public class QuoteTriggerHandlerTest {
             previs_fat_rs__c = 5000.00,
             Integracao__c = 'API',
             IntegrationType__c = 'Salesforce',
-            Moeda__c = '',
             RecordTypeId = recordTypeIdCross,
             Recorrencia__c = 'Yes',
             Transacoes_Mensais__c = 123,
@@ -436,7 +435,7 @@ public class QuoteTriggerHandlerTest {
             previs_fat_rs__c = 5000.00,
             Integracao__c = 'API',
             IntegrationType__c = 'Salesforce',
-            Moeda__c = 'USD',
+            Moeda__C = 'USD',
             RecordTypeId = recordTypeIdCross,
             Recorrencia__c = 'Yes',
             Transacoes_Mensais__c = 123,

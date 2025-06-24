@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-02-28
- * @last modified by  : Hersilio Belini de Oliveira
+ * @last modified on  : 05-27-2025
+ * @last modified by  : Daniel Belini
 **/
 public without sharing class OpportunitySelector {
 
@@ -33,6 +33,7 @@ public without sharing class OpportunitySelector {
                 Settlement_Frequency_1__c,
                 SyncedQuoteId,
                 Priority__c,
+                RecordType.Name,
                 AccountId,
                 Account.Name,
                 Account.Nome_Empresarial__c,
@@ -85,6 +86,7 @@ public without sharing class OpportunitySelector {
                 NationalPaymentMethod__c,
                 Settlement_Frequency_1__c,
                 previs_fat_rs__c,
+                RecordType.Name,
                 AccountId,
                 Account.Name,
                 Account.Nome_Empresarial__c,
@@ -122,6 +124,7 @@ public without sharing class OpportunitySelector {
                 IntegrationType__c,
                 TierCS__c,
                 PixMensal__c,
+                Moeda__c,
                 BusinessModel__c,
                 IntegrationTypeSpecify__c,
                 UsePagstream__c,
@@ -132,6 +135,7 @@ public without sharing class OpportunitySelector {
                 SyncedQuoteId,
                 Priority__c,
                 Integracao__c,
+                RecordType.Name,
                 Account.Name,
                 DateAccountCreation__c,
                 Account.OrganizationId__c,
@@ -170,6 +174,7 @@ public without sharing class OpportunitySelector {
 
                 (SELECT Id,
                         Login__c,
+                        Password__c,
                         Cielo30__c,
                         MonthlyInterestOnCustomerInstallments__c,
                         TerminalId__c,
@@ -218,7 +223,17 @@ public without sharing class OpportunitySelector {
                         OneClickBuyingTokenization__c,
                         ReviewPayeeRegistration__c,
                         TransactionType__c,
-                        EmailsPodManager__c
+                        EmailsPodManager__c,
+                        MccCode__c,
+                        PaymentAlert__c,
+                        BlockRefund__c,
+                        NumberOfDays__c,
+                        FlashBoleto__c,
+                        SmsPackage__c,
+                        MerchantKey__c,
+                        Pv__c,
+                        Token__c,
+                        RegKey__c
                 FROM HomologationForms__r)
             FROM Opportunity
             WHERE Id = :opportunityId
@@ -229,5 +244,37 @@ public without sharing class OpportunitySelector {
         }
 
         return opps[0];
+    }
+
+    public static Rcc__c getRccByOpportunityId(Id opportunityId) {
+        List<Rcc__c> rccs = [
+            SELECT
+                Id,
+                Final_Risk__c
+            FROM Rcc__c
+            WHERE Opportunity__c = :opportunityId
+        ];
+
+        if(rccs.isEmpty()) {
+            return null;
+        }
+
+        return rccs[0];
+    }
+    public static KYC__c getKycByOpportunityId(Id opportunityId) {
+        List<KYC__c> kycs = [
+            SELECT
+                Id,
+                Name,
+                LastModifiedDate
+            FROM KYC__c
+            WHERE Opportunity__c = :opportunityId
+        ];
+
+        if(kycs.isEmpty()) {
+            return null;
+        }
+
+        return kycs[0];
     }
 }

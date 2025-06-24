@@ -1,0 +1,69 @@
+<template>
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">Frequency Confirmation</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="s1"
+                                label="Settlement Frequency 1°"
+                                value={selectedValues.s1}
+                                options={settlementOptions}
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="a1"
+                                label="Anticipation Frequency 1°"
+                                value={selectedValues.a1}
+                                options={a1Options}
+                                onchange={handleChange}
+                                disabled={isS1Empty}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="s2"
+                                label="Settlement Frequency 2°"
+                                value={selectedValues.s2}
+                                options={settlementOptions}
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="a2"
+                                label="Anticipation Frequency 2°"
+                                value={selectedValues.a2}
+                                options={a2Options}
+                                onchange={handleChange}
+                                disabled={isS2Empty}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Confirm" onclick={handleConfirm} class="slds-m-left_small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isLoading}>
+        <div class="slds-spinner_container">
+            <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </template>
+</template>

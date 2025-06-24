@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NotaReclameAquiAuxiliar__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF  (NotaReclameAqui__c &gt;=0 &amp;&amp; NotaReclameAqui__c &lt;=5, 1, 
+				IF (NotaReclameAqui__c &gt;=5 &amp;&amp; NotaReclameAqui__c &lt;=7, 2, 
+						 IF (NotaReclameAqui__c &gt;=7 &amp;&amp; NotaReclameAqui__c &lt;=10, 3, 0)
+			 )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Nota Reclame Aqui (auxiliar)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

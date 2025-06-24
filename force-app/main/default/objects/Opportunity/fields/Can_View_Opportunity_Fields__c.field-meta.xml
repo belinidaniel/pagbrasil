@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Can_View_Opportunity_Fields__c</fullName>
+    <formula>OR(
+  $Permission.Can_View_All_Opportunity_Stages,
+IF(
+  AND(
+    $Permission.Can_View_Operations_Support_Opportunity_Stages,
+    OR(
+      ISPICKVAL(StageName, &quot;Contract&quot;),
+      ISPICKVAL(StageName, &quot;Go Live&quot;),
+      ISPICKVAL(StageName, &quot;Processing&quot;),
+						ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+						ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_View_Legal_and_Compliance_Opportunity_Stages,
+    OR(
+      ISPICKVAL(StageName, &quot;Discovery&quot;),
+      ISPICKVAL(StageName, &quot;Negotiation&quot;),
+      ISPICKVAL(StageName, &quot;Go Live&quot;),
+      ISPICKVAL(StageName, &quot;Processing&quot;),
+						ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+						ISPICKVAL(StageName, &quot;Closed Terminated&quot;),
+      ISPICKVAL(StageName, &quot;Frozen&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_View_New_Business_Management_Opportunity_Stages,
+    OR(
+      ISPICKVAL(StageName, &quot;Negotiation&quot;),
+      ISPICKVAL(StageName, &quot;Processing&quot;),
+						ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+						ISPICKVAL(StageName, &quot;Closed Terminated&quot;),
+      ISPICKVAL(StageName, &quot;Frozen&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_View_New_Business_Team_Opportunity_Stages,
+    OR(
+        ISPICKVAL(StageName, &quot;Discovery&quot;),
+        ISPICKVAL(StageName, &quot;Negotiation&quot;),
+        ISPICKVAL(StageName, &quot;Processing&quot;),
+								ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+								ISPICKVAL(StageName, &quot;Closed Terminated&quot;),
+        ISPICKVAL(StageName, &quot;Frozen&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_View_General_Business_Opportunity_Stages,
+    OR(
+        ISPICKVAL(StageName, &quot;Discovery&quot;),
+        ISPICKVAL(StageName, &quot;Processing&quot;),
+								ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+								ISPICKVAL(StageName, &quot;Closed Terminated&quot;),
+        ISPICKVAL(StageName, &quot;Frozen&quot;)
+    )
+						
+  ),
+  true,
+  false
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Can View Opportunity Fields</label>
+    <type>Checkbox</type>
+</CustomField>

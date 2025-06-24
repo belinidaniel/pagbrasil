@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidationSettlementFrequency1</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    OR(
+        LOWER($RecordType.DeveloperName) = &quot;national&quot;,
+        LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;
+    ),
+    ISPICKVAL(Settlement_Frequency_1__c,&quot;&quot;),
+				NOT(ISPICKVAL(StageName, &quot;Discovery&quot;))
+)</errorConditionFormula>
+    <errorMessage>The Settlement Frequency 1° field is empty, fill it in to continue.</errorMessage>
+</ValidationRule>

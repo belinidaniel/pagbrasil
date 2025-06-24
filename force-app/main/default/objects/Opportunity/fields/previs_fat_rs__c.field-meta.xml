@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>previs_fat_rs__c</fullName>
+    <description>Qual é a previsão de faturamento mensal (R$) do lead no momento de qualificação?</description>
+    <inlineHelpText>Total processed volume expected via PagBrasil</inlineHelpText>
+    <label>PagBrasil TPV</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Currency</type>
+</CustomField>

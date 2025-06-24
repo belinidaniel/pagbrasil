@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LossReason__c</fullName>
+    <label>Loss Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>LossReason</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Non Responsive – Unable to Qualify</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Non responsive – Qualified</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Refused - Prohibited Category</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Refused – Minimum Revenue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Refused – Not a Business Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Refused - Digital Immature Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Refused - Not investing in Brazil</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Platform not Supported</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Feature not Supported</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Fees</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Settlement terms</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Currency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Project On hold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Coverage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Terminated – Desinvesting in Brazil</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Terminated – Changed to competitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Terminated – Risk Department</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Terminated – Inactive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Closed - Not converted</controllingFieldValue>
+            <valueName>Duplicate Log</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

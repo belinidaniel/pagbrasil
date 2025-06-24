@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UsePagstream__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Will Pagstream be used as the recurring payment solution?</description>
+    <inlineHelpText>Will Pagstream be used as the recurring payment solution?</inlineHelpText>
+    <label>PagStream</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

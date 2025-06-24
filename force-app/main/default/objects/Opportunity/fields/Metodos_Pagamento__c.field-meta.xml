@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Metodos_Pagamento__c</fullName>
+    <label>Métodos de Pagamento a Utilizar</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Boleto Flash</fullName>
+                <default>false</default>
+                <label>Boleto Flash®</label>
+            </value>
+            <value>
+                <fullName>Pix</fullName>
+                <default>false</default>
+                <label>Pix</label>
+            </value>
+            <value>
+                <fullName>Cartão de Crédito Nacional</fullName>
+                <default>false</default>
+                <label>Cartão de Crédito Nacional</label>
+            </value>
+            <value>
+                <fullName>Cartão de Débito Nacional</fullName>
+                <default>false</default>
+                <label>Cartão de Débito Nacional</label>
+            </value>
+            <value>
+                <fullName>Link de Pagamento</fullName>
+                <default>false</default>
+                <label>Link de Pagamento</label>
+            </value>
+            <value>
+                <fullName>PEC Express</fullName>
+                <default>false</default>
+                <label>PEC Flash</label>
+            </value>
+            <value>
+                <fullName>Transferência Bancária Online</fullName>
+                <default>false</default>
+                <label>Transferência Bancária Online</label>
+            </value>
+            <value>
+                <fullName>Payout</fullName>
+                <default>false</default>
+                <label>Payout</label>
+            </value>
+            <value>
+                <fullName>POS Mobile</fullName>
+                <default>false</default>
+                <label>POS Mobile</label>
+            </value>
+            <value>
+                <fullName>Pix Roaming</fullName>
+                <default>false</default>
+                <label>Pix Roaming</label>
+            </value>
+            <value>
+                <fullName>Google Pay</fullName>
+                <default>false</default>
+                <label>Google Pay</label>
+            </value>
+            <value>
+                <fullName>Boleto Bancário</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Boleto Bancário</label>
+            </value>
+            <value>
+                <fullName>Transferência Bancária/Depósito</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Transferência Bancária/Depósito</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

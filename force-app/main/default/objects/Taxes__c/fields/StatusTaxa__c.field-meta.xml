@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StatusTaxa__c</fullName>
+    <label>Status Taxa</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Teste</fullName>
+                <default>false</default>
+                <label>Teste</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

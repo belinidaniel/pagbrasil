@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Potential_TPV</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;,
+ISBLANK(xb_receita_mensal__c)
+)</errorConditionFormula>
+    <errorDisplayField>nb_receita_mensal__c</errorDisplayField>
+    <errorMessage>The Potential TPV field is empty, fill it in to continue.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,107 @@
+<labels>
+    <label>
+        <fullName>Loading</fullName>
+        <value>Loading</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>CompanyName</fullName>
+        <value>Company Name :</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>VatCnpj</fullName>
+        <value>VAT/CNPJ:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Stage</fullName>
+        <value>Stage:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Country</fullName>
+        <value>Country:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>ProductType</fullName>
+        <value>Product Type:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>ProductClass</fullName>
+        <value>Product Class:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Website</fullName>
+        <value>Website:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Tier</fullName>
+        <value>Tier:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>RemittanceCurrency</fullName>
+        <value>Remittance Currency:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>IntegrationType</fullName>
+        <value>IntegrationType:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>ErrorLoadingOpportunity</fullName>
+        <value>Error loading opportunity details:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>SelectTimezone</fullName>
+        <value>Select Timezone:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Select</fullName>
+        <value>Select</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Americas</fullName>
+        <value>Americas</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Brazil</fullName>
+        <value>Brazil</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>RestOfTheWorld</fullName>
+        <value>Rest of the World</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Asia</fullName>
+        <value>Asia</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Domains</fullName>
+        <value>Domains:</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Add</fullName>
+        <value>Add</value>
+        <language>en_US</language>
+    </label>
+    <label>
+        <fullName>Delete</fullName>
+        <value>Delete</value>
+        <language>en_US</language>
+    </label>
+</labels>

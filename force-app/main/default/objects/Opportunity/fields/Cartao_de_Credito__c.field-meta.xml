@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cartao_de_Credito__c</fullName>
+    <label>Cartão de Crédito (Opcionais)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Parcelado</fullName>
+                <default>false</default>
+                <label>Parcelado</label>
+            </value>
+            <value>
+                <fullName>Recorrente/Assinatura</fullName>
+                <default>false</default>
+                <label>Recorrente/Assinatura</label>
+            </value>
+            <value>
+                <fullName>Pagamento com 1 Click</fullName>
+                <default>false</default>
+                <label>Pagamento com 1 Click</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

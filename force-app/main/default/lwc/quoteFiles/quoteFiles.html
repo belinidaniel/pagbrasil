@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Last Synchronized Quote File" icon-name="standard:file">
+        <div class="slds-p-around_medium">
+            <template if:true={latestFile}>
+                <div class="slds-box slds-theme_default">
+                    <a href={latestFile.url} target="_blank" class="slds-text-link">
+                        {latestFile.title}.{latestFile.extension}
+                    </a>
+                    <div class="slds-text-body_small slds-m-top_x-small">
+                        Size: {latestFile.size}
+                    </div>
+                </div>
+            </template>
+            <template if:false={latestFile}>
+                <div class="slds-text-color_weak">
+                    No files found in synchronized quote.
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

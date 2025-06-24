@@ -1,0 +1,1644 @@
+<!--
+  @description       : 
+  @author            : Daniel Belini
+  @group             : 
+  @last modified on  : 05-21-2025
+  @last modified by  : Daniel Belini
+-->
+<apex:page pageStyle=""
+    showHeader="false" 
+    applyHtmlTag="false" 
+    applyBodyTag="false" 
+    apiVersion="28.0" 
+    renderAs="pdf"
+    standardController="Quote"
+    extensions="PropostaNacionalController"
+>
+<apex:variable var="first" value="{!first}" />
+<apex:variable var="show" value="{!show}" />
+<apex:variable var="oppName" value="{!opportunityName}" />
+<apex:variable var="accountOwnerName" value="{!accountOwnerName}" />
+<apex:variable var="accountOwnerEmail" value="{!accountOwnerEmail}" />
+<apex:variable var="accountOwnerMobilePhone" value="{!accountOwnerMobilePhone}" />
+<apex:variable var="containsShopify" value="{!containsShopify}" />
+<apex:variable var="containsSalesforce" value="{!isSalesforce}" />
+<apex:variable var="containsGateway" value="{!containsGateway}" />
+<apex:variable var="containsCreditCard" value="{!containsCreditCard}" />
+<apex:variable var="containsIntermediacao" value="{!isIntermediation}" />
+<apex:variable var="containsPayout" value="{!isPayout}" />
+<apex:variable var="isGatewayAndIntermediation" value="{!isGatewayAndIntermediation}" />
+<apex:variable var="isPagStream" value="{!isPagStream}" />
+<apex:variable var="page09" value="{!page09}" />
+<apex:variable var="page10" value="{!page10}" />
+<apex:variable var="viewPage5" value="{!NOT(containsShopify) && NOT(containsSalesforce)}" />
+<apex:variable var="viewPage6" value="{!viewPage5}" />
+<apex:variable var="shopifyWoocommerceSalesforcePBCheckoutTerms" value="{!shopifyWoocommerceSalesforcePBCheckoutTerms}" />
+<apex:variable var="jSAPIVTexTerms" value="{!jSAPIVTexTerms}" />
+
+<!-- Taxes -->
+<apex:variable var="valueOne" value="{!valueOne}" />
+<apex:variable var="valueTwo" value="{!valueTwo}" />
+<apex:variable var="valueThree" value="{!valueThree}" />
+<apex:variable var="ValueFour" value="{!valueFour}" />
+<apex:variable var="highlightedLineOne" value="{!highlightedLineOne}" />
+<apex:variable var="highlightedLineTwo" value="{!highlightedLineTwo}" />
+<apex:variable var="highlightedLineThree" value="{!highlightedLineThree}" />
+<apex:variable var="highlightedLineFour" value="{!highlightedLineFour}" />
+<apex:variable var="tablePaymentValue" value="{!tablePaymentValue}" />
+<apex:variable var="showOne" value="{!showOne}" />
+<apex:variable var="showTwo" value="{!showTwo}" />
+<apex:variable var="showThree" value="{!showThree}" />
+<apex:variable var="showFour" value="{!showFour}" />
+
+
+<!-- Taxes -->
+<apex:variable var="pixOne" value="{!pixOne}" />
+<apex:variable var="pixTwo" value="{!pixTwo}" />
+<apex:variable var="pixThree" value="{!pixThree}" />
+<apex:variable var="pixFour" value="{!pixFour}" />
+<apex:variable var="pixGateway" value="{!pixGateway}" />
+
+<apex:variable var="creditCardOne" value="{!creditCardOne}" />
+<apex:variable var="creditCardTwo" value="{!creditCardTwo}" />
+<apex:variable var="creditCardThree" value="{!creditCardThree}" />
+<apex:variable var="creditCardFour" value="{!creditCardFour}" />
+<apex:variable var="creditCardGateway" value="{!creditCardGateway}" />
+
+<apex:variable var="debitCardOne" value="{!debitCardOne}" />
+<apex:variable var="debitCardTwo" value="{!debitCardTwo}" />
+<apex:variable var="debitCardThree" value="{!debitCardThree}" />
+<apex:variable var="debitCardFour" value="{!debitCardFour}" />
+<apex:variable var="debitCardGateway" value="{!debitCardGateway}" />
+
+<apex:variable var="boletoOne" value="{!boletoOne}" />
+<apex:variable var="boletoTwo" value="{!boletoTwo}" />
+<apex:variable var="boletoThree" value="{!boletoThree}" />
+<apex:variable var="boletoFour" value="{!boletoFour}" />
+<apex:variable var="boletoGateway" value="{!boletoGateway}" />
+
+<apex:variable var="additionalInstallmentFee2To6" value="{!additionalInstallmentFee2To6}" />
+<apex:variable var="additionalInstallmentFee7To12" value="{!additionalInstallmentFee7To12}" />
+
+<apex:variable var="valueOneFirstOption" value="{!valueOneFirstOption}" />
+<apex:variable var="valueTwoFirstOption" value="{!valueTwoFirstOption}" />
+<apex:variable var="valueThreeFirstOption" value="{!valueThreeFirstOption}" />
+<apex:variable var="valueFourFirstOption" value="{!valueFourFirstOption}" />
+<apex:variable var="valueGatewayFirstOption" value="{!valueGatewayFirstOption}" />
+
+<apex:variable var="valueOneSecondOption" value="{!valueOneSecondOption}" />
+<apex:variable var="valueTwoSecondOption" value="{!valueTwoSecondOption}" />
+<apex:variable var="valueThreeSecondOption" value="{!valueThreeSecondOption}" />
+<apex:variable var="valueFourSecondOption" value="{!valueFourSecondOption}" />
+<apex:variable var="valueGatewaySecondOption" value="{!valueGatewaySecondOption}" />
+
+<apex:variable var="valueOneThirdOption" value="{!valueOneThirdOption}" />
+<apex:variable var="valueTwoThirdOption" value="{!valueTwoThirdOption}" />
+<apex:variable var="valueThreeThirdOption" value="{!valueThreeThirdOption}" />
+<apex:variable var="valueFourThirdOption" value="{!valueFourThirdOption}" />
+<apex:variable var="valueGatewayThirdOption" value="{!valueGatewayThirdOption}" />
+
+<apex:variable var="stringDate" value="{!stringDate}" />
+
+<!-- Frequency Pages -->
+
+<apex:variable var="antecipationFrequencyPageOne" value="{!antecipationFrequencyPageOne}" />
+<apex:variable var="antecipationFrequencyPageTwo" value="{!antecipationFrequencyPageTwo}" />
+<apex:variable var="frequencyCardEligebleDatePageOne" value="{!frequencyCardEligebleDatePageOne}" />
+<apex:variable var="frequencyCardEligebleDatePageTwo" value="{!frequencyCardEligebleDatePageTwo}" />
+<apex:variable var="frequencyPixBoletoDebitoFlashEligebleDatePageOne" value="{!frequencyPixBoletoDebitoFlashEligebleDatePageOne}" />
+<apex:variable var="frequencyPixBoletoDebitoFlashEligebleDatePageTwo" value="{!frequencyPixBoletoDebitoFlashEligebleDatePageTwo}" />
+<apex:variable var="frequencyPage11" value="{!frequencyPage11}" />
+<apex:variable var="showTwoOptions" value="{!showTwoOptions}" />
+
+<!-- Frequency Pages Values -->
+
+<apex:variable var="frequencyPageOneValueOne" value="{!frequencyPageOneValueOne}" />
+<apex:variable var="frequencyPageOneValueTwo" value="{!frequencyPageOneValueTwo}" />
+<apex:variable var="frequencyPageOneValueThree" value="{!frequencyPageOneValueThree}" />
+<apex:variable var="frequencyPageOneValueFour" value="{!frequencyPageOneValueFour}" />
+<apex:variable var="frequencyPageOneValueFive" value="{!frequencyPageOneValueFive}" />
+<apex:variable var="frequencyPageOneValueSix" value="{!frequencyPageOneValueSix}" />
+<apex:variable var="frequencyPageOneValueSeven" value="{!frequencyPageOneValueSeven}" />
+<apex:variable var="frequencyPageOneValueEight" value="{!frequencyPageOneValueEight}" />
+<apex:variable var="frequencyPageOneValueNine" value="{!frequencyPageOneValueNine}" />
+<apex:variable var="frequencyPageOneValueTen" value="{!frequencyPageOneValueTen}" />
+<apex:variable var="frequencyPageOneValueEleven" value="{!frequencyPageOneValueEleven}" />
+<apex:variable var="frequencyPageOneValueTwelve" value="{!frequencyPageOneValueTwelve}" />
+
+<apex:variable var="frequencyPageTwoValueOne" value="{!frequencyPageTwoValueOne}" />
+<apex:variable var="frequencyPageTwoValueTwo" value="{!frequencyPageTwoValueTwo}" />
+<apex:variable var="frequencyPageTwoValueThree" value="{!frequencyPageTwoValueThree}" />
+<apex:variable var="frequencyPageTwoValueFour" value="{!frequencyPageTwoValueFour}" />
+<apex:variable var="frequencyPageTwoValueFive" value="{!frequencyPageTwoValueFive}" />
+<apex:variable var="frequencyPageTwoValueSix" value="{!frequencyPageTwoValueSix}" />
+<apex:variable var="frequencyPageTwoValueSeven" value="{!frequencyPageTwoValueSeven}" />
+<apex:variable var="frequencyPageTwoValueEight" value="{!frequencyPageTwoValueEight}" />
+<apex:variable var="frequencyPageTwoValueNine" value="{!frequencyPageTwoValueNine}" />
+<apex:variable var="frequencyPageTwoValueTen" value="{!frequencyPageTwoValueTen}" />
+<apex:variable var="frequencyPageTwoValueEleven" value="{!frequencyPageTwoValueEleven}" />
+<apex:variable var="frequencyPageTwoValueTwelve" value="{!frequencyPageTwoValueTwelve}" />
+
+<!-- FIELDS -->
+<apex:variable var="taxaPagStream" value="{!taxaPagStream}" />
+<apex:variable var="taxaMinPagStream" value="{!taxaMinPagStream}" />
+<apex:variable var="pagShield" value="{!pagShield}" />
+<apex:variable var="pagShieldPremium" value="{!pagShieldPremium}" />
+<apex:variable var="pagShieldPremiumPercent" value="{!pagShieldPremiumPercent}" />
+<apex:variable var="transferFee" value="{!transferFee}" />
+<apex:variable var="pagBrasilSolutionFee" value="{!pagBrasilSolutionFee}" />
+<apex:variable var="refundCardOrPixAcquirer" value="{!refundCardOrPixAcquirer}" />
+<apex:variable var="refundTransfer" value="{!refundTransfer}" />
+<apex:variable var="chargebackTax" value="{!chargebackTax}" />
+<apex:variable var="adherenceFee" value="{!adherenceFee}" />
+<apex:variable var="minimumMaintenanceFee" value="{!minimumMaintenanceFee}" />
+<apex:variable var="creditCardIntegrationFee" value="{!creditCardIntegrationFee}" />
+<apex:variable var="payoutServiceFee" value="{!payoutServiceFee}" />
+<apex:variable var="payoutTransferFee" value="{!payoutTransferFee}" />
+<apex:variable var="reserve" value="{!reserve}" />
+<apex:variable var="pagBrasilSolutionFeeRange" value="{!pagBrasilSolutionFeeRange}" />
+
+<!-- Create blank page to generate PDF with just a name at the top left -->
+
+<html>
+    <head>
+        <style>
+            @page {
+                margin: 0;
+                padding: 0;
+                size: 1143px 644px;
+                border: none;
+            }
+
+            @font-face {
+                font-family: 'Nunito';
+                src: url('{!URLFOR($Resource.NunitoRegular)}') format('truetype');
+            }
+
+            @font-face {
+                font-family: 'NunitoLight';
+                src: url('{!URLFOR($Resource.NunitoLight)}') format('truetype');
+            }
+
+            @font-face {
+                font-family: 'MontserratBold';
+                src: url('{!URLFOR($Resource.MontserratBold)}') format('truetype');
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 12px;
+                font-family: 'NunitoLight', sans-serif;
+            }
+
+            .page {
+                position: relative;
+                width: 1143px;
+                height: 644px;
+            }
+
+            .background-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .row {
+                display: block;
+            }
+
+            .col {
+                float: left;
+            }
+
+            .clearfix {
+                clear: both;
+            }
+
+            .background-color-blue-100 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #0058B5;
+                width: 1143px;
+                height: 644px;
+            }
+
+            .background-color-white-100 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                background-color: white;
+                width: 100%;
+                height: 100%;
+            }
+
+            .background-color-white {
+                position: absolute;
+                background-color: white;  
+                z-index: 1;
+                top: 0;
+                right: 0;
+                height: 100%;
+            }
+
+            .background-color-blue {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                background-color: #0058B5;
+                width: 100%;
+                height: 100%;
+            }
+
+            .background-color-grey {
+                position: absolute;
+                background-color: #F6F6F6;  
+                z-index: 1;
+                top: 0;
+                right: 0;
+                height: 100%;
+            }
+
+            .page-content {
+                position: absolute;
+                z-index: 2;
+                color: black;
+            }
+
+            .titulo{
+                position: absolute;
+                top: 265px;
+                left: 713px;
+                width: 400px; /* Define a largura da div */
+                height: 300px;
+                padding: 1px; /* Adiciona um espaçamento interno */
+                overflow: hidden; /* Esconde o texto que ultrapassar a largura */
+                text-overflow: ellipsis; /* Adiciona "..." ao final do texto que ultrapassar */
+            }
+
+            .cor{
+                color: #828181;
+            }
+
+            .cor-black{
+                color: #000000;
+            }
+
+            .cor-alternative{
+                color: #3691F8;
+                font-weight: bold;
+            }
+            
+            .additional-terms-item {
+                margin-top: 10px;
+                line-height: 3px;
+            }
+
+            .additional-terms-item::before {
+                font-size: 15px;
+            }
+
+            .terms-list {
+                position: absolute;
+                top: 200px;
+                left: 0;
+                width: 454px;
+                padding-left: 50px;
+                padding-right: 50px;
+                color: #505050;
+                font-size: 12px;
+                line-height: 1.2;
+            }
+
+            .terms-list li {
+                margin-top: 15px;
+            }
+
+            .terms-sublist li::before {
+                top: -7px;
+            }
+
+            .terms-sublist>li:first-child {
+                margin-top: 15px
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            li:first-child {
+                margin-top: 0;
+            }
+
+            li {
+                position: relative; /* Necessário para posicionar o marcador */
+                margin-top: 40px;
+                padding-left: 30px;
+            }
+            
+            .shopify-list>li {
+                margin-top: 30px;
+            }
+
+            li::before {
+                content: "•";
+                font-size: 21px;
+                color: rgb(83, 156, 220);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            
+            .settlement-elegibility-title {
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+
+            .settlement-elegibility-item {
+                overflow: hidden;
+            }
+
+            .settlement-elegibility-label {
+                float: left
+            }
+
+            .settlement-elegibility-value {
+                float: right;
+            }
+
+            .payout-solution-list>li:first-child {
+                margin-top: 0;
+            }
+
+            .payout-solution-list>li {
+
+                position: relative; /* Necessário para posicionar o marcador */
+                margin-top: 20px;
+                padding-left: 30px;
+            }  
+
+            .settlement-elegibility-container {
+                position: absolute;
+                top: 260px;
+                left: 580px;
+                width: 400px;
+                padding: 10px 20px 10px 20px;
+                background-color: #f9f9f9;
+                font-size: 14px;
+            }
+
+            .payout-supplemental-terms-container {
+                position: absolute;
+                top: 170px;
+                left: 580px;
+                width: 440px;
+                padding: 40px 20px 40px 20px;
+                background-color: #007bff;
+                color: #f9f9f9;
+                font-size: 18px;
+            }
+
+            .payout-supplemental-terms-item {
+                
+                border-bottom: 1px solid black;
+                width: 80%;
+                margin: auto;
+            }
+            
+            .payout-supplemental-terms-title {
+                font-weight: bold;
+                margin-bottom: 15px;
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .payout-supplemental-terms-label {
+                
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .payout-supplemental-terms-value {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Page 1 -->
+        <div class="page">
+            <img src="{!$Resource.PNLogoMinimalist}" style="position: absolute; margin-top: 20px; margin-left: 18px; height: 90%" />
+            <div class="page-content">
+                <div class="titulo">
+                    <p style="font-size: 30px; margin: 0;">Proposta Comercial</p>
+                    <p style="font-weight: bold; font-size: 35px;">{!oppName}</p>
+                </div>
+            </div>
+            <img src="{!$Resource.Logo2025}" style="position:absolute; bottom: 30px; right: 52px; width: 250px;"/>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+            <div class="background-color-blue">
+            </div>
+            <!-- <div class="background-color-white-100">
+            </div> -->
+            <div class="page-content">
+                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap; color: white">Proposta Comercial | {!oppName}</p>
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 36px; font-weight: 900;">
+                        Por que<br/>
+                        processar<br/>
+                        pagamentos<br/>
+                        com a PagBrasil?<br/>
+                </p>
+                <ul style="position: absolute; top: 150px; left: 616px; width: 500px; font-size: 18px; color: white">
+                    <li>
+                        Empresa de tecnologia há <strong>15 anos</strong> no mercado de pagamentos digitais
+                    </li>
+                    <li>
+                        Processa pagamentos para empresas de <strong>40 países</strong>
+                    </li>
+                    <li>
+                        Reconhecida por seu <strong>DNA de inovação</strong>, sendo pioneira em 
+                        soluções para Pix e carteiras digitais
+                    </li>
+                    <li>
+                        Plataforma <strong>multiadquirente e multibanco​</strong>
+                    </li>
+                    <li>
+                        Atendimento ao cliente feito por <strong>Account Manager</strong> especialista em <strong>Customer Success​</strong>
+                    </li>
+                </ul>
+            </div>
+            <img src="{!$Resource.Logo2025Branco}" style="position:absolute; z-index: 3; top:580px; left: 10px; width: 133px;"/>
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: white; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: white; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: white; font-size: 9px; font-weight: bold;"/>
+        </div>
+
+        <!-- Page 3 -->
+        <apex:panelGroup rendered="{!containsShopify}">
+            <div class="page">
+                <div class="background-color-grey" style="width: 615px;">
+                </div>
+                <div class="page-content" style="background-color: red; width: 100px;">
+                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                        Por que<br/>
+                        processar<br/>
+                        pagamentos<br/>
+                        com a Solução<br/>
+                        PagBrasil para<br/>
+                        <span style="color: #54ca2f">Shopify?</span>
+                    </p>
+                    <ul class="shopify-list" style="position: absolute; top: 90px; left: 616px; width: 400px; color: #505050; font-size: 15px;">
+                        <li>
+                            <strong>Aplicativos nativos e homologados Shopify:</strong> 
+                            integração rápida e fácil
+                        </li>
+                        <li>
+                            <strong>Desconto</strong> por método de pagamento, aplicável a Pix e Boleto
+                        </li>
+                        <li>
+                            Única processadora a oferecer as carteiras digitais
+                            <strong>Google Pay e Apple Pay</strong>
+                        </li>
+                        <li>
+                            <strong>One Click Buy:</strong> armazena com segurança os dados do cartão
+                            de crédito e conclui o pagamento das compras posteriores em poucos instantes
+                        </li>
+                        <li>
+                            <strong>Pix na Thank You Page:</strong> disponível para Shopify Plus
+                        </li>
+                        <li>
+                            <strong>Pix com 1-Click:</strong>  menos etapas, mais conversões
+                        </li>
+                        <li>
+                            Serviço de <strong>envio de e-mail e SMS</strong> de confirmação e lembrete
+                            de pagamento
+                        </li>
+                    </ul>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+        </apex:panelGroup>
+        
+        <!-- Page 4 -->
+        <apex:panelGroup rendered="{!containsSalesforce}">
+            <div class="page">
+                <div class="background-color-grey" style="width: 615px;">
+                </div>
+                <div class="page-content" style="background-color: red; width: 100px;">
+                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                        Por que<br/>
+                        processar<br/>
+                        pagamentos<br/>
+                        com a Solução<br/>
+                        PagBrasil para<br/>
+                        <span style="color: #007bff ">Salesforce</span>
+                    </p>
+                    <ul style="position: absolute; top: 50px; left: 616px; width: 400px; color: #505050; font-size: 15px;">
+                        <li>
+                            <strong>Cartucho para Salesforce Commerce Cloud da PagBrasil:</strong> tecnologia em pagamentos pensada para otimizar a experiência do usuário e maximizar as conversões da loja
+                        </li>
+                        <li>
+                            <strong>Checkout transparente com máscara de validação de CPF/CNPJ:</strong> aumento de conversão e melhor experiência ao usuário
+                        </li>
+                        <li>
+                            Serviços de <strong>envio de e-mail de confirmação de pagamento</strong>, para todos os métodos de pagamento
+                        </li>
+                        <li>
+                            <strong>Personalizações</strong> para o negócio
+                        </li>
+                        <li>
+                            <strong>Maximizar vendas</strong> com a maior variedade de formas de pagamento e garantia de estabilidade nas transações
+                        </li>
+                        <li>
+                            Soluções exclusivas de pagamento: <strong>Boleto Flash®</strong> e <strong>PagBrasil Pix</strong>
+                        </li>
+                        <li>
+                            Pagamento com <strong>cartão de crédito em até 12x</strong>, com possibilidade de repasse de juros ao consumidor
+                        </li>
+                    </ul>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+        </apex:panelGroup>
+        
+        <!-- Page 5 -->
+        <div class="page">
+            <div class="page-content">
+
+                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                
+                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 40px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                    Por que processar<br/>
+                    pagamentos com o<br/>
+                    PagBrasil Checkout?
+                </p>
+
+                <ul style="position: absolute; top: 240px; left: 40px; width: 430px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 18px; line-height: 1.5;">
+                    <li>
+                        <span style="color: #007bff">Link de Pagamento</span> da PagBrasil com experiência completa de checkout de pagamento
+                    </li>
+                    <li>
+                        Personalização com a marca do negócio
+                    </li>
+                    <li>
+                        Todos os métodos de pagamentos, incluindo Google Pay e Apple Pay e Pix com 1-Click
+                    </li>
+                    <li>
+                        Desconto por método de pagamento
+                    </li>
+                </ul>
+                <img src="{!$Resource.PNPagina5PessoaComNotebook}" style="position: absolute; top: 0; left: 600px; width: 610px;"/>
+            </div>
+            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page">
+            <div class="page-content" style="width: 100%;">
+
+                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+
+                <p style="font-family: 'MontserratBold', sans-serif; margin: 90px auto 0 auto; color: #202020; font-size: 36px; text-align: center;">
+                    Eles <strong>confiam</strong>
+                </p>
+
+                <div style="margin: 50px auto 0 auto; width: 1000px;">
+                    <img src="{!$Resource.PNPagina6Logos}" style="width: 100%" />
+                </div>
+            </div>
+            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+        </div>
+
+        <apex:panelGroup rendered="{!NOT (show) && first}">
+            <apex:variable var="show" value="{!NOT (show)}" />
+        </apex:panelGroup>
+
+        <apex:panelGroup rendered="{!NOT (first)}">
+            <apex:variable var="first" value="{!NOT (first)}" />
+        </apex:panelGroup>
+            
+        <!-- Page 7 -->
+        <div class="page">
+            <img src="{!$Resource.PNPagina6}" class="background-image" />
+            <div class="background-color-white" style="width: 576px;">
+            </div>
+            <div class="page-content">
+                <p style="position: absolute; top: 14px; left: 135px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                <div style="position: absolute; top: 60px; left: 710px; width: 300px;">
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col" style="width: 30%">
+                            <apex:image url="{!$Resource.PNPagina6Icone1}" style="width: 50px;"/>
+                        </div>
+                        <div class="col" style="width: 70%">
+                            <p class="payment-method-description">
+                                <strong>PagBrasil Pix</strong><br/>
+                                Pagamentos instantâneos<br/>
+                                <span style="color: #595959; font-size: margin-top: 4px">- Pix com 1-Click<br/>
+                                - Pix Automático</span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div> 
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col" style="width: 30%">
+                            <apex:image url="{!$Resource.PNPagina6Icone2}" style="width: 50px;"/>
+                        </div>
+                        <div class="col" style="width: 70%">
+                            <p class="payment-method-description">
+                                <strong>Cartão de crédito</strong><br/>
+                                com parcelamento
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col" style="width: 30%">
+                            <apex:image url="{!$Resource.PNPagina6Icone3}" style="width: 50px; padding-left: 5px"/>
+                        </div>
+                        <div class="col" style="width: 70%">
+                            <p class="payment-method-description">
+                                <strong>Carteiras Digitais</strong><br/>
+                                Google Pay, Apple Pay e Samsung Pay
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col" style="width: 30%">
+                            <apex:image url="{!$Resource.PNPagina6Icone4}" style="width: 50px; padding-left: 10px"/>
+                        </div>
+                        <div class="col" style="width: 70%">
+                            <p class="payment-method-description">
+                                <strong>Débito Flash™</strong><br/>
+                                Cartões de Débito 3DS 2.0
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col" style="width: 30%">
+                            <apex:image url="{!$Resource.PNPagina6Icone5}" style="width: 50px;"/>
+                        </div>
+                        <div class="col" style="width: 70%">
+                            <p class="payment-method-description">
+                                <strong>Boleto Flash®</strong><br/>
+                                Boleto bancário instantâneo
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <img src="{!$Resource.Logo2025Preta}" style="background-color: #f6f6f6; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+        </div>
+
+        <!-- Page 8.1 -->
+        <apex:panelGroup rendered="{!showOne}">
+            <div class="page">
+                <img src="{!tablePaymentValue}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 16px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 487px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 487px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 487px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 487px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 487px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
+                    <apex:panelGroup rendered="{!containsCreditCard}">
+                        <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
+                            <li class="additional-terms-item">
+                                Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
+                            </li>
+                            <li class="additional-terms-item">
+                                Cobrança por transação aprovada.
+                            </li>
+                        </ul>
+                    </apex:panelGroup>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
+                    <p>
+                        <strong style="font-size: 13px; font-weight: bold; color:#505050">© {!YEAR(TODAY())} PagBrasil</strong><br/>
+                        <span style="font-size: 9px">informação confidencial - <strong style="color: #808080;">Não divulgar</strong></span>
+                    </p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 8.2 -->
+        <apex:panelGroup rendered="{!showTwo}">
+            <div class="page">
+                <img src="{!tablePaymentValue}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 10px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 390px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 620px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 390px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 620px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 390px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 620px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 390px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 620px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 390px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 620px; font-size:18px; white-space: nowrap;">R$ {!valueGatewaySecondOption}</p>
+                    <apex:panelGroup rendered="{!containsCreditCard}">
+                        <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
+                            <li class="additional-terms-item">
+                                Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
+                            </li>
+                            <li class="additional-terms-item">
+                                Cobrança por transação aprovada.
+                            </li>
+                        </ul>
+                    </apex:panelGroup>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
+                    <p>
+                        <strong style="font-size: 13px; font-weight: bold; color:#505050">© {!YEAR(TODAY())} PagBrasil</strong><br/>
+                        <span style="font-size: 9px">informação confidencial - <strong style="color: #808080;">Não divulgar</strong></span>
+                    </p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 8.3 -->
+        <apex:panelGroup rendered="{!showThree}">
+            <div class="page">
+                <img src="{!tablePaymentValue}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 10px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 405px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 550px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 700px; font-size:20px; white-space: nowrap;">{!valueFourThirdOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 405px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 550px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 700px; font-size:20px; white-space: nowrap;">{!valueThreeThirdOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 405px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 550px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 700px; font-size:20px; white-space: nowrap;">{!valueTwoThirdOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 405px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 550px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 700px; font-size:20px; white-space: nowrap;">{!valueOneThirdOption}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 405px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 550px; font-size:18px; white-space: nowrap;">R$ {!valueGatewaySecondOption}</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 700px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayThirdOption}</p>
+                    <apex:panelGroup rendered="{!containsCreditCard}">
+                        <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
+                            <li class="additional-terms-item">
+                                Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
+                            </li>
+                            <li class="additional-terms-item">
+                                Cobrança por transação aprovada.
+                            </li>
+                        </ul>
+                    </apex:panelGroup>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
+                    <p>
+                        <strong style="font-size: 13px; font-weight: bold; color:#505050">© {!YEAR(TODAY())} PagBrasil</strong><br/>
+                        <span style="font-size: 9px">informação confidencial - <strong style="color: #808080;">Não divulgar</strong></span>
+                    </p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 8.4 -->
+        <apex:panelGroup rendered="{!showFour}">
+            <div class="page">
+                <img src="{!tablePaymentValue}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 10px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 400px; font-size:20px; white-space: nowrap;">{!pixFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoFour}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 400px; font-size:20px; white-space: nowrap;">{!pixThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoThree}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 400px; font-size:20px; white-space: nowrap;">{!pixTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoTwo}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 400px; font-size:20px; white-space: nowrap;">{!pixOne}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardOne}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardOne}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoOne}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 400px; font-size:18px; white-space: nowrap;">R$ {!pixGateway}</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 530px; font-size:18px; white-space: nowrap;">R$ {!creditCardGateway}</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 640px; font-size:18px; white-space: nowrap;">R$ {!debitCardGateway}</p>
+                    <p class="cor-alternative" style="position: absolute; top: 465px; left: 750px; font-size:18px; white-space: nowrap;">R$ {!boletoGateway}</p>
+                    <apex:panelGroup rendered="{!containsCreditCard}">
+                        <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
+                            <li class="additional-terms-item">
+                                Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
+                            </li>
+                            <li class="additional-terms-item">
+                                Cobrança por transação aprovada.
+                            </li>
+                        </ul>
+                    </apex:panelGroup>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
+                    <p>
+                        <strong style="font-size: 13px; font-weight: bold; color:#505050">© {!YEAR(TODAY())} PagBrasil</strong><br/>
+                        <span style="font-size: 9px">informação confidencial - <strong style="color: #808080;">Não divulgar</strong></span>
+                    </p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 9 -->
+        <apex:panelGroup rendered="{!containsGateway}">
+            <div class="page">
+                <img src="{!$Resource.PNPagina8}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 5px; left: 121px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p class="cor" style="position: absolute; top: 370px; left: 861px; font-weight: bold; font-size:18px; white-space: nowrap;">R$ 0,39</p>
+                    <p class="cor" style="position: absolute; top: 370px; left: 965px; font-weight: bold; font-size:18px; white-space: nowrap;">R$ 0,10</p>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color: #f2f2f2; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            </div>
+        </apex:panelGroup>
+
+
+
+        <div class="page">
+            <div class="page-content">
+            <p style="position: absolute; top: 15px; left: 138px; font-weight: bold; white-space: nowrap; color: #161716">{!oppName}</p>
+            
+            <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 120px; font-size:18px; white-space: nowrap;">{!valueOne}</p>
+            <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 120px; font-size:18px; white-space: nowrap;">{!valueTwo}</p>
+            <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 370px; left: 120px; font-size:18px; white-space: nowrap;">{!valueThree}</p>
+            <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 425px; left: 120px; font-size:18px; white-space: nowrap;">{!valueFour}</p>
+
+            <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 430px; font-size:18px; white-space: nowrap;">0,40%</p>
+            <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 430px; font-size:18px; white-space: nowrap;">0,45%</p>
+            <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 370px; left: 430px; font-size:18px; white-space: nowrap;">0,50%</p>
+            <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 425px; left: 430px; font-size:18px; white-space: nowrap;">0,50%</p>
+            
+            </div>
+            <img src="{!$Resource.TermosProcessamentoPage}" class="background-image"/>
+            <img src="{!$Resource.Logo2025Preta}" style="background-color: #f2f2f2; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+
+        </div>
+
+        <!-- Page 10 -->
+        <apex:panelGroup rendered="{!not(containsGateway)}">
+            <apex:panelGroup rendered="{!containsIntermediacao}">
+                <div class="page">
+                    <div class="page-content">
+
+                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                        
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
+                            Opção 1
+                        </p>
+
+                        <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
+                                Termos de<br/>
+                                repasse diário com<br/>
+                                antecipação {!antecipationFrequencyPageOne}
+                            </p>
+
+                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                Antecipação {!antecipationFrequencyPageOne}
+                            </p>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                                Termos de repasse diário<br/>
+                                com repasse de Cartão<br/>
+                                de Crédito no fluxo médio
+                            </p>
+
+                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                Cartão de crédito
+                            </p>
+                        </apex:panelGroup>
+                    
+                        <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
+                            <p><strong>Repasse diário:</strong><br/>
+                            Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
+                        </div>
+                    
+                        <div class="settlement-elegibility-container">
+                            <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
+                            <div class="settlement-elegibility-item">
+                                <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
+                                <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageOne}</p>
+                            </div>
+                            
+                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                <div class="settlement-elegibility-item">
+                                    <p class="settlement-elegibility-label">Cartão de crédito:</p>
+                                    <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageOne}</p>
+                                </div>
+                            </apex:panelGroup>
+                        </div>
+
+                        <p style="position: absolute; top: 400px; left: 580px; padding: 10px; font-size: 12px; line-height: 1.5; white-space: nowrap; color: #ccc">
+                            *D+ se refere ao dia do pagamento pelo Cliente Final.
+                        </p>
+                    
+                        <div style="position: absolute; top: 460px; left: 80px; font-size: 16px;">
+                            <table style="border-collapse: collapse; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Parcelas</th>
+                                        </apex:panelGroup>
+                                        <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Pagamentos</th>
+                                        </apex:panelGroup>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px; white-space: nowrap">À vista</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">2x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">3x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">4x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">5x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">6x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">7x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">8x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">9x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">10x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">11x</th>
+                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">12x</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                        <tr>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueOne}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwo}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueThree}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueFour}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueFive}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueSix}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueSeven}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueEight}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueNine}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTen}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueEleven}</td>
+                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwelve}</td>
+                                        </tr>
+                                    </apex:panelGroup>    
+                                    <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Elegibilidade para Liquidação</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+31</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+46</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+61</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+76</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+91</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+106</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+121</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+136</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+151</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+166</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+181</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+196</td>
+                                    </apex:panelGroup>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                </div>
+            </apex:panelGroup>
+        </apex:panelGroup>
+
+        <!-- Page 10.1 -->
+        <apex:panelGroup rendered="{!not(containsGateway)}">
+            <apex:panelGroup rendered="{!containsIntermediacao}">
+                <apex:panelGroup rendered="{!showTwoOptions}">
+                    <div class="page">
+                        <div class="page-content">
+
+                            <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                            
+                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
+                                Opção 2
+                            </p>
+                            
+                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
+                                    Termos de<br/>
+                                    repasse diário com<br/>
+                                    antecipação {!antecipationFrequencyPageTwo}
+                                </p>
+
+                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                    Antecipação {!antecipationFrequencyPageTwo}
+                                </p>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
+                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                                    Termos de repasse diário<br/>
+                                    com repasse de Cartão<br/>
+                                    de Crédito no fluxo médio
+                                </p>
+
+                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                    Cartão de crédito
+                                </p>
+                            </apex:panelGroup>
+                        
+                            <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
+                                <p><strong>Repasse diário:</strong><br/>
+                                Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
+                            </div>
+                        
+                            <div class="settlement-elegibility-container">
+                                <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
+                                <div class="settlement-elegibility-item">
+                                    <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
+                                    <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageTwo}</p>
+                                </div>
+                                
+                                <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                    <div class="settlement-elegibility-item">
+                                        <p class="settlement-elegibility-label">Cartão de crédito:</p>
+                                        <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageTwo}</p>
+                                    </div>
+                                </apex:panelGroup>
+                            </div>
+
+                            <p style="position: absolute; top: 400px; left: 580px; padding: 10px; font-size: 12px; line-height: 1.5; white-space: nowrap; color: #ccc">
+                                *D+ se refere ao dia do pagamento pelo Cliente Final.
+                            </p>
+                        
+                            <div style="position: absolute; top: 460px; left: 80px; font-size: 16px;">
+                                <table style="border-collapse: collapse; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Parcelas</th>
+                                            </apex:panelGroup>
+                                            <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Pagamentos</th>
+                                            </apex:panelGroup>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px; white-space: nowrap">À vista</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">2x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">3x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">4x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">5x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">6x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">7x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">8x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">9x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">10x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">11x</th>
+                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">12x</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueOne}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTwo}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueThree}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueFour}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueFive}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueSix}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueSeven}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueEight}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueNine}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTen}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueEleven}</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTwelve}</td>
+                                            </apex:panelGroup>
+                                            <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Elegibilidade para Liquidação</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+31</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+46</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+61</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+76</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+91</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+106</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+121</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+136</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+151</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+166</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+181</td>
+                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+196</td>
+                                            </apex:panelGroup>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                        <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                        <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                        <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                    </div>
+                </apex:panelGroup>
+            </apex:panelGroup>
+        </apex:panelGroup>
+
+        <!-- Page 11
+        <apex:panelGroup rendered="{!not(containsGateway)}">
+            <apex:panelGroup rendered="{!containsFluxoMedio}">
+                <div class="page">
+                    <img src="{!page10}" class="background-image"/>
+                    <div class="page-content">
+                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    </div>
+                </div>
+
+                <apex:panelGroup rendered="{!show}">
+                    <div class="content">
+                        <apex:image url="{!$Resource.PNPagina1}" />
+                    </div>
+                    <apex:variable var="show" value="{!NOT (show)}" />
+                    <apex:variable var="first" value="{!NOT (first)}" />
+                </apex:panelGroup>
+
+                <apex:panelGroup rendered="{!NOT (show) && first}">
+                    <apex:variable var="show" value="{!NOT (show)}" />
+                </apex:panelGroup>
+
+                <apex:panelGroup rendered="{!NOT (first)}">
+                    <apex:variable var="first" value="{!NOT (first)}" />
+                </apex:panelGroup>
+            </apex:panelGroup>
+        </apex:panelGroup> -->
+
+
+        <!-- Page 12 -->
+        <apex:panelGroup rendered="{!containsGateway}">
+            <div class="page">
+                <img src="{!frequencyPage11}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 5px; left: 122px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 13 -->
+        <apex:panelGroup rendered="{!containsPayout}">
+            <div class="page">
+                <div class="page-content">
+
+                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
+                        Solução de Payout
+                    </p>
+
+                    <div style="position: absolute; top: 230px; left: 90px; font-size: 18px; line-height: 1.5; width: 450px; font-weight: bold;">
+                        <p>Realize pagamentos, otimize o fluxo financeiro e pague fornecedores, parceiros e sellers!</p>
+                    </div>
+
+                    <ul class="payout-solution-list" style="position: absolute; top: 330px; left: 40px; width: 430px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 18px; line-height: 1.5;">
+                        <li>
+                            Sistema flexível, adaptável para diversos modelos de negócios
+                        </li>
+                        <li>
+                            Evita bitributação
+                        </li>
+                        <li>
+                            100% compliance com o mais alto nível de segurança
+                        </li>
+                    </ul>
+                
+                    <div class="payout-supplemental-terms-container">
+                        <div class="row">
+                            <p class="payout-supplemental-terms-title">Termos complementares para Payout</p>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="row payout-supplemental-terms-item">
+                            <div class="col" style="width: 30%">
+                                <p class="payout-supplemental-terms-label">Taxa de Adesão</p>
+                            </div>
+                            <div class="col" style="width: 70%">
+                                <p class="payout-supplemental-terms-value">R${!adherenceFee}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div> 
+                        <div class="row payout-supplemental-terms-item">
+                            <div class="col" style="width: 30%">
+                                <p class="payout-supplemental-terms-label">Taxa de serviço</p>
+                            </div>
+                            <div class="col" style="width: 70%">
+                                <p class="payout-supplemental-terms-value">{!payoutServiceFee}% calculado sobre o valor repassado</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="row payout-supplemental-terms-item" style="border: none;">
+                            <div class="col" style="width: 30%">
+                                <p class="payout-supplemental-terms-label">Taxa de repasse</p>
+                            </div>
+                            <div class="col" style="width: 70%">
+                                <p class="payout-supplemental-terms-value">R${!payoutTransferFee} por payout</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+        </apex:panelGroup> 
+
+        <!-- Page 14 - Gateway e Shopify, SFCC, VTEX, WC e PBCheckout-->
+        <apex:panelGroup rendered="{!containsGateway}">
+            <apex:panelGroup rendered="{!shopifyWoocommerceSalesforcePBCheckoutTerms}">
+                <div class="page">
+                    <div class="background-color-grey" style="width: 576px;">
+                    </div>
+                    <div class="page-content">
+                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
+                            Termos<br/> <strong>complementares</strong>
+                        </p>
+                        <ul class="terms-list">
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(transferFee))}">
+                            <li>
+                                <strong>Taxa de transferência</strong>: R${!transferFee}
+                            </li>
+                            </apex:outputPanel> 
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
+                            <li>
+                                <strong>Reserva giratória inicial:</strong> {!reserve}%
+                            </li>
+                            </apex:outputPanel>
+                            <li>
+                                <strong>Taxa de chargeback</strong>: R$25,00 (fixo, por chargeback)
+                            </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
+                            <li>
+                                <strong>Taxa de adesão</strong>: R${!adherenceFee}
+                            </li>
+                            </apex:outputPanel>
+                            <li>
+                                <strong>Taxa de Integração Cartão de Crédito</strong>: R$990,00 (por adquirente)
+                            </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(minimumMaintenanceFee))}">
+                            <li>
+                                <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                            </li>
+                            </apex:outputPanel>
+                        </ul>
+                        
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 615px; color: #202020; font-size: 36px;">
+                            Termos<br/> <strong>opcionais</strong>
+                        </p>
+                        <ul style="position: absolute; top: 220px; left: 565px; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
+                            <li>
+                                <strong>Link de Pagamento</strong>: Incluído
+                            </li>
+                            <li>
+                                <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: consulta valores
+                            </li>
+                        </ul>
+                        <p style="position: absolute; top: 500px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                            * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
+                        </p>
+                    </div>
+                    <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                </div>
+            </apex:panelGroup>
+        </apex:panelGroup>
+
+        <!-- Page 15 - Se for Intermediação e API--> 
+        <apex:panelGroup rendered="{!NOT(containsGateway)}">
+            <apex:panelGroup rendered="{!jSAPIVTexTerms}">
+                <div class="page">
+                    <div class="background-color-grey" style="width: 576px;">
+                    </div>
+                    <div class="page-content">
+                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
+                            Termos<br/> <strong>complementares</strong>
+                        </p>
+                        <ul style="position: absolute; top: 220px; left: 0; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
+                        
+                            <li>
+                                <strong>Taxa de transferência</strong>: R${!transferFee}
+                            </li>
+                            <li>
+                                <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) <apex:outputText rendered="{!NOT(containsIntermediacao)}"> ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação) </apex:outputText>
+                            </li>
+                            <li>
+                                <strong>Taxa de chargeback:</strong> R$25,00(fixo, por chargeback) 
+                            </li>
+                            <li>
+                                <strong>Taxa de adesão</strong>: R${!adherenceFee}
+                            </li>
+                            <li>
+                                <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                            </li>
+                        </ul>
+                        
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 615px; color: #202020; font-size: 36px;">
+                            Termos<br/> <strong>opcionais</strong>
+                        </p>
+                        <ul style="position: absolute; top: 220px; left: 565px; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
+                            <li>
+                                <strong>Link de Pagamento</strong>: Incluído
+                            </li>
+                            <li>
+                                <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>: gratuito
+                            </li>
+                        </ul>
+                        <p style="position: absolute; top: 430px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                            * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
+                        </p>
+                    </div>
+                    <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                </div>
+            </apex:panelGroup>
+        </apex:panelGroup>
+
+        <!-- Page 16 -->
+        <apex:panelGroup rendered="{!containsGateway}">
+            <div class="page">
+                <div class="background-color-grey" style="width: 576px;">
+                </div>
+                <div class="page-content">
+                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
+                        Termos<br/> <strong>complementares</strong>
+                    </p>
+                    <ul class="terms-list">
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(transferFee))}">
+                            <li>
+                                <strong>Taxa de transferência</strong>: R$3,50
+                            </li>
+                            </apex:outputPanel> 
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
+                            <li>
+                                <strong>Reserva giratória inicial:</strong> {!reserve}%
+                            </li>
+                            </apex:outputPanel>
+                            <li>
+                                <strong>Taxa de chargeback</strong>: R$25,00 (fixo, por chargeback)
+                            </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
+                            <li>
+                                <strong>Taxa de adesão</strong>: R${!adherenceFee}
+                            </li>
+                            </apex:outputPanel>
+                            <li>
+                                <strong>Taxa de Integração Cartão de Crédito</strong>: R$990,00 (por adquirente)
+                            </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(minimumMaintenanceFee))}">
+                            <li>
+                                <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                            </li>
+                            </apex:outputPanel>
+                        </ul>
+                    
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 615px; color: #202020; font-size: 36px;">
+                        Termos<br/> <strong>opcionais</strong>
+                    </p>
+                    <ul style="position: absolute; top: 220px; left: 565px; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
+                        <li>
+                            <strong>Link de Pagamento</strong>: Incluído
+                        </li>
+                        <li>
+                            <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: gratuito
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </apex:panelGroup>
+        
+        <!-- Page 17 -->
+        <apex:panelGroup rendered="{!isPagStream}">
+            <div class="page">
+                <img src="{!$Resource.PNPagina17}" class="background-image"/>
+                <div class="page-content">
+                    <p style="position: absolute; top: 15px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 68px; left: 756px; white-space: nowrap; font-weight: bold; background-color:#0058b5; color:white; font-size: 40px;">Termos</p>
+                    <apex:outputText value="• {!taxaPagStream} sobre o volume mensal de pagamentos " style="position: absolute; top: 183px; left: 782px; white-space: nowrap; background-color:#0058b5;  color: #C5D9ED; font-size: 16px;"/>
+                    <apex:outputText value="recorrentes" style="position: absolute; top: 203px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 16px;"/>
+                    <apex:outputText value="•  Taxa mínima de manutenção do PagStream® " style="position: absolute; top: 233px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 16px;" escape="false"/>
+                    <apex:outputText value="de {!taxaMinPagStream}" style="position: absolute; top: 253px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 15px;"/>
+                    <p style="position: absolute; top: 263px; left: 782px; width: 340px; background-color:#0058b5; color: #C5D9ED; font-size: 10px;">
+                        * Caso as taxas da solução referentes ao volume mensal transacionado através do PagStream® não superarem esta taxa mínima, a diferença para este valor será cobrada.
+                    </p>
+                    <apex:outputText value="•  R$1,00 adicional sobre transações " style="position: absolute; top: 323px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 15px;"/>
+                    <apex:outputText value="processadas com sucesso por meio do " style="position: absolute; top: 343px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 15px;"/>
+                    <apex:outputText value="Pix Automático" style="position: absolute; top: 363px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 15px;"/>
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #ffffff; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #ffffff; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="position: absolute; top: 609px; left: 1058px; white-space: nowrap; color: #ffffff; font-size: 10px; font-weight: bold;"/>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="background-color:#ffffff; position: absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                
+            </div>
+        </apex:panelGroup>
+
+        <!-- Page 18 -->
+        <div class="page">
+            <img src="{!$Resource.PagShieldPage}" class="background-image" />
+            <div class="page-content">
+                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 60px; left: 80px; font-weight: bold; white-space: nowrap; font-size: 34px;">PagShield®️</p>
+                <apex:outputText value="•   Tecnologia inteligente de autoaprendizagem " style="position: absolute; top: 180px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="do" style="position: absolute; top: 180px; left: 120px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                <apex:outputText value="comportamento de compra, com algoritimo que se" style="position: absolute; top: 200px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                <apex:outputText value="adapta automaticamente a cada e-commerce" style="position: absolute; top: 220px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                <apex:outputText value="•   Ánalise das transações em tempo real, " style="position: absolute; top: 260px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="com geração de" style="position: absolute; top: 261px; left: 370px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                <apex:outputText value="pontuação instantânea" style="position: absolute; top: 280px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+
+                <apex:outputText value="PagShield®️ prevenção de fraude (mandatório)" style="position: absolute; top: 400px; left: 120px; white-space: nowrap; color: #0058B5; font-size: 16px; font-weight: bold"/>
+                <apex:outputText value="PagShield®️ Premium (opcional)" style="position: absolute; top: 450px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
+                <apex:outputText value="PagShield®️ Premium On-Demand (mediante solicitação pontual)" style="position: absolute; top: 500px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
+
+                <apex:outputText value="R$0,50" style="position: absolute; top: 400px; left: 650px; white-space: nowrap; color: #0058B5; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="por transação analisada" style="position: absolute; top: 400px; left: 780px; white-space: nowrap; color: #0058B5; font-size: 15px; font-weight: bold"/>
+                
+                <apex:outputText value="R$9,50" style="position: absolute; top: 440px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="2,0%" style="position: absolute; top: 460px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="por transação revisada" style="position: absolute; top: 435px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="sobre a transação revisada" style="position: absolute; top: 455px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                
+                <apex:outputText value="R$14,50" style="position: absolute; top: 490px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="2,5%" style="position: absolute; top: 510px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="por transação revisada" style="position: absolute; top: 485px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                <apex:outputText value="sobre a transação revisada" style="position: absolute; top: 505px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+            <img src="{!$Resource.Logo2025Preta}" style="position: absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+        </div>
+        
+        <!-- Page 19 - Google Pay e Apple Pay -->
+        <div class="page">
+            <div class="page-content">
+                <p style="position: absolute; top: 15px; left: 138px; font-weight: bold; white-space: nowrap; color: #161716">{!oppName}</p>
+            </div>
+            <img src="{!$Resource.GoogleEApplePayPage}" class="background-image"/>
+            <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+        </div>
+    
+        <!-- Page 19 -->
+        <!-- <div class="page">
+            <img src="{!$Resource.PNPagina19e20Pontos}" class="background-image"/>
+            <div class="page-content">
+                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 90px; left: 578px; font-weight: bold; white-space: nowrap; font-size: 34px;">Google Pay</p>
+                <apex:outputText value="Simplifique a jornada do cliente, facilitando a conclusão " style="position: absolute; top: 235px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="do pagamento em apenas alguns cliques" style="position: absolute; top: 255px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="Aumente a reputação de seu site com uma solução de " style="position: absolute; top: 308px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
+                <apex:outputText value="pagamento Google em seu checkout" style="position: absolute; top: 328px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="Garanta mais conversão, reduzindo a chance de erros no " style="position: absolute; top: 380px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
+                <apex:outputText value="preenchimento das informações de pagamento" style="position: absolute; top: 400px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="0,2% adicional a taxa de cartão de crédito" style="position: absolute; top: 450px; left: 575px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false" />
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            <img src="{!$Resource.PNPagina19GPayCelular}" style="position:absolute; z-index: 3; top:60px; left: 250px; width: 320px;"/>
+            <img src="{!$Resource.PNPagina19GPayCoresLogo}" style="position:absolute; z-index: 2; top:115px; width: 310px !important; height: 420px;"/>
+        </div>
+
+        <!-- Page 20 -->
+        <!-- <div class="page">
+            <img src="{!$Resource.PNPagina19e20Pontos}" class="background-image"/>
+            <div class="page-content">
+                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 85px; left: 578px; font-weight: bold; white-space: nowrap; font-size: 34px;">Apple Pay</p>
+                <apex:outputText value="Simplifique a jornada do cliente, facilitando a conclusão " style="position: absolute; top: 235px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="do pagamento em apenas alguns cliques" style="position: absolute; top: 255px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="Aumente a reputação de seu site com uma solução de " style="position: absolute; top: 308px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
+                <apex:outputText value="pagamento iOS em seu checkout" style="position: absolute; top: 328px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="Garanta mais conversão, reduzindo a chance de erros no " style="position: absolute; top: 380px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
+                <apex:outputText value="preenchimento das informações de pagamento" style="position: absolute; top: 400px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
+                <apex:outputText value="0,2% adicional a taxa de cartão de crédito" style="position: absolute; top: 450px; left: 575px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false" />
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+            <div style="position:absolute; z-index: 2; top:120px; left: 0; width: 320px; height: 380px; background-color: #000">
+                <div style="position: relative; width: 100%; height: 100%;">
+                    <img src="{!$Resource.PNPagina20ApplePay}" style="position:absolute; z-index: 3; bottom:20px; left: 0px; width: 40%;"/>
+                </div>
+            </div>
+            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+            <img src="{!$Resource.PNPagina20Celular}" style="position:absolute; z-index: 3; top:60px; left: 250px; width: 325px;"/>
+        </div> --> 
+
+        
+        
+        <!-- Page 21 -->
+        <div class="page">
+            <div class="background-color-blue-100"> 
+            </div>
+            <div class="page-content" style="width: 100%; height: 644px">     
+                <p style="font-family: 'MontserratBold', sans-serif; margin: 312px auto 0 auto; color: #FFFFFF; font-size: 36px; text-align: center; font-weight: bold;">
+                    Vamos juntos <span style="color: #54ca2f">impulsionar</span> as suas vendas?
+                </p>
+            </div>
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #FFF; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #FFF; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #FFF; font-size: 9px; font-weight: bold;"/>
+        </div>
+
+        <!-- Page 22 -->
+        <div class="page">
+            <div class="page-content">
+                <p style="position: absolute; top: 100px; left: 58px; font-weight: bold; font-size: 35px; white-space: nowrap; color:#030303">Proposta Comercial</p>
+                <p style="position: absolute; top: 220px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color:#030303">{!oppName}</p>
+                <p style="position: absolute; top: 285px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color: #030303;">{!stringDate}</p>
+                <p style="position: absolute; top: 350px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #828181;">*Esta proposta é válida por 30 dias após a data do envio.</p>
+                <p style="position: absolute; top: 220px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerName}</p>
+                <p style="position: absolute; top: 250px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">Account Manager</p>
+                <img src="{!$Resource.PNLocationIcon}" style="position: absolute; top: 345px; left: 680px; width: 35px;"/>
+                <p style="position: absolute; top: 320px; left: 780px; font-size: 16px; white-space: nowrap; color:#030303;">
+                    <strong>PagBrasil Pagamentos Eletrônicos, Ltda.</strong><br/>
+                    Av. Carlos Gomes, 1122 - Torre A - 11º Andar​<br/>
+                    90470-282 - Porto Alegre - RS - Brasil​
+                </p>
+                <img src="{!$Resource.PNSiteIcon}" style="position: absolute; top: 429px; left: 680px; width: 40px;"/>
+                <p style="position: absolute; top: 420px; left: 780px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">www.pagbrasil.com</p>
+            </div>
+            <img src="{!$Resource.Logo2025}" style="position:absolute; bottom: 30px; right: 52px; width: 250px;"/>
+        </div>
+    </body>
+</html>
+</apex:page>

@@ -20,17 +20,48 @@ public class CreateTicketMethod {
         if (input.idOpportunity == null) {
             throw new IllegalArgumentException('Opportunity Id is required.');
         }
-
-        if (input.priority == null || String.isEmpty(input.priority)) {
-            throw new IllegalArgumentException('Priority is required.');
-        }
+        
+         if (input.priority == null || String.isEmpty(input.priority)) {
+             throw new IllegalArgumentException('Priority is required.');
+         }
 
         String priority = input.priority;
         Date dataCreateAccount = input.dataCreateAccount;
 
-        sendIntegration(input);
+        sendPdfThroughEmail(input);
+        // sendIntegration(input);
         // Logic to create a ticket using the idOpportunity
     }
+
+    private static void sendPdfThroughEmail(FlowInputs input) {
+        if (input.idOpportunity != null) {
+            try {
+                PageReference pg = Page.OpportunityFields;
+                pg.getParameters().put('id', input.idOpportunity);
+
+                Blob filePdf = pg.getContentaspdf();
+
+                String fileName = 'Opp.pdf';
+                
+                Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+                Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+                attachment.setFileName(fileName);
+                attachment.setBody(filePdf);
+                attachment.setContentType('application/pdf');
+                email.setToAddresses(new String[] { 'eduardo.teixeira@srconsulting.io' } ); 
+                email.setSubject('Opportunity PDF Test');
+                email.setPlainTextBody('Test');
+                email.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
+                Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
+
+            } catch (Exception e) {
+                throw new IllegalArgumentException('Failed to send PDF through email: ' + e.getMessage());
+            }
+        } else {
+            throw new IllegalArgumentException('No Opportunity found with the provided Id.');
+        }
+    }
+
     private static void sendIntegration(FlowInputs input){
         Opportunity opp = OpportunitySelector.getCompleteOpportunityById(input.idOpportunity);
         Blob filePdf;

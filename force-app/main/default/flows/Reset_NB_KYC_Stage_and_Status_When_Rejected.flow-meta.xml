@@ -4,7 +4,7 @@
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Reset NB KYC Stage and Status when rejected {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Reset NB KYC Stage and Status when rejected</label>
+    <label>Reset NB KYC Stage and Status when rejected (NEW)</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -25,8 +25,8 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <name>Reset_NB_KYC_Legal_Status_and_Stage</name>
-        <label>Reset NB KYC Legal Status and Stage</label>
+        <name>Reset_NB_KYC_Stage_and_Status</name>
+        <label>Reset NB KYC Stage and Status</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
         <inputAssignments>
@@ -47,17 +47,17 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Reset_NB_KYC_Legal_Status_and_Stage</targetReference>
+            <targetReference>Reset_NB_KYC_Stage_and_Status</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>LegalApprovalStatus__c</field>
+            <field>Legal_Approval_Status__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Rejected</stringValue>
             </value>
         </filters>
-        <object>KYC_NB__c</object>
+        <object>KYC__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>

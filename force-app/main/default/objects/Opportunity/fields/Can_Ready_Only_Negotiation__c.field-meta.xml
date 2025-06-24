@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Can_Ready_Only_Negotiation__c</fullName>
+    <formula>OR(
+ISPICKVAL(StageName, &quot;Negotiation&quot;),
+ISPICKVAL(StageName, &quot;Compliance&quot;),
+ISPICKVAL(StageName, &quot;Contract&quot;),
+ISPICKVAL(StageName, &quot;Homologation&quot;),
+ISPICKVAL(StageName, &quot;Go Live&quot;),
+ISPICKVAL(StageName, &quot;Frozen&quot;),
+ISPICKVAL(StageName, &quot;Processing&quot;),
+ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Can Ready Only Negotiation</label>
+    <type>Checkbox</type>
+</CustomField>

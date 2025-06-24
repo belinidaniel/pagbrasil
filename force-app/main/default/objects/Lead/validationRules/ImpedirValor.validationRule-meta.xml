@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirValor</fullName>
+    <active>true</active>
+    <description>Impede que o usuário insira um valor maior que 10.</description>
+    <errorConditionFormula>NotaReclameAqui__c &gt; 10  || NotaReclameAqui__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>NotaReclameAqui__c</errorDisplayField>
+    <errorMessage>Insira valores de 0 a 10.</errorMessage>
+</ValidationRule>

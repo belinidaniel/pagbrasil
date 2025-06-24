@@ -1,0 +1,7 @@
+<template>
+	<button class='mainBtn' onclick={handleClick}>Buscar Dados Big Boost</button>
+
+	<template if:true={isLoading}>
+		<lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+	</template>
+</template>

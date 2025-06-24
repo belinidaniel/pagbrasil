@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Descricao_Empresa__c</fullName>
+    <description>Detalhar o ramo de atividade da empresa e a forma de comercialização dos produtos.</description>
+    <inlineHelpText>Detalhar o ramo de atividade da empresa e a forma de comercialização dos produtos.</inlineHelpText>
+    <label>Descrição Detalhada do Produto/Serviço</label>
+    <length>131072</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

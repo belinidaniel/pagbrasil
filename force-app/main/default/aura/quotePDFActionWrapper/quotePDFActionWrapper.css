@@ -1,0 +1,16 @@
+.THIS .slds-modal {
+    z-index: 1050; /* maior que padrão de modais internos */
+}
+.THIS .slds-backdrop {
+    z-index: 1040;
+}
+
+.THIS .slds-backdrop.slds-backdrop_open {
+    background-color: transparent !important;
+    opacity: 0 !important;
+}
+
+
+.THIS .slds-backdrop.slds-backdrop_open {
+    display: none !important;
+}

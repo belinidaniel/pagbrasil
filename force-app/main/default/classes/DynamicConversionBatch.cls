@@ -30,8 +30,8 @@
  * 
  * 
  * @author            : aydhan.passos
- * @last modified on  : 04-06-2025
- * @last modified by  : aydhan.passos
+ * @last modified on  : 17-06-2025
+ * @last modified by  : Marcelo Duarte
  */
 public class DynamicConversionBatch implements Database.Batchable<SObject>, Database.Stateful {
 
@@ -121,7 +121,7 @@ public class DynamicConversionBatch implements Database.Batchable<SObject>, Data
                     }
                     
                     // Field XB
-                    String xbPicklist = (String)sobj.get('xb_receita_mensal__c');
+                    String xbPicklist = (String)sobj.get('nb_receita_mensal__c');
                     String xbRange = getXBRangeValue(xbPicklist);
                     if(xbRange != null){
                         sobj.put('tempXBvalue__c', xbRange);
@@ -156,7 +156,7 @@ public class DynamicConversionBatch implements Database.Batchable<SObject>, Data
                     if(xbTexto != null){
                         try {
                             Decimal xbNumero = Decimal.valueOf(xbTexto);
-                            sobj.put('xb_receita_mensal__c', xbNumero);
+                            sobj.put('nb_receita_mensal__c', xbNumero);
                         } catch(Exception e) {
                             totalErrors++;
                             errorMessages.add('Erro na conversão XB do registro Id ' + sobj.get('Id') + ': ' + e.getMessage());

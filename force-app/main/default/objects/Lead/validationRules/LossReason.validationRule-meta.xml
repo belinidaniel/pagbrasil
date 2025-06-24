@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LossReason</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND ( 
+				ISPICKVAL (Status , &apos;Closed - Not converted&apos;) ,
+  	 ISBLANK (TEXT(LossReason__c) )
+				)</errorConditionFormula>
+    <errorDisplayField>LossReason__c</errorDisplayField>
+    <errorMessage>Preencha o campo para salvar o registro.</errorMessage>
+</ValidationRule>

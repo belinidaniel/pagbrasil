@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cloudtalk__ForwardedToExternalPhone__c</fullName>
+    <deprecated>false</deprecated>
+    <description>External phone number on which was the call forwarded.</description>
+    <label>Forwarded to external phone</label>
+    <required>false</required>
+    <type>Phone</type>
+</CustomField>

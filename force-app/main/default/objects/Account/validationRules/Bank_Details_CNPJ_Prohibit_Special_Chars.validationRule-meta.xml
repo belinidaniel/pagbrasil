@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_Details_CNPJ_Prohibit_Special_Chars</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(REGEX(Bank_Details_CNPJ__c, &quot;^[a-zA-Z0-9_]*$&quot;))</errorConditionFormula>
+    <errorDisplayField>Bank_Details_CNPJ__c</errorDisplayField>
+    <errorMessage>Special characters are not allowed</errorMessage>
+</ValidationRule>

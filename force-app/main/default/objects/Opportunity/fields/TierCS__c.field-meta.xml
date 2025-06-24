@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TierCS__c</fullName>
+    <label>Tier CS</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Top Tier</fullName>
+                <default>false</default>
+                <label>Top Tier</label>
+            </value>
+            <value>
+                <fullName>High Tier</fullName>
+                <default>false</default>
+                <label>High Tier</label>
+            </value>
+            <value>
+                <fullName>Middle Touch</fullName>
+                <default>false</default>
+                <label>Middle Touch</label>
+            </value>
+            <value>
+                <fullName>Low Touch</fullName>
+                <default>false</default>
+                <label>Low Touch</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

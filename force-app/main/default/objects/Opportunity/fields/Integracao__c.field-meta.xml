@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integracao__c</fullName>
+    <label>Plataforma Utilizada</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>InHouse</fullName>
+                <default>false</default>
+                <label>InHouse</label>
+            </value>
+            <value>
+                <fullName>Shopify</fullName>
+                <default>false</default>
+                <label>Shopify</label>
+            </value>
+            <value>
+                <fullName>Shopify - Buda</fullName>
+                <default>false</default>
+                <label>Shopify - Buda</label>
+            </value>
+            <value>
+                <fullName>Shopify - CartX</fullName>
+                <default>false</default>
+                <label>Shopify - CartX</label>
+            </value>
+            <value>
+                <fullName>Woocommerce</fullName>
+                <default>false</default>
+                <label>Woocommerce</label>
+            </value>
+            <value>
+                <fullName>Magento</fullName>
+                <default>false</default>
+                <label>Magento</label>
+            </value>
+            <value>
+                <fullName>Vtex</fullName>
+                <default>false</default>
+                <label>Vtex</label>
+            </value>
+            <value>
+                <fullName>PrestaShop</fullName>
+                <default>false</default>
+                <label>PrestaShop</label>
+            </value>
+            <value>
+                <fullName>OpenCart</fullName>
+                <default>false</default>
+                <label>OpenCart</label>
+            </value>
+            <value>
+                <fullName>ACI</fullName>
+                <default>false</default>
+                <label>ACI</label>
+            </value>
+            <value>
+                <fullName>Computop</fullName>
+                <default>false</default>
+                <label>Computop</label>
+            </value>
+            <value>
+                <fullName>Salesforce CC</fullName>
+                <default>false</default>
+                <label>Salesforce CC</label>
+            </value>
+            <value>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+                <label>Oracle</label>
+            </value>
+            <value>
+                <fullName>NuvemShop</fullName>
+                <default>false</default>
+                <label>NuvemShop</label>
+            </value>
+            <value>
+                <fullName>Loja Integrada</fullName>
+                <default>false</default>
+                <label>Loja Integrada</label>
+            </value>
+            <value>
+                <fullName>Tray</fullName>
+                <default>false</default>
+                <label>Tray</label>
+            </value>
+            <value>
+                <fullName>Get Commerce</fullName>
+                <default>false</default>
+                <label>Get Commerce</label>
+            </value>
+            <value>
+                <fullName>Outra</fullName>
+                <default>false</default>
+                <label>Outra</label>
+            </value>
+            <value>
+                <fullName>InHouse / API</fullName>
+                <default>false</default>
+                <label>InHouse / API</label>
+            </value>
+            <value>
+                <fullName>PagBrasil.js</fullName>
+                <default>false</default>
+                <label>PagBrasil.js</label>
+            </value>
+            <value>
+                <fullName>API</fullName>
+                <default>false</default>
+                <label>API</label>
+            </value>
+            <value>
+                <fullName>Payment Link + API</fullName>
+                <default>false</default>
+                <label>Payment Link + API</label>
+            </value>
+            <value>
+                <fullName>Paymentl LInk Offline</fullName>
+                <default>false</default>
+                <label>Paymentl LInk Offline</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+            <value>
+                <fullName>JS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>JS</label>
+            </value>
+            <value>
+                <fullName>Link de Pagamentos</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Link de Pagamentos</label>
+            </value>
+            <value>
+                <fullName>OutraSpecify</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>OutraSpecify</label>
+            </value>
+            <value>
+                <fullName>PB Checkout</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PB Checkout</label>
+            </value>
+            <value>
+                <fullName>Shopify with Buda</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Shopify with Buda</label>
+            </value>
+            <value>
+                <fullName>Shopify with Cart Panda</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Shopify with Cart Panda</label>
+            </value>
+            <value>
+                <fullName>Shopify with Yampi</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Shopify with Yampi</label>
+            </value>
+            <value>
+                <fullName>Wix</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Wix</label>
+            </value>
+            <value>
+                <fullName>iFrame</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>iFrame</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

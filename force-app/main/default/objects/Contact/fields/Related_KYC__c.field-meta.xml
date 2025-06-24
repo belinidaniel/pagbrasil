@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Related_KYC__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Related KYC</label>
+    <referenceTo>KYC__c</referenceTo>
+    <relationshipLabel>Contacts</relationshipLabel>
+    <relationshipName>KYC_Contacts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

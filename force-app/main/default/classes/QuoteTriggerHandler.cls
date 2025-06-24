@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 04-10-2025
- * @last modified by  : aydhan.passos
+ * @last modified on  : 05-27-2025
+ * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
 
@@ -163,12 +163,15 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         continue;
                     }
                 }
-
+                System.debug('quote priceBookEntry: ' + quote.Pricebook2Id);
                 if(priceBookEntry.UseTaxa__c){
                     addValueTaxToLineItem(priceBookEntry, opportunity, quote, quoteLineItems);
                 } else {
                     Decimal discount = applyDiscount(opportunity, priceBookEntry);
-
+                    if( quote.Pricebook2Id != priceBookEntry.Pricebook2Id ){
+                        System.debug('quoteLineItems PricebookEntryId: ' + priceBookEntry.Id);
+                        System.debug('quoteLineItems PricebookEntryId: ' + priceBookEntry.Pricebook2Id);
+                    }
                     quoteLineItems.add(new QuoteLineItem(
                         PricebookEntryId = priceBookEntry.Id,
                         Product2Id = priceBookEntry.Product2Id,

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InputCurrencyInPercentValue</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISNEW()), PRIORVALUE(PercentValue__c) &gt;= 0, UnitPrice  &gt; 0)</errorConditionFormula>
+    <errorDisplayField>UnitPrice</errorDisplayField>
+    <errorMessage>Produto com valor em porcentagem, favor não alterar o valor monetário.</errorMessage>
+</ValidationRule>

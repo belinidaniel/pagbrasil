@@ -1,5 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_NB</name>
+        <label>Send email NB</label>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Send_To</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Pagbrasil - Form Filling</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-staging.pagbrasil.com/?id={!get_KYC_NB.Unique_Link__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>useLineBreaks</name>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>get_selected_contact.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>relatedRecordId</name>
+        </inputParameters>
+        <inputParameters>
+            <name>logEmailOnSend</name>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>1.0.1</versionString>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_XB</name>
+        <label>Send Email XB</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Send_To</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Pagbrasil - Form Filling</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-xb-staging.pagbrasil.com/?id={!get_KYC_XB.Unique_Link__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>useLineBreaks</name>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>get_selected_contact.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>relatedRecordId</name>
+        </inputParameters>
+        <inputParameters>
+            <name>logEmailOnSend</name>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>1.0.1</versionString>
+    </actionCalls>
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <customProperties>
@@ -12,7 +126,7 @@
         <name>nb_or_xb_opportunity</name>
         <label>nb or xb opportunity?</label>
         <locationX>314</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>national</name>
@@ -45,9 +159,24 @@
             <label>crossborder</label>
         </rules>
     </decisions>
+    <dynamicChoiceSets>
+        <name>Emails</name>
+        <dataType>String</dataType>
+        <displayField>Email</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>get_opportunity.AccountId</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <valueField>Email</valueField>
+    </dynamicChoiceSets>
     <environments>Default</environments>
     <interviewLabel>Enviar KYC flow {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Enviar KYC flow</label>
+    <label>Enviar KYC flow (NEW)</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -71,7 +200,7 @@
         <name>get_KYC_NB</name>
         <label>get KYC_NB</label>
         <locationX>50</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>syncing_KYC_NB_Number</targetReference>
@@ -85,14 +214,14 @@
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>KYC_NB__c</object>
+        <object>KYC__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>get_KYC_XB</name>
         <label>get KYC_XB</label>
         <locationX>314</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>syncing_KYC_XB_Number</targetReference>
@@ -130,11 +259,42 @@
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>get_selected_contact</name>
+        <label>get selected contact</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>nb_or_xb_opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>get_opportunity.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Email</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Send_To</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>syncing_KYC_NB_Number</name>
         <label>syncing KYC_NB Number</label>
         <locationX>50</locationX>
-        <locationY>566</locationY>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Send_Email_NB</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -155,7 +315,10 @@
         <name>syncing_KYC_XB_Number</name>
         <label>syncing KYC_XB Number</label>
         <locationX>314</locationX>
-        <locationY>566</locationY>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Send_Email_XB</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -181,12 +344,21 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>nb_or_xb_opportunity</targetReference>
+            <targetReference>get_selected_contact</targetReference>
         </connector>
         <fields>
             <name>testoppname</name>
             <fieldText>&lt;p&gt;{!get_opportunity.Name}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Send_To</name>
+            <choiceReferences>Emails</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Send to</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Send</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -200,6 +372,14 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>contactRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>

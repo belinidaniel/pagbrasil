@@ -9,7 +9,7 @@
         <controllingField>Type</controllingField>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
             <value>
                 <fullName>Afghanistan</fullName>
                 <default>false</default>
@@ -821,6 +821,11 @@
                 <label>Norfolk Island</label>
             </value>
             <value>
+                <fullName>Northern Mariana Islands</fullName>
+                <default>false</default>
+                <label>Northern Mariana Islands</label>
+            </value>
+            <value>
                 <fullName>North Korea</fullName>
                 <default>false</default>
                 <label>North Korea</label>
@@ -829,11 +834,6 @@
                 <fullName>North Macedonia</fullName>
                 <default>false</default>
                 <label>North Macedonia</label>
-            </value>
-            <value>
-                <fullName>Northern Mariana Islands</fullName>
-                <default>false</default>
-                <label>Northern Mariana Islands</label>
             </value>
             <value>
                 <fullName>Norway</fullName>
@@ -1263,6 +1263,7 @@
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Nacional (NB)</controllingFieldValue>
+            <controllingFieldValue>Cross Border (XB)</controllingFieldValue>
             <valueName>Brazil</valueName>
         </valueSettings>
         <valueSettings>
@@ -1903,15 +1904,15 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Cross Border (XB)</controllingFieldValue>
+            <valueName>Northern Mariana Islands</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cross Border (XB)</controllingFieldValue>
             <valueName>North Korea</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Cross Border (XB)</controllingFieldValue>
             <valueName>North Macedonia</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Cross Border (XB)</controllingFieldValue>
-            <valueName>Northern Mariana Islands</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Cross Border (XB)</controllingFieldValue>

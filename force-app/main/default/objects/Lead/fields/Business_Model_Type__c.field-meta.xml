@@ -7,29 +7,7 @@
     <type>MultiselectPicklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>B2B</fullName>
-                <default>false</default>
-                <label>B2B</label>
-            </value>
-            <value>
-                <fullName>B2C</fullName>
-                <default>false</default>
-                <label>B2C</label>
-            </value>
-            <value>
-                <fullName>B2B2C</fullName>
-                <default>false</default>
-                <label>B2B2C</label>
-            </value>
-            <value>
-                <fullName>D2C</fullName>
-                <default>false</default>
-                <label>D2C</label>
-            </value>
-        </valueSetDefinition>
+        <valueSetName>Lead_Business_Model_Type</valueSetName>
     </valueSet>
     <visibleLines>4</visibleLines>
 </CustomField>

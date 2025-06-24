@@ -10,8 +10,12 @@ public with sharing class HomologationFormSendEmail {
             WHERE Id = :inputs[0].recipient
             LIMIT 1];
 
-        String emailBody = buildEmailBody(requiredEmptyOrNullFieldsMap);
-        sendEmail(recipient.Email, emailBody);
+        String emailBody = buildEmailBody(
+            requiredEmptyOrNullFieldsMap,
+            inputs[0].initialContent,
+            inputs[0].language
+        );
+        sendEmail(recipient.Email, inputs[0].subject, emailBody);
     }
 
     private static Map<String, List<String>> builRequiredEmptyOrNullFieldsMap(List<HomologationForm__c> forms, String language) {
@@ -25,11 +29,19 @@ public with sharing class HomologationFormSendEmail {
         return requiredEmptyOrNullFieldsMap;
     }
 
-    private static String buildEmailBody(Map<String, List<String>> requiredEmptyOrNullFieldsMap) {
-        String emailBody = 'Prezado, solicito informações referentes aos formulários de homologação:\n\n';
+    private static String buildEmailBody(
+        Map<String, List<String>> requiredEmptyOrNullFieldsMap,
+        String initialContent,
+        String language
+    ) {
+        String emailBody = initialContent + '\n\n';
 
         for (String formURL : requiredEmptyOrNullFieldsMap.keySet()) {
-            emailBody += 'Formulário de homologação: ' + formURL + '\n';
+            if (language == 'pt_BR') {
+                emailBody += 'Formulário de homologação: ' + formURL + '\n';
+            } else {
+                emailBody += 'Homologation form: ' + formURL + '\n';
+            }
             List<String> fields = requiredEmptyOrNullFieldsMap.get(formURL);
             for (String field : fields) {
                 emailBody += '- ' + field + '\n';
@@ -40,12 +52,12 @@ public with sharing class HomologationFormSendEmail {
         return emailBody;
     }
 
-    private static void sendEmail(String toEmail, String body) {
+    private static void sendEmail(String toEmail, String subject, String body) {
         
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
         Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
         email.setToAddresses(new String[] { toEmail });
-        email.setSubject('Campos obrigatórios não preenchidos nos formulários de homologação');
+        email.setSubject(subject);
         email.setPlainTextBody(body);
         emails.add(email);
         
@@ -81,5 +93,9 @@ public with sharing class HomologationFormSendEmail {
         public String recipient;
         @InvocableVariable
         public String language;
+        @InvocableVariable
+        public String initialContent;
+        @InvocableVariable
+        public String subject;
     }
 }

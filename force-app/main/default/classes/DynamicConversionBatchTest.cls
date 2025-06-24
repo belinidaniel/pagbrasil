@@ -21,7 +21,6 @@ private class DynamicConversionBatchTest {
             CloseDate = Date.today(),
             // Valores picklist para NB e XB (string) conforme os mapas
             nb_receita_mensal__c = 50000,
-            xb_receita_mensal__c = 100000,
             // Preenche os campos temporários com algum valor não nulo para atender a condição do query locator
             tempNBvalue__c = '50000',
             tempXBvalue__c = '100000',
@@ -46,7 +45,6 @@ private class DynamicConversionBatchTest {
             CloseDate = Date.today(),
             // Esses valores serão substituídos no PostConversion
             nb_receita_mensal__c = 0,
-            xb_receita_mensal__c = 0,
             // Valores temporários simulando já convertidos (válidos)
             tempNBvalue__c = '50000',
             tempXBvalue__c = '100000',
@@ -69,7 +67,7 @@ private class DynamicConversionBatchTest {
         Test.stopTest();
         
         // Recupera o registro para verificar se os valores temporários foram atualizados
-        Opportunity opp = [SELECT Id, nb_receita_mensal__c, xb_receita_mensal__c, tempNBvalue__c, tempXBvalue__c FROM Opportunity LIMIT 1];
+        Opportunity opp = [SELECT Id, nb_receita_mensal__c, tempNBvalue__c, tempXBvalue__c FROM Opportunity LIMIT 1];
         // Para 'Até R$50 mil', o mapeamento definido é '50000'
         System.assertEquals('50000', opp.get('tempNBvalue__c'));
         // Para 'Até R$100K', o mapeamento definido é '100000'
@@ -86,7 +84,7 @@ private class DynamicConversionBatchTest {
         Test.stopTest();
         
         // Recupera o registro para verificar se os valores legados foram atualizados com os decimais convertidos
-        Opportunity opp = [SELECT Id, nb_receita_mensal__c, xb_receita_mensal__c, tempNBvalue__c, tempXBvalue__c FROM Opportunity LIMIT 1];
+        Opportunity opp = [SELECT Id, nb_receita_mensal__c, tempNBvalue__c, tempXBvalue__c FROM Opportunity LIMIT 1];
         // Conversão da string '50000' para Decimal deve resultar em 50000
         Decimal nbConverted = Decimal.valueOf((String)opp.tempNBvalue__c);
         Decimal xbConverted = Decimal.valueOf((String)opp.tempXBvalue__c);

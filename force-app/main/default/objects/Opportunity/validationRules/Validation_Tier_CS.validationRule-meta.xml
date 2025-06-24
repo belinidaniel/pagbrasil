@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Tier_CS</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISPICKVAL(Moeda__c,&quot;&quot;),
+ISPICKVAL(StageName, &quot;Go Live&quot;)
+)</errorConditionFormula>
+    <errorMessage>There must be a CS Tier to change the stage to Go Live.</errorMessage>
+</ValidationRule>

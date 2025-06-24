@@ -154,4 +154,35 @@ public with sharing class KYCPdfController {
             this.fileUrl = fileUrl;
         }
     }
+
+	public static ContentVersion generateAndSavePdf(Id recordId) {
+		PageReference pdfPage = Page.KYCPdfRenderPage;
+		pdfPage.getParameters().put('id', recordId);
+
+		Blob pdfBlob = pdfPage.getContent();
+
+		ContentVersion version = new ContentVersion();
+		version.Title = 'KYC PDF - ' + recordId;
+		version.PathOnClient = 'KYC_Document.pdf';
+		version.VersionData = pdfBlob;
+		version.IsMajorVersion = true;
+		insert version;
+
+		ContentDocumentLink link = new ContentDocumentLink();
+		link.ContentDocumentId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :version.Id].ContentDocumentId;
+		link.LinkedEntityId = recordId;
+		link.ShareType = 'V';
+		link.Visibility = 'AllUsers';
+		insert link;
+
+		return version;
+	}
+
+	public void generatePdf() {
+		Id recordId = ApexPages.currentPage().getParameters().get('id');
+
+		if (recordId != null) {
+			generateAndSavePdf(recordId);
+		}
+	}
 }

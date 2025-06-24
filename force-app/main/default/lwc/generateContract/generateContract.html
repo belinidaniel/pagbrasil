@@ -4,36 +4,6 @@
             <img src={PagLogoUrl} style="width: 280px; height: auto;"/>
         </div>
         
-        <lightning-card title="Date of first review">
-            <div class="slds-grid slds-wrap slds-gutters">
-                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
-                    <lightning-combobox 
-                        name="monthPicklist"
-                        label="Month of first review"
-                        placeholder="Select the month"
-                        options={firstReviewOptions}
-                        value={month}
-                        onchange={handleChange}
-                        dropdown-alignment="auto">
-                    </lightning-combobox>
-                </div>
-                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
-                    <lightning-combobox 
-                        name="yearPicklist"
-                        label="Year of first review"
-                        placeholder="Select the year"
-                        options={firstReviewYearOptions}
-                        value={selectedYear}
-                        onchange={handleYearChange}>
-                    </lightning-combobox>
-                </div>
-            </div>
-
-            <div class="slds-m-vertical_xx-small">
-                <lightning-input label="KYC form link" type="text" placeholder="Provide the link" data-id="kycLinkInput"></lightning-input>
-            </div>
-        </lightning-card>
-        
         <lightning-card title="Contract start date">
             <div class="slds-grid slds-wrap slds-gutters">
                 <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
@@ -81,6 +51,32 @@
                         options={yearOptions}
                         value={maintenanceYear}
                         onchange={handleMaintenanceYear}>
+                    </lightning-combobox>
+                </div>
+            </div>
+        </lightning-card>
+
+        <lightning-card title="Date of first review">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                    <lightning-combobox 
+                        name="monthPicklist"
+                        label="Month of first review"
+                        placeholder="Select the month"
+                        options={firstReviewOptions}
+                        value={month}
+                        onchange={handleChange}
+                        dropdown-alignment="auto">
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                    <lightning-combobox 
+                        name="yearPicklist"
+                        label="Year of first review"
+                        placeholder="Select the year"
+                        options={firstReviewYearOptions}
+                        value={selectedYear}
+                        onchange={handleYearChange}>
                     </lightning-combobox>
                 </div>
             </div>

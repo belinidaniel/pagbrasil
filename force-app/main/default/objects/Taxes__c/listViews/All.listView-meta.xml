@@ -17,5 +17,10 @@
     <columns>TaxaBaseAntecipacao__c</columns>
     <columns>IsPercent__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product__c</field>
+        <operation>contains</operation>
+        <value>zero</value>
+    </filters>
     <label>All</label>
 </ListView>

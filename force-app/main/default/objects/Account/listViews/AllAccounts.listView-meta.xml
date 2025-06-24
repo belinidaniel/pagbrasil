@@ -3,7 +3,7 @@
     <fullName>AllAccounts</fullName>
     <columns>ACCOUNT.NAME</columns>
     <columns>ACCOUNT.TYPE</columns>
-    <columns>ACCOUNT.ADDRESS1_COUNTRY</columns>
+    <columns>Billing_Country__c</columns>
     <columns>Plataforma_Utilizada__c</columns>
     <columns>CORE.USERS.LAST_NAME</columns>
     <columns>ACCOUNT.LAST_UPDATE</columns>

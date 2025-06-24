@@ -9,6 +9,9 @@
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
+            <name>initialContent</name>
+        </inputParameters>
+        <inputParameters>
             <name>language</name>
             <value>
                 <stringValue>pt_BR</stringValue>
@@ -26,6 +29,12 @@
                 <elementReference>Para_quem_deseja_enviar_o_e_mail.selectedChoiceValues</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>subject</name>
+            <value>
+                <stringValue>Campos obrigatórios não preenchidos nos formulários de homologação</stringValue>
+            </value>
+        </inputParameters>
         <nameSegment>HomologationFormSendEmail</nameSegment>
         <offset>0</offset>
     </actionCalls>
@@ -37,6 +46,12 @@
         <actionName>HomologationFormSendEmail</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>initialContent</name>
+            <value>
+                <elementReference>Email_content_before_fields_to_respond</elementReference>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>language</name>
             <value>
@@ -53,6 +68,12 @@
             <name>recipient</name>
             <value>
                 <elementReference>SendEmailTo.selectedChoiceValues</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subject</name>
+            <value>
+                <stringValue>Required fields not filled in approval forms</stringValue>
             </value>
         </inputParameters>
         <nameSegment>HomologationFormSendEmail</nameSegment>
@@ -88,7 +109,7 @@
         <locationX>182</locationX>
         <locationY>458</locationY>
         <defaultConnector>
-            <targetReference>SelectContact</targetReference>
+            <targetReference>Select_Contact_and_Enter_Text</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>EN_US</defaultConnectorLabel>
         <rules>
@@ -102,7 +123,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Selecionar_Contato</targetReference>
+                <targetReference>Selecionar_Contato_e_Escrever_Texto</targetReference>
             </connector>
             <label>PT_BR</label>
         </rules>
@@ -292,8 +313,8 @@
     </recordLookups>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
-        <name>Selecionar_Contato</name>
-        <label>Selecionar Contato</label>
+        <name>Selecionar_Contato_e_Escrever_Texto</name>
+        <label>Selecionar Contato e Escrever Texto</label>
         <locationX>50</locationX>
         <locationY>566</locationY>
         <allowBack>true</allowBack>
@@ -312,12 +333,32 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
+        <fields>
+            <name>Conteudo_do_email_antes_dos_campos_a_preencher</name>
+            <defaultValue>
+                <stringValue>Prezado, solicito informações referentes aos formulários de homologação:</stringValue>
+            </defaultValue>
+            <fieldText>Conteúdo do e-mail (antes dos campos a preencher)</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>ConteudoPadrao</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;&lt;em&gt;Campos a preencher (exemplo):&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Mensagem_Padrao</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: small; font-family: Arial, Helvetica, sans-serif; color: rgb(34, 34, 34);&quot;&gt;Formulário de homologação: &lt;/span&gt;&lt;u style=&quot;background-color: rgb(255, 255, 255); font-size: small; font-family: Arial, Helvetica, sans-serif; color: rgb(30, 107, 208);&quot;&gt;formulario1.com&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- Campo 1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- Campo 2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;- Campo 3&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;- Campo N&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; background-color: rgb(255, 255, 255);&quot;&gt;Formulário de homologação: &lt;/span&gt;&lt;u style=&quot;color: rgb(30, 107, 208); font-family: Arial, Helvetica, sans-serif; font-size: small; background-color: rgb(255, 255, 255);&quot;&gt;formulario2.com&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- Campo 4&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- Campo 5&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; background-color: rgb(255, 255, 255);&quot;&gt;Formulário de homologação: &lt;/span&gt;&lt;u style=&quot;color: rgb(30, 107, 208); font-family: Arial, Helvetica, sans-serif; font-size: small; background-color: rgb(255, 255, 255);&quot;&gt;formulario3.com&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;- Campo N&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>SelectContact</name>
-        <label>Select Contact</label>
+        <name>Select_Contact_and_Enter_Text</name>
+        <label>Select Contact and Enter Text</label>
         <locationX>314</locationX>
         <locationY>566</locationY>
         <allowBack>true</allowBack>
@@ -335,6 +376,26 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Email_content_before_fields_to_respond</name>
+            <defaultValue>
+                <stringValue>Dear, I request information regarding the approval forms:</stringValue>
+            </defaultValue>
+            <fieldText>Email content (before fields to fill)</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>DefaultContent1</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;&lt;em&gt;Fields to fill (example):&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Default_Content</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: small; background-color: rgb(255, 255, 255);&quot;&gt;Homologation form: &lt;/span&gt;&lt;u style=&quot;color: rgb(30, 107, 208); font-family: Arial, Helvetica, sans-serif; font-size: small; background-color: rgb(255, 255, 255);&quot;&gt;form1.com&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Field&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt; 1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Field&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt; 2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;- &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Field&lt;/span&gt; 3&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;- Field N&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: small; font-family: Arial, Helvetica, sans-serif; color: rgb(34, 34, 34);&quot;&gt;Homologation form: &lt;/span&gt;&lt;u style=&quot;background-color: rgb(255, 255, 255); font-size: small; font-family: Arial, Helvetica, sans-serif; color: rgb(30, 107, 208);&quot;&gt;form2.com&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Field&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt; 4&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Field&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt; 5&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: small; font-family: Arial, Helvetica, sans-serif; color: rgb(34, 34, 34);&quot;&gt;Homologation form: &lt;/span&gt;&lt;u style=&quot;background-color: rgb(255, 255, 255); font-size: small; font-family: Arial, Helvetica, sans-serif; color: rgb(30, 107, 208);&quot;&gt;form3.com&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;- &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Field&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt; N&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>

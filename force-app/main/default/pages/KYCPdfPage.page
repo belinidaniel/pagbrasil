@@ -1,4 +1,4 @@
-<apex:page controller="KYCPdfController">
+<apex:page controller="KYCPdfController" action="{!generatePdf}">
     <head>
         <style>
             * {

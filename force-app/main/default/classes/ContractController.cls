@@ -619,7 +619,7 @@ public class ContractController {
     }
 
     @AuraEnabled
-    public static String generateAndSavePDF(Id opportunityId, String month, String contractDate, String link, String maintenanceDate) {
+    public static Id generateAndSavePDF(Id opportunityId, String month, String contractDate, String link, String maintenanceDate) {
         try {
             PageReference pdfPage;
             Opportunity opp = [SELECT Id, Name, RecordType.Name FROM Opportunity WHERE Id =: opportunityId];
@@ -666,14 +666,15 @@ public class ContractController {
             );
             insert cv;
 
-            // Atualizando a flag de Opportunity
+            cv = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
+
             Opportunity oppToUpdate = new Opportunity(
                 Id = opportunityId,
                 Was_Contract_PDF_Generated__c = true
             );
             update oppToUpdate;
 
-            return 'PDF gerado e salvo com sucesso!';
+            return cv.ContentDocumentId;
         } catch (Exception e) {
             throw new AuraHandledException('Erro ao gerar ou salvar PDF: ' + e.getMessage());
         }
@@ -725,5 +726,26 @@ public class ContractController {
             this.termClausesTitle = termClausesList[0].Name;     
         }
       
+    }
+
+    @AuraEnabled
+    public static String attachContractToRecord(Id recordId, Blob pdfBody, String fileName) {
+        ContentVersion cv = new ContentVersion(
+            VersionData = pdfBody,
+            Title = fileName,
+            PathOnClient = fileName
+        );
+        insert cv;
+
+        cv = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
+        
+        ContentDocumentLink cdl = new ContentDocumentLink(
+            ContentDocumentId = cv.ContentDocumentId,
+            LinkedEntityId = recordId,
+            ShareType = 'V'
+        );
+        insert cdl;
+
+        return cv.ContentDocumentId;
     }
 }

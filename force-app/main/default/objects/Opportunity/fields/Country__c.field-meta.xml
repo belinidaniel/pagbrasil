@@ -8,21 +8,11 @@
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>Brazil</fullName>
-                <default>false</default>
-                <label>Brazil</label>
-            </value>
+            <sorted>true</sorted>
             <value>
                 <fullName>Afghanistan</fullName>
                 <default>false</default>
                 <label>Afghanistan</label>
-            </value>
-            <value>
-                <fullName>South Africa</fullName>
-                <default>false</default>
-                <label>South Africa</label>
             </value>
             <value>
                 <fullName>Akrotiri</fullName>
@@ -35,9 +25,14 @@
                 <label>Albania</label>
             </value>
             <value>
-                <fullName>Germany</fullName>
+                <fullName>Algeria</fullName>
                 <default>false</default>
-                <label>Germany</label>
+                <label>Algeria</label>
+            </value>
+            <value>
+                <fullName>American Samoa</fullName>
+                <default>false</default>
+                <label>American Samoa</label>
             </value>
             <value>
                 <fullName>Andorra</fullName>
@@ -65,19 +60,9 @@
                 <label>Antigua and Barbuda</label>
             </value>
             <value>
-                <fullName>Saudi Arabia</fullName>
-                <default>false</default>
-                <label>Saudi Arabia</label>
-            </value>
-            <value>
                 <fullName>Arctic Ocean</fullName>
                 <default>false</default>
                 <label>Arctic Ocean</label>
-            </value>
-            <value>
-                <fullName>Algeria</fullName>
-                <default>false</default>
-                <label>Algeria</label>
             </value>
             <value>
                 <fullName>Argentina</fullName>
@@ -120,6 +105,11 @@
                 <label>Bahamas</label>
             </value>
             <value>
+                <fullName>Bahrain</fullName>
+                <default>false</default>
+                <label>Bahrain</label>
+            </value>
+            <value>
                 <fullName>Bangladesh</fullName>
                 <default>false</default>
                 <label>Bangladesh</label>
@@ -130,9 +120,9 @@
                 <label>Barbados</label>
             </value>
             <value>
-                <fullName>Bahrain</fullName>
+                <fullName>Belarus</fullName>
                 <default>false</default>
-                <label>Bahrain</label>
+                <label>Belarus</label>
             </value>
             <value>
                 <fullName>Belgium</fullName>
@@ -155,14 +145,9 @@
                 <label>Bermuda</label>
             </value>
             <value>
-                <fullName>Belarus</fullName>
+                <fullName>Bhutan</fullName>
                 <default>false</default>
-                <label>Belarus</label>
-            </value>
-            <value>
-                <fullName>Burma</fullName>
-                <default>false</default>
-                <label>Burma</label>
+                <label>Bhutan</label>
             </value>
             <value>
                 <fullName>Bolivia</fullName>
@@ -180,6 +165,26 @@
                 <label>Botswana</label>
             </value>
             <value>
+                <fullName>Bouvet Island</fullName>
+                <default>false</default>
+                <label>Bouvet Island</label>
+            </value>
+            <value>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+                <label>Brazil</label>
+            </value>
+            <value>
+                <fullName>British Indian Ocean Territory</fullName>
+                <default>false</default>
+                <label>British Indian Ocean Territory</label>
+            </value>
+            <value>
+                <fullName>British Virgin Islands</fullName>
+                <default>false</default>
+                <label>British Virgin Islands</label>
+            </value>
+            <value>
                 <fullName>Brunei</fullName>
                 <default>false</default>
                 <label>Brunei</label>
@@ -195,24 +200,14 @@
                 <label>Burkina Faso</label>
             </value>
             <value>
+                <fullName>Burma</fullName>
+                <default>false</default>
+                <label>Burma</label>
+            </value>
+            <value>
                 <fullName>Burundi</fullName>
                 <default>false</default>
                 <label>Burundi</label>
-            </value>
-            <value>
-                <fullName>Bhutan</fullName>
-                <default>false</default>
-                <label>Bhutan</label>
-            </value>
-            <value>
-                <fullName>Cape Verde</fullName>
-                <default>false</default>
-                <label>Cape Verde</label>
-            </value>
-            <value>
-                <fullName>Cameroon</fullName>
-                <default>false</default>
-                <label>Cameroon</label>
             </value>
             <value>
                 <fullName>Cambodia</fullName>
@@ -220,19 +215,29 @@
                 <label>Cambodia</label>
             </value>
             <value>
+                <fullName>Cameroon</fullName>
+                <default>false</default>
+                <label>Cameroon</label>
+            </value>
+            <value>
                 <fullName>Canada</fullName>
                 <default>false</default>
                 <label>Canada</label>
             </value>
             <value>
-                <fullName>Qatar</fullName>
+                <fullName>Cape Verde</fullName>
                 <default>false</default>
-                <label>Qatar</label>
+                <label>Cape Verde</label>
             </value>
             <value>
-                <fullName>Kazakhstan</fullName>
+                <fullName>Cayman Islands</fullName>
                 <default>false</default>
-                <label>Kazakhstan</label>
+                <label>Cayman Islands</label>
+            </value>
+            <value>
+                <fullName>Central African Republic</fullName>
+                <default>false</default>
+                <label>Central African Republic</label>
             </value>
             <value>
                 <fullName>Chad</fullName>
@@ -250,14 +255,19 @@
                 <label>China</label>
             </value>
             <value>
-                <fullName>Cyprus</fullName>
+                <fullName>Christmas Island</fullName>
                 <default>false</default>
-                <label>Cyprus</label>
+                <label>Christmas Island</label>
             </value>
             <value>
                 <fullName>Clipperton Island</fullName>
                 <default>false</default>
                 <label>Clipperton Island</label>
+            </value>
+            <value>
+                <fullName>Cocos Islands</fullName>
+                <default>false</default>
+                <label>Cocos Islands</label>
             </value>
             <value>
                 <fullName>Colombia</fullName>
@@ -280,24 +290,14 @@
                 <label>Congo-Kinshasa</label>
             </value>
             <value>
+                <fullName>Cook Islands</fullName>
+                <default>false</default>
+                <label>Cook Islands</label>
+            </value>
+            <value>
                 <fullName>Coral Sea Islands</fullName>
                 <default>false</default>
                 <label>Coral Sea Islands</label>
-            </value>
-            <value>
-                <fullName>North Korea</fullName>
-                <default>false</default>
-                <label>North Korea</label>
-            </value>
-            <value>
-                <fullName>South Korea</fullName>
-                <default>false</default>
-                <label>South Korea</label>
-            </value>
-            <value>
-                <fullName>Ivory Coast</fullName>
-                <default>false</default>
-                <label>Ivory Coast</label>
             </value>
             <value>
                 <fullName>Costa Rica</fullName>
@@ -320,9 +320,9 @@
                 <label>Curacao</label>
             </value>
             <value>
-                <fullName>Dhekelia</fullName>
+                <fullName>Cyprus</fullName>
                 <default>false</default>
-                <label>Dhekelia</label>
+                <label>Cyprus</label>
             </value>
             <value>
                 <fullName>Denmark</fullName>
@@ -330,19 +330,29 @@
                 <label>Denmark</label>
             </value>
             <value>
+                <fullName>Dhekelia</fullName>
+                <default>false</default>
+                <label>Dhekelia</label>
+            </value>
+            <value>
+                <fullName>Djibouti</fullName>
+                <default>false</default>
+                <label>Djibouti</label>
+            </value>
+            <value>
                 <fullName>Dominica</fullName>
                 <default>false</default>
                 <label>Dominica</label>
             </value>
             <value>
-                <fullName>Egypt</fullName>
+                <fullName>Dominican Republic</fullName>
                 <default>false</default>
-                <label>Egypt</label>
+                <label>Dominican Republic</label>
             </value>
             <value>
-                <fullName>United Arab Emirates</fullName>
+                <fullName>East Timor</fullName>
                 <default>false</default>
-                <label>United Arab Emirates</label>
+                <label>East Timor</label>
             </value>
             <value>
                 <fullName>Ecuador</fullName>
@@ -350,29 +360,19 @@
                 <label>Ecuador</label>
             </value>
             <value>
+                <fullName>Egypt</fullName>
+                <default>false</default>
+                <label>Egypt</label>
+            </value>
+            <value>
+                <fullName>Equatorial Guinea</fullName>
+                <default>false</default>
+                <label>Equatorial Guinea</label>
+            </value>
+            <value>
                 <fullName>Eritrea</fullName>
                 <default>false</default>
                 <label>Eritrea</label>
-            </value>
-            <value>
-                <fullName>Slovakia</fullName>
-                <default>false</default>
-                <label>Slovakia</label>
-            </value>
-            <value>
-                <fullName>Slovenia</fullName>
-                <default>false</default>
-                <label>Slovenia</label>
-            </value>
-            <value>
-                <fullName>Spain</fullName>
-                <default>false</default>
-                <label>Spain</label>
-            </value>
-            <value>
-                <fullName>United States</fullName>
-                <default>false</default>
-                <label>United States</label>
             </value>
             <value>
                 <fullName>Estonia</fullName>
@@ -385,6 +385,11 @@
                 <label>Ethiopia</label>
             </value>
             <value>
+                <fullName>Falkland Islands</fullName>
+                <default>false</default>
+                <label>Falkland Islands</label>
+            </value>
+            <value>
                 <fullName>Faroe Islands</fullName>
                 <default>false</default>
                 <label>Faroe Islands</label>
@@ -393,11 +398,6 @@
                 <fullName>Fiji</fullName>
                 <default>false</default>
                 <label>Fiji</label>
-            </value>
-            <value>
-                <fullName>Philippines</fullName>
-                <default>false</default>
-                <label>Philippines</label>
             </value>
             <value>
                 <fullName>Finland</fullName>
@@ -410,6 +410,16 @@
                 <label>France</label>
             </value>
             <value>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+                <label>French Polynesia</label>
+            </value>
+            <value>
+                <fullName>French Southern Territories</fullName>
+                <default>false</default>
+                <label>French Southern Territories</label>
+            </value>
+            <value>
                 <fullName>Gabon</fullName>
                 <default>false</default>
                 <label>Gabon</label>
@@ -420,29 +430,24 @@
                 <label>Gambia</label>
             </value>
             <value>
-                <fullName>Ghana</fullName>
-                <default>false</default>
-                <label>Ghana</label>
-            </value>
-            <value>
                 <fullName>Georgia</fullName>
                 <default>false</default>
                 <label>Georgia</label>
             </value>
             <value>
-                <fullName>South Georgia and South Sandwich</fullName>
+                <fullName>Germany</fullName>
                 <default>false</default>
-                <label>South Georgia and South Sandwich</label>
+                <label>Germany</label>
+            </value>
+            <value>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+                <label>Ghana</label>
             </value>
             <value>
                 <fullName>Gibraltar</fullName>
                 <default>false</default>
                 <label>Gibraltar</label>
-            </value>
-            <value>
-                <fullName>Grenada</fullName>
-                <default>false</default>
-                <label>Grenada</label>
             </value>
             <value>
                 <fullName>Greece</fullName>
@@ -453,6 +458,11 @@
                 <fullName>Greenland</fullName>
                 <default>false</default>
                 <label>Greenland</label>
+            </value>
+            <value>
+                <fullName>Grenada</fullName>
+                <default>false</default>
+                <label>Grenada</label>
             </value>
             <value>
                 <fullName>Guam</fullName>
@@ -470,19 +480,9 @@
                 <label>Guernsey</label>
             </value>
             <value>
-                <fullName>Guyana</fullName>
-                <default>false</default>
-                <label>Guyana</label>
-            </value>
-            <value>
                 <fullName>Guinea</fullName>
                 <default>false</default>
                 <label>Guinea</label>
-            </value>
-            <value>
-                <fullName>Equatorial Guinea</fullName>
-                <default>false</default>
-                <label>Equatorial Guinea</label>
             </value>
             <value>
                 <fullName>Guinea-Bissau</fullName>
@@ -490,9 +490,19 @@
                 <label>Guinea-Bissau</label>
             </value>
             <value>
+                <fullName>Guyana</fullName>
+                <default>false</default>
+                <label>Guyana</label>
+            </value>
+            <value>
                 <fullName>Haiti</fullName>
                 <default>false</default>
                 <label>Haiti</label>
+            </value>
+            <value>
+                <fullName>Heard and McDonald Islands</fullName>
+                <default>false</default>
+                <label>Heard and McDonald Islands</label>
             </value>
             <value>
                 <fullName>Honduras</fullName>
@@ -510,74 +520,9 @@
                 <label>Hungary</label>
             </value>
             <value>
-                <fullName>Yemen</fullName>
+                <fullName>Iceland</fullName>
                 <default>false</default>
-                <label>Yemen</label>
-            </value>
-            <value>
-                <fullName>Bouvet Island</fullName>
-                <default>false</default>
-                <label>Bouvet Island</label>
-            </value>
-            <value>
-                <fullName>Christmas Island</fullName>
-                <default>false</default>
-                <label>Christmas Island</label>
-            </value>
-            <value>
-                <fullName>Norfolk Island</fullName>
-                <default>false</default>
-                <label>Norfolk Island</label>
-            </value>
-            <value>
-                <fullName>Cayman Islands</fullName>
-                <default>false</default>
-                <label>Cayman Islands</label>
-            </value>
-            <value>
-                <fullName>Cook Islands</fullName>
-                <default>false</default>
-                <label>Cook Islands</label>
-            </value>
-            <value>
-                <fullName>Cocos Islands</fullName>
-                <default>false</default>
-                <label>Cocos Islands</label>
-            </value>
-            <value>
-                <fullName>Falkland Islands</fullName>
-                <default>false</default>
-                <label>Falkland Islands</label>
-            </value>
-            <value>
-                <fullName>Heard and McDonald Islands</fullName>
-                <default>false</default>
-                <label>Heard and McDonald Islands</label>
-            </value>
-            <value>
-                <fullName>Marshall Islands</fullName>
-                <default>false</default>
-                <label>Marshall Islands</label>
-            </value>
-            <value>
-                <fullName>Solomon Islands</fullName>
-                <default>false</default>
-                <label>Solomon Islands</label>
-            </value>
-            <value>
-                <fullName>Turks and Caicos Islands</fullName>
-                <default>false</default>
-                <label>Turks and Caicos Islands</label>
-            </value>
-            <value>
-                <fullName>US Virgin Islands</fullName>
-                <default>false</default>
-                <label>US Virgin Islands</label>
-            </value>
-            <value>
-                <fullName>British Virgin Islands</fullName>
-                <default>false</default>
-                <label>British Virgin Islands</label>
+                <label>Iceland</label>
             </value>
             <value>
                 <fullName>India</fullName>
@@ -610,9 +555,9 @@
                 <label>Ireland</label>
             </value>
             <value>
-                <fullName>Iceland</fullName>
+                <fullName>Isle of Man</fullName>
                 <default>false</default>
-                <label>Iceland</label>
+                <label>Isle of Man</label>
             </value>
             <value>
                 <fullName>Israel</fullName>
@@ -623,6 +568,11 @@
                 <fullName>Italy</fullName>
                 <default>false</default>
                 <label>Italy</label>
+            </value>
+            <value>
+                <fullName>Ivory Coast</fullName>
+                <default>false</default>
+                <label>Ivory Coast</label>
             </value>
             <value>
                 <fullName>Jamaica</fullName>
@@ -645,14 +595,24 @@
                 <label>Jersey</label>
             </value>
             <value>
-                <fullName>Djibouti</fullName>
-                <default>false</default>
-                <label>Djibouti</label>
-            </value>
-            <value>
                 <fullName>Jordan</fullName>
                 <default>false</default>
                 <label>Jordan</label>
+            </value>
+            <value>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+                <label>Kazakhstan</label>
+            </value>
+            <value>
+                <fullName>Kenya</fullName>
+                <default>false</default>
+                <label>Kenya</label>
+            </value>
+            <value>
+                <fullName>Kiribati</fullName>
+                <default>false</default>
+                <label>Kiribati</label>
             </value>
             <value>
                 <fullName>Kosovo</fullName>
@@ -665,14 +625,14 @@
                 <label>Kuwait</label>
             </value>
             <value>
+                <fullName>Kyrgyzstan</fullName>
+                <default>false</default>
+                <label>Kyrgyzstan</label>
+            </value>
+            <value>
                 <fullName>Laos</fullName>
                 <default>false</default>
                 <label>Laos</label>
-            </value>
-            <value>
-                <fullName>Lesotho</fullName>
-                <default>false</default>
-                <label>Lesotho</label>
             </value>
             <value>
                 <fullName>Latvia</fullName>
@@ -683,6 +643,11 @@
                 <fullName>Lebanon</fullName>
                 <default>false</default>
                 <label>Lebanon</label>
+            </value>
+            <value>
+                <fullName>Lesotho</fullName>
+                <default>false</default>
+                <label>Lesotho</label>
             </value>
             <value>
                 <fullName>Liberia</fullName>
@@ -725,14 +690,14 @@
                 <label>Madagascar</label>
             </value>
             <value>
-                <fullName>Malaysia</fullName>
-                <default>false</default>
-                <label>Malaysia</label>
-            </value>
-            <value>
                 <fullName>Malawi</fullName>
                 <default>false</default>
                 <label>Malawi</label>
+            </value>
+            <value>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+                <label>Malaysia</label>
             </value>
             <value>
                 <fullName>Maldives</fullName>
@@ -750,29 +715,19 @@
                 <label>Malta</label>
             </value>
             <value>
-                <fullName>Isle of Man</fullName>
+                <fullName>Marshall Islands</fullName>
                 <default>false</default>
-                <label>Isle of Man</label>
-            </value>
-            <value>
-                <fullName>Northern Marianas</fullName>
-                <default>false</default>
-                <label>Northern Marianas</label>
-            </value>
-            <value>
-                <fullName>Morocco</fullName>
-                <default>false</default>
-                <label>Morocco</label>
-            </value>
-            <value>
-                <fullName>Mauritius</fullName>
-                <default>false</default>
-                <label>Mauritius</label>
+                <label>Marshall Islands</label>
             </value>
             <value>
                 <fullName>Mauritania</fullName>
                 <default>false</default>
                 <label>Mauritania</label>
+            </value>
+            <value>
+                <fullName>Mauritius</fullName>
+                <default>false</default>
+                <label>Mauritius</label>
             </value>
             <value>
                 <fullName>Mexico</fullName>
@@ -783,11 +738,6 @@
                 <fullName>Micronesia</fullName>
                 <default>false</default>
                 <label>Micronesia</label>
-            </value>
-            <value>
-                <fullName>Mozambique</fullName>
-                <default>false</default>
-                <label>Mozambique</label>
             </value>
             <value>
                 <fullName>Moldova</fullName>
@@ -805,14 +755,24 @@
                 <label>Mongolia</label>
             </value>
             <value>
+                <fullName>Montenegro</fullName>
+                <default>false</default>
+                <label>Montenegro</label>
+            </value>
+            <value>
                 <fullName>Montserrat</fullName>
                 <default>false</default>
                 <label>Montserrat</label>
             </value>
             <value>
-                <fullName>Montenegro</fullName>
+                <fullName>Morocco</fullName>
                 <default>false</default>
-                <label>Montenegro</label>
+                <label>Morocco</label>
+            </value>
+            <value>
+                <fullName>Mozambique</fullName>
+                <default>false</default>
+                <label>Mozambique</label>
             </value>
             <value>
                 <fullName>Namibia</fullName>
@@ -835,6 +795,21 @@
                 <label>Nepal</label>
             </value>
             <value>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+                <label>Netherlands</label>
+            </value>
+            <value>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+                <label>New Caledonia</label>
+            </value>
+            <value>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+                <label>New Zealand</label>
+            </value>
+            <value>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
                 <label>Nicaragua</label>
@@ -855,19 +830,24 @@
                 <label>Niue</label>
             </value>
             <value>
+                <fullName>Norfolk Island</fullName>
+                <default>false</default>
+                <label>Norfolk Island</label>
+            </value>
+            <value>
+                <fullName>Northern Marianas</fullName>
+                <default>false</default>
+                <label>Northern Marianas</label>
+            </value>
+            <value>
+                <fullName>North Korea</fullName>
+                <default>false</default>
+                <label>North Korea</label>
+            </value>
+            <value>
                 <fullName>Norway</fullName>
                 <default>false</default>
                 <label>Norway</label>
-            </value>
-            <value>
-                <fullName>New Caledonia</fullName>
-                <default>false</default>
-                <label>New Caledonia</label>
-            </value>
-            <value>
-                <fullName>New Zealand</fullName>
-                <default>false</default>
-                <label>New Zealand</label>
             </value>
             <value>
                 <fullName>Oman</fullName>
@@ -880,9 +860,9 @@
                 <label>Pacific Ocean</label>
             </value>
             <value>
-                <fullName>Netherlands</fullName>
+                <fullName>Pakistan</fullName>
                 <default>false</default>
-                <label>Netherlands</label>
+                <label>Pakistan</label>
             </value>
             <value>
                 <fullName>Palau</fullName>
@@ -900,11 +880,6 @@
                 <label>Papua New Guinea</label>
             </value>
             <value>
-                <fullName>Pakistan</fullName>
-                <default>false</default>
-                <label>Pakistan</label>
-            </value>
-            <value>
                 <fullName>Paracel Islands</fullName>
                 <default>false</default>
                 <label>Paracel Islands</label>
@@ -920,14 +895,14 @@
                 <label>Peru</label>
             </value>
             <value>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+                <label>Philippines</label>
+            </value>
+            <value>
                 <fullName>Pitcairn</fullName>
                 <default>false</default>
                 <label>Pitcairn</label>
-            </value>
-            <value>
-                <fullName>French Polynesia</fullName>
-                <default>false</default>
-                <label>French Polynesia</label>
             </value>
             <value>
                 <fullName>Poland</fullName>
@@ -935,44 +910,19 @@
                 <label>Poland</label>
             </value>
             <value>
-                <fullName>Puerto Rico</fullName>
-                <default>false</default>
-                <label>Puerto Rico</label>
-            </value>
-            <value>
                 <fullName>Portugal</fullName>
                 <default>false</default>
                 <label>Portugal</label>
             </value>
             <value>
-                <fullName>Kenya</fullName>
+                <fullName>Puerto Rico</fullName>
                 <default>false</default>
-                <label>Kenya</label>
+                <label>Puerto Rico</label>
             </value>
             <value>
-                <fullName>Kyrgyzstan</fullName>
+                <fullName>Qatar</fullName>
                 <default>false</default>
-                <label>Kyrgyzstan</label>
-            </value>
-            <value>
-                <fullName>Kiribati</fullName>
-                <default>false</default>
-                <label>Kiribati</label>
-            </value>
-            <value>
-                <fullName>United Kingdom</fullName>
-                <default>false</default>
-                <label>United Kingdom</label>
-            </value>
-            <value>
-                <fullName>Central African Republic</fullName>
-                <default>false</default>
-                <label>Central African Republic</label>
-            </value>
-            <value>
-                <fullName>Dominican Republic</fullName>
-                <default>false</default>
-                <label>Dominican Republic</label>
+                <label>Qatar</label>
             </value>
             <value>
                 <fullName>Romania</fullName>
@@ -980,14 +930,34 @@
                 <label>Romania</label>
             </value>
             <value>
+                <fullName>Russia</fullName>
+                <default>false</default>
+                <label>Russia</label>
+            </value>
+            <value>
                 <fullName>Rwanda</fullName>
                 <default>false</default>
                 <label>Rwanda</label>
             </value>
             <value>
-                <fullName>Russia</fullName>
+                <fullName>Saint Helena</fullName>
                 <default>false</default>
-                <label>Russia</label>
+                <label>Saint Helena</label>
+            </value>
+            <value>
+                <fullName>Saint Kitts and Nevis</fullName>
+                <default>false</default>
+                <label>Saint Kitts and Nevis</label>
+            </value>
+            <value>
+                <fullName>Saint Lucia</fullName>
+                <default>false</default>
+                <label>Saint Lucia</label>
+            </value>
+            <value>
+                <fullName>Saint Vincent and the Grenadines</fullName>
+                <default>false</default>
+                <label>Saint Vincent and the Grenadines</label>
             </value>
             <value>
                 <fullName>Salvador</fullName>
@@ -1000,34 +970,109 @@
                 <label>Samoa</label>
             </value>
             <value>
-                <fullName>American Samoa</fullName>
+                <fullName>San Marino</fullName>
                 <default>false</default>
-                <label>American Samoa</label>
+                <label>San Marino</label>
             </value>
             <value>
-                <fullName>Saint Helena</fullName>
+                <fullName>Saudi Arabia</fullName>
                 <default>false</default>
-                <label>Saint Helena</label>
+                <label>Saudi Arabia</label>
             </value>
             <value>
-                <fullName>Saint Lucia</fullName>
+                <fullName>Senegal</fullName>
                 <default>false</default>
-                <label>Saint Lucia</label>
+                <label>Senegal</label>
+            </value>
+            <value>
+                <fullName>Serbia</fullName>
+                <default>false</default>
+                <label>Serbia</label>
+            </value>
+            <value>
+                <fullName>Seychelles</fullName>
+                <default>false</default>
+                <label>Seychelles</label>
+            </value>
+            <value>
+                <fullName>Sierra Leone</fullName>
+                <default>false</default>
+                <label>Sierra Leone</label>
+            </value>
+            <value>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+                <label>Singapore</label>
+            </value>
+            <value>
+                <fullName>Sint Maarten</fullName>
+                <default>false</default>
+                <label>Sint Maarten</label>
+            </value>
+            <value>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+                <label>Slovakia</label>
+            </value>
+            <value>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+                <label>Slovenia</label>
+            </value>
+            <value>
+                <fullName>Solomon Islands</fullName>
+                <default>false</default>
+                <label>Solomon Islands</label>
+            </value>
+            <value>
+                <fullName>Somalia</fullName>
+                <default>false</default>
+                <label>Somalia</label>
+            </value>
+            <value>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+                <label>South Africa</label>
+            </value>
+            <value>
+                <fullName>Southern Ocean</fullName>
+                <default>false</default>
+                <label>Southern Ocean</label>
+            </value>
+            <value>
+                <fullName>South Georgia and South Sandwich</fullName>
+                <default>false</default>
+                <label>South Georgia and South Sandwich</label>
+            </value>
+            <value>
+                <fullName>South Korea</fullName>
+                <default>false</default>
+                <label>South Korea</label>
+            </value>
+            <value>
+                <fullName>South Sudan</fullName>
+                <default>false</default>
+                <label>South Sudan</label>
+            </value>
+            <value>
+                <fullName>Spain</fullName>
+                <default>false</default>
+                <label>Spain</label>
+            </value>
+            <value>
+                <fullName>Spratly Islands</fullName>
+                <default>false</default>
+                <label>Spratly Islands</label>
+            </value>
+            <value>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+                <label>Sri Lanka</label>
             </value>
             <value>
                 <fullName>St. Bartholomew</fullName>
                 <default>false</default>
                 <label>St. Bartholomew</label>
-            </value>
-            <value>
-                <fullName>Saint Kitts and Nevis</fullName>
-                <default>false</default>
-                <label>Saint Kitts and Nevis</label>
-            </value>
-            <value>
-                <fullName>San Marino</fullName>
-                <default>false</default>
-                <label>San Marino</label>
             </value>
             <value>
                 <fullName>St. Martin</fullName>
@@ -1045,94 +1090,9 @@
                 <label>St. Thomas and the Grenadines</label>
             </value>
             <value>
-                <fullName>Saint Vincent and the Grenadines</fullName>
-                <default>false</default>
-                <label>Saint Vincent and the Grenadines</label>
-            </value>
-            <value>
-                <fullName>Western Sahara</fullName>
-                <default>false</default>
-                <label>Western Sahara</label>
-            </value>
-            <value>
-                <fullName>Seychelles</fullName>
-                <default>false</default>
-                <label>Seychelles</label>
-            </value>
-            <value>
-                <fullName>Senegal</fullName>
-                <default>false</default>
-                <label>Senegal</label>
-            </value>
-            <value>
-                <fullName>Sierra Leone</fullName>
-                <default>false</default>
-                <label>Sierra Leone</label>
-            </value>
-            <value>
-                <fullName>Serbia</fullName>
-                <default>false</default>
-                <label>Serbia</label>
-            </value>
-            <value>
-                <fullName>Singapore</fullName>
-                <default>false</default>
-                <label>Singapore</label>
-            </value>
-            <value>
-                <fullName>Sint Maarten</fullName>
-                <default>false</default>
-                <label>Sint Maarten</label>
-            </value>
-            <value>
-                <fullName>Syria</fullName>
-                <default>false</default>
-                <label>Syria</label>
-            </value>
-            <value>
-                <fullName>Somalia</fullName>
-                <default>false</default>
-                <label>Somalia</label>
-            </value>
-            <value>
-                <fullName>Southern Ocean</fullName>
-                <default>false</default>
-                <label>Southern Ocean</label>
-            </value>
-            <value>
-                <fullName>Spratly Islands</fullName>
-                <default>false</default>
-                <label>Spratly Islands</label>
-            </value>
-            <value>
-                <fullName>Sri Lanka</fullName>
-                <default>false</default>
-                <label>Sri Lanka</label>
-            </value>
-            <value>
-                <fullName>Swaziland</fullName>
-                <default>false</default>
-                <label>Swaziland</label>
-            </value>
-            <value>
                 <fullName>Sudan</fullName>
                 <default>false</default>
                 <label>Sudan</label>
-            </value>
-            <value>
-                <fullName>South Sudan</fullName>
-                <default>false</default>
-                <label>South Sudan</label>
-            </value>
-            <value>
-                <fullName>Sweden</fullName>
-                <default>false</default>
-                <label>Sweden</label>
-            </value>
-            <value>
-                <fullName>Switzerland</fullName>
-                <default>false</default>
-                <label>Switzerland</label>
             </value>
             <value>
                 <fullName>Suriname</fullName>
@@ -1145,9 +1105,24 @@
                 <label>Svalbard and Jan Mayen</label>
             </value>
             <value>
-                <fullName>Thailand</fullName>
+                <fullName>Swaziland</fullName>
                 <default>false</default>
-                <label>Thailand</label>
+                <label>Swaziland</label>
+            </value>
+            <value>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+                <label>Sweden</label>
+            </value>
+            <value>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+                <label>Switzerland</label>
+            </value>
+            <value>
+                <fullName>Syria</fullName>
+                <default>false</default>
+                <label>Syria</label>
             </value>
             <value>
                 <fullName>Taiwan</fullName>
@@ -1165,19 +1140,9 @@
                 <label>Tanzania</label>
             </value>
             <value>
-                <fullName>British Indian Ocean Territory</fullName>
+                <fullName>Thailand</fullName>
                 <default>false</default>
-                <label>British Indian Ocean Territory</label>
-            </value>
-            <value>
-                <fullName>French Southern Territories</fullName>
-                <default>false</default>
-                <label>French Southern Territories</label>
-            </value>
-            <value>
-                <fullName>East Timor</fullName>
-                <default>false</default>
-                <label>East Timor</label>
+                <label>Thailand</label>
             </value>
             <value>
                 <fullName>Togo</fullName>
@@ -1205,14 +1170,19 @@
                 <label>Tunisia</label>
             </value>
             <value>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+                <label>Turkey</label>
+            </value>
+            <value>
                 <fullName>Turkmenistan</fullName>
                 <default>false</default>
                 <label>Turkmenistan</label>
             </value>
             <value>
-                <fullName>Turkey</fullName>
+                <fullName>Turks and Caicos Islands</fullName>
                 <default>false</default>
-                <label>Turkey</label>
+                <label>Turks and Caicos Islands</label>
             </value>
             <value>
                 <fullName>Tuvalu</fullName>
@@ -1220,19 +1190,39 @@
                 <label>Tuvalu</label>
             </value>
             <value>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-                <label>Ukraine</label>
-            </value>
-            <value>
                 <fullName>Uganda</fullName>
                 <default>false</default>
                 <label>Uganda</label>
             </value>
             <value>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+                <label>Ukraine</label>
+            </value>
+            <value>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+                <label>United Arab Emirates</label>
+            </value>
+            <value>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+                <label>United Kingdom</label>
+            </value>
+            <value>
+                <fullName>United States</fullName>
+                <default>false</default>
+                <label>United States</label>
+            </value>
+            <value>
                 <fullName>Uruguay</fullName>
                 <default>false</default>
                 <label>Uruguay</label>
+            </value>
+            <value>
+                <fullName>US Virgin Islands</fullName>
+                <default>false</default>
+                <label>US Virgin Islands</label>
             </value>
             <value>
                 <fullName>Uzbekistan</fullName>
@@ -1273,6 +1263,16 @@
                 <fullName>West Bank</fullName>
                 <default>false</default>
                 <label>West Bank</label>
+            </value>
+            <value>
+                <fullName>Western Sahara</fullName>
+                <default>false</default>
+                <label>Western Sahara</label>
+            </value>
+            <value>
+                <fullName>Yemen</fullName>
+                <default>false</default>
+                <label>Yemen</label>
             </value>
             <value>
                 <fullName>Zambia</fullName>

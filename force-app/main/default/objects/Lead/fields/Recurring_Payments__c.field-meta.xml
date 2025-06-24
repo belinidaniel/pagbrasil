@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Recurring_Payments__c</fullName>
-    <description>Já trabalha com recorrência de pagamentos?</description>
-    <inlineHelpText>Antigo &quot;Recorrência&quot;</inlineHelpText>
+    <description>Do already work with recurring payments?</description>
+    <inlineHelpText>Old &quot;Recurrence&quot;</inlineHelpText>
     <label>Recurring Payments?</label>
     <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>

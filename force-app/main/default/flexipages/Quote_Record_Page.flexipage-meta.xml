@@ -149,7 +149,7 @@
                 <componentName>flowruntime:interview</componentName>
                 <identifier>flowruntime_interview</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND (2 OR (NOT 3 AND NOT 4 AND NOT 5))</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Are_The_Frequencies_Filled__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -159,6 +159,21 @@
                         <leftValue>{!Record.IsSyncing}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity.Moeda__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>BRL</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity.Moeda__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity.Moeda__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>EUR</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

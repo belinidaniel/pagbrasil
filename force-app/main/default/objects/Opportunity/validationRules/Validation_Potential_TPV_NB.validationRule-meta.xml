@@ -10,6 +10,5 @@ ISBLANK(nb_receita_mensal__c)
 LOWER($RecordType.DeveloperName) = &quot;national&quot;,
 ISBLANK(nb_receita_mensal__c)
 )</errorConditionFormula>
-    <errorDisplayField>xb_receita_mensal__c</errorDisplayField>
     <errorMessage>The Potential TPV field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

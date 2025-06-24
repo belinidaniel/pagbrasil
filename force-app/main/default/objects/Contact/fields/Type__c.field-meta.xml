@@ -11,12 +11,12 @@
             <sorted>false</sorted>
             <value>
                 <fullName>Other</fullName>
-                <default>true</default>
+                <default>false</default>
                 <label>Other</label>
             </value>
             <value>
                 <fullName>Principal</fullName>
-                <default>false</default>
+                <default>true</default>
                 <label>Principal</label>
             </value>
             <value>

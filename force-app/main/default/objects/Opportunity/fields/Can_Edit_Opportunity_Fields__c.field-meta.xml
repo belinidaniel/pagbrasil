@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Can_Edit_Opportunity_Fields__c</fullName>
+    <formula>OR(
+  $Permission.Can_Edit_All_Opportunity_Stages,
+IF(
+  AND(
+    $Permission.Can_Edit_Legal_Opportunity_Stages,
+    OR(
+      ISPICKVAL(StageName, &quot;Compliance&quot;),
+      ISPICKVAL(StageName, &quot;Contract&quot;),
+      ISPICKVAL(StageName, &quot;Homologation&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_Edit_NB_Management_Opportunity_Stages,
+    OR(
+      ISPICKVAL(StageName, &quot;Compliance&quot;),
+      ISPICKVAL(StageName, &quot;Contract&quot;),
+      ISPICKVAL(StageName, &quot;Homologation&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_Edit_Sales_Management_Opportunity_Stages,
+    OR(
+        ISPICKVAL(StageName, &quot;Discovery&quot;),
+        ISPICKVAL(StageName, &quot;Negotiation&quot;)
+    )
+  ),
+  true,
+  false
+),
+IF(
+  AND(
+    $Permission.Can_Edit_New_Opportunity_Sales,
+    TODAY() &lt;= (DATEVALUE(Account.CreatedDate) + 180)
+						
+  ),
+  true,
+  false
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Can Edit Opportunity Fields</label>
+    <type>Checkbox</type>
+</CustomField>

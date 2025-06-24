@@ -171,4 +171,33 @@ global without sharing class KYCService {
 			return JSON.serialize(new Map<String, Object>{ 'error' => 'An unexpected error occurred: ' + e.getMessage() });
 		}
 	}
+	
+	@AuraEnabled(cacheable=true)
+    public static String getKycIdByOpportunity(String opportunityId, String recordTypeName) {
+        if (String.isBlank(opportunityId) || String.isBlank(recordTypeName)) {
+            return null;
+        }
+        
+        if (recordTypeName == 'National') {
+            KYC__c kyc = [
+                SELECT Id 
+                FROM KYC__c 
+                WHERE Opportunity__c = :opportunityId
+                LIMIT 1
+            ];
+            return kyc != null ? kyc.Id : null;
+        }
+        
+        if (recordTypeName == 'Crossborder') {
+            KYC_XB__c kycXb = [
+                SELECT Id 
+                FROM KYC_XB__c 
+                WHERE Opportunity__c = :opportunityId
+                LIMIT 1
+            ];
+            return kycXb != null ? kycXb.Id : null;
+        }
+        
+        return null;
+    }
 }

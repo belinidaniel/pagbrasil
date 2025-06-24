@@ -88,9 +88,9 @@
         </head>
         
         <body>
-            <img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;margin-top: -5%"/>
+            <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;margin-top: -5%"/>
             
-            <h2 style="text-align: center; padding-bottom: 80px;">CONTRATO</h2>
+            <h2 style="text-align: center; padding-bottom: 80px; color: #0058B5; font-size: 18px;">CONTRATO</h2>
 
             <apex:form style="margin-top: -10%;">
                 <table style="width: 100%; border-collapse: collapse;">
@@ -450,7 +450,7 @@
             <!--<div class="page-break"></div>
 
 <div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
+<img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
 </div>
 <br/> -->
             
@@ -518,7 +518,7 @@
             <!--<div class="page-break"></div>
 
 <div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
+<img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
 </div> -->
             <br/>
 
@@ -669,7 +669,7 @@
             <!--<div class="page-break"></div>
 
 <div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
+<img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
 </div> -->
 
             <br/> <br/>
@@ -727,14 +727,12 @@
             
             <div class="page-break"></div>
             <div style="text-align: right;">
-                <img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
+                <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
             </div>
             <br/>
 
             <p style="text-align:justify">
-                Ao assinarem eletronicamente este contrato, incluindo seus anexos, através da plataforma DocuSign <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> as <strong>Partes</strong> declaram e reconhecem a validade, autenticidade e integridade deste <strong>Contrato</strong> e dos <strong>Termos e Condições da PagBrasil</strong> disponíveis no link 
-                <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.xxxx.com)</a>
-                .  
+                Ao assinarem eletronicamente este contrato, incluindo seus anexos, através da plataforma DocuSign <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> as <strong>Partes</strong> declaram e reconhecem a validade, autenticidade e integridade deste <strong>Contrato</strong> e dos <strong>Termos e Condições da PagBrasil</strong>.
             </p>
 
             <br/><br/><br/><br/><br/><br/><br/><br/>

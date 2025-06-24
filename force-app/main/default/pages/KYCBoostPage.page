@@ -177,40 +177,40 @@
                     <article class="data-container">
                         <div class="field">
                             <strong class="label">CNPJ:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxIdNumber'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!taxIdNumber}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">País:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxIdCountry'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!taxIdCountry}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Natureza legal:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['LegalNature']['Activity'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!legalNatureActivity}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Status:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxIdStatus'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!taxIdStatus}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Nome Oficial:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['OfficialName'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!officialName}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Nome Fantasia:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TradeName'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!tradeName}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Data de fundação:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['FoundedDate'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!foundedDate}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Regime tributário:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(basicBB['Result'])), basicBB['Result'][0]['BasicData']['TaxRegime'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!taxRegime}"/></p>
                         </div>
                     </article>
                 </section>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!hasActivityBB}">
+            <apex:outputPanel rendered="{!hasActivitiesBB}">
                 <section class="section">
                     <header class="title-container">
                         <h2 class="title">Atividades</h2>
@@ -556,15 +556,15 @@
                     <article class="three-part-container">
                         <div class="field">
                             <strong class="label">Nível de celebridade:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(mediaBB['Result'])), mediaBB['Result'][0]['MediaProfileAndExposure']['CelebrityLevel'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!celebrityLevel}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Nível de explosição:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(mediaBB['Result'])), mediaBB['Result'][0]['MediaProfileAndExposure']['MediaExposureLevel'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!mediaExposureLevel}"/></p>
                         </div>
                         <div class="field">
                             <strong class="label">Nível de impopularidade:</strong>
-                            <p class="value"><apex:outputText value="{!IF(NOT(ISBLANK(mediaBB['Result'])), mediaBB['Result'][0]['MediaProfileAndExposure']['UnpopularityLevel'], '')}"/></p>
+                            <p class="value"><apex:outputText value="{!unpopularityLevel}"/></p>
                         </div>
 					</article>
 				</section>
@@ -636,7 +636,7 @@
 					</apex:repeat>
 				</section>
 			</apex:outputPanel>
-            <apex:outputPanel rendered="{!hasActivityBB}">
+            <apex:outputPanel rendered="{!hasActivitiesBB}">
                 <section class="section">
                     <header class="title-container">
                         <h2 class="title">Indicadores de Atividade</h2>

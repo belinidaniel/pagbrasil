@@ -1,8 +1,10 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { getRecord } from 'lightning/uiRecordApi';
+import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import generateAndSavePDF from '@salesforce/apex/ContractController.generateAndSavePDF';
 import PagLogo from "@salesforce/resourceUrl/Logo2025";
+import getKycIdByOpportunity from '@salesforce/apex/KYCService.getKycIdByOpportunity';
+import attachContractToRecord from '@salesforce/apex/ContractController.attachContractToRecord';
 
 const RECORD_TYPE_NAME_FIELD = 'Opportunity.RecordType.Name';
 const QUARTER_MONTHS = ['01', '04', '07', '10'];
@@ -11,6 +13,7 @@ export default class GenerateContract extends LightningElement {
     @api recordId;
     @track isDropdownOpen = false;
     @track recordTypeName;
+    @track kycId;
     month;
     contractYear;
     contractMonth;
@@ -24,11 +27,49 @@ export default class GenerateContract extends LightningElement {
     PagLogoUrl = PagLogo;
     @track firstReviewYearOptions = [];
 
-    @wire(getRecord, { recordId: '$recordId', fields: [RECORD_TYPE_NAME_FIELD] })
+    /*@wire(getRecord, { 
+        recordId: '$recordId', 
+        fields: [RECORD_TYPE_NAME_FIELD] 
+    })
     wiredRecord({ error, data }) {
         if (data) {
             this.recordTypeName = data.fields.RecordType.value.fields.Name.value;
         }
+    }*/
+
+    @wire(getRecord, { 
+        recordId: '$recordId', 
+        fields: [RECORD_TYPE_NAME_FIELD] 
+    })
+    async wiredRecord({ error, data }) {
+        if (data) {
+            this.recordTypeName = data.fields.RecordType.value.fields.Name.value;
+            await this.fetchKycId();
+        }
+    }
+
+    async fetchKycId() {
+        if (!this.recordId || !this.recordTypeName) return;
+        try {
+            const result = await getKycIdByOpportunity({
+                opportunityId: this.recordId,
+                recordTypeName: this.recordTypeName === 'Cross-border' ? 'Crossborder' : this.recordTypeName
+            });
+            this.kycId = result;
+        } catch (error) {
+            this.kycId = null;
+        }
+    }
+
+    get kycFormLinkValue() {
+        const baseUrl = window.location.origin;
+        if (this.recordTypeName === 'National') {
+            return `${baseUrl}/apex/KYCPdfPage?id=${this.kycId}`;
+        }
+        if (this.recordTypeName === 'Crossborder') {
+            return `${baseUrl}/apex/KYCPdfPage?id=${this.kycId}`;
+        }
+        return '';
     }
 
     get firstReviewOptions() {
@@ -143,11 +184,21 @@ export default class GenerateContract extends LightningElement {
     }
 
     async generate() {
-        const inputElement = this.template.querySelector('[data-id="kycLinkInput"]');
-        this.link = inputElement.value;
+        // const inputElement = this.template.querySelector('[data-id="kycLinkInput"]');
+        // this.link = inputElement.value;
+
+        console.log('month:', this.month);
+        console.log('selectedYear:', this.selectedYear);
+        console.log('link:', this.link);
+        console.log('contractYear:', this.contractYear);
+        console.log('contractMonth:', this.contractMonth);
+        console.log('maintenanceMonth:', this.maintenanceMonth);
+        console.log('maintenanceYear:', this.maintenanceYear);
+
+        this.link = this.kycFormLinkValue;
         const selectedMonth = this.options.find(option => option.value === this.month);
 
-        if (!this.month || !this.selectedYear || !this.link || !this.contractYear
+        if (!this.month || !this.selectedYear || !this.contractYear
             || !this.contractMonth || !this.maintenanceMonth || !this.maintenanceYear) {
             this.showNotification('Error', 'Fill in all the fields to generate the contract', 'error');
             return;
@@ -180,7 +231,7 @@ export default class GenerateContract extends LightningElement {
         this.showModal = true;
 
         try {
-            await generateAndSavePDF({
+            const contentDocumentId = await generateAndSavePDF({
                 opportunityId: this.recordId,
                 month: monthLabel,
                 contractDate: this.contractDate,
@@ -188,9 +239,20 @@ export default class GenerateContract extends LightningElement {
                 maintenanceDate: this.maintenanceDate
             });
 
-            this.showNotification('Success', 'PDF generated and saved successfully!', 'success');
+            await updateRecord({
+                fields: {
+                    Id: this.recordId,
+                    Contract_File_Id__c: contentDocumentId
+                }
+            });
+
+            this.vfUrl = `${vfBaseURL}?${queryParams.toString()}`;
+            this.showModal = true;
+
+            this.showNotification('Success', 'PDF gerado e salvo!', 'success');
+            
         } catch (error) {
-            this.showNotification('Error', error.body.message, 'error');
+            this.showNotification('Error', error.body?.message || error.message, 'error');
         }
     }
 

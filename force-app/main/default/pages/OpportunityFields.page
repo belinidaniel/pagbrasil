@@ -19,73 +19,109 @@
             table {
                 border-collapse: collapse;
                 margin: 25px 0;
-                font-size: 0.9em;
-                font-family: sans-serif;
+                font-size: 0.98em;
+                font-family: 'Segoe UI', Arial, sans-serif;
                 width: 100%;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                background: #fff;
             }
-
-            table thead tr {
-                background-color: #009879;
-                color: #ffffff;
-                text-align: left;
-            }
-
-            table th,
-            table td {
+            th, td {
+                border: 1px solid #b0b0b0;
                 padding: 12px 15px;
             }
-
-            table tbody tr {
-                border-bottom: 1px solid #807b7b;
+            th {
+                background-color: #2d3e50;
+                color: #f5f5f5;
+                text-align: center;
+                font-weight: 600;
+                font-size: 1.05em;
+                letter-spacing: 0.5px;
             }
-
-            table tbody tr:nth-of-type(even) {
-                background-color: #807b7b;
+            tr:nth-child(even) td {
+                background-color: #f3f6fa;
             }
-
-            table tbody tr:last-of-type {
-                border-bottom: 2px solid #009879;
+            tr:nth-child(odd) td {
+                background-color: #e9edf2;
             }
-
-            table tbody tr.active-row {
-                font-weight: bold;
-                color: #009879;
+            tr:hover td {
+                background-color: #dbe6f1;
+            }
+            tbody tr {
+                border-bottom: 1px solid #b0b0b0;
             }
         </style>
     </head>
     <body>
         <!-- Opportunity and Account Table -->
         <h2>Opportunity: {!wrapper.name}</h2>
-        <table>
+
+        <!-- Tabela de Destaque -->
+        <table style="margin-bottom: 18px;">
             <tr>
                 <th>Label</th>
                 <th>Value</th>
             </tr>
             <tr><td>ID</td><td>{!wrapper.id}</td></tr>
             <tr><td>Product Type</td><td>{!wrapper.productType}</td></tr>
-            <tr><td>Payment Methods</td><td>{!wrapper.paymentMethods}</td></tr>
-            <tr><td>Category</td><td>{!wrapper.productCategory}</td></tr>
-            <tr><td>Integration Type</td><td>{!wrapper.integrationType}</td></tr>
-            <tr><td>Tier CS</td><td>{!wrapper.tierCS}</td></tr>
-            <tr><td>Pix Monthly</td><td>{!wrapper.monthlyPix}</td></tr>
             <tr><td>Business Model</td><td>{!wrapper.businessModel}</td></tr>
+            <tr><td>Integration Type</td><td>{!wrapper.integrationType}</td></tr>
+        </table>
+        
+        <!-- Tabela principal -->
+        <table>
+            <h2>Main</h2>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>Name</td><td>{!wrapper.name}</td></tr>
+            <tr><td>Account Name</td><td>{!wrapper.account.name}</td></tr>
+            <tr><td>Final Risk</td><td>{!rccWrapper.FinalRisk}</td></tr>
+            
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+            <tr><td>Login</td><td>{!form.login}</td></tr>
+            <tr><td>Password</td><td>{!form.senha}</td></tr>
+            <tr><td>Emails POD Manager</td><td>{!form.emailsPodManager}</td></tr>
+            </apex:repeat>  
+            
+            <h2>Billing information (invoice)</h2>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>Category</td><td>{!wrapper.recordType}</td></tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+            <tr><td>MCC Code</td><td>{!form.mccCode}</td></tr>
+            </apex:repeat>
+            <tr><td>CNPJ</td><td>{!wrapper.account.cnpj}</td></tr>
+            <tr><td>Business Name</td><td>{!wrapper.account.businessName}</td></tr>
+            <tr><td>Country</td><td>{!wrapper.account.billingCountry}</td></tr>
+            <tr><td>State</td><td>{!wrapper.account.billingState}</td></tr>
+            <tr><td>City</td><td>{!wrapper.account.billingCity}</td></tr>
+            <tr><td>Postal Code</td><td>{!wrapper.account.billingPostalCode}</td></tr>
+            <tr><td>Billing Number</td><td>{!wrapper.account.billingNumber}</td></tr>
+            <tr><td>Billing Complement</td><td>{!wrapper.account.billingComplement}</td></tr>
+            <tr><td>Last Modified Date</td><td>{!kycWrapper.lastModifiedDate}</td></tr>
+            <!-- <apex:repeat value="{!wrapper.contracts}" var="contract" varStatus="status">
+                <tr rendered="{!status.index = 0}">
+                    <td>Contract Start Date</td>
+                    <td>{!contract.initialDate}</td>
+                </tr>
+            </apex:repeat> -->
+            <tr><td></td></tr>
+            <tr><td>Bank Details Company Name</td><td>{!wrapper.account.bankDetailsCompanyName}</td></tr>
+            <tr><td>Bank Details CNPJ</td><td>{!wrapper.account.bankDetailsCnpj}</td></tr>
+            <tr><td>Bank Details Name</td><td>{!wrapper.account.bankDetailsName}</td></tr>
+            <tr><td>Bank Details Number</td><td>{!wrapper.account.bankDetailsNumber}</td></tr>
+            <tr><td>Bank Details Branch</td><td>{!wrapper.account.bankDetailsBranch}</td></tr>
+            <tr><td>Bank Details Checking Account</td><td>{!wrapper.account.bankDetailsCheckingAccount}</td></tr>
+            
+            <!-- <tr><td>Pix Monthly</td><td>{!wrapper.monthlyPix}</td></tr>
             <tr><td>Integration Type Specify</td><td>{!wrapper.integrationTypeSpecify}</td></tr>
             <tr><td>Use Pagstream</td><td>{!wrapper.usePagstream}</td></tr>
             <tr><td>Payout</td><td>{!wrapper.payout}</td></tr>
-            <tr><td>Google Pay</td><td>{!wrapper.googlePay}</td></tr>
-            <tr><td>Apple Pay</td><td>{!wrapper.applePay}</td></tr>
             <tr><td>PagShield Premium On Demand</td><td>{!wrapper.pagShieldPremiumOnDemand}</td></tr>
-            <tr><td>Account Name</td><td>{!wrapper.account.name}</td></tr>
-            <tr><td>Billing Street</td><td>{!wrapper.account.billingStreet}</td></tr>
-            <tr><td>Billing City</td><td>{!wrapper.account.billingCity}</td></tr>
-            <tr><td>Billing State</td><td>{!wrapper.account.billingState}</td></tr>
-            <tr><td>Billing Postal Code</td><td>{!wrapper.account.billingPostalCode}</td></tr>
-            <tr><td>Billing Country</td><td>{!wrapper.account.billingCountry}</td></tr>
             <tr><td>Billing Latitude</td><td>{!wrapper.account.billingLatitude}</td></tr>
             <tr><td>Billing Longitude</td><td>{!wrapper.account.billingLongitude}</td></tr>
-            <tr><td>Billing Complement</td><td>{!wrapper.account.billingComplement}</td></tr>
-            <tr><td>Billing Number</td><td>{!wrapper.account.billingNumber}</td></tr>
             <tr><td>Shipping Street</td><td>{!wrapper.account.shippingStreet}</td></tr>
             <tr><td>Shipping City</td><td>{!wrapper.account.shippingCity}</td></tr>
             <tr><td>Shipping State</td><td>{!wrapper.account.shippingState}</td></tr>
@@ -94,78 +130,335 @@
             <tr><td>Shipping Latitude</td><td>{!wrapper.account.shippingLatitude}</td></tr>
             <tr><td>Shipping Longitude</td><td>{!wrapper.account.shippingLongitude}</td></tr>
             <tr><td>Shipping Complement</td><td>{!wrapper.account.shippingComplement}</td></tr>
-            <tr><td>Business Name</td><td>{!wrapper.account.businessName}</td></tr>
             <tr><td>Trade Name</td><td>{!wrapper.account.tradeName}</td></tr>
-            <tr><td>CNPJ</td><td>{!wrapper.account.cnpj}</td></tr>
-            <tr><td>Bank Details Number</td><td>{!wrapper.account.bankDetailsNumber}</td></tr>
-            <tr><td>Bank Details Branch</td><td>{!wrapper.account.bankDetailsBranch}</td></tr>
-            <tr><td>Bank Details CNPJ</td><td>{!wrapper.account.bankDetailsCnpj}</td></tr>
-            <tr><td>Bank Details Checking Account</td><td>{!wrapper.account.bankDetailsCheckingAccount}</td></tr>
-            <tr><td>Bank Details Name</td><td>{!wrapper.account.bankDetailsName}</td></tr>
-            <tr><td>Bank Details Company Name</td><td>{!wrapper.account.bankDetailsCompanyName}</td></tr>
             <tr><td>Customer Final Support Channel Email</td><td>{!wrapper.account.CustomerFinalSupportChannelEmail}</td></tr>
-            <tr><td>Customer Final Support Channel URL</td><td>{!wrapper.account.CustomerFinalSupportChannelUrl}</td></tr>
+            <tr><td>Customer Final Support Channel URL</td><td>{!wrapper.account.CustomerFinalSupportChannelUrl}</td></tr> -->
         </table>
-        <div style="height: 100px; display: block"> </div>
-        <!-- Homologation Forms Table -->
-        <h2>Homologation Forms</h2>
+        
+        <!-- Nova Tabela em Branco -->
+        <h2>Admin Configuration</h2>
         <table>
             <tr>
                 <th>Label</th>
                 <th>Value</th>
             </tr>
             <apex:repeat value="{!wrapper.homologationForms}" var="form">
-                <tr><td>Login</td><td>{!form.login}</td></tr>
-                <tr><td>Cielo 30</td><td>{!form.cielo30}</td></tr>
-                <tr><td>Monthly Interest</td><td>{!form.monthlyInterestOnCustomerInstallments}</td></tr>
-                <tr><td>Checkout Discount</td><td>{!form.pbCheckoutDiscount}</td></tr>
-                <tr><td>PagBrasil Solution Fee</td><td>{!form.pagBrasilSolutionForTransferringFee}</td></tr>
-                <tr><td>Shopify Discount</td><td>{!form.shopifyDiscount}</td></tr>
-                <tr><td>PagBrasil Pix</td><td>{!form.pagBrasilPix}</td></tr>
-                <tr><td>Not Interested in Discount</td><td>{!form.notInterestedInOfferingDiscount}</td></tr>
-                <!-- <tr><td>Evidence Company Details</td><td> {!form.evidenceCompanyDetails}</td></tr>
-                <tr><td>Evidence Contact Information</td><td>{!form.evidenceContactInformation}</td></tr>
-                <tr><td>Evidence Response Time</td><td>{!form.evidenceResponseTime}</td></tr>
-                <tr><td>Evidence Price Format</td><td>{!form.evidencePriceFormat}</td></tr>
-                <tr><td>Evidence Info Validator</td><td>{!form.evidenceInfoValidator}</td></tr>
-                <tr><td>Evidence Delivery Time</td><td>{!form.evidenceDeliveryTime}</td></tr>
-                <tr><td>Evidence Shipping Proof</td><td>{!form.evidenceShippingProofPod}</td></tr>
-                <tr><td>Evidence Customs Fee</td><td>{!form.evidenceCustomsFee}</td></tr>
-                <tr><td>Evidence Zip Code Validator</td><td>{!form.evidenceZipCodeValidator}</td></tr>
-                <tr><td>Evidence Gateway</td><td>{!form.evidenceGateway}</td></tr>
-                <tr><td>Evidence Reclame Aqui</td><td>{!form.evidenceReclameAqui}</td></tr> -->
-                <tr><td>Company Details</td><td>{!form.companyDetails}</td></tr>
-                <tr><td>Contact Information</td><td>{!form.contactInformation}</td></tr>
-                <tr><td>Requirement Response Time</td><td>{!form.requirementResponseTime}</td></tr>
-                <tr><td>Requirement Price Format</td><td>{!form.requirementPriceFormat}</td></tr>
-                <tr><td>Delivery Time</td><td>{!form.deliveryTime}</td></tr>
-                <tr><td>Shipping Proof</td><td>{!form.shippingProofPod}</td></tr>
-                <tr><td>Customs Fee</td><td>{!form.customsFee}</td></tr>
-                <tr><td>Requirement Zip Code Validator</td><td>{!form.requirementZipCodeValidator}</td></tr>
-                <tr><td>Requirement Info Validator</td><td>{!form.requirementInfoValidator}</td></tr>
-                <tr><td>Minimum Installments</td><td>{!form.minimumInstallmentsForInterest}</td></tr>
-                <tr><td>Interest Repass Method</td><td>{!form.interestRepassMethodToCustomer}</td></tr>
-                <tr><td>Already Requested Reclame Aqui</td><td>{!form.alreadyRequestedReclameAqui}</td></tr>
-                <tr><td>Pod Reminder</td><td>{!form.podReminder}</td></tr>
-                <tr><td>Automatic Cancellation</td><td>{!form.automaticCancellation}</td></tr>
-                <tr><td>Credit Card Recurrence</td><td>{!form.creditCardRecurrence}</td></tr>
-                <tr><td>Default Soft Descriptor</td><td>{!form.defaultSoftDescriptor}</td></tr>
-                <tr><td>Installment Recurrence</td><td>{!form.installmentRecurrence}</td></tr>
-                <tr><td>Bank Slip Email Service</td><td>{!form.bankSlipEmailService}</td></tr>
-                <tr><td>Bank Slip SMS Service</td><td>{!form.bankSlipSmsService}</td></tr>
-                <tr><td>Pix Email Service</td><td>{!form.pixEmailService}</td></tr>
-                <tr><td>Email Package</td><td>{!form.emailPackage}</td></tr>
-                <tr><td>Payment Confirmation Email</td><td>{!form.paymentConfirmationEmailService}</td></tr>
-                <tr><td>Payment Link Email</td><td>{!form.paymentLinkEmailService}</td></tr>
-                <tr><td>One Click Tokenization</td><td>{!form.oneClickBuyingTokenization}</td></tr>
-                <tr><td>Review Payee Registration</td><td>{!form.reviewPayeeRegistration}</td></tr>
-                <tr><td>Transaction Type</td><td>{!form.transactionType}</td></tr>
-                <tr><td>Emails Pod Manager</td><td>{!form.emailsPodManager}</td></tr>
+                <tr><td>Payment Alert</td><td>{!form.paymentAlert}</td></tr>
+                </apex:repeat>
+            </table>
+            
+            <h2>Agenda de Liberação de Repasses</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
+                <tr><td></td><td></td></tr>
+            </table>
+            
+            <h2>Functionalities</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
+                <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                    <tr><td>Block Refund</td><td>{!form.blockRefund}</td></tr>
+                </apex:repeat>
+                </table>
+                
+                <h2>Remessa</h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr><td>Remittance Currency</td><td>{!wrapper.moeda}</td></tr>
+                </table>
+
+                <h2>PagShield</h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr><td>PagShield</td><td>Sim/Mandatório</td></tr>
+                    <tr><td>Taxa do PagShield</td><td>R${!wrapper.taxaPagShieldItem.totalPrice}</td></tr>
+                    <tr><td>PagShield Premium</td><td></td></tr>
+                    <tr><td>Taxa do PagShield Premium</td><td>R$9,50</td></tr>
+                    <tr><td>Taxa Variável do PagShield Premium</td><td>2,00%</td></tr>
+                </table>
+                
+                <h2>Bank Billet</h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                        <tr><td>Automatic Cancellation</td><td>{!form.automaticCancellation}</td></tr>
+                        <tr><td>Business days after expiration to cancel (default and minimum, 2 days)</td><td>{!form.numberOfDays}</td></tr>
+                    </apex:repeat>
+                </table>
+                
+                <h2>Credit Card </h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                        <tr><td>Recurrence with credit card</td><td>{!form.creditCardRecurrence}</td></tr>
+                        <tr><td>Installment Recurrence</td><td>{!form.installmentRecurrence}</td></tr>
+                        <tr><td>Default Soft Descriptor</td><td>{!form.defaultSoftDescriptor}</td></tr>
+                        <tr><td>Minimum Installments</td><td>{!form.minimumInstallmentsForInterest}</td></tr>
+                        <tr><td>Interest Repass Method</td><td>{!form.interestRepassMethodToCustomer}</td></tr>
+                        <tr><td>Monthly Interest</td><td>{!form.monthlyInterestOnCustomerInstallments}</td></tr>
+                    </apex:repeat>
+                        <tr><td>Google Pay</td><td>{!wrapper.googlePay}</td></tr>
+                        <tr><td>Apple Pay</td><td>{!wrapper.applePay}</td></tr>
+                </table>
+
+                <h2>Payment Link </h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                    <tr><td>Discount by payment method</td><td>{}</td></tr>
+                    <tr><td>Discount - Boleto Flash</td><td>{!form.boletoFlash}</td></tr>
+                    <tr><td>Discount - PagBrasil Pix</td><td>{!form.pagBrasilPix}</td></tr>
+                    </apex:repeat>
+                    </table>
+
+                <h2>Maintenance</h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr><td>Maintenance fee</td><td>{!wrapper.taxaMinimaManutencaoSF.totalPrice}</td></tr>
+                    <tr><td>Starting date for charging the minimum fee</td><td>{}</td></tr>
+                    <tr><td>Shopify PagBrasil Solution Fee</td><td>{}</td></tr> 
+                    <tr><td>PagStream Fee</td><td>{!wrapper.taxaPagStream.totalPrice}%</td></tr>
+                    <tr><td>PagStream® minimum maintenance fee</td><td>R${!wrapper.taxaMinimaPagStream.totalPrice}</td></tr>
+                    </table>
+
+                <h2>Monthly advance fee</h2>    
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr><td>Frequency for Credit Card Interest</td><td>{}</td></tr>
+                    <tr><td>Base Advance Rate</td><td>{!wrapper.taxaBaseAntecipacao.totalPrice}</td></tr>
+                    </table>
+                
+                <h2>Fees</h2>
+                <table>
+                    <tr>
+                        <th>Processing</th>
+                        <th>Fixed(BRL)</th>
+                        <th>Variable(%)</th>
+                    </tr>
+                    <tr><td>Boleto / Boleto Flash</td><td>{}</td><td>{!wrapper.taxaProcessamentoBoleto.percentValue}%</td></tr>
+                    <tr><td>PagBrasil Pix</td><td>{}</td><td>{!wrapper.taxaProcessamentoPix.percentValue}%</td></tr>
+                    <tr><td>Cartão à Vista</td><td>{}</td><td>{!wrapper.taxaProcessamentoCredito.percentValue}%</td></tr>
+                    <tr><td>Cartão Par. 2-6</td><td>{}</td><td>{!wrapper.taxaProcessamentoCredito2a6.percentValue}%</td></tr>
+                    <tr><td>Cartão Par. 7-12</td><td>{}</td><td>{!wrapper.taxaProcessamentoCredito7a12.percentValue}%</td></tr>
+                    <tr><td>Cartão de Débito/Débito Flash</td><td>{}</td><td>{!wrapper.taxaProcessamentoDebito.percentValue}%</td></tr>
+                    <tr><td>Google Pay/Apple Pay</td><td>{}</td><td>0.2%</td></tr>
+                    <tr><td>Pix Open Finance </td><td>{}</td><td>{}</td></tr>
+                    <tr><td>Zero Auth</td><td>R${!wrapper.taxaZeroAuth.totalPrice}</td></tr>
+                    <tr><td>Refund de cartão de crédito/débito</td><td>R$3,00</td></tr>
+                    <tr><td>Refund de Pix</td><td>R$3,00</td></tr>
+                    <tr><td>Refund de Boleto e outros</td><td>R$9,00</td></tr>
+                    <tr><td>Taxa do chargeback</td><td>R$25,00</td></tr>
+                    <tr><td>Tipo de taxa do chargeback</td><td style="background-color: rgb(183, 252, 183)">Fixed</td></tr>
+                </table>
+                
+                <h2>E-mail and SMS Services</h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                        <tr><td>Bank Slip Email Service</td><td>{!form.bankSlipEmailService}</td></tr>
+                        <tr><td>Pix Email Service</td><td>{!form.pixEmailService}</td></tr>
+                        <tr><td>Payment Confirmation Email</td><td>{!form.paymentConfirmationEmailService}</td></tr>
+                        <tr><td>Payment Link Email</td><td>{!form.paymentLinkEmailService}</td></tr>
+                        <tr><td>Bank Slip SMS Service</td><td>{!form.bankSlipSmsService}</td></tr>
+                    </apex:repeat>
+                </table>
+                
+            <h2>E-mail Package</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
+                <tr><td>1000</td><td>R${!wrapper.pacoteMilEmails.totalPrice}</td></tr>  
+                <tr><td>10000</td><td>R${!wrapper.pacoteDezMilEmails.totalPrice}</td></tr>  
+                <tr><td>100000</td><td>R${!wrapper.pacoteCemMilEmails.totalPrice}</td></tr>  
+                <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                    <tr><td>Email Package</td><td>{!form.emailPackage}</td></tr>  
+                </apex:repeat>
+            </table>
+
+            <h2>SMS Package</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>500</td><td>R${!wrapper.pacote500sms.totalPrice}</td></tr>  
+            <tr><td>1000</td><td>R${!wrapper.pacoteMilSms.totalPrice}</td></tr>  
+            <tr><td>10000</td><td>R${!wrapper.pacoteDezMilSms.totalPrice}</td></tr>  
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>SMS Package</td><td>{!form.SMSPackage}</td></tr>  
             </apex:repeat>
         </table>
 
+          <h2>Users</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>Access Level</td><td></td></tr>  
+            <tr><td>First and Last Name</td><td></td></tr>  
+            <tr><td>Email</td><td></td></tr>  
+            <tr><td>Language</td><td></td></tr>  
+        </table>
+
+
+        <h2>PagShield</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>Minimum amount to activate PagShield</td><td></td></tr>  
+            <tr><td>Contact email(s) for notification of pre-authorizations</td><td></td></tr>    
+        </table>
+        
+        <h2>Shopify</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>One Click Tokenization</td><td>{!form.oneClickBuyingTokenization}</td></tr>
+            </apex:repeat>
+        </table>
+
+        <h2>Shopify Discount</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>Discount - Boleto Flash</td><td>{!form.boletoFlash}%</td></tr>
+                <tr><td>Discount - PagBrasil Pix</td><td>{!form.pagBrasilPix}%</td></tr>
+            </apex:repeat>
+        </table>
+
+        <h2>Payout</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <tr><td>Payout?</td><td>{!wrapper.payout}%</td></tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+            <tr><td>Transaction Type</td><td>{!form.transactionType}</td></tr>
+            </apex:repeat>
+            <th>Payout fees</th>
+                    <tr>
+                        <th>Processing</th>
+                        <th>Fixed(BRL)</th>
+                        <th>Variable(%)</th>
+                    </tr>
+            <tr><td>Payout to payee</td><td></td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
+            <tr><td>Payout to merchant account</td><td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td></td></tr>
+            <tr><td>Payee approval or rejection</td><td>{}</td><td></td></tr>
+        </table>
+
+        <h2>Cielo 3.0</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>Merchant ID</td><td>{!form.merchantID}</td></tr>
+                <tr><td>Merchant Key</td><td>{!form.merchantKey}</td></tr>
+            </apex:repeat>
+        </table>
+
+        <h2>e-Rede</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>PV</td><td>{!form.PV}</td></tr>
+                <tr><td>Token</td><td>{!form.Token}</td></tr>
+            </apex:repeat>
+        </table>
+
+        <h2>Stone</h2>
+        <table>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>MID (Merchant ID)</td><td>{!form.MID}</td></tr>
+                <tr><td>Terminal ID</td><td>{!form.TerminalID}</td></tr>
+                <tr><td>RegKey</td><td>{!form.RegKey}</td></tr>
+            </apex:repeat>
+        </table>
+
+
+                <!-- <div style="height: 100px; display: block"> </div>
+                <h2>Homologation Forms</h2>
+                <table>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                    <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                        <tr><td>Cielo 30</td><td>{!form.cielo30}</td></tr>
+                        <tr><td>Checkout Discount</td><td>{!form.pbCheckoutDiscount}</td></tr>
+                        <tr><td>PagBrasil Solution Fee</td><td>{!form.pagBrasilSolutionForTransferringFee}</td></tr>
+                        <tr><td>Shopify Discount</td><td>{!form.shopifyDiscount}</td></tr>
+                        <tr><td>PagBrasil Pix</td><td>{!form.pagBrasilPix}</td></tr>
+                        <tr><td>Not Interested in Discount</td><td>{!form.notInterestedInOfferingDiscount}</td></tr>
+                        <tr><td>Company Details</td><td>{!form.companyDetails}</td></tr>
+                        <tr><td>Contact Information</td><td>{!form.contactInformation}</td></tr>
+                        <tr><td>Requirement Response Time</td><td>{!form.requirementResponseTime}</td></tr>
+                        <tr><td>Requirement Price Format</td><td>{!form.requirementPriceFormat}</td></tr>
+                        <tr><td>Delivery Time</td><td>{!form.deliveryTime}</td></tr>
+                        <tr><td>Shipping Proof</td><td>{!form.shippingProofPod}</td></tr>
+                        <tr><td>Customs Fee</td><td>{!form.customsFee}</td></tr>
+                        <tr><td>Requirement Zip Code Validator</td><td>{!form.requirementZipCodeValidator}</td></tr>
+                        <tr><td>Requirement Info Validator</td><td>{!form.requirementInfoValidator}</td></tr>
+                        <tr><td>Already Requested Reclame Aqui</td><td>{!form.alreadyRequestedReclameAqui}</td></tr>
+                        <tr><td>Pod Reminder</td><td>{!form.podReminder}</td></tr>
+                        <tr><td>Credit Card Recurrence</td><td>{!form.creditCardRecurrence}</td></tr>
+                        <tr><td>Installment Recurrence</td><td>{!form.installmentRecurrence}</td></tr>
+                        <tr><td>Review Payee Registration</td><td>{!form.reviewPayeeRegistration}</td></tr>
+            </apex:repeat>
+        </table>
+        
         <div style="height: 650px; display: block"> </div>
-        <!-- Contacts Table -->
+         Contacts Table 
         <h2>Contacts</h2>
         <table>
             <tr>
@@ -184,7 +477,7 @@
             </apex:repeat>
         </table>
         <div style="height: 500px; display: block"> </div>
-        <!-- contractss Table -->
+      
         <h2>Contracts</h2>
         <table>
             <tr>
@@ -197,13 +490,14 @@
             <apex:repeat value="{!wrapper.contracts}" var="contracts">
                 <tr>
                     <td>{!contracts.productName}</td>
+                    <tr><td>Initial Monthly Revenue</td><td>{!contracts.initialMonthlyRevenue}</td></tr>
                     <td>{!contracts.totalPrice}</td>
                     <td>{!contracts.isMain}</td>
                     <td>{!contracts.initialMonthlyRevenue}</td>
                     <td>{!contracts.finalMonthlyRevenue}</td>
                 </tr>
             </apex:repeat>
-        </table>
+        </table> -->
     </body>
     </html>
 </apex:page>

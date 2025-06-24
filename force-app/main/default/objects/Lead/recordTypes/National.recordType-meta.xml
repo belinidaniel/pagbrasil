@@ -1108,15 +1108,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Alimentos</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Bares e Restaurantes</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Bebidas</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1156,10 +1148,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Educação</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Eletrônicos</fullName>
             <default>false</default>
         </values>
@@ -1168,11 +1156,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Gaming</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Hotéis</fullName>
+            <fullName>Grocery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Home Appliances</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1181,6 +1177,14 @@
         </values>
         <values>
             <fullName>Jogos de azar e apostas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joias%2FRelógios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketplace</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1201,14 +1205,6 @@
         </values>
         <values>
             <fullName>Pet</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Produtos físicos</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Restaurantes</fullName>
             <default>false</default>
         </values>
         <values>

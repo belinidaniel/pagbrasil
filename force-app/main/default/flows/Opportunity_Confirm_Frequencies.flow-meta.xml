@@ -66,14 +66,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Opportunity</targetReference>
+                <targetReference>RefreshPage</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
     </decisions>
     <environments>Default</environments>
     <interviewLabel>[Opportunity] Confirm Frequencies {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>[Quote] Confirm Opportunity Frequencies</label>
+    <label>[Quote] Set Opportunity Frequencies</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -141,7 +141,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>RefreshPage</targetReference>
+            <targetReference>Are_all_fields_filled</targetReference>
         </connector>
         <inputReference>Get_Opportunity</inputReference>
     </recordUpdates>
@@ -154,7 +154,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Are_all_fields_filled</targetReference>
+            <targetReference>Update_Opportunity</targetReference>
         </connector>
         <fields>
             <name>Text</name>
@@ -241,7 +241,23 @@
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
-        <nextOrFinishButtonLabel>Update Frequencies</nextOrFinishButtonLabel>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.Moeda__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.RecordType.Name</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Crossborder</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <nextOrFinishButtonLabel>Update Fields</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -255,7 +271,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>RefreshPageText</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 26px;&quot;&gt;&lt;u&gt;Please, refresh the page.&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;&lt;u&gt;Please, refresh the page.&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>

@@ -13,8 +13,12 @@ import ANSWERED from '@salesforce/schema/Opportunity.Answered_Confirmation_Form_
 import ACCEPTPROPOSAL from '@salesforce/schema/Opportunity.Acceptable_Proposal__c';
 import SYNCED_QUOTE_ID from '@salesforce/schema/Opportunity.SyncedQuoteId';
 import RECORD_TYPE_ID from '@salesforce/schema/Opportunity.RecordTypeId';
+import IS_OPPORTUNITY_VALID from '@salesforce/schema/Opportunity.Is_Opportunity_Valid__c';
 
-const FIELDS = [SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2, STAGE_NAME, ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID, RECORD_TYPE_ID];
+const FIELDS = [
+    SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2, STAGE_NAME,
+    ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID, RECORD_TYPE_ID, IS_OPPORTUNITY_VALID
+];
 
 export default class OpenFlowModal extends LightningElement {
     @api recordId;
@@ -34,6 +38,7 @@ export default class OpenFlowModal extends LightningElement {
             const stage = getFieldValue(data, STAGE_NAME);
             const responded = getFieldValue(data, ANSWERED);
             this.recordTypeId = getFieldValue(data, RECORD_TYPE_ID);
+            this.isOpportunityValid = getFieldValue(data, IS_OPPORTUNITY_VALID);
 
             if (stage === 'Contract' && !responded) {
                 this.showModal = true;
@@ -140,6 +145,18 @@ export default class OpenFlowModal extends LightningElement {
 
     handleConfirm() {
         this.isLoading = true;
+
+        if (this.isOpportunityValid === false) {
+            this.isLoading = false;
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error',
+                    message: 'This opportunity cannot be modified as it is not valid.',
+                    variant: 'error'
+                })
+            );
+            return;
+        }
 
         const hasChange = Object.keys(this.selectedValues).some(
             key => this.selectedValues[key] !== this.originalValues[key]

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Create_Homologation_Form</name>
-        <label>Create Homologation Form</label>
+        <name>Create_Homologation_Form_NB</name>
+        <label>Create Homologation Form NB</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <actionName>HomologationFormCreate</actionName>
@@ -27,6 +27,38 @@
             <name>url</name>
             <value>
                 <elementReference>Store_URL_NB</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>HomologationFormCreate</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Create_Homologation_Form_XB</name>
+        <label>Create Homologation Form XB</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>HomologationFormCreate</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Update_Opportunity_Stage</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>accountId</name>
+            <value>
+                <elementReference>Get_Opportunity.AccountId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>opportunityId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>url</name>
+            <value>
+                <elementReference>Store_URL_XB</elementReference>
             </value>
         </inputParameters>
         <nameSegment>HomologationFormCreate</nameSegment>
@@ -156,7 +188,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Create_Homologation_Form</targetReference>
+            <targetReference>Create_Homologation_Form_NB</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -180,7 +212,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Create_Homologation_Form</targetReference>
+            <targetReference>Create_Homologation_Form_XB</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

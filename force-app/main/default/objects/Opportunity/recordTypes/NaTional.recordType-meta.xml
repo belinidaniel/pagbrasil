@@ -3,6 +3,7 @@
     <fullName>NaTional</fullName>
     <active>true</active>
     <businessProcess>XB%2BNB</businessProcess>
+    <compactLayoutAssignment>New_Awesome_Compact_Layout</compactLayoutAssignment>
     <label>National</label>
     <picklistValues>
         <picklist>Account_Billing_Country__c</picklist>

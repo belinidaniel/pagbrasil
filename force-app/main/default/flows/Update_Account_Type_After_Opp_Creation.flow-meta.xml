@@ -27,6 +27,49 @@
             <label>National</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Which_Account_Type</name>
+        <label>Which Account Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Is_Record_Type_Name</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>Same_of_the_Opportunity_Type</name>
+            <conditionLogic>(1 AND 3) OR (2 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Account.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Nacional (NB)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Account.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cross Border (XB)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>National</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cross-border</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Same of the Opportunity Type</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>Update Account Type After Opp Creation {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Account Type After Opp Creation</label>
@@ -49,6 +92,27 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Account</name>
+        <label>Get Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Which_Account_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Billing_Country_to_Brazil</name>
         <label>Update Billing Country to Brazil</label>
@@ -122,7 +186,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Record_Type_Name</targetReference>
+            <targetReference>Get_Account</targetReference>
         </connector>
         <object>Opportunity</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

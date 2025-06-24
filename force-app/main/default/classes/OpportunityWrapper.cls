@@ -21,11 +21,37 @@ public class OpportunityWrapper {
     public Boolean googlePay { get; set; }
     public Boolean applePay { get; set; }
     public Boolean pagShieldPremiumOnDemand { get; set; }
+    public String recordType { get; set; }
     public AccountWrapper account { get; set; }
     public List<HomologationFormWrapper> homologationForms { get; set; }
     public List<ContactWrapper> contacts { get; set; }
     public List<QuoteLineItemWrapper> contracts { get; set; }
+    public Rcc__c rcc { get; set; }
+    public String moeda { get; set; }
+    public QuoteLineItemWrapper taxaPagShieldItem { get; set; }
+    public QuoteLineItemWrapper taxaMinimaManutencaoSF { get; set; }
+    public QuoteLineItemWrapper taxaMinimaManutencaoPagStream { get; set; }
+    public QuoteLineItemWrapper taxaPagStream { get; set; }
+    public QuoteLineItemWrapper taxaMinimaPagStream { get; set; }
+    public QuoteLineItemWrapper taxaBaseAntecipacao { get; set; }
+    public QuoteLineItemWrapper taxaProcessamentoBoleto { get; set; }
+    public QuoteLineItemWrapper taxaProcessamentoPix { get; set; }
+    public QuoteLineItemWrapper taxaProcessamentoCredito { get; set; }
+    public QuoteLineItemWrapper taxaProcessamentoCredito2a6 { get; set; }
+    public QuoteLineItemWrapper taxaProcessamentoCredito7a12 { get; set; }
+    public QuoteLineItemWrapper taxaProcessamentoDebito { get; set; }
+    public QuoteLineItemWrapper taxaZeroAuth { get; set; }
+    public QuoteLineItemWrapper pacoteMilEmails { get; set; }
+    public QuoteLineItemWrapper pacoteDezMilEmails { get; set; }
+    public QuoteLineItemWrapper pacoteCemMilEmails { get; set; }
+    public QuoteLineItemWrapper pacote500sms { get; set; }
+    public QuoteLineItemWrapper pacoteMilSms { get; set; }
+    public QuoteLineItemWrapper pacoteDezMilSms { get; set; }
+    public QuoteLineItemWrapper taxaTransferenciaFornecedores { get; set; }
+    public QuoteLineItemWrapper taxaPayout { get; set; }
 
+
+    
     // Constructor
     public OpportunityWrapper(Opportunity opp) {
         this.id = opp.Id;
@@ -43,6 +69,8 @@ public class OpportunityWrapper {
         this.googlePay = opp.GooglePay__c;
         this.applePay = opp.ApplePay__c;
         this.pagShieldPremiumOnDemand = opp.PagShield_Premium_On_Demand__c;
+        this.recordType = opp.RecordType.Name;
+        this.moeda = opp.Moeda__c;
 
         // Map Account properties
         if (opp.Account != null) {
@@ -70,6 +98,69 @@ public class OpportunityWrapper {
             this.contracts = new List<QuoteLineItemWrapper>();
             for (QuoteLineItem qli : quoteLineItemList) {
                 this.contracts.add(new QuoteLineItemWrapper(qli));
+                if (qli.Product2.ProductCode == 'CUSTO_PAGSHIELD') {
+                    this.taxaPagShieldItem = new QuoteLineItemWrapper(qli);
+                } 
+                else if (qli.Product2.ProductCode == 'TAXA_MIN_MANUTENCAO_SF') {
+                    this.taxaMinimaManutencaoSF = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_MIN_PAGSTREAM') {
+                    this.taxaMinimaManutencaoPagStream = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PAGSTREAM') {
+                    this.taxaPagStream = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_MIN_PAGSTREAM') {
+                    this.taxaMinimaPagStream = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_ANTECIPACAO') {
+                    this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PROCESS_BOLETO' && qli.IsMain__c == true) {
+                    this.taxaProcessamentoBoleto = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PROCESS_PIX' && qli.IsMain__c == true) {
+                    this.taxaProcessamentoPix = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PROCESS_CREDITO' && qli.IsMain__c == true) {
+                    this.taxaProcessamentoCredito = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PARC_2A6') {
+                    this.taxaProcessamentoCredito2a6 = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PARC_7A12') {
+                    this.taxaProcessamentoCredito7a12 = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PROCESS_DEBITO' && qli.IsMain__c == true) {
+                    this.taxaProcessamentoDebito = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'ZERO_AUTH_CARTAO') {
+                    this.taxaZeroAuth = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'PACOTE_1000_EMAILS') {
+                    this.pacoteMilEmails = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'PACOTE_10000_EMAILS') {
+                    this.pacoteDezMilEmails = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'PACOTE_100000_EMAILS') {
+                    this.pacoteCemMilEmails = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'PACOTE_500_SMS') {
+                    this.pacote500sms = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'PACOTE_1000_SMS') {
+                    this.pacoteMilSms = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'PACOTE_10000_SMS') {
+                    this.pacoteDezMilSms = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_TRANSFER_FORNEC') {
+                    this.taxaTransferenciaFornecedores = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PAYOUT') {
+                    this.taxaPayout = new QuoteLineItemWrapper(qli);
+                }
             }
         }
     }
@@ -143,6 +234,7 @@ public class OpportunityWrapper {
     public class HomologationFormWrapper {
         public Id id { get; set; }
         public String login { get; set; }
+        public String senha { get; set; }
         public String cielo30 { get; set; }
         public Decimal monthlyInterestOnCustomerInstallments { get; set; }
         public Decimal pbCheckoutDiscount { get; set; }
@@ -188,11 +280,26 @@ public class OpportunityWrapper {
         public String reviewPayeeRegistration { get; set; }
         public String transactionType { get; set; }
         public String emailsPodManager { get; set; }
+        public String mccCode { get; set; }
+        public String paymentAlert { get; set; }
+        public String blockRefund { get; set; }
+        public Decimal numberOfDays { get; set; }
+        public Decimal boletoFlash { get; set; }
+        public String SMSPackage { get; set; }
+        public String merchantID { get; set; }
+        public String merchantKey { get; set; }
+        public String PV { get; set; }
+        public String Token { get; set; }
+        public String RegKey { get; set; }
+        public String MID { get; set; }
+        public String TerminalID { get; set; }
+
 
         // Constructor to initialize the wrapper from a HomologationForms__c record
         public HomologationFormWrapper(HomologationForm__c form) {
             this.id = form.Id;
             this.login = form.Login__c;
+            this.senha = form.Password__c;
             this.cielo30 = form.Cielo30__c;
             this.monthlyInterestOnCustomerInstallments = form.MonthlyInterestOnCustomerInstallments__c;
             this.pbCheckoutDiscount = form.PbCheckoutDiscount__c;
@@ -238,6 +345,19 @@ public class OpportunityWrapper {
             this.reviewPayeeRegistration = form.ReviewPayeeRegistration__c;
             this.transactionType = form.TransactionType__c;
             this.emailsPodManager = form.EmailsPodManager__c;
+            this.mccCode = form.MccCode__c;
+            this.paymentAlert = form.PaymentAlert__c;
+            this.blockRefund = form.BlockRefund__c;
+            this.numberOfDays = form.NumberOfDays__c;
+            this.boletoFlash = form.FlashBoleto__c;
+            this.SMSPackage = form.SmsPackage__c;
+            this.merchantID = form.MerchantId__c;
+            this.merchantKey = form.MerchantKey__c;
+            this.PV = form.Pv__c;
+            this.Token = form.Token__c;
+            this.RegKey = form.RegKey__c;
+            this.MID = form.MidMerchantId__c; 
+            this.TerminalID = form.TerminalId__c;  
         }
     }
 
@@ -266,6 +386,9 @@ public class OpportunityWrapper {
         public Boolean isMain { get; set; }
         public Decimal initialMonthlyRevenue { get; set; }
         public Decimal finalMonthlyRevenue { get; set; }
+        public Date initialDate { get; set; }
+        public Decimal percentValue { get; set; }
+        
 
         QuoteLineItemWrapper(QuoteLineItem qli) {
             this.id = qli.Id;
@@ -276,6 +399,30 @@ public class OpportunityWrapper {
             this.isMain = qli.IsMain__c;
             this.initialMonthlyRevenue = qli.InitialMonthlyRevenue__c;
             this.finalMonthlyRevenue = qli.FinalMonthlyRevenue__c;
+            this.initialDate = qli.ServiceDate;
+            this.percentValue = qli.PercentValue__c;
+        }
+    }
+
+    public class RccWrapper {
+        public String id { get; set; }
+        public String FinalRisk { get; set; }
+        
+        public RccWrapper(Rcc__c rcc) {
+                this.id = rcc.Id;
+                this.FinalRisk = rcc.Final_Risk__c;
+        }
+    }
+
+    public class KycWrapper {
+        public String id { get; set; }
+        public String name { get; set; }
+        public Datetime lastModifiedDate { get; set; }
+
+        public KYCWrapper(KYC__c kyc) {
+            this.id = kyc.Id;
+            this.name = kyc.Name;
+            this.lastModifiedDate = kyc.LastModifiedDate;
         }
     }
 }

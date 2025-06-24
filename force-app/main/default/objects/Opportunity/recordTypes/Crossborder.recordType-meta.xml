@@ -3,6 +3,7 @@
     <fullName>Crossborder</fullName>
     <active>true</active>
     <businessProcess>XB%2BNB</businessProcess>
+    <compactLayoutAssignment>New_Awesome_Compact_Layout</compactLayoutAssignment>
     <label>Cross-border</label>
     <picklistValues>
         <picklist>Account_Billing_Country__c</picklist>

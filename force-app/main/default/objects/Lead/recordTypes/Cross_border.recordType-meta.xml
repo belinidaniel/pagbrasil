@@ -63,10 +63,6 @@
     <picklistValues>
         <picklist>Desired_Business_Model__c</picklist>
         <values>
-            <fullName>Gateway</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Intermediation</fullName>
             <default>false</default>
         </values>
@@ -757,10 +753,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Akrotiri</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Albania</fullName>
             <default>false</default>
         </values>
@@ -793,10 +785,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Arctic Ocean</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Argentina</fullName>
             <default>false</default>
         </values>
@@ -806,10 +794,6 @@
         </values>
         <values>
             <fullName>Aruba</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Ashmore and Cartier Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -881,6 +865,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Brazil</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>British Indian Ocean Territory</fullName>
             <default>false</default>
         </values>
@@ -901,10 +889,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Burma</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Burundi</fullName>
             <default>false</default>
         </values>
@@ -922,6 +906,10 @@
         </values>
         <values>
             <fullName>Cape Verde</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Caribbean Netherlands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -949,11 +937,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Clipperton Island</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cocos Islands</fullName>
+            <fullName>Cocos %28Keeling%29 Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -965,19 +949,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Congo-Brazzaville</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Congo-Kinshasa</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Cook Islands</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Coral Sea Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1001,11 +973,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Denmark</fullName>
+            <fullName>Democratic Republic of the Congo</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Dhekelia</fullName>
+            <fullName>Denmark</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1033,6 +1005,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>El Salvador</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Equatorial Guinea</fullName>
             <default>false</default>
         </values>
@@ -1042,6 +1018,10 @@
         </values>
         <values>
             <fullName>Estonia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eswatini</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1057,6 +1037,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Federated States of Micronesia</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Fiji</fullName>
             <default>false</default>
         </values>
@@ -1069,11 +1053,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>French Guiana</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>French Polynesia</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>French Southern Territories</fullName>
+            <fullName>French Southern and Antarctic Lands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1141,7 +1129,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Heard and McDonald Islands</fullName>
+            <fullName>Heard Island and McDonald Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1162,10 +1150,6 @@
         </values>
         <values>
             <fullName>India</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Indian Ocean</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1202,10 +1186,6 @@
         </values>
         <values>
             <fullName>Jamaica</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Jan Mayen</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1285,10 +1265,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Macedonia</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Madagascar</fullName>
             <default>false</default>
         </values>
@@ -1317,6 +1293,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Martinique</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Mauritania</fullName>
             <default>false</default>
         </values>
@@ -1325,19 +1305,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Mayotte</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Mexico</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Micronesia</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Moldova</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Monaco</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1366,10 +1342,6 @@
         </values>
         <values>
             <fullName>Nauru</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Navassa Island</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1413,7 +1385,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Northern Marianas</fullName>
+            <fullName>Northern Mariana Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1422,10 +1394,6 @@
         </values>
         <values>
             <fullName>Oman</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Pacific Ocean</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1445,10 +1413,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Paracel Islands</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Paraguay</fullName>
             <default>false</default>
         </values>
@@ -1461,7 +1425,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Pitcairn</fullName>
+            <fullName>Pitcairn Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1473,11 +1437,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Principality of Monaco</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Puerto Rico</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Qatar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Republic of the Congo</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1493,7 +1465,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Saint Helena</fullName>
+            <fullName>Saint Helena%2C Ascension and Tristan da Cunha</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1509,15 +1481,15 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Salvador</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Samoa</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>San Marino</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sao Tome and Principe</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1569,7 +1541,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>South Georgia and South Sandwich</fullName>
+            <fullName>South Georgia and South Sandwich Islands</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1581,35 +1553,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Southern Ocean</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Spain</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Spratly Islands</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Sri Lanka</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>St%2E Bartholomew</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>St%2E Martin</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>St%2E Peter and Miquelon</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>St%2E Thomas and the Grenadines</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1621,11 +1569,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Svalbard and Jan Mayen</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Swaziland</fullName>
+            <fullName>Svalbard</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1693,10 +1637,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>US Virgin Islands</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Uganda</fullName>
             <default>false</default>
         </values>
@@ -1713,7 +1653,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>United States</fullName>
+            <fullName>United States of America</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1729,7 +1669,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Vatican</fullName>
+            <fullName>Vatican City</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1741,15 +1681,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Wake Island</fullName>
+            <fullName>Virgin Islands</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Wallis and Futuna</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>West Bank</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1766,6 +1702,10 @@
         </values>
         <values>
             <fullName>Zimbabwe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Åland Islands</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -2120,15 +2060,7 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Alimentos</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Bares e Restaurantes</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Bebidas</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2168,10 +2100,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Educação</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Eletrônicos</fullName>
             <default>false</default>
         </values>
@@ -2180,11 +2108,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Gaming</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Hotéis</fullName>
+            <fullName>Grocery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Home Appliances</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2193,6 +2129,14 @@
         </values>
         <values>
             <fullName>Jogos de azar e apostas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joias%2FRelógios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketplace</fullName>
             <default>false</default>
         </values>
         <values>
@@ -2213,14 +2157,6 @@
         </values>
         <values>
             <fullName>Pet</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Produtos físicos</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Restaurantes</fullName>
             <default>false</default>
         </values>
         <values>

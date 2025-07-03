@@ -44,9 +44,11 @@ global class KYCXBService {
 				if (Schema.sObjectType.KYC_XB__c.fields.getMap().containsKey(key)) {
 					if (key == 'Founding_Date__c') {
 						String inputDate = String.valueOf(requestBody.get(key));
+                        System.debug('inputDate: ' + inputDate);
 						List<String> dateParts = inputDate.split('/');
 						String outputDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
 						Date foundingDate = date.valueOf(outputDate);
+                        System.debug('foundingDate: ' + foundingDate);
 						kycRecord.put(key, foundingDate);
 						continue;
 					}
@@ -120,18 +122,6 @@ global class KYCXBService {
 						existingRecord.Stage_Number__c = stageNumber;
 						continue;
                     }
-                    if (key == 'Bank_Number__c') {
-						String bankInfo = String.valueOf(requestBody.get(key));
-						Decimal ispb = Decimal.valueOf(bankInfo);
-                        System.debug('ispb');
-                        System.debug(ispb);
-
-						Bank_Option__c bankOption = [
-    	               		SELECT Id FROM Bank_Option__c WHERE ISPB__c = :ispb LIMIT 1
-						];
-                        System.debug('bankOption');
-                        System.debug(bankOption);
-					}
 					if (key == 'Conformity__c') {
 						Boolean value = Boolean.valueOf(requestBody.get(key));
 						existingRecord.Conformity__c = value;

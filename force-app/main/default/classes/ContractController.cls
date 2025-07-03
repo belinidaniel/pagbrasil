@@ -30,6 +30,8 @@ public class ContractController {
     public Boolean containsCartao { get; set; }
     public Boolean containsDebito { get; set; }
 
+    public Boolean containsCartaoAndIsIntermediation { get; set; } 
+
     public Boolean lowRange { get; set; }
     public String firstRange { get; set; }
     public String secondRange { get; set; }
@@ -41,6 +43,7 @@ public class ContractController {
     public String pixThree { get; set; }
     public String pixFour { get; set; }
     public String pixGateway { get; set; }
+    public String pixOneClick { get; set; }
 
     public String creditCardOne { get; set; }
     public String creditCardTwo { get; set; }
@@ -124,6 +127,7 @@ public class ContractController {
 
     public String termClauses { get; set; }
     public String termClausesTitle { get; set; }
+    public String legalName { get; set; }
 
     public ContractController(ApexPages.StandardController stdController) {
 
@@ -135,6 +139,7 @@ public class ContractController {
 
         Opportunity opp = (Opportunity) stdController.getRecord();
 
+
         getTermClauses(opp.Id, opp.RequestChangeClause__c);
 
         this.link = String.isBlank(ApexPages.currentPage().getParameters().get('link')) ? 'Link não fornecido' : ApexPages.currentPage().getParameters().get('link');
@@ -142,6 +147,16 @@ public class ContractController {
 
         if(String.isNotBlank(opp.RecordType.DeveloperName) && opp.RecordType.DeveloperName.contains('Crossborder')){
             this.isCrossborder = true;
+        }
+
+        if (!this.isCrossBorder){
+            KYC__c kyc = [SELECT Id, Legal_Name__c FROM KYC__c WHERE Opportunity__c =: opp.Id LIMIT 1];
+            this.legalName = kyc.Legal_Name__c;
+        }
+
+        if (this.isCrossBorder) {
+            KYC_XB__c kycXB = [SELECT Id, Legal_Name__c FROM KYC_XB__c WHERE Opportunity__c =: opp.Id LIMIT 1];
+            this.legalName = kycXB.Legal_Name__c;
         }
 
         this.maintenanceDate = formatDate(ApexPages.currentPage().getParameters().get('maintenanceDate'), isCrossborder);
@@ -182,6 +197,9 @@ public class ContractController {
             this.containsCartao = this.opportunity.NationalPaymentMethod__c.contains('Cartão');
             this.containsDebito = this.opportunity.NationalPaymentMethod__c.contains('Débito');
         }
+
+        this.containsCartaoAndIsIntermediation = this.containsCartao && !this.isGateway;
+        System.debug('containsCartaoAndIsIntermediation: ' + this.containsCartaoAndIsIntermediation);
 
         this.lowRange = this.opportunity.previs_fat_rs__c <= 5000000;
         this.firstRange = this.lowRange ? '> 1M' : '> 10M';
@@ -352,8 +370,13 @@ public class ContractController {
                         this.iofTax = price;
                     }
                     when 'TAXA_GATEWAY_PIX' {
-                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49)
+                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49){
                             this.pixGatewayBelowMinimum = true;
+                            System.debug('Price: '+price);
+                            System.debug('Price Decimal: '+Decimal.valueOf(price.trim().replace(',', '.')));
+                            System.debug('Price - 0.49: '+String.valueOf(Decimal.valueOf(price.trim().replace(',', '.')) - 0.49));
+                            this.pixOneClick = String.valueOf(Decimal.valueOf(price.trim().replace(',', '.')) - 0.49);
+                        }
                         this.pixGateway = price;
                     }
                     when 'PROCESSING_FEES_PIX' {
@@ -490,8 +513,10 @@ public class ContractController {
                         this.excessChargeback = price;
                     }
                     when 'TAXA_GATEWAY_PIX' {
-                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49)
+                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49){
                             this.pixGatewayBelowMinimum = true;
+                            this.pixOneClick = String.valueOf(0.49 - Decimal.valueOf(price.trim().replace(',', '.'))).replace('.', ',');
+                        }
                         this.pixGateway = price;
                     }
                     when 'TAXA_PROCESS_PIX' {
@@ -670,7 +695,8 @@ public class ContractController {
 
             Opportunity oppToUpdate = new Opportunity(
                 Id = opportunityId,
-                Was_Contract_PDF_Generated__c = true
+                Was_Contract_PDF_Generated__c = true,
+                Contract_Start_Fee_Date__c = maintenanceDate
             );
             update oppToUpdate;
 

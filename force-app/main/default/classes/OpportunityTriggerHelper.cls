@@ -46,7 +46,7 @@ public with sharing class OpportunityTriggerHelper {
 
             if(OpportunityTriggerHelper.hasFieldModified(opp, oldOppMap)){
 
-                if(opp.StageName != 'Hibernate' && opp.StageName != 'Discovery' && opp.StageName != 'Negotiation'){
+                if(opp.StageName != 'Hibernate' && opp.StageName != 'Discovery' && opp.StageName != 'Negotiation' && oldOppMap.get(opp.Id).Contract_Start_Fee_Date__c == opp.Contract_Start_Fee_Date__c){
                     opp.addError('Status da oportunidade não permite alteração de campos');
                     break;
                 }
@@ -231,7 +231,7 @@ public with sharing class OpportunityTriggerHelper {
         Approval.process(submitRequest);
     }
 
-    public static void submitRCCForApproval(opportunity newOpp) {
+    public static void submitRCCForApproval(Opportunity newOpp) {
         Id opportunityId = newOpp.Id;
         
         RCC__c rccToSubmit = [SELECT Id, LegalApprovalStatus__c FROM RCC__c WHERE Opportunity__c = :opportunityId LIMIT 1];
@@ -244,5 +244,78 @@ public with sharing class OpportunityTriggerHelper {
         submitRequest.setProcessDefinitionNameOrId('RCC_Approval');
         submitRequest.setSkipEntryCriteria(true);
         Approval.process(submitRequest);
+    }
+    
+    public static void makeTheNewOppValidAndTheOldOppsInvalid(List<Opportunity> newOpps) {
+        Set<Id> accountIds = new Set<Id>();
+        List<Opportunity> oldOppsToUpdate = new List<Opportunity>();
+
+        for (Opportunity opp : newOpps) {
+            opp.Is_Opportunity_Valid__c = true;
+            opp.Lead_Owner__c = opp.OwnerId;
+            accountIds.add(opp.AccountId);
+        }
+
+        if (!accountIds.isEmpty()) {
+            for (Opportunity oldOpp : [
+                SELECT Id FROM Opportunity 
+                WHERE AccountId IN :accountIds 
+                AND Is_Opportunity_Valid__c = true
+                AND Id NOT IN :newOpps
+            ]) {
+                oldOpp.Is_Opportunity_Valid__c = false;
+                oldOppsToUpdate.add(oldOpp);
+            }
+        }
+
+        if (!oldOppsToUpdate.isEmpty()) {
+            update oldOppsToUpdate;
+        }
+    }
+
+	public static void createKycAndRccRecords(List<Opportunity> newOpps) {
+        Set<Id> recordTypeIds = new Set<Id>();
+        for (Opportunity opp : newOpps) {
+            recordTypeIds.add(opp.RecordTypeId);
+        }
+        Map<Id, RecordType> recordTypeMap = new Map<Id, RecordType>(
+            [SELECT Id, DeveloperName FROM RecordType WHERE Id IN :recordTypeIds AND SObjectType = 'Opportunity']
+        );
+        
+        List<KYC__c> kycsNB = new List<KYC__c>();
+        List<KYC_XB__c> kycsXB = new List<KYC_XB__c>();
+        List<RCC__c> rccs = new List<RCC__c>();
+        
+        for (Opportunity opp : newOpps) {
+            String devName = recordTypeMap.get(opp.RecordTypeId).DeveloperName;
+            String uniqueId = 'UniqueID' + opp.Id;
+            
+            if (devName == 'Crossborder') {
+                kycsXB.add(new KYC_XB__c(
+                    Client_Account__c = opp.AccountId,
+                    Opportunity__c = opp.Id,
+                    Stage_Number__c = 0,
+                    Status__c = 'Pending',
+                    Unique_Link__c = EncodingUtil.convertToHex(Crypto.generateDigest('SHA-256', Blob.valueOf(opp.Id + String.valueOf(System.currentTimeMillis()))))
+                ));
+            } else if (devName == 'NaTional') {
+                kycsNB.add(new KYC__c(
+                    Client_Account__c = opp.AccountId,
+                    Opportunity__c = opp.Id,
+                    Stage_Number__c = 0,
+                    Status__c = 'Pending',
+                    Unique_Link__c = EncodingUtil.convertToHex(Crypto.generateDigest('SHA-256', Blob.valueOf(opp.Id + String.valueOf(System.currentTimeMillis()))))
+                ));
+            }
+            
+            rccs.add(new RCC__c(
+                Account__c = opp.AccountId,
+                Opportunity__c = opp.Id
+            ));
+        }
+        
+        if (!kycsNB.isEmpty()) insert kycsNB;
+        if (!kycsXB.isEmpty()) insert kycsXB;
+        if (!rccs.isEmpty()) insert rccs;
     }
 }

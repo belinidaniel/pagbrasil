@@ -2,16 +2,21 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 05-29-2025
- * @last modified by  : Daniel Belini
+ * @last modified on  : 06-30-2025
+ * @last modified by  : Marcelo Duarte
 **/
 public with sharing class QuotePdfService {
 
     @AuraEnabled(cacheable=true)
     public static Quote getOpportunityType(Id quoteId) {
         return [
-            SELECT Id, Name, Status, OpportunityId, Opportunity.RecordType.DeveloperName,
-                   Opportunity.SyncedQuoteId, Opportunity.SyncedQuote.IsSyncing, IsSyncing
+            SELECT Id, Name, Status, OpportunityId, 
+                   Opportunity.RecordType.DeveloperName,
+                   Opportunity.SyncedQuoteId, 
+                   Opportunity.SyncedQuote.IsSyncing, 
+                   IsSyncing,
+                   Opportunity.Owner.Email,
+                   Opportunity.Owner.Name
             FROM Quote
             WHERE Id = :quoteId
             LIMIT 1
@@ -25,14 +30,19 @@ public with sharing class QuotePdfService {
         PageReference pdfPage = (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder')
             ? Page.PropostaCross
             : Page.PropostaNacional;
-
+            
         pdfPage.getParameters().put('id', quoteId);
-        Blob pdfBlob = pdfPage.getContentAsPDF();
+        Blob pdfBlob;
+
+        if(Test.isRunningTest()) {
+            pdfBlob = Blob.valueOf('PDF_MOCK_CONTENT');
+        } else {
+            pdfBlob = pdfPage.getContentAsPDF();
+        }
 
         String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
         String filePrefix = 'Proposal_' + baseName;
 
-        // 🔄 Corrigir a busca diretamente por ContentVersion
         List<ContentVersion> existingVersions = [
             SELECT Title 
             FROM ContentVersion 
@@ -96,27 +106,39 @@ public with sharing class QuotePdfService {
     public static void sendToEmail(Id quoteId) {
         Quote proposta = getOpportunityType(quoteId);
 
+        // Validate Opportunity relationship exists
+        if(proposta.OpportunityId == null) {
+            throw new AuraHandledException('Quote is not associated with an Opportunity');
+        }
+
         PageReference pdfPage = (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder')
             ? Page.PropostaCross
             : Page.PropostaNacional;
         pdfPage.getParameters().put('id', quoteId);
-        Blob pdfBlob = pdfPage.getContentAsPDF();
-
-        String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
-        String filePrefix = 'Proposal_' + baseName;
-        String fileName = filePrefix + '.pdf';
-
-        // Get Quote Owner Email
-        String ownerEmail = [SELECT Owner.Email FROM Quote WHERE Id = :quoteId LIMIT 1].Owner.Email;
-        if (String.isBlank(ownerEmail)) {
-            throw new AuraHandledException('Quote owner does not have an email address.');
+        
+        Blob pdfBlob;
+        
+        if(Test.isRunningTest()) {
+            pdfBlob = Blob.valueOf('PDF_MOCK_CONTENT');
+        } else {
+            pdfBlob = pdfPage.getContentAsPDF();
         }
 
-        // Prepare email
+        String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
+        String fileName = 'Proposal_' + baseName + '.pdf';
+
+        // Use Opportunity Owner instead of Quote Owner
+        String ownerEmail = proposta.Opportunity.Owner.Email;
+        if (String.isBlank(ownerEmail)) {
+            throw new AuraHandledException('Opportunity owner does not have an email address.');
+        }
+
+        // Prepare and send email
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         mail.setToAddresses(new String[] { ownerEmail });
         mail.setSubject('Proposal PDF for Quote: ' + proposta.Name);
         mail.setPlainTextBody('Please find attached the proposal PDF for quote: ' + proposta.Name);
+        
         Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         attachment.setFileName(fileName);
         attachment.setBody(pdfBlob);

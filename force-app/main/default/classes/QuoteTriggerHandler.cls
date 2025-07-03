@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 05-27-2025
+ * @last modified on  : 06-30-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -298,7 +298,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                      if(isReceitaRange && (
                        ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && tax.TaxRegion__c == 'Crossborder') ||
                        ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX)) && isTicketRange) ||
-                       ((paymentMethod.contains(DEBITO) || paymentMethod.contains(CREDITO)) && tax.ProductClass__c == opportunity.ProductClass__c))
+                       ((paymentMethod.contains(DEBITO) || paymentMethod.contains(CREDITO)) && tax.ProductClass__c.contains(opportunity.ProductClass__c)))
                     ){
                         percentValue = tax.PercentValue__c;
                         isTaxMain = true;
@@ -308,9 +308,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     }
                 }
                 when 'TaxaSolucaoPagBrasil' {
-                    if(isReceitaRange && (
-                        opportunity.BusinessModel__c == 'Intermediation' ||
-                        ((opportunity.BusinessModel__c == 'Intermediation;Gateway' || opportunity.BusinessModel__c == 'Gateway') && opportunity.IntegrationType__c != null && tax.IntegrationType__c != null && tax.IntegrationType__c.toLowerCase().contains(opportunity.IntegrationType__c.ToLowerCase())))){
+                    if(opportunity.BusinessModel__c.contains('Intermediation') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js'))){
                         percentValue = tax.PercentValue__c;
                         isTaxMain = true;
                         taxId = tax.Id;
@@ -319,7 +317,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     }
                 }
                 when 'TaxaGateway' {
-                    if(isTicketRange){
+                    if(opportunity.BusinessModel__c.contains('Gateway') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js'))){
                         unitPrice = tax.UnitPrice__c;
                         isTaxMain = true;
                         taxId = tax.Id;

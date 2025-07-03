@@ -16,6 +16,7 @@ public class PropostaNacionalController {
     public Boolean containsShopify { get; set; }
     public Boolean containsGateway { get; set; }
     public Boolean containsCreditCard { get; set; }
+    public Boolean isPagShield { get; set; }
     public Boolean isSalesforce { get; set; }
     public Boolean isGateway { get; set; }
     public Boolean isIntermediation { get; set; }
@@ -28,6 +29,7 @@ public class PropostaNacionalController {
     public Boolean viewPage11 { get; set; }
     public Boolean shopifyWoocommerceSalesforcePBCheckoutTerms { get; set; }
     public Boolean jSAPIVTexTerms { get; set; }
+    public Boolean containsVTEX { get; set; }
     public Boolean show { get; set; }
     public Boolean first { get; set; }
     public string reserve {get;set;}
@@ -157,6 +159,9 @@ public class PropostaNacionalController {
 
     public static List<String> integrationTypeShopifyWoocommerceSalesforcePBCheckoutList = new List<String>{'Shopify','Woocommerce','Salesforce','PB Checkout'};
     public static List<String> integrationTypeJSAPIVTex = new List<String>{'JS','API','Vtex'};
+    public static List<String> integrationTypeVTEX = new List<String>{'Vtex'};
+
+    
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -183,6 +188,7 @@ public class PropostaNacionalController {
         this.viewPage11 = false;
         this.shopifyWoocommerceSalesforcePBCheckoutTerms = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeShopifyWoocommerceSalesforcePBCheckoutList(quote.Opportunity.IntegrationType__c) : false;
         this.jSAPIVTexTerms = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeJSAPIVTex(quote.Opportunity.IntegrationType__c) : false;
+        this.containsVTEX = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeVTEX(quote.Opportunity.IntegrationType__c) : false;
 
         this.page09 = '';
         this.page10 = '';
@@ -200,11 +206,14 @@ public class PropostaNacionalController {
         return temp.replaceAll('[^0-9.,]', '');
     }
 
+    
+
     private void fieldsPopulation(Quote quote) {
         this.opportunityName = quote.Opportunity.Name;
         this.accountOwnerName = quote.Account.Owner.Name;
         this.accountOwnerEmail = quote.Account.Owner.Email;
         this.accountOwnerMobilePhone = quote.Account.Owner.MobilePhone;
+        this.isPagShield = quote.Opportunity.PagShield__c;
         this.containsShopify = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c.contains('Shopify') : false;
         this.containsGateway = quote.Opportunity.BusinessModel__c != null ? quote.Opportunity.BusinessModel__c.contains('Gateway') : false;
         this.isSalesforce = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c == 'Salesforce' : false;
@@ -853,6 +862,13 @@ public class PropostaNacionalController {
         return false;
     }
 
+    private static Boolean validateIntegrationTypeVTEX(String integracao) {
+        for(String integration : integrationTypeVTEX)
+            if (integracao.contains(integration))
+                return true;
+        return false;
+    }
+    
     private void getParcelas(Quote quote, String page) {
 
         if (page == 'One') {

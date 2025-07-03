@@ -1637,7 +1637,7 @@
                 <img src="{!$Resource.PNSiteIcon}" style="position: absolute; top: 429px; left: 680px; width: 40px;"/>
                 <p style="position: absolute; top: 420px; left: 780px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">www.pagbrasil.com</p>
             </div>
-            <img src="{!$Resource.Logo2025}" style="position:absolute; bottom: 30px; right: 52px; width: 250px;"/>
+            <img src="{!$Resource.Logo2025}" style="position:absolute; bottom: 130px; left: 52px; width: 250px;"/>
         </div>
     </body>
 </html>

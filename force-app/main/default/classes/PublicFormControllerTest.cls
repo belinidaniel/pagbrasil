@@ -25,15 +25,28 @@ public class PublicFormControllerTest {
 
         Opportunity testOpportunity = new Opportunity(
             Name = 'Test Opportunity',
-            Amount = 10000,
-            CloseDate = Date.today().addDays(30),
             StageName = 'Discovery',
-            IntegrationType__c = 'API',
-            Product_Type__c = 'Physical',
-            AccountId = testAccount.Id,
+            CloseDate = Date.today().addDays(30),
             BusinessModel__c = 'Gateway',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
             Product_or_service_website_URL__c = 'https://pagbrasil--sandboxsr1.sandbox.my.salesforce.com/',
-            Segmento__c = 'Dropshipping'
+            AverageSalesTicket__c = 15000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            Integracao__c = 'API',
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
+            AccountId = testAccount.Id,
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly'
         );
         insert testOpportunity;
 
@@ -79,15 +92,28 @@ public class PublicFormControllerTest {
 
         Opportunity testOpportunity = new Opportunity(
             Name = 'Test Opportunity',
-            Amount = 20000,
-            CloseDate = Date.today().addDays(10),
             StageName = 'Discovery',
-            IntegrationType__c = 'API',
-            Product_Type__c = 'Physical',
-            AccountId = testAccount.Id,
+            CloseDate = Date.today().addDays(30),
             BusinessModel__c = 'Gateway',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
             Product_or_service_website_URL__c = 'https://pagbrasil--sandboxsr1.sandbox.my.salesforce.com/',
-            Segmento__c = 'Dropshipping'
+            AverageSalesTicket__c = 15000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            Integracao__c = 'API',
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
+            AccountId = testAccount.Id,
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly'
         );
         insert testOpportunity;
 
@@ -152,16 +178,29 @@ public class PublicFormControllerTest {
 
         Opportunity testOpportunity = new Opportunity(
             Name = 'Test Opportunity',
-            Amount = 20000,
-            CloseDate = Date.today().addDays(10),
             StageName = 'Discovery',
-            IntegrationType__c = 'API',
-            Product_Type__c = 'Physical',
-            AccountId = testAccount.Id,
-            BusinessModel__c = 'Gateway',
+            CloseDate = Date.today().addDays(30),
+            BusinessModel__c = 'Intermediation',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
             Product_or_service_website_URL__c = 'https://pagbrasil--sandboxsr1.sandbox.my.salesforce.com/',
-            Segmento__c = 'Dropshipping',
-            recordTypeId = recordTypeIdCross
+            AverageSalesTicket__c = 15000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            Integracao__c = 'API',
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
+            AccountId = testAccount.Id,
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly',
+            RecordTypeId = recordTypeIdCross
         );
         insert testOpportunity;
 
@@ -225,15 +264,28 @@ public class PublicFormControllerTest {
     
         Opportunity testOpportunity = new Opportunity(
             Name = 'Test Opportunity',
-            Amount = 20000,
-            CloseDate = Date.today().addDays(10),
             StageName = 'Discovery',
-            IntegrationType__c = 'API',
-            Product_Type__c = 'Physical',
-            AccountId = testAccount.Id,
+            CloseDate = Date.today().addDays(30),
             BusinessModel__c = 'Gateway',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
             Product_or_service_website_URL__c = 'https://pagbrasil--sandboxsr1.sandbox.my.salesforce.com/',
-            Segmento__c = 'Dropshipping'
+            AverageSalesTicket__c = 15000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            Integracao__c = 'API',
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
+            AccountId = testAccount.Id,
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly'
         );
         insert testOpportunity;
     

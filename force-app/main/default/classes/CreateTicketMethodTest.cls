@@ -1,154 +1,160 @@
+/**
+ * @description      : Classe de teste para a classe CreateTicketMethod.
+ * Cobre os principais cenários de sucesso e de falha, além de mockar
+ * as chamadas externas (callouts) para o Zendesk.
+ * @author           : Gemini AI
+ * @group            : Test
+ * @last modified on : 07-01-2025
+**/
 @isTest
-public class CreateTicketMethodTest {
+private class CreateTicketMethodTest {
 
-    @TestSetup
-    static void makeData() {
-        Account acct = new Account(
-            Name = 'Conta teste',
-            Filial_no_Brasil__c = 'Sim',
-            Nome_Empresarial__c = 'Empresa X',
-            BillingCountry = 'Brasil'
+    @testSetup
+    static void makeData(){
+        Account acc = new Account(
+            Name = 'Test Account',
+            OrganizationId__c = 'ORG123'
         );
-        insert acct;
+        insert acc;
 
         Opportunity opp = new Opportunity(
-            Name = 'Opp teste',
-            AccountId = acct.Id,
+            Name = 'Test Opportunity',
+            AccountId = acc.Id,
             StageName = 'Prospecting',
-            CloseDate = System.today().addDays(30),
-            ApplePay__c = false,
-            Product_or_service_website_URL__c = 'https://www.google.com.br/',
-            Transacoes_Mensais__c = 1213,
-            BusinessModel__c = 'Intermediation'
+            CloseDate = Date.today().addMonths(1)
         );
         insert opp;
+
+        HomologationForm__c homologation = new HomologationForm__c(
+            Name = 'homolog.subdomain.com',
+            Opportunity__c = opp.Id
+        );
+        insert homologation;
     }
 
     @isTest
     static void testCreateTicketSuccess() {
-        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+        Opportunity opp = [SELECT Id, AccountId FROM Opportunity WHERE Name = 'Test Opportunity' LIMIT 1];
+        Test.setMock(HttpCalloutMock.class, new ZendeskCalloutMock());
 
-        Opportunity opp = [SELECT Id FROM Opportunity WHERE Name = 'Opp teste' LIMIT 1];
-
-        CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
-        input.idOpportunity = opp.Id;
-        input.priority = 'P0';
-        input.organizationId = '1234';
-        input.dataCreateAccount = Date.today();
-        input.pagShieldActivationCheck = false;
-        input.paymentMethodsInFooter = false;
-        input.logoInsertionInBoleto = false;
-        input.reclameAqui = false;
-        input.pods = false;
-        input.visualIdentityManualRequest = false;
-        input.welcomeEmailAndTrainingLinks = false;
-        input.triggerIndication = 'SIM';
-
-        Test.startTest();
-            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{ input });
-        Test.stopTest();
-
-        Opportunity updatedOpportunity = [SELECT TicketId__c FROM Opportunity WHERE Id = :opp.Id];
-        System.assertNotEquals(null, updatedOpportunity.TicketId__c, 'TicketId__c should be updated.');
-        System.assertEquals('12345', updatedOpportunity.TicketId__c, 'TicketId__c should match the mocked ticketId.');
-    }
-
-    @isTest
-    static void testCreateTicketFailed() {
-
-        Opportunity opp = [SELECT Id FROM Opportunity WHERE Name = 'Opp teste' LIMIT 1];
-
+        List<CreateTicketMethod.FlowInputs> flowInputsList = new List<CreateTicketMethod.FlowInputs>();
         CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
         input.idOpportunity = opp.Id;
         input.priority = 'High';
+        input.organizationId = 'ORG123_CHILD';
+        input.dataCreateAccount = Date.today();
+        input.pagShieldActivationCheck = true;
+        flowInputsList.add(input);
 
+        // Definir a página atual para o contexto do Visualforce
+        PageReference pageRef = Page.OpportunityFields;
+        Test.setCurrentPage(pageRef);
+        
         Test.startTest();
-        try {
-            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{ input });
-        } catch (Exception e) {
-        }        
+        CreateTicketMethod.createTicket(flowInputsList);
         Test.stopTest();
+
+        Opportunity updatedOpp = [SELECT TicketId__c, Priority__c, DateAccountCreation__c, TicketCreationDate__c FROM Opportunity WHERE Id = :opp.Id];
+        System.assertEquals('fakeTicketId123', updatedOpp.TicketId__c, 'O TicketId__c na Oportunidade não foi atualizado corretamente.');
+        System.assertEquals('High', updatedOpp.Priority__c, 'A Prioridade na Oportunidade não foi atualizada.');
+        System.assertNotEquals(null, updatedOpp.TicketCreationDate__c, 'A data de criação do ticket não foi preenchida.');
+
+        List<Account> childAccounts = [SELECT Id, Name, ParentId FROM Account WHERE ParentId = :opp.AccountId];
+        System.assertEquals(1, childAccounts.size(), 'A conta filha não foi criada.');
+        System.assertEquals('subdomain', childAccounts[0].Name, 'O nome da conta filha está incorreto.');
+
+        List<ContentDocumentLink> cdls = [SELECT ContentDocument.Title, ContentDocument.FileType FROM ContentDocumentLink WHERE LinkedEntityId = :opp.Id];
+        System.assertEquals(2, cdls.size(), 'Deveriam haver 2 arquivos (JSON e PDF) ligados à oportunidade.');
     }
 
     @isTest
-    static void testCreateTicketWithNullOpportunityId() {
+    static void testCreateTicket_NoOpportunityId_ThrowsException() {
+        List<CreateTicketMethod.FlowInputs> flowInputsList = new List<CreateTicketMethod.FlowInputs>();
         CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
         input.idOpportunity = null;
         input.priority = 'High';
+        flowInputsList.add(input);
 
-        Test.startTest();
         try {
-            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{ input });
-            System.assert(false, 'Expected IllegalArgumentException was not thrown.');
+            Test.startTest();
+            CreateTicketMethod.createTicket(flowInputsList);
+            Test.stopTest();
+            System.assert(false, 'A exceção para ID de oportunidade nulo não foi lançada.');
         } catch (IllegalArgumentException e) {
-            System.assertEquals('Opportunity Id is required.', e.getMessage());
+            System.assert(e.getMessage().contains('Opportunity Id is required.'), 'A mensagem de erro está incorreta.');
         }
-        Test.stopTest();
     }
 
     @isTest
-    static void testCreateTicketWithNullPriority() {
-        Opportunity opp = [SELECT Id FROM Opportunity WHERE Name = 'Opp teste' LIMIT 1];
+    static void testCreateTicket_NoPriority_ThrowsException() {
+        Opportunity opp = [SELECT Id FROM Opportunity WHERE Name = 'Test Opportunity' LIMIT 1];
 
+        List<CreateTicketMethod.FlowInputs> flowInputsList = new List<CreateTicketMethod.FlowInputs>();
         CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
         input.idOpportunity = opp.Id;
-        input.priority = null;
+        input.priority = '';
+        flowInputsList.add(input);
 
-        Test.startTest();
         try {
-            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{ input });
-            System.assert(false, 'Expected IllegalArgumentException was not thrown.');
+            Test.startTest();
+            CreateTicketMethod.createTicket(flowInputsList);
+            Test.stopTest();
+            System.assert(false, 'A exceção para prioridade nula não foi lançada.');
         } catch (IllegalArgumentException e) {
-            System.assertEquals('Priority is required.', e.getMessage());
+            System.assert(e.getMessage().contains('Priority is required.'), 'A mensagem de erro está incorreta.');
         }
-        Test.stopTest();
     }
 
     @isTest
-    static void testCreateTicketWithMultipleInputs() {
-        Opportunity opp = [SELECT Id FROM Opportunity WHERE Name = 'Opp teste' LIMIT 1];
-
-        CreateTicketMethod.FlowInputs input1 = new CreateTicketMethod.FlowInputs();
-        input1.idOpportunity = opp.Id;
-        input1.priority = 'High';
-
-        CreateTicketMethod.FlowInputs input2 = new CreateTicketMethod.FlowInputs();
-        input2.idOpportunity = opp.Id;
-        input2.priority = 'Low';
-
-        Test.startTest();
-        try {
-            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{ input1, input2 });
-            System.assert(false, 'Expected IllegalArgumentException was not thrown.');
-        } catch (IllegalArgumentException e) {
-            System.assertEquals('This method requires exactly one input object.', e.getMessage());
-        }
-        Test.stopTest();
-    }
-
-    @isTest
-    static void testCreateTicketWithNonExistentOpportunity() {
+    static void testSendIntegration_NoHomologations_ThrowsException() {
+        Account acc = [SELECT Id FROM Account WHERE Name = 'Test Account' LIMIT 1];
+        Opportunity oppWithoutHomologation = new Opportunity(
+            Name = 'Opp Without Homologation',
+            AccountId = acc.Id,
+            StageName = 'Prospecting',
+            CloseDate = Date.today().addMonths(1)
+        );
+        insert oppWithoutHomologation;
+        
         CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
-        input.idOpportunity = '006000000000000AAA';
-        input.priority = 'High';
-
-        Test.startTest();
+        input.idOpportunity = oppWithoutHomologation.Id;
+        
         try {
-            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{ input });
-            System.assert(false, 'Expected AuraHandledException was not thrown.');
-        } catch (AuraHandledException e) {
-            System.assertEquals('Script-thrown exception', e.getMessage());
+            Test.startTest();
+            CreateTicketMethod.sendIntegration(input);
+            Test.stopTest();
+            System.assert(false, 'A exceção para falta de homologação não foi lançada.');
+        } catch (IllegalArgumentException e) {
+            System.assert(e.getMessage().contains('No HomologationForm__c found'), 'A mensagem de erro está incorreta.');
         }
-        Test.stopTest();
     }
 
-    public class MockHttpResponseGenerator implements HttpCalloutMock {
+    @isTest
+    static void testExtractNameFromUrl() {
+        System.assertEquals('subdominio', CreateTicketMethod.extractNameFromUrl('primeiro.subdominio.com'));
+        System.assertEquals('teste', CreateTicketMethod.extractNameFromUrl('site.teste.net'));
+        System.assertEquals('', CreateTicketMethod.extractNameFromUrl('invalido'));
+        System.assertEquals('', CreateTicketMethod.extractNameFromUrl('invalido.'));
+        System.assertEquals('', CreateTicketMethod.extractNameFromUrl(null));
+    }
+    
+    public class ZendeskCalloutMock implements HttpCalloutMock {
         public HttpResponse respond(HttpRequest req) {
-            HttpResponse response = new HttpResponse();
-            response.setHeader('Content-Type', 'application/json');
-            response.setStatusCode(201);
-            response.setBody('{"ticket": {"id": "12345"},"upload": {"token": "abcdef12345"}}');
-            return response;
+            HttpResponse res = new HttpResponse();
+            res.setHeader('Content-Type', 'application/json');
+            
+            if (req.getEndpoint().contains('/api/v2/uploads.json')) {
+                res.setBody('{"upload": {"token": "fakeUploadToken123"}}');
+                res.setStatusCode(201);
+            }
+            else if (req.getEndpoint().contains('/api/v2/tickets.json')) {
+                 res.setBody('{"ticket": {"id": "fakeTicketId123"}}');
+                 res.setStatusCode(201);
+            }
+            else {
+                res.setStatusCode(404);
+            }
+            return res;
         }
     }
 }

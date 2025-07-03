@@ -1,9 +1,9 @@
 /**
- * @description       :
- * @author            : Hersilio Belini de Oliveira
- * @group             :
- * @last modified on  : 2025-01-09
- * @last modified by  : Hersilio Belini de Oliveira
+ * @description       : 
+ * @author            : Daniel Belini
+ * @group             : 
+ * @last modified on  : 06-28-2025
+ * @last modified by  : Daniel Belini
 **/
 public with sharing class OpportunityFieldsPageController {
 
@@ -11,10 +11,11 @@ public with sharing class OpportunityFieldsPageController {
     public OpportunityWrapper.RccWrapper rccWrapper { get; private set; }
     public OpportunityWrapper.KycWrapper kycWrapper { get; private set; }
 
+    public List<HomologationForm__c> homologationForms { get; private set; }
 
     public OpportunityFieldsPageController() {
-        // Get the Opportunity Id from the page parameters
         String opportunityId = ApexPages.currentPage().getParameters().get('id');
+        String homologationId = ApexPages.currentPage().getParameters().get('homologationId');
 
         if (String.isNotBlank(opportunityId)) {
             Opportunity opp = OpportunitySelector.getCompleteOpportunityById(opportunityId);
@@ -24,6 +25,14 @@ public with sharing class OpportunityFieldsPageController {
             rccWrapper = new OpportunityWrapper.RccWrapper(rcc);
             kycWrapper = new OpportunityWrapper.KycWrapper(kyc);
             wrapper = new OpportunityWrapper(opp);
+
+            if (String.isNotBlank(homologationId)) {
+                homologationForms = new List<HomologationForm__c>{
+                    OpportunitySelector.getHomologationById(homologationId)
+                };
+            } else {
+                homologationForms = OpportunitySelector.getHomologationsByOpportunityId(opportunityId);
+            }
         }
     }
 }

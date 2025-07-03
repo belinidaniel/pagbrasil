@@ -1,0 +1,808 @@
+<apex:page controller="KYCXBPdfController" renderAs="pdf" name="KYCXBPdfRenderPage">
+	<head>
+		<style>
+			* {
+				font-family: Arial, sans-serif !important;
+				font-size: 14px;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				width: 80vw;
+			}
+
+			.logo {
+				align-self: center;
+			}
+
+			.main-btn {
+				color: #fff;
+				background: #007bff;
+				border-color: #007bff;
+				border: 1px solid transparent;
+				padding: .375rem .75rem;
+				font-size: 1rem;
+				line-height: 1.5;
+				border-radius: .25rem;
+				width: max-content;
+				align-self: end;
+				cursor: pointer;
+			}
+
+			.form-title {
+				margin-top: 16px;
+				font-weight: 700;
+				font-size: 14px;
+				align-self: center;
+			}
+
+			h3 {
+				display: flex;
+				box-sizing: border-box;
+				color: #878685;
+				padding: 8px 8px 2px 8px;
+				font-size: 12px;
+				font-weight: 700;
+			}
+
+			.title-container {
+				display: flex;
+				box-sizing: border-box;
+				background: #007bff;
+				border-radius: 4px;
+				height: 36px;
+				padding: 6px 12px;
+				align-items: center;
+				margin-top: 8px;
+				margin-bottom: 4px;
+			}
+
+			.title {
+				font-size: 1.1rem;
+				color: white;
+			}
+
+			.data-container {
+				display: grid;
+				grid-template-columns: 0.9fr 0.9fr;
+				transform: translateX(8px);
+			}
+
+			.value {
+				font-weight: 400;
+				margin: 4px 0px 12px 2px;
+			}
+
+			.contact-container {
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+				padding: 8px 12px;
+				border-radius: 4px;
+				border: solid #aaaaaa 1px;
+				margin-top: 2px;
+				margin-bottom: 8px;
+				break-inside: avoid;
+			}
+
+			.small-title {
+				display: flex;
+				box-sizing: border-box;
+				color: #878685;
+				padding: 8px 8px 2px 8px;
+				font-size: 11px;
+				font-weight: 500;
+				margin: 0px;
+			}
+
+			.file-links {
+				transform: translateX(16px);
+			}
+
+			.no-break {
+				break-inside: avoid;
+			}
+
+			.break-after {
+				break-after: page;
+			}
+
+			.documents {
+				margin-left: 8px;
+			}
+
+			@media (min-width: 1440px) {
+				body {
+					width: 60vw;
+				}
+			}
+
+			@media (max-width: 425px) {
+				.data-container {
+					display: grid;
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media print {
+				.main-btn {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="logo" style="text-align: center;">
+			<img style="width: 200px;" src="/sfc/servlet.shepherd/version/download/068VA000008hvXtYAI" />
+		</div>
+		<h1 class="form-title" style="font-weight: 700; font-size: 16px; font-family: Arial, sans-serif !important; text-align: center;">KYC - PAGBRASIL</h1>
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">1. PERSONAL INFORMATION</h2>
+			</header>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">PERSONAL INFORMATION</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Full name:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Name}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label">Personal ID number:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Registration_Number__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Phone}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label">Contact email:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Email}</p>
+					</td>
+				</tr>
+			</table>
+		</section>
+		<section class="section break-after">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">2. COMPANY INFORMATION</h2>
+			</header>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">COMPANY INFORMATION</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Legal business name:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Legal_Name__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label">Trade name/doing business as (DBA) name:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Trade_Name__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Fiscal registration number (EIN, UEN, VAT or equivalent):</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Fiscal_Registration__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Type of company:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Company_Type__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Founding date:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Founding_Date__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%"></td>
+				</tr>
+			</table>
+
+			<div class="documents" style="padding-left: 12px;">
+				<strong class="label" style="font-family: Arial, sans-serif !important;">Documents:</strong>
+				<p class="value" style="font-family: Arial, sans-serif !important;">
+					Certicate of Incorporation, Company Registry, Articles of Incorporation, Certicate of Incumbency, or similar that state the names and shares of shareholders and directors of the company
+				</p>
+
+				<apex:outputPanel rendered="{!hasCnpjFiles}">
+					<table class="file-container" width="100%">
+						<apex:repeat value="{!cnpjFiles}" var="file">
+							<tr>
+								<td class="file-links">
+									<a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a>
+								</td>
+							</tr>
+						</apex:repeat>
+					</table>
+				</apex:outputPanel>
+			</div>
+
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">REGISTERED ADDRESS</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Zip code:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Postal_Code__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Address:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Address__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Number:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Street_Number__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Complement:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Complement__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">City:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.City__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">State:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.State__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Country:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Country__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%"></td>
+				</tr>
+			</table>
+			<div class="documents" style="padding-left: 12px;">
+				<strong class="label" style="font-family: Arial, sans-serif !important;">Documents:</strong>
+				<p class="value" style="font-family: Arial, sans-serif !important;">
+					Proof of address (phone bill, utility bill, bank or credit card statement or similar; not older than 3 months) of the registered address.
+				</p>
+
+				<apex:outputPanel rendered="{!hasAddressFiles}">
+					<article class="file-container">
+						<apex:repeat value="{!addressFiles}" var="file">
+							<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+						</apex:repeat>
+					</article>
+				</apex:outputPanel>
+
+				<apex:outputPanel rendered="{!NOT(kycXB.Unique_Address__c)}">
+					<apex:outputPanel rendered="{!hasSecFiles}">
+						<article class="file-container">
+							<apex:repeat value="{!secFiles}" var="file">
+								<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+							</apex:repeat>
+						</article>
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CORPORATE GROUP</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Corporate name:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Corporate_Name__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Corporate registration number:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Corporate_Registration__c}</p>
+					</td>
+				</tr>
+			</table>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">INFORMATION ON THE WEBSITE AND PRODUCTS OR SERVICES</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Corporate website URL:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Company_URL__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Product or service website URL:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Store_URL__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Product category:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Service_Category__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Average delivery:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Service_Shipping__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Product description:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Service_Description__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">International carriers:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.International_Carrier__c}</p>
+					</td>
+				</tr>
+			</table>
+		</section>
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">3. SHAREHOLDER STRUCTURE AND LEGAL REPRESENTATION</h2>
+			</header>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">SHAREHOLDER (FINAL BENEFICIAL OWNER)</h3>
+				<apex:repeat value="{!wrappedShareholders}" var="wrap">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Nationality:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Nationality__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Ownership:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Ownership_Percentage__c}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Zip code:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingPostalCode}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Address:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingStreet}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>City:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingCity}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>State:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingState}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Country:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingCountry}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" colspan="3">
+									<strong class="label" style="font-family: Arial, sans-serif !important;">Documents:</strong>
+
+									<apex:outputPanel rendered="{!NOT(ISNULL(shFileMapByIndexAndType[wrap.index][0]))}">
+										<p class="value" style="font-family: Arial, sans-serif !important;">
+											Copy of the shareholder’s passport or legal local identity card.
+										</p>
+										<article class="file-container">
+											<apex:repeat value="{!shFileMapByIndexAndType[wrap.index][0]}" var="file">
+												<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+											</apex:repeat>
+										</article>
+									</apex:outputPanel>
+
+									<apex:outputPanel rendered="{!NOT(ISNULL(shFileMapByIndexAndType[wrap.index][1]))}">
+										<p class="value" style="font-family: Arial, sans-serif !important;">
+											Proof of address (phone bill, utility bill, bank or credit card statement or similar; not older than 3 months) of the shareholder.
+										</p>
+										<article class="file-container">
+											<apex:repeat value="{!shFileMapByIndexAndType[wrap.index][1]}" var="file">
+												<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+											</apex:repeat>
+										</article>
+									</apex:outputPanel>
+								</td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">LEGAL REPRESENTATIVE</h3>
+				<apex:repeat value="{!wrappedRepresentatives}" var="wrap">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Job title:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Role__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Email}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Linkedin profile:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Linkedin__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>ID number or passport:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Registration_Number__c}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Date of birth:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Birthdate}</p>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="field" colspan="3">
+									<strong class="label" style="font-family: Arial, sans-serif !important;">Documents:</strong>
+
+									<p class="value" style="font-family: Arial, sans-serif !important;">
+										Copy of the legal representative’s passport or legal local identity card.
+									</p>
+									<apex:outputPanel rendered="{!NOT(ISNULL(repFileMapByIndexAndType[wrap.index][0]))}">
+										<article class="file-container">
+											<apex:repeat value="{!repFileMapByIndexAndType[wrap.index][0]}" var="file">
+												<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+											</apex:repeat>
+										</article>
+									</apex:outputPanel>
+
+									<p class="value" style="font-family: Arial, sans-serif !important;">
+										Proof of address (phone bill, utility bill, bank or credit card statement or similar; not older than 3 months) of the legal representative.
+									</p>
+									<apex:outputPanel rendered="{!NOT(ISNULL(repFileMapByIndexAndType[wrap.index][1]))}">
+										<article class="file-container">
+											<apex:repeat value="{!repFileMapByIndexAndType[wrap.index][1]}" var="file">
+												<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+											</apex:repeat>
+										</article>
+									</apex:outputPanel>
+
+									<p class="value" style="font-family: Arial, sans-serif !important;">
+										Document providing legal representation (if applicable).
+									</p>
+									<apex:outputPanel rendered="{!NOT(ISNULL(repFileMapByIndexAndType[wrap.index][2]))}">
+										<article class="file-container">
+											<apex:repeat value="{!repFileMapByIndexAndType[wrap.index][2]}" var="file">
+												<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+											</apex:repeat>
+										</article>
+									</apex:outputPanel>
+								</td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">PEP IDENTIFICATION - POLITICALLY EXPOSED PERSON</h3>
+				<apex:repeat value="{!politicalContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Job title:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Role__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Country:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingCountry}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+		</section>
+
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">4. BUSINESS CONTACTS</h2>
+			</header>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTACT FOR CONTRACT-RELATED NOTIFICATIONS</h3>
+				<apex:repeat value="{!contractContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Phone number:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTACT FOR ACCOUNTING AND INVOICING</h3>
+				<apex:repeat value="{!invoiceContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Phone number:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTACT FOR TECHNICAL EMERGENCY AND MONITORING</h3>
+				<apex:repeat value="{!emergencyContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Phone number:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">END CUSTOMER SUPPORT CHANNEL</h3>
+				<apex:repeat value="{!channelContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Phone number:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTACT FOR THE RESPONSIBLE FOR END CUSTOMER SUPPORT</h3>
+				<apex:repeat value="{!supportContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Phone number:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTACT FOR REFUNDS</h3>
+				<apex:repeat value="{!refundContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong>Full name:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong>Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong>Phone number:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+		</section>
+
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">5. INTEGRATION</h2>
+			</header>
+
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">PCI DSS REQUIREMENTS (PCISECURITYSTANDARDS.ORG)</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">Integration:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Integration_Type__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style="font-family: Arial, sans-serif !important;">PCI DSS Compliant:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Conformity__c}</p>
+					</td>
+				</tr>
+			</table>
+		</section>
+
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">6. BANK ACCOUNT</h2>
+			</header>
+
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">COMPANY BANK ACCOUNT FOR RECEIVABLES</h3>
+				<table class="data-container" style="padding-left: 12px;" width="100%">
+					<tr>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">Beneficiary:</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Beneficiary__c}</p>
+						</td>
+						<td width="10%"></td>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">Bank name:</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Bank_Name__c}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">Bank branch address:</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Bank_Branch_Address__c}</p>
+						</td>
+						<td width="10%"></td>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">Account number:</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Bank_Account__c}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">Bank code (if any):</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Bank_Agency__c}</p>
+						</td>
+						<td width="10%"></td>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">Swift code:</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Swift_Code__c}</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">ABA Routing number (US accounts):</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.ABA_Routing_Number__c}</p>
+						</td>
+						<td width="10%"></td>
+						<td class="field" width="45%">
+							<strong class="label" style="font-family: Arial, sans-serif !important;">IBAN Number (EU accounts):</strong>
+							<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.IBAN_Number__c}</p>
+						</td>
+					</tr>
+				</table>
+				<div class="documents" style="padding-left: 12px;">
+					<strong class="label" style="font-family: Arial, sans-serif !important;">Documents:</strong>
+					<p class="value" style="font-family: Arial, sans-serif !important;">
+						Copy of a recent bank statement in the company’s name or a signed bank reference letter stating all bank account information (account number, business name, and company address).
+					</p>
+					<apex:outputPanel rendered="{!hasBankFiles}">
+						<article class="file-container">
+							<apex:repeat value="{!bankFiles}" var="file">
+								<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+							</apex:repeat>
+						</article>
+					</apex:outputPanel>
+
+					<apex:outputPanel rendered="{!kycXB.Bank_Has_Intermediary__c}">
+						<apex:outputPanel rendered="{!hasSecFiles}">
+							<article class="file-container">
+								<apex:repeat value="{!secFiles}" var="file">
+									<p class="file-links"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+								</apex:repeat>
+							</article>
+						</apex:outputPanel>
+					</apex:outputPanel>
+				</div>
+			</div>
+		</section>
+	</body>
+</apex:page>

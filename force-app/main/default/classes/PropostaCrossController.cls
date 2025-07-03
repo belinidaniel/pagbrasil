@@ -12,6 +12,7 @@ public class PropostaCrossController {
     public String accountOwnerName { get; set; }
     public String accountOwnerEmail { get; set; }
     public String accountOwnerMobilePhone { get; set; }
+	public String opportunityOwnerName { get; set; }
     public String opportunityName { get; set; }
     public String quoteCreatedDate { get; set; }
     public Boolean containsPayout { get; set; }
@@ -110,7 +111,7 @@ public class PropostaCrossController {
 
         if(!Test.isRunningTest()){
             stdController.addFields(new List<String>{
-                'Account.Name', 'Account.Website', 'Opportunity.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
+                'Account.Name', 'Account.Website', 'Opportunity.Name','Opportunity.Owner.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
                 'Opportunity.Product_Type__c', 'Opportunity.Payout__c', 'Opportunity.ApplePay__c', 'Opportunity.GooglePay__c', 'Opportunity.Antecipation_Frequency_1__c', 'Opportunity.Antecipation_Frequency_2__c',
                 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c',
                 'Opportunity.Moeda__c', 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
@@ -154,6 +155,7 @@ public class PropostaCrossController {
         this.accountOwnerMobilePhone = quote.Account.Owner.MobilePhone;
 
         this.opportunityName = quote.Opportunity.Name;
+		this.opportunityOwnerName = quote.Opportunity.Owner.Name;
         this.opportunityCurrency = quote.Opportunity.Moeda__c;
         this.opportunityProductType = quote.Opportunity.Product_Type__c;
 

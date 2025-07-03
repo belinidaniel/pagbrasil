@@ -16,7 +16,9 @@ public class OpportunityWrapper {
     public Decimal monthlyPix { get; set; }
     public String businessModel { get; set; }
     public String integrationTypeSpecify { get; set; }
+    public String contractStartDateCharge { get; set; }
     public Boolean usePagstream { get; set; }
+    public String settlementFrequency { get; set; }
     public Boolean payout { get; set; }
     public Boolean googlePay { get; set; }
     public Boolean applePay { get; set; }
@@ -49,6 +51,12 @@ public class OpportunityWrapper {
     public QuoteLineItemWrapper pacoteDezMilSms { get; set; }
     public QuoteLineItemWrapper taxaTransferenciaFornecedores { get; set; }
     public QuoteLineItemWrapper taxaPayout { get; set; }
+    public QuoteLineItemWrapper taxaMinimaManutencao { get; set; }
+    public QuoteLineItemWrapper taxaSolucaoPagBrasil { get; set; }
+    public QuoteLineItemWrapper valorMinimoRepasse { get; set; }
+    public QuoteLineItemWrapper Reserva { get; set; }
+    public QuoteLineItemWrapper taxaTransferencia { get; set; }
+    public QuoteLineItemWrapper currencyMarkupSpread { get; set; }
 
 
     
@@ -57,7 +65,7 @@ public class OpportunityWrapper {
         this.id = opp.Id;
         this.name = opp.Name;
         this.productType = opp.Product_Type__c;
-        this.paymentMethods = opp.Metodos_Pagamento__c;
+        this.paymentMethods = opp.NationalPaymentMethod__c;
         this.productCategory = opp.Categoria_de_Produto__c;
         this.integrationType = opp.IntegrationType__c;
         this.tierCs = opp.TierCS__c;
@@ -71,6 +79,8 @@ public class OpportunityWrapper {
         this.pagShieldPremiumOnDemand = opp.PagShield_Premium_On_Demand__c;
         this.recordType = opp.RecordType.Name;
         this.moeda = opp.Moeda__c;
+        this.settlementFrequency = opp.Settlement_Frequency_1__c;
+        this.contractStartDateCharge = opp.Contract_Start_Fee_Date__c;
 
         // Map Account properties
         if (opp.Account != null) {
@@ -160,6 +170,24 @@ public class OpportunityWrapper {
                 }
                 else if (qli.Product2.ProductCode == 'TAXA_PAYOUT') {
                     this.taxaPayout = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_MIN_MANUTENCAO') {
+                    this.taxaMinimaManutencao = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_PAGBRASIL' && qli.IsMain__c == true) {
+                    this.taxaSolucaoPagBrasil = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'VALOR_MIN_REPASSE') {
+                    this.valorMinimoRepasse = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'RESERVA_GIRATORIA') {
+                    this.Reserva = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'TAXA_TRANSFERENCIA') {
+                    this.taxaTransferencia = new QuoteLineItemWrapper(qli);
+                }
+                else if (qli.Product2.ProductCode == 'CURRENCY_EXCHANGE_MARKUP_SPREAD') {
+                    this.currencyMarkupSpread = new QuoteLineItemWrapper(qli);
                 }
             }
         }
@@ -293,7 +321,12 @@ public class OpportunityWrapper {
         public String RegKey { get; set; }
         public String MID { get; set; }
         public String TerminalID { get; set; }
-
+        public String mainContactEmail { get; set; }
+        public Boolean pagShield { get; set; }
+        public Boolean pagShieldPremium { get; set; }
+        public Boolean pixPending { get; set; }
+        public Boolean pixOpenFinance { get; set; }
+        public String contactEmailNotification { get; set; }
 
         // Constructor to initialize the wrapper from a HomologationForms__c record
         public HomologationFormWrapper(HomologationForm__c form) {
@@ -358,6 +391,12 @@ public class OpportunityWrapper {
             this.RegKey = form.RegKey__c;
             this.MID = form.MidMerchantId__c; 
             this.TerminalID = form.TerminalId__c;  
+            this.mainContactEmail = form.Main_Contact_Email__c;
+            this.pagShieldPremium = form.PagShield_Premium__c;
+            this.pagShield = form.PagShield__c;
+            this.pixPending = form.Pix_Pending__c;
+            this.pixOpenFinance = form.Pix_Open_Finance__c;
+            this.contactEmailNotification = form.Contact_email_for_notification__c;
         }
     }
 
@@ -372,6 +411,7 @@ public class OpportunityWrapper {
             this.id = contact.Id;
             this.name = contact.Name;
             this.email = contact.Email;
+            this.phone = contact.Phone;
             this.type = contact.Type__c;
         }
     }

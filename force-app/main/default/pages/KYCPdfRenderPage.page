@@ -1,0 +1,647 @@
+<apex:page controller="KYCPdfController" renderAs="pdf" name="KYCPdfRenderPage">
+	<head>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				font-size: 14px;
+				width: 90%;
+				margin: auto;
+			}
+
+			.logo {
+				text-align: center;
+				margin-bottom: 16px;
+			}
+
+			.main-btn {
+				color: #fff;
+				background: #007bff;
+				border: 1px solid #007bff;
+				padding: 6px 12px;
+				font-size: 14px;
+				line-height: 1.5;
+				border-radius: 4px;
+				width: auto;
+				display: inline-block;
+				text-align: right;
+			}
+
+			.form-title {
+				margin-top: 16px;
+				font-weight: bold;
+				font-size: 14px;
+				text-align: center;
+			}
+
+			h3 {
+				color: #878685;
+				padding: 8px 8px 2px 8px;
+				font-size: 12px;
+				font-weight: bold;
+				margin: 0;
+			}
+
+			.title-container {
+				background: #007bff;
+				border-radius: 4px;
+				height: 36px;
+				padding: 6px 12px;
+				color: white;
+				margin: 8px 0 4px 0;
+			}
+
+			.title {
+				font-size: 16px;
+				color: white;
+				font-weight: bold;
+			}
+
+			.data-container {
+				width: 100%;
+				margin-left: 8px;
+			}
+
+			.data-row {
+				overflow: hidden;
+				margin-bottom: 12px;
+			}
+
+			.data-column {
+				float: left;
+				width: 48%;
+				margin-right: 4%;
+			}
+
+			.value {
+				font-weight: normal;
+				margin: 4px 0 12px 2px;
+			}
+
+			.contact-container {
+				padding: 8px 12px;
+				border-radius: 4px;
+				border: 1px solid #aaaaaa;
+				margin-top: 2px;
+				margin-bottom: 8px;
+				page-break-inside: avoid;
+			}
+
+			.small-title {
+				color: #878685;
+				padding: 8px 8px 2px 8px;
+				font-size: 11px;
+				font-weight: normal;
+				margin: 0;
+			}
+
+			.file-links {
+				margin-left: 16px;
+			}
+
+			.no-break {
+				page-break-inside: avoid;
+			}
+
+			.break-after {
+				page-break-after: always;
+			}
+
+			.clearfix::after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="logo" style="text-align: center;">
+			<img style="width: 200px;" src="/sfc/servlet.shepherd/version/download/068VA000008hvXtYAI" />
+		</div>
+		<h1 class="form-title" style="font-weight: 700; font-size: 16px; font-family: Arial, sans-serif !important; text-align: center;">FORMULÁRIO KYC DA PAGBRASIL</h1>
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">1. Dados pessoais</h2>
+			</header>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Nome completo:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Name}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">E-mail de contato:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Email}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">CNPJ da empresa:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.KYC_Fiscal_Code__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">CPF:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Registration_Number__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Telefone com DDD:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Phone}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%"></td>
+				</tr>
+			</table>
+		</section>
+		<section class="section break-after">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">2. Informações do estabelecimento</h2>
+			</header>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">NOME</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Razão Social:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Legal_Name__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Nome Comercial/Fantasia:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Trade_Name__c}</p>
+					</td>
+				</tr>
+			</table>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">ENDEREÇO REGISTRADO</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">CEP:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Postal_Code__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Endereço:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Address__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Cidade:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.City__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Estado:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.State__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Número:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Street_Number__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Complemento:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Complement__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">País:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Country__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field"></td>
+				</tr>
+			</table>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">ENDEREÇO FÍSICO DA SEDE ADMINISTRATIVA</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Endereço físico é o mesmo endereço do registrado?</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Unique_Address__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">A empresa faz parte de algum grupo econômico?</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Corporate_Group__c}</p>
+					</td>
+				</tr>
+			</table>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">OUTROS DADOS</h3>
+			<table class="data-container" style="padding-left: 12px;" >
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Site Institucional:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Company_URL__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Site da Loja:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">
+							<a href="https://www.{!kyc.Store_URL__c}" target="_blank">{!kyc.Store_URL__c}</a>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Data de registro da empresa:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Founding_Date__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Tipo (LTDA, S.A, etc):</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Company_Type__c}</p>
+					</td>
+				</tr>
+			</table>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">PRODUTO / SERVIÇO</h3>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Categoria:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Service_Category__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Tempo médio para a entrega do produto ou serviço ao cliente final:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Service_Shipping__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Descrição:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Service_Description__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%"></td>
+				</tr>
+			</table>
+		</section>
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">3. Proprietário(s) e contatos</h2>
+			</header>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">INDIVÍDUOS OU ENTIDADES QUE DETENHAM PARCELA IGUAL OU SUPERIOR A 25% DE PARTICIPAÇÃO</h3>
+				<apex:repeat value="{!ownerContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Nome Completo:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Nacionalidade:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Nationality__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">País:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingCountry}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Estado:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingState}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Cidade:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingCity}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">CEP:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingPostalCode}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Endereço:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingStreet}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">% Propriedade:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Ownership_Percentage__c}</p>
+								</td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">REPRESENTANTE LEGAL - SIGNATÁRIO AUTORIZADO</h3>
+				<apex:repeat value="{!representativeContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Nome Completo:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Cargo:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Role__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">E-mail:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">CPF:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Registration_Number__c}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Data de Nascimento:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Birthdate}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTATO PARA NOTIFICAÇÕES REFERENTES AO CONTRATO</h3>
+				<apex:repeat value="{!contractContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Nome Completo:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">País:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingCountry}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Estado:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingState}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Cidade:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingCity}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">CEP:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingPostalCode}</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Endereço:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingStreet}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTATO FINANCEIRO</h3>
+				<apex:repeat value="{!billingContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;">
+							<tr>
+								<td class="field">
+									<strong class="label" style="font-family: Arial, sans-serif !important;">Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTATO TÉCNICO</h3>
+				<apex:repeat value="{!technicalContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;">
+							<tr>
+								<td class="field">
+									<strong class="label" style="font-family: Arial, sans-serif !important;">Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CANAL DE SUPORTE AO CLIENTE FINAL</h3>
+				<apex:repeat value="{!channelContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;" width="100%">
+							<tr>
+								<td class="field" width="45%">
+									<strong class="label" style=" font-family: Arial, sans-serif !important;">Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+								<td width="10%"></td>
+								<td class="field" width="45%"></td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+			<div class="no-break">
+				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CONTATO PARA REEMBOLSOS E CHARGEBACKS</h3>
+				<apex:repeat value="{!refundContacts}" var="c">
+					<span class="contact-container">
+						<table class="data-container" style="padding-left: 12px;">
+							<tr>
+								<td class="field">
+									<strong class="label" style="font-family: Arial, sans-serif !important;">Email:</strong>
+									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+								</td>
+							</tr>
+						</table>
+					</span>
+				</apex:repeat>
+			</div>
+		</section>
+		<section class="section no-break">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">4. Tipo de integração</h2>
+			</header>
+			<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">REQUISITOS PCI DSS (PCISECURITYSTANDARDS.ORG)</h3>
+			<table class="data-container" style="padding-left: 12px;">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Integração que a loja utiliza:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Integration_Type__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Empresa em conformidade?</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">
+							<apex:outputText value="{!IF(kyc.Conformity__c == true, 'Sim', 'Não')}" />
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Nível PCI DSS obrigatório:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">
+							<apex:outputText value="{!IF(
+													OR(kyc.Integration_Type__c == 'API', kyc.Integration_Type__c == 'Magento 2.3'), 
+													'SAQ – D (&lt; 6 milhões de transações de cartão de crédito e débito por ano)\nAoC (&gt; 6 milhões de transações de cartão de crédito e débito por ano)', 
+													IF(kyc.Integration_Type__c == 'PagBrasil.JS', 'SAQ - A', 'N/A - Integração não necessita certificado PCI')
+													)}" />
+						</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%"></td>
+				</tr>
+			</table>
+		</section>
+		<section class="section">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">5. Documentação</h2>
+			</header>
+
+			<apex:outputPanel rendered="{!hasCpfFiles}">
+				<article class="file-container">
+					<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CÓPIA DO RG, CPF, RNE OU PASSAPORTE DE TODOS OS ADMINISTRADORES, SÓCIOS COM 25% OU MAIS DE PARTICIPAÇÃO NA EMPRESA E DOS REPRESENTANTES QUE ASSINAM O CONTRATO</h3>
+					<p class="small-title" style="font-family: Arial, sans-serif !important; padding-left: 12px;">Caso o sócio seja uma pessoa jurídica, cópia do Contrato Social e cópia do RG, RNE ou passaporte e CPF de todos os sócios com 25% ou mais de participação na empresa.</p>
+					<apex:repeat value="{!cpfFiles}" var="file">
+						<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+					</apex:repeat>
+				</article>
+			</apex:outputPanel>
+
+			<apex:outputPanel rendered="{!hasAddressPartnersFiles}">
+				<article class="file-container">
+					<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CÓPIA DE DOCUMENTO QUE ATESTE O ENDEREÇO DAS PESSOAS FÍSICAS CONSTANTES NO CONTRATO SOCIAL DA EMPRESA (SÓCIOS E ADMINISTRADORES)</h3>
+					<p class="small-title" style="font-family: Arial, sans-serif !important; padding-left: 12px;">Conta de serviço público ou atestado de entidade competente: conta de água, luz, telefone, etc.</p>
+					<apex:repeat value="{!addressPartnersFiles}" var="file">
+						<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+					</apex:repeat>
+				</article>
+			</apex:outputPanel>
+
+			<apex:outputPanel rendered="{!hasCnpjFiles}">
+				<article class="file-container">
+					<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CÓPIA DO CARTÃO CNPJ (EMITIDO NOS ÚLTIMOS 30 DIAS)</h3>
+					<apex:repeat value="{!cnpjFiles}" var="file">
+						<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+					</apex:repeat>
+				</article>
+			</apex:outputPanel>
+
+			<apex:outputPanel rendered="{!hasAddressFiles}">
+				<article class="file-container">
+					<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CÓPIA DE DOCUMENTO QUE ATESTE O ENDEREÇO REGISTRADO</h3>
+					<p class="small-title" style="font-family: Arial, sans-serif !important; padding-left: 12px;">Conta de serviço público ou atestado de entidade competente: conta de água, luz, telefone, etc.</p>
+					<apex:repeat value="{!addressFiles}" var="file">
+						<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+					</apex:repeat>
+				</article>
+			</apex:outputPanel>
+
+			<apex:outputPanel rendered="{!NOT(kyc.Unique_Address__c)}">
+				<apex:outputPanel rendered="{!hasSecFiles}">
+					<article class="file-container">
+						<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CÓPIA DE DOCUMENTO QUE ATESTE O ENDEREÇO FÍSICO</h3>
+						<p class="small-title" style="font-family: Arial, sans-serif !important; padding-left: 12px;">Conta de serviço público ou atestado de entidade competente: conta de água, luz, telefone, etc.</p>
+						<apex:repeat value="{!secFiles}" var="file">
+							<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+						</apex:repeat>
+					</article>
+				</apex:outputPanel>
+			</apex:outputPanel>
+
+			<apex:outputPanel rendered="{!hasConFiles}">
+				<article class="file-container">
+					<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CÓPIA DO CONTRATO SOCIAL</h3>
+					<p class="small-title" style="font-family: Arial, sans-serif !important; padding-left: 12px;">Deve constar no documento anexado o % de propriedade dos indivíduos ou entidades que detenham mais de 25% de participação.</p>
+					<apex:repeat value="{!conFiles}" var="file">
+						<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+					</apex:repeat>
+				</article>
+			</apex:outputPanel>
+
+			<apex:outputPanel rendered="{!hasRepFiles}">
+				<article class="file-container">
+					<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">DOCUMENTO QUE COMPROVE A REPRESENTAÇÃO LEGAL</h3>
+					<apex:repeat value="{!repFiles}" var="file">
+						<p class="file-links" style="font-family: Arial, sans-serif !important; padding-left: 12px;"><a href="{!file.fileUrl}" target="_blank">{!file.fileName}</a></p>
+					</apex:repeat>
+				</article>
+			</apex:outputPanel>
+
+		</section>
+
+
+		<section class="section no-break">
+			<header class="title-container">
+				<h2 class="title" style="color: white; background-color: #007bff; padding: 6px 12px; font-family: Arial, sans-serif !important; font-size: 16px;">6. Dados bancários</h2>
+			</header>
+			<table class="data-container" style="padding-left: 12px;" width="100%">
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Razão Social:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Legal_Name__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">CNPJ:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.KYC_Fiscal_Code__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Nome do banco:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Bank_Name__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">N° do banco:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Bank_Number__c}</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Agência:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Bank_Agency__c}</p>
+					</td>
+					<td width="10%"></td>
+					<td class="field" width="45%">
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Conta corrente:</strong>
+						<p class="value" style="font-family: Arial, sans-serif !important;">{!kyc.Bank_Account__c}</p>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</body>
+</apex:page>

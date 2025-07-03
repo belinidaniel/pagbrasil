@@ -159,7 +159,7 @@ public with sharing class KYCPdfController {
 		PageReference pdfPage = Page.KYCPdfRenderPage;
 		pdfPage.getParameters().put('id', recordId);
 
-		Blob pdfBlob = pdfPage.getContent();
+		Blob pdfBlob = Test.isRunningTest() ? Blob.valueOf('UNIT.TEST') : pdfPage.getContent();
 
 		ContentVersion version = new ContentVersion();
 		version.Title = 'KYC PDF - ' + recordId;

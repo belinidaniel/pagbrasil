@@ -297,4 +297,114 @@ private class ContactServiceTest {
         // Verify results
         System.assertEquals(400, res.statusCode);
     }
+    
+    @IsTest
+    static void testCreateContact_DmlException() {
+        // Get test KYC
+        KYC__c testKyc = [SELECT Id, Unique_Link__c FROM KYC__c LIMIT 1];
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestURI = '/integration/contact/' + testKyc.Unique_Link__c;
+        req.httpMethod = 'POST';
+    
+        // Missing required LastName to force DmlException
+        Map<String, Object> requestBody = new Map<String, Object>{
+            'FirstName' => 'NoLastName',
+            'Email' => 'dmlexception@example.com',
+            'KYC_Role__c' => 'Director'
+        };
+        req.requestBody = Blob.valueOf(JSON.serialize(requestBody));
+        RestContext.request = req;
+        RestContext.response = res;
+    
+        Test.startTest();
+        String result = ContactService.createContact();
+        Test.stopTest();
+    
+        System.assertEquals(400, res.statusCode, 'Should return 400 for DML error');
+        System.assert(result.contains('REQUIRED_FIELD_MISSING'), 'Should contain DML error message');
+    }
+    
+    @IsTest
+    static void testCreateContact_GenericException() {
+        // Get test KYC
+        KYC__c testKyc = [SELECT Id, Unique_Link__c FROM KYC__c LIMIT 1];
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestURI = '/integration/contact/' + testKyc.Unique_Link__c;
+        req.httpMethod = 'POST';
+    
+        // Passa um valor inesperado para causar Exception (Blob vazio)
+        req.requestBody = null;
+        RestContext.request = req;
+        RestContext.response = res;
+    
+        Test.startTest();
+        String result = ContactService.createContact();
+        Test.stopTest();
+    
+        System.assertEquals(500, res.statusCode, 'Should return 500 for generic exception');
+        System.assert(result != null, 'Should return error message');
+    }
+    
+    @IsTest
+    static void testParseAndCreateNewContacts_JSONException() {
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestURI = '/integration/contact/test-uuid';
+        req.httpMethod = 'PUT';
+        req.requestBody = Blob.valueOf('invalid json');
+        RestContext.request = req;
+        RestContext.response = res;
+    
+        Test.startTest();
+        String result = ContactService.parseAndCreateNewContacts();
+        Test.stopTest();
+    
+        System.assertEquals(400, res.statusCode, 'Should return 400 for JSON parse error');
+        System.assert(result != null, 'Should return error message');
+    }
+    
+    @IsTest
+    static void testParseAndCreateNewContacts_DmlException() {
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestURI = '/integration/contact/test-uuid';
+        req.httpMethod = 'PUT';
+    
+        // Lista com contato sem LastName (campo obrigatório)
+        List<Contact> contacts = new List<Contact>{
+            new Contact(FirstName = 'NoLastName')
+        };
+        req.requestBody = Blob.valueOf(JSON.serialize(contacts));
+        RestContext.request = req;
+        RestContext.response = res;
+    
+        Test.startTest();
+        String result = ContactService.parseAndCreateNewContacts();
+        Test.stopTest();
+    
+        System.assertEquals(400, res.statusCode, 'Should return 400 for DML error');
+        System.assert(result.contains('REQUIRED_FIELD_MISSING'), 'Should contain DML error message');
+    }
+    
+    @IsTest
+    static void testParseAndCreateNewContacts_GenericException() {
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestURI = '/integration/contact/test-uuid';
+        req.httpMethod = 'PUT';
+    
+        // Passa um valor inesperado para causar Exception (Blob null)
+        req.requestBody = null;
+        RestContext.request = req;
+        RestContext.response = res;
+    
+        Test.startTest();
+        String result = ContactService.parseAndCreateNewContacts();
+        Test.stopTest();
+    
+        System.assertEquals(500, res.statusCode, 'Should return 500 for generic exception');
+        System.assert(result != null, 'Should return error message');
+    }
 }

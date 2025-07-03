@@ -89,7 +89,7 @@ public class DynamicConversionBatch implements Database.Batchable<SObject>, Data
 
         String query = '';
         if(objectName == 'Opportunity' || objectName == 'Lead'){
-            query = 'SELECT Id, nb_receita_mensal__c, xb_receita_mensal__c, ' + 
+            query = 'SELECT Id, nb_receita_mensal__c, ' + 
                     'tempNBvalue__c, tempXBvalue__c ' +
                     ' FROM ' + objectName; //+ ' WHERE ' +
                     //' (nb_receita_mensal__c != null OR xb_receita_mensal__c != null) ';
@@ -112,7 +112,8 @@ public class DynamicConversionBatch implements Database.Batchable<SObject>, Data
                 // For each record, map the picklist values NB and XB to the text value (last value of the range)
                 for(SObject sobj : scope){
                     // Field NB
-                    String nbPicklist = (String)sobj.get('nb_receita_mensal__c');
+					Decimal receitaMensal = (Decimal)sobj.get('nb_receita_mensal__c');
+					String nbPicklist = String.valueOf(receitaMensal);
                     String nbRange = getNBRangeValue(nbPicklist);
                     if(nbRange != null){
                         sobj.put('tempNBvalue__c', nbRange);
@@ -121,7 +122,8 @@ public class DynamicConversionBatch implements Database.Batchable<SObject>, Data
                     }
                     
                     // Field XB
-                    String xbPicklist = (String)sobj.get('nb_receita_mensal__c');
+					Decimal receitaXBMensal = (Decimal)sobj.get('nb_receita_mensal__c');
+                    String xbPicklist = String.valueOf(receitaXBMensal);
                     String xbRange = getXBRangeValue(xbPicklist);
                     if(xbRange != null){
                         sobj.put('tempXBvalue__c', xbRange);

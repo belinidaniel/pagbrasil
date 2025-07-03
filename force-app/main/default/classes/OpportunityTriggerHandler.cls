@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-04-22
- * @last modified by  : luis.tavares
+ * @last modified on  : 2025-06-27
+ * @last modified by  : marcelo.aguiar
 **/
 public with sharing class OpportunityTriggerHandler extends TriggerHandler {
 
@@ -26,22 +26,39 @@ public with sharing class OpportunityTriggerHandler extends TriggerHandler {
     }
 
     public override void beforeInsert() {
+        if (RecursionControl.isOpportunityTriggerRunning) return;
+        RecursionControl.isOpportunityTriggerRunning = true;
+        
         OpportunityTriggerHelper.autoFillOppFields(this.newOppList);
+        OpportunityTriggerHelper.makeTheNewOppValidAndTheOldOppsInvalid(this.newOppList);
     }
 
     public override void beforeUpdate() {
+        if (RecursionControl.isOpportunityTriggerRunning) return;
+        RecursionControl.isOpportunityTriggerRunning = true;
+        
         OpportunityTriggerHelper.validateChangeFields(this.newOppList, this.oldOppMap);
         OpportunityTriggerHelper.verifyRemovedSyncedQuoteId(this.newOppList, this.oldOppMap);
     }    
 
     public override void afterUpdate() {
-            OpportunityTriggerHelper.updateQuotesOnSyncedQuoteRemoval(this.newOppList, this.oldOppMap);
-            List<Id> oppsIds = new List<Id>();
-            for (Opportunity opp : this.newOppList) {
-                oppsIds.add(opp.Id);
-            }
+        List<Id> oppsIds = new List<Id>();
+        for (Opportunity opp : this.newOppList) {
+            oppsIds.add(opp.Id);
+        }
+        
         if (!System.isFuture()) {
             OpportunityTriggerHelper.submitKYCAndRCCForApprovalHandler(oppsIds);
         }
+        
+        // if (RecursionControl.isOpportunityTriggerRunning) return;
+        // RecursionControl.isOpportunityTriggerRunning = true;
+        
+        OpportunityTriggerHelper.updateQuotesOnSyncedQuoteRemoval(this.newOppList, this.oldOppMap);
+    }
+    
+    public override void afterInsert() {
+        
+        OpportunityTriggerHelper.createKycAndRccRecords(this.newOppList);
     }
 }

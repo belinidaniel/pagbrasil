@@ -8,6 +8,7 @@
 >
 
 <apex:variable var="opportunityName" value="{!opportunityName}" />
+<apex:variable var="oppOwnerName" value="{!opportunityOwnerName}"/>
 <apex:variable var="accountName" value="{!accountName}" />
 <apex:variable var="accountWebsite" value="{!accountWebsite}" />
 <apex:variable var="accountOwnerName" value="{!accountOwnerName}" />
@@ -951,7 +952,7 @@
                 <p style="position: absolute; top: 310px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color: #fff;">{!quoteCreatedDate}</p>
                 <p style="position: absolute; top: 360px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #fff;"><i>*This proposal is valid for 30 days.</i></p>
                 
-                <p style="position: absolute; top: 100px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerName}</p>
+                <p style="position: absolute; top: 100px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!opportunityOwnerName}</p>
                 <p style="position: absolute; top: 125px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">International Account Manager</p>
                 
                 <img src="{!$Resource.PNLocationIcon}" style="position: absolute; top: 200px; left: 680px; width: 35px;"/>

@@ -45,11 +45,36 @@ public class OpportunityWrapperTest {
         );
         insert testAccount;
 
-        Id nationalRT = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('National').getRecordTypeId();
+        Id nationalRT = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('NaTional').getRecordTypeId();
 
         Date datClose = Date.today().addDays(30);
 
-        Opportunity testOpportunity = new Opportunity(Name = 'Opp1', CloseDate = datClose, AccountId = testAccount.Id, BusinessModel__c = 'Intermediation', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com');
+        Opportunity testOpportunity = new Opportunity(
+				Name = 'Opp1',
+				CloseDate = datClose,
+				AccountId = testAccount.Id,
+				RecordTypeId = nationalRT,
+				StageName = 'Contact',
+				Product_or_service_website_URL__c = 'www.google.com',
+				Transacoes_Mensais__c = 1213,
+				BusinessModel__c = 'Intermediation',
+				NationalPaymentMethod__c = 'Pix',
+				AverageSalesTicket__c = 15000.00,
+				ProductClass__c = '5331',
+				previs_fat_rs__c = 5000.00,
+				nb_receita_mensal__c = 50000,
+				Integracao__c = 'Salesforce CC',
+				Recorrencia__c = 'Yes',
+				Ticket_Medio__c = 123,
+				Product_Type__c = 'Digital',
+				Antecipation_Frequency_1__c = 'Weekly',
+				Antecipation_Frequency_2__c = 'Monthly',
+				Settlement_Frequency_1__c = 'Weekly',
+				Settlement_Frequency_2__c = 'Monthly',
+				Segmento__c = 'Gaming',
+				IntegrationType__c = 'API',
+				PaymentRecurrence__c = 'Sim'
+			);
 
         insert testOpportunity;
 
@@ -90,7 +115,8 @@ public class OpportunityWrapperTest {
 
         Product2 prod = new Product2(
             Name = 'Test Product',
-            Family = 'Test Product Family'
+            Family = 'Test Product Family',
+			IsActive = true
         );
 
         insert prod;
@@ -113,6 +139,10 @@ public class OpportunityWrapperTest {
             IsMain__c = true
         );
         insert testQuoteLineItem;
+        
+		Opportunity opp = [SELECT Id FROM Opportunity WHERE Id = :testOpportunity.Id LIMIT 1];
+		opp.SyncedQuoteId = testQuote.Id;
+		update opp;
     }
 
     @isTest

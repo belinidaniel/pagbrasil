@@ -22,4 +22,22 @@ public with sharing class LightningForgotPasswordControllerTest {
   LightningForgotPasswordController controller = new LightningForgotPasswordController();
   System.assertNotEquals(controller, null);
  }
+    
+    /* Verifica que setExperienceId retorna null quando null é passado */
+    @IsTest
+    static void testSetExperienceIdWithNull() {
+        String result = LightningForgotPasswordController.setExperienceId(null);
+        System.assertEquals(null, result, 'Deve retornar null quando ExperienceId é null');
+    }
+    
+    /* Verifica que setExperienceId retorna mensagem de erro para ExperienceId inválido */
+    @IsTest
+    static void testSetExperienceIdWithInvalidId() {
+        // Dependendo da implementação de Site.setExperienceId, pode lançar exceção para IDs inválidos
+        // Simule um valor que cause erro, se aplicável
+        String result = LightningForgotPasswordController.setExperienceId('invalid_id');
+        // O resultado esperado depende da mensagem de erro lançada pela plataforma
+        // Exemplo genérico:
+        System.assert(result != null, 'Deve retornar mensagem de erro para ExperienceId inválido');
+    }
 }

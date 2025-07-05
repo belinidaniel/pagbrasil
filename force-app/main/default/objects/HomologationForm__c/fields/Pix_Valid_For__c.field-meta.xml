@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pix_Valid_For__c</fullName>
+    <label>Pix Valid For</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>5min</fullName>
+                <default>false</default>
+                <label>5min</label>
+            </value>
+            <value>
+                <fullName>30min</fullName>
+                <default>false</default>
+                <label>30min</label>
+            </value>
+            <value>
+                <fullName>120min</fullName>
+                <default>false</default>
+                <label>120min</label>
+            </value>
+            <value>
+                <fullName>7200min (5 dias)</fullName>
+                <default>false</default>
+                <label>7200min (5 dias)</label>
+            </value>
+            <value>
+                <fullName>Outro</fullName>
+                <default>false</default>
+                <label>Outro</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

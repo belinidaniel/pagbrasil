@@ -12,6 +12,7 @@
     <columns>ShopifyDiscount__c</columns>
     <columns>NotInterestedInOfferingDiscount__c</columns>
     <columns>Cielo30__c</columns>
+    <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>
     <label>All Records</label>
 </ListView>

@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 05-27-2025
+ * @last modified on  : 07-04-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -140,7 +140,7 @@ public class PropostaCrossController {
 
     private void productsPopulation(Quote quote) {
 
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
+        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
 
         for(QuoteLineItem quoteLineItem : quoteLineItems)
             processQuoteLineItem(quoteLineItem);
@@ -360,31 +360,31 @@ public class PropostaCrossController {
     }
 
     private void processPix(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 999999,99') this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 499999,99') this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 99999,99') this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void processCreditCard(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 999999,99') this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 499999,99') this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 99999,99') this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void processDebitCard(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 999999,99') this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 499999,99') this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 99999,99') this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void processBoleto(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 999999,99') this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 499999,99') this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 99999,99') this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private String validateNumbersWithRegex(String value) {

@@ -12,10 +12,5 @@
     <columns>Marketing__c</columns>
     <columns>OPPORTUNITY.RECORDTYPE</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>OPPORTUNITY.STAGE_NAME</field>
-        <operation>equals</operation>
-        <value>Negotiation</value>
-    </filters>
     <label>Todas Oportunidades</label>
 </ListView>

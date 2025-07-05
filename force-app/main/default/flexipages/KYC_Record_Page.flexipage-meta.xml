@@ -302,16 +302,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Legal_Approval_Status__c</fieldItem>
-                <identifier>RecordLegal_Approval_Status_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Unique_Address__c</fieldItem>
                 <identifier>RecordUnique_Address_cField</identifier>
             </fieldInstance>

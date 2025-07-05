@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 05-27-2025
+ * @last modified on  : 07-03-2025
  * @last modified by  : Daniel Belini
 **/
 public without sharing class OpportunitySelector {
@@ -175,7 +175,7 @@ public without sharing class OpportunitySelector {
                 Account.Bank_Details_Company_Name__c,
                 Account.CustomerFinalSupportChannelUrl__c,
                 Account.CustomerFinalSupportChannelEmail__c,
-
+                previs_fat_rs__c,
                 (SELECT Id,
                         Login__c,
                         Password__c,

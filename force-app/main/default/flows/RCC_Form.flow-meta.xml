@@ -2012,6 +2012,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>ReclameAqui_URL__c</field>
+            <value>
+                <elementReference>ReclameAqui_URL</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Reputation__c</field>
             <value>
                 <elementReference>SavedQuestion_7</elementReference>
@@ -2033,6 +2039,12 @@
             <field>Risk__c</field>
             <value>
                 <elementReference>Risk</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Social_Media_URL__c</field>
+            <value>
+                <elementReference>Social_media_URL</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -2206,6 +2218,27 @@
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
+                    <name>ReclameAqui_URL</name>
+                    <dataType>String</dataType>
+                    <fieldText>ReclameAqui URL</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isDisabled>
+                        <elementReference>EditQuestions</elementReference>
+                    </isDisabled>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Question7</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
                     <name>Question_9</name>
                     <defaultValue>
                         <stringValue>{!SavedQuestion_9}</stringValue>
@@ -2309,6 +2342,27 @@
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>Social_media_URL</name>
+                    <dataType>String</dataType>
+                    <fieldText>Social media URL</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isDisabled>
+                        <elementReference>EditQuestions</elementReference>
+                    </isDisabled>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Question10</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>RedeSocial_Email</elementReference>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <fields>
                     <name>Anexar_Documento</name>

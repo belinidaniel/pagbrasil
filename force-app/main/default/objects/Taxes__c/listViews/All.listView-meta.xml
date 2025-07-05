@@ -13,14 +13,14 @@
     <columns>TicketInicial__c</columns>
     <columns>TicketFinal__c</columns>
     <columns>IntegrationType__c</columns>
-    <columns>UnitPrice__c</columns>
     <columns>TaxaBaseAntecipacao__c</columns>
     <columns>IsPercent__c</columns>
+    <columns>ProductClass__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
-        <field>Product__c</field>
+        <field>RecordTypeName__c</field>
         <operation>contains</operation>
-        <value>zero</value>
+        <value>token</value>
     </filters>
     <label>All</label>
 </ListView>

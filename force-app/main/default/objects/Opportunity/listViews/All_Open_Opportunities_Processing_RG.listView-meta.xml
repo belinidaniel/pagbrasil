@@ -9,15 +9,5 @@
     <columns>CORE.USERS.ALIAS</columns>
     <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>OPPORTUNITY.STAGE_NAME</field>
-        <operation>equals</operation>
-        <value>Processing</value>
-    </filters>
-    <filters>
-        <field>CORE.USERS.ALIAS</field>
-        <operation>equals</operation>
-        <value>RG</value>
-    </filters>
     <label>All Open Opportunities Processing RG</label>
 </ListView>

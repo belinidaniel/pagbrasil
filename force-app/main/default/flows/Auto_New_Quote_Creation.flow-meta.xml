@@ -130,21 +130,21 @@
         <defaultConnector>
             <targetReference>First_Appointment_Status_Warning</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Not Completed</defaultConnectorLabel>
+        <defaultConnectorLabel>Not Filled</defaultConnectorLabel>
         <rules>
-            <name>Completed</name>
+            <name>Filled</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Opportunity.First_Appointment_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>IsBlank</operator>
                 <rightValue>
-                    <stringValue>Completed</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
                 <targetReference>Remittance_and_Opportunity_Curency_Validation</targetReference>
             </connector>
-            <label>Completed</label>
+            <label>Filled</label>
         </rules>
     </decisions>
     <decisions>

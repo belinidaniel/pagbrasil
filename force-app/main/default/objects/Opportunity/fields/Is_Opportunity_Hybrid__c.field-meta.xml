@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Opportunity_Hybrid__c</fullName>
+    <formula>AND(
+				INCLUDES(BusinessModel__c, &quot;Intermediation&quot;),
+				INCLUDES(BusinessModel__c, &quot;Gateway&quot;)
+)</formula>
+    <label>Hybrid?</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DebitoDebitoFlash__c</fullName>
+    <label>D = Cartão de Débito/Débito Flash</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Débito Flash (3DS 2)</fullName>
+                <default>false</default>
+                <label>Débito Flash (3DS 2)</label>
+            </value>
+            <value>
+                <fullName>Débito convencional (3DS 1)</fullName>
+                <default>false</default>
+                <label>Débito convencional (3DS 1)</label>
+            </value>
+            <value>
+                <fullName>Não</fullName>
+                <default>false</default>
+                <label>Não</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

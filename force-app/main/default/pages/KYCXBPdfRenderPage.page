@@ -151,7 +151,7 @@
 					</td>
 					<td width="10%"></td>
 					<td class="field" width="45%">
-						<strong class="label">Personal ID number:</strong>
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Personal ID number:</strong>
 						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Registration_Number__c}</p>
 					</td>
 				</tr>
@@ -162,7 +162,7 @@
 					</td>
 					<td width="10%"></td>
 					<td class="field" width="45%">
-						<strong class="label">Contact email:</strong>
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Contact email:</strong>
 						<p class="value" style="font-family: Arial, sans-serif !important;">{!personalContact.Email}</p>
 					</td>
 				</tr>
@@ -181,7 +181,7 @@
 					</td>
 					<td width="10%"></td>
 					<td class="field" width="45%">
-						<strong class="label">Trade name/doing business as (DBA) name:</strong>
+						<strong class="label" style=" font-family: Arial, sans-serif !important;">Trade name/doing business as (DBA) name:</strong>
 						<p class="value" style="font-family: Arial, sans-serif !important;">{!kycXB.Trade_Name__c}</p>
 					</td>
 				</tr>
@@ -355,45 +355,45 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Nationality:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Nationality:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Nationality__c}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Ownership:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Ownership:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Ownership_Percentage__c}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Zip code:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Zip code:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingPostalCode}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Address:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Address:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingStreet}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>City:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">City:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingCity}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>State:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">State:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingState}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Country:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Country:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.MailingCountry}</p>
 								</td>
 							</tr>
@@ -433,34 +433,34 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Job title:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Job title:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Role__c}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Email}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Linkedin profile:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Linkedin profile:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Linkedin__c}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>ID number or passport:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">ID number or passport:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Registration_Number__c}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Date of birth:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Date of birth:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!wrap.contact.Birthdate}</p>
 								</td>
 							</tr>
@@ -513,18 +513,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Job title:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Job title:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Role__c}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Country:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Country:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.MailingCountry}</p>
 								</td>
 								<td width="10%"></td>
@@ -547,18 +547,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Phone number:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
 								</td>
 								<td width="10%"></td>
@@ -574,18 +574,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Phone number:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
 								</td>
 								<td width="10%"></td>
@@ -601,18 +601,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Phone number:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
 								</td>
 								<td width="10%"></td>
@@ -628,18 +628,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Phone number:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
 								</td>
 								<td width="10%"></td>
@@ -655,18 +655,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Phone number:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
 								</td>
 								<td width="10%"></td>
@@ -682,18 +682,18 @@
 						<table class="data-container" style="padding-left: 12px;" width="100%">
 							<tr>
 								<td class="field" width="45%">
-									<strong>Full name:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Full name:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Name}</p>
 								</td>
 								<td width="10%"></td>
 								<td class="field" width="45%">
-									<strong>Email:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Email:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="field" width="45%">
-									<strong>Phone number:</strong>
+									<strong style=" font-family: Arial, sans-serif !important;">Phone number:</strong>
 									<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Phone}</p>
 								</td>
 								<td width="10%"></td>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Can_Create_Opportunities__c</fullName>
+    <formula>IF(
+  OR(
+    $Permission.Can_Edit_All_Opportunity_Stages,
+    $Permission.Can_Edit_New_Business_Management_Opportunity_Stages,
+    $Permission.Can_Edit_Sales_Management_Opportunity_Stages
+  ),
+  true,
+  false
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Can Create Opportunities</label>
+    <type>Checkbox</type>
+</CustomField>

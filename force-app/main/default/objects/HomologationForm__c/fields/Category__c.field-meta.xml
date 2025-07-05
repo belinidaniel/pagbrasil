@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <label>Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Nacional</fullName>
+                <default>false</default>
+                <label>Nacional</label>
+            </value>
+            <value>
+                <fullName>Encomendas Internacionais (12036)</fullName>
+                <default>false</default>
+                <label>Encomendas Internacionais (12036)</label>
+            </value>
+            <value>
+                <fullName>Serviços (47197)</fullName>
+                <default>false</default>
+                <label>Serviços (47197)</label>
+            </value>
+            <value>
+                <fullName>Manutenção de residentes (37011)</fullName>
+                <default>false</default>
+                <label>Manutenção de residentes (37011)</label>
+            </value>
+            <value>
+                <fullName>Serviços de educação (47719)</fullName>
+                <default>false</default>
+                <label>Serviços de educação (47719)</label>
+            </value>
+            <value>
+                <fullName>Softwares (47551)</fullName>
+                <default>false</default>
+                <label>Softwares (47551)</label>
+            </value>
+            <value>
+                <fullName>Direitos autorais (47582)</fullName>
+                <default>false</default>
+                <label>Direitos autorais (47582)</label>
+            </value>
+            <value>
+                <fullName>Outros seguros diretos - Prêmio (27083)</fullName>
+                <default>false</default>
+                <label>Outros seguros diretos - Prêmio (27083)</label>
+            </value>
+            <value>
+                <fullName>Demais soluções de pagamentos digitais (34021)</fullName>
+                <default>false</default>
+                <label>Demais soluções de pagamentos digitais (34021)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

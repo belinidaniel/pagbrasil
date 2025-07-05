@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 06-30-2025
+ * @last modified on  : 07-04-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -31,7 +31,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             if(taxMap == null){
                 taxMap = new Map<String, List<Taxes__c>>();
 
-                for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c FROM Taxes__c WHERE IsActive__c = true]){
+                for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, Type__c FROM Taxes__c WHERE IsActive__c = true]){
                     if(taxMap.containsKey(tax.Product__c)){
                         taxMap.get(tax.Product__c).add(tax);
                     } else {
@@ -147,7 +147,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             }
 
             for(PricebookEntry priceBookEntry : priceBookEntries){
-
                 if(byPassProduct(opportunity, priceBookEntry.Product2)){
                     continue;
                 }
@@ -163,14 +162,11 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         continue;
                     }
                 }
-                System.debug('quote priceBookEntry: ' + quote.Pricebook2Id);
                 if(priceBookEntry.UseTaxa__c){
                     addValueTaxToLineItem(priceBookEntry, opportunity, quote, quoteLineItems);
                 } else {
                     Decimal discount = applyDiscount(opportunity, priceBookEntry);
                     if( quote.Pricebook2Id != priceBookEntry.Pricebook2Id ){
-                        System.debug('quoteLineItems PricebookEntryId: ' + priceBookEntry.Id);
-                        System.debug('quoteLineItems PricebookEntryId: ' + priceBookEntry.Pricebook2Id);
                     }
                     quoteLineItems.add(new QuoteLineItem(
                         PricebookEntryId = priceBookEntry.Id,
@@ -224,7 +220,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             return false;
         }
 
-        System.debug('opportunity-business_model: ' + opportunity.BusinessModel__c);
 
         String productCode = product.ProductCode;
 
@@ -236,8 +231,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         }
 
         String paymentMethod = getPaymentMethod(opportunity);
-
-        System.debug('paymentMethod: ' + paymentMethod);
 
         if((productCode.contains(DEBITO) && !paymentMethod.contains(DEBITO)) ||
            (productCode.contains(PIX) && !paymentMethod.contains(PIX)) ||
@@ -278,41 +271,51 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         String paymentMethod = getPaymentMethod(opportunity);
 
         for(Taxes__c tax : taxes){
-            if(tax.Product__c != priceBookEntry.Product2Id){
-                continue;
-            }
 
+       
             Boolean isTicketRange = tax.TicketInicial__c <= opportunity.AverageSalesTicket__c && (tax.TicketFinal__c >= opportunity.AverageSalesTicket__c || tax.TicketFinal__c == null);
-            Boolean isReceitaRange = tax.ReceitaMensalInicial__c <= opportunity.previs_fat_rs__c && tax.ReceitaMensalFinal__c >= opportunity.previs_fat_rs__c;
-
+            Boolean isInsideRange = 
+                (opportunity.previs_fat_rs__c >= tax.RangeFaixaInicial__c) &&
+                (opportunity.previs_fat_rs__c < tax.RangeFaixaFinal__c);
+            System.System.debug('TaxaProcessamento - ' + tax.RecordTypeName__c);
+            System.System.debug('paymentMethod - ' + paymentMethod);
             switch on tax.RecordTypeName__c {
                 when 'TaxaBaseAntecipacao' {
-                    if(isReceitaRange){
+
+                    // if(isReceitaRange){
                         percentValue = tax.PercentValue__c;
-                        isTaxMain = true;
+                        if(isInsideRange){
+                            isTaxMain = true;
+                        }
                         taxId = tax.Id;
                         break;
-                    }
+                    // }
                 }
                 when 'TaxaProcessamento' {
-                     if(isReceitaRange && (
-                       ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && tax.TaxRegion__c == 'Crossborder') ||
+                    // System.System.debug('TaxaProcessamento - ' + tax.RecordTypeName__c);
+                     if(
+                       ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO) && tax.TaxRegion__c == 'Crossborder')) ||
                        ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX)) && isTicketRange) ||
-                       ((paymentMethod.contains(DEBITO) || paymentMethod.contains(CREDITO)) && tax.ProductClass__c.contains(opportunity.ProductClass__c)))
+                       ((paymentMethod.contains(DEBITO) || paymentMethod.contains(CREDITO)) && tax.ProductClass__c.contains(opportunity.ProductClass__c))
                     ){
+                    System.System.debug('TaxRegion__c - ' + tax.TaxRegion__c);
                         percentValue = tax.PercentValue__c;
-                        isTaxMain = true;
+                        if(isInsideRange){
+                            isTaxMain = true;
+                        }
                         taxId = tax.Id;
-                        this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems);
+                        this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;
                     }
                 }
                 when 'TaxaSolucaoPagBrasil' {
                     if(opportunity.BusinessModel__c.contains('Intermediation') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js'))){
                         percentValue = tax.PercentValue__c;
-                        isTaxMain = true;
+                        if(isInsideRange){
+                            isTaxMain = true;
+                        }
                         taxId = tax.Id;
-                        this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems);
+                        this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;
                     }
                 }
@@ -351,12 +354,8 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
     * @param priceBookEntry
     * @param quoteLineItems
     **/
-    private void addOtherTaxRanges(List<Taxes__c> taxes, Taxes__c tax, Quote quote, PricebookEntry priceBookEntry, List<QuoteLineItem> quoteLineItems){
-
-        System.debug('tax: ' + tax);
+    private void addOtherTaxRanges(List<Taxes__c> taxes, Taxes__c tax, Quote quote, PricebookEntry priceBookEntry, List<QuoteLineItem> quoteLineItems, Opportunity opportunity){
         for(Taxes__c currentTax : taxes){
-
-            Boolean isInsideRange = tax.RangeFaixaInicial__c >= currentTax.ReceitaMensalInicial__c || tax.RangeFaixaFinal__c >= currentTax.ReceitaMensalFinal__c;
 
             if(currentTax.RecordTypeName__c == tax.RecordTypeName__c &&
                currentTax.Product__c == tax.Product__c &&
@@ -364,8 +363,16 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                currentTax.TicketFinal__c == tax.TicketFinal__c &&
                currentTax.ProductClass__c == tax.ProductClass__c &&
                currentTax.IntegrationType__c == tax.IntegrationType__c &&
-               currentTax.Id != tax.Id &&
-               isInsideRange){
+               currentTax.Id != tax.Id){
+
+                
+            Boolean isInsideRange = 
+                (opportunity.previs_fat_rs__c >= currentTax.RangeFaixaInicial__c) &&
+                (opportunity.previs_fat_rs__c < currentTax.RangeFaixaFinal__c);
+
+                if(currentTax.Type__c != null && currentTax.Type__c != opportunity.Recordtype.DeveloperName.toLowerCase() ){
+                    continue;
+                }
                 quoteLineItems.add(new QuoteLineItem(
                     PricebookEntryId = priceBookEntry.Id,
                     Product2Id = priceBookEntry.Product2Id,
@@ -374,7 +381,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     PercentValue__c  = currentTax.percentValue__c,
                     QuoteId = quote.Id,
                     UseTaxa__c = true,
-                    IsMain__c = false,
+                    IsMain__c = isInsideRange,
                     Tax__c = currentTax.Id
                 ));
             }

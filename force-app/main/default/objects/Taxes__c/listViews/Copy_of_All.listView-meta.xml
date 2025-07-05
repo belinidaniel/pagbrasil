@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_All</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>BusinessModel__c</columns>
+    <columns>TicketInicial__c</columns>
+    <columns>TicketFinal__c</columns>
+    <columns>RangeFaixaInicial__c</columns>
+    <columns>RangeFaixaFinal__c</columns>
+    <columns>PercentValue__c</columns>
+    <columns>FlexBoard__c</columns>
+    <columns>FlexHead__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>IsActive__c</columns>
+    <columns>RecordTypeName__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product__c</field>
+        <operation>equals</operation>
+        <value>Taxa processamento Pix</value>
+    </filters>
+    <label>Taxa processamento Pix</label>
+</ListView>

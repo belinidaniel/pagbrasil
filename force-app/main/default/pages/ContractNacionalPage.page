@@ -96,7 +96,7 @@
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <th style="border-right: 1px solid black; width: 30%;text-align:left;">Estabelecimento:</th>
-                        <th style="font-weight: normal;text-align: left!important;"> {!opportunity.Account.CNPJ__c} - {!opportunity.Account.Nome_Empresarial__c}</th>
+                        <th style="font-weight: normal;text-align: left!important;"> {!opportunity.Account.CNPJ__c} - {!legalName}</th>
                     </tr>
                     <tr>
                         <td style="border-right: 1px solid black; font-weight: bold;text-align:left;">Link do Formulário KYC: </td>
@@ -131,7 +131,7 @@
                             <th style="font-size:12px">PagBrasil Pix</th>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <th style="font-size:12px">Cartão de crédito*</th>
                         </apex:panelGroup>
                         
@@ -155,7 +155,7 @@
                             <td>{!pixOne}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardOne}</td>
                         </apex:panelGroup>
                         
@@ -176,7 +176,7 @@
                             <td>{!pixTwo}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardTwo}</td>
                         </apex:panelGroup>
                         
@@ -198,7 +198,7 @@
                             <td>{!pixThree}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardThree}</td>
                         </apex:panelGroup>
                         
@@ -220,7 +220,7 @@
                             <td>{!pixFour}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardFour}</td>
                         </apex:panelGroup>
                         
@@ -242,7 +242,7 @@
                             <td style="color: #0058B5;">{!pixGateway}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td style="color: #0058B5;">{!creditCardGateway}</td>
                         </apex:panelGroup>
                         
@@ -486,23 +486,25 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação</td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback</td>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Taxa adicional de excesso de Chargebacks para transações com Cartão</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback de Cartão</td>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Retenção pelo excesso de Chargebacks</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
-                            US$* por Chargeback de Cartão, caso o Estabelecimento, por 2 (dois) meses consecutivos, ultrapasse o montante de 100 Chargebacks e exceda 1,5% (um vírgula cinco por cento) do índice de CTR sobre o total de transações computadas em um mês de calendário.
-                        </td>
-                    </tr>
+                    <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback</td>
+                        </tr>
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Taxa adicional de excesso de Chargebacks para transações com Cartão</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback de Cartão</td>
+                        </tr>
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Retenção pelo excesso de Chargebacks</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
+                                US$* por Chargeback de Cartão, caso o Estabelecimento, por 2 (dois) meses consecutivos, ultrapasse o montante de 100 Chargebacks e exceda 1,5% (um vírgula cinco por cento) do índice de CTR sobre o total de transações computadas em um mês de calendário.
+                            </td>
+                        </tr>
+                    </apex:panelGroup>
                 </tbody>
             </table>
 
@@ -527,28 +529,32 @@
             <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
-                            pacote 500 SMS<br/>
-                            pacote 1.000 SMS<br/>
-                            pacote 10.000 SMS<br/><br/>
-                            pacote 1.000 e-mails<br/>
-                            pacote 10.000 e-mails<br/>
-                            pacote 100.000 e-mails<br/><br/>
-                            pacote de SMS e e-mails
-                        </td>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            {!sms500}<br/>
-                            {!sms1000}<br/>
-                            {!sms10000}<br/><br/>
-                            {!emails1000}<br/>
-                            {!emails10000}<br/>
-                            {!emails100000}<br/><br/>
-                            0,00
-                        </td>
+                        <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
+                            <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
+                                pacote 500 SMS<br/>
+                                pacote 1.000 SMS<br/>
+                                pacote 10.000 SMS<br/><br/>
+                                pacote 1.000 e-mails<br/>
+                                pacote 10.000 e-mails<br/>
+                                pacote 100.000 e-mails<br/><br/>
+                                pacote de SMS e e-mails
+                            </td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                                {!sms500}<br/>
+                                {!sms1000}<br/>
+                                {!sms10000}<br/><br/>
+                                {!emails1000}<br/>
+                                {!emails10000}<br/>
+                                {!emails100000}<br/><br/>
+                                0,00
+                            </td>
+                        </apex:panelGroup>
                         <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
                             <br/>
-                            R$ por pacote<br/><br/><br/><br/>
-                            R$ por pacote<br/><br/><br/><br/>
+                            <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
+                                R$ por pacote<br/><br/><br/><br/>
+                                R$ por pacote<br/><br/><br/><br/>
+                            </apex:panelGroup>
                             R$ por pacote (incluído somente com a contratação da Solução PagBrasil) 
                         </td>
                     </tr>
@@ -560,7 +566,7 @@
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Solução de carteira digital</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de carteiras digitais como Google Pay, Apple Pay ou Samsung Pay</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de carteiras digitais como Google Pay ou Apple Pay</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
@@ -570,11 +576,11 @@
                     <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
                     <div class="page-break"></div>
                     <apex:panelGroup rendered="{!pixGatewayBelowMinimum}">
-                        <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$, adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>    
-                        </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!pixOneClick}</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$, adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>    
+                            </tr>
                     </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">iFrame</td>
@@ -693,10 +699,6 @@
             <p style="text-align:justify">
                 A <strong>PagBrasil</strong> reserva-se o direito de ajustar as taxas do Pix Automático em resposta às futuras condições do mercado a qualquer momento, de acordo com o disposto na cláusula 4.2. 
             </p>
-
-            <p style="text-align:justify">
-                O <strong>Estabelecimento</strong> poderá participar de um período de teste antes do lançamento oficial do Pix Automático se atender e aceitar as condições e requisitos estabelecidos pela <strong>PagBrasil</strong> para esse teste. 
-            </p>
             
             <br/>
 
@@ -711,7 +713,7 @@
                         </tr>
                         <tr>
                             <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Taxa de Serviço de Payout</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">1,0%</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">{!payoutFee}</td>
                             <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">Sobre o valor transferido via payout, cobrado por Período de Pagamento</td>
                         </tr>
                     </tbody>

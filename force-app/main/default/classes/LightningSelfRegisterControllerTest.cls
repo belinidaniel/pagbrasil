@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Daniel Belini
+ * @group             : 
+ * @last modified on  : 07-05-2025
+ * @last modified by  : Daniel Belini
+**/
 @IsTest(SeeAllData = true)
 public with sharing class LightningSelfRegisterControllerTest {
 
@@ -12,7 +19,8 @@ public with sharing class LightningSelfRegisterControllerTest {
 
  @IsTest
  static void testSiteAsContainerEnabled() {
-  System.assertNotEquals(null, LightningSelfRegisterController.siteAsContainerEnabled('https://portaleu1-developer-edition.eu11.force.com'));
+    System.assertNotEquals(null, LightningSelfRegisterController.setExperienceId('https://portaleu1-developer-edition.eu11.force.com'));
+    System.assertNotEquals(null, LightningSelfRegisterController.siteAsContainerEnabled('https://portaleu1-developer-edition.eu11.force.com'));
  }
 
  /* Verifies the selfRegistration method flow with various invalid inputs */

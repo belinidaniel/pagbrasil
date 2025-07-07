@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-04-2025
+ * @last modified on  : 07-05-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -35,6 +35,7 @@ public class PropostaNacionalController {
     public string reserve {get;set;}
     public String pagBrasilSolutionFeeRange{get;set;}
     public Boolean showZeroReserveOption { get; set; }
+    public Boolean isGoogleOrApplePay { get; set; }
 
     //Taxes
     public String valueOne { get; set; }
@@ -171,7 +172,7 @@ public class PropostaNacionalController {
                 'Opportunity.Settlement_Frequency_Test__c', 'Opportunity.Payout__c', 'Opportunity.Antecipation_Frequency_1__c',
                 'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
                 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c',
-                'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
+                'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.ApplePay__c' });
         }
 
         Quote quote = (Quote) stdController.getRecord();
@@ -214,6 +215,8 @@ public class PropostaNacionalController {
         this.accountOwnerEmail = quote.Account.Owner.Email;
         this.accountOwnerMobilePhone = quote.Account.Owner.MobilePhone;
         this.isPagShield = quote.Opportunity.PagShield__c;
+        this.isGoogleOrApplePay = quote.opportunity.GooglePay__c  || quote.opportunity.ApplePay__c ? true: false;
+        System.debug('isGoogleOrApplePay: ' + this.isGoogleOrApplePay);
         this.containsShopify = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c.contains('Shopify') : false;
         this.containsGateway = quote.Opportunity.BusinessModel__c != null ? quote.Opportunity.BusinessModel__c.contains('Gateway') : false;
         this.isSalesforce = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c == 'Salesforce' : false;
@@ -230,8 +233,18 @@ public class PropostaNacionalController {
         setPaymentMethods(quote);
     }
 
-    private void setTaxValues(Quote quote) {
-        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c >= 5000000) {
+    private void setTaxValues(Quote quote ) {
+        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 5000000) {
+            this.valueOne = '> R$ 1M';
+            this.valueTwo = 'R$ 500k - R$ 1M';
+            this.valueThree = 'R$ 100k - R$ 500k';
+            this.valueFour = '< R$ 100k';
+
+            if (quote.Opportunity.previs_fat_rs__c >= 1000000)
+                this.highlightedLineOne = true;
+            else
+                this.highlightedLineTwo = true;
+        }else if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c >= 5000000) {
             this.valueOne = '> R$ 10M';
             this.valueTwo = 'R$ 5M - R$ 10M';
             this.valueThree = 'R$ 1M - R$ 5M';
@@ -242,18 +255,7 @@ public class PropostaNacionalController {
             else
                 this.highlightedLineTwo = true;
 
-        } else {
-
-            if (quote.Opportunity.previs_fat_rs__c >= 1000000) this.highlightedLineOne = true;
-            else if (quote.Opportunity.previs_fat_rs__c >= 500000) this.highlightedLineTwo = true;
-            else if (quote.Opportunity.previs_fat_rs__c >= 100000) this.highlightedLineThree = true;
-            else this.highlightedLineFour = true;
-
-            this.valueOne = '0,35% p/ R$5MM';
-            this.valueTwo = '0,40% (R$1MM -> R$5MM';
-            this.valueThree = '0,45% (R$500k -> R$1MM';
-            this.valueFour = '0,50% (R$<R$500k)';
-        }
+        } 
     }
 
     private void setPaymentMethods(Quote quote) {
@@ -872,9 +874,13 @@ public class PropostaNacionalController {
     private void getParcelas(Quote quote, String page) {
 
         if (page == 'One') {
+            System.debug('getParcelas page: ' + this.taxaAntecipacao);
             String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
+            System.debug('getParcelas antecipation: ' + antecipation);
             List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            System.debug('taxes.   ' + taxes);
             for(Taxes__c tax : taxes) {
+                System.debug('tax.InstallmentNumber__c: ' + tax.InstallmentNumber__c);
                 switch on tax.InstallmentNumber__c{
                     when '1' {
                         this.frequencyPageOneValueOne = validateNumbersWithRegex(String.valueOf(tax.PercentValue__c) + '%') + '%';

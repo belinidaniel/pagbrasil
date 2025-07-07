@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-04-2025
+ * @last modified on  : 07-05-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -86,14 +86,8 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             if (opportunity == null) {
                 continue;
             }
-
-            Map<String, List<PricebookEntry>> priceBookMapNational = getPriceBookMap(false);
-            Map<String, List<PricebookEntry>> priceBookMapCross = getPriceBookMap(true);
-
-            List<PricebookEntry> priceBookEntries = opportunity.RecordType.DeveloperName == 'National'
-            ? priceBookMapNational.get(opportunity.BusinessModel__c)
-            : priceBookMapCross.get(opportunity.BusinessModel__c);
-
+            Boolean isClossBoard = opportunity.RecordType.DeveloperName == 'Crossborder';
+            List<PricebookEntry> priceBookEntries =getPriceBookByBusinessModel(opportunity.BusinessModel__c,isClossBoard);
             if (priceBookEntries == null) {
                 continue;
             }
@@ -138,9 +132,8 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 continue;
             }
 
-            List<PricebookEntry> priceBookEntries = opportunity.RecordType.DeveloperName == 'National'
-                                                    ? priceBookMapNational.get(opportunity.BusinessModel__c)
-                                                    : priceBookMapCross.get(opportunity.BusinessModel__c);
+            Boolean isClossBoard = opportunity.RecordType.DeveloperName == 'Crossborder';
+            List<PricebookEntry> priceBookEntries = getPriceBookByBusinessModel(opportunity.BusinessModel__c,isClossBoard);
 
             if (priceBookEntries == null) {
                 continue;
@@ -168,6 +161,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     Decimal discount = applyDiscount(opportunity, priceBookEntry);
                     if( quote.Pricebook2Id != priceBookEntry.Pricebook2Id ){
                     }
+                    System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
                     quoteLineItems.add(new QuoteLineItem(
                         PricebookEntryId = priceBookEntry.Id,
                         Product2Id = priceBookEntry.Product2Id,
@@ -282,14 +276,10 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             switch on tax.RecordTypeName__c {
                 when 'TaxaBaseAntecipacao' {
 
-                    // if(isReceitaRange){
                         percentValue = tax.PercentValue__c;
-                        if(isInsideRange){
-                            isTaxMain = true;
-                        }
+                        isTaxMain = true;
                         taxId = tax.Id;
                         break;
-                    // }
                 }
                 when 'TaxaProcessamento' {
                     // System.System.debug('TaxaProcessamento - ' + tax.RecordTypeName__c);
@@ -329,7 +319,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 }
             }
         }
-
+        System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
         if(isTaxMain){
             quoteLineItems.add(new QuoteLineItem(
                 PricebookEntryId = priceBookEntry.Id,
@@ -373,7 +363,8 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 if(currentTax.Type__c != null && currentTax.Type__c != opportunity.Recordtype.DeveloperName.toLowerCase() ){
                     continue;
                 }
-                quoteLineItems.add(new QuoteLineItem(
+                    System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
+                   quoteLineItems.add(new QuoteLineItem(
                     PricebookEntryId = priceBookEntry.Id,
                     Product2Id = priceBookEntry.Product2Id,
                     Quantity = 1,
@@ -412,6 +403,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                                                 Product2.ProductCode,
                                                 Product2Id,
                                                 UseTaxa__c,
+                                                Name,
                                                 UnitPrice,
                                                 CurrencyIsoCode__c
                                             FROM priceBookEntry
@@ -427,4 +419,26 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
 
         return priceBookMap;
     }
+
+        public List<priceBookEntry> getPriceBookByBusinessModel(String businessModel, Boolean isCrossBoard) {
+        Map<String, List<PricebookEntry>> priceBookMap = new Map<String, List<PricebookEntry>>();
+
+        return [SELECT Id,
+                                                PercentValue__c,
+                                                Pricebook2Id,
+                                                Pricebook2.BusinessModel__c,
+                                                Product2.Name,
+                                                Product2.Family,
+                                                Product2.ProductCode,
+                                                Product2Id,
+                                                UseTaxa__c,
+                                                Name,
+                                                UnitPrice,
+                                                CurrencyIsoCode__c
+                                            FROM priceBookEntry
+                                           WHERE IsActive = true
+                                             AND Pricebook2.IsActive = true
+                                             AND Pricebook2.BusinessModel__c =: businessModel
+                                             AND Pricebook2.IsCrossBoard__c =: isCrossBoard];
+        }
 }

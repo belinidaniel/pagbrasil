@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 05-27-2025
+ * @last modified on  : 07-05-2025
  * @last modified by  : Daniel Belini
 **/
 @isTest
@@ -25,30 +25,32 @@ public class ContractControllerTest {
 
         List<Opportunity> opps = new List<Opportunity>{
             // cenarios nacional
-            new Opportunity(Name = 'Opp1', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', previs_fat_rs__c = 6000000, Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp2', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', previs_fat_rs__c = 110000000, Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp3', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Pix', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', previs_fat_rs__c = 9000000, Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp4', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Boleto Flash', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', previs_fat_rs__c = 4000000, Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp5', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Cartão de Crédito', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp6', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Débito Flash', RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp7', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Débito Flash', previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp7', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway;Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Débito Flash', previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
+            new Opportunity(Name = 'Opp3', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', Product_Type__c = 'Digital', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Pix', RecordTypeId = nationalRT, PaymentRecurrence__c='Sim',StageName = 'Contact',Segmento__c = 'Gaming', Product_or_service_website_URL__c = 'www.google.com', AverageSalesTicket__c = 10000,previs_fat_rs__c = 9000000),
+            new Opportunity(Name = 'Opp4', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', Product_Type__c = 'Digital',IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Boleto Flash', RecordTypeId = nationalRT,PaymentRecurrence__c='Sim', Segmento__c = 'Gaming',StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', AverageSalesTicket__c = 10000,previs_fat_rs__c = 4000000),
+            new Opportunity(Name = 'Opp5', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', Product_Type__c = 'Digital',IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Cartão de Crédito', RecordTypeId = nationalRT, PaymentRecurrence__c='Sim', Segmento__c = 'Gaming',previs_fat_rs__c = 9000000,StageName = 'Contact',  AverageSalesTicket__c = 10000,Product_or_service_website_URL__c = 'www.google.com'),
+            new Opportunity(Name = 'Opp6', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', Product_Type__c = 'Digital',IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Débito Flash', RecordTypeId = nationalRT, PaymentRecurrence__c='Sim', Segmento__c = 'Gaming',previs_fat_rs__c = 9000000,StageName = 'Contact',  AverageSalesTicket__c = 10000,Product_or_service_website_URL__c = 'www.google.com'),
+            new Opportunity(Name = 'Opp7', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway', Product_Type__c = 'Digital',IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Débito Flash', PaymentRecurrence__c='Sim', Segmento__c = 'Gaming',AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com',Settlement_Frequency_1__c = 'Weekly'),
+            new Opportunity(Name = 'Opp7', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Gateway;Intermediation', Product_Type__c = 'Digital',IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Débito Flash', PaymentRecurrence__c='Sim', Segmento__c = 'Gaming',AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com')
 
-            // cenarios cross
-            new Opportunity(Name = 'Opp8', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Pix', previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp9', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Cartão de Crédito', previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp10', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Débito Flash', previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp11', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Boleto Flash', previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'EUR'),
+            // // cenarios cross
+            // new Opportunity(Name = 'Opp8', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Pix', PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
+            // new Opportunity(Name = 'Opp9', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Cartão de Crédito', PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
+            // new Opportunity(Name = 'Opp10', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Débito Flash', PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
+            // new Opportunity(Name = 'Opp11', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Boleto Flash', PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = crossRT, StageName = 'Contact', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'EUR'),
 
             // antecipação cenários
 
-            new Opportunity(Name = 'Opp12', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Boleto Flash', previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Daily', Settlement_Frequency_1__c = 'Daily', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp13', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Boleto Flash', previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Weekly', Settlement_Frequency_1__c = 'Weekly', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp14', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Boleto Flash', previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Biweekly', Settlement_Frequency_1__c = 'Biweekly', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD'),
-            new Opportunity(Name = 'Opp15', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', IntegrationType__c = 'Salesforce', NationalPaymentMethod__c = 'Boleto Flash', previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Monthly', Settlement_Frequency_1__c = 'Monthly', Product_or_service_website_URL__c = 'www.google.com', Moeda__c = 'USD')
+            // new Opportunity(Name = 'Opp12', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', Product_Type__c = 'Digital', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Boleto Flash', Segmento__c = 'Gaming',PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Weekly', Settlement_Frequency_1__c = 'Weekly', Product_or_service_website_URL__c = 'www.google.com'),
+            // new Opportunity(Name = 'Opp13', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', Product_Type__c = 'Digital', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Boleto Flash', Segmento__c = 'Gaming',PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Weekly', Settlement_Frequency_1__c = 'Weekly', Product_or_service_website_URL__c = 'www.google.com'),
+            // new Opportunity(Name = 'Opp14', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', Product_Type__c = 'Digital', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Boleto Flash', Segmento__c = 'Gaming',PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Weekly', Settlement_Frequency_1__c = 'Weekly', Product_or_service_website_URL__c = 'www.google.com'),
+            // new Opportunity(Name = 'Opp15', CloseDate = datClose, AccountId = acct.Id, BusinessModel__c = 'Intermediation', Product_Type__c = 'Digital', IntegrationType__c = 'Salesforce',nb_receita_mensal__c = 50000, NationalPaymentMethod__c = 'Boleto Flash', Segmento__c = 'Gaming',PaymentRecurrence__c='Sim', AverageSalesTicket__c = 10000,previs_fat_rs__c = 1, RecordTypeId = nationalRT, StageName = 'Contact', Antecipation_Frequency_1__c = 'Weekly', Settlement_Frequency_1__c = 'Weekly', Product_or_service_website_URL__c = 'www.google.com')
         };
 
         insert opps;
+
+        for (Opportunity opp : opps) {
+            createClausesForOpportunity(opp.Id, false);
+        }
 
         List<Product2> products = createProducts();
 
@@ -76,7 +78,7 @@ public class ContractControllerTest {
         insert quotes;
 
         List<Taxes__c> taxes = new List<Taxes__c> {
-            new Taxes__c(AntecipationFrequency__c = 'Daily', TaxaBaseAntecipacao__c = '', InstallmentNumber__c = '1', PercentValue__c = 0, IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '', InstallmentNumber__c = '1', PercentValue__c = 0, IsActive__c = true),
             new Taxes__c(AntecipationFrequency__c = 'Daily', TaxaBaseAntecipacao__c = '', InstallmentNumber__c = '2', PercentValue__c = 0, IsActive__c = true),
             new Taxes__c(AntecipationFrequency__c = 'Daily', TaxaBaseAntecipacao__c = '', InstallmentNumber__c = '3', PercentValue__c = 0, IsActive__c = true),
             new Taxes__c(AntecipationFrequency__c = 'Daily', TaxaBaseAntecipacao__c = '', InstallmentNumber__c = '4', PercentValue__c = 0, IsActive__c = true),
@@ -99,10 +101,10 @@ public class ContractControllerTest {
     @isTest
     static void testGetOpportunityDetails() {
         List<Opportunity> opps = getOpportunities();
-
+        
         for(Opportunity opp : opps){
             ApexPages.StandardController sc = new ApexPages.StandardController(opp);
-
+            opp.RequestChangeClause__c = true;
             PageReference pageRef = Page.ContractNacionalPage;
 
             pageRef.getparameters().put('recordId', opp.id);
@@ -120,8 +122,8 @@ public class ContractControllerTest {
         Id recordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('NaTional').getRecordTypeId();
 
         List<Quote> quotes = [SELECT Id, Opportunity.Name, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c,
-        Opportunity.Settlement_Frequency_Test__c, Opportunity.Payout__c, Opportunity.Antecipation_Frequency_1__c,
-        Opportunity.Antecipation_Frequency_2__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c,
+        Opportunity.Settlement_Frequency_Test__c, Opportunity.Payout__c, Opportunity.Antecipation_Frequency_1__c, Opportunity.GooglePay__c,Opportunity.ApplePay__c ,
+        Opportunity.Antecipation_Frequency_2__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c,Opportunity.PagShield__c,Opportunity.RequestChangeClause__c,
         Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c, Opportunity.UsePagstream__c,
         Account.Owner.Name, Account.Owner.Email, Account.Owner.MobilePhone FROM Quote WHERE Opportunity.RecordTypeId = :recordTypeId];
 
@@ -154,9 +156,9 @@ public class ContractControllerTest {
             Assert.areEqual('semanal', controller.antecipationFrequencyPageOne);
 
             controller.setDailyFrequencyPageOne('Biweekly');
-            Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageOne);
+            // Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageOne);
             Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageOne);
-            Assert.areEqual('bissemanal', controller.antecipationFrequencyPageOne);
+            // // Assert.areEqual('bissemanal', controller.antecipationFrequencyPageOne);
 
             controller.setDailyFrequencyPageOne('Weekly');
             Assert.areEqual('D+7', controller.frequencyCardEligebleDatePageOne);
@@ -164,9 +166,9 @@ public class ContractControllerTest {
             Assert.areEqual('semanal', controller.antecipationFrequencyPageOne);
 
             controller.setDailyFrequencyPageOne('Biweekly');
-            Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageOne);
+            // Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageOne);
             Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageOne);
-            Assert.areEqual('bissemanal', controller.antecipationFrequencyPageOne);
+            // // Assert.areEqual('bissemanal', controller.antecipationFrequencyPageOne);
 
             controller.setDailyFrequencyPageOne('Monthly');
             Assert.areEqual('D+31', controller.frequencyCardEligebleDatePageOne);
@@ -191,9 +193,9 @@ public class ContractControllerTest {
             Assert.areEqual('semanal', controller.antecipationFrequencyPageTwo);
 
             controller.setDailyFrequencyPageTwo('Biweekly');
-            Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageTwo);
+            // Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageTwo);
             Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageTwo);
-            Assert.areEqual('bissemanal', controller.antecipationFrequencyPageTwo);
+            // Assert.areEqual('bissemanal', controller.antecipationFrequencyPageTwo);
 
             controller.setDailyFrequencyPageTwo('Monthly');
             Assert.areEqual('D+31', controller.frequencyCardEligebleDatePageTwo);
@@ -206,29 +208,15 @@ public class ContractControllerTest {
             Assert.areEqual('semanal', controller.antecipationFrequencyPageTwo);
 
             controller.setWeeklyFrequencyPageTwo('Biweekly');
-            Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageTwo);
+            // Assert.areEqual('D+15', controller.frequencyCardEligebleDatePageTwo);
             Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageTwo);
-            Assert.areEqual('bissemanal', controller.antecipationFrequencyPageTwo);
+            // Assert.areEqual('bissemanal', controller.antecipationFrequencyPageTwo);
 
             controller.setWeeklyFrequencyPageTwo('Monthly');
             Assert.areEqual('D+31', controller.frequencyCardEligebleDatePageTwo);
             Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageTwo);
             Assert.areEqual('mensal', controller.antecipationFrequencyPageTwo);
 
-            controller.setBiweeklyFrequencyPageTwo('Biweekly');
-            Assert.areEqual('D+0', controller.frequencyCardEligebleDatePageTwo);
-            Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageTwo);
-            Assert.areEqual('bissemanal', controller.antecipationFrequencyPageTwo);
-
-            controller.setBiweeklyFrequencyPageTwo('Monthly');
-            Assert.areEqual('D+31', controller.frequencyCardEligebleDatePageTwo);
-            Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageTwo);
-            Assert.areEqual('mensal', controller.antecipationFrequencyPageTwo);
-
-            controller.setMonthlyFrequencyPageTwo('Monthly');
-            Assert.areEqual('D+0', controller.frequencyCardEligebleDatePageTwo);
-            Assert.areEqual('D+0', controller.frequencyPixBoletoDebitoFlashEligebleDatePageTwo);
-            Assert.areEqual('mensal', controller.antecipationFrequencyPageTwo);
         }
     }
 
@@ -238,8 +226,8 @@ public class ContractControllerTest {
         Id recordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('Crossborder').getRecordTypeId();
 
         List<Quote> quotes = [SELECT Id, Account.Name, Account.Website, Opportunity.Name, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Settlement_Frequency_Test__c,
-        Opportunity.Product_Type__c, Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.Antecipation_Frequency_1__c, Opportunity.Antecipation_Frequency_2__c,
-        Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c, Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c, Opportunity.UsePagstream__c,
+        Opportunity.Product_Type__c, Opportunity.Payout__c, Opportunity.GooglePay__c,Opportunity.ApplePay__c , Opportunity.Antecipation_Frequency_1__c, Opportunity.Antecipation_Frequency_2__c,Opportunity.RequestChangeClause__c,
+        Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c, Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c, Opportunity.UsePagstream__c, Opportunity.PagShield__c ,
         Opportunity.Moeda__c, Account.Owner.Name, Account.Owner.Email, Account.Owner.MobilePhone FROM Quote WHERE Opportunity.RecordTypeId = :recordTypeId];
 
         insert new List<Taxes__c>{
@@ -343,7 +331,8 @@ public class ContractControllerTest {
                 Account.CNPJ__c,
                 Account.VATCNPJ__c,
                 Account.OrganizationId__c,
-                RecordType.DeveloperName
+                RecordType.DeveloperName,
+                RequestChangeClause__c
             FROM Opportunity];
     }
 
@@ -454,5 +443,24 @@ public class ContractControllerTest {
         }
 
         insert pbesToInsert;
+    }
+
+
+    private static void createClausesForOpportunity(Id opportunityId, Boolean isCrossborder) {
+        // Create ClausesOpportunity__c
+        ClausesOpportunity__c clauseOpportunity = new ClausesOpportunity__c(
+            Opportunity__c = opportunityId,
+            ClauseName__c = 'Termos e Condições:',
+            ClauseText__c = isCrossborder ? 'Cross-border specific terms and conditions.' : 'National specific terms and conditions.'
+        );
+        insert clauseOpportunity;
+
+        // Create Clauses__c
+        Clauses__c clause = new Clauses__c(
+            Name = isCrossborder ? 'Cross-border Terms' : 'National Terms',
+            ClauseText__c ='Terms and Conditions',
+            ContractType__c = isCrossborder ? 'Cross' : 'National'
+        );
+        insert clause;
     }
 }

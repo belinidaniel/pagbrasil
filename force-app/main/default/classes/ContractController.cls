@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-04-2025
+ * @last modified on  : 07-07-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -197,9 +197,11 @@ public class ContractController {
             this.containsCartao = this.opportunity.NationalPaymentMethod__c.contains('Cartão');
             this.containsDebito = this.opportunity.NationalPaymentMethod__c.contains('Débito');
         }
-
-        this.containsCartaoAndIsIntermediation = this.containsCartao && !this.isGateway;
-        System.debug('containsCartaoAndIsIntermediation: ' + this.containsCartaoAndIsIntermediation);
+        System.debug('containsCartao: ' + this.containsCartao);
+        System.debug('isGateway: ' + this.isGateway);
+        if(this.isGateway != null){
+            this.containsCartaoAndIsIntermediation = this.containsCartao && !this.isGateway;
+        }
 
         this.lowRange = this.opportunity.previs_fat_rs__c <= 5000000;
         this.firstRange = this.lowRange ? '> 1M' : '> 10M';

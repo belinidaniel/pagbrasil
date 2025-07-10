@@ -13,6 +13,9 @@
         showQuickActionVfHeader="false"
         renderAs="pdf"
 >
+
+
+
     <html>
     <head>
         <style type="text/css">
@@ -35,6 +38,9 @@
                 font-weight: 600;
                 font-size: 1.05em;
                 letter-spacing: 0.5px;
+            }
+            tr {
+                page-break-inside: avoid;
             }
             tr:nth-child(even) td {
                 background-color: #f3f6fa;
@@ -77,6 +83,19 @@
                 border-radius: 0 5px 5px 0;
                 text-transform: capitalize;
                 letter-spacing: 0.3px;
+            }
+
+            h3 {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                font-size: 1.1em;
+                font-weight: 600;
+                color: #4a5568;
+                margin: 20px 0 8px 0;
+                padding: 8px 0 6px 10px;
+                border-left: 3px solid #63b3ed;
+                background-color: #f7fafc;
+                border-radius: 0 3px 3px 0;
+                letter-spacing: 0.2px;
             }
 
             /* Espaçamento adicional para primeiro elemento após h1 */
@@ -126,8 +145,8 @@
 
         <h1>Configuration</h1>
 
+        <h2>Main</h2>
         <table>
-            <h2>Main</h2>
             <tr>
                 <th>Label</th>
                 <th>Value</th>
@@ -137,63 +156,79 @@
             <tr><td>Final Risk</td><td>{!rccWrapper.FinalRisk}</td></tr>
             
             <apex:repeat value="{!wrapper.homologationForms}" var="form">
-            <tr><td>Login</td><td>{!form.login}</td></tr>
-            <tr><td>Password</td><td>{!form.senha}</td></tr>
-            <tr><td>Main contact email for the operation</td><td>{!form.mainContactEmail}</td></tr>
-            <tr><td>Emails POD Manager</td><td>{!form.emailsPodManager}</td></tr>
-            </apex:repeat>  
-            
-            <h2>Billing information (invoice)</h2>
-            <tr>
-                <th>Label</th>
-                <th>Value</th>
-            </tr>
-            <tr><td>Category</td><td>{!wrapper.recordType}</td></tr>
-            <apex:repeat value="{!wrapper.homologationForms}" var="form">
-            <tr><td>MCC Code</td><td>{!form.mccCode}</td></tr>
-            </apex:repeat>
-            <tr><td>CNPJ</td><td>{!wrapper.account.cnpj}</td></tr>
-            <tr><td>Business Name</td><td>{!wrapper.account.businessName}</td></tr>
-            <tr><td>Country</td><td>{!wrapper.account.billingCountry}</td></tr>
-            <tr><td>State</td><td>{!wrapper.account.billingState}</td></tr>
-            <tr><td>City</td><td>{!wrapper.account.billingCity}</td></tr>
-            <tr><td>Postal Code</td><td>{!wrapper.account.billingPostalCode}</td></tr>
-            <tr><td>Billing Number</td><td>{!wrapper.account.billingNumber}</td></tr>
-            <tr><td>Billing Complement</td><td>{!wrapper.account.billingComplement}</td></tr>
-            <tr><td>Last Modified Date</td><td>{!kycWrapper.lastModifiedDate}</td></tr>
-            <!-- <apex:repeat value="{!wrapper.contracts}" var="contract" varStatus="status">
-                <tr rendered="{!status.index = 0}">
-                    <td>Contract Start Date</td>
-                    <td>{!contract.initialDate}</td>
-                </tr>
-            </apex:repeat> -->
-            <tr><td></td></tr>
-            <tr><td>Bank Details Company Name</td><td>{!wrapper.account.bankDetailsCompanyName}</td></tr>
-            <tr><td>Bank Details CNPJ</td><td>{!wrapper.account.bankDetailsCnpj}</td></tr>
-            <tr><td>Bank Details Name</td><td>{!wrapper.account.bankDetailsName}</td></tr>
-            <tr><td>Bank Details Number</td><td>{!wrapper.account.bankDetailsNumber}</td></tr>
-            <tr><td>Bank Details Branch</td><td>{!wrapper.account.bankDetailsBranch}</td></tr>
-            <tr><td>Bank Details Checking Account</td><td>{!wrapper.account.bankDetailsCheckingAccount}</td></tr>
-        </table>
-        
-        <!-- Nova Tabela em Branco -->
-        
-        <h1>Admin Configuration</h1>
+                <tr><td>Login</td><td>{!form.login}</td></tr>
+                <tr><td>Password</td><td>{!form.senha}</td></tr>
+                <tr><td>Main contact email for the operation</td><td>{!form.mainContactEmail}</td></tr>
 
-        <h2>Payments</h2>
+                <apex:outputPanel rendered="{!wrapper.isCrossBorder}">
+                    <tr><td>Emails POD Manager</td><td>{!form.emailsPodManager}</td></tr>
+                    <tr><td>POD Manager</td><td>{!form.podReminder}</td></tr>
+                </apex:outputPanel>
+
+            </apex:repeat>  
+        </table>
+
+        <h2>Billing information (invoice)</h2>
         <table>
             <tr>
                 <th>Label</th>
                 <th>Value</th>
             </tr>
-            <tr><td>Authorized payments</td><td>{!wrapper.paymentMethods}</td></tr>
             <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>Category</td><td>{!form.category}</td></tr>
+                <tr><td>MCC Code</td><td>{!form.mccCode}</td></tr>
+            </apex:repeat>
+                <tr><td>CNPJ</td><td>{!wrapper.account.cnpj}</td></tr>
+                <tr><td>Business Name</td><td>{!wrapper.account.businessName}</td></tr>
+                <tr><td>Country</td><td>{!wrapper.account.billingCountry}</td></tr>
+                <tr><td>State</td><td>{!wrapper.account.billingState}</td></tr>
+                <tr><td>City</td><td>{!wrapper.account.billingCity}</td></tr>
+                <tr><td>Postal Code</td><td>{!wrapper.account.billingPostalCode}</td></tr>
+                <tr><td>Billing Number</td><td>{!wrapper.account.billingNumber}</td></tr>
+                <tr><td>Billing Complement</td><td>{!wrapper.account.billingComplement}</td></tr>
+                <tr><td>Last Modified Date</td><td>{!kycWrapper.lastModifiedDate}</td></tr>
+                <tr><td></td><td></td></tr>
+                <tr><td>Bank Details Company Name</td><td>{!wrapper.account.bankDetailsCompanyName}</td></tr>
+                <tr><td>Bank Details CNPJ</td><td>{!wrapper.account.bankDetailsCnpj}</td></tr>
+                <tr><td>Bank Details Name</td><td>{!wrapper.account.bankDetailsName}</td></tr>
+                <tr><td>Bank Details Number</td><td>{!wrapper.account.bankDetailsNumber}</td></tr>
+                <tr><td>Bank Details Branch</td><td>{!wrapper.account.bankDetailsBranch}</td></tr>
+                <tr><td>Bank Details Checking Account</td><td>{!wrapper.account.bankDetailsCheckingAccount}</td></tr>
+        </table>
+        
+        <h1>Admin Configuration</h1>
+
+        <h2>Payments</h2>
+        <h3>Authorized payments</h3>
+        <table>
+
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>B = Boleto bancário</td><td>{!form.boletoBancario}</td></tr>
+                <tr><td>C = Cartão de crédito</td><td>{!form.cartaoDeCredito}</td></tr>
+                <tr><td>D = Débito/Débito Flash</td><td>{!form.debitoDebitoFlash}</td></tr>
+                <tr><td>F = Boleto Flash</td><td>{!form.boletoFlashPagamento}</td></tr>
+                <tr><td>X = Pix</td><td>{!form.pix}</td></tr>
                 <tr><td>Payment Alert</td><td>{!form.paymentAlert}</td></tr>
-                </apex:repeat>
-            </table>
+            </apex:repeat>
+        </table>
             
             <h2>Agenda de Liberação de Repasses</h2>
            <table>
+             <tr>
+                <th>Label</th>
+                <th>Value</th>
+            </tr>
+            <apex:repeat value="{!wrapper.homologationForms}" var="form">
+            <tr><td>Agenda de Liberação de Repasse</td><td>{!form.agendaDeLiberacao}</td></tr>
+            </apex:repeat>
+            </table>
+
+            <h2>Installment Fees</h2>
+            <table>
                 <tr>
                     <th>Payment Method</th>
                     <th>Fee (BRL)</th>
@@ -238,7 +273,7 @@
                 <tr><td>Minimum Amount for Transfer</td><td>{!wrapper.valorMinimoRepasse.totalPrice}</td></tr>
                 <tr><td>Reserve</td><td>{!wrapper.Reserva.percentValue}</td></tr>
                 <tr><td>Transfer Fee</td><td>R${!wrapper.taxaTransferencia.totalPrice}</td></tr>
-                <tr><td>Spread on net value (on exchange)</td><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
+                <tr rendered="{!wrapper.isCrossBorder}"><td>Spread on net value (on exchange)</td><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
             </table>
 
             <h2>PagShield</h2>
@@ -280,12 +315,12 @@
                     <th>Value</th>
                 </tr>
                 <apex:repeat value="{!wrapper.homologationForms}" var="form">
-                    <tr><td>Pix Pending</td><td>{!form.pixPending}</td></tr>
-                    <tr><td>Pix Open Finance</td><td>{!form.pixOpenFinance}</td></tr>
+                    <tr><td>Pix Open Finance</td><td>{!form.pixOpenFinance2}</td></tr>
+                    <tr><td>Pix Valid For</td><td>{!form.pixValidFor}</td></tr>
                 </apex:repeat>
             </table>
             
-            <h2>Credit Card </h2>
+            <h2>Credit Card</h2>
             <table>
                 <tr>
                     <th>Label</th>
@@ -295,6 +330,7 @@
                     <tr><td>Recurrence with credit card</td><td>{!form.creditCardRecurrence}</td></tr>
                     <tr><td>Installment Recurrence</td><td>{!form.installmentRecurrence}</td></tr>
                     <tr><td>Default Soft Descriptor</td><td>{!form.defaultSoftDescriptor}</td></tr>
+                    <tr><td>Maximum Number of Installments</td><td>{!form.maximumNumberInstallments}</td></tr>
                     <tr><td>Minimum Installments</td><td>{!form.minimumInstallmentsForInterest}</td></tr>
                     <tr><td>Interest Repass Method</td><td>{!form.interestRepassMethodToCustomer}</td></tr>
                     <tr><td>Monthly Interest</td><td>{!form.monthlyInterestOnCustomerInstallments}</td></tr>
@@ -303,7 +339,7 @@
                     <tr><td>Apple Pay</td><td>{!wrapper.applePay}</td></tr>
             </table>
 
-            <h2>Payment Link </h2>
+            <h2>Payment Link</h2>
             <table>
                 <tr>
                     <th>Label</th>
@@ -316,14 +352,15 @@
                 </apex:repeat>
                 </table>
 
-                <h2>Pagstram </h2>
+                <h2>Pagstream</h2>
             <table>
                 <tr>
                     <th>Label</th>
                     <th>Value</th>
                 </tr>
                 <apex:repeat value="{!wrapper.homologationForms}" var="form">
-
+                    <tr><td>PagStream</td><td>{!form.pagStream}</td></tr>
+                    <tr><td>Subscriber Area</td><td>{!form.subscriberArea}</td></tr>
                 </apex:repeat>
                 </table>
 
@@ -359,7 +396,10 @@
                         <th>Fixed(BRL)</th>
                         <th>Variable(%)</th>
                     </tr>
-                    <tr><td>Boleto / Boleto Flash</td><td></td><td>
+                    <tr>
+                        <td>Boleto / Boleto Flash</td>
+                        <td></td>
+                        <td>
         <apex:outputText value="{!wrapper.taxaProcessamentoBoleto.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoBoleto.percentValue))}" />
     </td>
 </tr>
@@ -477,6 +517,7 @@
             </apex:repeat>
         </table>
         
+    <apex:outputPanel rendered="{!wrapper.containsShopify}">
         <h1>Shopify</h1>
         <table>
             <tr>
@@ -484,6 +525,7 @@
                 <th>Value</th>
             </tr>
             <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                <tr><td>Allow CPF/CNPJ</td><td>{!form.allowCpfCnpj}</td></tr>
                 <tr><td>One Click Tokenization</td><td>{!form.oneClickBuyingTokenization}</td></tr>
             </apex:repeat>
         </table>
@@ -497,8 +539,10 @@
             <apex:repeat value="{!wrapper.homologationForms}" var="form">
                 <tr><td>Discount - Boleto Flash</td><td>{!form.boletoFlash}%</td></tr>
                 <tr><td>Discount - PagBrasil Pix</td><td>{!form.pagBrasilPix}%</td></tr>
+                <tr><td>Pix Pending</td><td>{!form.pixPending2}</td></tr>
             </apex:repeat>
         </table>
+</apex:outputPanel>
 
         <h1>Payout</h1>
         <table>
@@ -510,66 +554,71 @@
             <apex:repeat value="{!wrapper.homologationForms}" var="form">
             <tr><td>Transaction Type</td><td>{!form.transactionType}</td></tr>
             </apex:repeat>
-            <th>Payout fees</th>
-                    <tr>
-                        <th>Processing</th>
-                        <th>Fixed(BRL)</th>
-                        <th>Variable(%)</th>
-                    </tr>
+        </table>
+
+        <h2>Payout fees</h2>
+        <table>
+            <tr>
+                <th>Processing</th>
+                <th>Fixed(BRL)</th>
+                <th>Variable(%)</th>
+            </tr>
             <tr><td>Payout to payee</td><td></td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
             <tr><td>Payout to merchant account</td><td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td></td></tr>
-            <!-- <tr><td>Payee approval or rejection</td><td>{}</td><td></td></tr> -->
         </table>
 
-        <h1>Gateway</h1>
+        <apex:outputPanel rendered="{!wrapper.containsGateway}">
+            <h1>Gateway</h1>
 
-        <h2>Cielo 3.0</h2>
-        <table>
-            <tr>
-                <th>Label</th>
-                <th>Value</th>
-            </tr>
-            <apex:repeat value="{!wrapper.homologationForms}" var="form">
-                <tr><td>Merchant ID</td><td>{!form.merchantID}</td></tr>
-                <tr><td>Merchant Key</td><td>{!form.merchantKey}</td></tr>
-            </apex:repeat>
-        </table>
+            <h2>Cielo 3.0</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
+                <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                    <tr><td>Merchant ID</td><td>{!form.merchantID}</td></tr>
+                    <tr><td>Merchant Key</td><td>{!form.merchantKey}</td></tr>
+                </apex:repeat>
+            </table>
 
-        <h2>e-Rede</h2>
-        <table>
-            <tr>
-                <th>Label</th>
-                <th>Value</th>
-            </tr>
-            <apex:repeat value="{!wrapper.homologationForms}" var="form">
-                <tr><td>PV</td><td>{!form.PV}</td></tr>
-                <tr><td>Token</td><td>{!form.Token}</td></tr>
-            </apex:repeat>
-        </table>
+            <h2>e-Rede</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
+                <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                    <tr><td>PV</td><td>{!form.PV}</td></tr>
+                    <tr><td>Token</td><td>{!form.Token}</td></tr>
+                </apex:repeat>
+            </table>
 
-        <h2>Stone</h2>
-        <table>
-            <tr>
-                <th>Label</th>
-                <th>Value</th>
-            </tr>
-            <apex:repeat value="{!wrapper.homologationForms}" var="form">
-                <tr><td>MID (Merchant ID)</td><td>{!form.MID}</td></tr>
-                <tr><td>Terminal ID</td><td>{!form.TerminalID}</td></tr>
-                <tr><td>RegKey</td><td>{!form.RegKey}</td></tr>
-            </apex:repeat>
-        </table>
+            <h2>Stone</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
+                <apex:repeat value="{!wrapper.homologationForms}" var="form">
+                    <tr><td>MID (Merchant ID)</td><td>{!form.MID}</td></tr>
+                    <tr><td>Terminal ID</td><td>{!form.TerminalID}</td></tr>
+                    <tr><td>RegKey</td><td>{!form.RegKey}</td></tr>
+                </apex:repeat>
+            </table>
 
-        <h2>Maintenance</h2>
-        <table>
-            <tr>
-                <th>Label</th>
-                <th>Value</th>
-            </tr>
+            <h2>Maintenance</h2>
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Value</th>
+                </tr>
                 <tr><td>Minimum Fee</td><td>{!wrapper.taxaMinimaManutencao.totalPrice}</td></tr>
                 <tr><td>Starting date for charging the minimum fee</td><td>{!wrapper.contractStartDateCharge}</td></tr>
                 <tr><td>Plugin</td><td>{!wrapper.taxaSolucaoPagBrasil.percentValue}</td></tr>
-        </table>
+            </table>
+        </apex:outputPanel>
+
     </body>
     </html>
 </apex:page>

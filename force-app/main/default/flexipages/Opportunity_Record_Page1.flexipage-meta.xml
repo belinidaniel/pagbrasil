@@ -518,8 +518,14 @@
                 <fieldItem>Record.Product_or_service_website_URL__c</fieldItem>
                 <identifier>RecordProduct_or_service_website_URL_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -535,8 +541,14 @@
                 <fieldItem>Record.Product_or_service_website_URL__c</fieldItem>
                 <identifier>RecordProduct_or_service_website_URL_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1790,6 +1802,40 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Pix_Automatico__c</fieldItem>
+                <identifier>RecordPix_Automatico_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Pix_Automatico__c</fieldItem>
+                <identifier>RecordPix_Automatico_cField2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-8638574b-803d-4293-8b3a-8f64dd4bcffb</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1827,8 +1873,14 @@
                 <fieldItem>Record.Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_1__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1844,8 +1896,14 @@
                 <fieldItem>Record.Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_1_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1861,8 +1919,14 @@
                 <fieldItem>Record.Settlement_Frequency_2__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_2__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1878,8 +1942,14 @@
                 <fieldItem>Record.Settlement_Frequency_2__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_2_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1899,8 +1969,14 @@
                 <fieldItem>Record.Antecipation_Frequency_1__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_1__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1916,8 +1992,14 @@
                 <fieldItem>Record.Antecipation_Frequency_1__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_1_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1933,8 +2015,14 @@
                 <fieldItem>Record.Antecipation_Frequency_2__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_2__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1950,8 +2038,14 @@
                 <fieldItem>Record.Antecipation_Frequency_2__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_2_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2762,6 +2856,19 @@
             <componentInstance>
                 <componentName>openFlowConfirmationModal</componentName>
                 <identifier>c_openFlowConfirmationModal</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

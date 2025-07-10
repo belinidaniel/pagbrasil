@@ -15,6 +15,10 @@
         <default>false</default>
     </values>
     <values>
+        <fullName>Contract</fullName>
+        <default>false</default>
+    </values>
+    <values>
         <fullName>Discovery</fullName>
         <default>false</default>
     </values>
@@ -28,6 +32,10 @@
     </values>
     <values>
         <fullName>Homologation</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Negotiation</fullName>
         <default>false</default>
     </values>
     <values>

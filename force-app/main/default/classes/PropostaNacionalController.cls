@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-07-2025
+ * @last modified on  : 07-10-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -175,6 +175,11 @@ public class PropostaNacionalController {
     public Boolean containsDebitCard { get; set; }
     public Boolean containsPagBrasilSolution { get; set; }
 
+    public string getewayOne { get; set; }
+    public string getewayTwo { get; set; }
+    public string getewaythree { get; set; }
+    public string getewayFour { get; set; }
+
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
@@ -268,7 +273,6 @@ public class PropostaNacionalController {
                 this.highlightedLineOne = true;
             else
                 this.highlightedLineTwo = true;
-
         } 
     }
 
@@ -350,7 +354,7 @@ public class PropostaNacionalController {
     }
 
     private void productsPopulation(Quote quote) {
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
+        List<QuoteLineItem> quoteLineItems = [SELECT Id,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
             processQuoteLineItem(quoteLineItem);
         }
@@ -442,6 +446,9 @@ public class PropostaNacionalController {
             when 'TAXA_PARC_7A12' {
                 this.additionalInstallmentFee7To12 = '7 a 12 parcelas: +' + validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
             }
+            when 'TAXA_PAGBRASIL_GATEWAY' {
+                processTaxaPagBrasilGateway(quoteLineItem);
+            }
         }
     }
 
@@ -478,6 +485,13 @@ public class PropostaNacionalController {
         if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.TaxaBrasilTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
         if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.TaxaBrasilThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
         if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.TaxaBrasilFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+    }
+
+    private void processTaxaPagBrasilGateway(QuoteLineItem quoteLineItem) {
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.getewayOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.getewayTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.getewaythree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.getewayFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void frequencyPopulation(Quote quote) {

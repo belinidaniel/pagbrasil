@@ -142,8 +142,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.PaymentAlert__c</fieldItem>
-                <identifier>RecordPayment_Alert__cField</identifier>
+                <fieldItem>Record.SalesProcess__c</fieldItem>
+                <identifier>RecordSalesProcess__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -152,8 +152,38 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SalesProcess__c</fieldItem>
-                <identifier>RecordSalesProcess__cField</identifier>
+                <fieldItem>Record.CompanyDetails__c</fieldItem>
+                <identifier>RecordDetalhes_da_Empresa_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceCompanyDetails__c</fieldItem>
+                <identifier>RecordEvidencias_Detalhes_da_empresa_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ContactInformation__c</fieldItem>
+                <identifier>RecordInformacoes_de_contato_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceContactInformation__c</fieldItem>
+                <identifier>RecordEvidencias_Informacoes_de_Contato_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -172,58 +202,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.main_contact_email__c</fieldItem>
-                <identifier>Recordmain_contact_email__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.PagShield_Premium__c</fieldItem>
-                <identifier>RecordPagShield_Premium__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Pix_Pending__c</fieldItem>
-                <identifier>RecordPix_Pending__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Pix_Open_Finance__c</fieldItem>
-                <identifier>RecordPix_Open_Finance__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Contact_email_for_notification__c</fieldItem>
                 <identifier>RecordContact_email_for_notification__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.PagShield__c</fieldItem>
-                <identifier>RecordPagShield__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -238,62 +218,54 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.AgendaDeLiberacao__c</fieldItem>
-                <identifier>RecordAgendaDeLiberacao__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.DefaultSoftDescriptor__c</fieldItem>
+                <identifier>RecordDefault_Soft_Descriptor__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.PixOpenFinance__c</fieldItem>
-                <identifier>RecordPixOpenFinance__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RequirementPriceFormat__c</fieldItem>
+                <identifier>RecordExigencia_Formato_de_Precos_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Pix_Valid_For__c</fieldItem>
-                <identifier>RecordPix_Valid_For__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidencePriceFormat__c</fieldItem>
+                <identifier>RecordEvidencias_Formato_dos_precos_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.MaximumNumberInstallments__c</fieldItem>
-                <identifier>RecordMaximumNumberInstallments__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RequirementResponseTime__c</fieldItem>
+                <identifier>RecordExigencia_Tempo_de_Resposta_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Minimum_Amount_per_Installment__c</fieldItem>
-                <identifier>RecordMinimum_Amount_per_Installment__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceResponseTime__c</fieldItem>
+                <identifier>RecordEvidencias_Tempo_de_Resposta_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.PagStream__c</fieldItem>
-                <identifier>RecordPagStream__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.Subscriber_Area__c</fieldItem>
-                <identifier>RecordSubscriber_Area__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.Minimum_Amount_to_Activate_PagShield__c</fieldItem>
-                <identifier>RecordMinimum_Amount_to_Activate_PagShield__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.Allow_CPF_CNPJ__c</fieldItem>
-                <identifier>RecordAllow_CPF_CNPJ__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -310,8 +282,202 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.BlockRefund__c</fieldItem>
-                <identifier>RecordBlock_Refund__cField</identifier>
+                <fieldItem>Record.EmailsPodManager__c</fieldItem>
+                <identifier>RecordEmails_Gerente_de_POD__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Minimum_Amount_to_Activate_PagShield__c</fieldItem>
+                <identifier>RecordMinimum_Amount_to_Activate_PagShield__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Allow_CPF_CNPJ__c</fieldItem>
+                <identifier>RecordAllow_CPF_CNPJ__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.DeliveryTime__c</fieldItem>
+                <identifier>RecordPrazo_de_Entrega_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceDeliveryTime__c</fieldItem>
+                <identifier>RecordEvidencias_Prazo_de_Entrega_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ShippingProofPod__c</fieldItem>
+                <identifier>RecordComprovante_envio_POD_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceShippingProofPod__c</fieldItem>
+                <identifier>RecordEvidencias_Comprovante_de_Envio_POD_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CustomsFee__c</fieldItem>
+                <identifier>RecordTaxa_alfandegaria_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceCustomsFee__c</fieldItem>
+                <identifier>RecordEvidencias_Taxa_Alfandegaria_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RequirementZipCodeValidator__c</fieldItem>
+                <identifier>RecordExigencia_Validador_CEP_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceZipCodeValidator__c</fieldItem>
+                <identifier>RecordEvidencias_Verificacao_e_Validador_CEP_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.RequirementInfoValidator__c</fieldItem>
+                <identifier>RecordExigencia_Validador_Infos_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceInfoValidator__c</fieldItem>
+                <identifier>RecordEvidencias_Validador_Info_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.AlreadyRequestedReclameAqui__c</fieldItem>
+                <identifier>RecordJa_solicitei_Reclame_aqui_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.EvidenceReclameAqui__c</fieldItem>
+                <identifier>RecordEvidencias_Reclame_Aqui_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.AgendaDeLiberacao__c</fieldItem>
+                <identifier>RecordAgendaDeLiberacao__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.MaximumNumberInstallments__c</fieldItem>
+                <identifier>RecordMaximumNumberInstallments__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Minimum_Amount_per_Installment__c</fieldItem>
+                <identifier>RecordMinimum_Amount_per_Installment__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.PagStream__c</fieldItem>
+                <identifier>RecordPagStream__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Subscriber_Area__c</fieldItem>
+                <identifier>RecordSubscriber_Area__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-6d2b8d7a-c6cc-4672-a860-de1b7d7de9f4</name>
@@ -348,8 +514,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.BoletoBancario__c</fieldItem>
-                <identifier>RecordBoletoBancario__cField</identifier>
+                <fieldItem>Record.PaymentAlert__c</fieldItem>
+                <identifier>RecordPayment_Alert__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -358,8 +524,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.BoletoFlash__c</fieldItem>
-                <identifier>RecordBoletoFlash__cField</identifier>
+                <fieldItem>Record.main_contact_email__c</fieldItem>
+                <identifier>Recordmain_contact_email__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -368,11 +534,31 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.DebitoDebitoFlash__c</fieldItem>
-                <identifier>RecordDebitoDebitoFlash__cField</identifier>
+                <fieldItem>Record.PagShield_Premium__c</fieldItem>
+                <identifier>RecordPagShield_Premium__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-a18a1e20-cb8f-4621-92c3-88ebc64d1a1a</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.PagShield__c</fieldItem>
+                <identifier>RecordPagShield__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.BlockRefund__c</fieldItem>
+                <identifier>RecordBlock_Refund__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-09ceac42-e333-4e17-ae2c-7b68b97afddb</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -382,8 +568,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Pix__c</fieldItem>
-                <identifier>RecordPix__cField</identifier>
+                <fieldItem>Record.PixPending__c</fieldItem>
+                <identifier>RecordPixPending__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -392,11 +578,21 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.CartaoDeCredito__c</fieldItem>
-                <identifier>RecordCartaoDeCredito__cField</identifier>
+                <fieldItem>Record.PixOpenFinance__c</fieldItem>
+                <identifier>RecordPixOpenFinance__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-e5db4159-cc2f-48f3-8911-6132c92e5548</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Pix_Valid_For__c</fieldItem>
+                <identifier>RecordPix_Valid_For__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-f16015f0-b242-4f80-a7b6-ac673dd6813d</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -404,23 +600,23 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-a18a1e20-cb8f-4621-92c3-88ebc64d1a1a</value>
+                    <value>Facet-09ceac42-e333-4e17-ae2c-7b68b97afddb</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column25</identifier>
+                <identifier>flexipage_column27</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-e5db4159-cc2f-48f3-8911-6132c92e5548</value>
+                    <value>Facet-f16015f0-b242-4f80-a7b6-ac673dd6813d</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column26</identifier>
+                <identifier>flexipage_column28</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-1541df64-f82d-4d3d-a66f-25a50a91c63c</name>
+        <name>Facet-a492cf3b-96d7-47fe-ae36-946542256c54</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -486,16 +682,6 @@
                 <identifier>RecordCredit_Card_Recurrence__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.InstallmentRecurrence__c</fieldItem>
-                <identifier>RecordInstallment_Recurrence__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-187a041a-48ad-4315-a792-89826f7d4dba</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -506,8 +692,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.DefaultSoftDescriptor__c</fieldItem>
-                <identifier>RecordDefault_Soft_Descriptor__cField</identifier>
+                <fieldItem>Record.InstallmentRecurrence__c</fieldItem>
+                <identifier>RecordInstallment_Recurrence__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c18a5435-e4ed-4486-a976-e5f66dd2e546</name>
@@ -760,66 +946,6 @@
                 <identifier>RecordLogin_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Password__c</fieldItem>
-                <identifier>RecordSenha_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.ContactInformation__c</fieldItem>
-                <identifier>RecordInformacoes_de_contato_cField2</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceContactInformation__c</fieldItem>
-                <identifier>RecordEvidencias_Informacoes_de_Contato_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.RequirementPriceFormat__c</fieldItem>
-                <identifier>RecordExigencia_Formato_de_Precos_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidencePriceFormat__c</fieldItem>
-                <identifier>RecordEvidencias_Formato_dos_precos_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EmailsPodManager__c</fieldItem>
-                <identifier>RecordEmails_Gerente_de_POD__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-bc3a1f2f-16f2-4a9b-aaaa-fdfedb457b3f</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -830,38 +956,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.CompanyDetails__c</fieldItem>
-                <identifier>RecordDetalhes_da_Empresa_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceCompanyDetails__c</fieldItem>
-                <identifier>RecordEvidencias_Detalhes_da_empresa_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.RequirementResponseTime__c</fieldItem>
-                <identifier>RecordExigencia_Tempo_de_Resposta_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceResponseTime__c</fieldItem>
-                <identifier>RecordEvidencias_Tempo_de_Resposta_cField</identifier>
+                <fieldItem>Record.Password__c</fieldItem>
+                <identifier>RecordSenha_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-3c8b7cdb-a477-4142-a100-8175448a2bda</name>
@@ -898,8 +994,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.DeliveryTime__c</fieldItem>
-                <identifier>RecordPrazo_de_Entrega_cField</identifier>
+                <fieldItem>Record.BoletoBancario__c</fieldItem>
+                <identifier>RecordBoletoBancario__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -908,8 +1004,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceDeliveryTime__c</fieldItem>
-                <identifier>RecordEvidencias_Prazo_de_Entrega_cField</identifier>
+                <fieldItem>Record.BoletoFlash__c</fieldItem>
+                <identifier>RecordBoletoFlash__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -918,21 +1014,11 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.CustomsFee__c</fieldItem>
-                <identifier>RecordTaxa_alfandegaria_cField</identifier>
+                <fieldItem>Record.DebitoDebitoFlash__c</fieldItem>
+                <identifier>RecordDebitoDebitoFlash__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceCustomsFee__c</fieldItem>
-                <identifier>RecordEvidencias_Taxa_Alfandegaria_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-401b0075-619e-47aa-acb7-599be7f052ce</name>
+        <name>Facet-a18a1e20-cb8f-4621-92c3-88ebc64d1a1a</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -942,8 +1028,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.ShippingProofPod__c</fieldItem>
-                <identifier>RecordComprovante_envio_POD_cField</identifier>
+                <fieldItem>Record.Pix__c</fieldItem>
+                <identifier>RecordPix__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -952,11 +1038,11 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceShippingProofPod__c</fieldItem>
-                <identifier>RecordEvidencias_Comprovante_de_Envio_POD_cField</identifier>
+                <fieldItem>Record.CartaoDeCredito__c</fieldItem>
+                <identifier>RecordCartaoDeCredito__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-2cc1b35a-cda1-42e8-8663-151f88cccd21</name>
+        <name>Facet-e5db4159-cc2f-48f3-8911-6132c92e5548</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -964,66 +1050,26 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-401b0075-619e-47aa-acb7-599be7f052ce</value>
+                    <value>Facet-a18a1e20-cb8f-4621-92c3-88ebc64d1a1a</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column5</identifier>
+                <identifier>flexipage_column25</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-2cc1b35a-cda1-42e8-8663-151f88cccd21</value>
+                    <value>Facet-e5db4159-cc2f-48f3-8911-6132c92e5548</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column6</identifier>
+                <identifier>flexipage_column26</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-f3280f27-ee0c-4935-a1e7-584af47f9b45</name>
+        <name>Facet-1541df64-f82d-4d3d-a66f-25a50a91c63c</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.RequirementZipCodeValidator__c</fieldItem>
-                <identifier>RecordExigencia_Validador_CEP_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceZipCodeValidator__c</fieldItem>
-                <identifier>RecordEvidencias_Verificacao_e_Validador_CEP_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.RequirementInfoValidator__c</fieldItem>
-                <identifier>RecordExigencia_Validador_Infos_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceInfoValidator__c</fieldItem>
-                <identifier>RecordEvidencias_Validador_Info_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -1292,58 +1338,6 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.AlreadyRequestedReclameAqui__c</fieldItem>
-                <identifier>RecordJa_solicitei_Reclame_aqui_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-05eda4b3-2f61-4dcb-9859-953c9a8641a8</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EvidenceReclameAqui__c</fieldItem>
-                <identifier>RecordEvidencias_Reclame_Aqui_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-cdc94c51-c4db-4efe-9acd-4cc61cac1473</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-05eda4b3-2f61-4dcb-9859-953c9a8641a8</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column11</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-cdc94c51-c4db-4efe-9acd-4cc61cac1473</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column12</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-f2094803-dbba-46e5-8cab-86295657d945</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.CreatedById</fieldItem>
@@ -1414,7 +1408,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-1541df64-f82d-4d3d-a66f-25a50a91c63c</value>
+                    <value>Facet-a492cf3b-96d7-47fe-ae36-946542256c54</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>horizontalAlignment</name>
@@ -1422,10 +1416,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Authorized Payments</value>
+                    <value>Configurations</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection13</identifier>
+                <identifier>flexipage_fieldSection14</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1540,7 +1534,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-f3280f27-ee0c-4935-a1e7-584af47f9b45</value>
+                    <value>Facet-1541df64-f82d-4d3d-a66f-25a50a91c63c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>horizontalAlignment</name>
@@ -1548,10 +1542,10 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>2. Informações de Entrega</value>
+                    <value>Authorized Payments</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection3</identifier>
+                <identifier>flexipage_fieldSection13</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1588,24 +1582,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection5</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-f2094803-dbba-46e5-8cab-86295657d945</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>5. Reclame Aqui</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection6</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

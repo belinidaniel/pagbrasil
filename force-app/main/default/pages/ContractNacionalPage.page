@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-07-2025
+  @last modified on  : 07-10-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -152,7 +152,19 @@
                             <th style="font-size:12px">Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span></th>
                         </apex:panelGroup>
                         
-                        <th style="color: #0058B5;font-size:12px">Taxa da Solução PagBrasil</th>
+                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <th style="color: #0058B5;font-size:12px">
+                                Taxa da Solução PagBrasil<br/>Intermediação
+                            </th>
+                            <th style="color: #0058B5;font-size:12px">
+                                Taxa PagBrasil<br/>Gateway
+                            </th>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <th style="color: #0058B5;font-size:12px">
+                                Taxa da Solução PagBrasil
+                            </th>
+                        </apex:panelGroup>
                     </tr>
                 </thead>
                 <tbody>
@@ -176,7 +188,13 @@
                             <td>{!boletoOne}</td>
                         </apex:panelGroup>
 
-                        <td>{!pagBrasilOne}</td>
+                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <td>{!pagBrasilOne}</td>
+                            <td>{!pagBrasilGatewayOne}</td>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <td>{!pagBrasilOne}</td>
+                        </apex:panelGroup>                        
                     </tr>
                     <tr>
                         <td style="color: #0058B5;">2ª</td>
@@ -196,8 +214,13 @@
                         <apex:panelGroup rendered="{!containsBoleto}">
                             <td>{!boletoTwo}</td>
                         </apex:panelGroup>
-                        
-                        <td>{!pagBrasilTwo}</td>
+                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <td>{!pagBrasilTwo}</td>
+                            <td>{!pagBrasilGatewayTwo}</td>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <td>{!pagBrasilTwo}</td>
+                        </apex:panelGroup>
                     </tr>
                     <tr>
                         <td style="color: #0058B5;">3ª</td>
@@ -219,7 +242,14 @@
                             <td>{!boletoThree}</td>
                         </apex:panelGroup>
 
-                        <td>{!pagBrasilThree}</td>
+
+                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <td>{!pagBrasilThree}</td>
+                            <td>{!pagBrasilGatewayThree}</td>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <td>{!pagBrasilThree}</td>
+                        </apex:panelGroup>     
                     </tr>
                     <tr>
                         <td style="color: #0058B5;">4ª</td>
@@ -241,7 +271,13 @@
                             <td>{!boletoFour}</td>
                         </apex:panelGroup>
                         
-                        <td>{!pagBrasilFour}</td>
+                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <td>{!pagBrasilFour}</td>
+                            <td>{!pagBrasilGatewayFour}</td>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <td>{!pagBrasilFour}</td>
+                        </apex:panelGroup>     
                     </tr>
                     <tr>
                         <td>-</td>
@@ -390,7 +426,11 @@
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left;">Frequência de Repasse</td>
                         <td style="padding: 10px; width: 10%; text-align: center;"></td>
-                        <td style="padding: 10px; width: 50%; text-align: left;">{!opportunity.Settlement_Frequency_1__c}</td>
+                        <td style="padding: 10px; width: 50%; text-align: left;">
+                            <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Daily'}" value="Diário" />
+                            <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Weekly'}" value="Semanalmente" />
+                            <apex:outputText rendered="{!AND(opportunity.Settlement_Frequency_1__c <> 'Daily', opportunity.Settlement_Frequency_1__c <> 'Weekly')}" value="{!opportunity.Settlement_Frequency_1__c}" />
+                        </td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left;">Taxa de transferência</td>

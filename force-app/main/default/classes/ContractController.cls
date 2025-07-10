@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-07-2025
+ * @last modified on  : 07-10-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -68,6 +68,12 @@ public class ContractController {
     public String pagBrasilThree { get; set; }
     public String pagBrasilFour { get; set; }
 
+    public string pagBrasilGatewayOne { get; set; }
+    public String pagBrasilGatewayTwo { get; set; }
+    public String pagBrasilGatewayThree { get; set; }
+    public String pagBrasilGatewayFour { get; set; }
+
+    
     public String taxaToken { get; set; }
     public String taxaAntecipacao { get; set; }
     public String adherenceFee { get; set; }
@@ -125,6 +131,7 @@ public class ContractController {
 
     Boolean isCrossborder = false;
 
+    public Boolean isGatewayAndIntermediation { get; set; }
 
     public String termClauses { get; set; }
     public String termClausesTitle { get; set; }
@@ -140,6 +147,7 @@ public class ContractController {
 
         Opportunity opp = (Opportunity) stdController.getRecord();
 
+        this.isGatewayAndIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') && opp.BusinessModel__c.contains('Intermediation') : false;
 
         getTermClauses(opp.Id, opp.RequestChangeClause__c);
 
@@ -544,6 +552,12 @@ public class ContractController {
                         if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
                         if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
                         if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                    }
+                    when 'TAXA_PAGBRASIL_GATEWAY' {
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilGatewayFour = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilGatewayThree = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilGatewayTwo = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilGatewayOne = price;
                     }
                     when 'TAXA_GATEWAY_DEBITO' {
                         this.debitCardGateway = price;

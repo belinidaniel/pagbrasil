@@ -380,7 +380,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Text2</name>
-            <fieldText>&lt;p&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;The First Appointment Status field must be &quot;Completed&quot; to generate a quote&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;The First Appointment Status field must be filled in to generate a quote&lt;/em&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>

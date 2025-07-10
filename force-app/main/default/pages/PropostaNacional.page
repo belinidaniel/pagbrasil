@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-09-2025
+  @last modified on  : 07-10-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -930,16 +930,16 @@
         <div class="page">
             <div class="page-content">
             <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716">{!oppName}</p>
-            
             <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 120px; font-size:18px; white-space: nowrap;">{!valueOne}</p>
             <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 120px; font-size:18px; white-space: nowrap;">{!valueTwo}</p>
             <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 370px; left: 120px; font-size:18px; white-space: nowrap;">{!valueThree}</p>
             <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 425px; left: 120px; font-size:18px; white-space: nowrap;">{!valueFour}</p>
-
-            <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 430px; font-size:18px; white-space: nowrap;">0,40%</p>
-            <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 430px; font-size:18px; white-space: nowrap;">0,45%</p>
-            <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 370px; left: 430px; font-size:18px; white-space: nowrap;">0,50%</p>
-            <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 425px; left: 430px; font-size:18px; white-space: nowrap;">0,50%</p>
+            
+            
+            <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 430px; font-size:18px; white-space: nowrap;">{!getewayFour}</p>
+            <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 430px; font-size:18px; white-space: nowrap;">{!getewaythree}</p>
+            <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 370px; left: 430px; font-size:18px; white-space: nowrap;">{!getewayTwo}</p>
+            <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 425px; left: 430px; font-size:18px; white-space: nowrap;">{!getewayOne}</p>
             
             </div>
             <img src="{!$Resource.TermosProcessamentoPage}" class="background-image"/>

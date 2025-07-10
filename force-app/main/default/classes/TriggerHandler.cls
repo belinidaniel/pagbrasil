@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2024-10-24
- * @last modified by  : Hersilio Belini de Oliveira
+ * @last modified on  : 07-09-2025
+ * @last modified by  : Daniel Belini
 **/
 public virtual without sharing class TriggerHandler {
 

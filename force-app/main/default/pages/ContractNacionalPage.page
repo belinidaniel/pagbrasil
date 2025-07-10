@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 06-11-2025
+  @last modified on  : 07-07-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -83,12 +83,22 @@
                 .page-break {
                     page-break-before: always;
                 }
+            .pagbrasil-watermark-fixed {
+                position: fixed;
+                top: 3cm;
+                right: 2cm;
+                color: red;
+                font-size: 18px;
+                font-weight: bold;
+                z-index: 1000;
+            }
                 
             </style>
         </head>
         
         <body>
             <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;margin-top: -5%"/>
+            
             <h2 style="text-align: center; padding-bottom: 80px; color: #0058B5; font-size: 18px;">CONTRATO</h2>
 
             <apex:form style="margin-top: -10%;">
@@ -231,7 +241,7 @@
                             <td>{!boletoFour}</td>
                         </apex:panelGroup>
                         
-                        <td>{!pagBrasilThree}</td>
+                        <td>{!pagBrasilFour}</td>
                     </tr>
                     <tr>
                         <td>-</td>
@@ -272,6 +282,7 @@
             </apex:panelGroup>
             
             <div class="page-break"></div>
+            <div class="pagbrasil-watermark">Pagbrasil</div>
 
             <apex:panelGroup rendered="{!AND(NOT(isFluxoMedio), NOT(isGateway))}">
             <p style="font-weight: bold;">2. Taxas para antecipação de Cartão de Crédito: </p>
@@ -574,6 +585,7 @@
                     </tr>
                     <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
                     <div class="page-break"></div>
+                    <div class="pagbrasil-watermark">Pagbrasil</div>
                     <apex:panelGroup rendered="{!pixGatewayBelowMinimum}">
                             <tr>
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>

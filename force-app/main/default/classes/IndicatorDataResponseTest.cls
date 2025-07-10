@@ -19,6 +19,15 @@ public class IndicatorDataResponseTest {
         System.assertEquals('020 A 049', firstResult.ActivityIndicators.EmployeesRange);
         System.assertEquals('ACIMA DE 2.5MM ATE 5MM', firstResult.ActivityIndicators.IncomeRange);
         System.assertEquals(false, firstResult.ActivityIndicators.HasActivity);
+        
+        System.assertEquals('0,24691358', firstResult.ActivityIndicators.ActivityLevel);
+        System.assertEquals('0,24691358', firstResult.ActivityIndicators.FirstLevelEconomicGroupAverageActivityLevel);
+        System.assertEquals('0,24691358', firstResult.ActivityIndicators.FirstLevelEconomicGroupMaxActivityLevel);
+        System.assertEquals('0,24691358', firstResult.ActivityIndicators.FirstLevelEconomicGroupMinActivityLevel);
+        System.assertEquals(false, firstResult.ActivityIndicators.HasRecentAddress);
+        System.assertEquals(false, firstResult.ActivityIndicators.HasRecentPhone);
+        System.assertEquals(false, firstResult.ActivityIndicators.HasRecentEmail);
+        
         System.assertEquals('0,25', firstResult.ActivityIndicators.ShellCompanyLikelyhood);
         System.assertEquals(true, firstResult.ActivityIndicators.HasRecentPassages);
         System.assertEquals(true, firstResult.ActivityIndicators.HasActiveDomain);

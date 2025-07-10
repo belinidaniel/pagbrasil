@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-03-2025
+ * @last modified on  : 07-09-2025
  * @last modified by  : Daniel Belini
 **/
 public without sharing class OpportunitySelector {
@@ -19,9 +19,11 @@ public without sharing class OpportunitySelector {
                 previs_fat_rs__c,
                 AntecipationFrequency__c,
                 Settlement_Frequency_Test__c,
+                UsePagstream__c,
                 Country__c,
                 Product_Type__c,
                 ProductClass__c,
+                Pix_Automatico__c,
                 WebSite__c,
                 TierCS__c,
                 Moeda__c,
@@ -61,6 +63,7 @@ public without sharing class OpportunitySelector {
                 Country__c,
                 Product_Type__c,
                 ProductClass__c,
+                Pix_Automatico__c,
                 WebSite__c,
                 TierCS__c,
                 Moeda__c,
@@ -175,7 +178,7 @@ public without sharing class OpportunitySelector {
                 Account.Bank_Details_Company_Name__c,
                 Account.CustomerFinalSupportChannelUrl__c,
                 Account.CustomerFinalSupportChannelEmail__c,
-                previs_fat_rs__c,
+                Account.ParentId,
                 (SELECT Id,
                         Login__c,
                         Password__c,
@@ -243,6 +246,20 @@ public without sharing class OpportunitySelector {
                         MerchantKey__c,
                         Pv__c,
                         Token__c,
+                        PixPending__c,
+                        Category__c,
+                        BoletoBancario__c,
+                        CartaoDeCredito__c,
+                        DebitoDebitoFlash__c,
+                        BoletoFlash__c,
+                        Pix__c,
+                        PagStream__c,
+                        Allow_CPF_CNPJ__c,
+                        Subscriber_Area__c,
+                        AgendaDeLiberacao__c,
+                        PixOpenFinance__c,
+                        Pix_Valid_For__c,
+                        MaximumNumberInstallments__c,
                         RegKey__c
                 FROM HomologationForms__r)
             FROM Opportunity

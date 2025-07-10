@@ -1,10 +1,3 @@
-/**
- * @description       :
- * @author            : Hersilio Belini de Oliveira
- * @group             :
- * @last modified on  : 2025-03-03
- * @last modified by  : Hersilio Belini de Oliveira
-**/
 @isTest
 public class OpportunityWrapperTest {
 

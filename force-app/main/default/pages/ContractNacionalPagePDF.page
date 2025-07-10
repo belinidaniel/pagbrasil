@@ -2,8 +2,8 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 2024-11-27
-  @last modified by  : Hersilio Belini de Oliveira
+  @last modified on  : 07-09-2025
+  @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
            showHeader="false" 
@@ -559,7 +559,7 @@
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Solução de carteira digital</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de carteiras digitais como Google Pay, Apple Pay ou Samsung Pay</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de carteiras digitais como Google Pay ou Apple Pay</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix via Open Finance</td>

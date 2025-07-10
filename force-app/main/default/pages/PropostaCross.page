@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : Daniel Belini
+  @group             : 
+  @last modified on  : 07-09-2025
+  @last modified by  : Daniel Belini
+-->
 <apex:page showHeader="false" 
     applyHtmlTag="false" 
     applyBodyTag="false" 
@@ -214,7 +221,7 @@
                 <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
                     <p style="font-size: 35px; margin-top: 20px;">Why <strong>PagBrasil?</strong></p>
                     <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
-                        <li>The <strong>most comprehensive</strong> set of <strong>local payment methods</strong>: PagBrasil Pix, International Pix, Boleto Flash®, Débito Flash™, Google Pay, and Samsung Pay</li>
+                        <li>The <strong>most comprehensive</strong> set of <strong>local payment methods</strong>: PagBrasil Pix, International Pix, Boleto Flash®, Débito Flash™, and Google Pay</li>
                         <li><strong>Flexible integration</strong>: API, PagBrasil Checkout, Payment Link, and plugins for Shopify, Salesforce, and WooCommerce</li>
                         <li><strong>End-customers charged in reais brasileiros (BRL)</strong></li>
                         <li>Cross-border remittances sent in <strong>USD or EUR</strong></li>

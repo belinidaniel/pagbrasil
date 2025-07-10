@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-05-2025
+ * @last modified on  : 07-09-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -11,6 +11,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
     private static final String CREDITO = 'CREDITO';
     private static final String CREDIT_CARD = 'CREDIT_CARD';
     private static final String PIX = 'PIX';
+    private static final String PIX_AUTO = 'PIX_AUTO';
     private static final String DEBITO = 'DEBITO';
     private static final String INTERMEDIATION = 'Intermediation';
 
@@ -143,10 +144,30 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 if(byPassProduct(opportunity, priceBookEntry.Product2)){
                     continue;
                 }
+                Boolean isPixAutomatic = priceBookEntry.Product2.ProductCode.contains('PIX_AUTO');
+                Boolean isPagstream = priceBookEntry.Product2.ProductCode.contains('_PAGSTREAM');
+                Boolean isPackage = priceBookEntry.Product2.ProductCode.contains('SMS') || priceBookEntry.Product2.ProductCode.contains('EMAILS');
+                System.debug('isPixAutomatic - ' + isPixAutomatic + ' quote.opportunity.Pix_Automatico__c ' + quote.opportunity.Pix_Automatico__c);
+                
+                if(opportunity.Pix_Automatico__c == false && isPixAutomatic){
+                    continue;
+                }
+
+                if(opportunity.UsePagstream__c == false && isPagstream){
+                    continue;
+                }
+
+                if(isPlugin(opportunity.IntegrationType__c) && isPackage){
+                    continue;   
+                }
+                
+                if(opportunity.BusinessModel__c.contains(INTERMEDIATION) && priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE')){
+                    continue;
+                }
 
                 if(opportunity.recordType.DeveloperName != 'National'){
                     Boolean isRemittanceFee = priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE');
-
+  
                     if(isRemittanceFee && !priceBookEntry.Product2.ProductCode.contains(opportunity.Moeda__c)){
                         continue;
                     }
@@ -227,7 +248,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         String paymentMethod = getPaymentMethod(opportunity);
 
         if((productCode.contains(DEBITO) && !paymentMethod.contains(DEBITO)) ||
-           (productCode.contains(PIX) && !paymentMethod.contains(PIX)) ||
+           (productCode.contains(PIX) && !paymentMethod.contains(PIX) && !productCode.contains(PIX_AUTO) )  ||
            (productCode.contains(CREDITO) && !paymentMethod.contains(CREDITO)) ||
            (productCode.contains(CREDIT_CARD) && !paymentMethod.contains(CREDITO)) ||
            (productCode.contains(BOLETO) && !paymentMethod.contains(BOLETO)) ){
@@ -333,6 +354,26 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 IsMain__c = isTaxMain
             ));
         }
+    }
+
+
+    private static Boolean isPlugin(String integrationType) {
+        if (String.isBlank(integrationType)) return false;
+        List<String> pluginTypes = new List<String>{
+            'Vtex',
+            'Shopify',
+            'Shopify with Buda',
+            'Shopify with Yampi',
+            'Shopify with Cart Panda',
+            'Salesforce',
+            'PB Checkout'
+        };
+        for (String type : pluginTypes) {
+            if (integrationType.contains(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

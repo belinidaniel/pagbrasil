@@ -67,6 +67,7 @@ IF(
     $Permission.Can_View_General_Business_Opportunity_Stages,
     OR(
         ISPICKVAL(StageName, &quot;Discovery&quot;),
+								ISPICKVAL(StageName, &quot;Contract&quot;),
         ISPICKVAL(StageName, &quot;Processing&quot;),
 								ISPICKVAL(StageName, &quot;Closed Lost&quot;),
 								ISPICKVAL(StageName, &quot;Closed Terminated&quot;),

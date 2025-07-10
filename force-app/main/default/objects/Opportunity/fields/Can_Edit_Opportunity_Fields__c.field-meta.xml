@@ -17,29 +17,6 @@ IF(
 ),
 IF(
   AND(
-    $Permission.Can_Edit_NB_Management_Opportunity_Stages,
-    OR(
-      ISPICKVAL(StageName, &quot;Compliance&quot;),
-      ISPICKVAL(StageName, &quot;Contract&quot;),
-      ISPICKVAL(StageName, &quot;Homologation&quot;)
-    )
-  ),
-  true,
-  false
-),
-IF(
-  AND(
-    $Permission.Can_Edit_Sales_Management_Opportunity_Stages,
-    OR(
-        ISPICKVAL(StageName, &quot;Discovery&quot;),
-        ISPICKVAL(StageName, &quot;Negotiation&quot;)
-    )
-  ),
-  true,
-  false
-),
-IF(
-  AND(
      $Permission.Can_Edit_New_Business_Management_Opportunity_Stages,
     OR(
         ISPICKVAL(StageName, &quot;Discovery&quot;)

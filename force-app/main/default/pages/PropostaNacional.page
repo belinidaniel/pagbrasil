@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-05-2025
+  @last modified on  : 07-09-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -452,7 +452,7 @@
             <!-- <div class="background-color-white-100">
             </div> -->
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap; color: white">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap; color: whit ;color: #595959">Proposta Comercial | {!oppName}</p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -490,7 +490,7 @@
                 <div class="background-color-grey" style="width: 615px;">
                 </div>
                 <div class="page-content" style="background-color: red; width: 100px;">
-                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -540,7 +540,7 @@
                 <div class="background-color-grey" style="width: 615px;">
                 </div>
                 <div class="page-content" style="background-color: red; width: 100px;">
-                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -584,7 +584,7 @@
         <div class="page">
             <div class="page-content">
 
-                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                 
                 <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 40px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                     Por que processar<br/>
@@ -618,7 +618,7 @@
         <div class="page">
             <div class="page-content" style="width: 100%;">
 
-                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
 
                 <p style="font-family: 'MontserratBold', sans-serif; margin: 90px auto 0 auto; color: #202020; font-size: 36px; text-align: center;">
                     Eles <strong>confiam</strong>
@@ -648,7 +648,7 @@
             <div class="background-color-white" style="width: 576px;">
             </div>
             <div class="page-content">
-                <p style="position: absolute; top: 14px; left: 135px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                <p style="position: absolute; top: 14px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
                 <div style="position: absolute; top: 60px; left: 710px; width: 300px;">
                     <div class="row" style="margin-top: 20px;">
                         <div class="col" style="width: 30%">
@@ -683,7 +683,7 @@
                         <div class="col" style="width: 70%">
                             <p class="payment-method-description">
                                 <strong>Carteiras Digitais</strong><br/>
-                                Google Pay, Apple Pay e Samsung Pay
+                                Google Pay e Apple Pay
                             </p>
                         </div>
                         <div class="clearfix"></div>
@@ -725,19 +725,19 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 16px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 487px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
-                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 487px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
-                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 487px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
-                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 487px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 487px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
                     <apex:panelGroup rendered="{!containsCreditCard}">
                         <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
@@ -765,23 +765,23 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 10px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 390px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 620px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
-                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 390px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 620px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
-                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 390px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 620px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
-                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 390px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 620px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 390px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 620px; font-size:18px; white-space: nowrap;">R$ {!valueGatewaySecondOption}</p>
                     <apex:panelGroup rendered="{!containsCreditCard}">
@@ -810,27 +810,27 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 10px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 405px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 550px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 700px; font-size:20px; white-space: nowrap;">{!valueFourThirdOption}</p>
-                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 405px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 550px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 700px; font-size:20px; white-space: nowrap;">{!valueThreeThirdOption}</p>
-                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 405px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 550px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 700px; font-size:20px; white-space: nowrap;">{!valueTwoThirdOption}</p>
-                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 405px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 550px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 700px; font-size:20px; white-space: nowrap;">{!valueOneThirdOption}</p>
-                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 405px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 550px; font-size:18px; white-space: nowrap;">R$ {!valueGatewaySecondOption}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 700px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayThirdOption}</p>
@@ -860,31 +860,31 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 10px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 10px; left: 140px; white-space: nowrap;">{!oppName} 1</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 400px; font-size:20px; white-space: nowrap;">{!pixFour}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardFour}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardFour}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoFour}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 400px; font-size:20px; white-space: nowrap;">{!pixThree}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardThree}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardThree}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoThree}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 400px; font-size:20px; white-space: nowrap;">{!pixTwo}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardTwo}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardTwo}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoTwo}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 400px; font-size:20px; white-space: nowrap;">{!pixOne}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardOne}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardOne}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoOne}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">0,40%</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 400px; font-size:18px; white-space: nowrap;">R$ {!pixGateway}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 530px; font-size:18px; white-space: nowrap;">R$ {!creditCardGateway}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 640px; font-size:18px; white-space: nowrap;">R$ {!debitCardGateway}</p>
@@ -915,7 +915,7 @@
             <div class="page">
                 <img src="{!$Resource.PNPagina8}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 5px; left: 121px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 121px; white-space: nowrap;">{!oppName}</p>
                     <p class="cor" style="position: absolute; top: 370px; left: 861px; font-weight: bold; font-size:18px; white-space: nowrap;">R$ 0,39</p>
                     <p class="cor" style="position: absolute; top: 370px; left: 965px; font-weight: bold; font-size:18px; white-space: nowrap;">R$ 0,10</p>
                 </div>
@@ -929,7 +929,7 @@
         <!-- Pagina termos de porcessamento Gateway -->
         <div class="page">
             <div class="page-content">
-            <p style="position: absolute; top: 15px; left: 138px; font-weight: bold; white-space: nowrap; color: #161716">{!oppName}</p>
+            <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716">{!oppName}</p>
             
             <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 120px; font-size:18px; white-space: nowrap;">{!valueOne}</p>
             <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 120px; font-size:18px; white-space: nowrap;">{!valueTwo}</p>
@@ -953,7 +953,7 @@
                 <div class="page">
                     <div class="page-content">
 
-                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                         
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
                             Opção 1
@@ -1082,7 +1082,7 @@
                     <div class="page">
                         <div class="page-content">
 
-                            <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                            <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                             
                             <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
                                 Opção 2
@@ -1211,7 +1211,7 @@
                 <div class="page">
                     <img src="{!page10}" class="background-image"/>
                     <div class="page-content">
-                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                     </div>
                 </div>
 
@@ -1239,7 +1239,7 @@
             <div class="page">
                 <img src="{!frequencyPage11}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 5px; left: 122px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 122px; white-space: nowrap;">{!oppName}</p>
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
             </div>
@@ -1250,7 +1250,7 @@
             <div class="page">
                 <div class="page-content">
 
-                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
                     
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                         Solução de Payout
@@ -1279,7 +1279,7 @@
                         </div>
                         <div class="row payout-supplemental-terms-item">
                             <div class="col" style="width: 30%">
-                                <p class="payout-supplemental-terms-label">Taxa de Adesão</p>
+                                <p class="payout-supplemental-terms-label">Taxa de instalação </p>
                             </div>
                             <div class="col" style="width: 70%">
                                 <p class="payout-supplemental-terms-value">R${!adherenceFee}</p>
@@ -1320,7 +1320,7 @@
                     <div class="background-color-grey" style="width: 576px;">
                     </div>
                     <div class="page-content">
-                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
 
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
                             Termos<br/> <strong>complementares</strong>
@@ -1341,7 +1341,7 @@
                             </li>
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
                             <li>
-                                <strong>Taxa de adesão</strong>: R${!adherenceFee}
+                                <strong>Taxa de instalação </strong>: R${!adherenceFee}
                             </li>
                             </apex:outputPanel>
                             <li>
@@ -1384,7 +1384,7 @@
                     <div class="background-color-grey" style="width: 576px;">
                     </div>
                     <div class="page-content">
-                        <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
 
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
                             Termos<br/> <strong>complementares</strong>
@@ -1398,10 +1398,10 @@
                                 <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) <apex:outputText rendered="{!NOT(containsIntermediacao)}"> ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação) </apex:outputText>
                             </li>
                             <li>
-                                <strong>Taxa de chargeback:</strong> R$25,00(fixo, por chargeback) 
+                                <strong>Taxa de chargeback:</strong> {!chargebackTax} (fixo, por chargeback) 
                             </li>
                             <li>
-                                <strong>Taxa de adesão</strong>: R${!adherenceFee}
+                                <strong>Taxa de instalação </strong>: R${!adherenceFee}
                             </li>
                             <li>
                                 <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
@@ -1416,7 +1416,7 @@
                                 <strong>Link de Pagamento</strong>: Incluído
                             </li>
                             <li>
-                                <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>: gratuito
+                                <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>: {!smsGratuito}
                             </li>
                         </ul>
                         <p style="position: absolute; top: 430px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
@@ -1437,7 +1437,7 @@
                 <div class="background-color-grey" style="width: 576px;">
                 </div>
                 <div class="page-content">
-                    <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
 
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
                         Termos<br/> <strong>complementares</strong>
@@ -1445,7 +1445,7 @@
                     <ul class="terms-list">
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(transferFee))}">
                             <li>
-                                <strong>Taxa de transferência</strong>: R$3,50
+                                <strong>Taxa de transferência</strong>: R${!transferFee}
                             </li>
                             </apex:outputPanel> 
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(reserve))}">
@@ -1458,7 +1458,7 @@
                             </li>
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
                             <li>
-                                <strong>Taxa de adesão</strong>: R${!adherenceFee}
+                                <strong>Taxa de instalação </strong>: R${!adherenceFee}
                             </li>
                             </apex:outputPanel>
                             <li>
@@ -1479,7 +1479,7 @@
                             <strong>Link de Pagamento</strong>: Incluído
                         </li>
                         <li>
-                            <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: gratuito
+                            <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: {!smsGratuito}
                         </li>
                     </ul>
                 </div>
@@ -1491,7 +1491,7 @@
             <div class="page">
                 <img src="{!$Resource.PNPagina17}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 140px; font-weight: bold; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 140px; white-space: nowrap;">{!oppName}</p>
                     <p style="position: absolute; top: 68px; left: 756px; white-space: nowrap; font-weight: bold; background-color:#0058b5; color:white; font-size: 40px;">Termos</p>
                     <apex:outputText value="• {!taxaPagStream} sobre o volume mensal de pagamentos " style="position: absolute; top: 183px; left: 782px; white-space: nowrap; background-color:#0058b5;  color: #C5D9ED; font-size: 16px;"/>
                     <apex:outputText value="recorrentes" style="position: absolute; top: 203px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 16px;"/>
@@ -1516,8 +1516,8 @@
         <div class="page">
             <img src="{!$Resource.PagShieldPage}" class="background-image" />
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
-                <p style="position: absolute; top: 60px; left: 80px; font-weight: bold; white-space: nowrap; font-size: 34px;">PagShield®️</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 60px; left: 80px; white-space: nowrap; font-size: 34px;">PagShield®️</p>
                 <apex:outputText value="•   Tecnologia inteligente de autoaprendizagem " style="position: absolute; top: 180px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
                 <apex:outputText value="do" style="position: absolute; top: 180px; left: 120px; white-space: nowrap; color: #707070; font-size: 15px;"/>
                 <apex:outputText value="comportamento de compra, com algoritimo que se" style="position: absolute; top: 200px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
@@ -1555,7 +1555,7 @@
             <!-- Page 19 - Google Pay e Apple Pay -->
             <div class="page">
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 138px; font-weight: bold; white-space: nowrap; color: #161716">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716">{!oppName}</p>
                 </div>
                 <img src="{!$Resource.GoogleEApplePayPage}" class="background-image"/>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
@@ -1567,8 +1567,8 @@
         <!-- <div class="page">
             <img src="{!$Resource.PNPagina19e20Pontos}" class="background-image"/>
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
-                <p style="position: absolute; top: 90px; left: 578px; font-weight: bold; white-space: nowrap; font-size: 34px;">Google Pay</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 90px; left: 578px; white-space: nowrap; font-size: 34px;">Google Pay</p>
                 <apex:outputText value="Simplifique a jornada do cliente, facilitando a conclusão " style="position: absolute; top: 235px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
                 <apex:outputText value="do pagamento em apenas alguns cliques" style="position: absolute; top: 255px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
                 <apex:outputText value="Aumente a reputação de seu site com uma solução de " style="position: absolute; top: 308px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
@@ -1589,8 +1589,8 @@
         <!-- <div class="page">
             <img src="{!$Resource.PNPagina19e20Pontos}" class="background-image"/>
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; font-weight: bold; white-space: nowrap;">Proposta Comercial | {!oppName}</p>
-                <p style="position: absolute; top: 85px; left: 578px; font-weight: bold; white-space: nowrap; font-size: 34px;">Apple Pay</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 85px; left: 578px; white-space: nowrap; font-size: 34px;">Apple Pay</p>
                 <apex:outputText value="Simplifique a jornada do cliente, facilitando a conclusão " style="position: absolute; top: 235px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
                 <apex:outputText value="do pagamento em apenas alguns cliques" style="position: absolute; top: 255px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
                 <apex:outputText value="Aumente a reputação de seu site com uma solução de " style="position: absolute; top: 308px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 06-11-2025
+  @last modified on  : 07-09-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -575,7 +575,7 @@
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Digital wallet solution</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay, Apple Pay, or Samsung Pay</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay or Apple Pay</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">1-Click Pix</td>

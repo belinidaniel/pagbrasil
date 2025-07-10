@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visible_Settlement_Frequency__c</fullName>
+    <formula>OR(
+				AND(
+				    INCLUDES(BusinessModel__c, &apos;Intermediation&apos;),
+				    NOT(
+								    INCLUDES(BusinessModel__c, &apos;Gateway&apos;)
+				    )
+    ),
+				
+				AND(
+								INCLUDES(BusinessModel__c, &apos;Intermediation&apos;),
+								INCLUDES(BusinessModel__c, &apos;Gateway&apos;),
+								INCLUDES(NationalPaymentMethod__c , &apos;Cartão de Crédito&apos;)
+				)
+)</formula>
+    <label>Visible Settlement Frequency</label>
+    <type>Checkbox</type>
+</CustomField>

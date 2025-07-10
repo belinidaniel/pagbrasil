@@ -14,10 +14,13 @@ import ACCEPTPROPOSAL from '@salesforce/schema/Opportunity.Acceptable_Proposal__
 import SYNCED_QUOTE_ID from '@salesforce/schema/Opportunity.SyncedQuoteId';
 import RECORD_TYPE_ID from '@salesforce/schema/Opportunity.RecordTypeId';
 import IS_OPPORTUNITY_VALID from '@salesforce/schema/Opportunity.Is_Opportunity_Valid__c';
+import VISIBLE_SETTLEMENT from '@salesforce/schema/Opportunity.Visible_Settlement_Frequency__c';
+import VISIBLE_ANTICIPATION from '@salesforce/schema/Opportunity.Visible_Anticipation_Frequency__c';
 
 const FIELDS = [
     SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2, STAGE_NAME,
-    ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID, RECORD_TYPE_ID, IS_OPPORTUNITY_VALID
+    ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID, RECORD_TYPE_ID, IS_OPPORTUNITY_VALID,
+    VISIBLE_SETTLEMENT, VISIBLE_ANTICIPATION
 ];
 
 export default class OpenFlowModal extends LightningElement {
@@ -39,6 +42,8 @@ export default class OpenFlowModal extends LightningElement {
             const responded = getFieldValue(data, ANSWERED);
             this.recordTypeId = getFieldValue(data, RECORD_TYPE_ID);
             this.isOpportunityValid = getFieldValue(data, IS_OPPORTUNITY_VALID);
+            this.visibleSettlement = getFieldValue(data, VISIBLE_SETTLEMENT);
+            this.visibleAnticipation = getFieldValue(data, VISIBLE_ANTICIPATION);
 
             if (stage === 'Contract' && !responded) {
                 this.showModal = true;
@@ -143,8 +148,41 @@ export default class OpenFlowModal extends LightningElement {
         }
     }
 
+    validateFrequencies() {
+        if (this.visibleSettlement) {
+            if (!this.selectedValues.s1 || !this.selectedValues.s2) {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Atenção',
+                        message: 'Preencha ambos os campos de Settlement Frequency.',
+                        variant: 'warning'
+                    })
+                );
+                return false;
+            }
+        }
+        if (this.visibleAnticipation) {
+            if (!this.selectedValues.a1 || !this.selectedValues.a2) {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Atenção',
+                        message: 'Preencha ambos os campos de Anticipation Frequency.',
+                        variant: 'warning'
+                    })
+                );
+                return false;
+            }
+        }
+        return true;
+    }
+
     handleConfirm() {
         this.isLoading = true;
+
+        if (!this.validateFrequencies()) {
+            this.isLoading = false;
+            return;
+        }
 
         if (this.isOpportunityValid === false) {
             this.isLoading = false;

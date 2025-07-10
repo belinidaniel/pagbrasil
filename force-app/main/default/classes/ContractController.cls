@@ -66,6 +66,7 @@ public class ContractController {
     public String pagBrasilOne { get; set; }
     public String pagBrasilTwo { get; set; }
     public String pagBrasilThree { get; set; }
+    public String pagBrasilFour { get; set; }
 
     public String taxaToken { get; set; }
     public String taxaAntecipacao { get; set; }
@@ -398,9 +399,10 @@ public class ContractController {
 
                     }
                     when 'PAGBRASIL_SOLUTION_FEE' {
-                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilFour = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
 
                     }
                     when 'TAXA_GATEWAY_DEBITO' {
@@ -538,10 +540,10 @@ public class ContractController {
 
                     }
                     when 'TAXA_PAGBRASIL' {
-                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilFour = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
                     }
                     when 'TAXA_GATEWAY_DEBITO' {
                         this.debitCardGateway = price;

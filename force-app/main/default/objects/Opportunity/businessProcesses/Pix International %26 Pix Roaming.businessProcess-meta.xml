@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pix International %26 Pix Roaming</fullName>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Closed Lost</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed Terminated</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Compliance</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Discovery</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Frozen</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Go Live</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Homologation</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Processing</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

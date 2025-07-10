@@ -89,7 +89,6 @@
         
         <body>
             <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;margin-top: -5%"/>
-            
             <h2 style="text-align: center; padding-bottom: 80px; color: #0058B5; font-size: 18px;">CONTRATO</h2>
 
             <apex:form style="margin-top: -10%;">

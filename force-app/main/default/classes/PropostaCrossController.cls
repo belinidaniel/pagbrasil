@@ -35,6 +35,7 @@ public class PropostaCrossController {
 
     public Boolean containsPixRoaming { get; set; }
     public Boolean containsPixInternational { get; set; }
+    public Boolean containsPixAutomatico { get; set; }
 
     public String tablePaymentValue { get; set; }
 
@@ -113,7 +114,7 @@ public class PropostaCrossController {
             stdController.addFields(new List<String>{
                 'Account.Name', 'Account.Website', 'Opportunity.Name','Opportunity.Owner.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
                 'Opportunity.Product_Type__c', 'Opportunity.Payout__c', 'Opportunity.ApplePay__c', 'Opportunity.GooglePay__c', 'Opportunity.Antecipation_Frequency_1__c', 'Opportunity.Antecipation_Frequency_2__c',
-                'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c',
+                'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.Pix_Automatico__c',
                 'Opportunity.Moeda__c', 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
         }
 
@@ -166,6 +167,7 @@ public class PropostaCrossController {
 
         this.containsPixRoaming = quote.Opportunity.BusinessModel__c != null ? quote.Opportunity.BusinessModel__c.contains('Pix Roaming') : false;
         this.containsPixInternational = quote.Opportunity.BusinessModel__c != null ? quote.Opportunity.BusinessModel__c.contains('Pix International') : false;
+        this.containsPixAutomatico = quote.Opportunity.Pix_Automatico__c;
 
         this.shopifyWoocommerceSalesforcePBCheckoutTerms = quote.Opportunity.IntegrationType__c != null ? this.integrationTypeShopifyWoocommerceSalesforcePBCheckoutList.contains(quote.Opportunity.IntegrationType__c) : false;
         this.currentIntegrationTypeInCheckoutList = this.shopifyWoocommerceSalesforcePBCheckoutTerms ? quote.Opportunity.IntegrationType__c : null;

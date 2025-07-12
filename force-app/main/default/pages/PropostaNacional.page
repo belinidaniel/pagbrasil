@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-10-2025
+  @last modified on  : 07-11-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -731,10 +731,10 @@
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 487px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 487px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 487px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
@@ -773,11 +773,11 @@
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 390px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 620px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 390px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 620px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
+                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 390px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 620px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
@@ -1412,12 +1412,34 @@
                             Termos<br/> <strong>opcionais</strong>
                         </p>
                         <ul style="position: absolute; top: 220px; left: 565px; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
-                            <li>
-                                <strong>Link de Pagamento</strong>: Incluído
-                            </li>
-                            <li>
-                                <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>: {!smsGratuito}
-                            </li>
+                        <li>
+                            <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>
+                            <apex:outputText rendered="{!smsGratuito == 'Gratuito'}">
+                                : Gratuito
+                            </apex:outputText>
+                            <apex:outputPanel rendered="{!smsGratuito != 'Gratuito'}">
+                                <div style="margin-left: 12px; margin-top: 6px;">
+                                    <span>
+                                        <span style="font-weight:bold;">Pacote de SMS:</span><br/>
+                                        <span style="display:block; height:6px;"></span>
+                                         <span style="margin-left:12px; display:block; line-height:1.15;">
+                                            <apex:repeat value="{!pacotesSms}" var="sms">
+                                                {!sms}<br/>
+                                            </apex:repeat>
+                                        </span>
+                                    </span>
+                                    <span style="display:block; margin-top:8px;">
+                                        <span style="font-weight:bold;">Pacote de e-mails:</span><br/>
+                                        <span style="display:block; height:6px;"></span>
+                                        <span style="margin-left:12px; display:block; line-height:1.15;">
+                                            <apex:repeat value="{!pacotesEmails}" var="email">
+                                                {!email}<br/>
+                                            </apex:repeat>
+                                        </span>
+                                    </span>
+                                </div>
+                            </apex:outputPanel>
+                        </li>
                         </ul>
                         <p style="position: absolute; top: 430px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
                             * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
@@ -1475,12 +1497,36 @@
                         Termos<br/> <strong>opcionais</strong>
                     </p>
                     <ul style="position: absolute; top: 220px; left: 565px; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
-                        <li>
-                            <strong>Link de Pagamento</strong>: Incluído
-                        </li>
-                        <li>
-                            <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: {!smsGratuito}
-                        </li>
+                    <li>
+                        <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>
+                        <apex:outputText rendered="{!smsGratuito == 'Gratuito'}">
+                            : Gratuito
+                        </apex:outputText>
+                        <apex:outputPanel rendered="{!smsGratuito != 'Gratuito'}">
+                            <div style="margin-left: 12px; margin-top: 6px;">
+                                <span>
+                                    <span style="display:block; height:6px;"></span>
+                                    <span style="font-weight:bold;">Pacote de SMS:</span><br/>
+                                    <span style="display:block; height:6px;"></span>
+                                     <span style="margin-left:12px; display:block; line-height:1.15;">
+                                        <apex:repeat value="{!pacotesSms}" var="sms">
+                                            {!sms}<br/>
+                                        </apex:repeat>
+                                    </span>
+                                </span>
+                                <span style="display:block; margin-top:8px;">
+                                    <span style="font-weight:bold;">Pacote de e-mails:</span><br/>
+                                    <span style="display:block; height:6px;"></span> <!-- Espaço extra aqui -->
+
+                                     <span style="margin-left:12px; display:block; line-height:1.15;">
+                                        <apex:repeat value="{!pacotesEmails}" var="email">
+                                            {!email}<br/>
+                                        </apex:repeat>
+                                    </span>
+                                </span>
+                            </div>
+                        </apex:outputPanel>
+                    </li>
                     </ul>
                 </div>
             </div>

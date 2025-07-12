@@ -180,6 +180,10 @@ public class PropostaNacionalController {
     public string getewaythree { get; set; }
     public string getewayFour { get; set; }
 
+    public List<String> pacotesSms { get; set; }
+    public List<String> pacotesEmails { get; set; }
+
+
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
@@ -259,20 +263,36 @@ public class PropostaNacionalController {
             this.valueThree = 'R$ 100k - R$ 500k';
             this.valueFour = '< R$ 100k';
 
-            if (quote.Opportunity.previs_fat_rs__c >= 1000000)
-                this.highlightedLineOne = true;
-            else
-                this.highlightedLineTwo = true;
+            if (quote.Opportunity.previs_fat_rs__c != null) {
+                Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+                if (revenue >= 1000000) {
+                    this.highlightedLineOne = true;
+                } else if (revenue >= 500000) {
+                    this.highlightedLineTwo = true;
+                } else if (revenue >= 100000) {
+                    this.highlightedLineThree = true;
+                } else if (revenue < 100000) {
+                    this.highlightedLineFour = true;
+                } // If you want to handle < 500K, you can add another flag
+            }
         }else if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c >= 5000000) {
             this.valueOne = '> R$ 10M';
             this.valueTwo = 'R$ 5M - R$ 10M';
             this.valueThree = 'R$ 1M - R$ 5M';
             this.valueFour = 'R$ 500K - R$ 1M';
 
-            if (quote.Opportunity.previs_fat_rs__c >= 10000000)
-                this.highlightedLineOne = true;
-            else
-                this.highlightedLineTwo = true;
+            if (quote.Opportunity.previs_fat_rs__c != null) {
+                Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+                if (revenue >= 10000000) {
+                    this.highlightedLineOne = true;
+                } else if (revenue >= 5000000) {
+                    this.highlightedLineTwo = true;
+                } else if (revenue >= 1000000) {
+                    this.highlightedLineThree = true;
+                } else if (revenue >= 500000) {
+                    this.highlightedLineFour = true;
+                } // If you want to handle < 500K, you can add another flag
+            }
         } 
     }
 
@@ -354,8 +374,17 @@ public class PropostaNacionalController {
     }
 
     private void productsPopulation(Quote quote) {
+        pacotesSms = new List<String>();
+        pacotesEmails = new List<String>();
+        
         List<QuoteLineItem> quoteLineItems = [SELECT Id,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
+            if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_500_SMS') {
+                pacotesSms.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+            }
+            if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_100000_EMAILS') {
+                pacotesEmails.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+            }
             processQuoteLineItem(quoteLineItem);
         }
     }

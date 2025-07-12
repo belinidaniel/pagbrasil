@@ -28,8 +28,8 @@ public class CreateTicketMethod {
         String priority = input.priority;
         Date dataCreateAccount = input.dataCreateAccount;
 
-    //    sendPdfThroughEmail(input);
-       sendIntegration(input);
+         sendPdfThroughEmail(input);
+       //sendIntegration(input);
         // Logic to create a ticket using the idOpportunity
       createChildAccountsForHomologations(input.idOpportunity);
     }

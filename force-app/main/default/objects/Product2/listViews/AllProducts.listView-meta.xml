@@ -6,10 +6,5 @@
     <columns>PRODUCT2.DESCRIPTION</columns>
     <columns>PRODUCT2.FAMILY</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>PRODUCT2.NAME</field>
-        <operation>contains</operation>
-        <value>payout</value>
-    </filters>
     <label>All Products</label>
 </ListView>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-10-2025
+  @last modified on  : 07-11-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -299,7 +299,13 @@
                             <td style="color: #0058B5;">{!boletoGateway}</td>
                         </apex:panelGroup>
                         
-                        <td>-</td>
+                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <td>-</td>
+                            <td>-</td>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <td>-</td>
+                        </apex:panelGroup>     
                     </tr>
                 </tbody>
             </table>
@@ -394,7 +400,7 @@
                         <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">R$ por mês</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="border-top: 0px solid #000; border-bottom: 1px solid #000; text-align: center; width: 100%;">Data de Início da cobrança da Taxa Mínima de Manutenção: {!maintenanceDate}.</td>
+                        <td colspan="3" style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Data de Início da cobrança da Taxa Mínima de Manutenção: {!maintenanceDate}.</td>
                     </tr>
                     <apex:panelGroup rendered="{!isGateway}">
                         <tr>
@@ -772,11 +778,11 @@
             </apex:panelGroup>
             
             <br/>
-
+<!-- 
             <apex:panelGroup rendered="{!NOT (isPayout)}">
                 <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "10", "11")}. Alterações às condições gerais dos Termos e Condições: </p>
                 <apex:outputText value="A Cláusula XX sera substituída por:" escape="false" />                
-            </apex:panelGroup>
+            </apex:panelGroup> -->
             
             <div class="page-break"></div>
             <div style="text-align: right;">
@@ -800,31 +806,9 @@
                                     <td colspan="1" style="width: 70%; border-bottom: none !important;">
                                         <div class="box-assinatura">
                                             <div class='assinatura'>
-                                                {!contact.Name}
                                             </div>
                                             <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                                (Nome)
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr style="font-size: 16px;">
-                                    <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                        <div class="box-assinatura">
-                                            <div class='assinatura'></div>
-                                            <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                                (Assinatura Autorizada)
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                        <div class="box-assinatura">
-                                            <div class='assinatura'>
-                                                {!contact.Title}
-                                            </div>
-                                            <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
+                                                (Nome) <br/>
                                                 (Cargo)
                                             </div>
                                         </div>
@@ -847,39 +831,16 @@
             
                 <div style="width: 48%; display: inline-block; vertical-align: top;">
                     <table style="width: 100%">
-                        <apex:outputText value="        PagBrasil" style="font-weight:bold; white-space: pre;" />
+                        <apex:outputText value="PagBrasil" style="font-weight:bold; white-space: pre;" />
                         <br/><br/><br/><br/>
                         <tbody>
                             <tr style="font-size: 16px;">
                                 <td colspan="1" style="width: 70%; border-bottom: none !important;">
                                     <div class="box-assinatura">
-                                        <div class='assinatura'>
-                                            Alex Hoffmann
-                                        </div>
-                                        <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Nome)
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="font-size: 16px;">
-                                <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                    <div class="box-assinatura">
                                         <div class='assinatura'></div>
                                         <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Assinatura Autorizada)
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                    <div class="box-assinatura">
-                                        <div class='assinatura'>
-                                            Diretor
-                                        </div>
-                                        <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Cargo)
+                                            Alex Hoffmann <br/>
+                                            CEO
                                         </div>
                                     </div>
                                 </td>

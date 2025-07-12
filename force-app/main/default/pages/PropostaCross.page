@@ -29,6 +29,7 @@
 
 <apex:variable var="containsPixInternational" value="{!containsPixInternational}" />
 <apex:variable var="containsPixRoaming" value="{!containsPixRoaming}" />
+<apex:variable var="containsPixAutomatico" value="{!containsPixAutomatico}" />
 
 <apex:variable var="pagShieldFraudPrevention" value="{!pagShieldFraudPrevention}" />
 <apex:variable var="pagShieldPremiumFixedFee" value="{!pagShieldPremiumFixedFee}" />
@@ -765,6 +766,34 @@
                 </div>
             </div>
         </apex:panelGroup>
+
+
+        <apex:panelGroup rendered="{!containsPixAutomatico}">
+            <div class="page">
+                <img src="{!$Resource.PNPaginaPixAutomatico}" class="page-background-image"/>
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">New Feature</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>Automatic Pix</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Boost your revenue</strong> with seamless recurring Pix payments</p>
+                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                            <li>Pre-authorized recurring payments with prior user authorization ​</li>
+                            <li>Two different authorization journeys tailored to fit your business model ​</li>
+                            <li>Customizable billing cycles  ​</li>
+                            <li>Multiple integration options through direct API, Shopify app, PB Checkout (Payment Link), and PagStream®​</li>
+                        </ul>
+                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> BRL 0.2% added to the credit card processing fees.</p>
+                    </div>
+                </div>
+                <div class="page-footer" style="bottom: 30px">
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+        
+    
+
+
 
         <!-- Page 19 -->
         <apex:panelGroup rendered="{!containsApplePay}">

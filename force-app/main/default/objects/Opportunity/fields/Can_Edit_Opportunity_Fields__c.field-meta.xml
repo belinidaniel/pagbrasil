@@ -3,6 +3,9 @@
     <fullName>Can_Edit_Opportunity_Fields__c</fullName>
     <formula>OR(
   $Permission.Can_Edit_All_Opportunity_Stages,
+		$Permission.Can_Edit_Sales_Management_Opportunity_Stages,
+		$Permission.Can_Edit_Sales_Opportunity_Stages,
+		$Permission.Can_Edit_Product_Stages,
 IF(
   AND(
     $Permission.Can_Edit_Legal_Opportunity_Stages,
@@ -27,7 +30,7 @@ IF(
 ),
 IF(
   AND(
-    $Permission.Can_Edit_New_Opportunity_Sales,
+    $Permission.Can_Edit_New_Sales_Opportunity_Stages,
     TODAY() &lt;= (DATEVALUE(Account.CreatedDate) + 180)
 						
   ),

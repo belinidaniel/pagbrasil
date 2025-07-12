@@ -3,6 +3,8 @@
     <fullName>Can_View_Opportunity_Fields__c</fullName>
     <formula>OR(
   $Permission.Can_View_All_Opportunity_Stages,
+		$Permission.Can_View_Grow_Costomer_Success_Opportunity_Stages,
+		$Permission.Can_View_Process_Opportunity_Stages,
 IF(
   AND(
     $Permission.Can_View_Operations_Support_Opportunity_Stages,

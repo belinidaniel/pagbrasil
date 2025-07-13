@@ -19,6 +19,9 @@ public class OpportunityWrapper {
     public String contractStartDateCharge { get; set; }
     public Boolean usePagstream { get; set; }
     public String settlementFrequency { get; set; }
+    public Boolean isCrossBorder { get; set; }
+    public Boolean containsShopify { get; set; }
+    public Boolean containsGateway { get; set; }
     public Boolean payout { get; set; }
     public Boolean googlePay { get; set; }
     public Boolean applePay { get; set; }
@@ -81,6 +84,9 @@ public class OpportunityWrapper {
         this.moeda = opp.Moeda__c;
         this.settlementFrequency = opp.Settlement_Frequency_1__c;
         this.contractStartDateCharge = opp.Contract_Start_Fee_Date__c;
+        this.isCrossBorder = opp.RecordType.Name == 'Crossborder';
+        this.containsShopify = opp.IntegrationType__c != null ? opp.IntegrationType__c.contains('Shopify') : false;
+        this.containsGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
 
         // Map Account properties
         if (opp.Account != null) {
@@ -327,6 +333,21 @@ public class OpportunityWrapper {
         public Boolean pixPending { get; set; }
         public Boolean pixOpenFinance { get; set; }
         public String contactEmailNotification { get; set; }
+        public String category { get; set; }
+        public String boletoBancario { get; set; }
+        public String cartaoDeCredito { get; set; }
+        public String debitoDebitoFlash { get; set; }
+        public String boletoFlashPagamento { get; set; }
+        public String pix { get; set; }
+        public String agendaDeLiberacao { get; set; }
+        public String pixOpenFinance2 { get; set; }
+        public String pixValidFor { get; set; }
+        public String maximumNumberInstallments { get; set; }
+        public String pagStream { get; set; }
+        public String subscriberArea { get; set; }
+        public String allowCpfCnpj { get; set; }
+        public String pixPending2 { get; set; }
+
 
         // Constructor to initialize the wrapper from a HomologationForms__c record
         public HomologationFormWrapper(HomologationForm__c form) {
@@ -397,6 +418,20 @@ public class OpportunityWrapper {
             this.pixPending = form.Pix_Pending__c;
             this.pixOpenFinance = form.Pix_Open_Finance__c;
             this.contactEmailNotification = form.Contact_email_for_notification__c;
+            this.category = form.Category__c;
+            this.boletoBancario = form.BoletoBancario__c;
+            this.cartaoDeCredito = form.CartaoDeCredito__c;
+            this.debitoDebitoFlash = form.DebitoDebitoFlash__c;
+            this.boletoFlashPagamento = form.BoletoFlash__c;
+            this.pix = form.Pix__c;
+            this.agendaDeLiberacao = form.AgendaDeLiberacao__c;
+            this.pixOpenFinance2 = form.PixOpenFinance__c;
+            this.pixValidFor = form.Pix_Valid_For__c;
+            this.maximumNumberInstallments = form.MaximumNumberInstallments__c;
+            this.pagStream = form.PagStream__c;
+            this.subscriberArea = form.Subscriber_Area__c;
+            this.allowCpfCnpj = form.Allow_CPF_CNPJ__c;
+            this.pixPending2 = form.PixPending__c;
         }
     }
 

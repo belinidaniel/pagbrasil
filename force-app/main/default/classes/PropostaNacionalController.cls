@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 05-27-2025
+ * @last modified on  : 07-10-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -21,6 +21,8 @@ public class PropostaNacionalController {
     public Boolean isGateway { get; set; }
     public Boolean isIntermediation { get; set; }
     public Boolean isPayout { get; set; }
+    public Boolean isVisibleSettlementFrequency { get; set; }
+    public Boolean isVisibleAnticipationFrequency { get; set; }
     public Boolean isGatewayAndIntermediation { get; set; }
     public Boolean isPagStream { get; set; }
     public String page09 { get; set; }
@@ -35,6 +37,7 @@ public class PropostaNacionalController {
     public string reserve {get;set;}
     public String pagBrasilSolutionFeeRange{get;set;}
     public Boolean showZeroReserveOption { get; set; }
+    public Boolean isGoogleOrApplePay { get; set; }
 
     //Taxes
     public String valueOne { get; set; }
@@ -135,6 +138,7 @@ public class PropostaNacionalController {
     public String frequencyPageTwoValueTen { get; set; }
     public String frequencyPageTwoValueEleven { get; set; }
     public String frequencyPageTwoValueTwelve { get; set; }
+    public String smsGratuito {get;set;}
 
     //Date
     public String stringDate { get; set; }
@@ -157,11 +161,28 @@ public class PropostaNacionalController {
     public String payoutServiceFee { get; set; }
     public String payoutTransferFee { get; set; }
 
+    public string TaxaBrasilOne { get; set; }
+    public string TaxaBrasilTwo { get; set; }
+    public string TaxaBrasilThree { get; set; }
+    public string TaxaBrasilFour { get; set; }
+
     public static List<String> integrationTypeShopifyWoocommerceSalesforcePBCheckoutList = new List<String>{'Shopify','Woocommerce','Salesforce','PB Checkout'};
     public static List<String> integrationTypeJSAPIVTex = new List<String>{'JS','API','Vtex'};
     public static List<String> integrationTypeVTEX = new List<String>{'Vtex'};
 
-    
+    public Boolean containsPix { get; set; }
+    public Boolean containsBoleto { get; set; }
+    public Boolean containsDebitCard { get; set; }
+    public Boolean containsPagBrasilSolution { get; set; }
+
+    public string getewayOne { get; set; }
+    public string getewayTwo { get; set; }
+    public string getewaythree { get; set; }
+    public string getewayFour { get; set; }
+
+    public List<String> pacotesSms { get; set; }
+    public List<String> pacotesEmails { get; set; }
+
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -170,8 +191,8 @@ public class PropostaNacionalController {
                 'Opportunity.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c',
                 'Opportunity.Settlement_Frequency_Test__c', 'Opportunity.Payout__c', 'Opportunity.Antecipation_Frequency_1__c',
                 'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
-                'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c',
-                'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
+                'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c',
+                'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.ApplePay__c', 'Opportunity.Visible_Settlement_Frequency__c', 'Opportunity.Visible_Anticipation_Frequency__c' });
         }
 
         Quote quote = (Quote) stdController.getRecord();
@@ -187,6 +208,7 @@ public class PropostaNacionalController {
         this.viewPage6 = true;
         this.viewPage11 = false;
         this.shopifyWoocommerceSalesforcePBCheckoutTerms = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeShopifyWoocommerceSalesforcePBCheckoutList(quote.Opportunity.IntegrationType__c) : false;
+        this.smsGratuito = isPlugin(quote.Opportunity.IntegrationType__c) ? 'Gratuito' : 'Consultar valores';
         this.jSAPIVTexTerms = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeJSAPIVTex(quote.Opportunity.IntegrationType__c) : false;
         this.containsVTEX = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeVTEX(quote.Opportunity.IntegrationType__c) : false;
 
@@ -214,6 +236,8 @@ public class PropostaNacionalController {
         this.accountOwnerEmail = quote.Account.Owner.Email;
         this.accountOwnerMobilePhone = quote.Account.Owner.MobilePhone;
         this.isPagShield = quote.Opportunity.PagShield__c;
+        this.isGoogleOrApplePay = quote.opportunity.GooglePay__c  || quote.opportunity.ApplePay__c ? true: false;
+        System.debug('isGoogleOrApplePay: ' + this.isGoogleOrApplePay);
         this.containsShopify = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c.contains('Shopify') : false;
         this.containsGateway = quote.Opportunity.BusinessModel__c != null ? quote.Opportunity.BusinessModel__c.contains('Gateway') : false;
         this.isSalesforce = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c == 'Salesforce' : false;
@@ -222,6 +246,8 @@ public class PropostaNacionalController {
         this.isGatewayAndIntermediation = quote.Opportunity.BusinessModel__c != null ? quote.Opportunity.BusinessModel__c.contains('Gateway') && quote.Opportunity.BusinessModel__c.contains('Intermediation') : false;
         this.isPayout = quote.Opportunity.Payout__c;
         this.isPagStream = quote.Opportunity.UsePagstream__c;
+        this.isVisibleAnticipationFrequency = quote.Opportunity.Visible_Anticipation_Frequency__c;
+        this.isVisibleSettlementFrequency = quote.Opportunity.Visible_Settlement_Frequency__c;
         tableTaxPaymentPopulation(quote);
     }
 
@@ -230,30 +256,44 @@ public class PropostaNacionalController {
         setPaymentMethods(quote);
     }
 
-    private void setTaxValues(Quote quote) {
-        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c >= 5000000) {
+    private void setTaxValues(Quote quote ) {
+        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 5000000) {
+            this.valueOne = '> R$ 1M';
+            this.valueTwo = 'R$ 500k - R$ 1M';
+            this.valueThree = 'R$ 100k - R$ 500k';
+            this.valueFour = '< R$ 100k';
+
+            if (quote.Opportunity.previs_fat_rs__c != null) {
+                Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+                if (revenue >= 1000000) {
+                    this.highlightedLineOne = true;
+                } else if (revenue >= 500000) {
+                    this.highlightedLineTwo = true;
+                } else if (revenue >= 100000) {
+                    this.highlightedLineThree = true;
+                } else if (revenue < 100000) {
+                    this.highlightedLineFour = true;
+                } // If you want to handle < 500K, you can add another flag
+            }
+        }else if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c >= 5000000) {
             this.valueOne = '> R$ 10M';
             this.valueTwo = 'R$ 5M - R$ 10M';
             this.valueThree = 'R$ 1M - R$ 5M';
             this.valueFour = 'R$ 500K - R$ 1M';
 
-            if (quote.Opportunity.previs_fat_rs__c >= 10000000)
-                this.highlightedLineOne = true;
-            else
-                this.highlightedLineTwo = true;
-
-        } else {
-
-            if (quote.Opportunity.previs_fat_rs__c >= 1000000) this.highlightedLineOne = true;
-            else if (quote.Opportunity.previs_fat_rs__c >= 500000) this.highlightedLineTwo = true;
-            else if (quote.Opportunity.previs_fat_rs__c >= 100000) this.highlightedLineThree = true;
-            else this.highlightedLineFour = true;
-
-            this.valueOne = '0,35% p/ R$5MM';
-            this.valueTwo = '0,40% (R$1MM -> R$5MM';
-            this.valueThree = '0,45% (R$500k -> R$1MM';
-            this.valueFour = '0,50% (R$<R$500k)';
-        }
+            if (quote.Opportunity.previs_fat_rs__c != null) {
+                Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+                if (revenue >= 10000000) {
+                    this.highlightedLineOne = true;
+                } else if (revenue >= 5000000) {
+                    this.highlightedLineTwo = true;
+                } else if (revenue >= 1000000) {
+                    this.highlightedLineThree = true;
+                } else if (revenue >= 500000) {
+                    this.highlightedLineFour = true;
+                } // If you want to handle < 500K, you can add another flag
+            }
+        } 
     }
 
     private void setPaymentMethods(Quote quote) {
@@ -334,8 +374,17 @@ public class PropostaNacionalController {
     }
 
     private void productsPopulation(Quote quote) {
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
+        pacotesSms = new List<String>();
+        pacotesEmails = new List<String>();
+        
+        List<QuoteLineItem> quoteLineItems = [SELECT Id,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
+            if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_500_SMS') {
+                pacotesSms.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+            }
+            if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_100000_EMAILS') {
+                pacotesEmails.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+            }
             processQuoteLineItem(quoteLineItem);
         }
     }
@@ -364,7 +413,7 @@ public class PropostaNacionalController {
                 this.transferFee = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'TAXA_PAGBRASIL' {
-                this.pagBrasilSolutionFee = validateNumbersWithRegex(quoteLineItem.Price__c);
+                processTaxaPagBrasil(quoteLineItem);
             }
             when 'TAXA_PAYOUT' {
                 this.payoutServiceFee = validateNumbersWithRegex(quoteLineItem.Price__c);
@@ -426,35 +475,52 @@ public class PropostaNacionalController {
             when 'TAXA_PARC_7A12' {
                 this.additionalInstallmentFee7To12 = '7 a 12 parcelas: +' + validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
             }
+            when 'TAXA_PAGBRASIL_GATEWAY' {
+                processTaxaPagBrasilGateway(quoteLineItem);
+            }
         }
     }
 
     private void processPix(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void processCreditCard(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void processDebitCard(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void processBoleto(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+    }
+
+    private void processTaxaPagBrasil(QuoteLineItem quoteLineItem) {
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.TaxaBrasilOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.TaxaBrasilTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.TaxaBrasilThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.TaxaBrasilFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+    }
+
+    private void processTaxaPagBrasilGateway(QuoteLineItem quoteLineItem) {
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.getewayOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.getewayTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.getewaythree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.getewayFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
     }
 
     private void frequencyPopulation(Quote quote) {
@@ -869,12 +935,35 @@ public class PropostaNacionalController {
         return false;
     }
     
+    // Returns true if the integrationType is considered a plugin
+    private static Boolean isPlugin(String integrationType) {
+        if (String.isBlank(integrationType)) return false;
+        List<String> pluginTypes = new List<String>{
+            'Vtex',
+            'Shopify',
+            'Shopify with Buda',
+            'Shopify with Yampi',
+            'Shopify with Cart Panda',
+            'Salesforce',
+            'PB Checkout'
+        };
+        for (String type : pluginTypes) {
+            if (integrationType.contains(type)) {
+                return true;
+            }
+        }
+        return false;
+    }
     private void getParcelas(Quote quote, String page) {
 
         if (page == 'One') {
+            System.debug('getParcelas page: ' + this.taxaAntecipacao);
             String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
+            System.debug('getParcelas antecipation: ' + antecipation);
             List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            System.debug('taxes.   ' + taxes);
             for(Taxes__c tax : taxes) {
+                System.debug('tax.InstallmentNumber__c: ' + tax.InstallmentNumber__c);
                 switch on tax.InstallmentNumber__c{
                     when '1' {
                         this.frequencyPageOneValueOne = validateNumbersWithRegex(String.valueOf(tax.PercentValue__c) + '%') + '%';

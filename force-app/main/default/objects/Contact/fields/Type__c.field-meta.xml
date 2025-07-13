@@ -17,32 +17,37 @@
             <value>
                 <fullName>Principal</fullName>
                 <default>true</default>
-                <label>Principal</label>
+                <label>Main</label>
             </value>
             <value>
                 <fullName>Técnico</fullName>
                 <default>false</default>
-                <label>Técnico</label>
+                <label>Technical</label>
             </value>
             <value>
                 <fullName>Reembolsos</fullName>
                 <default>false</default>
-                <label>Reembolsos</label>
+                <label>Refund</label>
             </value>
             <value>
                 <fullName>Notificação</fullName>
                 <default>false</default>
-                <label>Notificação</label>
+                <label>Notification</label>
             </value>
             <value>
                 <fullName>Financeiro</fullName>
                 <default>false</default>
-                <label>Financeiro</label>
+                <label>Financial</label>
             </value>
             <value>
                 <fullName>Representante Legal</fullName>
                 <default>false</default>
-                <label>Representante Legal</label>
+                <label>Legal Representative</label>
+            </value>
+            <value>
+                <fullName>Suporte</fullName>
+                <default>false</default>
+                <label>Support</label>
             </value>
         </valueSetDefinition>
     </valueSet>

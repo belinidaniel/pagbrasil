@@ -192,6 +192,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>7299</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>8299</fullName>
             <default>false</default>
         </values>
@@ -258,6 +262,17 @@
         </values>
         <values>
             <fullName>2%2E99</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>crossborder</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>national</fullName>
             <default>false</default>
         </values>
     </picklistValues>

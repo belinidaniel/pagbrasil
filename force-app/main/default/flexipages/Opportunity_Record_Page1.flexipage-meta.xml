@@ -7,9 +7,39 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>Opportunity.Close_Opportunity</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.StageName}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Processing</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Opportunity.Confirm_Processing_Date</value>
+                            <visibilityRule>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.StageName}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Go Live</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.TicketId__c}</leftValue>
+                                    <operator>NE</operator>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Opportunity.RequestLegalChange</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -19,6 +49,11 @@
                                     <leftValue>{!Record.RequestChangeClause__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>false</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -344,6 +379,13 @@
                         </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Delete</value>
@@ -433,7 +475,7 @@
                 <identifier>RecordAccountIdField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -476,8 +518,14 @@
                 <fieldItem>Record.Product_or_service_website_URL__c</fieldItem>
                 <identifier>RecordProduct_or_service_website_URL_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -493,8 +541,14 @@
                 <fieldItem>Record.Product_or_service_website_URL__c</fieldItem>
                 <identifier>RecordProduct_or_service_website_URL_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -510,16 +564,9 @@
                 <fieldItem>Record.TierCS__c</fieldItem>
                 <identifier>RecordTierCS_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
+                        <leftValue>{!Record.TicketId__c}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>Homologation</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -533,16 +580,9 @@
                 <fieldItem>Record.TierCS__c</fieldItem>
                 <identifier>RecordTierCS_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.TicketId__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Homologation</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -555,12 +595,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Lead_Owner__c</fieldItem>
                 <identifier>RecordLead_Owner__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.Contract_Start_Fee_Date__c</fieldItem>
-                <identifier>RecordContract_Start_Fee_Date__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-50c159f7-0fb5-4bb1-9d60-915239d953d6</name>
@@ -645,7 +679,7 @@
                 <identifier>RecordBusinessModelType_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -679,7 +713,7 @@
                 <identifier>Recordnb_receita_mensal_cField2</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -713,7 +747,7 @@
                 <identifier>Recordprevis_fat_rs_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -747,7 +781,7 @@
                 <identifier>RecordTicket_Medio_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -888,7 +922,7 @@
                 <identifier>RecordPSP_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -922,7 +956,7 @@
                 <identifier>RecordRecorrencia_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -956,7 +990,7 @@
                 <identifier>RecordAntecipation__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -990,7 +1024,7 @@
                 <identifier>RecordProduct_Type__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1024,7 +1058,7 @@
                 <identifier>RecordIntegrationType_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1064,7 +1098,7 @@
                         <rightValue>Other</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1087,7 +1121,7 @@
                         <rightValue>Other</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1104,7 +1138,7 @@
                 <identifier>RecordCurrent_Platform_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1144,7 +1178,7 @@
                         <rightValue>Other</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1184,7 +1218,7 @@
                 <identifier>RecordSegmento_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1224,7 +1258,7 @@
                         <rightValue>Outros</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1263,10 +1297,16 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordClasseDeProdutos_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1280,10 +1320,16 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordProductClass_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1304,7 +1350,7 @@
                         <rightValue>Crossborder</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1354,7 +1400,7 @@
                 <identifier>RecordAg_ncia_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1422,7 +1468,7 @@
                 <identifier>RecordNationalPaymentMethod_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1456,7 +1502,7 @@
                 <identifier>RecordPagShield__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1490,7 +1536,7 @@
                 <identifier>RecordPagShield_Premium__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1524,7 +1570,7 @@
                 <identifier>RecordPagShield_Premium_On_Demand__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1562,7 +1608,7 @@
                 <identifier>RecordBusinessModel_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1596,7 +1642,7 @@
                 <identifier>RecordUtilizar_Pagstream_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1630,7 +1676,7 @@
                 <identifier>RecordPayout_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1664,7 +1710,7 @@
                 <identifier>RecordGooglePay_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1698,7 +1744,7 @@
                 <identifier>RecordApplePay_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1732,7 +1778,7 @@
                 <identifier>RecordPixOneClick__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1747,6 +1793,40 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.PixOneClick__c</fieldItem>
                 <identifier>RecordPixOneClick_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Pix_Automatico__c</fieldItem>
+                <identifier>RecordPix_Automatico_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Pix_Automatico__c</fieldItem>
+                <identifier>RecordPix_Automatico_cField2</identifier>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
@@ -1793,8 +1873,14 @@
                 <fieldItem>Record.Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_1__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1810,8 +1896,14 @@
                 <fieldItem>Record.Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_1_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1827,8 +1919,14 @@
                 <fieldItem>Record.Settlement_Frequency_2__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_2__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1844,8 +1942,14 @@
                 <fieldItem>Record.Settlement_Frequency_2__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_2_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1865,8 +1969,14 @@
                 <fieldItem>Record.Antecipation_Frequency_1__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_1__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1882,8 +1992,14 @@
                 <fieldItem>Record.Antecipation_Frequency_1__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_1_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1899,8 +2015,14 @@
                 <fieldItem>Record.Antecipation_Frequency_2__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_2__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Compliance__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1916,8 +2038,14 @@
                 <fieldItem>Record.Antecipation_Frequency_2__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_2_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2028,7 +2156,7 @@
                 <identifier>RecordTeseProspeccao_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2062,7 +2190,7 @@
                 <identifier>RecordData_de_indicacao_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2096,7 +2224,7 @@
                 <identifier>Recordqual_cliente_indicou_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2130,7 +2258,7 @@
                 <identifier>RecordOperacao_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2168,7 +2296,7 @@
                 <identifier>RecordLeadSourceField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Can_Ready_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2728,6 +2856,19 @@
             <componentInstance>
                 <componentName>openFlowConfirmationModal</componentName>
                 <identifier>c_openFlowConfirmationModal</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -2809,6 +2950,19 @@
                 </componentInstanceProperties>
                 <componentName>homologationFormList</componentName>
                 <identifier>c_homologationFormList</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.StageName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Homologation</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.StageName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Contract</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

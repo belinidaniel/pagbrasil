@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 2025-01-20
- * @last modified by  : Hersilio Belini de Oliveira
+ * @last modified on  : 07-08-2025
+ * @last modified by  : Daniel Belini
 **/
 public with sharing class ZendeskService {
 
@@ -19,7 +19,8 @@ public with sharing class ZendeskService {
             String url = ENDPOINT_BASE + 'tickets.json';
 
             String body = JSON.serialize(ticket).replace('publicComment', 'public');
-
+            System.Debug('Request url:       ------------ ' + url);
+            System.Debug('Request body:       ------------ ' + body);
             HttpResponseDto response = HttpRequestUtil.sendRequest(url, MehtodRequestEnum.POST, body, null);
             System.Debug(response);
             if(response.code == 201){

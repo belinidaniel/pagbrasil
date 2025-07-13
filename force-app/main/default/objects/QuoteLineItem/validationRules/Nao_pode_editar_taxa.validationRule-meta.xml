@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nao_pode_editar_taxa</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+				ISCHANGED( UnitPrice ),
+    OR(Tax__c == null, Tax__r.FlexBoard__c == null, Tax__r.FlexBoard__c == 0) ,
+				NOT(ISNEW()))</errorConditionFormula>
+    <errorMessage>This Quoteline Item can not be edited.</errorMessage>
+</ValidationRule>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 06-11-2025
+  @last modified on  : 07-09-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -98,7 +98,7 @@
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <th style="border-right: 1px solid black; width: 30%;text-align:left;">Merchant: </th>
-                        <th style="font-weight: normal;text-align: left!important;"> {!opportunity.Account.CNPJ__c} - {!opportunity.Account.Nome_Empresarial__c}</th>
+                        <th style="font-weight: normal;text-align: left!important;"> {!opportunity.Account.CNPJ__c} - {!legalName}</th>
                     </tr>
                     <tr>
                         <td style="border-right: 1px solid black; font-weight: bold;text-align:left;">KYC Form Link: </td>
@@ -134,7 +134,7 @@
                             <th style="font-size:12px">PagBrasil Pix</th>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <th style="font-size:12px">Credit Card*</th>
                         </apex:panelGroup>
                         
@@ -156,7 +156,7 @@
                             <td>{!pixOne}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardOne}</td>
                         </apex:panelGroup>
                         
@@ -175,7 +175,7 @@
                             <td>{!pixTwo}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardTwo}</td>
                         </apex:panelGroup>
                         
@@ -195,7 +195,7 @@
                             <td>{!pixThree}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardThree}</td>
                         </apex:panelGroup>
                         
@@ -215,7 +215,7 @@
                             <td>{!pixFour}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td>{!creditCardFour}</td>
                         </apex:panelGroup>
                         
@@ -235,7 +235,7 @@
                             <td style="color: #0058B5;">{!pixGateway}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartao}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
                             <td style="color: #0058B5;">{!creditCardGateway}</td>
                         </apex:panelGroup>
                         
@@ -492,23 +492,25 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Chargeback</td>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Additional Chargeback Excess Fee for Card transactions</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Card Chargeback</td>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Amount withheld due to the provision in Clause 5.8 “g” </td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
-                            USD per Card Chargeback, if the Merchant, for two (2) consecutive months, exceeds 100 Chargebacks and the CTR exceeds 1,5% (one comma five percent) in one calendar month. 
-                        </td>
-                    </tr>
+                    <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Chargeback</td>
+                        </tr>
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Additional Chargeback Excess Fee for Card transactions</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Card Chargeback</td>
+                        </tr>
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Amount withheld due to the provision in Clause 5.8 “g” </td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
+                                USD per Card Chargeback, if the Merchant, for two (2) consecutive months, exceeds 100 Chargebacks and the CTR exceeds 1,5% (one comma five percent) in one calendar month. 
+                            </td>
+                        </tr>
+                    </apex:panelGroup>
                 </tbody>
             </table>
             
@@ -573,7 +575,7 @@
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Digital wallet solution</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay, Apple Pay, or Samsung Pay</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay or Apple Pay</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">1-Click Pix</td>

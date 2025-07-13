@@ -91,4 +91,71 @@ private class ContentDocumentLinkHandlerTest {
 		ContentDocumentLinkHandler.afterInsert(new Map<Id, ContentDocumentLink>());
 		Test.stopTest();
 	}
+    
+    @isTest
+    static void testReturnEarly() {
+        // contentDocumentIds vazio
+        Set<Id> emptyContentDocumentIds = new Set<Id>();
+        Set<Id> validOpportunityIds = new Set<Id>{'001000000000000AAA'};
+
+        // validOpportunityIds vazio
+        Set<Id> contentDocumentIds = new Set<Id>{'069000000000000AAA'};
+        Set<Id> emptyValidOpportunityIds = new Set<Id>();
+        
+        Test.startTest();
+        ContentDocumentLinkService.sendDocumentWhitDocusing(contentDocumentIds, emptyValidOpportunityIds);
+        ContentDocumentLinkService.sendDocumentWhitDocusing(emptyContentDocumentIds, validOpportunityIds);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void testHandleOrderCompleteCalled() {
+        // Criação de conta e oportunidade com todos os campos preenchidos
+        Account acc = new Account(Name = 'Test Account');
+        insert acc;
+
+        Opportunity opp = new Opportunity(
+            Name = 'Test Opportunity with QuoteLineItems',
+            StageName = 'Negotiation',
+            CloseDate = Date.today().addDays(30),
+            BusinessModel__c = 'Intermediation',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
+            Product_or_service_website_URL__c = 'www.site.com',
+            AverageSalesTicket__c = 15000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            Integracao__c = 'API',
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
+            AccountId = acc.Id,
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly'
+        );
+        insert opp;
+
+        // Criação de ContentVersion e obtenção do ContentDocumentId
+        ContentVersion cv = new ContentVersion(
+            Title = 'ContractNacionalPage Document',
+            PathOnClient = 'contract.pdf',
+            VersionData = Blob.valueOf('Test content')
+        );
+        insert cv;
+
+        Id contentDocId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id].ContentDocumentId;
+
+        Set<Id> contentDocumentIds = new Set<Id>{contentDocId};
+        Set<Id> validOpportunityIds = new Set<Id>{opp.Id};
+
+        Test.startTest();
+        ContentDocumentLinkService.sendDocumentWhitDocusing(contentDocumentIds, validOpportunityIds);
+        Test.stopTest();
+    }
 }

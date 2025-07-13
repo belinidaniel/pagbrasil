@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 06-11-2025
+ * @last modified on  : 07-10-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -66,7 +66,14 @@ public class ContractController {
     public String pagBrasilOne { get; set; }
     public String pagBrasilTwo { get; set; }
     public String pagBrasilThree { get; set; }
+    public String pagBrasilFour { get; set; }
 
+    public string pagBrasilGatewayOne { get; set; }
+    public String pagBrasilGatewayTwo { get; set; }
+    public String pagBrasilGatewayThree { get; set; }
+    public String pagBrasilGatewayFour { get; set; }
+
+    
     public String taxaToken { get; set; }
     public String taxaAntecipacao { get; set; }
     public String adherenceFee { get; set; }
@@ -124,6 +131,7 @@ public class ContractController {
 
     Boolean isCrossborder = false;
 
+    public Boolean isGatewayAndIntermediation { get; set; }
 
     public String termClauses { get; set; }
     public String termClausesTitle { get; set; }
@@ -139,6 +147,7 @@ public class ContractController {
 
         Opportunity opp = (Opportunity) stdController.getRecord();
 
+        this.isGatewayAndIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') && opp.BusinessModel__c.contains('Intermediation') : false;
 
         getTermClauses(opp.Id, opp.RequestChangeClause__c);
 
@@ -180,7 +189,7 @@ public class ContractController {
 
         this.isFluxoMedio = String.isNotBlank(opp.Antecipation_Frequency_1__c) && opp.Antecipation_Frequency_1__c.contains('Fluxo Médio');
         try {
-            this.quote = [SELECT Id,Name,Status,QuoteNumber, (SELECT Id, Price__c, MonthlyRevenue__c, InitialMonthlyRevenue__c, FinalMonthlyRevenue__c, Product2.ProductCode, PercentValue__c FROM QuoteLineItems ORDER BY Order__c) FROM Quote WHERE OpportunityId = :opp.Id ORDER BY CreatedDate DESC LIMIT 1];
+            this.quote = [SELECT Id,Name,Status,QuoteNumber, (SELECT Id, Price__c, MonthlyRevenue__c, MonthlyRevenueCode__c, InitialMonthlyRevenue__c, FinalMonthlyRevenue__c, Product2.ProductCode, PercentValue__c FROM QuoteLineItems ORDER BY Order__c) FROM Quote WHERE OpportunityId = :opp.Id ORDER BY CreatedDate DESC LIMIT 1];
         } catch(QueryException e) {
             throw new QueryException('Nenhuma Quote encontrada para esta oportunidade.');
         }
@@ -197,9 +206,11 @@ public class ContractController {
             this.containsCartao = this.opportunity.NationalPaymentMethod__c.contains('Cartão');
             this.containsDebito = this.opportunity.NationalPaymentMethod__c.contains('Débito');
         }
-
-        this.containsCartaoAndIsIntermediation = this.containsCartao && !this.isGateway;
-        System.debug('containsCartaoAndIsIntermediation: ' + this.containsCartaoAndIsIntermediation);
+        System.debug('containsCartao: ' + this.containsCartao);
+        System.debug('isGateway: ' + this.isGateway);
+        if(this.isGateway != null){
+            this.containsCartaoAndIsIntermediation = this.containsCartao && !this.isGateway;
+        }
 
         this.lowRange = this.opportunity.previs_fat_rs__c <= 5000000;
         this.firstRange = this.lowRange ? '> 1M' : '> 10M';
@@ -380,44 +391,45 @@ public class ContractController {
                         this.pixGateway = price;
                     }
                     when 'PROCESSING_FEES_PIX' {
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.pixFour = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.pixThree = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.pixTwo = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.pixOne = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pixFour = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pixThree = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pixTwo = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pixOne = price;
                     }
                     when 'TAXA_GATEWAY_CREDITO' {
                         this.creditCardGateway = price;
                     }
                     when 'PROCESSING_FEES_CREDIT_CARD' {
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.creditCardFour = price;
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.creditCardThree = price;
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.creditCardTwo = price;
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.creditCardOne = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.creditCardFour = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.creditCardThree = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.creditCardTwo = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.creditCardOne = price;
 
                     }
                     when 'PAGBRASIL_SOLUTION_FEE' {
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilFour = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
 
                     }
                     when 'TAXA_GATEWAY_DEBITO' {
                         this.debitCardGateway = price;
                     }
                     when 'PROCESSING_FEES_DEBITO' {
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.debitCardFour = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.debitCardThree = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.debitCardTwo = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.debitCardOne = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.debitCardFour = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.debitCardThree = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.debitCardTwo = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.debitCardOne = price;
                     }
                     when 'TAXA_GATEWAY_BOLETO' {
                         this.boletoGateway = price;
                     }
                     when 'PROCESSING_FEES_BOLETO' {
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.boletoFour = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.boletoThree = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.boletoTwo = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.boletoOne = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.boletoFour = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.boletoThree = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.boletoTwo = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.boletoOne = price;
                     }
                 }
             } else{
@@ -520,44 +532,50 @@ public class ContractController {
                         this.pixGateway = price;
                     }
                     when 'TAXA_PROCESS_PIX' {
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.pixFour = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.pixThree = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.pixTwo = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.pixOne = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pixFour = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pixThree = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pixTwo = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pixOne = price;
                     }
                     when 'TAXA_GATEWAY_CREDITO' {
                         this.creditCardGateway = price;
                     }
                     when 'TAXA_PROCESS_CREDITO' {
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.creditCardFour = price;
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.creditCardThree = price;
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.creditCardTwo = price;
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.creditCardOne = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.creditCardFour = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.creditCardThree = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.creditCardTwo = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.creditCardOne = price;
 
                     }
                     when 'TAXA_PAGBRASIL' {
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        if(quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilFour = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilThree = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilTwo = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilOne = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                    }
+                    when 'TAXA_PAGBRASIL_GATEWAY' {
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pagBrasilGatewayFour = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pagBrasilGatewayThree = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pagBrasilGatewayTwo = price;
+                        if(quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pagBrasilGatewayOne = price;
                     }
                     when 'TAXA_GATEWAY_DEBITO' {
                         this.debitCardGateway = price;
                     }
                     when 'TAXA_PROCESS_DEBITO' {
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.debitCardFour = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.debitCardThree = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.debitCardTwo = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.debitCardOne = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.debitCardFour = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.debitCardThree = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.debitCardTwo = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.debitCardOne = price;
                     }
                     when 'TAXA_GATEWAY_BOLETO' {
                         this.boletoGateway = price;
                     }
                     when 'TAXA_PROCESS_BOLETO' {
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 0,00 ~ R$ 99999,99') this.boletoFour = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 100000,00 ~ R$ 499999,99') this.boletoThree = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 500000,00 ~ R$ 999999,99') this.boletoTwo = price;
-                        if( quoteLineItem.MonthlyRevenue__c == 'R$ 1000000,00 ~ R$ 4999999,99') this.boletoOne = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.boletoFour = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.boletoThree = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.boletoTwo = price;
+                        if( quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.boletoOne = price;
                     }
                 }
             }

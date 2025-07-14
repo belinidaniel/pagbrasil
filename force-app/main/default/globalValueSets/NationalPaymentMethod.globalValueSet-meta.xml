@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Pix</fullName>
+        <default>false</default>
+        <label>Pix</label>
+    </customValue>
+    <customValue>
+        <fullName>Cartão de Crédito</fullName>
+        <default>false</default>
+        <label>Cartão de Crédito</label>
+    </customValue>
+    <customValue>
+        <fullName>Débito Flash</fullName>
+        <default>false</default>
+        <label>Débito Flash</label>
+    </customValue>
+    <customValue>
+        <fullName>Boleto Flash</fullName>
+        <default>false</default>
+        <label>Boleto Flash</label>
+    </customValue>
+    <masterLabel>Métodos de Pagamentos - Nacional</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

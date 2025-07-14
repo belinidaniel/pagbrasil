@@ -1,0 +1,50 @@
+<messaging:emailTemplate subject="Aprovação flex" recipientType="User" relatedToType="Quote">
+<messaging:htmlEmailBody >
+    <html>
+        <head>
+            <style>
+                table, th, td {
+                  border: 1px solid black;
+                  border-collapse: collapse;
+                }
+                .titulo {
+                   font-weight: bold;
+                }
+            </style>
+        </head>
+        <body>
+           <p>Olá,</p>
+           <p>Você precisa aprovar a cotação <b>{!relatedTo.Name}</b> número <b>{!relatedTo.quoteNumber}</b>, referente à oportunidade <b>{!relatedTo.Opportunity.Name}</b>, do cliente <b>{!relatedTo.Account.Name}</b>.</p>
+           <p>Faturamento: {!relatedTo.Opportunity.previs_fat_rs__c}</p>
+           <table>
+                <tr>
+                    <td class="titulo">Número</td>
+                    <td class="titulo">Valor Informado</td>
+                    <td class="titulo">Valor Board</td>
+                    <td class="titulo">Valor Head</td>
+                    <td class="titulo">Nível de Aprovação</td>
+                </tr>
+                <apex:repeat var="item" value="{!relatedTo.QuoteLineItems}">
+                <apex:outputPanel layout="block" rendered="{!item.NeedsApproval__c == 'Board' || item.NeedsApproval__c == 'Head'}">
+                <tr>
+                    <td><apex:outputField value="{!item.LineNumber}"/></td>
+                    <td>
+                        <apex:outputField rendered="{!item.PercentValue__c != NULL && item.PercentValue__c != 0}" value="{!item.PercentValue__c }"/> 
+<apex:outputText rendered="{!item.UnitPrice != NULL && item.UnitPrice != 0}" value="{0,number,###,##0.00}">
+    <apex:param value="{!item.UnitPrice}" />
+</apex:outputText>
+                    </td>
+                    <td><apex:outputField value="{!item.Board__c}"/></td>
+                    <td><apex:outputField value="{!item.Head__c}"/></td>
+                    <td><apex:outputField value="{!item.NeedsApproval__c}"/></td>
+                </tr>
+                </apex:outputPanel>
+            </apex:repeat>
+            </table>
+           <br>Para aprovar, reprovar ou sugerir uma reanálise, clique no <b>link abaixo</b> e acesse o painel de controle da plataforma.</br>
+            <p><apex:outputLink value="https://pagbrasil--sandboxsr1.sandbox.lightning.force.com/lightning/r/Quote/{!relatedTo.Id}/view">Acessar Proposta</apex:outputLink></p>  
+        </body>
+     </html>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

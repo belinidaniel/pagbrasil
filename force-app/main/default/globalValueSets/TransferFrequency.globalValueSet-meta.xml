@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Diária</fullName>
+        <default>false</default>
+        <label>Diária</label>
+    </customValue>
+    <customValue>
+        <fullName>Semanal</fullName>
+        <default>false</default>
+        <label>Semanal</label>
+    </customValue>
+    <customValue>
+        <fullName>Bissemanal</fullName>
+        <default>false</default>
+        <label>Bissemanal</label>
+    </customValue>
+    <customValue>
+        <fullName>Mensal</fullName>
+        <default>false</default>
+        <label>Mensal</label>
+    </customValue>
+    <masterLabel>Transfer Frequency</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

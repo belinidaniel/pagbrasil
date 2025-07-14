@@ -2,13 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ImpedirFaseProspeccao</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(
-				 ISPICKVAL(PRIORVALUE(Status), &apos;Pre prospection&apos;),  
-				 ISPICKVAL(Status, &apos;Prospection&apos;),
-     ISCHANGED(Status),
-				 CONTAINS(TEXT(Qualificador__c),  &apos;Outbound&apos;),
-				 ISBLANK ( TeseProspeccao__c )
-				)</errorConditionFormula>
+    <errorConditionFormula>ISBLANK(TeseProspeccao__c)</errorConditionFormula>
     <errorDisplayField>TeseProspeccao__c</errorDisplayField>
-    <errorMessage>Para avançar de fase, preencha a Tese de Prospecção.</errorMessage>
+    <errorMessage>Provide the Prospecting Thesis</errorMessage>
 </ValidationRule>

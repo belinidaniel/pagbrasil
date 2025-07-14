@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>No</fullName>
+        <default>false</default>
+        <label>No</label>
+    </customValue>
+    <customValue>
+        <fullName>1000</fullName>
+        <default>false</default>
+        <label>1000</label>
+    </customValue>
+    <customValue>
+        <fullName>10000</fullName>
+        <default>false</default>
+        <label>10000</label>
+    </customValue>
+    <customValue>
+        <fullName>100000</fullName>
+        <default>false</default>
+        <label>100000</label>
+    </customValue>
+    <masterLabel>Packages</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

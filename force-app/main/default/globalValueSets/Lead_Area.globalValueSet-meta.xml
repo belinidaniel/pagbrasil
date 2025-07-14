@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Comercial</fullName>
+        <default>false</default>
+        <label>Comercial</label>
+    </customValue>
+    <customValue>
+        <fullName>Financeiro</fullName>
+        <default>false</default>
+        <label>Financeiro</label>
+    </customValue>
+    <customValue>
+        <fullName>Expansão</fullName>
+        <default>false</default>
+        <label>Expansão</label>
+    </customValue>
+    <customValue>
+        <fullName>E-commerce</fullName>
+        <default>false</default>
+        <label>E-commerce</label>
+    </customValue>
+    <customValue>
+        <fullName>Digital/Inovação</fullName>
+        <default>false</default>
+        <label>Digital/Inovação</label>
+    </customValue>
+    <customValue>
+        <fullName>Diretoria</fullName>
+        <default>false</default>
+        <label>Diretoria</label>
+    </customValue>
+    <masterLabel>Área do lead</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

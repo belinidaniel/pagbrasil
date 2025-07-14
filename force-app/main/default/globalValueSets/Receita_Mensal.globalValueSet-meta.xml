@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Até R$50k</fullName>
+        <default>false</default>
+        <label>Até R$50k</label>
+    </customValue>
+    <customValue>
+        <fullName>R$50k até R$100k</fullName>
+        <default>false</default>
+        <label>R$50k até R$100k</label>
+    </customValue>
+    <customValue>
+        <fullName>R$100k até R$200k</fullName>
+        <default>false</default>
+        <label>R$100k até R$200k</label>
+    </customValue>
+    <customValue>
+        <fullName>R$200k até R$500k</fullName>
+        <default>false</default>
+        <label>R$200k até R$500k</label>
+    </customValue>
+    <customValue>
+        <fullName>R$500k até 1M</fullName>
+        <default>false</default>
+        <label>R$500k até 1M</label>
+    </customValue>
+    <customValue>
+        <fullName>Acima de R$1M</fullName>
+        <default>false</default>
+        <label>Acima de R$1M</label>
+    </customValue>
+    <customValue>
+        <fullName>Ainda não tem operação online</fullName>
+        <default>false</default>
+        <label>Ainda não tem operação online</label>
+    </customValue>
+    <customValue>
+        <fullName>Não vende para o Brasil ainda.</fullName>
+        <default>false</default>
+        <label>Não vende para o Brasil ainda.</label>
+    </customValue>
+    <customValue>
+        <fullName>R$100k até R$500k</fullName>
+        <default>false</default>
+        <label>R$100k até R$500k</label>
+    </customValue>
+    <customValue>
+        <fullName>Até R$100K</fullName>
+        <default>false</default>
+        <label>Até R$100K</label>
+    </customValue>
+    <masterLabel>Receita Mensal</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

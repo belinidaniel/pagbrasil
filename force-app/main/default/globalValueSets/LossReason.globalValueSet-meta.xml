@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Non Responsive – Unable to Qualify</fullName>
+        <default>false</default>
+        <label>Non Responsive – Unable to Qualify</label>
+    </customValue>
+    <customValue>
+        <fullName>Non responsive – Qualified</fullName>
+        <default>false</default>
+        <label>Non responsive – Qualified</label>
+    </customValue>
+    <customValue>
+        <fullName>Refused - Prohibited Category</fullName>
+        <default>false</default>
+        <label>Refused - Prohibited Category</label>
+    </customValue>
+    <customValue>
+        <fullName>Refused – Minimum Revenue</fullName>
+        <default>false</default>
+        <label>Refused – Minimum Revenue</label>
+    </customValue>
+    <customValue>
+        <fullName>Refused – Not a Business Customer</fullName>
+        <default>false</default>
+        <label>Refused – Not a Business Customer</label>
+    </customValue>
+    <customValue>
+        <fullName>Refused - Digital Immature Customer</fullName>
+        <default>false</default>
+        <label>Refused - Digital Immature Customer</label>
+    </customValue>
+    <customValue>
+        <fullName>Refused - Not investing in Brazil</fullName>
+        <default>false</default>
+        <label>Refused - Not investing in Brazil</label>
+    </customValue>
+    <customValue>
+        <fullName>Platform not Supported</fullName>
+        <default>false</default>
+        <label>Platform not Supported</label>
+    </customValue>
+    <customValue>
+        <fullName>Feature not Supported</fullName>
+        <default>false</default>
+        <label>Feature not Supported</label>
+    </customValue>
+    <customValue>
+        <fullName>Fees</fullName>
+        <default>false</default>
+        <label>Fees</label>
+    </customValue>
+    <customValue>
+        <fullName>Settlement terms</fullName>
+        <default>false</default>
+        <label>Settlement terms</label>
+    </customValue>
+    <customValue>
+        <fullName>Currency</fullName>
+        <default>false</default>
+        <label>Currency</label>
+    </customValue>
+    <customValue>
+        <fullName>Project On hold</fullName>
+        <default>false</default>
+        <label>Project On hold</label>
+    </customValue>
+    <customValue>
+        <fullName>Coverage</fullName>
+        <default>false</default>
+        <label>Coverage</label>
+    </customValue>
+    <customValue>
+        <fullName>Terminated – Desinvesting in Brazil</fullName>
+        <default>false</default>
+        <label>Terminated – Desinvesting in Brazil</label>
+    </customValue>
+    <customValue>
+        <fullName>Terminated – Changed to competitor</fullName>
+        <default>false</default>
+        <label>Terminated – Changed to competitor</label>
+    </customValue>
+    <customValue>
+        <fullName>Terminated – Risk Department</fullName>
+        <default>false</default>
+        <label>Terminated – Risk Department</label>
+    </customValue>
+    <customValue>
+        <fullName>Terminated – Inactive</fullName>
+        <default>false</default>
+        <label>Terminated – Inactive</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Duplicate Log</fullName>
+        <default>false</default>
+        <label>Duplicate Log</label>
+    </customValue>
+    <masterLabel>Loss Reason</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

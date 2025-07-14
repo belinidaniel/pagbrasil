@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Intermediation</fullName>
+        <default>false</default>
+        <label>Intermediation</label>
+    </customValue>
+    <customValue>
+        <fullName>Gateway</fullName>
+        <default>false</default>
+        <label>Gateway</label>
+    </customValue>
+    <customValue>
+        <fullName>Pix International</fullName>
+        <default>false</default>
+        <label>Pix International</label>
+    </customValue>
+    <customValue>
+        <fullName>Pix Roaming</fullName>
+        <default>false</default>
+        <label>Pix Roaming</label>
+    </customValue>
+    <masterLabel>Business Model</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

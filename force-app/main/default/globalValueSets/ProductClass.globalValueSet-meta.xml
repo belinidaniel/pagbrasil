@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>5122</fullName>
+        <default>false</default>
+        <label>Drugstores</label>
+    </customValue>
+    <customValue>
+        <fullName>5300</fullName>
+        <default>false</default>
+        <label>Wholesale Clubs</label>
+    </customValue>
+    <customValue>
+        <fullName>5331</fullName>
+        <default>false</default>
+        <label>Variety Stores</label>
+    </customValue>
+    <customValue>
+        <fullName>5499</fullName>
+        <default>false</default>
+        <label>Grocery Stores and Supermarkets</label>
+    </customValue>
+    <customValue>
+        <fullName>5651</fullName>
+        <default>false</default>
+        <label>Clothing</label>
+    </customValue>
+    <customValue>
+        <fullName>5732</fullName>
+        <default>false</default>
+        <label>Electronics Stores</label>
+    </customValue>
+    <customValue>
+        <fullName>5734</fullName>
+        <default>false</default>
+        <label>Computer Software</label>
+    </customValue>
+    <customValue>
+        <fullName>5921</fullName>
+        <default>false</default>
+        <label>Beer, Wine, Liquor Stores</label>
+    </customValue>
+    <customValue>
+        <fullName>5977</fullName>
+        <default>false</default>
+        <label>Cosmetic Stores</label>
+    </customValue>
+    <customValue>
+        <fullName>8299</fullName>
+        <default>false</default>
+        <label>Schools and Educational Services</label>
+    </customValue>
+    <customValue>
+        <fullName>8999</fullName>
+        <default>false</default>
+        <label>Professional Services</label>
+    </customValue>
+    <customValue>
+        <fullName>7299</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <masterLabel>Product Class</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Boleto Flash</fullName>
+        <default>false</default>
+        <label>Boleto Flash®</label>
+    </customValue>
+    <customValue>
+        <fullName>Pix</fullName>
+        <default>false</default>
+        <label>Pix</label>
+    </customValue>
+    <customValue>
+        <fullName>Cartão de Crédito Nacional</fullName>
+        <default>false</default>
+        <label>Cartão de Crédito Nacional</label>
+    </customValue>
+    <customValue>
+        <fullName>Cartão de Débito Nacional</fullName>
+        <default>false</default>
+        <label>Cartão de Débito Nacional</label>
+    </customValue>
+    <customValue>
+        <fullName>Link de Pagamento</fullName>
+        <default>false</default>
+        <label>Link de Pagamento</label>
+    </customValue>
+    <customValue>
+        <fullName>PEC Express</fullName>
+        <default>false</default>
+        <label>PEC Flash</label>
+    </customValue>
+    <customValue>
+        <fullName>Transferência Bancária Online</fullName>
+        <default>false</default>
+        <label>Transferência Bancária Online</label>
+    </customValue>
+    <customValue>
+        <fullName>Payout</fullName>
+        <default>false</default>
+        <label>Payout</label>
+    </customValue>
+    <customValue>
+        <fullName>POS Mobile</fullName>
+        <default>false</default>
+        <label>POS Mobile</label>
+    </customValue>
+    <customValue>
+        <fullName>Google Pay</fullName>
+        <default>false</default>
+        <label>Google Pay</label>
+    </customValue>
+    <masterLabel>Métodos de Pagamento a Utilizar</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

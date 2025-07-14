@@ -40,6 +40,14 @@
             <fullName>Intermediation</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Pix International</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pix Roaming</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Flexibilization__c</picklist>

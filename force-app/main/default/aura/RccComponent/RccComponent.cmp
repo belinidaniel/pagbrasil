@@ -1,0 +1,19 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="exitFlow" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:html tag="style">
+        .slds-modal__container {
+            width: 50%;
+            max-width: 90% !important;
+        }
+
+        .slds-modal__content {
+            height:auto !important;
+            max-height: none !important;
+        }
+    </aura:html>
+
+    <lightning:flow aura:id="flowData" />
+</aura:component>

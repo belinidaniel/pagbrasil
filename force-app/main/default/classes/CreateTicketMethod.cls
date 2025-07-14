@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-08-2025
+ * @last modified on  : 07-12-2025
  * @last modified by  : Daniel Belini
 **/
 public class CreateTicketMethod {
@@ -278,7 +278,7 @@ public class CreateTicketMethod {
     }
 
     // Helper method to extract name between first and second dot from URL
-    private static String extractNameFromUrl(String url) {
+    public static String extractNameFromUrl(String url) {
         if (String.isBlank(url)) {
             return '';
         }

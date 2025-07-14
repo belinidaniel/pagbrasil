@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-10-2025
+ * @last modified on  : 07-13-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -611,7 +611,7 @@ public class PropostaNacionalController {
         } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
-            this.antecipationFrequencyPageOne = 'bissemanal';
+            this.antecipationFrequencyPageOne = 'quinzenal';
         } else if (antecipation == 'Monthly') {
             this.frequencyCardEligebleDatePageOne = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
@@ -627,7 +627,7 @@ public class PropostaNacionalController {
         } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
-            this.antecipationFrequencyPageOne = 'bissemanal';
+            this.antecipationFrequencyPageOne = 'quinzenal';
         } else if (antecipation == 'Monthly') {
             this.frequencyCardEligebleDatePageOne = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
@@ -639,7 +639,7 @@ public class PropostaNacionalController {
         if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
-            this.antecipationFrequencyPageOne = 'bissemanal';
+            this.antecipationFrequencyPageOne = 'quinzenal';
         } else if (antecipation == 'Monthly') {
             this.frequencyCardEligebleDatePageOne = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
@@ -667,7 +667,7 @@ public class PropostaNacionalController {
         } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
-            this.antecipationFrequencyPageTwo = 'bissemanal';
+            this.antecipationFrequencyPageTwo = 'quinzenal';
         } else if (antecipation == 'Monthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
@@ -683,7 +683,7 @@ public class PropostaNacionalController {
         } else if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
-            this.antecipationFrequencyPageTwo = 'bissemanal';
+            this.antecipationFrequencyPageTwo = 'quinzenal';
         } else if (antecipation == 'Monthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
@@ -695,7 +695,7 @@ public class PropostaNacionalController {
         if (antecipation == 'Bimonthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
-            this.antecipationFrequencyPageTwo = 'bissemanal';
+            this.antecipationFrequencyPageTwo = 'quinzenal';
         } else if (antecipation == 'Monthly') {
             this.frequencyCardEligebleDatePageTwo = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';

@@ -1,0 +1,10 @@
+<messaging:emailTemplate subject="Aprovação de KYC pendente" recipientType="User" relatedToType="KYC__c">
+    <messaging:htmlEmailBody >
+        <html>
+            <body>
+                <h3>Prezado(a) {!recipient.Name}</h3>
+                <p>Gostaríamos de informar que o formulário KYC para a cotação {!relatedTo.Opportunity__r.SyncedQuote.Name} (ID: {!relatedTo.Opportunity__r.SyncedQuoteId}) da oportunidade {!relatedTo.Opportunity__r.Name} está pronto para revisão e aprovação.</p>
+            </body>
+        </html>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

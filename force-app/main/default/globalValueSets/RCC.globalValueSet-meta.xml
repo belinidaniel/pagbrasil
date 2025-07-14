@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Sim</fullName>
+        <default>false</default>
+        <label>Sim</label>
+    </customValue>
+    <customValue>
+        <fullName>Em Partes</fullName>
+        <default>false</default>
+        <label>Em Partes</label>
+    </customValue>
+    <customValue>
+        <fullName>Nao</fullName>
+        <default>false</default>
+        <label>Não</label>
+    </customValue>
+    <customValue>
+        <fullName>Yes</fullName>
+        <default>false</default>
+        <label>Yes</label>
+    </customValue>
+    <customValue>
+        <fullName>In Parts</fullName>
+        <default>false</default>
+        <label>In Parts</label>
+    </customValue>
+    <customValue>
+        <fullName>No</fullName>
+        <default>false</default>
+        <label>No</label>
+    </customValue>
+    <masterLabel>RCC</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

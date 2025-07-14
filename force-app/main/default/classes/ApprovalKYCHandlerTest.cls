@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Daniel Belini
+ * @group             : 
+ * @last modified on  : 07-12-2025
+ * @last modified by  : Daniel Belini
+**/
 @IsTest
 public class ApprovalKYCHandlerTest {
 	@testSetup
@@ -13,7 +20,6 @@ public class ApprovalKYCHandlerTest {
 			StageName='Prospecting',
 			CloseDate=Date.today(),
 			ForecastCategoryName = 'Pipeline',
-			CurrencyIsoCode = UserInfo.getDefaultCurrency(),
 			Probability = 10,
 			AccountId = acct.Id,
 			AverageSalesTicket__c = 1000,

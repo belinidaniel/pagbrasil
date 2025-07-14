@@ -614,7 +614,7 @@
         <div class="page">
             <img src="{!$Resource.OneClickPixPage}" class="page-background-image" />
             <div class="page-content">
-                <p style="font-size: 14px; margin-top: 203px; margin-left: 65px; width: 500px; color: #505050; font-weight: 600"></p>
+                <p style="font-size: 14px; margin-top: 498px; margin-left: 180px; width: 500px; color: #505050; font-weight: 300">BRL 1.90 + 0.2% added to the Pix processing fees​</p>
             </div>
             <div class="page-footer">
                     <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
@@ -782,7 +782,7 @@
                             <li>Customizable billing cycles  ​</li>
                             <li>Multiple integration options through direct API, Shopify app, PB Checkout (Payment Link), and PagStream®​</li>
                         </ul>
-                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> BRL 0.2% added to the credit card processing fees.</p>
+                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> BRL 1.90 added to the pix processing fees.</p>
                     </div>
                 </div>
                 <div class="page-footer" style="bottom: 30px">

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>B2B</fullName>
+        <default>false</default>
+        <label>B2B</label>
+    </customValue>
+    <customValue>
+        <fullName>B2C</fullName>
+        <default>false</default>
+        <label>B2C</label>
+    </customValue>
+    <customValue>
+        <fullName>B2B2C</fullName>
+        <default>false</default>
+        <label>B2B2C</label>
+    </customValue>
+    <customValue>
+        <fullName>D2C</fullName>
+        <default>false</default>
+        <label>D2C</label>
+    </customValue>
+    <masterLabel>Business Model Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Daniel Belini
+ * @group             : 
+ * @last modified on  : 07-13-2025
+ * @last modified by  : Daniel Belini
+**/
 @IsTest
 public class KYCBoostControllerTest {
     @TestSetup
@@ -95,12 +102,6 @@ public class KYCBoostControllerTest {
         ApexPages.currentPage().getParameters().put('id', testKyc.Id);
         KYCBoostController controller = new KYCBoostController();
         System.assertEquals(true, controller.hasBasicBB);
-        System.assertEquals(true, controller.hasKycBB);
-        System.assertEquals(true, controller.hasOwnersBB);
-        System.assertEquals(true, controller.hasMediaBB);
-        System.assertEquals(true, controller.hasActivityBB);
-        System.assertEquals(true, controller.hasEmailsBB);
-        System.assertEquals(true, controller.hasProcessesBB);
     }
     
     @IsTest

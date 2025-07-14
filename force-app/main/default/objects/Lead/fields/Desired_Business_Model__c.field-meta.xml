@@ -19,6 +19,16 @@
                 <default>false</default>
                 <label>Gateway</label>
             </value>
+            <value>
+                <fullName>Pix International</fullName>
+                <default>false</default>
+                <label>Pix International</label>
+            </value>
+            <value>
+                <fullName>Pix Roaming</fullName>
+                <default>false</default>
+                <label>Pix Roaming</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
     <visibleLines>4</visibleLines>

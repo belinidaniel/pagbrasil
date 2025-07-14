@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>JS</fullName>
+        <default>false</default>
+        <label>JS</label>
+    </customValue>
+    <customValue>
+        <fullName>API</fullName>
+        <default>false</default>
+        <label>API</label>
+    </customValue>
+    <customValue>
+        <fullName>Vtex</fullName>
+        <default>false</default>
+        <label>Vtex</label>
+    </customValue>
+    <customValue>
+        <fullName>Shopify</fullName>
+        <default>false</default>
+        <label>Shopify</label>
+    </customValue>
+    <customValue>
+        <fullName>Shopify with Buda</fullName>
+        <default>false</default>
+        <label>Shopify with Buda</label>
+    </customValue>
+    <customValue>
+        <fullName>Shopify with Yampi</fullName>
+        <default>false</default>
+        <label>Shopify with Yampi</label>
+    </customValue>
+    <customValue>
+        <fullName>Shopify with Cart Panda</fullName>
+        <default>false</default>
+        <label>Shopify with Cart Panda</label>
+    </customValue>
+    <customValue>
+        <fullName>Woocommerce</fullName>
+        <default>false</default>
+        <label>Woocommerce</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce</fullName>
+        <default>false</default>
+        <label>Salesforce</label>
+    </customValue>
+    <customValue>
+        <fullName>PB Checkout</fullName>
+        <default>false</default>
+        <label>PB Checkout</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce CC</fullName>
+        <default>false</default>
+        <label>Salesforce CC</label>
+    </customValue>
+    <customValue>
+        <fullName>InHouse / API</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>InHouse / API</label>
+    </customValue>
+    <customValue>
+        <fullName>InHouse</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>InHouse</label>
+    </customValue>
+    <customValue>
+        <fullName>Standard</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Standard</label>
+    </customValue>
+    <customValue>
+        <fullName>Shopify - CartX</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Shopify - CartX</label>
+    </customValue>
+    <customValue>
+        <fullName>Magento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Magento</label>
+    </customValue>
+    <customValue>
+        <fullName>PrestaShop</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>PrestaShop</label>
+    </customValue>
+    <customValue>
+        <fullName>OpenCart</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>OpenCart</label>
+    </customValue>
+    <customValue>
+        <fullName>ACI</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>ACI</label>
+    </customValue>
+    <customValue>
+        <fullName>Computop</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Computop</label>
+    </customValue>
+    <customValue>
+        <fullName>Oracle</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Oracle</label>
+    </customValue>
+    <customValue>
+        <fullName>NuvemShop</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NuvemShop</label>
+    </customValue>
+    <customValue>
+        <fullName>Loja Integrada</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Loja Integrada</label>
+    </customValue>
+    <customValue>
+        <fullName>Tray</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Tray</label>
+    </customValue>
+    <customValue>
+        <fullName>Get Commerce</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Get Commerce</label>
+    </customValue>
+    <masterLabel>Integration Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

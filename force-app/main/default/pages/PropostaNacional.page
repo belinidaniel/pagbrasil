@@ -739,7 +739,7 @@
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 487px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 487px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
-                    <apex:panelGroup rendered="{!containsCreditCard}">
+                    <!-- <apex:panelGroup rendered="{!containsCreditCard}">
                         <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
                             <li class="additional-terms-item">
                                 Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
@@ -748,7 +748,7 @@
                                 Cobrança por transação aprovada.
                             </li>
                         </ul>
-                    </apex:panelGroup>
+                    </apex:panelGroup> -->
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
                 <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
@@ -784,7 +784,7 @@
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 390px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 620px; font-size:18px; white-space: nowrap;">R$ {!valueGatewaySecondOption}</p>
-                    <apex:panelGroup rendered="{!containsCreditCard}">
+                    <!-- <apex:panelGroup rendered="{!containsCreditCard}">
                         <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
                             <li class="additional-terms-item">
                                 Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
@@ -793,7 +793,7 @@
                                 Cobrança por transação aprovada.
                             </li>
                         </ul>
-                    </apex:panelGroup>
+                    </apex:panelGroup> -->
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
                 <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
@@ -834,7 +834,7 @@
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 405px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayFirstOption}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 550px; font-size:18px; white-space: nowrap;">R$ {!valueGatewaySecondOption}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 700px; font-size:18px; white-space: nowrap;">R$ {!valueGatewayThirdOption}</p>
-                    <apex:panelGroup rendered="{!containsCreditCard}">
+                    <!-- <apex:panelGroup rendered="{!containsCreditCard}">
                         <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
                             <li class="additional-terms-item">
                                 Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
@@ -843,7 +843,7 @@
                                 Cobrança por transação aprovada.
                             </li>
                         </ul>
-                    </apex:panelGroup>
+                    </apex:panelGroup> -->
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
                 <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">
@@ -889,7 +889,7 @@
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 530px; font-size:18px; white-space: nowrap;">R$ {!creditCardGateway}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 640px; font-size:18px; white-space: nowrap;">R$ {!debitCardGateway}</p>
                     <p class="cor-alternative" style="position: absolute; top: 465px; left: 750px; font-size:18px; white-space: nowrap;">R$ {!boletoGateway}</p>
-                    <apex:panelGroup rendered="{!containsCreditCard}">
+                    <!-- <apex:panelGroup rendered="{!containsCreditCard}">
                         <ul style="position: absolute; top: 600px; left: 200px; white-space: nowrap; color: #505050; font-size: 10px;">
                             <li class="additional-terms-item">
                                 Taxa adicional de parcelamento: {!additionalInstallmentFee2To6} ou {!additionalInstallmentFee7To12} (adicionado à taxa do cartão de crédito definida na tabela acima).
@@ -898,7 +898,7 @@
                                 Cobrança por transação aprovada.
                             </li>
                         </ul>
-                    </apex:panelGroup>
+                    </apex:panelGroup> -->
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
                 <div style="z-index: 3; position: absolute; top: 574px; left: 944px; color: #505050; background-color: #fff; width: 170px; text-align: right;">

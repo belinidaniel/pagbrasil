@@ -1,0 +1,22 @@
+<design:component>
+    <design:attribute name="title" label="Title"
+        description="Specifies the title for a message to display. The title is shown above the message in a slightly larger font."
+        required="true" />
+
+    <design:attribute name="message" label="Message" description="The message to display in the toast."
+        required="true" />
+
+    <design:attribute name="type" label="type (info, success, warning, error)" default="success"
+        description="The toast type, which can be 'error', 'warning', 'success', or 'info'. 
+        The default is 'other', which is styled like an 'info' toast and doesn’t display an icon, unless specified by the key attribute." />
+
+    <design:attribute name="mode" label="Mode (dismissable, pester, sticky)" default="dismissable" description="The toast mode, which controls how users can dismiss the toast. 
+        Valid values are 'pester' and 'sticky'. The default is 'dismissible', which displays the close button." />
+
+    <design:attribute name="duration" label="Duration (3000, 5000, 10000)" default="5000"
+        description="Length of time the toast is visible for, in milliseconds. 
+        Applies to 'dismissible' or 'pester' toast modes. The default is 5000ms if the provided value is less than 5000ms." />
+
+    <design:attribute name="key" label="Key" description="Icon to use when toast type is 'other'. 
+            Icon keys are available at the Lightning Design System Icons page." />
+</design:component>

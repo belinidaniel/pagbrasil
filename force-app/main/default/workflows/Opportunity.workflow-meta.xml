@@ -25,11 +25,7 @@
         <description>Opp BR &gt; 1MM</description>
         <protected>false</protected>
         <recipients>
-            <recipient>alexandre.oliveira@pagbrasil.com</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>ralf.germer@pagbrasil.com.sandboxsr12</recipient>
+            <recipient>daniel.oliveira@srconsulting.io</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>

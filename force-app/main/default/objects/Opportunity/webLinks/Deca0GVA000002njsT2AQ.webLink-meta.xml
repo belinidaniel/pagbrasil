@@ -8,5 +8,5 @@
     <masterLabel>Envio de Contrato Docusign Cross</masterLabel>
     <openType>replace</openType>
     <protected>false</protected>
-    <url>{!URLFOR(IF($Site.Prefix == &apos;/s&apos;, $Site.Prefix + &apos;/apex/dfsle__sending&apos;, &apos;/apex/dfsle__sending&apos;), null, [sId = Opportunity.Id, sendingExperience = &apos;null&apos;, isEmbedded = false, templateId = &apos;a0GVA000003uXVp2AM&apos;, recordId = Opportunity.Id, title = &apos;Envio de Contrato Docusign Cross&apos;])}</url>
+    <url>{!URLFOR(IF($Site.Prefix == &apos;/s&apos;, $Site.Prefix + &apos;/apex/dfsle__sending&apos;, &apos;/apex/dfsle__sending&apos;), null, [sId = Opportunity.Id, sendingExperience = &apos;null&apos;, isEmbedded = false, templateId = &apos;a0GVA000004IKu12AG&apos;, recordId = Opportunity.Id, title = &apos;Envio de Contrato Docusign Cross&apos;])}</url>
 </WebLink>

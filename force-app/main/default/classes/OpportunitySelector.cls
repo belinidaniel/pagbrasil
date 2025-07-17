@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-09-2025
+ * @last modified on  : 07-16-2025
  * @last modified by  : Daniel Belini
 **/
 public without sharing class OpportunitySelector {
@@ -22,19 +22,77 @@ public without sharing class OpportunitySelector {
                 UsePagstream__c,
                 Country__c,
                 Product_Type__c,
+                GooglePay__c,
+                ApplePay__c,
                 ProductClass__c,
                 Pix_Automatico__c,
                 WebSite__c,
                 TierCS__c,
+                ThreeDSCreditCard__c,
+                ZeroAuthCreditCard__c,
+                SyncedQuoteId,
                 Moeda__c,
                 StageName,
                 DateAccountCreation__c,
                 Product_or_service_website_URL__c,
                 IntegrationType__c,
                 Antecipation_Frequency_1__c,
+                Antecipation_Frequency_2__c,
                 Settlement_Frequency_1__c,
-                SyncedQuoteId,
+                Settlement_Frequency_2__c,
+                PagShield_Premium__c,
+                PagShield_Premium_On_Demand__c,
                 Priority__c,
+                TicketId__c,
+                TicketCreationDate__c,
+                BusinessModelType__c,
+                Cartao_Debito_Mensal__c,
+                PaymentRecurrence__c,
+                Antecipation__c,
+                Which_platform__c,
+                PagShield__c,
+                PixOneClick__c,
+                tempNBvalue__c,
+                tempXBvalue__c,
+                nb_receita_mensal__c,
+                KYC_NB_Number__c,
+                KYC_XB_Number__c,
+                DisableAgency__c,
+                Has_Synced_Quote__c,
+                Quotes_Amount__c,
+                RelatedKYCSendStatus__c,
+                OpportunityKYCLegalApprovalStatus__c,
+                OpportunityRCCLegalApprovalStatus__c,
+                Was_Contract_PDF_Generated__c,
+                Hibernate__c,
+                Date_Discovery_Meeting__c,
+                First_Appointment_Status__c,
+                Acceptable_Proposal__c,
+                Lead_Owner__c,
+                Account_Billing_Country__c,
+                Answered_Confirmation_Form__c,
+                Is_Opportunity_Valid__c,
+                Current_Platform__c,
+                Other_Platform__c,
+                RequestChangeClause__c,
+                Can_Edit_Opportunity_Fields__c,
+                Can_View_Opportunity_Fields__c,
+                Can_Edit_Fields_Negotiation__c,
+                Can_Read_Only_Compliance__c,
+                Can_Edit_Fields_Discovery__c,
+                Can_Read_Only_Negotiation__c,
+                Contract_File_Id__c,
+                Contract_Start_Fee_Date__c,
+                Is_Opportunity_Hybrid__c,
+                Visible_Settlement_Frequency__c,
+                Visible_Anticipation_Frequency__c,
+                Other_Payments_Settlement_Frequency_1__c,
+                Other_Payments_Settlement_Frequency_2__c,
+                Preferred_Language__c,
+                Visible_Others_Settlement_Frequency__c,
+                Negotiation_Completed__c,
+                Signed_Contract__c,
+                Homologation_Completed__c,
                 RecordType.Name,
                 AccountId,
                 Account.Name,
@@ -66,6 +124,8 @@ public without sharing class OpportunitySelector {
                 Pix_Automatico__c,
                 WebSite__c,
                 TierCS__c,
+                ThreeDSCreditCard__c,
+                ZeroAuthCreditCard__c,
                 Moeda__c,
                 StageName,
                 AntecipationFrequency__c,
@@ -98,7 +158,8 @@ public without sharing class OpportunitySelector {
                 Account.Website,
                 Account.CNPJ__c,
                 Account.VATCNPJ__c,
-                Account.OrganizationId__c
+                Account.OrganizationId__c,
+                RecordType.DeveloperName
             FROM Opportunity
             WHERE Id = :opportunityId
         ];
@@ -126,6 +187,8 @@ public without sharing class OpportunitySelector {
                 Categoria_de_Produto__c,
                 IntegrationType__c,
                 TierCS__c,
+                ThreeDSCreditCard__c,
+                ZeroAuthCreditCard__c,
                 PixMensal__c,
                 Moeda__c,
                 BusinessModel__c,
@@ -260,7 +323,13 @@ public without sharing class OpportunitySelector {
                         PixOpenFinance__c,
                         Pix_Valid_For__c,
                         MaximumNumberInstallments__c,
-                        RegKey__c
+                        RegKey__c,
+            			Account_Request_Date__c,
+            			Account_in_Mode__c,
+            			Minimum_Remittance_Amount__c,
+            			Remittance_Tax__c,
+						Remittance_Type__c,
+						Remittance_Agent__c
                 FROM HomologationForms__r)
             FROM Opportunity
             WHERE Id = :opportunityId
@@ -288,6 +357,7 @@ public without sharing class OpportunitySelector {
 
         return rccs[0];
     }
+
     public static KYC__c getKycByOpportunityId(Id opportunityId) {
         List<KYC__c> kycs = [
             SELECT
@@ -305,6 +375,75 @@ public without sharing class OpportunitySelector {
         return kycs[0];
     }
 
+    public static KYC_XB__c getKycXbByOpportunityId(Id opportunityId) {
+        List<KYC_XB__c> kycs = [
+            SELECT
+                Id,
+				Name,
+				LastModifiedDate,
+				Client_Account__c,
+            	Unique_Address__c,
+				City__c,
+				State__c,
+				Country__c,
+				Postal_Code__c,
+				Street_Number__c,
+				Address__c,
+				Administrative_City__c,
+				Administrative_State__c,
+				Administrative_Country__c,
+				Adm_Postal_Code__c,
+				Administrative_Street_Number__c,
+				Adm_Address__c,
+				Bank_Account__c,
+				Bank_Agency__c,
+				Beneficiary__c,
+				Bank_Name__c,
+				Bank_Branch_Address__c,
+				Swift_Code__c,
+				ABA_Routing_Number__c,
+				IBAN_Number__c,
+				Bank_Has_Intermediary__c,
+				Intermediary_Bank_Name__c,
+				Wire_Instructions__c,
+				Company_Type__c,
+				Company_URL__c,
+				Conformity__c,
+				Corporate_Group__c,
+				Corporate_Name__c,
+				Corporate_Registration__c,
+				Corporate_URL__c,
+				Founding_Date__c,
+				Trade_Name__c,
+				Legal_Name__c,
+				Fiscal_Registration__c,
+				Complement__c,
+				Integration_Type__c,
+				Has_PEP__c,
+				Service_Category__c,
+				Service_Description__c,
+				Service_Shipping__c,
+				Status__c,
+				Store_URL__c,
+				Opportunity__c,
+            	(
+                	SELECT
+                    	Id,
+                    	Name,
+						Email,
+						KYC_Role__c
+					FROM Contacts__r
+                )
+            FROM KYC_XB__c
+            WHERE Opportunity__c = :opportunityId
+        ];
+
+        if(kycs.isEmpty()) {
+            return null;
+        }
+
+        return kycs[0];
+    }
     public static List<HomologationForm__c> getHomologationsByOpportunityId(Id opportunityId) {
         return [
             SELECT Id, 
@@ -375,7 +514,13 @@ public without sharing class OpportunitySelector {
                         MerchantKey__c,
                         Pv__c,
                         Token__c,
-                        RegKey__c
+                        RegKey__c,
+            			Account_Request_Date__c,
+            			Account_in_Mode__c,
+            			Minimum_Remittance_Amount__c,
+            			Remittance_Tax__c,
+						Remittance_Type__c,
+						Remittance_Agent__c
             FROM HomologationForm__c
             WHERE Opportunity__c = :opportunityId
         ];
@@ -451,7 +596,13 @@ public without sharing class OpportunitySelector {
                         MerchantKey__c,
                         Pv__c,
                         Token__c,
-                        RegKey__c
+                        RegKey__c,
+            			Account_Request_Date__c,
+            			Account_in_Mode__c,
+            			Minimum_Remittance_Amount__c,
+            			Remittance_Tax__c,
+						Remittance_Type__c,
+						Remittance_Agent__c
         FROM HomologationForm__c
         WHERE Id = :homologationId
         LIMIT 1

@@ -326,22 +326,22 @@ public class ContractController {
                     when 'TAXA_PAGSTREAM' {
                         this.pagstreamfee = price;
                     }
-                    when 'TAXA_MIN_PAGSTREAM' {
+                    when 'PAGSTREAM_MAINTENANCE_MINIMUM_FEE' {
                         this.pagstreamMin = price;
                     }
-                    when 'TAXA_PAGSHIELD'{
+                    when 'PAGSHIELD_FRAUD_PREVENTION'{
                         this.pagShield = price;
                     }
-                    when 'TAXA_FIXA_PAGSHIELD'{
+                    when 'PAGSHIELD_PREMIUM_FIXED_FEE'{
                         this.pagShieldFee = price;
                     }
-                    when 'TAXA_VAR_PAGSHIELD'{
+                    when 'PAGSHIELD_PREMIUM_VARIABLE_FEE'{
                         this.pagShieldFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
                     }
                     when 'PIX_AUTO'{
                         this.pixAuto = price;
                     }
-                    when 'ZERO_AUTH_CARTAO'{
+                    when 'ZERO_AUTH_CREDIT_CARD'{
                         this.zeroAuthCard = price;
                     }
                     when 'PACKAGE_500_SMS' {
@@ -362,10 +362,10 @@ public class ContractController {
                     when 'EMAIL_PACKAGE_100000' {
                         this.emails100000 = price;
                     }
-                    when 'REFUND_FEE_PIX' {
+                    when 'REFUND_CARD_ACQUIRER_PIX' {
                         this.pix = price;
                     }
-                    when 'REFUND_FEE_TRANSFER' {
+                    when 'REFUND_BANK_TRANSFER' {
                         this.refundTransfer = price;
                     }
                     when 'CHARGEBACK_FEE' {

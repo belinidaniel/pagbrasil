@@ -2,22 +2,26 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Are_The_Frequencies_Filled__c</fullName>
     <formula>AND(
-  IF(
-    Opportunity.Visible_Anticipation_Frequency__c,
-    AND(
-      NOT(ISPICKVAL(Opportunity.Antecipation_Frequency_1__c, &quot;&quot;)),
-      NOT(ISPICKVAL(Opportunity.Antecipation_Frequency_2__c, &quot;&quot;))
+
+    IF(
+        Opportunity.Visible_Settlement_Frequency__c,
+        AND(
+            NOT(ISPICKVAL(Opportunity.Settlement_Frequency_1__c, &quot;&quot;)),
+            NOT(ISPICKVAL(Opportunity.Settlement_Frequency_2__c, &quot;&quot;)),
+            NOT(ISPICKVAL(Opportunity.Antecipation_Frequency_1__c, &quot;&quot;)),
+            NOT(ISPICKVAL(Opportunity.Antecipation_Frequency_2__c, &quot;&quot;))
+        ),
+        TRUE
     ),
-    TRUE
-  ),
-  IF(
-    Opportunity.Visible_Settlement_Frequency__c,
-    AND(
-      NOT(ISPICKVAL(Opportunity.Settlement_Frequency_1__c, &quot;&quot;)),
-      NOT(ISPICKVAL(Opportunity.Settlement_Frequency_2__c, &quot;&quot;))
-    ),
-    TRUE
-  )
+
+				IF(
+        Opportunity.Visible_Others_Settlement_Frequency__c,
+        AND(
+            NOT(ISPICKVAL(Opportunity.Other_Payments_Settlement_Frequency_1__c, &quot;&quot;)),
+            NOT(ISPICKVAL(Opportunity.Other_Payments_Settlement_Frequency_2__c, &quot;&quot;))
+        ),
+        TRUE
+    )
 )</formula>
     <label>Are The Frequencies Filled</label>
     <trackHistory>false</trackHistory>

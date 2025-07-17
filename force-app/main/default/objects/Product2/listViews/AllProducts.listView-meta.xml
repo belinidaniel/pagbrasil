@@ -5,6 +5,13 @@
     <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
     <columns>PRODUCT2.DESCRIPTION</columns>
     <columns>PRODUCT2.FAMILY</columns>
+    <columns>PRODUCT2.LAST_UPDATE</columns>
+    <columns>PRODUCT2.ACTIVE</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.NAME</field>
+        <operation>contains</operation>
+        <value>antec</value>
+    </filters>
     <label>All Products</label>
 </ListView>

@@ -605,6 +605,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Preferred_Language__c</fieldItem>
                 <identifier>RecordPreferred_Language__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-50c159f7-0fb5-4bb1-9d60-915239d953d6</name>
@@ -1846,6 +1853,26 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ZeroAuthCreditCard__c</fieldItem>
+                <identifier>RecordZeroAuthCreditCard_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ThreeDSCreditCard__c</fieldItem>
+                <identifier>RecordThreeDSCreditCard_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-8638574b-803d-4293-8b3a-8f64dd4bcffb</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -2611,7 +2638,7 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection7</identifier>
                 <visibilityRule>
-                    <booleanFilter>3 AND 4 AND 5 AND  (1 OR 2)</booleanFilter>
+                    <booleanFilter>(3 OR 4 OR 5) AND (1 OR 2)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>

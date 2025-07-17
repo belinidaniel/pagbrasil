@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-01-2025
+ * @last modified on  : 07-14-2025
  * @last modified by  : Daniel Belini
 **/
 public class ZendeskTicketWrapper {
@@ -27,7 +27,7 @@ public class ZendeskTicketWrapper {
         this.ticket.group_id = GROUP_ID;
         this.ticket.comment.uploads = uploads;
         this.ticket.comment.body = getDescription(opp, tickectCheck, contact);
-        this.ticket.comment.author_id = null;
+        this.ticket.comment.author_id = '389630995477';
         this.ticket.comment.publicComment = false;
 
         // if(contact != null){

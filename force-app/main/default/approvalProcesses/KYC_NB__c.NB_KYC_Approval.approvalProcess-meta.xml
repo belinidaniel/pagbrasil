@@ -33,11 +33,11 @@
             </action>
         </rejectionActions>
     </approvalStep>
-    <emailTemplate>unfiled$public/Request_KYC_to_approval</emailTemplate>
+    <emailTemplate>ApprovalProcess/Request_KYC_to_approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
-            <field>KYC__c.LegalApprovalStatus__c</field>
+            <field>KYC_NB__c.LegalApprovalStatus__c</field>
             <operation>equals</operation>
             <value>Approval Requested</value>
         </criteriaItems>

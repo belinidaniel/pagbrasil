@@ -2622,6 +2622,10 @@
     <picklistValues>
         <picklist>Moeda__c</picklist>
         <values>
+            <fullName>ARS</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>EUR</fullName>
             <default>false</default>
         </values>
@@ -4605,6 +4609,28 @@
         </values>
         <values>
             <fullName>Vestuário</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Selected_Credit_Frequency__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Selected_Others_Frequency__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
             <default>false</default>
         </values>
     </picklistValues>

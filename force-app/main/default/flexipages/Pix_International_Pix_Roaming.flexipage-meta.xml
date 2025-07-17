@@ -19,7 +19,7 @@
                         <valueListItems>
                             <value>Opportunity.Confirm_Processing_Date</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -29,17 +29,12 @@
                                     <leftValue>{!Record.TicketId__c}</leftValue>
                                     <operator>NE</operator>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.RequestLegalChange</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -50,33 +45,22 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>false</rightValue>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Homologation_Approval</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Homologation</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Confirm_Accounts</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -92,17 +76,12 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>Approved</rightValue>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Accept_Proposal</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Has_Synced_Quote__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -125,11 +104,6 @@
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!Record.Acceptable_Proposal__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -138,7 +112,7 @@
                         <valueListItems>
                             <value>Opportunity.Reject_Proposal</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Has_Synced_Quote__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -164,69 +138,22 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>Opportunity.New_Quote</value>
+                            <value>Opportunity.Enviar_KYC</value>
                             <visibilityRule>
-                                <booleanFilter>(1 OR 2 ) AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
-                                    <operator>EQUAL</operator>
+                                    <operator>NE</operator>
                                     <rightValue>Discovery</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.StageName}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Negotiation</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Acceptable_Proposal__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>false</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.Opportunity.View_Quotes</value>
-                            <visibilityRule>
-                                <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
-                                <criteria>
-                                    <leftValue>{!Record.Quotes_Amount__c}</leftValue>
-                                    <operator>GT</operator>
-                                    <rightValue>0</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.StageName}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Discovery</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.StageName}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Negotiation</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.StageName}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Compliance</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.RCC</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -246,32 +173,6 @@
                                     <leftValue>{!Record.OpportunityRCCLegalApprovalStatus__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Pending Approval Legal</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.OpportunityRCCLegalApprovalStatus__c}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Approved</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Opportunity.Enviar_KYC</value>
-                            <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
-                                <criteria>
-                                    <leftValue>{!Record.SyncedQuote.CustomerAcceptance__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.OpportunityKYCLegalApprovalStatus__c}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Approved</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -315,7 +216,7 @@
                         <valueListItems>
                             <value>CustomButton.Opportunity.Deca0GVA000002njsT2AQ</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.RecordType.Name}</leftValue>
                                     <operator>EQUAL</operator>
@@ -326,17 +227,12 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>Contract</rightValue>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.CreateOrganizationZD</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Account.OrganizationId__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -346,17 +242,12 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>Go Live</rightValue>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.CreateTicketZD</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -370,22 +261,10 @@
                                     <leftValue>{!Record.Account.OrganizationId__c}</leftValue>
                                     <operator>NE</operator>
                                 </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
-                            <visibilityRule>
-                                <criteria>
-                                    <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
-                                </criteria>
-                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Delete</value>
@@ -587,6 +466,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Preferred_Language__c</fieldItem>
                 <identifier>RecordPreferred_Language__cField</identifier>
             </fieldInstance>
@@ -633,6 +516,46 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Loss_Reason__c</fieldItem>
                 <identifier>RecordLoss_Reason_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Discovery_Completed__c</fieldItem>
+                <identifier>RecordDiscovery_Completed_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Negotiation_Completed__c</fieldItem>
+                <identifier>RecordNegotiation_Completed__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Signed_Contract__c</fieldItem>
+                <identifier>RecordSigned_Contract__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Homologation_Completed__c</fieldItem>
+                <identifier>RecordHomologation_Completed_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f2e58e27-f3c9-4124-a278-f00ec31d2865</name>
@@ -1354,6 +1277,16 @@
                         <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Moeda__c</fieldItem>
+                <identifier>RecordMoeda_cField3</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-5cefdefa-07f8-4b58-bf8c-920237956e26</name>

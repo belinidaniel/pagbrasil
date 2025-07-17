@@ -439,7 +439,7 @@
             <div class="page-content">
                 <div class="titulo">
                     <p style="font-size: 30px; margin: 0;">Proposta Comercial</p>
-                    <p style="font-weight: bold; font-size: 35px;">{!oppName}</p>
+                    <p style="font-weight: bold; font-size: 35px;"><strong>{!oppName}</strong></p>
                 </div>
             </div>
             <img src="{!$Resource.Logo2025}" style="position:absolute; bottom: 30px; right: 52px; width: 250px;"/>
@@ -452,7 +452,7 @@
             <!-- <div class="background-color-white-100">
             </div> -->
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap; color: whit ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap; color: whit ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -490,7 +490,7 @@
                 <div class="background-color-grey" style="width: 615px;">
                 </div>
                 <div class="page-content" style="background-color: red; width: 100px;">
-                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -540,7 +540,7 @@
                 <div class="background-color-grey" style="width: 615px;">
                 </div>
                 <div class="page-content" style="background-color: red; width: 100px;">
-                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -584,7 +584,7 @@
         <div class="page">
             <div class="page-content">
 
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                 
                 <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 40px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                     Por que processar<br/>
@@ -618,7 +618,7 @@
         <div class="page">
             <div class="page-content" style="width: 100%;">
 
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
 
                 <p style="font-family: 'MontserratBold', sans-serif; margin: 90px auto 0 auto; color: #202020; font-size: 36px; text-align: center;">
                     Eles <strong>confiam</strong>
@@ -648,7 +648,7 @@
             <div class="background-color-white" style="width: 576px;">
             </div>
             <div class="page-content">
-                <p style="position: absolute; top: 14px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
+                <p style="position: absolute; top: 14px; left: 135px; white-space: nowrap;color: #595959;"><strong>{!oppName}</strong></p>
                 <div style="position: absolute; top: 60px; left: 710px; width: 300px;">
                     <div class="row" style="margin-top: 20px;">
                         <div class="col" style="width: 30%">
@@ -725,7 +725,7 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;"><strong>{!oppName}</strong></p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 487px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
@@ -765,7 +765,7 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;"><strong>{!oppName}</strong></p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 390px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 620px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
@@ -810,7 +810,7 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;"><strong>{!oppName}</strong></p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 405px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 550px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
@@ -860,7 +860,7 @@
             <div class="page">
                 <img src="{!tablePaymentValue}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 10px; left: 140px; white-space: nowrap;">{!oppName} 1</p>
+                    <p style="position: absolute; top: 10px; left: 140px; white-space: nowrap;"><strong>{!oppName}</strong> 1</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 400px; font-size:20px; white-space: nowrap;">{!pixFour}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardFour}</p>
@@ -915,7 +915,7 @@
             <div class="page">
                 <img src="{!$Resource.PNPagina8}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 5px; left: 121px; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 121px; white-space: nowrap;"><strong>{!oppName}</strong></p>
                     <p class="cor" style="position: absolute; top: 370px; left: 861px; font-weight: bold; font-size:18px; white-space: nowrap;">R$ 0,39</p>
                     <p class="cor" style="position: absolute; top: 370px; left: 965px; font-weight: bold; font-size:18px; white-space: nowrap;">R$ 0,10</p>
                 </div>
@@ -929,7 +929,7 @@
         <!-- Pagina termos de porcessamento Gateway -->
         <div class="page">
             <div class="page-content">
-            <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716">{!oppName}</p>
+            <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716"><strong>{!oppName}</strong></p>
             <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 260px; left: 120px; font-size:18px; white-space: nowrap;">{!valueOne}</p>
             <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 315px; left: 120px; font-size:18px; white-space: nowrap;">{!valueTwo}</p>
             <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor-black')}" style="position: absolute; top: 370px; left: 120px; font-size:18px; white-space: nowrap;">{!valueThree}</p>
@@ -946,6 +946,7 @@
             <img src="{!$Resource.Logo2025Preta}" style="background-color: #f2f2f2; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
 
         </div>
+        
         </apex:panelGroup>
         <!-- Page 10 -->
         <apex:panelGroup rendered="{!not(containsGateway)}">
@@ -953,7 +954,7 @@
                 <div class="page">
                     <div class="page-content">
 
-                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                         
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
                             Opção 1
@@ -1082,7 +1083,7 @@
                     <div class="page">
                         <div class="page-content">
 
-                            <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                            <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                             
                             <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
                                 Opção 2
@@ -1250,7 +1251,7 @@
             <div class="page">
                 <div class="page-content">
 
-                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                     
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                         Solução de Payout
@@ -1320,7 +1321,7 @@
                     <div class="background-color-grey" style="width: 576px;">
                     </div>
                     <div class="page-content">
-                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
 
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
                             Termos<br/> <strong>complementares</strong>
@@ -1384,7 +1385,7 @@
                     <div class="background-color-grey" style="width: 576px;">
                     </div>
                     <div class="page-content">
-                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
 
                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
                             Termos<br/> <strong>complementares</strong>
@@ -1537,7 +1538,7 @@
             <div class="page">
                 <img src="{!$Resource.PNPagina17}" class="background-image"/>
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 140px; white-space: nowrap;">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 134px; white-space: nowrap;"><strong>{!oppName}</strong></p>
                     <p style="position: absolute; top: 68px; left: 756px; white-space: nowrap; font-weight: bold; background-color:#0058b5; color:white; font-size: 40px;">Termos</p>
                     <apex:outputText value="• {!taxaPagStream} sobre o volume mensal de pagamentos " style="position: absolute; top: 183px; left: 782px; white-space: nowrap; background-color:#0058b5;  color: #C5D9ED; font-size: 16px;"/>
                     <apex:outputText value="recorrentes" style="position: absolute; top: 203px; left: 782px; white-space: nowrap; background-color:#0058b5; color: #C5D9ED; font-size: 16px;"/>
@@ -1562,7 +1563,7 @@
         <div class="page">
             <img src="{!$Resource.PagShieldPage}" class="background-image" />
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                 <p style="position: absolute; top: 60px; left: 80px; white-space: nowrap; font-size: 34px;">PagShield®️</p>
                 <apex:outputText value="•   Tecnologia inteligente de autoaprendizagem " style="position: absolute; top: 180px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
                 <apex:outputText value="do" style="position: absolute; top: 180px; left: 120px; white-space: nowrap; color: #707070; font-size: 15px;"/>
@@ -1601,7 +1602,7 @@
             <!-- Page 19 - Google Pay e Apple Pay -->
             <div class="page">
                 <div class="page-content">
-                    <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716">{!oppName}</p>
+                    <p style="position: absolute; top: 15px; left: 138px; white-space: nowrap; color: #161716"><strong>{!oppName}</strong></p>
                 </div>
                 <img src="{!$Resource.GoogleEApplePayPage}" class="background-image"/>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>

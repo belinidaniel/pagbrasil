@@ -3,8 +3,8 @@
     <fullName>Visible_Others_Settlement_Frequency__c</fullName>
     <formula>OR(
 				INCLUDES(NationalPaymentMethod__c, &apos;Pix&apos;),
-				INCLUDES(NationalPaymentMethod__c, &apos;Cartão de Débito&apos;),
-				INCLUDES(NationalPaymentMethod__c, &apos;Boleto&apos;)
+				INCLUDES(NationalPaymentMethod__c, &apos;Débito Flash&apos;),
+				INCLUDES(NationalPaymentMethod__c, &apos;Boleto Flash&apos;)
 )</formula>
     <label>Visible Others Settlement Frequency</label>
     <type>Checkbox</type>

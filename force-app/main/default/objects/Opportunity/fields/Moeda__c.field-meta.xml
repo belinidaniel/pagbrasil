@@ -24,6 +24,11 @@
                 <default>false</default>
                 <label>EUR</label>
             </value>
+            <value>
+                <fullName>ARS</fullName>
+                <default>false</default>
+                <label>ARS</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

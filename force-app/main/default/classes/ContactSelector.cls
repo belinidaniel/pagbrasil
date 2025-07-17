@@ -45,7 +45,8 @@ public with sharing class ContactSelector {
                 Name,
                 Email,
                 Phone,
-                Type__c
+                Type__c,
+				KYC_Role__c
             FROM Contact
             WHERE AccountId = :idAccount
         ];

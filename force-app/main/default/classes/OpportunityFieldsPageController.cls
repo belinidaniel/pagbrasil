@@ -14,14 +14,21 @@ public with sharing class OpportunityFieldsPageController {
     public List<HomologationForm__c> homologationForms { get; private set; }
 
     public OpportunityFieldsPageController() {
-        String opportunityId = ApexPages.currentPage().getParameters().get('id');
-        String homologationId = ApexPages.currentPage().getParameters().get('homologationId');
+		String opportunityId = ApexPages.currentPage().getParameters().get('id');
+		String homologationId = ApexPages.currentPage().getParameters().get('homologationId');
 
         if (String.isNotBlank(opportunityId)) {
             Opportunity opp = OpportunitySelector.getCompleteOpportunityById(opportunityId);
             Rcc__c rcc = OpportunitySelector.getRccByOpportunityId(opportunityId);
-            Kyc__c kyc = OpportunitySelector.getKycByOpportunityId(opportunityId);
 
+            sObject kyc;
+
+            if (opp.RecordType.Name == 'NaTional') {
+            	kyc = OpportunitySelector.getKycByOpportunityId(opportunityId);
+            } else {
+            	kyc = OpportunitySelector.getKycXbByOpportunityId(opportunityId);
+            }
+			System.debug('controller kyc: ' + kyc);
             rccWrapper = new OpportunityWrapper.RccWrapper(rcc);
             kycWrapper = new OpportunityWrapper.KycWrapper(kyc);
             wrapper = new OpportunityWrapper(opp);

@@ -7,50 +7,118 @@
                 </header>
 
                 <div class="slds-modal__content slds-p-around_medium">
-                    <div class="slds-grid slds-wrap slds-gutters">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-combobox
-                                name="s1"
-                                label="Settlement Frequency 1°"
-                                value={selectedValues.s1}
-                                options={settlementOptions}
-                                onchange={handleChange}>
-                            </lightning-combobox>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-combobox
-                                name="a1"
-                                label="Anticipation Frequency 1°"
-                                value={selectedValues.a1}
-                                options={a1Options}
-                                onchange={handleChange}
-                                disabled={isS1Empty}>
-                            </lightning-combobox>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-combobox
-                                name="s2"
-                                label="Settlement Frequency 2°"
-                                value={selectedValues.s2}
-                                options={settlementOptions}
-                                onchange={handleChange}>
-                            </lightning-combobox>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-combobox
-                                name="a2"
-                                label="Anticipation Frequency 2°"
-                                value={selectedValues.a2}
-                                options={a2Options}
-                                onchange={handleChange}
-                                disabled={isS2Empty}>
-                            </lightning-combobox>
-                        </div>
+                    <div class="slds-grid slds-wrap slds-gutters" if:false={showCreditFrequencySwitch}>
+                        <template if:true={visibleSettlement}>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="s1"
+                                    label="Credit Card Settlement Frequency 1°"
+                                    value={selectedValues.s1}
+                                    options={settlementOptions}
+                                    onchange={handleChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="a1"
+                                    label="Credit Card Anticipation Frequency 1°"
+                                    value={selectedValues.a1}
+                                    options={a1Options}
+                                    onchange={handleChange}
+                                    disabled={isS1Empty}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="s2"
+                                    label="Credit Card Settlement Frequency 2°"
+                                    value={selectedValues.s2}
+                                    options={settlementOptions}
+                                    onchange={handleChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="a2"
+                                    label="Credit Card Anticipation Frequency 2°"
+                                    value={selectedValues.a2}
+                                    options={a2Options}
+                                    onchange={handleChange}
+                                    disabled={isS2Empty}>
+                                </lightning-combobox>
+                            </div>
+                        </template>
+                        <template if:true={visibleOthersSettlement}>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="osf1"
+                                    label="Other Payments Settlement Frequency 1°"
+                                    value={selectedValues.osf1}
+                                    options={otherSettlementOptions}
+                                    onchange={handleChange}>
+                                </lightning-combobox>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="osf2"
+                                    label="Other Payments Settlement Frequency 2°"
+                                    value={selectedValues.osf2}
+                                    options={otherSettlementOptions}
+                                    onchange={handleChange}>
+                                </lightning-combobox>
+                            </div>
+                        </template>
                     </div>
+
+                    <!-- Escolha de dupla para Credit Frequency -->
+                    <template if:true={showCreditFrequencySwitch}>
+                        <div class="slds-m-top_medium">
+                            <div>
+                                <strong>First (1°):</strong> Settlement: {selectedValues.s1} / Anticipation: {selectedValues.a1}
+                            </div>
+                            <div>
+                                <strong>Second (2°):</strong> Settlement: {selectedValues.s2} / Anticipation: {selectedValues.a2}
+                            </div>
+                            <lightning-radio-group
+                                name="creditFrequency"
+                                label="Choose the Credit Card frequencies"
+                                options={creditOptions}
+                                value={selectedCreditFrequency}
+                                type="button"
+                                onchange={handleCreditFrequencyChange}>
+                            </lightning-radio-group>
+                        </div>
+                    </template>
+
+                    <!-- Escolha de dupla para Other Payments Frequency -->
+                    <template if:true={showOthersFrequencySwitch}>
+                        <div class="slds-m-top_medium">
+                            <div>
+                                <strong>First (1°):</strong> {selectedValues.osf1}
+                            </div>
+                            <div>
+                                <strong>Second (2°):</strong> {selectedValues.osf2}
+                            </div>
+                            <lightning-radio-group
+                                name="othersFrequency"
+                                label="Choose the Other Payments Methods frequency"
+                                options={othersOptions}
+                                value={selectedOthersFrequency}
+                                type="button"
+                                onchange={handleOthersFrequencyChange}>
+                            </lightning-radio-group>
+                        </div>
+                    </template>
                 </div>
 
                 <footer class="slds-modal__footer">
-                    <lightning-button variant="brand" label="Confirm" onclick={handleConfirm} class="slds-m-left_small"></lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label="Confirm"
+                        onclick={handleConfirm}
+                        class="slds-m-left_small"
+                        disabled={isLoading}>
+                    </lightning-button>
                 </footer>
             </div>
         </section>

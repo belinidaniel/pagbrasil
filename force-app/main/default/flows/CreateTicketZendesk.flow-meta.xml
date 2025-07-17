@@ -1,10 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
+        <name>Create_Ticket_for_Pix</name>
+        <label>Create Ticket for Pix</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <actionName>CreateTicketForPix</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>dataCreateAccount</name>
+            <value>
+                <elementReference>GetOpportunity.DateAccountCreation__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>idOpportunity</name>
+            <value>
+                <elementReference>GetOpportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>logoInsertionInBoleto</name>
+            <value>
+                <elementReference>LogoInsertionInBoleto</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>organizationId</name>
+            <value>
+                <elementReference>GetAccount.OrganizationId__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>pagShieldActivationCheck</name>
+            <value>
+                <elementReference>PagShieldActivationCheck</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>paymentMethodsInFooter</name>
+            <value>
+                <elementReference>PaymentMethodsInFooter</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>pods</name>
+            <value>
+                <elementReference>PODS</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>priority</name>
+            <value>
+                <elementReference>Priority</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>reclameAqui</name>
+            <value>
+                <elementReference>ReclameAqui</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>triggerIndication</name>
+            <value>
+                <elementReference>TriggerIndication</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>visualIdentityManualRequest</name>
+            <value>
+                <elementReference>VisualIdentityManualRequest</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>welcomeEmailAndTrainingLinks</name>
+            <value>
+                <elementReference>WelcomeEmailAndTrainingLinks</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>CreateTicketForPix</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <name>CreateTicket</name>
         <label>CreateTicket</label>
-        <locationX>314</locationX>
-        <locationY>674</locationY>
+        <locationX>578</locationX>
+        <locationY>782</locationY>
         <actionName>CreateTicketMethod</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
@@ -88,7 +171,7 @@
     <assignments>
         <name>AssignmentPriority</name>
         <label>AssignmentPriority</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>GetOpportunity.Priority__c</assignToReference>
@@ -98,7 +181,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>CreateTicket</targetReference>
+            <targetReference>Create_Ticket_for_Pix_Record_Type</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -127,9 +210,34 @@
         </value>
     </choices>
     <decisions>
+        <name>Create_Ticket_for_Pix_Record_Type</name>
+        <label>Create Ticket for Pix Record Type</label>
+        <locationX>446</locationX>
+        <locationY>674</locationY>
+        <defaultConnector>
+            <targetReference>CreateTicket</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Pix</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetOpportunity.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pix_International_Pix_Roaming</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Ticket_for_Pix</targetReference>
+            </connector>
+            <label>Pix</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>HasOrganization</name>
         <label>HasOrganization</label>
-        <locationX>182</locationX>
+        <locationX>248</locationX>
         <locationY>350</locationY>
         <defaultConnector>
             <targetReference>SelectPriorityTicket</targetReference>
@@ -184,7 +292,7 @@
     <recordLookups>
         <name>GetAccount</name>
         <label>GetAccount</label>
-        <locationX>182</locationX>
+        <locationX>248</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -205,7 +313,7 @@
     <recordLookups>
         <name>GetOpportunity</name>
         <label>GetOpportunity</label>
-        <locationX>182</locationX>
+        <locationX>248</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -263,14 +371,6 @@
                 <assignToReference>GetAccount.OrganizationId__c</assignToReference>
                 <name>organizationId</name>
             </outputParameters>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -278,7 +378,7 @@
     <screens>
         <name>SelectPriorityTicket</name>
         <label>SelectPriorityTicket</label>
-        <locationX>314</locationX>
+        <locationX>446</locationX>
         <locationY>458</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -303,28 +403,12 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
                     <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>GetOpportunity.DateAccountCreation__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -354,14 +438,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>PaymentMethodsInFooter</name>
@@ -370,14 +446,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>LogoInsertionInBoleto</name>
@@ -386,14 +454,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>ReclameAqui</name>
@@ -402,14 +462,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>PODS</name>
@@ -418,14 +470,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -445,14 +489,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>WelcomeEmailAndTrainingLinks</name>
@@ -461,14 +497,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>TriggerIndication</name>
@@ -480,14 +508,6 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -509,20 +529,12 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>56</locationX>
+        <locationX>122</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>GetOpportunity</targetReference>

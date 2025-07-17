@@ -10,9 +10,9 @@
                             <value>KYC_XB__c.KYC_Approval</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!Record.Opportunity__r.Quotes_Amount__c}</leftValue>
-                                    <operator>GT</operator>
-                                    <rightValue>0</rightValue>
+                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Completed</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>

@@ -135,6 +135,14 @@
                 <behavior>Edit</behavior>
                 <field>Pix_Automatico__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ZeroAuthCreditCard__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ThreeDSCreditCard__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

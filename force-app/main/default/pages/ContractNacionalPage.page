@@ -605,7 +605,7 @@
                                 0,00
                             </td>
                         </apex:panelGroup>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;"></td>
                             <br/>
                             <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
                                 R$ por pacote<br/><br/><br/><br/>

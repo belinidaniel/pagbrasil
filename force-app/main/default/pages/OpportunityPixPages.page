@@ -1,0 +1,271 @@
+<apex:page controller="OpportunityFieldsPageController"
+	name="OpportunityForPixPdfPage"
+	showHeader="false"
+	applyHtmlTag="false"
+	applyBodyTag="false"
+	standardStylesheets="false"
+	showQuickActionVfHeader="false"
+	renderAs="pdf"
+>
+	<html>
+		<head>
+			<style type="text/css">
+				table {
+					border-collapse: collapse;
+					margin: 25px 0;
+					font-size: 0.98em;
+					font-family: 'Segoe UI', Arial, sans-serif;
+					width: 100%;
+					background: #fff;
+				}
+
+				th, td {
+					border: 1px solid #b0b0b0;
+					padding: 12px 15px;
+				}
+
+				th {
+					background-color: #2d3e50;
+					color: #f5f5f5;
+					text-align: center;
+					font-weight: 600;
+					font-size: 1.05em;
+					letter-spacing: 0.5px;
+				}
+
+				tr {
+					page-break-inside: avoid;
+				}
+
+				tr:nth-child(even) td {
+					background-color: #f3f6fa;
+				}
+
+				tr:nth-child(odd) td {
+					background-color: #e9edf2;
+				}
+
+				tr:hover td {
+					background-color: #dbe6f1;
+				}
+
+				tbody tr {
+					border-bottom: 1px solid #b0b0b0;
+				}
+
+				/* Estilos dos títulos principais (h1) */
+				h1 {
+					font-family: 'Segoe UI', Arial, sans-serif;
+					font-size: 1.8em;
+					font-weight: 700;
+					color: #1a365d;
+					margin: 35px 0 20px 0;
+					padding: 15px 0 10px 0;
+					border-bottom: 3px solid #3182ce;
+					text-transform: uppercase;
+					letter-spacing: 1px;
+					background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+					padding-left: 15px;
+					border-radius: 5px 5px 0 0;
+				}
+
+				/* Estilos dos subtítulos (h2) */
+				h2 {
+					font-family: 'Segoe UI', Arial, sans-serif;
+					font-size: 1.3em;
+					font-weight: 600;
+					color: #2d3748;
+					margin: 25px 0 10px 0;
+					padding: 10px 0 8px 12px;
+					border-left: 4px solid #4299e1;
+					background-color: #f1f5f9;
+					border-radius: 0 5px 5px 0;
+					text-transform: capitalize;
+					letter-spacing: 0.3px;
+				}
+
+				h3 {
+					font-family: 'Segoe UI', Arial, sans-serif;
+					font-size: 1.1em;
+					font-weight: 600;
+					color: #4a5568;
+					margin: 20px 0 8px 0;
+					padding: 8px 0 6px 10px;
+					border-left: 3px solid #63b3ed;
+					background-color: #f7fafc;
+					border-radius: 0 3px 3px 0;
+					letter-spacing: 0.2px;
+				}
+
+				/* Espaçamento adicional para primeiro elemento após h1 */
+				h1 + h2 {
+					margin-top: 15px;
+				}
+
+				/* Espaçamento entre seções */
+				h1:not(:first-child) {
+					margin-top: 45px;
+				}
+
+				/* Título da página (primeiro h2) */
+				h2:first-of-type {
+					font-size: 2em;
+					color: #1a202c;
+					text-align: center;
+					margin: 20px 0 30px 0;
+					padding: 20px;
+					background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+					color: white;
+					border-radius: 8px;
+					border: none;
+					text-transform: none;
+					letter-spacing: 0.5px;
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				}
+			</style>
+		</head>
+		<body>
+			<!-- Opportunity and Account Table -->
+			<h1>Opportunity: {!wrapper.name}</h1>
+
+			<!-- Tabela de Destaque -->
+			<table style="margin-bottom: 18px;">
+				<tr>
+					<th>Label</th>
+					<th>Value</th>
+				</tr>
+				<tr><td>ID</td><td>{!wrapper.id}</td></tr>
+				<tr><td>Request Date</td><td>{!wrapper.homologationForms[0].requestDate}</td></tr>
+				<tr><td>Integration Type</td><td>{!wrapper.integrationType}</td></tr>
+				<tr><td>Tier</td><td>{!wrapper.tierCs}</td></tr>
+				<tr><td>Account in Mode:</td><td>{!wrapper.homologationForms[0].accountMode}</td></tr>
+			</table>
+
+			<!-- Tabela principal -->
+			<h1>Configuration</h1>
+			<h2>Main</h2>
+			<table>
+				<tr>
+					<th>Label</th>
+					<th>Value</th>
+				</tr>
+				<tr><td>Account Name</td><td>{!wrapper.account.name}</td></tr>
+
+				<apex:repeat value="{!wrapper.homologationForms}" var="form">
+					<tr><td>Login</td><td>{!form.login}</td></tr>
+					<tr><td>Password</td><td>{!form.senha}</td></tr>
+					<tr><td>Main contact email for the operation</td><td>{!form.mainContactEmail}</td></tr>
+
+					<apex:outputPanel rendered="{!wrapper.isCrossBorder}">
+						<tr><td>Emails POD Manager</td><td>{!form.emailsPodManager}</td></tr>
+						<tr><td>POD Manager</td><td>{!form.podReminder}</td></tr>
+					</apex:outputPanel>
+				</apex:repeat>  
+
+				<apex:repeat value="{!kycWrapper.kycContacts}" var="contact">
+					<apex:outputPanel rendered="{!contact.KYC_Role__c == 'technical'}" layout="none">
+						<tr><td>Technical Contact Email</td><td>{!contact.Email}</td></tr>
+					</apex:outputPanel>
+					<apex:outputPanel rendered="{!contact.KYC_Role__c == 'contract'}" layout="none">
+						<tr><td>Contract Contact Email</td><td>{!contact.Email}</td></tr>
+					</apex:outputPanel>
+					<apex:outputPanel rendered="{!contact.KYC_Role__c == 'refund'}" layout="none">
+						<tr><td>Reverse Refund Contact Email</td><td>{!contact.Email}</td></tr>
+					</apex:outputPanel>
+				</apex:repeat>
+			</table>
+
+			<h2>Billing information (invoice)</h2>
+			<table>
+				<tr>
+					<th>Label</th>
+					<th>Value</th>
+				</tr>
+				<apex:repeat value="{!wrapper.homologationForms}" var="form">
+					<tr><td>Category</td><td>{!form.category}</td></tr>
+					<tr><td>MCC Code</td><td>{!form.mccCode}</td></tr>
+				</apex:repeat>
+				<tr><td>Invoice Name</td><td>{!kycWrapper.tradeName}</td></tr>
+				<tr><td>VAT/CNPJ</td><td>{!kycWrapper.fiscalRegistration}</td></tr>
+				<tr><td>Business Name</td><td>{!kycWrapper.legalName}</td></tr>
+				<tr><td>Country</td><td>{!kycWrapper.country}</td></tr>
+				<tr><td>State</td><td>{!kycWrapper.state}</td></tr>
+				<tr><td>City</td><td>{!kycWrapper.city}</td></tr>
+				<tr><td>Postal Code</td><td>{!kycWrapper.postalCode}</td></tr>
+				<tr><td>Billing Number</td><td>{!kycWrapper.streetNumber}</td></tr>
+				<tr><td>Billing Complement</td><td>{!kycWrapper.complement}</td></tr>
+				<tr><td>Last Modified Date</td><td>{!kycWrapper.lastModifiedDate}</td></tr>
+				<tr><td></td><td></td></tr>
+				<tr><td>Beneficiary</td><td>{!kycWrapper.beneficiary}</td></tr>
+				<tr><td>Bank Name</td><td>{!kycWrapper.bankName}</td></tr>
+				<tr><td>Bank Branch Address</td><td>{!kycWrapper.bankBranchAddress}</td></tr>
+				<tr><td>Account Number</td><td>{!kycWrapper.bankAccount}</td></tr>
+				<tr><td>Swift Code</td><td>{!kycWrapper.swiftCode}</td></tr>
+			</table>
+
+			<h1>Admin Configuration</h1>
+			<h2>Functionalities</h2>
+			<table>
+				<tr>
+					<th>Label</th>
+					<th>Value</th>
+				</tr>
+				<apex:repeat value="{!wrapper.homologationForms}" var="form">
+					<tr><td>Block Refund</td><td>{!form.blockRefund}</td></tr>
+                    <tr><td>Verify CPF/CNPJ</td><td>{!form.blockRefund}</td></tr>
+				</apex:repeat>
+			</table>
+
+			<h2>Remessa</h2>
+			<table>
+				<tr>
+					<th>Label</th>
+					<th>Value</th>
+				</tr>
+				<tr><td>Closing frequency</td><td>{!wrapper.settlementFrequency}</td></tr>
+				<tr><td>Remittance Type</td><td>{!wrapper.homologationForms[0].remittanceType}</td></tr>
+				<tr><td>Remittance Agent</td><td>{!wrapper.homologationForms[0].remittanceAgent}</td></tr>
+				<tr><td>Minimum Amount for Transfer</td><td>{!wrapper.homologationForms[0].minimumRemittance}</td></tr>
+				<tr><td>Remittance Currency</td><td>{!wrapper.moeda}</td></tr>
+				<tr><td>Transfer Fee</td><td>R${!wrapper.taxaTransferencia.totalPrice}</td></tr>
+				<tr><td>Spread (Current Quote)</td><td>{!wrapper.homologationForms[0].currentSpread}%</td></tr>
+				<tr><td>Spread (Outdated Quote)</td><td>{!wrapper.homologationForms[0].additionalSpread}%</td></tr>
+			</table>
+
+			<h1>Account Fees</h1>
+			<h2>Fees</h2>
+			<table>
+				<tr>
+					<th>Processing</th>
+					<th>Applicable</th>
+					<th>Fixed</th>
+					<th>Variable(%)</th>
+				</tr>
+				<tr>
+					<td>API</td>
+					<td></td>
+					<td></td>
+					<td>
+						<apex:outputText value="{!wrapper.taxaProcessamentoBoleto.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoBoleto.percentValue))}" />
+					</td>
+				</tr>
+				<tr>
+					<td>PagBrasil Mobile POS</td>
+					<td></td>
+					<td></td>
+					<td>
+						<apex:outputText value="{!wrapper.taxaProcessamentoPix.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoPix.percentValue))}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Additional for Remote Payments</td>
+					<td></td>
+					<td></td>
+					<td>
+						<apex:outputText value="{!wrapper.taxaProcessamentoCredito.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoCredito.percentValue))}" />
+					</td>
+				</tr>
+			</table>
+		</body>
+	</html>
+</apex:page>

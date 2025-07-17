@@ -145,12 +145,19 @@
         </rules>
         <rules>
             <name>crossborder</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>get_opportunity.RecordType.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Crossborder</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>get_opportunity.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pix_International_Pix_Roaming</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -350,14 +357,6 @@
             <name>testoppname</name>
             <fieldText>&lt;p&gt;{!get_opportunity.Name}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Send_To</name>
@@ -367,14 +366,6 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Send</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

@@ -290,7 +290,7 @@ public with sharing class OpportunityTriggerHelper {
             String devName = recordTypeMap.get(opp.RecordTypeId).DeveloperName;
             String uniqueId = 'UniqueID' + opp.Id;
             
-            if (devName == 'Crossborder') {
+            if (devName == 'Crossborder' || devName == 'Pix_International_Pix_Roaming') {
                 kycsXB.add(new KYC_XB__c(
                     Client_Account__c = opp.AccountId,
                     Opportunity__c = opp.Id,

@@ -221,14 +221,6 @@
             <name>Quote_Name</name>
             <fieldText>&lt;p&gt;You are rejecting the quote: &lt;strong style=&quot;font-size: 16px;&quot;&gt;{!get_Opportunity.SyncedQuote.Name}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>field_ReasonToNoAccepted</name>
@@ -237,14 +229,6 @@
             <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Justify why this quote was not accepted.&lt;/span&gt;&lt;/p&gt;</helpText>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Reject Quote</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

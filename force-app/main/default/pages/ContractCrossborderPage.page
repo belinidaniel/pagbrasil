@@ -111,7 +111,7 @@
                 </table>
             </apex:form>
             
-            <p style="font-weight: bold;">{!termClausesTitle}</p>
+            <!-- <p style="font-weight: bold;">{!termClausesTitle}</p> -->
             <apex:outputText value="{!termClauses}" escape="false" />
             
             
@@ -346,7 +346,7 @@
                         <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">BRL per month</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="border-top: 0px solid #000; border-bottom: 1px solid #000; text-align: center; width: 100%;">Start Date for Charging the Maintenance Minimum Fee: {!maintenanceDate}.</td>
+                        <td colspan="3" style="border-top: 0px solid #000; border-bottom: 1px solid #000; text-align: left; width: 100%;">Start Date for Charging the Maintenance Minimum Fee: {!maintenanceDate}.</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Termination fee for closing the Merchant Account</td>

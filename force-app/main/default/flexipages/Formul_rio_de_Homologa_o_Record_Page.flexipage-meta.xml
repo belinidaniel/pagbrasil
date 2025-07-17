@@ -144,6 +144,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.SalesProcess__c</fieldItem>
                 <identifier>RecordSalesProcess__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -274,6 +281,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.PodReminder__c</fieldItem>
                 <identifier>RecordPOD_Reminder__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -284,6 +298,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EmailsPodManager__c</fieldItem>
                 <identifier>RecordEmails_Gerente_de_POD__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -304,6 +325,40 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Allow_CPF_CNPJ__c</fieldItem>
                 <identifier>RecordAllow_CPF_CNPJ__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Account_Request_Date__c</fieldItem>
+                <identifier>RecordAccount_Request_Date__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Account_in_Mode__c</fieldItem>
+                <identifier>RecordAccount_in_Mode__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</name>
@@ -338,6 +393,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ShippingProofPod__c</fieldItem>
                 <identifier>RecordComprovante_envio_POD_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -348,6 +410,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EvidenceShippingProofPod__c</fieldItem>
                 <identifier>RecordEvidencias_Comprovante_de_Envio_POD_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -358,6 +427,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.CustomsFee__c</fieldItem>
                 <identifier>RecordTaxa_alfandegaria_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -368,6 +444,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EvidenceCustomsFee__c</fieldItem>
                 <identifier>RecordEvidencias_Taxa_Alfandegaria_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -478,6 +561,74 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Subscriber_Area__c</fieldItem>
                 <identifier>RecordSubscriber_Area__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Remittance_Type__c</fieldItem>
+                <identifier>RecordRemittance_Type_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Remittance_Agent__c</fieldItem>
+                <identifier>RecordRemittance_Agent_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Minimum_Remittance_Amount__c</fieldItem>
+                <identifier>RecordMinimum_Remittance_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Remittance_Tax__c</fieldItem>
+                <identifier>RecordRemittance_Tax__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-6d2b8d7a-c6cc-4672-a860-de1b7d7de9f4</name>
@@ -1210,6 +1361,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Cielo30__c</fieldItem>
                 <identifier>RecordCielo_3_0_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1220,6 +1378,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.MerchantId__c</fieldItem>
                 <identifier>RecordMerchant_ID_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1230,6 +1395,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.MerchantKey__c</fieldItem>
                 <identifier>RecordMerchant_Key_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1240,6 +1412,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ERede__c</fieldItem>
                 <identifier>Recorde_Rede_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1250,6 +1429,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Pv__c</fieldItem>
                 <identifier>RecordPV_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1260,6 +1446,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Token__c</fieldItem>
                 <identifier>RecordToken_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-046c9dfe-92a1-46a1-918a-304c2cb0e7ed</name>
@@ -1274,6 +1467,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Stone__c</fieldItem>
                 <identifier>RecordStone_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1284,6 +1484,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.MidMerchantId__c</fieldItem>
                 <identifier>RecordMIDMerchant_ID_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1294,6 +1501,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.TerminalId__c</fieldItem>
                 <identifier>RecordTerminal_ID_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1304,6 +1518,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.RegKey__c</fieldItem>
                 <identifier>RecordRegKey_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-bc9361d9-a594-437e-83c2-5f1d4e4d9049</name>
@@ -1398,7 +1619,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Configurações</value>
+                    <value>Homologation - Compliance</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection7</identifier>
@@ -1582,6 +1803,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection5</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

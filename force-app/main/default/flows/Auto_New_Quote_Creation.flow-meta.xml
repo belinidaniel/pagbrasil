@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Unsychronize_Quote</name>
         <label>Unsychronize Quote</label>
-        <locationX>446</locationX>
-        <locationY>1598</locationY>
+        <locationX>50</locationX>
+        <locationY>2198</locationY>
         <actionName>OpportunityUtils</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -25,8 +25,8 @@
     <assignments>
         <name>Quote_Version</name>
         <label>Quote Version</label>
-        <locationX>578</locationX>
-        <locationY>1166</locationY>
+        <locationX>182</locationX>
+        <locationY>1766</locationY>
         <assignmentItems>
             <assignToReference>QuoteVersionNumber</assignToReference>
             <operator>AssignCount</operator>
@@ -91,41 +91,96 @@
         <name>EUR</name>
         <choiceText>EUR</choiceText>
         <dataType>String</dataType>
+        <value>
+            <stringValue>EUR</stringValue>
+        </value>
     </choices>
     <choices>
         <name>USD</name>
         <choiceText>USD</choiceText>
         <dataType>String</dataType>
+        <value>
+            <stringValue>USD</stringValue>
+        </value>
     </choices>
     <decisions>
-        <name>Choice_Value</name>
-        <label>Choice Value</label>
+        <name>Are_Required_Frequency_Fields_Filled</name>
+        <label>Are Required Frequency Fields Filled?</label>
         <locationX>182</locationX>
-        <locationY>566</locationY>
+        <locationY>1466</locationY>
         <defaultConnector>
-            <targetReference>Update_Opportunity_EUR</targetReference>
+            <targetReference>Set_Opportunity_Frequencies</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>EUR</defaultConnectorLabel>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
-            <name>USD1</name>
-            <conditionLogic>and</conditionLogic>
+            <name>Yes1</name>
+            <conditionLogic>((NOT 5) OR (5 AND 1 AND 2 AND 3 AND 4)) AND ((NOT 6) OR (6 AND 7 AND 8))</conditionLogic>
             <conditions>
-                <leftValueReference>Remittance_Currency</leftValueReference>
+                <leftValueReference>Get_Opportunity.Settlement_Frequency_1__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Settlement_Frequency_2__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Antecipation_Frequency_1__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Antecipation_Frequency_2__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Visible_Settlement_Frequency__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>USD</elementReference>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_1__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Opportunity_USD</targetReference>
+                <targetReference>Quote_Version</targetReference>
             </connector>
-            <label>USD</label>
+            <label>Yes</label>
         </rules>
     </decisions>
     <decisions>
         <name>First_Appointment_Status</name>
         <label>First Appointment Status</label>
-        <locationX>633</locationX>
+        <locationX>413</locationX>
         <locationY>242</locationY>
         <defaultConnector>
             <targetReference>First_Appointment_Status_Warning</targetReference>
@@ -142,18 +197,43 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Remittance_and_Opportunity_Curency_Validation</targetReference>
+                <targetReference>Is_Opportunity_Crossborder</targetReference>
             </connector>
             <label>Filled</label>
         </rules>
     </decisions>
     <decisions>
+        <name>Is_Opportunity_Crossborder</name>
+        <label>Is Opportunity Crossborder</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Get_Actual_Quotes</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>no</defaultConnectorLabel>
+        <rules>
+            <name>yess</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Crossborder</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Moeda_c_Set</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_the_proposal_acceptable</name>
         <label>Is the proposal acceptable?</label>
-        <locationX>380</locationX>
-        <locationY>1058</locationY>
+        <locationX>336</locationX>
+        <locationY>974</locationY>
         <defaultConnector>
-            <targetReference>Quote_Version</targetReference>
+            <targetReference>Are_Required_Frequency_Fields_Filled</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -175,8 +255,8 @@
     <decisions>
         <name>Is_there_a_synchronized_quote</name>
         <label>Is there a synchronized quote?</label>
-        <locationX>578</locationX>
-        <locationY>1382</locationY>
+        <locationX>182</locationX>
+        <locationY>1982</locationY>
         <defaultConnector>
             <targetReference>Create_Quote</targetReference>
         </defaultConnector>
@@ -198,35 +278,28 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Remittance_and_Opportunity_Curency_Validation</name>
-        <label>Remittance and Opportunity Curency Validation</label>
-        <locationX>380</locationX>
-        <locationY>350</locationY>
+        <name>Quotes_Amount</name>
+        <label>Quotes Amount</label>
+        <locationX>182</locationX>
+        <locationY>866</locationY>
         <defaultConnector>
-            <targetReference>Get_Actual_Quotes</targetReference>
+            <targetReference>Is_the_proposal_acceptable</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>All Right</defaultConnectorLabel>
+        <defaultConnectorLabel>1+</defaultConnectorLabel>
         <rules>
-            <name>Remittance_Currency_Blank</name>
+            <name>X0</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Opportunity.Moeda__c</leftValueReference>
-                <operator>IsBlank</operator>
+                <leftValueReference>Get_Actual_Quotes</leftValueReference>
+                <operator>IsEmpty</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <leftValueReference>Get_Opportunity.RecordType.Name</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Cross-border</stringValue>
-                </rightValue>
-            </conditions>
             <connector>
-                <targetReference>Moeda_c_Set</targetReference>
+                <targetReference>Are_Required_Frequency_Fields_Filled</targetReference>
             </connector>
-            <label>Moeda__c is blank</label>
+            <label>0</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -259,8 +332,8 @@
     <recordCreates>
         <name>Create_Quote</name>
         <label>Create Quote</label>
-        <locationX>578</locationX>
-        <locationY>1790</locationY>
+        <locationX>182</locationX>
+        <locationY>2390</locationY>
         <connector>
             <targetReference>Redirect_To_New_Quote</targetReference>
         </connector>
@@ -282,11 +355,11 @@
     <recordLookups>
         <name>Get_Actual_Quotes</name>
         <label>Get Actual Quotes</label>
-        <locationX>380</locationX>
-        <locationY>950</locationY>
+        <locationX>182</locationX>
+        <locationY>758</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Is_the_proposal_acceptable</targetReference>
+            <targetReference>Quotes_Amount</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -304,7 +377,7 @@
     <recordLookups>
         <name>Get_Opportunity</name>
         <label>Get Opportunity</label>
-        <locationX>633</locationX>
+        <locationX>413</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -323,34 +396,21 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Opportunity_EUR</name>
-        <label>Update Opportunity EUR</label>
-        <locationX>314</locationX>
-        <locationY>674</locationY>
+        <name>Update_Opportunity</name>
+        <label>Update Opportunity</label>
+        <locationX>644</locationX>
+        <locationY>458</locationY>
         <connector>
-            <targetReference>Get_Actual_Quotes</targetReference>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Opportunity</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Moeda__c</field>
-            <value>
-                <stringValue>EUR</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
+        <inputReference>Get_Opportunity</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Opportunity_USD</name>
-        <label>Update Opportunity USD</label>
+        <name>Update_Opportunity_Remittance_Currency</name>
+        <label>Update Opportunity Remittance Currency</label>
         <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationY>566</locationY>
         <connector>
             <targetReference>Get_Actual_Quotes</targetReference>
         </connector>
@@ -365,7 +425,7 @@
         <inputAssignments>
             <field>Moeda__c</field>
             <value>
-                <stringValue>USD</stringValue>
+                <elementReference>Remittance_Currency</elementReference>
             </value>
         </inputAssignments>
         <object>Opportunity</object>
@@ -373,23 +433,24 @@
     <screens>
         <name>First_Appointment_Status_Warning</name>
         <label>First Appointment Status Warning</label>
-        <locationX>886</locationX>
+        <locationX>644</locationX>
         <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Opportunity</targetReference>
+        </connector>
         <fields>
             <name>Text2</name>
             <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;The First Appointment Status field must be filled in to generate a quote&lt;/em&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.First_Appointment_Status__c</objectFieldReference>
         </fields>
         <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -398,26 +459,18 @@
     <screens>
         <name>Moeda_c_Set</name>
         <label>Moeda__c Set</label>
-        <locationX>182</locationX>
+        <locationX>50</locationX>
         <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Choice_Value</targetReference>
+            <targetReference>Update_Opportunity_Remittance_Currency</targetReference>
         </connector>
         <fields>
             <name>Text1</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Choose a value for the Remittance Currency field:&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Remittance_Currency</name>
@@ -428,14 +481,6 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Update Field</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -444,8 +489,8 @@
     <screens>
         <name>New_Quote</name>
         <label>New Quote</label>
-        <locationX>578</locationX>
-        <locationY>1274</locationY>
+        <locationX>182</locationX>
+        <locationY>1874</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -456,14 +501,6 @@
             <name>New_Quote_Message</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;The following quote will be created:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!QuoteName}&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Create Quote</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -472,8 +509,8 @@
     <screens>
         <name>Redirect_To_New_Quote</name>
         <label>Redirect To New Quote</label>
-        <locationX>578</locationX>
-        <locationY>1898</locationY>
+        <locationX>182</locationX>
+        <locationY>2498</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -490,14 +527,6 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
@@ -505,8 +534,8 @@
     <screens>
         <name>Warning</name>
         <label>Warning</label>
-        <locationX>446</locationX>
-        <locationY>1490</locationY>
+        <locationX>50</locationX>
+        <locationY>2090</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -517,14 +546,6 @@
             <name>WarningText</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 204, 0); font-size: 18px;&quot;&gt;The current synchronized quote will be desynchronized.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 204, 0); font-size: 18px;&quot;&gt;You can manually sync it again.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -532,8 +553,8 @@
     <screens>
         <name>You_Can_Not_Create_a_New_Quote</name>
         <label>You Can&apos;t Create a New Quote</label>
-        <locationX>182</locationX>
-        <locationY>1166</locationY>
+        <locationX>204</locationX>
+        <locationY>1082</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -541,27 +562,35 @@
             <name>Sorry</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 0, 0); font-size: 18px;&quot;&gt;It is not possible to create a new quote, as there is another already synchronized with the current opportunity that can be accepted at the moment.&lt;/strong&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Back to Opportunity</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>507</locationX>
+        <locationX>287</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Opportunity</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Set_Opportunity_Frequencies</name>
+        <label>Set Opportunity Frequencies</label>
+        <locationX>270</locationX>
+        <locationY>1574</locationY>
+        <connector>
+            <targetReference>Quote_Version</targetReference>
+        </connector>
+        <flowName>Opportunity_Confirm_Frequencies</flowName>
+        <inputAssignments>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>QuoteName</name>
         <dataType>String</dataType>

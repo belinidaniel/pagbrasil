@@ -11,7 +11,7 @@
             <assignToReference>screenText</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>You must fill in ALL the fields below:</stringValue>
+                <stringValue> You must fill in ALL the fields below:</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -36,7 +36,7 @@
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
-            <conditionLogic>(1 AND 2 AND 6) OR (3 AND 4 AND 5) OR (NOT 5 AND NOT 6)</conditionLogic>
+            <conditionLogic>((NOT 5) OR (5 AND 1 AND 2 AND 3 AND 4)) AND ((NOT 6) OR (6 AND 7 AND 8))</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Opportunity.Settlement_Frequency_1__c</leftValueReference>
                 <operator>IsBlank</operator>
@@ -66,23 +66,56 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Get_Opportunity.Visible_Anticipation_Frequency__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
                 <leftValueReference>Get_Opportunity.Visible_Settlement_Frequency__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>RefreshPage</targetReference>
-            </connector>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_1__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Record_Type_Pix_Internation_Pix_Roaming</name>
+        <label>Is Record Type Pix Internation &amp; Pix Roaming?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Opportunity_Frequencies</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Record_Type_is_Pix</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pix_International_Pix_Roaming</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Record Type is Pix</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -114,28 +147,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Opportunity_Frequencies</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Get_Quote.OpportunityId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Opportunity</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Quote</name>
-        <label>Get Quote</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Opportunity</targetReference>
+            <targetReference>Is_Record_Type_Pix_Internation_Pix_Roaming</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -146,7 +158,7 @@
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Quote</object>
+        <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
@@ -174,14 +186,6 @@
             <name>Text</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 28px;&quot;&gt;{!screenText}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Opportunity_Frequencies_Section1</name>
@@ -194,24 +198,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Opportunity.Settlement_Frequency_1__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Get_Opportunity.Visible_Settlement_Frequency__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -229,24 +215,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Opportunity.Antecipation_Frequency_1__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Get_Opportunity.Visible_Anticipation_Frequency__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -258,14 +226,24 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Settlement_Frequency_1__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                </conditions>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Antecipation_Frequency_1__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Opportunity_Frequencies_Section2</name>
@@ -278,24 +256,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Opportunity.Settlement_Frequency_2__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Get_Opportunity.Visible_Settlement_Frequency__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -313,24 +273,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Opportunity.Antecipation_Frequency_2__c</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Get_Opportunity.Visible_Anticipation_Frequency__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -342,35 +284,88 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Settlement_Frequency_2__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                </conditions>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Antecipation_Frequency_2__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <name>Opportunity_Frequencies_Section3</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Opportunity_Frequencies_Section3_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Opportunity.Other_Payments_Settlement_Frequency_1__c</objectFieldReference>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_1__c</leftValueReference>
+                            <operator>EqualTo</operator>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</objectFieldReference>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</leftValueReference>
+                            <operator>EqualTo</operator>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
             <isRequired>false</isRequired>
-            <objectFieldReference>Get_Opportunity.Moeda__c</objectFieldReference>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
-                    <leftValueReference>Get_Opportunity.RecordType.Name</leftValueReference>
+                    <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
-                        <stringValue>Crossborder</stringValue>
+                        <booleanValue>true</booleanValue>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -379,38 +374,14 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <screens>
-        <name>RefreshPage</name>
-        <label>RefreshPage</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>RefreshPageText</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;&lt;u&gt;Please, refresh the page.&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
-        </fields>
-        <showFooter>false</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Quote</targetReference>
+            <targetReference>Get_Opportunity</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>
@@ -425,7 +396,7 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <value>
-            <stringValue>The following fields must have values ​​before creating a proposal:</stringValue>
+            <stringValue>The following fields must have values and/or be confirmed before creating a proposal:</stringValue>
         </value>
     </variables>
 </Flow>

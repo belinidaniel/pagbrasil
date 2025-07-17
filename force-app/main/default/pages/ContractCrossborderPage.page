@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-09-2025
+  @last modified on  : 07-17-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -134,7 +134,7 @@
                             <th style="font-size:12px">PagBrasil Pix</th>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <th style="font-size:12px">Credit Card*</th>
                         </apex:panelGroup>
                         
@@ -156,7 +156,7 @@
                             <td>{!pixOne}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardOne}</td>
                         </apex:panelGroup>
                         
@@ -175,7 +175,7 @@
                             <td>{!pixTwo}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardTwo}</td>
                         </apex:panelGroup>
                         
@@ -195,7 +195,7 @@
                             <td>{!pixThree}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardThree}</td>
                         </apex:panelGroup>
                         
@@ -215,7 +215,7 @@
                             <td>{!pixFour}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardFour}</td>
                         </apex:panelGroup>
                         
@@ -235,7 +235,7 @@
                             <td style="color: #0058B5;">{!pixGateway}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td style="color: #0058B5;">{!creditCardGateway}</td>
                         </apex:panelGroup>
                         
@@ -492,7 +492,7 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
-                    <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                    <apex:panelGroup rendered="{!containsCartao}">
                         <tr>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>

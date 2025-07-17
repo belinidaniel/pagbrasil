@@ -18,8 +18,6 @@ import SYNCED_QUOTE_ID from '@salesforce/schema/Opportunity.SyncedQuoteId';
 import RECORD_TYPE_ID from '@salesforce/schema/Opportunity.RecordTypeId';
 import IS_OPPORTUNITY_VALID from '@salesforce/schema/Opportunity.Is_Opportunity_Valid__c';
 import VISIBLE_SETTLEMENT from '@salesforce/schema/Opportunity.Visible_Settlement_Frequency__c';
-// REMOVIDO import VISIBLE_ANTICIPATION
-
 import SELECTED_CREDIT_FREQ from '@salesforce/schema/Opportunity.Selected_Credit_Frequency__c';
 import SELECTED_OTHERS_FREQ from '@salesforce/schema/Opportunity.Selected_Others_Frequency__c';
 
@@ -40,9 +38,8 @@ export default class OpenFlowModal extends LightningElement {
     isOpportunityValid;
     originalValues = {};
     selectedValues = {};
-    confirmStep = 'edit'; // valores possíveis: 'edit', 'chooseFrequencies'
+    confirmStep = 'chooseFrequencies';
 
-    // Opções de seleção de dupla
     selectedCreditFrequency = '1';
     selectedOthersFrequency = '1';
 
@@ -61,7 +58,7 @@ export default class OpenFlowModal extends LightningElement {
 
             if (stage === 'Contract' && !responded) {
                 this.showModal = true;
-                this.confirmStep = 'edit';
+                this.confirmStep = 'chooseFrequencies';
                 this.originalValues = {
                     s1: getFieldValue(data, SETTLEMENT_1),
                     s2: getFieldValue(data, SETTLEMENT_2),
@@ -156,7 +153,6 @@ export default class OpenFlowModal extends LightningElement {
     handleChange(event) {
         const { name, value } = event.target;
         this.selectedValues = { ...this.selectedValues, [name]: value };
-
         if (name === 's1' || name === 's2') {
             const anticipationField = name.replace('s', 'a');
             const allowedValues = this.getAnticipationOptions(value);
@@ -176,7 +172,6 @@ export default class OpenFlowModal extends LightningElement {
                 return false;
             }
         }
-        // Não valida mais antecipation isoladamente!
         if (this.visibleOthersSettlement) {
             if (!this.selectedValues.osf1 || !this.selectedValues.osf2) {
                 this.showToast('Atenção', 'Preencha ambos os campos de Other Payments Settlement Frequency.', 'warning');
@@ -186,44 +181,45 @@ export default class OpenFlowModal extends LightningElement {
         return true;
     }
 
-    handleConfirm() {
+    async handleConfirm() {
         this.isLoading = true;
+        if (this.confirmStep === 'edit') {
+            if (!this.validateFrequencies()) {
+                this.isLoading = false;
+                return;
+            }
+            const hasChange = Object.keys(this.selectedValues)
+                .some(k => this.selectedValues[k] !== this.originalValues[k]);
+            const fields = {
+                Id: this.recordId,
+                Settlement_Frequency_1__c: this.selectedValues.s1,
+                Settlement_Frequency_2__c: this.selectedValues.s2,
+                Antecipation_Frequency_1__c: this.selectedValues.a1,
+                Antecipation_Frequency_2__c: this.selectedValues.a2,
+                Other_Payments_Settlement_Frequency_1__c: this.selectedValues.osf1,
+                Other_Payments_Settlement_Frequency_2__c: this.selectedValues.osf2
+            };
 
-        if (!this.validateFrequencies()) {
-            this.isLoading = false;
+            if (hasChange) {
+                fields.StageName = 'Negotiation';
+                fields.Acceptable_Proposal__c = false;
+                fields.SyncedQuoteId = null;
+            }
+
+            try {
+                await updateRecord({ fields });
+                this.isLoading = false;
+                this.confirmStep = 'chooseFrequencies';
+                this.showToast('Success', hasChange ? 'Stage moved to Negotiation' : 'Values updated', 'success');
+            } catch (error) {
+                this.isLoading = false;
+                this.showToast('Error', error.body && error.body.message ? error.body.message : 'Erro ao salvar', 'error');
+            }
             return;
         }
 
-        if (this.isOpportunityValid === false) {
-            this.isLoading = false;
-            this.showToast('Error', 'This opportunity cannot be modified as it is not valid.', 'error');
-            return;
-        }
-
-        const hasChange = Object.keys(this.selectedValues).some(
-            key => this.selectedValues[key] !== this.originalValues[key]
-        );
-
-        if (!hasChange && (this.visibleSettlement || this.visibleOthersSettlement) && this.confirmStep === 'edit') {
-            // Mostra os interruptores para selecionar a dupla
-            this.confirmStep = 'chooseFrequencies';
-            this.isLoading = false;
-            return;
-        }
-
-        // Monta campos
-        const fields = {
-            Id: this.recordId,
-            Settlement_Frequency_1__c: this.selectedValues.s1,
-            Settlement_Frequency_2__c: this.selectedValues.s2,
-            Antecipation_Frequency_1__c: this.selectedValues.a1,
-            Antecipation_Frequency_2__c: this.selectedValues.a2,
-            Other_Payments_Settlement_Frequency_1__c: this.selectedValues.osf1,
-            Other_Payments_Settlement_Frequency_2__c: this.selectedValues.osf2
-        };
-
-        // Seta picklists se for o caso (quando está na tela de seleção de dupla)
-        if (!hasChange && this.confirmStep === 'chooseFrequencies') {
+        if (this.confirmStep === 'chooseFrequencies') {
+            const fields = { Id: this.recordId };
             if (this.visibleSettlement) {
                 fields.Selected_Credit_Frequency__c = this.selectedCreditFrequency;
             }
@@ -231,43 +227,32 @@ export default class OpenFlowModal extends LightningElement {
                 fields.Selected_Others_Frequency__c = this.selectedOthersFrequency;
             }
             fields.Answered_Confirmation_Form__c = true;
-        }
 
-        if (hasChange) {
-            fields.StageName = 'Negotiation';
-            fields.Acceptable_Proposal__c = false;
-            fields.SyncedQuoteId = null;
-        }
-
-        updateRecord({ fields })
-            .then(() => {
+            try {
+                await updateRecord({ fields });
                 this.isLoading = false;
                 this.showModal = false;
-                this.confirmStep = 'edit';
-                this.showToast(
-                    'Success',
-                    hasChange
-                        ? 'Stage moved to Negotiation'
-                        : 'Confirmation saved',
-                    'success'
-                );
-            })
-            .catch(error => {
+                this.showToast('Success', 'Confirmation saved', 'success');
+            } catch (error) {
                 this.isLoading = false;
-                this.showToast(
-                    'Error',
-                    error.body && error.body.message ? error.body.message : 'Erro ao salvar',
-                    'error'
-                );
-            });
+                this.showToast('Error', error.body && error.body.message ? error.body.message : 'Erro ao salvar', 'error');
+            }
+            return;
+        }
     }
 
-    // Exibe as seções dos interruptores conforme o estado
+    handleChangeValues() {
+        this.confirmStep = 'edit';
+    }
+
     get showCreditFrequencySwitch() {
         return this.visibleSettlement && this.confirmStep === 'chooseFrequencies';
     }
     get showOthersFrequencySwitch() {
         return this.visibleOthersSettlement && this.confirmStep === 'chooseFrequencies';
+    }
+    get showEditSection() {
+        return this.confirmStep === 'edit';
     }
 
     get creditOptions() {
@@ -292,7 +277,11 @@ export default class OpenFlowModal extends LightningElement {
 
     closeModal() {
         this.showModal = false;
-        this.confirmStep = 'edit';
+        this.confirmStep = 'chooseFrequencies';
+    }
+
+    get showChangeValuesButton() {
+        return this.confirmStep === 'chooseFrequencies';
     }
 
     showToast(title, message, variant) {

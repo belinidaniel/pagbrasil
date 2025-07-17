@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-11-2025
+  @last modified on  : 07-17-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -452,7 +452,7 @@
             <!-- <div class="background-color-white-100">
             </div> -->
             <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap; color: whit ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
+                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap; color: whit ;color: #ffffff">Proposta Comercial | <strong>{!oppName}</strong></p>
                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 36px; font-weight: 900;">
                         Por que<br/>
                         processar<br/>
@@ -911,7 +911,7 @@
         </apex:panelGroup>
 
         <!-- Page 9 -->
-        <apex:panelGroup rendered="{!containsGateway}">
+        <!-- <apex:panelGroup rendered="{!containsGateway}">
             <div class="page">
                 <img src="{!$Resource.PNPagina8}" class="background-image"/>
                 <div class="page-content">
@@ -921,7 +921,7 @@
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #f2f2f2; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
             </div>
-        </apex:panelGroup>
+        </apex:panelGroup> -->
 
 
 
@@ -949,7 +949,7 @@
         
         </apex:panelGroup>
         <!-- Page 10 -->
-        <apex:panelGroup rendered="{!not(containsGateway)}">
+        <apex:panelGroup rendered="{!NOT(containsGateway)}">
             <apex:panelGroup rendered="{!containsIntermediacao}">
                 <div class="page">
                     <div class="page-content">
@@ -1442,7 +1442,7 @@
                             </apex:outputPanel>
                         </li>
                         </ul>
-                        <p style="position: absolute; top: 430px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                        <p style="position: absolute; top: 500px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
                             * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
                         </p>
                     </div>

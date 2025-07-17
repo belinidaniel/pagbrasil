@@ -7,7 +7,7 @@
                 </header>
 
                 <div class="slds-modal__content slds-p-around_medium">
-                    <div class="slds-grid slds-wrap slds-gutters" if:false={showCreditFrequencySwitch}>
+                    <div class="slds-grid slds-wrap slds-gutters" if:true={showEditSection}>
                         <template if:true={visibleSettlement}>
                             <div class="slds-col slds-size_1-of-2">
                                 <lightning-combobox
@@ -70,7 +70,6 @@
                         </template>
                     </div>
 
-                    <!-- Escolha de dupla para Credit Frequency -->
                     <template if:true={showCreditFrequencySwitch}>
                         <div class="slds-m-top_medium">
                             <div>
@@ -90,7 +89,6 @@
                         </div>
                     </template>
 
-                    <!-- Escolha de dupla para Other Payments Frequency -->
                     <template if:true={showOthersFrequencySwitch}>
                         <div class="slds-m-top_medium">
                             <div>
@@ -112,6 +110,13 @@
                 </div>
 
                 <footer class="slds-modal__footer">
+                    <lightning-button
+                        label="Change Values"
+                        onclick={handleChangeValues}
+                        class="slds-m-right_small"
+                        variant="neutral"
+                        if:true={showChangeValuesButton}>
+                    </lightning-button>
                     <lightning-button
                         variant="brand"
                         label="Confirm"

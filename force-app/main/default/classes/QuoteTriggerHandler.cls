@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-16-2025
+ * @last modified on  : 07-17-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -32,7 +32,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             if(taxMap == null){
                 taxMap = new Map<String, List<Taxes__c>>();
 
-                for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, Type__c FROM Taxes__c WHERE IsActive__c = true]){
+                for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c,Product__r.ProductCode, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, Type__c FROM Taxes__c WHERE IsActive__c = true]){
                     if(taxMap.containsKey(tax.Product__c)){
                         taxMap.get(tax.Product__c).add(tax);
                     } else {
@@ -263,15 +263,11 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         break;
                 }
                 when 'TaxaProcessamento' {
-                    System.System.debug('paymentMethod - ' + paymentMethod);
-                    System.System.debug('tax.Type__c - ' + tax);
-                    System.System.debug('pportunity.ProductClass__c - ' + tax.ProductClass__c);
-                    System.System.debug('pportunity.ProductClass__c - ' + opportunity.ProductClass__c);
-
-                     if(
-                       ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO) && tax.Type__c == 'crossborder')) ||
-                       ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX)) && isTicketRange) ||
-                       ((paymentMethod.contains(DEBITO) || paymentMethod.contains(CREDITO)) && (tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c)))
+                    if(
+                        (paymentMethod.contains(CREDITO) && tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
+                        (paymentMethod.contains(DEBITO) &&  tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
+                        (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && tax.Type__c == 'crossborder') ||
+                        (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) ||  paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && isTicketRange)
                     ){
                         this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;

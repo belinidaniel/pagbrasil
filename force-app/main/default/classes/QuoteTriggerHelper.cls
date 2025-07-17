@@ -67,35 +67,6 @@ public with sharing class QuoteTriggerHelper {
         return false;
     }
 
-    public static void addOtherTaxRanges(List<Taxes__c> taxes, Taxes__c tax, Quote quote, PricebookEntry priceBookEntry, List<QuoteLineItem> quoteLineItems, Opportunity opportunity) {
-        for(Taxes__c currentTax : taxes){
-            if(currentTax.RecordTypeName__c == tax.RecordTypeName__c &&
-               currentTax.Product__c == tax.Product__c &&
-               currentTax.TicketInicial__c == tax.TicketInicial__c &&
-               currentTax.TicketFinal__c == tax.TicketFinal__c &&
-               currentTax.ProductClass__c == tax.ProductClass__c &&
-               currentTax.IntegrationType__c == tax.IntegrationType__c ){
-                Boolean isInsideRange = 
-                    (opportunity.previs_fat_rs__c >= currentTax.RangeFaixaInicial__c) &&
-                    (opportunity.previs_fat_rs__c < currentTax.RangeFaixaFinal__c);
-                if(currentTax.Type__c != null && currentTax.Type__c != opportunity.Recordtype.DeveloperName.toLowerCase().toLowerCase() ){
-                    continue;
-                }
-                quoteLineItems.add(new QuoteLineItem(
-                    PricebookEntryId = priceBookEntry.Id,
-                    Product2Id = priceBookEntry.Product2Id,
-                    Quantity = 1,
-                    UnitPrice = currentTax.UnitPrice__c != null ? currentTax.UnitPrice__c : 0,
-                    PercentValue__c  = currentTax.percentValue__c,
-                    QuoteId = quote.Id,
-                    UseTaxa__c = true,
-                    IsMain__c = isInsideRange,
-                    Tax__c = currentTax.Id
-                ));
-            }
-        }
-    }
-
     public static String getPaymentMethod(Opportunity opp) {
         return opp.nationalPaymentMethod__c != null
                 ? StringUtil.removeAccents(opp.nationalPaymentMethod__c.toUpperCase())
@@ -177,7 +148,7 @@ public with sharing class QuoteTriggerHelper {
         Boolean isCarteiraDigital = priceBookEntry.Product2.ProductCode.contains('CARTEIRA_DIGITAL'); //added
         Boolean isPagshield = priceBookEntry.Product2.ProductCode.contains('CUSTO_PAGSHIELD'); // CUSTO_PAGSHIELD
         Boolean isPagshieldPremiumVar = priceBookEntry.Product2.ProductCode.contains('TAXA_VAR_PAGSHIELD'); // TAXA_VAR_PAGSHIELD
-        Boolean isPagshieldPremiumFixa = priceBookEntry.Product2.ProductCode.contains('TAXA_FIXA_PAGSHIELD'); // TAXA_FIXA_PAGSHIELD
+        Boolean isPagshieldPremiumFixa = priceBookEntry.Product2.ProductCode.contains('TAXA_FIX_PAGSHIELD'); // TAXA_FIXA_PAGSHIELD
         Boolean isPagshieldOnDemandVar = priceBookEntry.Product2.ProductCode.contains('TAXA_VARIAVEL_PAGSHIELD_ON_DEMAND'); // TAXA_VARIAVEL_PAGSHIELD_ON_DEMAND
         Boolean isPagshieldOnDemandFixa = priceBookEntry.Product2.ProductCode.contains('TAXA_FIXA_PAGSHIELD_ON_DEMAND'); // TAXA_FIXA_PAGSHIELD_ON_DEMAND
         Boolean isZeroAuth = priceBookEntry.Product2.ProductCode.contains('ZERO_AUTH_CARTAO'); //added
@@ -204,19 +175,19 @@ public with sharing class QuoteTriggerHelper {
         // Taxa base de antecipação (intermediation, cross e nacional)
 
         if (isTaxaAntecipacao) { //alterado
-            if (paymentMethod.contains('CARTAO DE CREDITO')) {
+            if (!paymentMethod.contains('CARTAO DE CREDITO')) {
                 return true; //alterado
             }
         }
         // Taxa de Chargeback (intermediation, cross e nacional)
         if (isTaxaChargeback) { //alterado
-            if (paymentMethod.contains('CARTAO DE CREDITO')) {
+            if (!paymentMethod.contains('CARTAO DE CREDITO')) {
                 return true; //alterado
             }
         }
         // Taxa adicional de excesso de Chargebacks (intermediation, cross e nacional)
         if (isTaxaExcessoChargeback) { //added
-            if (paymentMethod.contains('CARTAO DE CREDITO')) {
+            if (!paymentMethod.contains('CARTAO DE CREDITO')) {
                 return true; //added
             }
         }
@@ -258,13 +229,22 @@ public with sharing class QuoteTriggerHelper {
             }
         }
 
+
+        if(isPagstreamTax){
+            if (!opportunity.UsePagstream__c || !paymentMethod.contains('CARTAO DE CREDITO')) { //alterado campo
+                return true; //added
+            }
+        }
+
+        if(isPackage){
+            if(isPlugin(opportunity.integrationType__c)){
+                return true;
+            }
+        }
+
         
         // Zero-auth CARTAO DE CREDITO (flag zero-auth, intermediation/gateway, cross/nacional)
         if (isZeroAuth) { //added
-
-        System.debug(  priceBookEntry.Product2.ProductCode + ' isZeroAuth: ' + isZeroAuth);
-        System.debug('ZeroAuthCreditCard__c: ' + opportunity.ZeroAuthCreditCard__c);
-        System.debug('paymentMethod.containsCARTAO DE CREDITO ' +paymentMethod.contains('CARTAO DE CREDITO'));
             if (opportunity.ZeroAuthCreditCard__c == false || !paymentMethod.contains('CARTAO DE CREDITO')) {
                 return true; //added
             }
@@ -272,18 +252,10 @@ public with sharing class QuoteTriggerHelper {
         // 3DS for Credit Cards (flag 3ds, intermediation/gateway, cross/nacional)
         if (is3DS) { //added
             // Não existe campo para 3DS, ajuste conforme necessário
-            if(!opportunity.ThreeDSCreditCard__c || !paymentMethod.contains('CARTAO DE CREDITO')) {
+            if(!opportunity.ThreeDSCreditCard__c || !paymentMethod.contains('CARTAO DE CREDITO') ||  isClossBoard) {
                 return true; //added
             }
         }
-        // Regras para Débito
-        // Taxa Gateway Débito (somente se for Débito, intermediation)
-        if (priceBookEntry.Product2.ProductCode.contains('GATEWAY_DEBITO')) { //added
-            if (!isIntermediation  ||  !paymentMethod.contains('DEBITO FLASH')) { //alterado multipicklist
-                return true; //added
-            }
-        }
-        
         // Regras para Pix
         // Taxa Gateway Pix (somente se for Pix, intermediation)
         if (priceBookEntry.Product2.ProductCode.contains('GATEWAY_PIX') &&  !paymentMethod.contains('PIX')) { //added
@@ -298,6 +270,7 @@ public with sharing class QuoteTriggerHelper {
                 return true; //added
             }
         }
+
         // Outras Taxas (Dependentes de Integração)
         // Taxa de repasse de fundos para Merchant (flag Payout, intermediation, cross e nacional, diferenciação EUR/USD em cross)
         if (priceBookEntry.Product2.ProductCode.contains('REPASSE_MERCHANT')) { //ajustado

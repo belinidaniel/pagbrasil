@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-13-2025
+ * @last modified on  : 07-17-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -328,7 +328,7 @@ public class PropostaNacionalController {
             } else if (containsPix && containsDebitCard && !containsCreditCard && containsBoleto) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PBD';
                 this.showThree = true;
-                populateOptionsController('Pix','DebitCard','Boleto');
+                populateOptionsController('Pix', 'Boleto','DebitCard');
             } else if (containsPix && !containsDebitCard && containsCreditCard && containsBoleto) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PCB';
                 this.showThree = true;
@@ -403,7 +403,7 @@ public class PropostaNacionalController {
             when 'CUSTO_PAGSHIELD' {
                 this.pagShield = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
-            when 'TAXA_FIXA_PAGSHIELD' {
+            when 'TAXA_FIX_PAGSHIELD' {
                 this.pagShieldPremium = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'TAXA_VAR_PAGSHIELD' {

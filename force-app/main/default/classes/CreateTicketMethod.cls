@@ -28,8 +28,8 @@ public class CreateTicketMethod {
         String priority = input.priority;
         Date dataCreateAccount = input.dataCreateAccount;
 
-        // sendPdfThroughEmail(input);
-        sendIntegration(input);
+         sendPdfThroughEmail(input);
+        //sendIntegration(input);
         // Logic to create a ticket using the idOpportunity
       createChildAccountsForHomologations(input.idOpportunity);
     }
@@ -66,8 +66,9 @@ public class CreateTicketMethod {
                 // Configura e envia um único e-mail com todos os PDFs anexados
                 Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
                 email.setToAddresses(new String[] {
-                    'eduardo.teixeira@srconsulting.io'
-                    //'gustavo.pias@srconsulting.io',
+                    'eduardo.teixeira@srconsulting.io',
+                    'gustavo.pias@srconsulting.io',
+                    'gabriel.brum@srconsulting.io'
                     //'daniel.oliveira@srconsulting.io'
                 });
                 email.setSubject('Opportunity PDF - Multiple Homologations');

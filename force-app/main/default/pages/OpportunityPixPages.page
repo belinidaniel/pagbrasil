@@ -227,7 +227,7 @@
 				<tr><td>Remittance Agent</td><td>{!wrapper.homologationForms[0].remittanceAgent}</td></tr>
 				<tr><td>Minimum Amount for Transfer</td><td>{!wrapper.homologationForms[0].minimumRemittance}</td></tr>
 				<tr><td>Remittance Currency</td><td>{!wrapper.moeda}</td></tr>
-				<tr><td>Transfer Fee</td><td>R${!wrapper.taxaTransferencia.totalPrice}</td></tr>
+				<tr><td>Transfer Fee</td><td>R${!wrapper.homologationForms[0].remittanceTax}</td></tr>
 				<tr><td>Spread (Current Quote)</td><td>{!wrapper.homologationForms[0].currentSpread}%</td></tr>
 				<tr><td>Spread (Outdated Quote)</td><td>{!wrapper.homologationForms[0].additionalSpread}%</td></tr>
 			</table>

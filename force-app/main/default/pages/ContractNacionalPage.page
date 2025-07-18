@@ -582,11 +582,8 @@
             <div style="margin-left:5px">
                 Serviço de mensagem de <br/> confirmação e lembrete de <br/>  Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>, Pix e Link de <br/> Pagamento
             </div>
-            <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+            <table style="margin-top: 1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
-                    <tr>
-                        
-                    </tr>
                     <tr>
                         <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
                             <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
@@ -614,13 +611,9 @@
                     </tr>
                     <apex:panelGroup rendered="{!containsPagBrasilDefinition}">
                         <tr>
-                            <td>
-                                pacote de SMS e e-mails
-                            </td>
-                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">0,00</td>
-                            <td>
-                                R$ por pacote (incluído somente com a contratação da Solução PagBrasil) 
-                            </td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">pacote de SMS e e-mails</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10; text-align: center;">0,00</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;"> R$ por pacote <br/>(incluído somente com a contratação da Solução PagBrasil) </td>
                         </tr>
                     </apex:panelGroup>
                     <tr>

@@ -106,6 +106,7 @@ public class ContractController {
     public String pix { get; set; }
     public String refundTransfer { get; set; }
     public String chargeback { get; set; }
+    public String isChargeback { get; set; }
     public String excessChargeback { get; set; }
     public String currencyExchangeMarkup { get; set; }
     public String iofTax { get; set; }
@@ -122,6 +123,9 @@ public class ContractController {
     public String frequencyPageOneValueTen { get; set; }
     public String frequencyPageOneValueEleven { get; set; }
     public String frequencyPageOneValueTwelve { get; set; }
+
+    public String frequencyOne { get; set; }
+    public String frequencyTwo { get; set; }
 
     public String settlementFrequency { get; set; }
 
@@ -156,15 +160,17 @@ public class ContractController {
         this.isGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
         this.isIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Intermediation') : false;
 
+        if(String.isNotBlank(opp.RecordType.DeveloperName) && opp.RecordType.DeveloperName.contains('Crossborder')){
+            this.isCrossborder = true;
+        }
+
+
         getTermClauses(opp.Id, opp.RequestChangeClause__c);
 
         this.link = String.isBlank(ApexPages.currentPage().getParameters().get('link')) ? 'Link não fornecido' : ApexPages.currentPage().getParameters().get('link');
         this.opportunity = opp;
 
-        if(String.isNotBlank(opp.RecordType.DeveloperName) && opp.RecordType.DeveloperName.contains('Crossborder')){
-            this.isCrossborder = true;
-        }
-
+  
         if (!this.isCrossBorder){
             KYC__c kyc = [SELECT Id, Legal_Name__c FROM KYC__c WHERE Opportunity__c =: opp.Id LIMIT 1];
             this.legalName = kyc.Legal_Name__c;
@@ -335,7 +341,6 @@ public class ContractController {
                         System.debug('Pagstream Min: ' + this.pagstreamMin);
                     }
                     when 'PAGSHIELD_FRAUD_PREVENTION' {
-                        this.pagShield = price;
                         this.hasPagShield = true;
                     }
                     when 'PAGSHIELD_PREMIUM_FIXED_FEE' {
@@ -612,7 +617,7 @@ public class ContractController {
             }
 
             if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Weekly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '0';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
                 if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
                 if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
             }
@@ -785,14 +790,22 @@ public class ContractController {
 
 
     private void getTermClauses(Id opportunityId,Boolean requestChangeClause) {
+        System.debug('getTermClauses called with opportunityId: ' + opportunityId + ' and isCrossborder: ' + this.isCrossborder);
         if(requestChangeClause){
             List<ClausesOpportunity__c> requestChangeClausesList = [SELECT Id,ClauseName__c,ClauseText__c FROM ClausesOpportunity__c WHERE Opportunity__c = :opportunityId AND ClauseName__c in ('Termos e Condições:','Terms and Conditions:')];
             this.termClauses = requestChangeClausesList[0].ClauseText__c;
             this.termClausesTitle = requestChangeClausesList[0].ClauseName__c;
         }else{
-            List<Clauses__c> termClausesList = [SELECT Id,Name,ClauseText__c,ContractType__c FROM Clauses__c WHERE Name in  ('Termos e Condições:','Terms and Conditions:') AND ContractType__c =  : ( this.isCrossborder  ? 'Cross' : 'National')];
-            this.termClauses = termClausesList[0].ClauseText__c;
-            this.termClausesTitle = termClausesList[0].Name;     
+            if(!this.isCrossborder){
+                List<Clauses__c> termClausesList = [SELECT Id,Name,ClauseText__c,ContractType__c FROM Clauses__c WHERE ContractType__c =:  'National' ];
+                this.termClauses = termClausesList[0].ClauseText__c;
+                this.termClausesTitle = termClausesList[0].Name;     
+            }
+            else{
+                List<Clauses__c> termClausesList = [SELECT Id,Name,ClauseText__c,ContractType__c FROM Clauses__c WHERE ContractType__c =: 'Cross'];
+                this.termClauses = termClausesList[0].ClauseText__c;
+                this.termClausesTitle = termClausesList[0].Name;     
+            }
         }
       
     }

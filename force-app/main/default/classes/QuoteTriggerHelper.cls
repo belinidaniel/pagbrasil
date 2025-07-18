@@ -307,6 +307,49 @@ public with sharing class QuoteTriggerHelper {
             }
         }
 
+        if (priceBookEntry.Product2.ProductCode.contains('AMOUNT_WITHHELD_PROVISION') && isClossBoard) { //ajustado
+            if (isClossBoard) {
+                if (opportunity.Moeda__c == 'EUR' && !priceBookEntry.Product2.ProductCode.contains('AMOUNT_WITHHELD_PROVISION_EUR')) {
+                    return true;
+                }
+                if (opportunity.Moeda__c == 'USD' && !priceBookEntry.Product2.ProductCode.contains('AMOUNT_WITHHELD_PROVISION_USD')) {
+                    return true;
+                }
+                if (opportunity.Moeda__c != 'EUR' && opportunity.Moeda__c != 'USD') {
+                    return true;
+                }
+            }
+        }
+
+        if (priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE') && isClossBoard) { //ajustado
+            if (isClossBoard) {
+                if (opportunity.Moeda__c == 'EUR' && !priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE_EUR')) {
+                    return true;
+                }
+                if (opportunity.Moeda__c == 'USD' && !priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE_USD')) {
+                    return true;
+                }
+                if (opportunity.Moeda__c != 'EUR' && opportunity.Moeda__c != 'USD') {
+                    return true;
+                }
+            }
+        }
+
+        if (priceBookEntry.Product2.ProductCode.startsWith('SETUP_FEE') && isClossBoard) { //ajustado
+            if (isClossBoard) {
+                if (opportunity.Moeda__c == 'EUR' && !priceBookEntry.Product2.ProductCode.contains('SETUP_FEE_EUR')) {
+                    return true;
+                }
+                if (opportunity.Moeda__c == 'USD' && !priceBookEntry.Product2.ProductCode.contains('SETUP_FEE_USD')) {
+                    return true;
+                }
+                if (opportunity.Moeda__c != 'EUR' && opportunity.Moeda__c != 'USD') {
+                    return true;
+                }
+            }
+        }
+
+
         if (priceBookEntry.Product2.ProductCode.contains('PAYOUT_SETUP_FEE') && !isClossBoard) { //ajustado
             if (!opportunity.Payout__c) {
                 return true;

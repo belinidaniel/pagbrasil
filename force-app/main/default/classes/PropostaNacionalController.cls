@@ -654,7 +654,7 @@ public class PropostaNacionalController {
 
     private void setMonthlyFrequencyPageOne(String antecipation) {
         if (antecipation == 'Monthly') {
-            this.frequencyCardEligebleDatePageOne = 'D+0';
+            this.frequencyCardEligebleDatePageOne = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'mensal';
         }

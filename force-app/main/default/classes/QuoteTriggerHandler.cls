@@ -246,7 +246,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 when 'TaxaGateway' {
                     System.debug(' tax.UnitPrice__c - ' +  tax.Id);
                     System.debug(' tax.UnitPrice__c - ' +  tax.UnitPrice__c);
-                    if(opportunity.BusinessModel__c.contains('Gateway') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js'))){
+                    if(opportunity.BusinessModel__c.contains('Gateway')){
                         unitPrice = tax.UnitPrice__c;
                         isTaxMain = true;
                         taxId = tax.Id;

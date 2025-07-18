@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-17-2025
+  @last modified on  : 07-18-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -332,7 +332,7 @@
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="width: 40%; text-align: left;">Setup Fee</td>
+                        <td style="width: 60%; text-align: left;">Setup Fee</td>
                         <td style="width: 10%; text-align: center;">
                             {!adherenceFee}
                         </td>
@@ -393,20 +393,20 @@
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left; vertical-align: top;border-bottom: 0px">Eligible settlement date</td>
                         <td colspan="2" style="width: 60%; text-align: left;border-bottom: 0px">
-                            <apex:panelGroup rendered="{!containsPix}">
-                                <p>Pix: D+0/7/15/31</p>
-                            </apex:panelGroup>
-                            
-                            <apex:panelGroup rendered="{!containsDebito}">
-                                <p>Débito Flash<span style="vertical-align: super; font-size: 0.8em;">™</span>: D+0/7/15/31</p>
-                            </apex:panelGroup>
-                            
-                            <apex:panelGroup rendered="{!containsBoleto}">
-                                <p>Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>: D+0/7/15/31</p>
-                            </apex:panelGroup>
-
+                            <p>
+                                <apex:panelGroup rendered="{!containsPix}">
+                                    Pix
+                                </apex:panelGroup>
+                                <apex:panelGroup rendered="{!containsDebito}">
+                                   ,Débito Flash<span style="vertical-align: super; font-size: 0.8em;">™</span> 
+                                </apex:panelGroup>
+                                <apex:panelGroup rendered="{!containsBoleto}">
+                                    ,Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                                </apex:panelGroup>
+                                :D+{!settlementFrequency}
+                            </p>
                             <apex:panelGroup rendered="{!AND(containsCartao, NOT(isFluxoMedio))}">
-                                <p>Credit Card: D+{!settlementFrequency}</p>
+                                <P>Credit Card: D+{!settlementFrequency}</p>
                             </apex:panelGroup>
                         </td>
                     </tr>
@@ -450,14 +450,7 @@
                 <apex:outputText value="* “D” refers to the day the " escape="false"/>
                 <apex:outputText value="End Customer pays the Transaction Amount. " style="font-weight:bold;" escape="false" /><br/><br/>
             </apex:panelGroup>
-            
-            <!--<div class="page-break"></div>
 
-<div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
-</div>
-<br/> -->
-            
             <apex:panelGroup rendered="{!isFluxoMedio}">
                 <table border="1">
                     <tbody style="borderjustify-items: center; border:0px;" >
@@ -727,21 +720,20 @@
 
             <div class="page-break"></div>
             <div style="text-align: right;">
-                <img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
+                <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
             </div>
             <br/>
-
             <p style="text-align:justify">
                 By electronically signing the <strong>Agreement</strong>, including its annexes, through the DocuSign platform <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> the <strong>Parties</strong> declare and acknowledge the validity, authenticity, and integrity of this <strong>Agreement</strong> and the <strong>PagBrasil Terms and Conditions</strong> availability at the link
                 <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.xxxx.com)</a>
                 .  
             </p>
 
-            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/>
             <div style="display: flex; justify-content: space-between;">
                 <div style="width: 48%; display: inline-block; vertical-align: top;">
                     <table style="width: 100%">
-                        <apex:outputText value="        Merchant" style="font-weight:bold; white-space: pre;" />
+                        <apex:outputText value="        Merchant.       " style="font-weight:bold; white-space: pre;" />
                         <br/><br/><br/><br/>
                         <apex:repeat value="{!contacts}" var="contact">
                             <tbody>
@@ -749,31 +741,9 @@
                                     <td colspan="1" style="width: 70%; border-bottom: none !important;">
                                         <div class="box-assinatura">
                                             <div class='assinatura'>
-                                                {!contact.Name}
                                             </div>
                                             <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                                (Name)
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr style="font-size: 16px;">
-                                    <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                        <div class="box-assinatura">
-                                            <div class='assinatura'></div>
-                                            <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                                (Authorized Signature)
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                        <div class="box-assinatura">
-                                            <div class='assinatura'>
-                                                {!contact.Title}
-                                            </div>
-                                            <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
+                                                (Name) <br/>
                                                 (Title)
                                             </div>
                                         </div>
@@ -796,39 +766,16 @@
             
                 <div style="width: 48%; display: inline-block; vertical-align: top;">
                     <table style="width: 100%">
-                        <apex:outputText value="        PagBrasil" style="font-weight:bold; white-space: pre;" />
+                        <apex:outputText value="     PagBrasil" style="font-weight:bold; white-space: pre;margin-left:10px" />
                         <br/><br/><br/><br/>
                         <tbody>
                             <tr style="font-size: 16px;">
                                 <td colspan="1" style="width: 70%; border-bottom: none !important;">
                                     <div class="box-assinatura">
-                                        <div class='assinatura'>
-                                            Ralf Germer
-                                        </div>
-                                        <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Name)
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="font-size: 16px;">
-                                <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                    <div class="box-assinatura">
                                         <div class='assinatura'></div>
                                         <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Authorized Signature)
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                    <div class="box-assinatura">
-                                        <div class='assinatura'>
+                                            Alex Hoffmann <br/>
                                             CEO
-                                        </div>
-                                        <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Title)
                                         </div>
                                     </div>
                                 </td>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-17-2025
+  @last modified on  : 07-18-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page showHeader="false" 
@@ -473,7 +473,10 @@
                             </strong> settlements
                         </li>
                     </apex:panelGroup>
-                    <li><strong>Minimum amount for remittance:</strong> {!minimumTransferAmount} BRL (net amount)</li>
+                    <li>
+                        <strong>Minimum amount for remittance:</strong>
+                        {!IF(ISBLANK(minimumTransferAmount), '', TEXT(FORMAT(minimumTransferAmount, 'C', opportunityCurrency)))} (net amount)
+                    </li>
                     <li><strong>Rolling reserve:</strong> {!reserve}% from the previous monthly period (may be reduced after 3 months of processing)</li>
                     <li><strong>Exchange rate (BRL - USD/EUR):</strong> Central Bank of Brazil's official interbank rate (6-8% lower than the floating exchange rate, or “tourist dollar”)</li>
                     <li><strong>Currency exchange markup (spread):</strong> {!currencyExchangeMarkupSpread}%</li>
@@ -528,10 +531,10 @@
                                     <td style="border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Setup Fee</td>
                                     <td style="border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!setupFee} {!opportunityCurrency}</td>
                                 </tr>
-                                <!-- <tr>
+                                <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Chargeback Fee</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!chargeback} BRL (according to chargeback rate)</td>
-                                </tr> -->
+                                </tr>
                                 <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Refund Fee</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!refundCardAcquirerPix} BRL (via acquirer or Pix)<br/>{!refundBankTransfer} BRL (via wire transfer)</td>
@@ -577,10 +580,10 @@
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Service Fee - {!currentIntegrationTypeInCheckoutList}</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.5 on the total amount processed</td>
                                 </tr>
-                                <!-- <tr>
+                                <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Chargeback Fee</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!chargeback} BRL (according to chargeback rate)</td>
-                                </tr> -->
+                                </tr>
                                 <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Refund Fee</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!refundCardAcquirerPix} BRL (via acquirer or Pix)<br/>{!refundBankTransfer} BRL (via wire transfer)</td>
@@ -647,80 +650,6 @@
             </div>
         </apex:panelGroup>
 
-        <!-- Page 16 -->
-        <apex:panelGroup rendered="{!containsPayout}">
-            <div class="page">
-                <div class="page-content">
-                    <div style="position: absolute; top: 0; left: 0px; width: 1142px; height: 642px; padding: 50px;">
-                        <div style="float: left; width: 50%; margin-top: 30px;">
-                            <p style="font-size: 34px; font-weight: 200"><strong>Eligibility </strong>per <br/> payment method</p>
-    
-                            <div style="margin-top: 50px; width: 450px; background-color: #e7e7e7; font-size: 13.5px; line-height: 1.5; display: flex;
-                            flex-direction: column; padding: 15px">
-                                <span style="color: #363636; font-size: 14.5px; margin-left: 23px;">
-                                    After the payment confirmation, the funds are available in the
-                                </span>
-
-                                <span style="color: #363636; font-size: 14.5px; margin-left: 23px;">
-                                    payout account following its defined eligible date:
-                                </span>
-                                <table style="text-align: center; margin-top: 10px; margin-left: 24px;">
-                                    <tr style="background-color: rgb(0, 141, 235); font-weight: 600">
-                                        <td style="padding: 5px; color: white;">Credit cards</td>
-                                        <td style="padding: 5px; color: white;">PagBrasil Pix</td>
-                                        <td style="padding: 5px; color: white;">Boleto Flash®</td>
-                                        <td style="padding: 5px; color: white;">Débito Flash®</td>
-                                    </tr>
-                                    <tr style="background-color: rgb(12, 185, 12); font-weight: 600">
-                                        <td style="padding: 5px; color: white;">D+0</td>
-                                        <td style="padding: 5px; color: white;">D+0</td>
-                                        <td style="padding: 5px; color: white;">D+0</td>
-                                        <td style="padding: 5px; color: white;">D+{!settlementFrequency}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            
-                            <ul style="margin-top: 20px; margin-bottom: 20px; width: 500px; color: #505050; font-size: 14px;">
-                                <li>When the fund becomes eligible, it can follow two directions:​​</li>
-                                <li style="margin-left: 35px">Proceed with local transfers in BRL​​</li>
-                                <li style="margin-left: 35px">Proceed with international remittances in {!opportunityCurrency}​​​</li>
-                            </ul>
-                        </div>
-                        <div style="float: right; width: 50%; margin-top: 20px;">
-                            <span style="text-align: left; font-size: 40px;">
-                                Payount account <br/> <strong>Settlement Terms</strong>
-                            </span>
-                            <ul style="margin-top: 20px; margin-bottom: 20px; width: 500px; color: #505050; font-size: 14px;">
-                                <li><strong>Rolling reserve:</strong> 15% from the previous monthly period​</li>
-                                <li><strong>IOF tax rate:</strong> {!iofTax}% of the total transaction amount​</li>
-                            </ul>
-                            <span style="text-align: left; font-size: 17px">
-                                <strong>Local transfers in BRL</strong>
-                            </span>
-                            <ul style="margin-top: 20px; margin-bottom: 20px; width: 500px; color: #505050; font-size: 14px;">
-                                <li><strong>Local transfers:</strong> D+3</li>
-                                <li><strong>Payout service fee:</strong> {!payoutServiceFee}% on the transaction amount via payout​</li>
-                                <li><strong>Remittance fee to suppliers:</strong> {!remittanceFeeSuppliers} BRL</li>
-                            </ul>
-                            <span style="text-align: left; font-size: 17px">
-                                <strong>International transfers in {!opportunityCurrency}</strong>
-                            </span>
-                            <ul style="margin-top: 20px; width: 500px; color: #505050; font-size: 14px;">
-                                <li><strong>International remittances:</strong> Weekly (on the following week)​​</li>
-                                <li><strong>Currency exchange markup (spread):</strong> <span style="font-size: 12.5px;">{!currencyExchangeMarkupSpread}% (based on the Central Bank of Brazil’s official interbank rate)​​</span></li>
-                                <li><strong>Remittance fee to the Merchant:</strong> 50  {!opportunityCurrency}​​</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-footer">
-                    <img src="{!$Resource.Logo2025}" style="float: left; width: 133px; margin-left: 25px;"/>
-                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
-                </div>
-            </div>
-        </apex:panelGroup>
-
-
 
         <!-- Page 17 -->
         <div class="page">
@@ -745,29 +674,7 @@
             </div>
         </div>
 
-        <!-- Page 18 -->
-         <apex:panelGroup rendered="{!containsGooglePay}">
-            <div class="page">
-                <img src="{!$Resource.PNPagina19GPayCoresLogo}" class="page-background-image" style="left: -36px"/>
-                <img src="{!$Resource.PNPagina19GPayCelular}" class="page-background-image" style="left: 230px"/>
-                <div class="page-content">
-                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
-                        <p style="font-size: 18px; font-weight: 100;">Featured Solutions</p> 
-                        <p style="font-size: 35px; margin-top: 20px;"><strong>Google Pay</strong></p>
-                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Boost the checkout experience and your store’s reputation with Google’s digital wallet.</strong></p>
-                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
-                            <li>Tap-to-pay feature for a simplified customer journey</li>
-                            <li>Prevents payment failure and helps increase conversions by retrieving payment information from the user’s Google account</li>
-                            <li>Fosters customer trust with a Google-branded solution</li>
-                        </ul>
-                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> 0.2% added to the credit card processing fees.</p>
-                    </div>
-                </div>
-                <div class="page-footer" style="bottom: 30px">
-                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
-                </div>
-            </div>
-        </apex:panelGroup>
+
 
 
         <apex:panelGroup rendered="{!containsPixAutomatico}">
@@ -816,6 +723,30 @@
                             <li>Tap-to-pay feature for a simplified customer journey</li>
                             <li>Prevents payment failure and helps increase conversions by retrieving payment information from the user's Apple account</li>
                             <li>Fosters customer trust with an Apple-branded solution</li>
+                        </ul>
+                        <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> 0.2% added to the credit card processing fees.</p>
+                    </div>
+                </div>
+                <div class="page-footer" style="bottom: 30px">
+                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-right: 25px; background-color: #fff;">© {!YEAR(TODAY())} PagBrasil</p>
+                </div>
+            </div>
+        </apex:panelGroup>
+
+                <!-- Page 18 -->
+         <apex:panelGroup rendered="{!containsGooglePay}">
+            <div class="page">
+                <img src="{!$Resource.PNPagina19GPayCoresLogo}" class="page-background-image" style="left: -36px"/>
+                <img src="{!$Resource.PNPagina19GPayCelular}" class="page-background-image" style="left: 230px"/>
+                <div class="page-content">
+                    <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
+                        <p style="font-size: 18px; font-weight: 100;">Featured Solutions</p> 
+                        <p style="font-size: 35px; margin-top: 20px;"><strong>Google Pay</strong></p>
+                        <p style="font-size: 18px; margin-top: 30px; width: 500px;"><strong>Boost the checkout experience and your store’s reputation with Google’s digital wallet.</strong></p>
+                        <ul style="margin-top: 40px; width: 500px; color: #505050; font-size: 15px; line-height: 1.5;">
+                            <li>Tap-to-pay feature for a simplified customer journey</li>
+                            <li>Prevents payment failure and helps increase conversions by retrieving payment information from the user’s Google account</li>
+                            <li>Fosters customer trust with a Google-branded solution</li>
                         </ul>
                         <p style="font-size: 18px; margin-top: 40px; width: 500px;"><strong>Service fee:</strong> 0.2% added to the credit card processing fees.</p>
                     </div>
@@ -911,7 +842,7 @@
                                 <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px;">
                                         <strong>PagShield® Premium</strong><br/>
-                                        Pre-authorizations analyzed by the PagBrasil fraud prevention team
+                                        Pre-authorizations analysis by the PagBrasil fraud prevention team
                                     </td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
                                         {!pagShieldPremiumFixedFee} BRL per analysis +<br/>

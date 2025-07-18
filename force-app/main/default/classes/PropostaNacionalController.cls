@@ -382,10 +382,10 @@ public class PropostaNacionalController {
         List<QuoteLineItem> quoteLineItems = [SELECT Id,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
             if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_500_SMS') {
-                pacotesSms.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+                pacotesSms.add(quoteLineItem.Product2.Name + ':' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
             }
             if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_100000_EMAILS') {
-                pacotesEmails.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+                pacotesEmails.add(quoteLineItem.Product2.Name + ':' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
             }
             processQuoteLineItem(quoteLineItem);
         }

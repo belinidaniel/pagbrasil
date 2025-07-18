@@ -31,6 +31,7 @@ public class ContractController {
     public Boolean containsBoleto { get; set; }
     public Boolean containsCartao { get; set; }
     public Boolean containsDebito { get; set; }
+    public String remittanceFee { get; set; }
 
     public Boolean containsCartaoAndIsIntermediation { get; set; } 
 
@@ -297,11 +298,20 @@ public class ContractController {
                     when 'TAXA_PAGSTREAM_SERVICE_FEE' {
                         this.pagstreamfee = price;
                     }
-                    when 'RESERVE' {
-                        this.reserve = price;
+                    when 'REMITTANCE_FEE_EUR' {
+                        this.remittanceFee = price;
+                    }
+                    when 'PAGSHIELD_FRAUD_PREVENTION_FIXED_FEE' {
+                        this.pagShieldFee = price;
+                    }
+                    when 'PAGSHIELD_FRAUD_PREVENTION_FIXED_FEE_TO_REVIEW' {
+                        this.pagShieldFeePercent = price;
                     }
                     when 'REMITTANCE_FEE_USD' {
-                        this.trasferFee = price;
+                        this.remittanceFee = price;
+                    }
+                    when 'RESERVE' {
+                        this.reserve = price;
                     }
                     when 'MINIMUM_TRANSFER_AMOUNT' {
                         this.repass = price;
@@ -342,6 +352,7 @@ public class ContractController {
                     }
                     when 'PAGSHIELD_FRAUD_PREVENTION' {
                         this.hasPagShield = true;
+                        this.pagshield = price;
                     }
                     when 'PAGSHIELD_PREMIUM_FIXED_FEE' {
                         this.pagShieldFee = price;

@@ -1457,6 +1457,83 @@
             </apex:panelGroup>
         </apex:panelGroup>
 
+
+        <!-- Page 15 - Se for Intermediação e API--> 
+        <apex:panelGroup rendered="{!NOT(containsGateway)}">
+            <apex:panelGroup rendered="{!shopifyWoocommerceSalesforcePBCheckoutTerms}">
+                <div class="page">
+                    <div class="background-color-grey" style="width: 576px;">
+                    </div>
+                    <div class="page-content">
+                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
+
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 50px; color: #202020; font-size: 36px;">
+                            Termos<br/> <strong>complementares</strong>
+                        </p>
+                        <ul style="position: absolute; top: 220px; left: 0; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
+                        
+                            <li>
+                                <strong>Taxa de transferência</strong>: R${!transferFee}
+                            </li>
+                            <li>
+                                <strong>Reserva giratória inicial</strong>: {!reserve}% (com reembolso via PagBrasil, com uso de cartão de crédito) <apex:outputText rendered="{!NOT(containsIntermediacao)}"> ou 0% (sem reembolso via PagBrasil e sem uso de cartão de crédito por intermediação) </apex:outputText>
+                            </li>
+                            <li>
+                                <strong>Taxa de chargeback:</strong> {!chargebackTax} (fixo, por chargeback) 
+                            </li>
+                            <li>
+                                <strong>Taxa de instalação </strong>: R${!adherenceFee}
+                            </li>
+                            <li>
+                                <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                                <p style="position: absolute; top: 20px;  font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                                    * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
+                                </p>
+                            </li>
+                        </ul>
+                        
+                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; white-space: nowrap; top: 45px; left: 615px; color: #202020; font-size: 36px;">
+                            Termos<br/> <strong>opcionais</strong>
+                        </p>
+                        <ul style="position: absolute; top: 220px; left: 565px; width: 454px; padding-left: 50px; padding-right: 50px; color: #505050; font-size: 15px; line-height: 1.2;">
+                        <li>
+                            <strong>Serviços de E-mail e SMS de confirmação e lembrete de Pagamento</strong>
+                            <apex:outputText rendered="{!smsGratuito == 'Gratuito'}">
+                                : Gratuito
+                            </apex:outputText>
+                            <apex:outputPanel rendered="{!smsGratuito != 'Gratuito'}">
+                                <div style="margin-left: 12px; margin-top: 6px;">
+                                    <span>
+                                        <span style="font-weight:bold;">Pacote de SMS:</span><br/>
+                                        <span style="display:block; height:6px;"></span>
+                                         <span style="margin-left:12px; display:block; line-height:1.15;">
+                                            <apex:repeat value="{!pacotesSms}" var="sms">
+                                                {!sms}<br/>
+                                            </apex:repeat>
+                                        </span>
+                                    </span>
+                                    <span style="display:block; margin-top:8px;">
+                                        <span style="font-weight:bold;">Pacote de e-mails:</span><br/>
+                                        <span style="display:block; height:6px;"></span>
+                                        <span style="margin-left:12px; display:block; line-height:1.15;">
+                                            <apex:repeat value="{!pacotesEmails}" var="email">
+                                                {!email}<br/>
+                                            </apex:repeat>
+                                        </span>
+                                    </span>
+                                </div>
+                            </apex:outputPanel>
+                        </li>
+                        </ul>
+                    </div>
+                    <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                </div>
+            </apex:panelGroup>
+        </apex:panelGroup>
+        
         <!-- Page 16 -->
         <apex:panelGroup rendered="{!containsGateway}">
             <div class="page">

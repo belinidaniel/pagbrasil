@@ -379,11 +379,11 @@
                         <td style="padding: 10px; width: 10%; text-align: center;">{!currencyExchangeMarkup}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on exchange rate</td>
                     </tr>
-                    <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">IOF tax</td>
+                    <!-- <tr>
+                        <td style="padding: 10px; width: 40%; text-align: left;">tax</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!iofTax}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on the Transaction Amount</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left;">Minimum Transfer Amount</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!repass}</td>
@@ -444,13 +444,20 @@
                     </tr>
                 </apex:panelGroup>
                 </tbody>
-            </table>
-            
+            </table>            
             <apex:panelGroup rendered="{!NOT (isFluxoMedio)}">
                 <apex:outputText value="* “D” refers to the day the " escape="false"/>
                 <apex:outputText value="End Customer pays the Transaction Amount. " style="font-weight:bold;" escape="false" /><br/><br/>
             </apex:panelGroup>
-
+            <table style="width: 100%; margin: 20px auto; table-layout: auto; text-align: left; border-top: 1px solid black;">
+                <tbody>
+                    <tr style=" border-bottom: 0px solid black; !important;"> 
+                        <td style="padding: 10px; width: 40%; text-align: left;">Remittance Fee</td>
+                        <td style="padding: 10px; width: 10%; text-align: center;">{!remittanceFee}</td>
+                        <td style="padding: 10px; width: 50%; text-align: left;">{!opportunity.Moeda__c} per remittance</td>
+                    </tr>
+                </tbody>
+            </table>
             <apex:panelGroup rendered="{!isFluxoMedio}">
                 <table border="1">
                     <tbody style="borderjustify-items: center; border:0px;" >
@@ -521,40 +528,41 @@
             <p style="font-weight: bold;">{!startNumber}. Optional services: </p>
             <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
             Boleto Flash®, Pix and<span style="vertical-align: super; font-size: 0.8em;">®</span> Payment Link confirmation and/or reminder messages 
+            <br/>
             <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
-                            package 500 SMS<br/>
-                            package 1.000 SMS<br/>
-                            package 10.000 SMS<br/><br/>
-                            package 1.000 e-mails<br/>
-                            package 10.000 e-mails<br/>
-                            package 100.000 e-mails<br/><br/>
-                            <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
-                                SMS and emails package
-                            </apex:outputPanel> 
-                        </td>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            199,00<br/>
-                            {!sms1000}<br/>
-                            {!sms10000}<br/><br/>
-                            95,00<br/>
-                            {!emails10000}<br/>
-                            1,900<br/><br/>
-                            <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
-                                0,00
-                            </apex:outputPanel>
-                        </td>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
-                            <br/>
-                            BRL per package<br/><br/><br/><br/>
-                            BRL per package<br/><br/><br/><br/>
-                            <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
-                                BRL per package (included only with the hiring of the PagBrasil Solution)
-                            </apex:outputPanel> 
-                        </td>
+                        <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
+                            <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
+                                package 500 SMS<br/>
+                                package 1.000 SMS<br/>
+                                package 10.000 SMS<br/><br/>
+                                package 1.000 e-mails<br/>
+                                package 10.000 e-mails<br/>
+                                package 100.000 e-mails<br/><br/>
+                            </td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                                {!sms500}<br/>
+                                {!sms1000}<br/>
+                                {!sms10000}<br/><br/>
+                                {!emails1000}<br/>
+                                {!emails10000}<br/>
+                                {!emails100000}<br/><br/>
+                            </td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                                <br/>
+                                 BRL per package<br/><br/><br/><br/>
+                                 BRL per package<br/><br/><br/><br/>
+                            </td>
+                        </apex:panelGroup>
                     </tr>
+                    <apex:panelGroup rendered="{!containsPagBrasilDefinition}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">SMS and emails Package</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10; text-align: center;">0,00</td>
+                                BRL per package (included only with the hiring of the PagBrasil Solution)
+                        </tr>
+                    </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth for Credit Card</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
@@ -572,7 +580,7 @@
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">1-Click Pix</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,10</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
                         <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
                     </tr>
@@ -592,13 +600,13 @@
             <br/>
 
             <p style="font-weight: bold;">{!startNumber}. PagShield: </p>
-            <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
+            <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>2
                 <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
                         <td style="width: 40%; text-align: left;">PagShield fraud prevention ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatory', 'optional')})</td>
                         <td style="width: 10%; text-align: center;">{!pagShield}</td>
-                        <td style="width: 50%; text-align: left;">BRL per analyzed transaction</td>
+                        <td style="width: 50%; text-align: left;">BRL per analysis transaction</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium fraud prevention (optional)</td>
@@ -678,7 +686,6 @@
                     <tr>
                         <td style="border-bottom: 0px;width: 40%; text-align: left;">
                             Pix Automático (Recurring Pix)<br/>
-                            *ETA June, 2025
                         </td>
                         <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
@@ -687,10 +694,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <p style="text-align:justify">
-                <strong>PagBrasil</strong> reserves the right to adjust the Pix Automático rates in response to future market conditions anytime in accordance with the provisions of clause 4.2. 
-            </p>
 
             <p style="text-align:justify">
                 The <strong>Merchant</strong> may participate in a trial period before the official launch of Pix Automático if it meets and accepts the conditions and requirements established by <strong>PagBrasil</strong> for that trial. 
@@ -724,9 +727,7 @@
             </div>
             <br/>
             <p style="text-align:justify">
-                By electronically signing the <strong>Agreement</strong>, including its annexes, through the DocuSign platform <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> the <strong>Parties</strong> declare and acknowledge the validity, authenticity, and integrity of this <strong>Agreement</strong> and the <strong>PagBrasil Terms and Conditions</strong> availability at the link
-                <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.xxxx.com)</a>
-                .  
+                By electronically signing the <strong>Agreement</strong>, including its annexes, through the DocuSign platform <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> the <strong>Parties</strong> declare and acknowledge the validity, authenticity, and integrity of this <strong>Agreement</strong> and the <strong>PagBrasil Terms and Conditions</strong> 
             </p>
 
             <br/><br/>
@@ -774,8 +775,8 @@
                                     <div class="box-assinatura">
                                         <div class='assinatura'></div>
                                         <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            Alex Hoffmann <br/>
-                                            CEO
+                                            Ralf Gemer <br/>
+                                            CEO Cross
                                         </div>
                                     </div>
                                 </td>

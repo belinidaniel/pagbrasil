@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-14-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public class CreateTicketMethod {
@@ -28,8 +28,8 @@ public class CreateTicketMethod {
         String priority = input.priority;
         Date dataCreateAccount = input.dataCreateAccount;
 
-         sendPdfThroughEmail(input);
-        //sendIntegration(input);
+         //endPdfThroughEmail(input);
+        sendIntegration(input);
         // Logic to create a ticket using the idOpportunity
       createChildAccountsForHomologations(input.idOpportunity);
     }

@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-17-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -145,6 +145,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     if( quote.Pricebook2Id != priceBookEntry.Pricebook2Id ){
                     }
                     System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
+                    System.debug('PricebookId - ' + priceBookEntry.UnitPrice);
                     quoteLineItems.add(new QuoteLineItem(
                         PricebookEntryId = priceBookEntry.Id,
                         Product2Id = priceBookEntry.Product2Id,
@@ -177,55 +178,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         }
 
         return null;
-    }
-
-    /**
-    * @description by pass product to include in quote line item
-    * @author Hersilio Belini de Oliveira | 2024-10-29
-    * @param opportunity
-    * @param product
-    * @return boolean
-    **/
-    private boolean byPassProduct(Opportunity opportunity, Product2 product){
-        if(String.isBlank(product.ProductCode)){
-            return true;
-        }
-
-        // não ignorar no cross esse produtos
-        if(new List<String>{'REFUND_CARD_ACQUIRER_PIX', 'RECURRING_PIX', 'ZERO_AUTH_CREDIT_CARD' }.contains(product.ProductCode)){
-            return false;
-        }
-
-
-        String productCode = product.ProductCode;
-
-        // colocar productCodHasSalesforce em uma cumstom setting
-        if(opportunity.IntegrationType__c != null &&
-          ((!opportunity.IntegrationType__c.toLowerCase().contains('salesforce') && product.ProductCode.contains('_SF')) ||
-           (opportunity.IntegrationType__c.toLowerCase().contains('salesforce') && productCodHasSalesforce.contains(product.ProductCode)))){
-            return true;
-        }
-
-        String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
-
-        if((productCode.contains(DEBITO) && !paymentMethod.contains(DEBITO)) ||
-           (productCode.contains(PIX) && !paymentMethod.contains(PIX) && !productCode.contains(PIX_AUTO) )  ||
-           (productCode.contains(CREDITO) && !paymentMethod.contains(CREDITO)) ||
-           (productCode.contains(CREDIT_CARD) && !paymentMethod.contains(CREDITO)) ||
-           (productCode.contains(BOLETO) && !paymentMethod.contains(BOLETO)) ){
-            return true;
-        }
-
-        if(opportunity.RecordType.DeveloperName == 'National' && !opportunity.Payout__c && product.Family == 'Payout'){
-            return true;
-        }
-
-        if(productCode.contains('PACKAGE_') && opportunity.RecordType.DeveloperName != 'National'
-            && (opportunity.IntegrationType__c == null || !this.integrations.contains(opportunity.IntegrationType__c.toLowerCase()))){
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -263,20 +215,25 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         break;
                 }
                 when 'TaxaProcessamento' {
+                    System.debug('TaxaSolucaoPagBrasil - ' + tax.Product__r.ProductCode );
+                    System.debug('TaxaSolucaoPagBrasil - ' + tax.ProductClass__c);
                     if(
                         (paymentMethod.contains(CREDITO) && tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
                         (paymentMethod.contains(DEBITO) &&  tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
                         (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && tax.Type__c == 'crossborder') ||
-                        (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) ||  paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && isTicketRange)
+                        (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) ||  paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && isTicketRange ) 
                     ){
                         this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;
                     }
                 }
                 when 'TaxaSolucaoPagBrasil' {
-                    System.debug('TaxaSolucaoPagBrasil - ' + tax.RecordTypeName__c);
-                    if((opportunity.BusinessModel__c.contains('Intermediation') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js')) ||
-                    opportunity.BusinessModel__c == 'Gateway')) {
+                 
+
+                    if(
+                        (opportunity.BusinessModel__c.contains('Intermediation') && tax.Product__r.ProductCode == 'TAXA_PAGBRASIL')
+                     || 
+                     (opportunity.BusinessModel__c.contains('Gateway') && tax.IntegrationType__c !=null && tax.IntegrationType__c.contains(opportunity.IntegrationType__c))) {
                         percentValue = tax.PercentValue__c;
                         if(isInsideRange){
                             isTaxMain = true;
@@ -287,6 +244,8 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     }
                 }
                 when 'TaxaGateway' {
+                    System.debug(' tax.UnitPrice__c - ' +  tax.Id);
+                    System.debug(' tax.UnitPrice__c - ' +  tax.UnitPrice__c);
                     if(opportunity.BusinessModel__c.contains('Gateway') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js'))){
                         unitPrice = tax.UnitPrice__c;
                         isTaxMain = true;
@@ -298,6 +257,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         }
         System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
         if(isTaxMain){
+        System.debug(' 111111tax.UnitPrice__c - ' + unitPrice);
             quoteLineItems.add(new QuoteLineItem(
                 PricebookEntryId = priceBookEntry.Id,
                 Product2Id = priceBookEntry.Product2Id,

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-17-2025
+  @last modified on  : 07-18-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -948,236 +948,109 @@
         </div>
         
         </apex:panelGroup>
-        <!-- Page 10 -->
-        <apex:panelGroup rendered="{!NOT(containsGateway)}">
-            <apex:panelGroup rendered="{!containsIntermediacao}">
-                <div class="page">
-                    <div class="page-content">
+            <apex:panelGroup rendered="{!isFrequency}">
+                <!-- Page 10 -->
+                <apex:panelGroup rendered="{!NOT(containsGateway)}">
+                    <apex:panelGroup rendered="{!containsIntermediacao}">
+                        <div class="page">
+                            <div class="page-content">
 
-                        <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
-                        
-                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
-                            Opção 1
-                        </p>
-
-                        <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
-                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
-                                Termos de<br/>
-                                repasse diário com<br/>
-                                antecipação {!antecipationFrequencyPageOne}
-                            </p>
-
-                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                Antecipação {!antecipationFrequencyPageOne}
-                            </p>
-                        </apex:panelGroup>
-                        <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
-                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
-                                Termos de repasse diário<br/>
-                                com repasse de Cartão<br/>
-                                de Crédito no fluxo médio
-                            </p>
-
-                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                Cartão de crédito
-                            </p>
-                        </apex:panelGroup>
-                    
-                        <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
-                            <p><strong>Repasse diário:</strong><br/>
-                            Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
-                        </div>
-                    
-                        <div class="settlement-elegibility-container">
-                            <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
-                            <div class="settlement-elegibility-item">
-                                <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
-                                <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageOne}</p>
-                            </div>
-                            
-                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
-                                <div class="settlement-elegibility-item">
-                                    <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                    <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageOne}</p>
-                                </div>
-                            </apex:panelGroup>
-                        </div>
-
-                        <p style="position: absolute; top: 400px; left: 580px; padding: 10px; font-size: 12px; line-height: 1.5; white-space: nowrap; color: #ccc">
-                            *D+ se refere ao dia do pagamento pelo Cliente Final.
-                        </p>
-                    
-                        <div style="position: absolute; top: 460px; left: 80px; font-size: 16px;">
-                            <table style="border-collapse: collapse; width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Parcelas</th>
-                                        </apex:panelGroup>
-                                        <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Pagamentos</th>
-                                        </apex:panelGroup>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px; white-space: nowrap">À vista</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">2x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">3x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">4x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">5x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">6x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">7x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">8x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">9x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">10x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">11x</th>
-                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">12x</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
-                                        <tr>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueOne}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwo}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueThree}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueFour}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueFive}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueSix}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueSeven}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueEight}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueNine}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTen}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueEleven}</td>
-                                            <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwelve}</td>
-                                        </tr>
-                                    </apex:panelGroup>    
-                                    <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Elegibilidade para Liquidação</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+31</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+46</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+61</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+76</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+91</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+106</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+121</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+136</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+151</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+166</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+181</td>
-                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+196</td>
-                                    </apex:panelGroup>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
-                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
-                    <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
-                    <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
-                </div>
-            </apex:panelGroup>
-        </apex:panelGroup>
-
-        <!-- Page 10.1 -->
-        <apex:panelGroup rendered="{!not(containsGateway)}">
-            <apex:panelGroup rendered="{!containsIntermediacao}">
-                <apex:panelGroup rendered="{!showTwoOptions}">
-                    <div class="page">
-                        <div class="page-content">
-
-                            <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
-                            
-                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
-                                Opção 2
-                            </p>
-                            
-                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
-                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
-                                    Termos de<br/>
-                                    repasse diário com<br/>
-                                    antecipação {!antecipationFrequencyPageTwo}
-                                </p>
-
-                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                    Antecipação {!antecipationFrequencyPageTwo}
-                                </p>
-                            </apex:panelGroup>
-                            <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
-                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
-                                    Termos de repasse diário<br/>
-                                    com repasse de Cartão<br/>
-                                    de Crédito no fluxo médio
-                                </p>
-
-                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                    Cartão de crédito
-                                </p>
-                            </apex:panelGroup>
-                        
-                            <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
-                                <p><strong>Repasse diário:</strong><br/>
-                                Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
-                            </div>
-                        
-                            <div class="settlement-elegibility-container">
-                                <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
-                                <div class="settlement-elegibility-item">
-                                    <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
-                                    <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageTwo}</p>
-                                </div>
+                                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
                                 
-                                <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
-                                    <div class="settlement-elegibility-item">
-                                        <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                        <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageTwo}</p>
-                                    </div>
-                                </apex:panelGroup>
-                            </div>
+                                <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
+                                    Opção 1
+                                </p>
 
-                            <p style="position: absolute; top: 400px; left: 580px; padding: 10px; font-size: 12px; line-height: 1.5; white-space: nowrap; color: #ccc">
-                                *D+ se refere ao dia do pagamento pelo Cliente Final.
-                            </p>
-                        
-                            <div style="position: absolute; top: 460px; left: 80px; font-size: 16px;">
-                                <table style="border-collapse: collapse; width: 100%;">
-                                    <thead>
-                                        <tr>
+                                <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
+                                        Termos de<br/>
+                                        repasse diário com<br/>
+                                        antecipação {!antecipationFrequencyPageOne}
+                                    </p>
+
+                                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                        Antecipação {!antecipationFrequencyPageOne}
+                                    </p>
+                                </apex:panelGroup>
+                                <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                                        Termos de repasse diário<br/>
+                                        com repasse de Cartão<br/>
+                                        de Crédito no fluxo médio
+                                    </p>
+
+                                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                        Cartão de crédito
+                                    </p>
+                                </apex:panelGroup>
+                            
+                                <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
+                                    <p><strong>Repasse diário:</strong><br/>
+                                    Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
+                                </div>
+                            
+                                <div class="settlement-elegibility-container">
+                                    <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
+                                    <div class="settlement-elegibility-item">
+                                        <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
+                                        <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageOne}</p>
+                                    </div>
+                                    
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                        <div class="settlement-elegibility-item">
+                                            <p class="settlement-elegibility-label">Cartão de crédito:</p>
+                                            <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageOne}</p>
+                                        </div>
+                                    </apex:panelGroup>
+                                </div>
+
+                                <p style="position: absolute; top: 400px; left: 580px; padding: 10px; font-size: 12px; line-height: 1.5; white-space: nowrap; color: #ccc">
+                                    *D+ se refere ao dia do pagamento pelo Cliente Final.
+                                </p>
+                            
+                                <div style="position: absolute; top: 460px; left: 80px; font-size: 16px;">
+                                    <table style="border-collapse: collapse; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Parcelas</th>
+                                                </apex:panelGroup>
+                                                <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Pagamentos</th>
+                                                </apex:panelGroup>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px; white-space: nowrap">À vista</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">2x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">3x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">4x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">5x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">6x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">7x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">8x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">9x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">10x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">11x</th>
+                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">12x</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
-                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Parcelas</th>
-                                            </apex:panelGroup>
+                                                <tr>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueOne}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwo}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueThree}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueFour}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueFive}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueSix}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueSeven}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueEight}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueNine}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTen}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueEleven}</td>
+                                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwelve}</td>
+                                                </tr>
+                                            </apex:panelGroup>    
                                             <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
-                                                <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Pagamentos</th>
-                                            </apex:panelGroup>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px; white-space: nowrap">À vista</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">2x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">3x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">4x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">5x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">6x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">7x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">8x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">9x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">10x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">11x</th>
-                                            <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">12x</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueOne}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTwo}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueThree}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueFour}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueFive}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueSix}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueSeven}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueEight}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueNine}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTen}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueEleven}</td>
-                                                <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTwelve}</td>
-                                            </apex:panelGroup>
-                                            <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Elegibilidade para Liquidação</td>
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+31</td>
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+46</td>
@@ -1192,20 +1065,148 @@
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+181</td>
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+196</td>
                                             </apex:panelGroup>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
                         </div>
-                        <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
-                        <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
-                        <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
-                        <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
-                    </div>
+                    </apex:panelGroup>
                 </apex:panelGroup>
-            </apex:panelGroup>
-        </apex:panelGroup>
 
+                <!-- Page 10.1 -->
+                <apex:panelGroup rendered="{!not(containsGateway)}">
+                    <apex:panelGroup rendered="{!containsIntermediacao}">
+                        <apex:panelGroup rendered="{!showTwoOptions}">
+                            <div class="page">
+                                <div class="page-content">
+                                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
+                                    
+                                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #54ca2f; font-size: 18px; font-weight: 900;">
+                                        Opção 2
+                                    </p>
+                                    
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
+                                            Termos de<br/>
+                                            repasse diário com<br/>
+                                            antecipação {!antecipationFrequencyPageTwo}
+                                        </p>
+
+                                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                            Antecipação {!antecipationFrequencyPageTwo}
+                                        </p>
+                                    </apex:panelGroup>
+                                    <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
+                                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                                            Termos de repasse diário<br/>
+                                            com repasse de Cartão<br/>
+                                            de Crédito no fluxo médio
+                                        </p>
+
+                                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                            Cartão de crédito
+                                        </p>
+                                    </apex:panelGroup>
+                                
+                                    <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
+                                        <p><strong>Repasse diário:</strong><br/>
+                                        Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
+                                    </div>
+                                
+                                    <div class="settlement-elegibility-container">
+                                        <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
+                                        <div class="settlement-elegibility-item">
+                                            <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
+                                            <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageTwo}</p>
+                                        </div>
+                                        
+                                        <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                            <div class="settlement-elegibility-item">
+                                                <p class="settlement-elegibility-label">Cartão de crédito:</p>
+                                                <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageTwo}</p>
+                                            </div>
+                                        </apex:panelGroup>
+                                    </div>
+
+                                    <p style="position: absolute; top: 400px; left: 580px; padding: 10px; font-size: 12px; line-height: 1.5; white-space: nowrap; color: #ccc">
+                                        *D+ se refere ao dia do pagamento pelo Cliente Final.
+                                    </p>
+                                
+                                    <div style="position: absolute; top: 460px; left: 80px; font-size: 16px;">
+                                        <table style="border-collapse: collapse; width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Parcelas</th>
+                                                    </apex:panelGroup>
+                                                    <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
+                                                        <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-weight: bold; font-size: 14px;">Pagamentos</th>
+                                                    </apex:panelGroup>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px; white-space: nowrap">À vista</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">2x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">3x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">4x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">5x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">6x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">7x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">8x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">9x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">10x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">11x</th>
+                                                    <th style="border-bottom: 1px solid #ccc; padding: 12px; text-align: center; font-weight: bold; font-size: 14px;">12x</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueOne}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTwo}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueThree}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueFour}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueFive}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueSix}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueSeven}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueEight}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueNine}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTen}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueEleven}</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageTwoValueTwelve}</td>
+                                                    </apex:panelGroup>
+                                                    <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Elegibilidade para Liquidação</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+31</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+46</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+61</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+76</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+91</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+106</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+121</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+136</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+151</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+166</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+181</td>
+                                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+196</td>
+                                                    </apex:panelGroup>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                            </div>
+                        </apex:panelGroup>
+                    </apex:panelGroup>
+                </apex:panelGroup>
+
+            </apex:panelGroup>
         <!-- Page 11
         <apex:panelGroup rendered="{!not(containsGateway)}">
             <apex:panelGroup rendered="{!containsFluxoMedio}">
@@ -1236,7 +1237,7 @@
 
 
         <!-- Page 12 -->
-        <apex:panelGroup rendered="{!containsGateway}">
+        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
             <div class="page">
                 <img src="{!frequencyPage11}" class="background-image"/>
                 <div class="page-content">
@@ -1337,9 +1338,11 @@
                                 <strong>Reserva giratória inicial:</strong> {!reserve}%
                             </li>
                             </apex:outputPanel>
-                            <li>
-                                <strong>Taxa de chargeback</strong>: R$25,00 (fixo, por chargeback)
-                            </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(chargebackTax))}">
+                                <li>
+                                    <strong>Taxa de chargeback</strong>: R${!chargebackTax}(fixo, por chargeback)
+                                </li>
+                            </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
                             <li>
                                 <strong>Taxa de instalação </strong>: R${!adherenceFee}
@@ -1349,9 +1352,12 @@
                                 <strong>Taxa de Integração Cartão de Crédito</strong>: R$990,00 (por adquirente)
                             </li>
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(minimumMaintenanceFee))}">
-                            <li>
-                                <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
-                            </li>
+                                <li>
+                                    <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                                </li>
+                                <p style="position: absolute; top: 20px;  font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                                    * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
+                                </p>
                             </apex:outputPanel>
                         </ul>
                         
@@ -1366,9 +1372,6 @@
                                 <strong>Serviços de E-mail e SMS de confirmação e lembrete de Boleto Flash®,  Pix e Link de Pagamento</strong>: consulta valores
                             </li>
                         </ul>
-                        <p style="position: absolute; top: 500px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
-                            * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
-                        </p>
                     </div>
                     <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
                     <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
@@ -1406,6 +1409,9 @@
                             </li>
                             <li>
                                 <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                                <p style="position: absolute; top: 20px;  font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                                    * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
+                                </p>
                             </li>
                         </ul>
                         
@@ -1442,9 +1448,6 @@
                             </apex:outputPanel>
                         </li>
                         </ul>
-                        <p style="position: absolute; top: 500px; left: 50px; padding: 10px; width: 454px; font-size: 12px; line-height: 1.5; color: #aaaaaa">
-                            * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
-                        </p>
                     </div>
                     <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
                     <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
@@ -1476,9 +1479,11 @@
                                 <strong>Reserva giratória inicial:</strong> {!reserve}%
                             </li>
                             </apex:outputPanel>
-                            <li>
-                                <strong>Taxa de chargeback</strong>: R$25,00 (fixo, por chargeback)
-                            </li>
+                            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(chargebackTax))}">
+                                <li>
+                                    <strong>Taxa de chargeback</strong>: R${!chargebackTax}(fixo, por chargeback)
+                                </li>
+                            </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(adherenceFee))}">
                             <li>
                                 <strong>Taxa de instalação </strong>: R${!adherenceFee}
@@ -1490,6 +1495,9 @@
                             <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(minimumMaintenanceFee))}">
                             <li>
                                 <strong>Taxa mínima de manutenção</strong>: R${!minimumMaintenanceFee}
+                                <p style="position: absolute; top: 20px;  font-size: 12px; line-height: 1.5; color: #aaaaaa">
+                                    * Caso as taxas referentes ao volume mensal transacionado não superarem esta Taxa Mínima, a diferença para este valor será cobrada. Não aplicável durante os primeiros três meses após a assinatura do Contrato.
+                                </p>
                             </li>
                             </apex:outputPanel>
                         </ul>

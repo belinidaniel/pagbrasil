@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-17-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -18,6 +18,8 @@ public class ContractController {
     public Opportunity opportunity { get; set; }
 
     public Boolean isGateway { get; set; }
+    public Boolean isIntermediation { get; set; }
+    public Boolean isFrequency { get; set; }
     public Boolean isFluxoMedio { get; set; }
     public Boolean isPayout { get; set; }
     public Boolean isPhysical { get; set; }
@@ -151,6 +153,8 @@ public class ContractController {
         Opportunity opp = (Opportunity) stdController.getRecord();
 
         this.isGatewayAndIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') && opp.BusinessModel__c.contains('Intermediation') : false;
+        this.isGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
+        this.isIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Intermediation') : false;
 
         getTermClauses(opp.Id, opp.RequestChangeClause__c);
 
@@ -175,9 +179,6 @@ public class ContractController {
         this.months = ApexPages.currentPage().getParameters().get('month');
         this.contractDate = formatDate(ApexPages.currentPage().getParameters().get('contractDate'), isCrossborder);
 
-
-        if(String.isNotBlank(opp.BusinessModel__c) && opp.BusinessModel__c.contains('Gateway'))
-            this.isGateway = true;
 
         this.containsPagBrasilDefinition = String.isNotBlank(opp.IntegrationType__c) && new List<String> {
             'Shopify',
@@ -635,7 +636,12 @@ public class ContractController {
         System.debug('taxes -> ' + taxes);
         System.debug('Frequencia -> ' + this.opportunity.Antecipation_Frequency_1__c);
         System.debug('Antecipacao -> ' + this.taxaAntecipacao);
-
+        if(taxes.isEmpty()){
+            this.isFrequency = false;
+        }
+        else{
+            this.isFrequency = true;
+        }
         for(Taxes__c tax : taxes){
             String percentage = String.valueOf(tax.PercentValue__c).contains('.') ? String.valueOf(tax.PercentValue__c).replace('.', ',') + '%' : String.valueOf(tax.PercentValue__c);
 

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-17-2025
+  @last modified on  : 07-18-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -152,17 +152,14 @@
                             <th style="font-size:12px">Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span></th>
                         </apex:panelGroup>
                         
-                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                        <apex:panelGroup rendered="{!isIntermediation}">
                             <th style="color: #0058B5;font-size:12px">
                                 Taxa da Solução PagBrasil<br/>Intermediação
                             </th>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!isGateway}">
                             <th style="color: #0058B5;font-size:12px">
                                 Taxa PagBrasil<br/>Gateway
-                            </th>
-                        </apex:panelGroup>
-                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <th style="color: #0058B5;font-size:12px">
-                                Taxa da Solução PagBrasil
                             </th>
                         </apex:panelGroup>
                     </tr>
@@ -582,9 +579,14 @@
             <br/>
 
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "6", "7")}. Serviço Opcionais: </p>
-            Serviço de mensagem de confirmação e lembrete de Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>, Pix e Link de Pagamento
+            <div style="margin-left:5px">
+                Serviço de mensagem de <br/> confirmação e lembrete de <br/>  Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>, Pix e Link de <br/> Pagamento
+            </div>
             <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
+                    <tr>
+                        
+                    </tr>
                     <tr>
                         <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
                             <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
@@ -615,7 +617,7 @@
                             <td>
                                 pacote de SMS e e-mails
                             </td>
-                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;"></td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">0,00</td>
                             <td>
                                 R$ por pacote (incluído somente com a contratação da Solução PagBrasil) 
                             </td>
@@ -733,14 +735,6 @@
             </table>
             
             
-            <!--<div class="page-break"></div>
-
-<div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
-</div> -->
-
-            <br/> <br/>
-
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "9", "10")}. Pix Automático: </p>
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
@@ -775,7 +769,6 @@
                     </tbody>
                 </table>
             </apex:panelGroup>
-            
             <br/>
 <!-- 
             <apex:panelGroup rendered="{!NOT (isPayout)}">

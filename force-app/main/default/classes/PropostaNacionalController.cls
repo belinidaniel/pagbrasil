@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-17-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -38,6 +38,8 @@ public class PropostaNacionalController {
     public String pagBrasilSolutionFeeRange{get;set;}
     public Boolean showZeroReserveOption { get; set; }
     public Boolean isGoogleOrApplePay { get; set; }
+    public Boolean isFrequency { get; set; }
+
 
     //Taxes
     public String valueOne { get; set; }
@@ -477,6 +479,9 @@ public class PropostaNacionalController {
             }
             when 'TAXA_PAGBRASIL_GATEWAY' {
                 processTaxaPagBrasilGateway(quoteLineItem);
+            }
+            when 'RESERVA_GIRATORIA' {
+                this.reserve = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
         }
     }
@@ -961,6 +966,9 @@ public class PropostaNacionalController {
             String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
             System.debug('getParcelas antecipation: ' + antecipation);
             List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            if(!taxes.isEmpty()) {
+                this.isFrequency = true;
+            }
             System.debug('taxes.   ' + taxes);
             for(Taxes__c tax : taxes) {
                 System.debug('tax.InstallmentNumber__c: ' + tax.InstallmentNumber__c);
@@ -1008,7 +1016,9 @@ public class PropostaNacionalController {
         if (page == 'Two') {
             String antecipation = quote.Opportunity.Antecipation_Frequency_2__c;
             List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
-
+            if(!taxes.isEmpty()) {
+                this.isFrequency = true;
+            }
             for(Taxes__c tax : taxes) {
                 switch on tax.InstallmentNumber__c{
                     when '1' {

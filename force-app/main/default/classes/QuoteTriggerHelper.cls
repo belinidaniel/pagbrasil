@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-17-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -28,10 +28,10 @@ public with sharing class QuoteTriggerHelper {
             return true;
         }
 
-        // não ignorar no cross esse produtos
-        if(new List<String>{'REFUND_CARD_ACQUIRER_PIX', 'RECURRING_PIX', 'ZERO_AUTH_CREDIT_CARD' }.contains(product.ProductCode)){
-            return false;
-        }
+        // // não ignorar no cross esse produtos
+        // if(new List<String>{'REFUND_CARD_ACQUIRER_PIX', 'RECURRING_PIX', 'ZERO_AUTH_CREDIT_CARD' }.contains(product.ProductCode)){
+        //     return false;
+        // }
 
 
         String productCode = product.ProductCode;
@@ -147,11 +147,11 @@ public with sharing class QuoteTriggerHelper {
         Boolean isTaxaExcessoChargeback = priceBookEntry.Product2.ProductCode.contains('TAXA_EXCESSO_CHARGEBACK'); //added
         Boolean isCarteiraDigital = priceBookEntry.Product2.ProductCode.contains('CARTEIRA_DIGITAL'); //added
         Boolean isPagshield = priceBookEntry.Product2.ProductCode.contains('CUSTO_PAGSHIELD'); // CUSTO_PAGSHIELD
-        Boolean isPagshieldPremiumVar = priceBookEntry.Product2.ProductCode.contains('TAXA_VAR_PAGSHIELD'); // TAXA_VAR_PAGSHIELD
-        Boolean isPagshieldPremiumFixa = priceBookEntry.Product2.ProductCode.contains('TAXA_FIX_PAGSHIELD'); // TAXA_FIXA_PAGSHIELD
+        Boolean isPagshieldPremiumVar = priceBookEntry.Product2.ProductCode.contains('TAXA_VAR_PAGSHIELD') ||  priceBookEntry.Product2.ProductCode.contains('PAGSHIELD_PREMIUM_VARIABLE_FEE') ; // TAXA_VAR_PAGSHIELD
+        Boolean isPagshieldPremiumFixa = priceBookEntry.Product2.ProductCode.contains('TAXA_FIX_PAGSHIELD')  ||  priceBookEntry.Product2.ProductCode.contains('PAGSHIELD_PREMIUM_FIXED_FEE'); // TAXA_FIXA_PAGSHIELD
         Boolean isPagshieldOnDemandVar = priceBookEntry.Product2.ProductCode.contains('TAXA_VARIAVEL_PAGSHIELD_ON_DEMAND'); // TAXA_VARIAVEL_PAGSHIELD_ON_DEMAND
         Boolean isPagshieldOnDemandFixa = priceBookEntry.Product2.ProductCode.contains('TAXA_FIXA_PAGSHIELD_ON_DEMAND'); // TAXA_FIXA_PAGSHIELD_ON_DEMAND
-        Boolean isZeroAuth = priceBookEntry.Product2.ProductCode.contains('ZERO_AUTH_CARTAO'); //added
+        Boolean isZeroAuth = priceBookEntry.Product2.ProductCode.contains('ZERO_AUTH_'); //added
         Boolean is3DS = priceBookEntry.Product2.ProductCode.contains('3DS_CREDIT_CARD'); //added
         Boolean isPagstreamTax = priceBookEntry.Product2.ProductCode.contains('TAXA_PAGSTREAM'); //added
         Boolean isPagstreamMin = priceBookEntry.Product2.ProductCode.contains('TAXA_MIN_PAGSTREAM'); //added

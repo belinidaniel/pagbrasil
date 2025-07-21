@@ -473,10 +473,7 @@
                             </strong> settlements
                         </li>
                     </apex:panelGroup>
-                    <li>
-                        <strong>Minimum amount for remittance:</strong>
-                        {!IF(ISBLANK(minimumTransferAmount), '', TEXT(FORMAT(minimumTransferAmount, 'C', opportunityCurrency)))} (net amount)
-                    </li>
+                    <li><strong>Minimum amount for remittance:</strong> {!minimumTransferAmount} BRL (net amount)</li>
                     <li><strong>Rolling reserve:</strong> {!reserve}% from the previous monthly period (may be reduced after 3 months of processing)</li>
                     <li><strong>Exchange rate (BRL - USD/EUR):</strong> Central Bank of Brazil's official interbank rate (6-8% lower than the floating exchange rate, or “tourist dollar”)</li>
                     <li><strong>Currency exchange markup (spread):</strong> {!currencyExchangeMarkupSpread}%</li>

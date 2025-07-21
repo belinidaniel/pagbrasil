@@ -2622,6 +2622,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>HomologationForm__c.API_Fixed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.API_Variable__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>HomologationForm__c.AccountModel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2634,6 +2644,16 @@
         <editable>false</editable>
         <field>HomologationForm__c.Account_in_Mode__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Additional_for_Remote_Payments_Fixed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Additional_for_Remote_Payments_Variable__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2909,6 +2929,16 @@
         <editable>false</editable>
         <field>HomologationForm__c.PagBrasilSolutionForTransferringFee__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.PagBrasil_Mobile_POS_Fixed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.PagBrasil_Mobile_POS_Variable__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -6516,11 +6546,6 @@
         <default>false</default>
         <recordType>Opportunity.NaTional</recordType>
         <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Opportunity.New_Crossborder</recordType>
-        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>

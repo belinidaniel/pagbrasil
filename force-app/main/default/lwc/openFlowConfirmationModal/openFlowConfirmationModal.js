@@ -9,7 +9,6 @@ import SETTLEMENT_2 from '@salesforce/schema/Opportunity.Settlement_Frequency_2_
 import ANTECIPATION_1 from '@salesforce/schema/Opportunity.Antecipation_Frequency_1__c';
 import ANTECIPATION_2 from '@salesforce/schema/Opportunity.Antecipation_Frequency_2__c';
 import OTHER_SETTLEMENT_1 from '@salesforce/schema/Opportunity.Other_Payments_Settlement_Frequency_1__c';
-import OTHER_SETTLEMENT_2 from '@salesforce/schema/Opportunity.Other_Payments_Settlement_Frequency_2__c';
 import VISIBLE_OTHERS_SETTLEMENT from '@salesforce/schema/Opportunity.Visible_Others_Settlement_Frequency__c';
 import STAGE_NAME from '@salesforce/schema/Opportunity.StageName';
 import ANSWERED from '@salesforce/schema/Opportunity.Answered_Confirmation_Form__c';
@@ -23,7 +22,7 @@ import SELECTED_OTHERS_FREQ from '@salesforce/schema/Opportunity.Selected_Others
 
 const FIELDS = [
     SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2,
-    OTHER_SETTLEMENT_1, OTHER_SETTLEMENT_2, VISIBLE_OTHERS_SETTLEMENT,
+    OTHER_SETTLEMENT_1, VISIBLE_OTHERS_SETTLEMENT,
     STAGE_NAME, ANSWERED, ACCEPTPROPOSAL, SYNCED_QUOTE_ID, RECORD_TYPE_ID,
     IS_OPPORTUNITY_VALID, VISIBLE_SETTLEMENT
 ];
@@ -64,16 +63,14 @@ export default class OpenFlowModal extends LightningElement {
                     s2: getFieldValue(data, SETTLEMENT_2),
                     a1: getFieldValue(data, ANTECIPATION_1),
                     a2: getFieldValue(data, ANTECIPATION_2),
-                    osf1: getFieldValue(data, OTHER_SETTLEMENT_1),
-                    osf2: getFieldValue(data, OTHER_SETTLEMENT_2)
+                    osf1: getFieldValue(data, OTHER_SETTLEMENT_1)
                 };
                 this.selectedValues = {
                     s1: getFieldValue(data, SETTLEMENT_1) || '',
                     s2: getFieldValue(data, SETTLEMENT_2) || '',
                     a1: getFieldValue(data, ANTECIPATION_1) || '',
                     a2: getFieldValue(data, ANTECIPATION_2) || '',
-                    osf1: getFieldValue(data, OTHER_SETTLEMENT_1) || '',
-                    osf2: getFieldValue(data, OTHER_SETTLEMENT_2) || ''
+                    osf1: getFieldValue(data, OTHER_SETTLEMENT_1) || ''
                 };
                 this.selectedCreditFrequency = '1';
                 this.selectedOthersFrequency = '1';
@@ -173,7 +170,7 @@ export default class OpenFlowModal extends LightningElement {
             }
         }
         if (this.visibleOthersSettlement) {
-            if (!this.selectedValues.osf1 || !this.selectedValues.osf2) {
+            if (!this.selectedValues.osf1) {
                 this.showToast('Atenção', 'Preencha ambos os campos de Other Payments Settlement Frequency.', 'warning');
                 return false;
             }
@@ -196,8 +193,7 @@ export default class OpenFlowModal extends LightningElement {
                 Settlement_Frequency_2__c: this.selectedValues.s2,
                 Antecipation_Frequency_1__c: this.selectedValues.a1,
                 Antecipation_Frequency_2__c: this.selectedValues.a2,
-                Other_Payments_Settlement_Frequency_1__c: this.selectedValues.osf1,
-                Other_Payments_Settlement_Frequency_2__c: this.selectedValues.osf2
+                Other_Payments_Settlement_Frequency_1__c: this.selectedValues.osf1
             };
 
             if (hasChange) {

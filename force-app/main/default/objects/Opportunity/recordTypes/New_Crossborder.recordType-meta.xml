@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>New_Crossborder</fullName>
-    <active>true</active>
+    <active>false</active>
     <businessProcess>XB%2BNB</businessProcess>
     <description>used when creating a cross-border opportunity</description>
     <label>New Cross-border</label>

@@ -612,7 +612,7 @@
                     <apex:panelGroup rendered="{!containsPagBrasilDefinition}">
                         <tr>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">pacote de SMS e e-mails</td>
-                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10; text-align: center;">0,00</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
                             <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;"> R$ por pacote <br/>(incluído somente com a contratação da Solução PagBrasil) </td>
                         </tr>
                     </apex:panelGroup>

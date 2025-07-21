@@ -9,7 +9,7 @@
                         <valueListItems>
                             <value>Quote.Proposta_aura</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.CustomerAcceptance__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -19,11 +19,6 @@
                                     <leftValue>{!Record.Opportunity.SyncedQuote.CustomerAcceptance__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>false</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.Are_The_Frequencies_Filled__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>

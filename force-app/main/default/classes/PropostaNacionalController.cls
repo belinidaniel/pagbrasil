@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-18-2025
+ * @last modified on  : 07-19-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -184,7 +184,7 @@ public class PropostaNacionalController {
 
     public List<String> pacotesSms { get; set; }
     public List<String> pacotesEmails { get; set; }
-
+    public Boolean isShowPageRepasse { get; set; }
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -192,7 +192,7 @@ public class PropostaNacionalController {
             stdController.addFields(new List<String>{
                 'Opportunity.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c',
                 'Opportunity.Settlement_Frequency_Test__c', 'Opportunity.Payout__c', 'Opportunity.Antecipation_Frequency_1__c',
-                'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
+                'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c','Opportunity.Other_Payments_Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
                 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c',
                 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.ApplePay__c', 'Opportunity.Visible_Settlement_Frequency__c', 'Opportunity.Visible_Anticipation_Frequency__c' });
         }
@@ -529,12 +529,13 @@ public class PropostaNacionalController {
     }
 
     private void frequencyPopulation(Quote quote) {
-
-        if (quote.Opportunity.Antecipation_Frequency_1__c == null || quote.Opportunity.Settlement_Frequency_1__c == null)
+        this.isShowPageRepasse = false;
+         this.frequencyPage11 = null;
+        if (quote.Opportunity.Other_Payments_Settlement_Frequency_1__c == null || quote.Opportunity.Other_Payments_Settlement_Frequency_1__c == null)
             return;
 
         if (this.isGatewayAndIntermediation) {
-            switch on quote.Opportunity.Antecipation_Frequency_1__c {
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
                 when 'Daily' {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
                 }
@@ -548,6 +549,25 @@ public class PropostaNacionalController {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11M';
                 }
             }
+        }else if (this.isIntermediation && !this.containsCreditCard) {
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
+                when 'Daily' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+                }
+                when 'Weekly' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11S';
+                }
+                when 'Bimonthly' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11B';
+                }
+                when 'Monthly' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11M';
+                }
+            }
+        }
+
+        if (this.frequencyPage11 != null) {
+            this.isShowPageRepasse = true;
         }
 
         String antecipationOne = quote.Opportunity.Antecipation_Frequency_1__c;

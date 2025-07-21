@@ -1237,7 +1237,7 @@
 
 
         <!-- Page 12 -->
-        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+        <apex:panelGroup rendered="{!isShowPageRepasse}">            
             <div class="page">
                 <img src="{!frequencyPage11}" class="background-image"/>
                 <div class="page-content">
@@ -1644,43 +1644,43 @@
             </div>
         </apex:panelGroup>
         <apex:panelGroup rendered="{!isPagShield}">
-        <!-- Page 18 -->
-        <div class="page">
-            <img src="{!$Resource.PagShieldPage}" class="background-image" />
-            <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
-                <p style="position: absolute; top: 60px; left: 80px; white-space: nowrap; font-size: 34px;">PagShield®️</p>
-                <apex:outputText value="•   Tecnologia inteligente de autoaprendizagem " style="position: absolute; top: 180px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
-                <apex:outputText value="do" style="position: absolute; top: 180px; left: 120px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                <apex:outputText value="comportamento de compra, com algoritimo que se" style="position: absolute; top: 200px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                <apex:outputText value="adapta automaticamente a cada e-commerce" style="position: absolute; top: 220px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                <apex:outputText value="•   Ánalise das transações em tempo real, " style="position: absolute; top: 260px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
-                <apex:outputText value="com geração de" style="position: absolute; top: 261px; left: 370px; white-space: nowrap; color: #707070; font-size: 15px;"/>
-                <apex:outputText value="pontuação instantânea" style="position: absolute; top: 280px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+            <!-- Page 18 -->
+            <div class="page">
+                <img src="{!$Resource.PagShieldPage}" class="background-image" />
+                <div class="page-content">
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
+                    <p style="position: absolute; top: 60px; left: 80px; white-space: nowrap; font-size: 34px;">PagShield®️</p>
+                    <apex:outputText value="•   Tecnologia inteligente de autoaprendizagem " style="position: absolute; top: 180px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="do" style="position: absolute; top: 180px; left: 120px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                    <apex:outputText value="comportamento de compra, com algoritimo que se" style="position: absolute; top: 200px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                    <apex:outputText value="adapta automaticamente a cada e-commerce" style="position: absolute; top: 220px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                    <apex:outputText value="•   Ánalise das transações em tempo real, " style="position: absolute; top: 260px; left: 80px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="com geração de" style="position: absolute; top: 261px; left: 370px; white-space: nowrap; color: #707070; font-size: 15px;"/>
+                    <apex:outputText value="pontuação instantânea" style="position: absolute; top: 280px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
 
-                <apex:outputText value="PagShield®️ prevenção de fraude (mandatório)" style="position: absolute; top: 400px; left: 120px; white-space: nowrap; color: #0058B5; font-size: 16px; font-weight: bold"/>
-                <apex:outputText value="PagShield®️ Premium (opcional)" style="position: absolute; top: 450px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
-                <apex:outputText value="PagShield®️ Premium On-Demand (mediante solicitação pontual)" style="position: absolute; top: 500px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
+                    <apex:outputText value="PagShield®️ prevenção de fraude (mandatório)" style="position: absolute; top: 400px; left: 120px; white-space: nowrap; color: #0058B5; font-size: 16px; font-weight: bold"/>
+                    <apex:outputText value="PagShield®️ Premium (opcional)" style="position: absolute; top: 450px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
+                    <apex:outputText value="PagShield®️ Premium On-Demand (mediante solicitação pontual)" style="position: absolute; top: 500px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
 
-                <apex:outputText value="R$0,50" style="position: absolute; top: 400px; left: 650px; white-space: nowrap; color: #0058B5; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="por transação analisada" style="position: absolute; top: 400px; left: 780px; white-space: nowrap; color: #0058B5; font-size: 15px; font-weight: bold"/>
-                
-                <apex:outputText value="R$9,50" style="position: absolute; top: 440px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="2,0%" style="position: absolute; top: 460px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="por transação revisada" style="position: absolute; top: 435px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="sobre a transação revisada" style="position: absolute; top: 455px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                
-                <apex:outputText value="R$14,50" style="position: absolute; top: 490px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="2,5%" style="position: absolute; top: 510px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="por transação revisada" style="position: absolute; top: 485px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                <apex:outputText value="sobre a transação revisada" style="position: absolute; top: 505px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
-                
-                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
-                <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
-                <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                    <apex:outputText value="R$0,50" style="position: absolute; top: 400px; left: 650px; white-space: nowrap; color: #0058B5; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="por transação analisada" style="position: absolute; top: 400px; left: 780px; white-space: nowrap; color: #0058B5; font-size: 15px; font-weight: bold"/>
+                    
+                    <apex:outputText value="R$9,50" style="position: absolute; top: 440px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="2,0%" style="position: absolute; top: 460px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="por transação revisada" style="position: absolute; top: 435px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="sobre a transação revisada" style="position: absolute; top: 455px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    
+                    <apex:outputText value="R$14,50" style="position: absolute; top: 490px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="2,5%" style="position: absolute; top: 510px; left: 650px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="por transação revisada" style="position: absolute; top: 485px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    <apex:outputText value="sobre a transação revisada" style="position: absolute; top: 505px; left: 780px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold"/>
+                    
+                    <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                    <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                    <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="position: absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
             </div>
-            <img src="{!$Resource.Logo2025Preta}" style="position: absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
-        </div>
         </apex:panelGroup>
 
         <apex:panelGroup rendered="{!isGoogleOrApplePay}">

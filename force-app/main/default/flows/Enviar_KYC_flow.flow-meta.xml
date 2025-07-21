@@ -15,31 +15,16 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>composeEmailContent</name>
+            <name>useEmailTemplate</name>
             <value>
                 <stringValue>True</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailSubject</name>
+            <name>emailTemplateId</name>
             <value>
-                <stringValue>Pagbrasil - Form Filling</stringValue>
+                <stringValue>00XVA000001lqXF2AY</stringValue>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>&lt;p&gt;&amp;lt;link href=&quot;https://fonts.googleapis.com/css?family=Montserrat:700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot; /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;link href=&quot;https://fonts.googleapis.com/css?family=Nunito:700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot; /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;div&lt;/p&gt;&lt;p&gt;&amp;nbsp;style=&quot;background: url(&apos;/resource/kycEmailBackground&apos;) no-repeat center center #0d1836; background-size: cover; min-height: 100vh; padding: 48px 0;&quot;&lt;/p&gt;&lt;p&gt;&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;img&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;alt=&quot;Logo PagBrasil&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;src=&quot;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;/resource/Logo&lt;/span&gt;&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;style=&quot;width: 820px ; height: auto; display: block; margin: -130px auto 20px auto;&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;/&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;div&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;style=&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;width: 600px;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;margin: 0 auto;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;padding: 2% 40px 24px 40px;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;color: #fff;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;font-size: 18px;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;text-align: left;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;position: relative;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;z-index: 1;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;font-family: Montserrat, Arial, sans-serif;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;font-weight: bold;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;Prezado xxxxxx,&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;Por favor, preencha o formulário KYC o mais breve possível para prosseguir com nosso processo de integração:&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;lt;span style=&quot;color: #29b45a; text-decoration: underline;&quot;&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;a href=&quot;#&quot; style=&quot;color: #29b45a; text-decoration: underline; font-family: Montserrat, Arial, sans-serif; font-weight: bold;&quot;&amp;gt;Formulário KYC&amp;lt;/a&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;lt;/span&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;Caso tenha alguma dúvida, entre em contato conosco.&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;Obrigado.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;lt;div style=&quot;text-align: center; margin-top: 32px; font-family: Nunito, Arial, sans-serif; font-weight: bold;&quot;&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Atenciosamente,&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;PagBrasil&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendRichBody</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>useLineBreaks</name>
         </inputParameters>
         <inputParameters>
             <name>recipientId</name>
@@ -49,6 +34,9 @@
         </inputParameters>
         <inputParameters>
             <name>relatedRecordId</name>
+            <value>
+                <elementReference>get_KYC_NB.Id</elementReference>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>logEmailOnSend</name>
@@ -72,31 +60,16 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>composeEmailContent</name>
+            <name>useEmailTemplate</name>
             <value>
                 <stringValue>True</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailSubject</name>
+            <name>emailTemplateId</name>
             <value>
-                <stringValue>Pagbrasil - Form Filling</stringValue>
+                <stringValue>00XVA000001lqSP2AY</stringValue>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>&lt;p&gt;&amp;lt;link href=&quot;https://fonts.googleapis.com/css?family=Montserrat:700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot; /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;link href=&quot;https://fonts.googleapis.com/css?family=Nunito:700&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot; /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;div&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;style=&quot;background: url(&apos;/resource/kycEmailBackground&apos;) no-repeat center center #0d1836; background-size: cover; min-height: 100vh; padding: 48px 0;&quot;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;img&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;alt=&quot;Logo PagBrasil&quot;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;src=&quot;/resource/Logo&quot;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;style=&quot;width: 820px ; height: auto; display: block; margin: -130px auto 20px auto;&quot;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;/&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;div&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;style=&quot;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;width: 600px;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;margin: 0 auto;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;padding: 2% 40px 24px 40px;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;color: #fff;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;font-size: 18px;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;text-align: left;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;position: relative;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;z-index: 1;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;font-family: Montserrat, Arial, sans-serif;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;font-weight: bold;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&quot;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;Prezado xxxxxx,&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;span style=&quot;color: #29b45a; text-decoration: underline;&quot;&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;lt;a href=&quot;#&quot; style=&quot;color: #29b45a; text-decoration: underline; font-family: Montserrat, Arial, sans-serif; font-weight: bold;&quot;&amp;gt;KYC Form&amp;lt;/a&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;/span&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;If you have any questions, feel free to contact us.&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;Thank you.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;div style=&quot;text-align: center; margin-top: 32px; font-family: Nunito, Arial, sans-serif; font-weight: bold;&quot;&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;Kind Regards,&amp;lt;br /&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;PagBrasil&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;lt;/div&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendRichBody</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>useLineBreaks</name>
         </inputParameters>
         <inputParameters>
             <name>recipientId</name>
@@ -106,6 +79,9 @@
         </inputParameters>
         <inputParameters>
             <name>relatedRecordId</name>
+            <value>
+                <elementReference>get_KYC_XB.Id</elementReference>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>logEmailOnSend</name>

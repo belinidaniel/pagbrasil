@@ -1143,14 +1143,6 @@
             <fullName>Intermediation</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>Pix International</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Pix Roaming</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Cartao_de_Credito__c</picklist>
@@ -4341,6 +4333,10 @@
         </values>
         <values>
             <fullName>5977</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7299</fullName>
             <default>false</default>
         </values>
         <values>

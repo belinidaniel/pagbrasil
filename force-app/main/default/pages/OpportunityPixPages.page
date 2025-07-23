@@ -175,35 +175,36 @@
 				</apex:repeat>
 			</table>
 
-			<h2>Billing information (invoice)</h2>
-			<table>
-				<tr>
-					<th>Label</th>
-					<th>Value</th>
-				</tr>
-				<apex:repeat value="{!wrapper.homologationForms}" var="form">
-					<tr><td>Category</td><td>{!form.category}</td></tr>
-					<tr><td>MCC Code</td><td>{!form.mccCode}</td></tr>
-				</apex:repeat>
-				<tr><td>Invoice Name</td><td>{!kycWrapper.tradeName}</td></tr>
-				<tr><td>VAT/CNPJ</td><td>{!kycWrapper.fiscalRegistration}</td></tr>
-				<tr><td>Business Name</td><td>{!kycWrapper.legalName}</td></tr>
-				<tr><td>Country</td><td>{!kycWrapper.country}</td></tr>
-				<tr><td>State</td><td>{!kycWrapper.state}</td></tr>
-				<tr><td>City</td><td>{!kycWrapper.city}</td></tr>
-				<tr><td>Postal Code</td><td>{!kycWrapper.postalCode}</td></tr>
-				<tr><td>Billing Number</td><td>{!kycWrapper.streetNumber}</td></tr>
-				<tr><td>Billing Complement</td><td>{!kycWrapper.complement}</td></tr>
-				<tr><td>Last Modified Date</td><td>{!kycWrapper.lastModifiedDate}</td></tr>
-				<tr><td></td><td></td></tr>
-				<tr><td>Beneficiary</td><td>{!kycWrapper.beneficiary}</td></tr>
-				<tr><td>Bank Name</td><td>{!kycWrapper.bankName}</td></tr>
-				<tr><td>Bank Branch Address</td><td>{!kycWrapper.bankBranchAddress}</td></tr>
-				<tr><td>Account Number</td><td>{!kycWrapper.bankAccount}</td></tr>
-				<tr><td>Swift Code</td><td>{!kycWrapper.swiftCode}</td></tr>
-			</table>
+			<div style="page-break-inside: avoid; break-inside: avoid;">
+				<h2>Billing information (invoice)</h2>
+				<table>
+					<tr>
+						<th>Label</th>
+						<th>Value</th>
+					</tr>
+					<apex:repeat value="{!wrapper.homologationForms}" var="form">
+						<tr><td>Category</td><td>{!form.category}</td></tr>
+					</apex:repeat>
+					<tr><td>Invoice Name</td><td>{!kycWrapper.tradeName}</td></tr>
+					<tr><td>VAT/CNPJ</td><td>{!kycWrapper.fiscalRegistration}</td></tr>
+					<tr><td>Business Name</td><td>{!kycWrapper.legalName}</td></tr>
+					<tr><td>Country</td><td>{!kycWrapper.country}</td></tr>
+					<tr><td>State</td><td>{!kycWrapper.state}</td></tr>
+					<tr><td>City</td><td>{!kycWrapper.city}</td></tr>
+					<tr><td>Postal Code</td><td>{!kycWrapper.postalCode}</td></tr>
+					<tr><td>Billing Number</td><td>{!kycWrapper.streetNumber}</td></tr>
+					<tr><td>Billing Complement</td><td>{!kycWrapper.complement}</td></tr>
+					<tr><td>Last Modified Date</td><td>{!kycWrapper.lastModifiedDate}</td></tr>
+					<tr><td></td><td></td></tr>
+					<tr><td>Beneficiary</td><td>{!kycWrapper.beneficiary}</td></tr>
+					<tr><td>Bank Name</td><td>{!kycWrapper.bankName}</td></tr>
+					<tr><td>Bank Branch Address</td><td>{!kycWrapper.bankBranchAddress}</td></tr>
+					<tr><td>Account Number</td><td>{!kycWrapper.bankAccount}</td></tr>
+					<tr><td>Swift Code</td><td>{!kycWrapper.swiftCode}</td></tr>
+				</table>
+            </div>
 
-			<h1>Admin Configuration</h1>
+			<h1 style="page-break-before: always;">Admin Configuration</h1>
 			<h2>Functionalities</h2>
 			<table>
 				<tr>
@@ -227,12 +228,12 @@
 				<tr><td>Remittance Agent</td><td>{!wrapper.homologationForms[0].remittanceAgent}</td></tr>
 				<tr><td>Minimum Amount for Transfer</td><td>{!wrapper.homologationForms[0].minimumRemittance}</td></tr>
 				<tr><td>Remittance Currency</td><td>{!wrapper.moeda}</td></tr>
-				<tr><td>Transfer Fee</td><td>R${!wrapper.taxaTransferencia.totalPrice}</td></tr>
+				<tr><td>Transfer Fee</td><td>{!wrapper.homologationForms[0].remittanceTax}</td></tr>
 				<tr><td>Spread (Current Quote)</td><td>{!wrapper.homologationForms[0].currentSpread}%</td></tr>
-				<tr><td>Spread (Outdated Quote)</td><td>{!wrapper.homologationForms[0].additionalSpread}%</td></tr>
+				<tr><td>Additional Spread</td><td>{!wrapper.homologationForms[0].additionalSpread}%</td></tr>
 			</table>
 
-			<h1>Account Fees</h1>
+			<h1 style="page-break-before: always;">Account Fees</h1>
 			<h2>Fees</h2>
 			<table>
 				<tr>
@@ -243,26 +244,38 @@
 				</tr>
 				<tr>
 					<td>API</td>
-					<td></td>
-					<td></td>
 					<td>
-						<apex:outputText value="{!wrapper.taxaProcessamentoBoleto.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoBoleto.percentValue))}" />
+						<apex:outputText value="{!IF(wrapper.homologationForms[0].hasApiTax, 'Yes', 'No')}" />
+					</td>
+					<td>
+						<apex:outputText value="{!wrapper.homologationForms[0].apiFixed}" rendered="{!NOT(ISBLANK(wrapper.homologationForms[0].apiFixed))}" />
+					</td>
+					<td>
+						<apex:outputText value="{!wrapper.homologationForms[0].apiVariable}%" rendered="{!NOT(ISBLANK(wrapper.homologationForms[0].apiVariable))}" />
 					</td>
 				</tr>
 				<tr>
 					<td>PagBrasil Mobile POS</td>
-					<td></td>
-					<td></td>
 					<td>
-						<apex:outputText value="{!wrapper.taxaProcessamentoPix.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoPix.percentValue))}" />
+						<apex:outputText value="{!IF(wrapper.homologationForms[0].hasMobilePosTax, 'Yes', 'No')}" />
+					</td>
+					<td>
+						<apex:outputText value="{!wrapper.homologationForms[0].mobilePosFixed}" rendered="{!NOT(ISBLANK(wrapper.homologationForms[0].mobilePosFixed))}" />
+					</td>
+					<td>
+						<apex:outputText value="{!wrapper.homologationForms[0].mobilePosVariable}%" rendered="{!NOT(ISBLANK(wrapper.homologationForms[0].mobilePosVariable))}" />
 					</td>
 				</tr>
 				<tr>
 					<td>Additional for Remote Payments</td>
-					<td></td>
-					<td></td>
 					<td>
-						<apex:outputText value="{!wrapper.taxaProcessamentoCredito.percentValue}%" rendered="{!NOT(ISBLANK(wrapper.taxaProcessamentoCredito.percentValue))}" />
+						<apex:outputText value="{!IF(wrapper.homologationForms[0].hasRemotePaymentTax, 'Yes', 'No')}" />
+					</td>
+					<td>
+						<apex:outputText value="{!wrapper.homologationForms[0].remotePaymentFixed}" rendered="{!NOT(ISBLANK(wrapper.homologationForms[0].remotePaymentFixed))}" />
+					</td>
+					<td>
+						<apex:outputText value="{!wrapper.homologationForms[0].remotePaymentVariable}%" rendered="{!NOT(ISBLANK(wrapper.homologationForms[0].remotePaymentVariable))}" />
 					</td>
 				</tr>
 			</table>

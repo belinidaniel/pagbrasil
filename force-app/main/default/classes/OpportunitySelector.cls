@@ -329,7 +329,13 @@ public without sharing class OpportunitySelector {
             			Minimum_Remittance_Amount__c,
             			Remittance_Tax__c,
 						Remittance_Type__c,
-						Remittance_Agent__c
+						Remittance_Agent__c,
+						Additional_for_Remote_Payments_Fixed__c,
+						Additional_for_Remote_Payments_Variable__c,
+						API_Fixed__c,
+						API_Variable__c,
+						PagBrasil_Mobile_POS_Fixed__c,
+						PagBrasil_Mobile_POS_Variable__c
                 FROM HomologationForms__r)
             FROM Opportunity
             WHERE Id = :opportunityId
@@ -520,7 +526,13 @@ public without sharing class OpportunitySelector {
             			Minimum_Remittance_Amount__c,
             			Remittance_Tax__c,
 						Remittance_Type__c,
-						Remittance_Agent__c
+						Remittance_Agent__c,
+						Additional_for_Remote_Payments_Fixed__c,
+						Additional_for_Remote_Payments_Variable__c,
+						API_Fixed__c,
+						API_Variable__c,
+						PagBrasil_Mobile_POS_Fixed__c,
+						PagBrasil_Mobile_POS_Variable__c
             FROM HomologationForm__c
             WHERE Opportunity__c = :opportunityId
         ];
@@ -602,7 +614,13 @@ public without sharing class OpportunitySelector {
             			Minimum_Remittance_Amount__c,
             			Remittance_Tax__c,
 						Remittance_Type__c,
-						Remittance_Agent__c
+						Remittance_Agent__c,
+						Additional_for_Remote_Payments_Fixed__c,
+						Additional_for_Remote_Payments_Variable__c,
+						API_Fixed__c,
+						API_Variable__c,
+						PagBrasil_Mobile_POS_Fixed__c,
+						PagBrasil_Mobile_POS_Variable__c
         FROM HomologationForm__c
         WHERE Id = :homologationId
         LIMIT 1

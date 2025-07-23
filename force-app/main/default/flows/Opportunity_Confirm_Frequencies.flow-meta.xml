@@ -36,7 +36,7 @@
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
-            <conditionLogic>((NOT 5) OR (5 AND 1 AND 2 AND 3 AND 4)) AND ((NOT 6) OR (6 AND 7 AND 8))</conditionLogic>
+            <conditionLogic>((NOT 5) OR (5 AND 1 AND 2 AND 3 AND 4)) AND ((NOT 6) OR (6 AND 7))</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Opportunity.Settlement_Frequency_1__c</leftValueReference>
                 <operator>IsBlank</operator>
@@ -81,13 +81,6 @@
             </conditions>
             <conditions>
                 <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_1__c</leftValueReference>
-                <operator>IsBlank</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -184,7 +177,7 @@
         </connector>
         <fields>
             <name>Text</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 28px;&quot;&gt;{!screenText}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 22px;&quot;&gt;{!screenText}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -229,7 +222,7 @@
             <visibilityRule>
                 <conditionLogic>1 AND (2 OR 3)</conditionLogic>
                 <conditions>
-                    <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                    <leftValueReference>Get_Opportunity.Visible_Settlement_Frequency__c</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
@@ -287,7 +280,7 @@
             <visibilityRule>
                 <conditionLogic>1 AND (2 OR 3)</conditionLogic>
                 <conditions>
-                    <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
+                    <leftValueReference>Get_Opportunity.Visible_Settlement_Frequency__c</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
@@ -325,26 +318,6 @@
                         </conditions>
                         <conditions>
                             <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_1__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</objectFieldReference>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Get_Opportunity.Visible_Others_Settlement_Frequency__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                        <conditions>
-                            <leftValueReference>Get_Opportunity.Other_Payments_Settlement_Frequency_2__c</leftValueReference>
                             <operator>EqualTo</operator>
                         </conditions>
                     </visibilityRule>
@@ -396,7 +369,7 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <value>
-            <stringValue>The following fields must have values and/or be confirmed before creating a proposal:</stringValue>
+            <stringValue>The following fields must have values and/or be confirmed before creating a quote:</stringValue>
         </value>
     </variables>
 </Flow>

@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Daniel Belini
+ * @group             : 
+ * @last modified on  : 07-17-2025
+ * @last modified by  : Daniel Belini
+**/
 public class AccountTriggerHandler {
     public static void handleBeforeInsert(List<Account> newAccounts) {
         for (Account acc : newAccounts) {
@@ -37,7 +44,7 @@ public class AccountTriggerHandler {
                 if(acc.Type != oldMap.get(acc.Id).Type) {
                     Opportunity templateOpp = lastOppsMap.get(acc.Id);
                     
-                    Lead sourceLead = [
+                    List<Lead>  sourceLeadList = [
                         SELECT
                             Use_One_Click_Pix__c,
                             Ag_ncia__c,
@@ -98,6 +105,10 @@ public class AccountTriggerHandler {
                         LIMIT 1
                     ];
                     
+                    if(sourceLeadList.isEmpty()) {
+                        continue;
+                    }
+                    Lead sourceLead = sourceLeadList[0];
                     Opportunity newOpp = new Opportunity(
                         PixOneClick__c = sourceLead.Use_One_Click_Pix__c,
                         Ag_ncia__c = sourceLead.Ag_ncia__c,

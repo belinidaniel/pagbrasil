@@ -145,8 +145,8 @@
                             <visibilityRule>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Discovery</rightValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Compliance</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>

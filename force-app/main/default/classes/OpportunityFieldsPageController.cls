@@ -28,7 +28,7 @@ public with sharing class OpportunityFieldsPageController {
             } else {
             	kyc = OpportunitySelector.getKycXbByOpportunityId(opportunityId);
             }
-			System.debug('controller kyc: ' + kyc);
+
             rccWrapper = new OpportunityWrapper.RccWrapper(rcc);
             kycWrapper = new OpportunityWrapper.KycWrapper(kyc);
             wrapper = new OpportunityWrapper(opp);

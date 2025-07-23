@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-05-2025
+ * @last modified on  : 07-17-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -104,6 +104,11 @@ public class PropostaCrossController {
     public String valueTwo { get; set; }
     public String valueThree { get; set; }
     public String valueFour { get; set; }
+
+    public String pixGateway { get; set; }
+    public String creditCardGateway { get; set; }
+    public String debitCardGateway { get; set; }
+    public String boletoGateway { get; set; }
 
     public List<String> integrationTypeShopifyWoocommerceSalesforcePBCheckoutList = new List<String>{'Shopify','Woocommerce','Salesforce','PB Checkout'};
     public List<String> integrationTypeJSAPIVTex = new List<String>{'JS','API','Vtex'};
@@ -357,6 +362,19 @@ public class PropostaCrossController {
             when 'PAYOUT_SETUP_FEE_EUR' {
                 if (this.opportunityCurrency == 'EUR')
                     this.payoutSetupFee = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
+            when 'TAXA_GATEWAY_PIX'{
+                this.pixGateway = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
+
+            when 'TAXA_GATEWAY_CREDITO' {
+                this.creditCardGateway = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
+            when 'TAXA_GATEWAY_DEBITO' {
+                this.debitCardGateway = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
+            when 'TAXA_GATEWAY_BOLETO' {
+                this.boletoGateway = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
         }
     }

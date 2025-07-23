@@ -353,6 +353,15 @@ public class OpportunityWrapper {
 		public Decimal remittanceTax { get; set; }
 		public String remittanceType { get; set; }
 		public String remittanceAgent { get; set; }
+		public Decimal apiFixed { get; set; }
+		public Decimal apiVariable { get; set; }
+		public Decimal mobilePosFixed { get; set; }
+		public Decimal mobilePosVariable { get; set; }
+		public Decimal remotePaymentFixed { get; set; }
+		public Decimal remotePaymentVariable { get; set; }
+		public Boolean hasApiTax { get; set; }
+		public Boolean hasMobilePosTax { get; set; }
+		public Boolean hasRemotePaymentTax { get; set; }
 		public Decimal currentSpread { get; set; }
 		public Decimal additionalSpread { get; set; }
 
@@ -446,6 +455,15 @@ public class OpportunityWrapper {
 			this.remittanceTax = form.Remittance_Tax__c; 
 			this.remittanceType = form.Remittance_Type__c; 
 			this.remittanceAgent = form.Remittance_Agent__c;
+			this.apiFixed = form.API_Fixed__c;
+			this.apiVariable = form.API_Variable__c;
+			this.mobilePosFixed = form.Additional_for_Remote_Payments_Fixed__c;
+			this.mobilePosVariable = form.Additional_for_Remote_Payments_Variable__c;
+			this.remotePaymentFixed = form.PagBrasil_Mobile_POS_Fixed__c;
+			this.remotePaymentVariable = form.PagBrasil_Mobile_POS_Variable__c;
+			this.hasApiTax = (form.API_Fixed__c != null || form.API_Variable__c != null);
+			this.hasMobilePosTax = (form.Additional_for_Remote_Payments_Fixed__c != null || form.Additional_for_Remote_Payments_Variable__c != null);
+			this.hasRemotePaymentTax = (form.PagBrasil_Mobile_POS_Fixed__c != null || form.PagBrasil_Mobile_POS_Variable__c != null);
             this.currentSpread = 2.5;
             this.additionalSpread = 1.5;
 		}

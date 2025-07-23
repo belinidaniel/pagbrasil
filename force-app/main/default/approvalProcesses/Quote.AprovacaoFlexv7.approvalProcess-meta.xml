@@ -32,7 +32,7 @@
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
-        <label>Approval Head</label>
+        <label>Approval Director</label>
         <name>ApprovalHead</name>
     </approvalStep>
     <approvalStep>
@@ -51,7 +51,7 @@
                 <value>0</value>
             </criteriaItems>
         </entryCriteria>
-        <label>Approval Board</label>
+        <label>Approval CEO</label>
         <name>Approval_Board</name>
         <rejectBehavior>
             <type>RejectRequest</type>

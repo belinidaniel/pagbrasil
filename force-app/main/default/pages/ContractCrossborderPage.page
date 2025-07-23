@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-09-2025
+  @last modified on  : 07-18-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -134,7 +134,7 @@
                             <th style="font-size:12px">PagBrasil Pix</th>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <th style="font-size:12px">Credit Card*</th>
                         </apex:panelGroup>
                         
@@ -156,7 +156,7 @@
                             <td>{!pixOne}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardOne}</td>
                         </apex:panelGroup>
                         
@@ -175,7 +175,7 @@
                             <td>{!pixTwo}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardTwo}</td>
                         </apex:panelGroup>
                         
@@ -195,7 +195,7 @@
                             <td>{!pixThree}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardThree}</td>
                         </apex:panelGroup>
                         
@@ -215,7 +215,7 @@
                             <td>{!pixFour}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td>{!creditCardFour}</td>
                         </apex:panelGroup>
                         
@@ -235,7 +235,7 @@
                             <td style="color: #0058B5;">{!pixGateway}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartao}">
                             <td style="color: #0058B5;">{!creditCardGateway}</td>
                         </apex:panelGroup>
                         
@@ -332,7 +332,7 @@
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="width: 40%; text-align: left;">Setup Fee</td>
+                        <td style="width: 60%; text-align: left;">Setup Fee</td>
                         <td style="width: 10%; text-align: center;">
                             {!adherenceFee}
                         </td>
@@ -379,11 +379,11 @@
                         <td style="padding: 10px; width: 10%; text-align: center;">{!currencyExchangeMarkup}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on exchange rate</td>
                     </tr>
-                    <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">IOF tax</td>
+                    <!-- <tr>
+                        <td style="padding: 10px; width: 40%; text-align: left;">tax</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!iofTax}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on the Transaction Amount</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left;">Minimum Transfer Amount</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!repass}</td>
@@ -393,20 +393,20 @@
                     <tr>
                         <td style="padding: 10px; width: 40%; text-align: left; vertical-align: top;border-bottom: 0px">Eligible settlement date</td>
                         <td colspan="2" style="width: 60%; text-align: left;border-bottom: 0px">
-                            <apex:panelGroup rendered="{!containsPix}">
-                                <p>Pix: D+0/7/15/31</p>
-                            </apex:panelGroup>
-                            
-                            <apex:panelGroup rendered="{!containsDebito}">
-                                <p>Débito Flash<span style="vertical-align: super; font-size: 0.8em;">™</span>: D+0/7/15/31</p>
-                            </apex:panelGroup>
-                            
-                            <apex:panelGroup rendered="{!containsBoleto}">
-                                <p>Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>: D+0/7/15/31</p>
-                            </apex:panelGroup>
-
+                            <p>
+                                <apex:panelGroup rendered="{!containsPix}">
+                                    Pix
+                                </apex:panelGroup>
+                                <apex:panelGroup rendered="{!containsDebito}">
+                                   ,Débito Flash<span style="vertical-align: super; font-size: 0.8em;">™</span> 
+                                </apex:panelGroup>
+                                <apex:panelGroup rendered="{!containsBoleto}">
+                                    ,Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                                </apex:panelGroup>
+                                :D+{!settlementFrequency}
+                            </p>
                             <apex:panelGroup rendered="{!AND(containsCartao, NOT(isFluxoMedio))}">
-                                <p>Credit Card: D+{!settlementFrequency}</p>
+                                <P>Credit Card: D+{!settlementFrequency}</p>
                             </apex:panelGroup>
                         </td>
                     </tr>
@@ -444,20 +444,20 @@
                     </tr>
                 </apex:panelGroup>
                 </tbody>
-            </table>
-            
+            </table>            
             <apex:panelGroup rendered="{!NOT (isFluxoMedio)}">
                 <apex:outputText value="* “D” refers to the day the " escape="false"/>
                 <apex:outputText value="End Customer pays the Transaction Amount. " style="font-weight:bold;" escape="false" /><br/><br/>
             </apex:panelGroup>
-            
-            <!--<div class="page-break"></div>
-
-<div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
-</div>
-<br/> -->
-            
+            <table style="width: 100%; margin: 20px auto; table-layout: auto; text-align: left; border-top: 1px solid black;">
+                <tbody>
+                    <tr style=" border-bottom: 0px solid black; !important;"> 
+                        <td style="padding: 10px; width: 40%; text-align: left;">Remittance Fee</td>
+                        <td style="padding: 10px; width: 10%; text-align: center;">{!remittanceFee}</td>
+                        <td style="padding: 10px; width: 50%; text-align: left;">{!opportunity.Moeda__c} per remittance</td>
+                    </tr>
+                </tbody>
+            </table>
             <apex:panelGroup rendered="{!isFluxoMedio}">
                 <table border="1">
                     <tbody style="borderjustify-items: center; border:0px;" >
@@ -492,7 +492,7 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
-                    <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                    <apex:panelGroup rendered="{!containsCartao}">
                         <tr>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
@@ -528,40 +528,41 @@
             <p style="font-weight: bold;">{!startNumber}. Optional services: </p>
             <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
             Boleto Flash®, Pix and<span style="vertical-align: super; font-size: 0.8em;">®</span> Payment Link confirmation and/or reminder messages 
+            <br/>
             <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
-                            package 500 SMS<br/>
-                            package 1.000 SMS<br/>
-                            package 10.000 SMS<br/><br/>
-                            package 1.000 e-mails<br/>
-                            package 10.000 e-mails<br/>
-                            package 100.000 e-mails<br/><br/>
-                            <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
-                                SMS and emails package
-                            </apex:outputPanel> 
-                        </td>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            199,00<br/>
-                            {!sms1000}<br/>
-                            {!sms10000}<br/><br/>
-                            95,00<br/>
-                            {!emails10000}<br/>
-                            1,900<br/><br/>
-                            <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
-                                0,00
-                            </apex:outputPanel>
-                        </td>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
-                            <br/>
-                            BRL per package<br/><br/><br/><br/>
-                            BRL per package<br/><br/><br/><br/>
-                            <apex:outputPanel rendered="{!containsPagBrasilDefinition}">
-                                BRL per package (included only with the hiring of the PagBrasil Solution)
-                            </apex:outputPanel> 
-                        </td>
+                        <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
+                            <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
+                                package 500 SMS<br/>
+                                package 1.000 SMS<br/>
+                                package 10.000 SMS<br/><br/>
+                                package 1.000 e-mails<br/>
+                                package 10.000 e-mails<br/>
+                                package 100.000 e-mails<br/><br/>
+                            </td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                                {!sms500}<br/>
+                                {!sms1000}<br/>
+                                {!sms10000}<br/><br/>
+                                {!emails1000}<br/>
+                                {!emails10000}<br/>
+                                {!emails100000}<br/><br/>
+                            </td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                                <br/>
+                                 BRL per package<br/><br/><br/><br/>
+                                 BRL per package<br/><br/><br/><br/>
+                            </td>
+                        </apex:panelGroup>
                     </tr>
+                    <apex:panelGroup rendered="{!containsPagBrasilDefinition}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">SMS and emails Package</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10; text-align: center;">0,00</td>
+                                BRL per package (included only with the hiring of the PagBrasil Solution)
+                        </tr>
+                    </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth for Credit Card</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
@@ -579,7 +580,7 @@
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">1-Click Pix</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,10</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
                         <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
                     </tr>
@@ -599,13 +600,13 @@
             <br/>
 
             <p style="font-weight: bold;">{!startNumber}. PagShield: </p>
-            <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
+            <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>2
                 <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
                         <td style="width: 40%; text-align: left;">PagShield fraud prevention ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatory', 'optional')})</td>
                         <td style="width: 10%; text-align: center;">{!pagShield}</td>
-                        <td style="width: 50%; text-align: left;">BRL per analyzed transaction</td>
+                        <td style="width: 50%; text-align: left;">BRL per analysis transaction</td>
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium fraud prevention (optional)</td>
@@ -685,7 +686,6 @@
                     <tr>
                         <td style="border-bottom: 0px;width: 40%; text-align: left;">
                             Pix Automático (Recurring Pix)<br/>
-                            *ETA June, 2025
                         </td>
                         <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
@@ -694,10 +694,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <p style="text-align:justify">
-                <strong>PagBrasil</strong> reserves the right to adjust the Pix Automático rates in response to future market conditions anytime in accordance with the provisions of clause 4.2. 
-            </p>
 
             <p style="text-align:justify">
                 The <strong>Merchant</strong> may participate in a trial period before the official launch of Pix Automático if it meets and accepts the conditions and requirements established by <strong>PagBrasil</strong> for that trial. 
@@ -727,21 +723,18 @@
 
             <div class="page-break"></div>
             <div style="text-align: right;">
-                <img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
+                <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
             </div>
             <br/>
-
             <p style="text-align:justify">
-                By electronically signing the <strong>Agreement</strong>, including its annexes, through the DocuSign platform <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> the <strong>Parties</strong> declare and acknowledge the validity, authenticity, and integrity of this <strong>Agreement</strong> and the <strong>PagBrasil Terms and Conditions</strong> availability at the link
-                <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.xxxx.com)</a>
-                .  
+                By electronically signing the <strong>Agreement</strong>, including its annexes, through the DocuSign platform <a href="https://www.docusign.com" style="color:#0058B5; text-decoration:none;" target="_blank">(www.docusign.com)</a> the <strong>Parties</strong> declare and acknowledge the validity, authenticity, and integrity of this <strong>Agreement</strong> and the <strong>PagBrasil Terms and Conditions</strong> 
             </p>
 
-            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/>
             <div style="display: flex; justify-content: space-between;">
                 <div style="width: 48%; display: inline-block; vertical-align: top;">
                     <table style="width: 100%">
-                        <apex:outputText value="        Merchant" style="font-weight:bold; white-space: pre;" />
+                        <apex:outputText value="        Merchant.       " style="font-weight:bold; white-space: pre;" />
                         <br/><br/><br/><br/>
                         <apex:repeat value="{!contacts}" var="contact">
                             <tbody>
@@ -749,31 +742,9 @@
                                     <td colspan="1" style="width: 70%; border-bottom: none !important;">
                                         <div class="box-assinatura">
                                             <div class='assinatura'>
-                                                {!contact.Name}
                                             </div>
                                             <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                                (Name)
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr style="font-size: 16px;">
-                                    <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                        <div class="box-assinatura">
-                                            <div class='assinatura'></div>
-                                            <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                                (Authorized Signature)
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                        <div class="box-assinatura">
-                                            <div class='assinatura'>
-                                                {!contact.Title}
-                                            </div>
-                                            <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
+                                                (Name) <br/>
                                                 (Title)
                                             </div>
                                         </div>
@@ -796,39 +767,16 @@
             
                 <div style="width: 48%; display: inline-block; vertical-align: top;">
                     <table style="width: 100%">
-                        <apex:outputText value="        PagBrasil" style="font-weight:bold; white-space: pre;" />
+                        <apex:outputText value="     PagBrasil" style="font-weight:bold; white-space: pre;margin-left:10px" />
                         <br/><br/><br/><br/>
                         <tbody>
                             <tr style="font-size: 16px;">
                                 <td colspan="1" style="width: 70%; border-bottom: none !important;">
                                     <div class="box-assinatura">
-                                        <div class='assinatura'>
-                                            Ralf Germer
-                                        </div>
-                                        <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Name)
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="font-size: 16px;">
-                                <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                    <div class="box-assinatura">
                                         <div class='assinatura'></div>
                                         <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Authorized Signature)
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1" style="width: 70%; border-bottom: none !important;">
-                                    <div class="box-assinatura">
-                                        <div class='assinatura'>
-                                            CEO
-                                        </div>
-                                        <div class='nomes-assinatura' style="margin-bottom: 30px !important; font-size: 16px;">
-                                            (Title)
+                                            Ralf Gemer <br/>
+                                            CEO Cross
                                         </div>
                                     </div>
                                 </td>

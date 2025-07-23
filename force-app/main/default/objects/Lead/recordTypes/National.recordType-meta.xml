@@ -70,14 +70,6 @@
             <fullName>Intermediation</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>Pix International</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Pix Roaming</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Filial_no_Brasil_c__c</picklist>

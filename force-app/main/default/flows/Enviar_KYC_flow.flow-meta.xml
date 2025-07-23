@@ -15,31 +15,16 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>composeEmailContent</name>
+            <name>useEmailTemplate</name>
             <value>
                 <stringValue>True</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailSubject</name>
+            <name>emailTemplateId</name>
             <value>
-                <stringValue>Pagbrasil - Form Filling</stringValue>
+                <stringValue>00XVA000001lqXF2AY</stringValue>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-staging.pagbrasil.com/?id={!get_KYC_NB.Unique_Link__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendRichBody</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>useLineBreaks</name>
         </inputParameters>
         <inputParameters>
             <name>recipientId</name>
@@ -49,6 +34,9 @@
         </inputParameters>
         <inputParameters>
             <name>relatedRecordId</name>
+            <value>
+                <elementReference>get_KYC_NB.Id</elementReference>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>logEmailOnSend</name>
@@ -72,31 +60,16 @@
             </value>
         </inputParameters>
         <inputParameters>
-            <name>composeEmailContent</name>
+            <name>useEmailTemplate</name>
             <value>
                 <stringValue>True</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>emailSubject</name>
+            <name>emailTemplateId</name>
             <value>
-                <stringValue>Pagbrasil - Form Filling</stringValue>
+                <stringValue>00XVA000001lqSP2AY</stringValue>
             </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <stringValue>&lt;p&gt;Dear {!get_selected_contact.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please complete the KYC form at your earliest convenience to proceed with our onboarding process:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://kyc-xb-staging.pagbrasil.com/?id={!get_KYC_XB.Unique_Link__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;KYC Form&lt;/a&gt;&lt;/p&gt;&lt;p&gt;If you have any questions, feel free to contact us.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank you.&lt;/p&gt;</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendRichBody</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>useLineBreaks</name>
         </inputParameters>
         <inputParameters>
             <name>recipientId</name>
@@ -106,6 +79,9 @@
         </inputParameters>
         <inputParameters>
             <name>relatedRecordId</name>
+            <value>
+                <elementReference>get_KYC_XB.Id</elementReference>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>logEmailOnSend</name>

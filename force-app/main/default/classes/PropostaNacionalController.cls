@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-13-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -38,6 +38,8 @@ public class PropostaNacionalController {
     public String pagBrasilSolutionFeeRange{get;set;}
     public Boolean showZeroReserveOption { get; set; }
     public Boolean isGoogleOrApplePay { get; set; }
+    public Boolean isFrequency { get; set; }
+
 
     //Taxes
     public String valueOne { get; set; }
@@ -182,7 +184,7 @@ public class PropostaNacionalController {
 
     public List<String> pacotesSms { get; set; }
     public List<String> pacotesEmails { get; set; }
-
+    public Boolean isShowPageRepasse { get; set; }
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -190,7 +192,7 @@ public class PropostaNacionalController {
             stdController.addFields(new List<String>{
                 'Opportunity.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c',
                 'Opportunity.Settlement_Frequency_Test__c', 'Opportunity.Payout__c', 'Opportunity.Antecipation_Frequency_1__c',
-                'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
+                'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c','Opportunity.Other_Payments_Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
                 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c',
                 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.ApplePay__c', 'Opportunity.Visible_Settlement_Frequency__c', 'Opportunity.Visible_Anticipation_Frequency__c' });
         }
@@ -328,7 +330,7 @@ public class PropostaNacionalController {
             } else if (containsPix && containsDebitCard && !containsCreditCard && containsBoleto) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PBD';
                 this.showThree = true;
-                populateOptionsController('Pix','DebitCard','Boleto');
+                populateOptionsController('Pix', 'Boleto','DebitCard');
             } else if (containsPix && !containsDebitCard && containsCreditCard && containsBoleto) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PCB';
                 this.showThree = true;
@@ -380,10 +382,10 @@ public class PropostaNacionalController {
         List<QuoteLineItem> quoteLineItems = [SELECT Id,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
             if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_500_SMS') {
-                pacotesSms.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+                pacotesSms.add(quoteLineItem.Product2.Name + ':' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
             }
             if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_EMAILS' || quoteLineItem.Product2.ProductCode == 'PACOTE_100000_EMAILS') {
-                pacotesEmails.add(quoteLineItem.Product2.Name + ': R$ ' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
+                pacotesEmails.add(quoteLineItem.Product2.Name + ':' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
             }
             processQuoteLineItem(quoteLineItem);
         }
@@ -403,7 +405,7 @@ public class PropostaNacionalController {
             when 'CUSTO_PAGSHIELD' {
                 this.pagShield = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
-            when 'TAXA_FIXA_PAGSHIELD' {
+            when 'TAXA_FIX_PAGSHIELD' {
                 this.pagShieldPremium = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'TAXA_VAR_PAGSHIELD' {
@@ -478,6 +480,9 @@ public class PropostaNacionalController {
             when 'TAXA_PAGBRASIL_GATEWAY' {
                 processTaxaPagBrasilGateway(quoteLineItem);
             }
+            when 'RESERVA_GIRATORIA' {
+                this.reserve = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
         }
     }
 
@@ -524,12 +529,28 @@ public class PropostaNacionalController {
     }
 
     private void frequencyPopulation(Quote quote) {
-
-        if (quote.Opportunity.Antecipation_Frequency_1__c == null || quote.Opportunity.Settlement_Frequency_1__c == null)
+        this.isShowPageRepasse = false;
+         this.frequencyPage11 = null;
+        if (quote.Opportunity.Other_Payments_Settlement_Frequency_1__c == null || quote.Opportunity.Other_Payments_Settlement_Frequency_1__c == null)
             return;
 
         if (this.isGatewayAndIntermediation) {
-            switch on quote.Opportunity.Antecipation_Frequency_1__c {
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
+                when 'Daily' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+                }
+                when 'Weekly' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11S';
+                }
+                when 'Bimonthly' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11B';
+                }
+                when 'Monthly' {
+                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11M';
+                }
+            }
+        }else if (this.isIntermediation && !this.containsCreditCard) {
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
                 when 'Daily' {
                     this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
                 }
@@ -545,6 +566,10 @@ public class PropostaNacionalController {
             }
         }
 
+        if (this.frequencyPage11 != null) {
+            this.isShowPageRepasse = true;
+        }
+        
         String antecipationOne = quote.Opportunity.Antecipation_Frequency_1__c;
         String antecipationTwo = quote.Opportunity.Antecipation_Frequency_2__c;
 
@@ -649,7 +674,7 @@ public class PropostaNacionalController {
 
     private void setMonthlyFrequencyPageOne(String antecipation) {
         if (antecipation == 'Monthly') {
-            this.frequencyCardEligebleDatePageOne = 'D+0';
+            this.frequencyCardEligebleDatePageOne = 'D+31';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'mensal';
         }
@@ -961,6 +986,9 @@ public class PropostaNacionalController {
             String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
             System.debug('getParcelas antecipation: ' + antecipation);
             List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            if(!taxes.isEmpty()) {
+                this.isFrequency = true;
+            }
             System.debug('taxes.   ' + taxes);
             for(Taxes__c tax : taxes) {
                 System.debug('tax.InstallmentNumber__c: ' + tax.InstallmentNumber__c);
@@ -1008,7 +1036,9 @@ public class PropostaNacionalController {
         if (page == 'Two') {
             String antecipation = quote.Opportunity.Antecipation_Frequency_2__c;
             List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
-
+            if(!taxes.isEmpty()) {
+                this.isFrequency = true;
+            }
             for(Taxes__c tax : taxes) {
                 switch on tax.InstallmentNumber__c{
                     when '1' {

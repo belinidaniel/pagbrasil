@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-16-2025
+ * @last modified on  : 07-21-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -32,7 +32,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             if(taxMap == null){
                 taxMap = new Map<String, List<Taxes__c>>();
 
-                for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, Type__c FROM Taxes__c WHERE IsActive__c = true]){
+                for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c,Product__r.ProductCode, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, Type__c FROM Taxes__c WHERE IsActive__c = true]){
                     if(taxMap.containsKey(tax.Product__c)){
                         taxMap.get(tax.Product__c).add(tax);
                     } else {
@@ -145,6 +145,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     if( quote.Pricebook2Id != priceBookEntry.Pricebook2Id ){
                     }
                     System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
+                    System.debug('PricebookId - ' + priceBookEntry.UnitPrice);
                     quoteLineItems.add(new QuoteLineItem(
                         PricebookEntryId = priceBookEntry.Id,
                         Product2Id = priceBookEntry.Product2Id,
@@ -158,8 +159,34 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 }
             }
         }
+        
+        // Pix 1-Click adjustment logic
+        // adjustPixOneClickFee(quoteLineItems);
+        //verify here 
         if(!quoteLineItems.isEmpty()){
             insert quoteLineItems;
+        }
+    }
+
+    /**
+    * Adjusts the 1-Click Pix Fixed Fee so that Pix Fixed Fee + 1-Click = R$1.90 if both are present and Pix Fixed Fee < 1.90
+    */
+    private void adjustPixOneClickFee(List<QuoteLineItem> quoteLineItems) {
+        QuoteLineItem pixFixedFee;
+        QuoteLineItem oneClickFee;
+        for (QuoteLineItem item : quoteLineItems) {
+            if (item.Product2Id != null) {
+                Product2 p = [SELECT Id, ProductCode FROM Product2 WHERE Id = :item.Product2Id LIMIT 1];
+                if (p.ProductCode != null && p.ProductCode.contains('TAXA_GATEWAY_PIX')) {
+                    pixFixedFee = item;
+                }
+                if (p.ProductCode != null && p.ProductCode.contains('ONE_PIX_FIXED_FEE')) {
+                    oneClickFee = item;
+                }
+            }
+        }
+        if (pixFixedFee != null && oneClickFee != null && pixFixedFee.UnitPrice < 1.90) {
+            oneClickFee.UnitPrice = 1.90 - pixFixedFee.UnitPrice;
         }
     }
 
@@ -180,55 +207,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
     }
 
     /**
-    * @description by pass product to include in quote line item
-    * @author Hersilio Belini de Oliveira | 2024-10-29
-    * @param opportunity
-    * @param product
-    * @return boolean
-    **/
-    private boolean byPassProduct(Opportunity opportunity, Product2 product){
-        if(String.isBlank(product.ProductCode)){
-            return true;
-        }
-
-        // não ignorar no cross esse produtos
-        if(new List<String>{'REFUND_CARD_ACQUIRER_PIX', 'RECURRING_PIX', 'ZERO_AUTH_CREDIT_CARD' }.contains(product.ProductCode)){
-            return false;
-        }
-
-
-        String productCode = product.ProductCode;
-
-        // colocar productCodHasSalesforce em uma cumstom setting
-        if(opportunity.IntegrationType__c != null &&
-          ((!opportunity.IntegrationType__c.toLowerCase().contains('salesforce') && product.ProductCode.contains('_SF')) ||
-           (opportunity.IntegrationType__c.toLowerCase().contains('salesforce') && productCodHasSalesforce.contains(product.ProductCode)))){
-            return true;
-        }
-
-        String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
-
-        if((productCode.contains(DEBITO) && !paymentMethod.contains(DEBITO)) ||
-           (productCode.contains(PIX) && !paymentMethod.contains(PIX) && !productCode.contains(PIX_AUTO) )  ||
-           (productCode.contains(CREDITO) && !paymentMethod.contains(CREDITO)) ||
-           (productCode.contains(CREDIT_CARD) && !paymentMethod.contains(CREDITO)) ||
-           (productCode.contains(BOLETO) && !paymentMethod.contains(BOLETO)) ){
-            return true;
-        }
-
-        if(opportunity.RecordType.DeveloperName == 'National' && !opportunity.Payout__c && product.Family == 'Payout'){
-            return true;
-        }
-
-        if(productCode.contains('PACKAGE_') && opportunity.RecordType.DeveloperName != 'National'
-            && (opportunity.IntegrationType__c == null || !this.integrations.contains(opportunity.IntegrationType__c.toLowerCase()))){
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
     * @description add value tax to line item
     * @author Hersilio Belini de Oliveira | 2024-10-29
     * @param priceBookEntry
@@ -246,7 +224,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         Id taxId;
 
         String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
-
         for(Taxes__c tax : taxes){
 
        
@@ -263,24 +240,25 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         break;
                 }
                 when 'TaxaProcessamento' {
-                    System.System.debug('paymentMethod - ' + paymentMethod);
-                    System.System.debug('tax.Type__c - ' + tax);
-                    System.System.debug('pportunity.ProductClass__c - ' + tax.ProductClass__c);
-                    System.System.debug('pportunity.ProductClass__c - ' + opportunity.ProductClass__c);
-
-                     if(
-                       ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO) && tax.Type__c == 'crossborder')) ||
-                       ((paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX)) && isTicketRange) ||
-                       ((paymentMethod.contains(DEBITO) || paymentMethod.contains(CREDITO)) && (tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c)))
+                    System.debug('TaxaSolucaoPagBrasil - ' + tax.Product__r.ProductCode );
+                    System.debug('TaxaSolucaoPagBrasil - ' + tax.ProductClass__c);
+                    if(
+                        (paymentMethod.contains(CREDITO) && tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
+                        (paymentMethod.contains(DEBITO) &&  tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
+                        (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) || paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && tax.Type__c == 'crossborder') ||
+                        (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) ||  paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && isTicketRange ) 
                     ){
                         this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;
                     }
                 }
                 when 'TaxaSolucaoPagBrasil' {
-                    System.debug('TaxaSolucaoPagBrasil - ' + tax.RecordTypeName__c);
-                    if((opportunity.BusinessModel__c.contains('Intermediation') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js')) ||
-                    opportunity.BusinessModel__c == 'Gateway')) {
+                 
+
+                    if(
+                        (opportunity.BusinessModel__c.contains('Intermediation') && tax.Product__r.ProductCode == 'TAXA_PAGBRASIL')
+                     || 
+                     (opportunity.BusinessModel__c.contains('Gateway') && tax.IntegrationType__c !=null && tax.IntegrationType__c.contains(opportunity.IntegrationType__c))) {
                         percentValue = tax.PercentValue__c;
                         if(isInsideRange){
                             isTaxMain = true;
@@ -291,7 +269,9 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     }
                 }
                 when 'TaxaGateway' {
-                    if(opportunity.BusinessModel__c.contains('Gateway') && (!opportunity.IntegrationType__c.toLowerCase().contains('api') ||!opportunity.IntegrationType__c.toLowerCase().contains('js'))){
+                    System.debug(' tax.UnitPrice__c - ' +  tax.Id);
+                    System.debug(' tax.UnitPrice__c - ' +  tax.UnitPrice__c);
+                    if(opportunity.BusinessModel__c.contains('Gateway')){
                         unitPrice = tax.UnitPrice__c;
                         isTaxMain = true;
                         taxId = tax.Id;
@@ -300,7 +280,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 }
             }
         }
-        System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
         if(isTaxMain){
             quoteLineItems.add(new QuoteLineItem(
                 PricebookEntryId = priceBookEntry.Id,

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-11-2025
+  @last modified on  : 07-18-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -140,7 +140,7 @@
                             <th style="font-size:12px">PagBrasil Pix</th>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
                             <th style="font-size:12px">Cartão de crédito*</th>
                         </apex:panelGroup>
                         
@@ -152,17 +152,14 @@
                             <th style="font-size:12px">Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span></th>
                         </apex:panelGroup>
                         
-                        <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                        <apex:panelGroup rendered="{!isIntermediation}">
                             <th style="color: #0058B5;font-size:12px">
                                 Taxa da Solução PagBrasil<br/>Intermediação
                             </th>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!isGateway}">
                             <th style="color: #0058B5;font-size:12px">
                                 Taxa PagBrasil<br/>Gateway
-                            </th>
-                        </apex:panelGroup>
-                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <th style="color: #0058B5;font-size:12px">
-                                Taxa da Solução PagBrasil
                             </th>
                         </apex:panelGroup>
                     </tr>
@@ -203,7 +200,7 @@
                             <td>{!pixTwo}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
                             <td>{!creditCardTwo}</td>
                         </apex:panelGroup>
                         
@@ -230,7 +227,7 @@
                             <td>{!pixThree}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
                             <td>{!creditCardThree}</td>
                         </apex:panelGroup>
                         
@@ -259,7 +256,7 @@
                             <td>{!pixFour}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
                             <td>{!creditCardFour}</td>
                         </apex:panelGroup>
                         
@@ -287,7 +284,7 @@
                             <td style="color: #0058B5;">{!pixGateway}</td>
                         </apex:panelGroup>
 
-                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                        <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
                             <td style="color: #0058B5;">{!creditCardGateway}</td>
                         </apex:panelGroup>
                         
@@ -310,10 +307,11 @@
                 </tbody>
             </table>
 
-            <p>* Taxa variável adicional de <strong>Cartão</strong> de Crédito:</p>
-            <p>2 (duas) a 6 (seis) parcelas: <strong>0,4%</strong> (quatro décimos por cento)</p>
-            <p>7 (sete) a 12 (doze) parcelas: <strong>0,8%</strong> (oito décimos por cento)</p>
-            
+            <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                <p>* Taxa variável adicional de <strong>Cartão</strong> de Crédito:</p>
+                <p>2 (duas) a 6 (seis) parcelas: <strong>0,4%</strong> (quatro décimos por cento)</p>
+                <p>7 (sete) a 12 (doze) parcelas: <strong>0,8%</strong> (oito décimos por cento)</p>
+            </apex:panelGroup>
             <apex:panelGroup rendered="{!isGateway}">
                 <p>Taxa do <strong>Serviço de Gateway</strong></p>
                 <apex:outputText value="* Taxa de processamento: " style="color: #0058B5;" escape="false" />
@@ -324,9 +322,9 @@
             </apex:panelGroup>
             
             <div class="page-break"></div>
-            <div class="pagbrasil-watermark">Pagbrasil</div>
+            <div class="pagbrasil-watermark"></div>
 
-            <apex:panelGroup rendered="{!AND(NOT(isFluxoMedio), NOT(isGateway))}">
+            <apex:panelGroup rendered="{!AND(NOT(isFluxoMedio), NOT(isGateway), containsCartaoAndIsIntermediation)}">
             <p style="font-weight: bold;">2. Taxas para antecipação de Cartão de Crédito: </p>
             
             <table border="1" cellpadding="5" cellspacing="0">
@@ -458,7 +456,7 @@
                                 <p>Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>: D+0</p>
                             </apex:panelGroup>
 
-                            <apex:panelGroup rendered="{!AND(containsCartao, NOT(isFluxoMedio))}">
+                            <apex:panelGroup rendered="{!AND(containsCartaoAndIsIntermediation, NOT(isFluxoMedio))}">
                                 <p>Cartão de crédito: D+{!settlementFrequency}</p>
                             </apex:panelGroup>
                         </td>
@@ -542,7 +540,7 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação</td>
                     </tr>
-                    <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation}">
+                    <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
                         <tr>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
@@ -581,8 +579,10 @@
             <br/>
 
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "6", "7")}. Serviço Opcionais: </p>
-            Serviço de mensagem de confirmação e lembrete de Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>, Pix e Link de Pagamento
-            <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+            <div style="margin-left:5px">
+                Serviço de mensagem de <br/> confirmação e lembrete de <br/>  Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>, Pix e Link de <br/> Pagamento
+            </div>
+            <table style="margin-top: 1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
                         <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
@@ -593,7 +593,6 @@
                                 pacote 1.000 e-mails<br/>
                                 pacote 10.000 e-mails<br/>
                                 pacote 100.000 e-mails<br/><br/>
-                                pacote de SMS e e-mails
                             </td>
                             <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
                                 {!sms500}<br/>
@@ -602,18 +601,21 @@
                                 {!emails1000}<br/>
                                 {!emails10000}<br/>
                                 {!emails100000}<br/><br/>
-                                0,00
+                            </td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                                <br/>
+                                R$ por pacote<br/><br/><br/><br/>
+                                R$ por pacote<br/><br/><br/><br/>
                             </td>
                         </apex:panelGroup>
-                        <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
-                            <br/>
-                            <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
-                                R$ por pacote<br/><br/><br/><br/>
-                                R$ por pacote<br/><br/><br/><br/>
-                            </apex:panelGroup>
-                            R$ por pacote (incluído somente com a contratação da Solução PagBrasil) 
-                        </td>
                     </tr>
+                    <apex:panelGroup rendered="{!containsPagBrasilDefinition}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">pacote de SMS e e-mails</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;"> R$ por pacote <br/>(incluído somente com a contratação da Solução PagBrasil) </td>
+                        </tr>
+                    </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Link de Pagamento</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
@@ -630,8 +632,6 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>
                     </tr>
                     <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
-                    <div class="page-break"></div>
-                    <div class="pagbrasil-watermark">Pagbrasil</div>
                     <apex:panelGroup rendered="{!pixGatewayBelowMinimum}">
                             <tr>
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
@@ -644,11 +644,13 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por mês</td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth para Cartão de Crédito</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação gerada (somente quando a função é utilizada pelo Estabelecimento)</td>
-                    </tr>
+                    <apex:panelGroup rendered="{!hasZeroAuth}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth para Cartão de Crédito</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação gerada (somente quando a função é utilizada pelo Estabelecimento)</td>
+                        </tr>
+                    </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Conta SFTP</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
@@ -660,6 +662,7 @@
             <br/>
 
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "7", "8")}. PagShield: </p>
+            <apex:panelGroup rendered="{!hasPagShield}">
             <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
@@ -667,6 +670,12 @@
                         <td style="width: 10%; text-align: center;">{!pagShield}</td>
                         <td style="width: 50%; text-align: left;">R$ por transação analisada</td>
                     </tr>
+                </tbody>
+            </table>
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!hasPagShieldPremium}">
+            <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                <tbody>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium (opcional)</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
@@ -678,19 +687,9 @@
                             Sobre a transação revisada 
                         </td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">PagShield Premium On-Demand (opcional)</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">
-                            14,50 <br/>
-                            2,5%
-                        </td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">
-                            R$ por transação <br/>
-                            Sobre a transação revisada 
-                        </td>
-                    </tr>
                 </tbody>
             </table>
+            </apex:panelGroup>
 
             <br/>
 
@@ -729,14 +728,6 @@
             </table>
             
             
-            <!--<div class="page-break"></div>
-
-<div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
-</div> -->
-
-            <br/> <br/>
-
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "9", "10")}. Pix Automático: </p>
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
@@ -752,11 +743,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <p style="text-align:justify">
-                A <strong>PagBrasil</strong> reserva-se o direito de ajustar as taxas do Pix Automático em resposta às futuras condições do mercado a qualquer momento, de acordo com o disposto na cláusula 4.2. 
-            </p>
-            
             <br/>
 
             <apex:panelGroup rendered="{!isPayout}">
@@ -776,7 +762,6 @@
                     </tbody>
                 </table>
             </apex:panelGroup>
-            
             <br/>
 <!-- 
             <apex:panelGroup rendered="{!NOT (isPayout)}">

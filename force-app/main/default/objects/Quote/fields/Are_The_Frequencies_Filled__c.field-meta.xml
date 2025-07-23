@@ -17,7 +17,6 @@
 				IF(
         Opportunity.Visible_Others_Settlement_Frequency__c,
         AND(
-            NOT(ISPICKVAL(Opportunity.Other_Payments_Settlement_Frequency_1__c, &quot;&quot;)),
             NOT(ISPICKVAL(Opportunity.Other_Payments_Settlement_Frequency_2__c, &quot;&quot;))
         ),
         TRUE

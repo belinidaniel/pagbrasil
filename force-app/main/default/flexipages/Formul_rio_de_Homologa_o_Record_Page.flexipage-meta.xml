@@ -327,40 +327,6 @@
                 <identifier>RecordAllow_CPF_CNPJ__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Account_Request_Date__c</fieldItem>
-                <identifier>RecordAccount_Request_Date__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Account_in_Mode__c</fieldItem>
-                <identifier>RecordAccount_in_Mode__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -563,74 +529,6 @@
                 <identifier>RecordSubscriber_Area__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Remittance_Type__c</fieldItem>
-                <identifier>RecordRemittance_Type_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Remittance_Agent__c</fieldItem>
-                <identifier>RecordRemittance_Agent_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Minimum_Remittance_Amount__c</fieldItem>
-                <identifier>RecordMinimum_Remittance_Amount__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Remittance_Tax__c</fieldItem>
-                <identifier>RecordRemittance_Tax__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-6d2b8d7a-c6cc-4672-a860-de1b7d7de9f4</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -659,6 +557,40 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Account_Request_Date__c</fieldItem>
+                <identifier>RecordAccount_Request_Date__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Account_in_Mode__c</fieldItem>
+                <identifier>RecordAccount_in_Mode__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -743,6 +675,74 @@
                 <identifier>RecordPix_Valid_For__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Remittance_Type__c</fieldItem>
+                <identifier>RecordRemittance_Type_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Remittance_Agent__c</fieldItem>
+                <identifier>RecordRemittance_Agent_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Minimum_Remittance_Amount__c</fieldItem>
+                <identifier>RecordMinimum_Remittance_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Remittance_Tax__c</fieldItem>
+                <identifier>RecordRemittance_Tax__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-f16015f0-b242-4f80-a7b6-ac673dd6813d</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -768,6 +768,98 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-a492cf3b-96d7-47fe-ae36-946542256c54</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.API_Fixed__c</fieldItem>
+                <identifier>RecordAPI_Fixed_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Additional_for_Remote_Payments_Fixed__c</fieldItem>
+                <identifier>RecordAdditional_for_Remote_Payments_Fixed_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.PagBrasil_Mobile_POS_Fixed__c</fieldItem>
+                <identifier>RecordPagBrasil_Mobile_POS_Fixed_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-d830865e-541b-48ab-bf73-b19028e1327f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.API_Variable__c</fieldItem>
+                <identifier>RecordAPI_Variable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Additional_for_Remote_Payments_Variable__c</fieldItem>
+                <identifier>RecordAdditional_for_Remote_Payments_Variable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.PagBrasil_Mobile_POS_Variable__c</fieldItem>
+                <identifier>RecordPagBrasil_Mobile_POS_Variable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-d27e42df-a658-4fec-8b85-57fb875c1f48</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-d830865e-541b-48ab-bf73-b19028e1327f</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-d27e42df-a658-4fec-8b85-57fb875c1f48</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-8269994c-27eb-42aa-b42d-d6fce419535f</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -1623,6 +1715,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection7</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1647,6 +1746,31 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-8269994c-27eb-42aa-b42d-d6fce419535f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Pix International Account Taxes</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection3</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-9rn0bybgent</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -1659,6 +1783,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection8</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1677,6 +1808,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection9</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1695,6 +1833,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection10</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1713,6 +1858,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection11</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1731,6 +1883,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection12</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1745,7 +1904,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>1. Informações da loja</value>
+                    <value>Informações da loja</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection</identifier>
@@ -1767,6 +1926,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection13</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1781,10 +1947,17 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>3. Validadores e Recursos</value>
+                    <value>Validadores e Recursos</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1799,7 +1972,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>4. Gateway</value>
+                    <value>Gateway</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection5</identifier>
@@ -1991,6 +2164,24 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tabset</componentName>
                 <identifier>flexipage_tabset2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListContainer</componentName>
+                <identifier>force_relatedListContainer2</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-18-2025
+ * @last modified on  : 07-23-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -125,6 +125,12 @@ public class ContractController {
     public String frequencyPageOneValueEleven { get; set; }
     public String frequencyPageOneValueTwelve { get; set; }
 
+    public string oneClickFeeVariable{get;set;}
+    public string oneClickFeeFixed{get;set;}
+
+    public string pagShieldOndemandFee{ get; set;}
+    public string pagShieldOndemandFeePercent{ get; set;}
+
     public String frequencyOne { get; set; }
     public String frequencyTwo { get; set; }
 
@@ -147,6 +153,7 @@ public class ContractController {
     public String termClausesTitle { get; set; }
     public String legalName { get; set; }
 
+
     public ContractController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
@@ -161,6 +168,7 @@ public class ContractController {
         this.isGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
         this.isIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Intermediation') : false;
 
+        this.pixAuto = '1,90';
         if(String.isNotBlank(opp.RecordType.DeveloperName) && opp.RecordType.DeveloperName.contains('Crossborder')){
             this.isCrossborder = true;
         }
@@ -301,12 +309,6 @@ public class ContractController {
                     when 'REMITTANCE_FEE_EUR' {
                         this.remittanceFee = price;
                     }
-                    when 'PAGSHIELD_FRAUD_PREVENTION_FIXED_FEE' {
-                        this.pagShieldFee = price;
-                    }
-                    when 'PAGSHIELD_FRAUD_PREVENTION_FIXED_FEE_TO_REVIEW' {
-                        this.pagShieldFeePercent = price;
-                    }
                     when 'REMITTANCE_FEE_USD' {
                         this.remittanceFee = price;
                     }
@@ -350,17 +352,9 @@ public class ContractController {
                         this.pagstreamMin = price;
                         System.debug('Pagstream Min: ' + this.pagstreamMin);
                     }
-                    when 'PAGSHIELD_FRAUD_PREVENTION' {
+                    when 'CUSTO_PAGSHIELD_CROSS'{
+                        this.pagShield = price;
                         this.hasPagShield = true;
-                        this.pagshield = price;
-                    }
-                    when 'PAGSHIELD_PREMIUM_FIXED_FEE' {
-                        this.pagShieldFee = price;
-                        this.hasPagShieldPremium = true;
-                    }
-                    when 'PAGSHIELD_PREMIUM_VARIABLE_FEE' {
-                        this.pagShieldFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
-                        this.hasPagShieldPremium = true;
                     }
                     when 'PIX_AUTO'{
                         this.pixAuto = price;
@@ -369,19 +363,19 @@ public class ContractController {
                         this.zeroAuthCard = price;
                         this.hasZeroAuth = true;
                     }
-                    when 'PACKAGE_500_SMS' {
+                    when 'PACKAGE_500_SMS' {//ja tem
                         this.sms500 = price;
                     }
-                    when 'PACKAGE_1000_SMS' {
+                    when 'PACKAGE_1000_SMS' {//ja tem
                         this.sms1000 = price;
                     }
-                    when 'PACKAGE_10000_SMS' {
+                    when 'PACKAGE_10000_SMS' { //ja tem
                         this.sms10000 = price;
                     }
-                    when 'EMAIL_PACKAGE_1000' {
+                    when 'EMAIL_PACKAGE_1000' {//ja tem
                         this.emails1000 = price;
                     }
-                    when 'PACKAGE_10000_EMAILS' {
+                    when 'PACKAGE_10000_EMAILS' { //ta tem
                         this.emails10000 = price;
                     }
                     when 'EMAIL_PACKAGE_100000' {
@@ -396,7 +390,7 @@ public class ContractController {
                     when 'CHARGEBACK_FEE' {
                         this.chargeback = price;
                     }
-                    when 'EXCESS_CHARGEBACK_FEE' {
+                    when 'CHARGEBACK' {
                         this.excessChargeback = price;
                     }
                     when 'CURRENCY_EXCHANGE_MARKUP_SPREAD'{
@@ -405,12 +399,29 @@ public class ContractController {
                     when 'IOF_TAX'{
                         this.iofTax = price;
                     }
+                    when 'ONE_PIX_VARIABLE_FEE' {
+                        this.oneClickFeeVariable = price;
+                    }
+                    when 'ONE_PIX_FIXED_FEE'{
+                        this.oneClickFeeFixed = price;
+                    }
+                    when 'TAXA_FIXA_PAGSHIELD_ON_DEMAND'{
+                        this.pagShieldOndemandFee = price;
+                    }
+                    when 'TAXA_VARIAVEL_PAGSHIELD_ON_DEMAND'{
+                        this.pagShieldOndemandFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                    }
+                    when 'PAGSHIELD_PREMIUM_FIXED_FEE' {
+                        this.pagShieldFee = price;
+                        this.hasPagShieldPremium = true;
+                    }
+                    when 'PAGSHIELD_PREMIUM_VARIABLE_FEE' {
+                        this.pagShieldFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                        this.hasPagShieldPremium = true;
+                    }
                     when 'TAXA_GATEWAY_PIX' {
                         if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49){
                             this.pixGatewayBelowMinimum = true;
-                            System.debug('Price: '+price);
-                            System.debug('Price Decimal: '+Decimal.valueOf(price.trim().replace(',', '.')));
-                            System.debug('Price - 0.49: '+String.valueOf(Decimal.valueOf(price.trim().replace(',', '.')) - 0.49));
                             this.pixOneClick = String.valueOf(Decimal.valueOf(price.trim().replace(',', '.')) - 0.49);
                         }
                         this.pixGateway = price;
@@ -535,7 +546,7 @@ public class ContractController {
                     when 'PACOTE_10000_EMAILS' {
                         this.emails10000 = price;
                     }
-                    when 'PACOTE_100000_EMAILS' {
+                    when 'PACOTE_100000_EMAILS' { //ja tem
                         this.emails100000 = price;
                     }
                     when 'TAXA_REEMBOLSO_PIX' {
@@ -611,12 +622,8 @@ public class ContractController {
             }
         }
 
+        verifyOnePixFee(items);
         // If not present in quote, ensure values are empty so VF page does not display them
-        if (this.pagShield == null) this.pagShield = '';
-        if (this.pagShieldFee == null) this.pagShieldFee = '';
-        if (this.pagShieldFeePercent == null) this.pagShieldFeePercent = '';
-        if (this.zeroAuthCard == null) this.zeroAuthCard = '';
-
         this.settlementFrequency = '0';
 
         if(String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c) && String.isNotBlank(this.opportunity.Settlement_Frequency_1__c)) {
@@ -821,6 +828,10 @@ public class ContractController {
       
     }
 
+    public static void verifyOnePixFee(List<QuoteLineItem> quotelineItens){
+
+    }
+
     @AuraEnabled
     public static String attachContractToRecord(Id recordId, Blob pdfBody, String fileName) {
         ContentVersion cv = new ContentVersion(
@@ -840,5 +851,23 @@ public class ContractController {
         insert cdl;
 
         return cv.ContentDocumentId;
+    }
+
+    public String monthYear {
+        get {
+            if (String.isBlank(this.contractDate)) return '';
+            try {
+                Date contractDateObj = Date.valueOf(this.contractDate);
+                List<String> monthsEN = new List<String>{
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                };
+                String month = monthsEN[contractDateObj.month() - 1];
+                Integer year = contractDateObj.year();
+                return month + ', ' + String.valueOf(year);
+            } catch (Exception e) {
+                return '';
+            }
+        }
     }
 }

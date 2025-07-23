@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-21-2025
+ * @last modified on  : 07-23-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -323,7 +323,7 @@ public with sharing class QuoteTriggerHelper {
             }
         }
 
-        if (priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE') && isClossBoard) { //ajustado
+        if (priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE') && isClossBoard && priceBookEntry.Product2.ProductCode != 'REMITTANCE_FEE_SUPPLIERS') { //ajustado
             if (isClossBoard) {
                 if (opportunity.Moeda__c == 'EUR' && !priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE_EUR')) {
                     return true;

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-18-2025
+  @last modified on  : 07-23-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -332,14 +332,14 @@
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="width: 60%; text-align: left;">Setup Fee</td>
+                        <td style="width: 49%; text-align: left;">Setup Fee</td>
                         <td style="width: 10%; text-align: center;">
                             {!adherenceFee}
                         </td>
                         <td style="width: 50%; text-align: left;">{!opportunity.Moeda__c}</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Maintenance Minimum Fee</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 49%; text-align: left;">Maintenance Minimum Fee</td>
                         <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">
                             {!minimumMaintenanceFee}
                         </td>
@@ -349,7 +349,8 @@
                         <td colspan="3" style="border-top: 0px solid #000; border-bottom: 1px solid #000; text-align: left; width: 100%;">Start Date for Charging the Maintenance Minimum Fee: {!maintenanceDate}.</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Termination fee for closing the Merchant Account</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 49%; text-align: left;">Termination fee for closing the <br/>
+                            <strong>Merchant Account</strong></td>
                         <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">
                             {!closeTax}
                         </td>
@@ -365,33 +366,33 @@
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">Settlement frequency </td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">Settlement frequency </td>
                         <td style="padding: 10px; width: 10%; text-align: center;"></td>
                         <td style="padding: 10px; width: 50%; text-align: left;">{!opportunity.Settlement_Frequency_1__c}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">Currency</td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">Currency</td>
                         <td style="padding: 10px; width: 10%; text-align: center;"></td>
-                        <td style="padding: 10px; width: 40%; text-align: left;">{!opportunity.Moeda__c}</td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">{!opportunity.Moeda__c}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">Spread for currency conversion</td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">Spread for currency conversion</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!currencyExchangeMarkup}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on exchange rate</td>
                     </tr>
                     <!-- <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">tax</td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">tax</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!iofTax}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">on the Transaction Amount</td>
                     </tr> -->
                     <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left;">Minimum Transfer Amount</td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">Minimum Transfer Amount</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!repass}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">BRL per Merchant Account</td>
                     </tr>
                     <br/>
                     <tr>
-                        <td style="padding: 10px; width: 40%; text-align: left; vertical-align: top;border-bottom: 0px">Eligible settlement date</td>
+                        <td style="padding: 10px; width: 49%; text-align: left; vertical-align: top;border-bottom: 0px">Eligible settlement date</td>
                         <td colspan="2" style="width: 60%; text-align: left;border-bottom: 0px">
                             <p>
                                 <apex:panelGroup rendered="{!containsPix}">
@@ -452,7 +453,7 @@
             <table style="width: 100%; margin: 20px auto; table-layout: auto; text-align: left; border-top: 1px solid black;">
                 <tbody>
                     <tr style=" border-bottom: 0px solid black; !important;"> 
-                        <td style="padding: 10px; width: 40%; text-align: left;">Remittance Fee</td>
+                        <td style="padding: 10px; width: 49%; text-align: left;">Remittance Fee</td>
                         <td style="padding: 10px; width: 10%; text-align: center;">{!remittanceFee}</td>
                         <td style="padding: 10px; width: 50%; text-align: left;">{!opportunity.Moeda__c} per remittance</td>
                     </tr>
@@ -483,28 +484,28 @@
             <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="width: 40%; text-align: left;">Refund via card acquirer or Pix</td>
+                        <td style="width: 49%; text-align: left;">Refund via card acquirer or Pix</td>
                         <td style="width: 10%; text-align: center;">{!pix}</td>
                         <td style="width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Refund via bank transfer</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">Refund via bank transfer</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per transaction</td>
                     </tr>
                     <apex:panelGroup rendered="{!containsCartao}">
                         <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">Chargeback</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Chargeback</td>
                         </tr>
                         <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Additional Chargeback Excess Fee for Card transactions</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">Additional Chargeback Excess Fee for Card transactions</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per Card Chargeback</td>
                         </tr>
                         <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Amount withheld due to the provision in Clause 5.8 “g” </td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 49%; text-align: left;">Amount withheld due to the provision in Clause 5.8 “g” </td>
                             <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
                             <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
                                 USD per Card Chargeback, if the Merchant, for two (2) consecutive months, exceeds 100 Chargebacks and the CTR exceeds 1,5% (one comma five percent) in one calendar month. 
@@ -533,7 +534,7 @@
                 <tbody>
                     <tr>
                         <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">
-                            <td style="border-top: 0px; border-bottom: 1px solid #000; width: 40%; text-align: left;">
+                            <td style="border-top: 0px; border-bottom: 1px solid #000; width: 49%; text-align: left;">
                                 package 500 SMS<br/>
                                 package 1.000 SMS<br/>
                                 package 10.000 SMS<br/><br/>
@@ -564,33 +565,35 @@
                         </tr>
                     </apex:panelGroup>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Zero-auth for Credit Card</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">Zero-auth for Credit Card</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!zeroAuthCard}</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per generated transaction (only if the function is used by the Merchant)</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Payment link</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">Payment link</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,0</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per month</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Digital wallet solution</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">Digital wallet solution</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay or Apple Pay</td>
                     </tr>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(oneClickFeeFixed))}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">1-Click Pix</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!oneClickFeeFixed}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
+                            <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
+                        </tr>
+                    </apex:panelGroup>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">1-Click Pix</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
-                        <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">SFTP Account</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">SFTP Account</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per month</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">iFrame</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">iFrame</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL per month</td>
                     </tr>
@@ -600,36 +603,40 @@
             <br/>
 
             <p style="font-weight: bold;">{!startNumber}. PagShield: </p>
-            <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>2
+            <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
                 <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="width: 40%; text-align: left;">PagShield fraud prevention ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatory', 'optional')})</td>
+                        <td style="width: 49%; text-align: left;">PagShield fraud prevention <br/>({!IF(opportunity.Product_Type__c = 'Physical', 'mandatory', 'optional')})</td>
                         <td style="width: 10%; text-align: center;">{!pagShield}</td>
                         <td style="width: 50%; text-align: left;">BRL per analysis transaction</td>
                     </tr>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(pagShieldFee))}">
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium fraud prevention (optional)</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            {!pagShieldFee} <br/>
-                            {!pagShieldFeePercent}
-                        </td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">PagShield Premium fraud prevention (optional)</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                                {!pagShieldFee} <br/>
+                                {!pagShieldFeePercent}
+                            </td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
                             BRL per reviewed transaction<br/>
                             On the reviewed transaction 
                         </td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">PagShield Premium On-Demand (optional) </td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">
-                            14,50 <br/>
-                            2,5%
-                        </td>
-                        <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">
-                            BRL per reviewed transaction<br/>
-                            On the reviewed transaction
-                        </td>
-                    </tr>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(pagShieldOndemandFeePercent))}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 49%; text-align: left;">PagShield Premium On-Demand (optional) </td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">
+                                {!pagShieldOndemandFee} <br/>
+                                {!pagShieldOndemandFeePercent}
+                            </td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">
+                                BRL per reviewed transaction<br/>
+                                On the reviewed transaction
+                            </td>
+                        </tr>
+                    </apex:panelGroup>
                 </tbody>
             </table>
 
@@ -643,7 +650,7 @@
             <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-bottom: 0px;padding: 10px; width: 40%; text-align: left;">
+                        <td style="border-bottom: 0px;padding: 10px; width: 49%; text-align: left;">
                             PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
                         </td>
                         <td style="border-bottom: 0px;padding: 10px; width: 10%; text-align: center;">{!pagstreamfee}*</td>
@@ -659,7 +666,7 @@
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 40%; text-align: left;">
+                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 49%; text-align: left;">
                             PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span> Maintenance Minimum Fee
                         </td>
                         <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">{!pagstreamMin}</td>
@@ -669,49 +676,37 @@
                     </tr>
                 </tbody>
             </table>
-            
-            
-            <!--<div class="page-break"></div>
-
-<div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo)}" style="width: 25%; height: 25%;"/>
-</div> -->
-
-            <br/> <br/>
-
+            <br/>
             <p style="font-weight: bold;">{!startNumber}. Pix Automático: </p>
             <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-bottom: 0px;width: 40%; text-align: left;">
+                        <td style="border-bottom: 0px;width: 49%; text-align: left;">
                             Pix Automático (Recurring Pix)<br/>
                         </td>
                         <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
-                            BRL, additional  on successfully processed transactions with Pix Automático 
+                            BRL, additional  on successfully processed transactions with Pix Automático <br/>
+                            ETA June, {!monthYear}
                         </td>
                     </tr>
                 </tbody>
             </table>
-
             <p style="text-align:justify">
                 The <strong>Merchant</strong> may participate in a trial period before the official launch of Pix Automático if it meets and accepts the conditions and requirements established by <strong>PagBrasil</strong> for that trial. 
             </p>
-            
-            <br/>
-
             <apex:panelGroup rendered="{!isPayout}">
                 <p style="font-weight: bold;">{!startNumber}. Payout Service: </p>                
                 <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                     <tbody>
                         <tr>
-                            <td style="padding: 10px; width: 40%; text-align: left;">Remittance Fee to Suppliers</td>
+                            <td style="padding: 10px; width: 49%; text-align: left;">Remittance Fee to Suppliers</td>
                             <td style="padding: 10px; width: 10%; text-align: center;">{!supplierFee}</td>
                             <td style="padding: 10px; width: 50%; text-align: left;">BRL per remittance</td>
                         </tr>
                         <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Payout Service Fee</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 49%; text-align: left;">Payout Service Fee</td>
                             <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">1,0%</td>
                             <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">On the transaction amount via payout, charged per Payment Period</td>
                         </tr>

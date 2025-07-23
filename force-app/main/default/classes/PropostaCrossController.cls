@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-17-2025
+ * @last modified on  : 07-23-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -302,7 +302,7 @@ public class PropostaCrossController {
             when 'REFUND_BANK_TRANSFER' {
                 this.refundBankTransfer = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
-            when 'CHARGEBACK' {
+            when 'TAXA_CHARGEBACK' {
                 this.chargeback = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'ADDITIONAL_CHARGEBACK_EXCESS_FEE' {

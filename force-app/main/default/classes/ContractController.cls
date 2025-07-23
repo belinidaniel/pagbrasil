@@ -23,9 +23,9 @@ public class ContractController {
     public Boolean isFluxoMedio { get; set; }
     public Boolean isPayout { get; set; }
     public Boolean isPhysical { get; set; }
-
+    public Boolean isPluginAndPbChekout { get; set; }
     public Boolean pixGatewayBelowMinimum { get; set; }
-
+    public String antecipationFrequency { get; set; }
     public Boolean containsPagBrasilDefinition { get; set; }
     public Boolean containsPix { get; set; }
     public Boolean containsBoleto { get; set; }
@@ -46,7 +46,6 @@ public class ContractController {
     public String pixThree { get; set; }
     public String pixFour { get; set; }
     public String pixGateway { get; set; }
-    public String pixOneClick { get; set; }
 
     public String creditCardOne { get; set; }
     public String creditCardTwo { get; set; }
@@ -157,7 +156,7 @@ public class ContractController {
     public ContractController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
-            stdController.addFields(new List<String>{ 'Id', 'Name', 'Integracao__c', 'RequestChangeClause__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
+            stdController.addFields(new List<String>{ 'Id', 'Name', 'Integracao__c','Other_Payments_Settlement_Frequency_1__c', 'RequestChangeClause__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
                 'Settlement_Frequency_Test__c', 'Account.CNPJ__c', 'AccountId', 'Account.Nome_Empresarial__c', 'NationalPaymentMethod__c', 'Payout__c',
                 'Antecipation_Frequency_1__c', 'Settlement_Frequency_1__c', 'RecordType.DeveloperName', 'IntegrationType__c', 'Product_Type__c' });
         }
@@ -179,7 +178,8 @@ public class ContractController {
         this.link = String.isBlank(ApexPages.currentPage().getParameters().get('link')) ? 'Link não fornecido' : ApexPages.currentPage().getParameters().get('link');
         this.opportunity = opp;
 
-  
+        this.isPluginAndPbChekout = isPluginAndPbChekout(opp.IntegrationType__c);
+
         if (!this.isCrossBorder){
             KYC__c kyc = [SELECT Id, Legal_Name__c FROM KYC__c WHERE Opportunity__c =: opp.Id LIMIT 1];
             this.legalName = kyc.Legal_Name__c;
@@ -207,7 +207,7 @@ public class ContractController {
 
         this.isFluxoMedio = String.isNotBlank(opp.Antecipation_Frequency_1__c) && opp.Antecipation_Frequency_1__c.contains('Fluxo Médio');
         try {
-            this.quote = [SELECT Id,Name,Status,QuoteNumber, (SELECT Id, Price__c, MonthlyRevenue__c, MonthlyRevenueCode__c, InitialMonthlyRevenue__c, FinalMonthlyRevenue__c, Product2.ProductCode, PercentValue__c FROM QuoteLineItems ORDER BY Order__c) FROM Quote WHERE OpportunityId = :opp.Id ORDER BY CreatedDate DESC LIMIT 1];
+            this.quote = [SELECT Id,Name,Status,QuoteNumber, (SELECT Id, Price__c, MonthlyRevenue__c, MonthlyRevenueCode__c, InitialMonthlyRevenue__c, FinalMonthlyRevenue__c, Product2.ProductCode,UnitPrice, PercentValue__c FROM QuoteLineItems ORDER BY Order__c) FROM Quote WHERE OpportunityId = :opp.Id ORDER BY CreatedDate DESC LIMIT 1];
         } catch(QueryException e) {
             throw new QueryException('Nenhuma Quote encontrada para esta oportunidade.');
         }
@@ -390,8 +390,11 @@ public class ContractController {
                     when 'CHARGEBACK_FEE' {
                         this.chargeback = price;
                     }
-                    when 'CHARGEBACK' {
+                    when 'ADDITIONAL_CHARGEBACK_EXCESS_FEE' {
                         this.excessChargeback = price;
+                    }
+                    when 'TAXA_CHARGEBACK' {
+                        this.chargeback = price;
                     }
                     when 'CURRENCY_EXCHANGE_MARKUP_SPREAD'{
                         this.currencyExchangeMarkup = price;
@@ -420,10 +423,6 @@ public class ContractController {
                         this.hasPagShieldPremium = true;
                     }
                     when 'TAXA_GATEWAY_PIX' {
-                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49){
-                            this.pixGatewayBelowMinimum = true;
-                            this.pixOneClick = String.valueOf(Decimal.valueOf(price.trim().replace(',', '.')) - 0.49);
-                        }
                         this.pixGateway = price;
                     }
                     when 'PROCESSING_FEES_PIX' {
@@ -524,6 +523,12 @@ public class ContractController {
                         this.pagShieldFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
                         this.hasPagShieldPremium = true;
                     }
+                    when 'TAXA_FIXA_PAGSHIELD_ON_DEMAND'{
+                        this.pagShieldOndemandFee = price;
+                    }
+                    when 'TAXA_VARIAVEL_PAGSHIELD_ON_DEMAND'{
+                        this.pagShieldOndemandFeePercent = String.valueOf(quoteLineItem.PercentValue__c) + '%';
+                    }
                     when 'PIX_AUTO'{
                         this.pixAuto = price;
                     }
@@ -565,11 +570,13 @@ public class ContractController {
                     when 'TAXA_EXCESSO_CHARGEBACK' {
                         this.excessChargeback = price;
                     }
+                    when 'ONE_PIX_VARIABLE_FEE' {
+                        this.oneClickFeeVariable = price;
+                    }
+                    when 'ONE_PIX_FIXED_FEE'{
+                        this.oneClickFeeFixed = price;
+                    }
                     when 'TAXA_GATEWAY_PIX' {
-                        if(Decimal.valueOf(price.trim().replace(',', '.')) < 0.49){
-                            this.pixGatewayBelowMinimum = true;
-                            this.pixOneClick = String.valueOf(0.49 - Decimal.valueOf(price.trim().replace(',', '.'))).replace('.', ',');
-                        }
                         this.pixGateway = price;
                     }
                     when 'TAXA_PROCESS_PIX' {
@@ -622,35 +629,42 @@ public class ContractController {
             }
         }
 
-        verifyOnePixFee(items);
         // If not present in quote, ensure values are empty so VF page does not display them
         this.settlementFrequency = '0';
+        this.settlementFrequency = '0';
+        this.antecipationFrequency = '0';
 
         if(String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c) && String.isNotBlank(this.opportunity.Settlement_Frequency_1__c)) {
             if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Daily')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Daily')) this.antecipationFrequency = '0';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
             }
 
             if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Weekly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
             }
 
             if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Biweekly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '0';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '0';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
             }
 
             if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Monthly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '0';
+                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '0';
             }
+            
         }
 
-
+        if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Other_Payments_Settlement_Frequency_1__c)) {
+                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
+                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
+                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
+                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+        }
         List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c =: this.opportunity.Antecipation_Frequency_1__c AND TaxaBaseAntecipacao__c =: this.taxaAntecipacao AND IsActive__c = true];
 
         List<Contact> contactsRepresentative = [SELECT Id, Name, Type__c, Title FROM Contact WHERE Type__c INCLUDES ('Representante Legal') AND AccountId =: opp.AccountId ORDER BY CreatedDate DESC];
@@ -706,6 +720,10 @@ public class ContractController {
                     this.frequencyPageOneValueTwelve = percentage;
                 }
             }
+        }
+
+        if(this.containsPix){
+            verifyOnePixFee(items);
         }
     }
 
@@ -828,8 +846,24 @@ public class ContractController {
       
     }
 
-    public static void verifyOnePixFee(List<QuoteLineItem> quotelineItens){
+    public void verifyOnePixFee(List<QuoteLineItem> quotelineItens){
+        Decimal pixGatewayValue = 0;
+        for(QuoteLineItem item : quotelineItens){
+            if(item.Product2.ProductCode == 'TAXA_GATEWAY_PIX'){
+                pixGatewayValue = item.UnitPrice;
+            }
+        }
+        system.debug('verifyOnePixFee = pixGatewayValue: ' + pixGatewayValue);
+        Decimal minValue = this.isCrossborder ? 1.90 : 1.49;
+        System.debug('verifyOnePixFee = minValue: ' + minValue);
+        Decimal oneClickFee = 0;
+        if(pixGatewayValue < minValue){
+            oneClickFee = minValue - pixGatewayValue;
+        }
+        System.debug('verifyOnePixFee = oneClickFee: ' + oneClickFee);
 
+        // Only set if > 0
+        this.oneClickFeeFixed = (oneClickFee > 0) ? String.valueOf(oneClickFee.setScale(2)) : '';
     }
 
     @AuraEnabled
@@ -851,6 +885,25 @@ public class ContractController {
         insert cdl;
 
         return cv.ContentDocumentId;
+    }
+
+    public static Boolean isPluginAndPbChekout(String integrationType) {
+        if (String.isBlank(integrationType)) return false;
+        List<String> pluginTypes = new List<String>{
+            'Vtex',
+            'Shopify',
+            'Shopify with Buda',
+            'Shopify with Yampi',
+            'Shopify with Cart Panda',
+            'Salesforce',
+            'PB Checkout'
+        };
+        for (String type : pluginTypes) {
+            if (integrationType.contains(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String monthYear {

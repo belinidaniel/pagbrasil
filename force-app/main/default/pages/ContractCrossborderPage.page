@@ -333,7 +333,7 @@
                 <tbody>
                     <tr>
                         <td style="width: 49%; text-align: left;">Setup Fee</td>
-                        <td style="width: 10%; text-align: center;">
+                        <td style="width: 12%; text-align: center;">
                             {!adherenceFee}
                         </td>
                         <td style="width: 50%; text-align: left;">{!opportunity.Moeda__c}</td>
@@ -579,13 +579,22 @@
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Additional on successfully processed transactions through digital wallets such as Google Pay or Apple Pay</td>
                     </tr>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(oneClickFeeVariable))}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">1-Click Pix</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!oneClickFeeVariable}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
+                        </tr>
+                    </apex:panelGroup>
                     <apex:panelGroup rendered="{!NOT(ISBLANK(oneClickFeeFixed))}">
                         <tr>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">1-Click Pix</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!oneClickFeeFixed}</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
-                            <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">BRL, additional on successfully processed transactions with 1-Click Pix</td>
                         </tr>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(oneClickFeeVariable)) || NOT(ISBLANK(oneClickFeeFixed))}">
+                        <p>* The Percentage on 1-Click Pix will be charged from: January 1, 2026</p>
                     </apex:panelGroup>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 49%; text-align: left;">SFTP Account</td>
@@ -687,8 +696,7 @@
                         </td>
                         <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
-                            BRL, additional  on successfully processed transactions with Pix Automático <br/>
-                            ETA June, {!monthYear}
+                            BRL, additional  on successfully processed transactions with Pix Automático 
                         </td>
                     </tr>
                 </tbody>

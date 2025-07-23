@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-18-2025
+ * @last modified on  : 07-23-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -102,7 +102,7 @@ public class PropostaNacionalController {
     public String valueThreeThirdOption { get; set; }
     public String valueFourThirdOption { get; set; }
     public String valueGatewayThirdOption { get; set; }
-
+    public Boolean isPlugin{get;set;}
 
     //Frequency
     public Boolean showTwoOptions { get; set; }
@@ -211,6 +211,7 @@ public class PropostaNacionalController {
         this.viewPage11 = false;
         this.shopifyWoocommerceSalesforcePBCheckoutTerms = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeShopifyWoocommerceSalesforcePBCheckoutList(quote.Opportunity.IntegrationType__c) : false;
         this.smsGratuito = isPlugin(quote.Opportunity.IntegrationType__c) ? 'Gratuito' : 'Consultar valores';
+        this.isPlugin = isPlugin(quote.Opportunity.IntegrationType__c);
         this.jSAPIVTexTerms = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeJSAPIVTex(quote.Opportunity.IntegrationType__c) : false;
         this.containsVTEX = quote.Opportunity.IntegrationType__c != null && this.isIntermediation ? validateIntegrationTypeVTEX(quote.Opportunity.IntegrationType__c) : false;
 
@@ -962,6 +963,25 @@ public class PropostaNacionalController {
     
     // Returns true if the integrationType is considered a plugin
     private static Boolean isPlugin(String integrationType) {
+        if (String.isBlank(integrationType)) return false;
+        List<String> pluginTypes = new List<String>{
+            'Vtex',
+            'Shopify',
+            'Shopify with Buda',
+            'Shopify with Yampi',
+            'Shopify with Cart Panda',
+            'Salesforce',
+            'PB Checkout'
+        };
+        for (String type : pluginTypes) {
+            if (integrationType.contains(type)) {
+                return true;
+            }
+        }
+        return false;
+    }
+        // Returns true if the integrationType is considered a plugin
+    private static Boolean isPluginWithCheckout(String integrationType) {
         if (String.isBlank(integrationType)) return false;
         List<String> pluginTypes = new List<String>{
             'Vtex',

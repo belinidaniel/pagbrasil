@@ -158,6 +158,7 @@ public with sharing class QuoteTriggerHelper {
         Boolean isRemittanceFee = priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE');
         Boolean isOnePixVariable = priceBookEntry.Product2.ProductCode.contains('ONE_PIX_VARIABLE_FEE');
         Boolean isOnePixFixed = priceBookEntry.Product2.ProductCode.contains('ONE_PIX_FIXED_FEE');
+        Boolean isProcessTax = priceBookEntry.Product2.ProductCode.contains('TAXA_PAGBRASIL'); //added
         String paymentMethod = getPaymentMethod(opportunity);// pode ser Boleto Flash, Pix, CARTAO DE CREDITO, Débito Flash
 
         System.debug('Payment Method: ' + paymentMethod);
@@ -232,7 +233,7 @@ public with sharing class QuoteTriggerHelper {
         }
 
 
-        if(isPagstreamTax){
+        if(isPagstreamTax || isPagstreamMin){
             if (!opportunity.UsePagstream__c || !paymentMethod.contains('CARTAO DE CREDITO')) { //alterado campo
                 return true; //added
             }
@@ -240,6 +241,12 @@ public with sharing class QuoteTriggerHelper {
 
         if(isPackage){
             if(isPlugin(opportunity.integrationType__c)){
+                return true;
+            }
+        }
+
+        if(isProcessTax){
+            if(!isPlugin(opportunity.integrationType__c)){
                 return true;
             }
         }

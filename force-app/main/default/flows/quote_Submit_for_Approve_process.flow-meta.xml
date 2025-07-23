@@ -14,12 +14,34 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>comment</name>
+            <value>
+                <elementReference>CommentFormula</elementReference>
+            </value>
+        </inputParameters>
         <nameSegment>submit</nameSegment>
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Description</name>
+        <label>Assign Description</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>TaxesNeedApproval</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Need_approve_Comments.Product2.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Need_approve_Comments</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Need_Approval</name>
         <label>Need Approval</label>
@@ -40,12 +62,17 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_to_Approval</targetReference>
+                <targetReference>Get_Fields_Need_approve</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>CommentFormula</name>
+        <dataType>String</dataType>
+        <expression>&quot;A change has been requested for the following rates: &quot; + {!TaxesNeedApproval}</expression>
+    </formulas>
     <formulas>
         <name>NeedApproval</name>
         <dataType>Boolean</dataType>
@@ -53,6 +80,20 @@
     </formulas>
     <interviewLabel>quote - Submit for Approve process {!$Flow.CurrentDateTime}</interviewLabel>
     <label>quote - Submit for Approve process</label>
+    <loops>
+        <name>Need_approve_Comments</name>
+        <label>Need approve Comments</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Fields_Need_approve</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Description</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Send_to_Approval</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -72,6 +113,34 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Fields_Need_approve</name>
+        <label>Get Fields Need approve</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Need_approve_Comments</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QuoteId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>NeedsApproval__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>QuoteLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Records_1</name>
         <label>Update Records 1</label>
@@ -111,4 +180,11 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>TaxesNeedApproval</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>

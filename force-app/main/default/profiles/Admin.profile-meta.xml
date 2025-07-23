@@ -5617,6 +5617,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Product2.Flexibility__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product2.ProductCode</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -5793,6 +5798,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>QuoteLineItem.FinalMonthlyRevenue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>QuoteLineItem.Flexibility__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

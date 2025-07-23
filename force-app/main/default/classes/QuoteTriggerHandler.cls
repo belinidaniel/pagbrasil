@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-18-2025
+ * @last modified on  : 07-21-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -159,8 +159,34 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 }
             }
         }
+        
+        // Pix 1-Click adjustment logic
+        // adjustPixOneClickFee(quoteLineItems);
+        //verify here 
         if(!quoteLineItems.isEmpty()){
             insert quoteLineItems;
+        }
+    }
+
+    /**
+    * Adjusts the 1-Click Pix Fixed Fee so that Pix Fixed Fee + 1-Click = R$1.90 if both are present and Pix Fixed Fee < 1.90
+    */
+    private void adjustPixOneClickFee(List<QuoteLineItem> quoteLineItems) {
+        QuoteLineItem pixFixedFee;
+        QuoteLineItem oneClickFee;
+        for (QuoteLineItem item : quoteLineItems) {
+            if (item.Product2Id != null) {
+                Product2 p = [SELECT Id, ProductCode FROM Product2 WHERE Id = :item.Product2Id LIMIT 1];
+                if (p.ProductCode != null && p.ProductCode.contains('TAXA_GATEWAY_PIX')) {
+                    pixFixedFee = item;
+                }
+                if (p.ProductCode != null && p.ProductCode.contains('ONE_PIX_FIXED_FEE')) {
+                    oneClickFee = item;
+                }
+            }
+        }
+        if (pixFixedFee != null && oneClickFee != null && pixFixedFee.UnitPrice < 1.90) {
+            oneClickFee.UnitPrice = 1.90 - pixFixedFee.UnitPrice;
         }
     }
 
@@ -198,7 +224,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         Id taxId;
 
         String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
-
         for(Taxes__c tax : taxes){
 
        
@@ -255,9 +280,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 }
             }
         }
-        System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
         if(isTaxMain){
-        System.debug(' 111111tax.UnitPrice__c - ' + unitPrice);
             quoteLineItems.add(new QuoteLineItem(
                 PricebookEntryId = priceBookEntry.Id,
                 Product2Id = priceBookEntry.Product2Id,

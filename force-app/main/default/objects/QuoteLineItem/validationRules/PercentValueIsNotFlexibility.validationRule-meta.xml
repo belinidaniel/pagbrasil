@@ -2,7 +2,13 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PercentValueIsNotFlexibility</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(ISCHANGED(PercentValue__c), Flexibilization__c = &apos;Sem Autonomia&apos;)</errorConditionFormula>
-    <errorDisplayField>PercentValue__c</errorDisplayField>
-    <errorMessage>Valor não tem autonomia para alteração</errorMessage>
+    <errorConditionFormula>AND(
+    NOT(Flexibility__c),
+    OR(
+        ISCHANGED(UnitPrice),
+        ISCHANGED(PercentValue__c)
+    ),
+    NOT(ISNEW())
+)</errorConditionFormula>
+    <errorMessage>Value has no autonomy to change, taxes has no flexibility</errorMessage>
 </ValidationRule>

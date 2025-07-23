@@ -5,8 +5,11 @@
     <decisions>
         <name>Percent_Value_is_changed</name>
         <label>Percent Value is changed</label>
-        <locationX>545</locationX>
+        <locationX>336</locationX>
         <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>PercentValueLessThanHead</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>YesPercent_Value_is_changed</name>
@@ -27,7 +30,7 @@
     <decisions>
         <name>PercentValueLessThanBoard</name>
         <label>Percent Value Less Than Board</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>395</locationY>
         <defaultConnector>
             <targetReference>PercentValueLessThanHead</targetReference>
@@ -52,9 +55,67 @@
     <decisions>
         <name>PercentValueLessThanHead</name>
         <label>Percent Value Less Than Head</label>
-        <locationX>446</locationX>
-        <locationY>503</locationY>
+        <locationX>336</locationX>
+        <locationY>887</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>is_Porcentage</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.PricebookEntry.IsPercent__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PercentValue__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.PricebookEntry.PercentValue__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PricebookEntry.UseTaxa__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Needs_Approval_Head</targetReference>
+            </connector>
+            <label>is Porcentage</label>
+        </rules>
+        <rules>
+            <name>is_value</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.PricebookEntry.UseTaxa__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PricebookEntry.IsPercent__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.UnitPrice</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.PricebookEntry.UnitPrice</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Needs_Approval_Head</targetReference>
+            </connector>
+            <label>is value</label>
+        </rules>
         <rules>
             <name>YesPercentValueLessThanHead</name>
             <conditionLogic>and</conditionLogic>
@@ -119,8 +180,8 @@
     <recordUpdates>
         <name>Update_Needs_Approval_Head</name>
         <label>Update Needs Approval Head</label>
-        <locationX>314</locationX>
-        <locationY>611</locationY>
+        <locationX>336</locationX>
+        <locationY>1187</locationY>
         <inputAssignments>
             <field>NeedsApproval__c</field>
             <value>
@@ -130,14 +191,21 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>419</locationX>
+        <locationX>210</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Percent_Value_is_changed</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>PercentValue__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>UnitPrice</field>
             <operator>IsChanged</operator>
             <value>
                 <booleanValue>true</booleanValue>

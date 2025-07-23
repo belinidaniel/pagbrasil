@@ -36,6 +36,7 @@
 <apex:variable var="viewPage6" value="{!viewPage5}" />
 <apex:variable var="shopifyWoocommerceSalesforcePBCheckoutTerms" value="{!shopifyWoocommerceSalesforcePBCheckoutTerms}" />
 <apex:variable var="jSAPIVTexTerms" value="{!jSAPIVTexTerms}" />
+<apex:variable var="containsVTEX" value="{!containsVTEX}" />
 
 <!-- Taxes -->
 <apex:variable var="valueOne" value="{!valueOne}" />
@@ -550,26 +551,65 @@
                         <span style="color: #007bff ">Salesforce</span>
                     </p>
                     <ul style="position: absolute; top: 50px; left: 616px; width: 400px; color: #505050; font-size: 15px;">
-                        <li>
+                        <li style="margin-bottom: 4px;">
                             <strong>Cartucho para Salesforce Commerce Cloud da PagBrasil:</strong> tecnologia em pagamentos pensada para otimizar a experiência do usuário e maximizar as conversões da loja
                         </li>
-                        <li>
+                        <li style="margin-bottom: 4px;">
                             <strong>Checkout transparente com máscara de validação de CPF/CNPJ:</strong> aumento de conversão e melhor experiência ao usuário
                         </li>
-                        <li>
+                        <li style="margin-bottom: 4px;">
                             Serviços de <strong>envio de e-mail de confirmação de pagamento</strong>, para todos os métodos de pagamento
                         </li>
-                        <li>
+                        <li style="margin-bottom: 4px;">
                             <strong>Personalizações</strong> para o negócio
                         </li>
-                        <li>
+                        <li style="margin-bottom: 4px;">
                             <strong>Maximizar vendas</strong> com a maior variedade de formas de pagamento e garantia de estabilidade nas transações
+                        </li>
+                        <li style="margin-bottom: 4px;">
+                            Soluções exclusivas de pagamento: <strong>Boleto Flash®</strong> e <strong>PagBrasil Pix</strong>
+                        </li>
+                        <li style="margin-bottom: 0px;">
+                            Pagamento com <strong>cartão de crédito em até 12x</strong>, com possibilidade de repasse de juros ao consumidor
+                        </li>
+                    </ul>
+                </div>
+                <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
+            </div>
+        </apex:panelGroup>
+
+         <apex:panelGroup rendered="{!containsVTEX}">
+            <div class="page">
+                <div class="background-color-grey" style="width: 615px;">
+                </div>
+                <div class="page-content" style="background-color: red; width: 100px;">
+                    <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | <strong>{!oppName}</strong></p>
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                        Por que<br/>
+                        processar<br/>
+                        pagamentos<br/>
+                        com a Solução<br/>
+                        PagBrasil para<br/>
+                        <span style="color: #ff1e00 ">VTEX</span>
+                    </p>
+                    <ul style="position: absolute; top: 150px; left: 616px; width: 400px; color: #505050; font-size: 15px;">
+                        <li>
+                            <strong>Aplicativos nativos e homologados VTEX:</strong> integração rápida e fácil
+                        </li>
+                        <li>
+                            Única processadora a oferecer as carteiras digitais <strong>Apple Pay</strong> e <strong>Google Pay</strong>
+                        </li>
+                        <li>
+                            <strong>Pix Automático</strong>  para a automatização de pagamentos via PIX​
+                        </li>
+                        <li>
+                            Gestão de pagamentos recorrentes com o <strong>PagStream</strong>
                         </li>
                         <li>
                             Soluções exclusivas de pagamento: <strong>Boleto Flash®</strong> e <strong>PagBrasil Pix</strong>
-                        </li>
-                        <li>
-                            Pagamento com <strong>cartão de crédito em até 12x</strong>, com possibilidade de repasse de juros ao consumidor
                         </li>
                     </ul>
                 </div>

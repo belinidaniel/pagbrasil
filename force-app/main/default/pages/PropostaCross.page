@@ -137,7 +137,7 @@
             }
 
             .processing-terms-highlight {
-                color: #0000FF;
+                color: #0058B5;
                 font-weight: bold;
             }
 

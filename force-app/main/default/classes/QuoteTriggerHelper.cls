@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-18-2025
+ * @last modified on  : 07-21-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -156,6 +156,8 @@ public with sharing class QuoteTriggerHelper {
         Boolean isPagstreamTax = priceBookEntry.Product2.ProductCode.contains('TAXA_PAGSTREAM'); //added
         Boolean isPagstreamMin = priceBookEntry.Product2.ProductCode.contains('TAXA_MIN_PAGSTREAM'); //added
         Boolean isRemittanceFee = priceBookEntry.Product2.ProductCode.contains('REMITTANCE_FEE');
+        Boolean isOnePixVariable = priceBookEntry.Product2.ProductCode.contains('ONE_PIX_VARIABLE_FEE');
+        Boolean isOnePixFixed = priceBookEntry.Product2.ProductCode.contains('ONE_PIX_FIXED_FEE');
         String paymentMethod = getPaymentMethod(opportunity);// pode ser Boleto Flash, Pix, CARTAO DE CREDITO, Débito Flash
 
         System.debug('Payment Method: ' + paymentMethod);
@@ -349,7 +351,7 @@ public with sharing class QuoteTriggerHelper {
             }
         }
 
-
+        
         if (priceBookEntry.Product2.ProductCode.contains('PAYOUT_SETUP_FEE') && !isClossBoard) { //ajustado
             if (!opportunity.Payout__c) {
                 return true;
@@ -386,6 +388,9 @@ public with sharing class QuoteTriggerHelper {
                 }
             }
         }
+
+        
+
         // Setup Fee Payout/Payout Service Fee só aparecem se Payout__c = true
         if ((priceBookEntry.Product2.ProductCode.contains('SETUP_FEE_PAYOUT') || priceBookEntry.Product2.ProductCode.contains('PAYOUT_SERVICE_FEE')) && (!opportunity.Payout__c || !isIntermediation)) {
             return true;
@@ -396,6 +401,13 @@ public with sharing class QuoteTriggerHelper {
                 return true;
             }
         }
+
+        if(isOnePixFixed || isOnePixVariable) {
+            if (!paymentMethod.contains('PIX')) {
+                return true;
+            }
+        }
+        
         return false;
     }
 }

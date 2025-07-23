@@ -12,7 +12,7 @@
     TEXT(ROUND(Tax__r.FlexBoard__c * 100, 2))
   ) &amp; &quot;%&quot;
 )</formula>
-    <label>Board</label>
+    <label>CEO</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <type>Text</type>

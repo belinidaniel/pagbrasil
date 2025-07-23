@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-19-2025
+ * @last modified on  : 07-18-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -569,7 +569,7 @@ public class PropostaNacionalController {
         if (this.frequencyPage11 != null) {
             this.isShowPageRepasse = true;
         }
-
+        
         String antecipationOne = quote.Opportunity.Antecipation_Frequency_1__c;
         String antecipationTwo = quote.Opportunity.Antecipation_Frequency_2__c;
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtlClntAppOauthConfigurablePolicies xmlns="http://soap.sforce.com/2006/04/metadata">
+    <commaSeparatedProfile>Minimum Access - Salesforce,Salesforce API Only System Integrations,SalesforceIQ Integration User,Sales Insights Integration User,Legal &amp; Compliance,New Business Team,Anypoint Integration,zendeskteste,Integracao Perfil,System Administrator,Product,Chatter Free User,Standard User,Read Only,Solution Manager,Marketing User,Contract Manager,Operations &amp; Support,Chatter Moderator User,Chatter External User,Sales Management NB,General - Business,Minimum Access - API Only Integrations,Default,Process,New Sales,New Business Management,Account Manager,Account Manager Farmer,CEO,Head,Identity User,Pre-Sales Analyst,Homologação Profile,Sales XB,Pre-Sales Manager,SDR,Board - CEOs,System Administrator with restrictions,Grow &amp; Customer Success,Sales NB,teste Profile,Analytics Cloud Security User,Analytics Cloud Integration User,Guest License User,Sales Management XB</commaSeparatedProfile>
+    <externalClientApplication>Integracao_SR</externalClientApplication>
+    <guestJwtTimeout>5</guestJwtTimeout>
+    <ipRelaxationPolicyType>Bypass</ipRelaxationPolicyType>
+    <isClientCredentialsFlowEnabled>false</isClientCredentialsFlowEnabled>
+    <isGuestCodeCredFlowEnabled>false</isGuestCodeCredFlowEnabled>
+    <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+    <label>Integracao_SR_oauthPlcy</label>
+    <permittedUsersPolicyType>AdminApprovedPreAuthorized</permittedUsersPolicyType>
+    <refreshTokenPolicyType>SpecificLifetime</refreshTokenPolicyType>
+    <refreshTokenValidityPeriod>365</refreshTokenValidityPeriod>
+    <refreshTokenValidityUnit>Days</refreshTokenValidityUnit>
+    <requiredSessionLevel>STANDARD</requiredSessionLevel>
+    <startUrl>https://test.salesforce.com/</startUrl>
+</ExtlClntAppOauthConfigurablePolicies>

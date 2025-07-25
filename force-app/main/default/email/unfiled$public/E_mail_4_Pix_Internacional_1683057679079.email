@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Arial,Helvetica,sans-serif;">¡Hola, X! ¿Cómo estás?<br />
+<br />
+Creo que tú y el equipo de {{{Recipient.Company}}} están preparando <span style="color:#e74c3c;">el {{hotel}}</span> para el alta temporada de invierno. Hemos notado esta actividad en otras empresas y asociaciones de la región con las que hemos hablado.<br />
+<br />
+Observo que existe una preocupación en tu sector por garantizar la comodidad y la mejor experiencia de viaje a los turistas brasileños, así como la de ampliar la oferta de pagos para fomentar financieramente el turismo<span style="color:#e74c3c;"> {{argentino/chileno/uruguayo}}.</span><br />
+<br />
+Con nuestra solución de enlace de pago, sus clientes brasileños podrán realizar pagos con mayor facilidad, rapidez y seguridad, sin necesidad de cargar dinero en efectivo o realizar transacciones bancarias complejas. El hotel fija el monto en dólares (USD) y el cliente paga con Pix en reales (BRL).<br />
+<br />
+¿Sería esto un tema de su interés?<br />
+<br />
+Saludos,&nbsp;</span></span></body>
+</html>

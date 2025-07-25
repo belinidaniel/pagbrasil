@@ -1022,10 +1022,6 @@
     <picklistValues>
         <picklist>AntecipationFrequency__c</picklist>
         <values>
-            <fullName>Bimonthly</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Biweekly</fullName>
             <default>false</default>
         </values>
@@ -1049,7 +1045,7 @@
     <picklistValues>
         <picklist>Antecipation_Frequency_1__c</picklist>
         <values>
-            <fullName>Bimonthly</fullName>
+            <fullName>Biweekly</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1072,7 +1068,7 @@
     <picklistValues>
         <picklist>Antecipation_Frequency_2__c</picklist>
         <values>
-            <fullName>Bimonthly</fullName>
+            <fullName>Biweekly</fullName>
             <default>false</default>
         </values>
         <values>
@@ -4684,7 +4680,7 @@
     <picklistValues>
         <picklist>Settlement_Frequency_1__c</picklist>
         <values>
-            <fullName>Bimonthly</fullName>
+            <fullName>Biweekly</fullName>
             <default>false</default>
         </values>
         <values>
@@ -4703,7 +4699,7 @@
     <picklistValues>
         <picklist>Settlement_Frequency_2__c</picklist>
         <values>
-            <fullName>Bimonthly</fullName>
+            <fullName>Biweekly</fullName>
             <default>false</default>
         </values>
         <values>
@@ -4721,10 +4717,6 @@
     </picklistValues>
     <picklistValues>
         <picklist>Settlement_Frequency_Test__c</picklist>
-        <values>
-            <fullName>Bimonthly</fullName>
-            <default>false</default>
-        </values>
         <values>
             <fullName>Biweekly</fullName>
             <default>false</default>

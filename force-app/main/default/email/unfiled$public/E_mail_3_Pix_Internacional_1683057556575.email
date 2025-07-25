@@ -1,0 +1,12 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Arial,Helvetica,sans-serif;">¡Hola, {{{Recipient.FirstName}}}! ¿Cómo estás?<br />
+<br />
+Me pongo en contacto nuevamente porque reconozco la importancia de&nbsp;{{{Recipient.Company}}} en el mercado de turismo <span style="color:#e74c3c;">{{argentino/chileno/uruguayo}}. </span>Por lo que me gustaría tener la oportunidad de conocerles mejor y presentarles nuestras soluciones de pagos, que han sido utilizadas por empresas del mismo segmento como Despegar y Latam Airlines.<br />
+<br />
+¿Podemos programar un momento aún esta semana para conversar?<br />
+<br />
+Saludos,</span></span></body>
+</html>

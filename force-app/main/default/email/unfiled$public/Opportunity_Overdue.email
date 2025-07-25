@@ -1,0 +1,5 @@
+Olá {!Contact.OwnerFirstName}
+
+A data de fechamento da Oportunidade "{!Opportunity.Name}" irá expirar em 3 dias. Por favor, atualize com a nova previsão de fechamento. 
+
+Obrigada!

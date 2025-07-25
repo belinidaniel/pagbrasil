@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EvidenceCustomsFee__c</fullName>
-    <label>Evidências Taxa Alfandegária</label>
+    <label>Evidence of Custom Duties</label>
     <length>16000</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

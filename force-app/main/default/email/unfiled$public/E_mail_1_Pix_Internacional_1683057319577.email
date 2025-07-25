@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Arial,Helvetica,sans-serif;">¡Hola, X! ¿Cómo estás?<br />
+<br />
+Soy&nbsp;{{{Sender.FirstName}}} y actúo en la división de desarrollo de negocios internacionales en PagBrasil, una empresa de procesamiento de pagos para el mercado brasileño.<br />
+<br />
+He visto que trabajas como&nbsp;{{{Recipient.Title}}} en&nbsp;{{{Recipient.Company}}} y supongo que reciben a muchos turistas brasileños. Me estoy poniendo en contacto porque veo una oportunidad de aumentar sus ingresos con este público a través de nuestra solución de Pix, el método brasileño de pagos instantáneos por excelencia.<br />
+<br />
+{{{Recipient.FirstName}}}, ¿podríamos programar una reunión para conocer mejor su operación y cómo piensan su ecosistema de pagos para los brasileños?<br />
+<br />
+Saludos cordiales,</span></span><br />
+<br />
+&nbsp;</body>
+</html>

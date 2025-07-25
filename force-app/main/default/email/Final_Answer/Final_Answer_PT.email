@@ -1,0 +1,23 @@
+Última tentativa:
+
+Olá {!Contact.FirstName}, bom dia / boa tarde.
+
+Recentemente, enviamos a você informações referentes aos serviços da PagBrasil.
+
+Há alguma dúvida com relação à nossa proposta ou aos serviços que oferecemos?
+
+Caso deseje continuar com o atendimento, não deixe de entrar em contato.
+
+Atenciosamente,
+ 
+---------------------------------------------------------------------------------------------------------
+
+Email de finalização:
+
+Olá {!Contact.FirstName}, bom dia / boa tarde.
+
+Considerando o tempo sem resposta, entendemos que a XXXX não tem necessidade imediata dos serviços oferecidos pela PagBrasil. Portanto, estou finalizando nosso atendimento.
+
+Por favor, fique à vontade para entrar em contato novamente, caso volte a ter interesse.
+
+Atenciosamente,

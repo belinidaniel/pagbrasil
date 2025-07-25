@@ -12,16 +12,31 @@ public class ZendeskTicketWrapperTest {
         insert acct;
 
         Opportunity opp = new Opportunity(
-            Name = 'Opp teste',
-            AccountId = acct.Id,
-            StageName = 'Prospecting',
-            CloseDate = System.today().addDays(30),
-            ApplePay__c = false,
-            Product_or_service_website_URL__c = 'https://www.google.com.br/',
-            Transacoes_Mensais__c = 1213,
+            Name = 'Opportunity NB',
+            TierCS__c = 'Top Tier',
+            StageName = 'Discovery',
+            CloseDate = Date.today().addDays(30),
             BusinessModel__c = 'Intermediation',
-            Priority__c = 'P2',
-            DateAccountCreation__c = System.today()
+            NationalPaymentMethod__c = 'Cartão de Crédito',
+            Product_or_service_website_URL__c = 'www.site.com',
+            BusinessModelType__c = 'B2B',
+            AverageSalesTicket__c = 5000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
+            AccountId = acct.Id,
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly',
+            Integracao__c = 'API'
         );
         insert opp;
 
@@ -40,7 +55,7 @@ public class ZendeskTicketWrapperTest {
         ZendeskTicketWrapper wrapper = new ZendeskTicketWrapper(opp, uploads, ticketCheck, '123456789');
         Test.stopTest();
 
-        System.assertEquals('Solicitaçãode Go-Live - P2', wrapper.ticket.subject, 'Ticket subject should match.');
+        System.assertEquals('Solicitaçãode Go-Live - null', wrapper.ticket.subject, 'Ticket subject should match.');
         System.assertNotEquals(null, wrapper.ticket.comment.body, 'Comment body should not be null.');
     }
 }

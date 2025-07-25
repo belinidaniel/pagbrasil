@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Forecast de Vendas</label>
+    <protected>false</protected>
+    <values>
+        <field>Calcula_Risco__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Pergunta__c</field>
+        <value xsi:type="xsd:string">Como será alcançado o forecast de vendas ?</value>
+    </values>
+    <values>
+        <field>Question_English__c</field>
+        <value xsi:type="xsd:string">How will the sales forecast be achieved?</value>
+    </values>
+</CustomMetadata>

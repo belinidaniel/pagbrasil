@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-18-2025
+  @last modified on  : 07-23-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page showHeader="false" 
@@ -538,15 +538,11 @@
                                 </tr>
                                 <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Notification Services</td>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">2{!package10000Emails} BRL (10,000 e-mail notifications)<br/>{!package10000Sms} BRL (10,000 SMS notifications)</td>
+                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!package10000Emails} BRL (10,000 e-mail notifications)<br/>{!package10000Sms} BRL (10,000 SMS notifications)</td>
                                 </tr>
-                                <!-- <tr>    
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero Auth</td>
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!zeroAuthCreditCard} BRL (per credit card transaction)</td>
-                                </tr> -->
                                 <tr>
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for Pix</td>
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">0.5% added to the Pix processing fee</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">0.2% added to the Pix processing fee</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -594,8 +590,8 @@
                                     <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!zeroAuthCreditCard} BRL (per credit card transaction)</td>
                                 </tr> -->
                                  <tr>
-                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">3DS2 for Pix</td>
-                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.5% added to the Pix processing fee</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">3DS2 for credit card</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.2% added to the Pix processing fee</td>
                                  </tr>
                             </tbody>
                         </table>

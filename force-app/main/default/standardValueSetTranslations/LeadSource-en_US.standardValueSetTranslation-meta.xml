@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Apollo</masterLabel>
+        <translation>Apollo</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Busca Orgânica</masterLabel>
+        <translation>Organic Search</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Busca Paga</masterLabel>
+        <translation>Paid Search</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Central do mantenedor ECBR</masterLabel>
+        <translation><!-- Central do mantenedor ECBR --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>DIRECT_TRAFFIC</masterLabel>
+        <translation><!-- DIRECT_TRAFFIC --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Desconhecido</masterLabel>
+        <translation>Unknown</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Display</masterLabel>
+        <translation>Display</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>E-mail</masterLabel>
+        <translation>E-mail</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>EMAIL_MARKETING</masterLabel>
+        <translation><!-- EMAIL_MARKETING --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Eventos</masterLabel>
+        <translation>Events</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Facebook</masterLabel>
+        <translation>Facebook</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação</masterLabel>
+        <translation>Referrals</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação AgenciaFY</masterLabel>
+        <translation>Referral - AgenciaFY</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Alce Rocks</masterLabel>
+        <translation>Referral - Alce Rocks</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Alfinet</masterLabel>
+        <translation>Referral - Alfinet</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Allomni</masterLabel>
+        <translation>Referral - Allomni</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Backlgrs</masterLabel>
+        <translation><!-- Indicação Backlgrs --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Buda Digital</masterLabel>
+        <translation>Referral - Buda Digital</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação CRP Mango</masterLabel>
+        <translation>Referral - CRP Mango</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação CheckStore</masterLabel>
+        <translation>Referral - CheckStore</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Disco</masterLabel>
+        <translation><!-- Indicação Disco --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação G2 Digital</masterLabel>
+        <translation><!-- Indicação G2 Digital --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Infinite.Pro</masterLabel>
+        <translation>Referral - Infinite Pro</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Keyurs</masterLabel>
+        <translation>Referral - Codeby</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Mofo Design</masterLabel>
+        <translation><!-- Indicação Mofo Design --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Outra Agência</masterLabel>
+        <translation><!-- Indicação Outra Agência --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Shakers</masterLabel>
+        <translation><!-- Indicação Shakers --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Simples</masterLabel>
+        <translation><!-- Indicação Simples --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação TOTVS</masterLabel>
+        <translation>Referral - TOTVS</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Indicação Vanzak Labs</masterLabel>
+        <translation>Referral - Vanzak Labs</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Landing page Shopify</masterLabel>
+        <translation>Landing Page Shopify</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>LinkedIn</masterLabel>
+        <translation>LinkedIn</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Newsletter</masterLabel>
+        <translation>Newsletter</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>OFFLINE</masterLabel>
+        <translation><!-- OFFLINE --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ORGANIC_SEARCH</masterLabel>
+        <translation><!-- ORGANIC_SEARCH --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>OTHER_CAMPAIGNS</masterLabel>
+        <translation><!-- OTHER_CAMPAIGNS --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Outras publicidades</masterLabel>
+        <translation>Other adds</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Outros</masterLabel>
+        <translation>Other</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PAID_SEARCH</masterLabel>
+        <translation><!-- PAID_SEARCH --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PAID_SOCIAL</masterLabel>
+        <translation><!-- PAID_SOCIAL --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Partner</masterLabel>
+        <translation><!-- Partner --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>REFERRALS</masterLabel>
+        <translation><!-- REFERRALS --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Referral - RD Station</masterLabel>
+        <translation><!-- Referral - RD Station --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Referência</masterLabel>
+        <translation>Referrals</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>SOCIAL_MEDIA</masterLabel>
+        <translation><!-- SOCIAL_MEDIA --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Telefone</masterLabel>
+        <translation>Phone Call</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Tráfego Direto</masterLabel>
+        <translation>Direct Traffic</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

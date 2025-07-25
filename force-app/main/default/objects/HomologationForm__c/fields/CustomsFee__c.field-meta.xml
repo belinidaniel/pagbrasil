@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CustomsFee__c</fullName>
-    <label>Taxa alfandegaria</label>
+    <description>&quot;Clearly inform if taxes are pre-paid or not. If you operate with physical goods, please add the following text in Portuguese about import tax/custom duties: 
+“Os envios para o Brasil poderão estar sujeitos à taxação alfandegária. A cobrança será de responsabilidade do comprador”.&quot;</description>
+    <inlineHelpText>&quot;Clearly inform if taxes are pre-paid or not. If you operate with physical goods, please add the following text in Portuguese about import tax/custom duties: 
+“Os envios para o Brasil poderão estar sujeitos à taxação alfandegária. A cobrança será de responsabilidade do comprador”.&quot;</inlineHelpText>
+    <label>Custom Duties - Must Select Two Options</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

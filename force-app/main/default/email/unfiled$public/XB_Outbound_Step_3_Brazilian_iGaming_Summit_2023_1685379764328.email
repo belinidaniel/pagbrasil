@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="color:#000000;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Hi {{{Recipient.FirstName}}}</span></span></span><br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">How are you?&nbsp;</span></span><br />
+<br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Following up on my previous e-mails, I would like to bring a greater context of who we are and how your business can benefit from our payment solutions.&nbsp;&nbsp;</span></span><br />
+<br />
+<span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;">PagBrasil is a leading payment service provider in Brazil. Through our advanced fraud prevention tools and efficient payment processing infrastructure, we aim to optimize the payment experience for national and foreign merchants alike, as well as for the consumers in Brazil.&nbsp;&nbsp;<br />
+<br />
+The following are the key features of our payment methods:</span></span>
+<ul>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>Boleto Flash:</strong> unique technology which provides accelerated payment confirmation (within 1 hour), maximizing your online sales.&nbsp;</span></span></li>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>Débito Flash:</strong>&nbsp;this solution allows your customers to pay in an easy and intuitive way with no redirects.&nbsp;</span></span></li>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>PEC Flash</strong>:&nbsp;cash payment method for e-commerce specifically developed for the accessibility of unbanked consumers.</span></span></li>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>PagBrasil Pix:</strong>&nbsp;users can carry out transactions instantly, at an average time of 2.5 seconds.&nbsp;</span></span></li>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>Debit Card:</strong> payment method available for consumers who don´t want to be surprised by a credit card bill next month.&nbsp;</span></span></li>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>Credit Card:</strong>&nbsp;it provides consumers with the option to pay in installments, by far the most popular way to buy in Brazil. With this specific method, you can boost your sales by 50% or more.</span></span></li>
+	<li><span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><strong>Samsung Pay</strong>: our integration with Samsung Pay allows customers to make purchases from any device, be it desktop, tablet or smartphone.</span></span></li>
+</ul>
+<span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;">If what was presented sounds interesting to you, do not hesitate to reach out to us. Our team will be happy to assist you and we will be present at the BIS in São Paulo this year.&nbsp;<br />
+<br />
+Thank you in advance!</span></span><br />
+<br />
+<span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">{{{Sender.Signature}}}</span></span></span></span><br />
+<br />
+&nbsp;</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Board (CEOs)</label>
+    <permissionSets>Accounts_Can_Edit</permissionSets>
+    <permissionSets>Adresses_Can_Edit_All</permissionSets>
+    <permissionSets>Apex_Class_Acess</permissionSets>
+    <permissionSets>Bank_Options_Can_View_All</permissionSets>
+    <permissionSets>Big_Boosts_Can_View_All</permissionSets>
+    <permissionSets>Clauses_Can_Edit_All</permissionSets>
+    <permissionSets>Contact_Can_Edit</permissionSets>
+    <permissionSets>Documents_Can_Edit_All</permissionSets>
+    <permissionSets>Homologation_Forms_Can_Edit</permissionSets>
+    <permissionSets>KYC_NB_Can_Edit</permissionSets>
+    <permissionSets>KYC_XB_Can_Edit</permissionSets>
+    <permissionSets>Lead_Can_Edit</permissionSets>
+    <permissionSets>Lead_Converter_Permission</permissionSets>
+    <permissionSets>Opportunities_Can_Edit</permissionSets>
+    <permissionSets>Opportunity_Can_Create</permissionSets>
+    <permissionSets>Opportunity_Edit_All_Stages</permissionSets>
+    <permissionSets>Price_Book_Can_Edit</permissionSets>
+    <permissionSets>Product_Can_Edit</permissionSets>
+    <permissionSets>Quote_Can_Edit</permissionSets>
+    <permissionSets>RCC_Can_Edit</permissionSets>
+    <permissionSets>Run_Flow_Acess</permissionSets>
+    <permissionSets>Send_Email</permissionSets>
+    <permissionSets>Taxes_Can_Edit_All</permissionSets>
+    <permissionSets>Taxes_Can_Edit_CEO_Director</permissionSets>
+    <permissionSets>dfsle__CLM_User</permissionSets>
+    <permissionSets>dfsle__DocuSign_Sender</permissionSets>
+    <permissionSets>dfsle__DocuSign_User</permissionSets>
+    <permissionSets>dsfs__DocuSign_Administrator</permissionSets>
+    <permissionSets>dsfs__DocuSign_Sender</permissionSets>
+    <permissionSets>dsfs__DocuSign_User</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

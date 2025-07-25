@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-18-2025
+  @last modified on  : 07-24-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -121,11 +121,14 @@
             <p style="font-weight: bold;">{!termClausesTitle}</p>
             <apex:outputText value="{!termClauses}" escape="false" />
             
-            <p style="font-weight: bold;">1. Taxas de processamento e Taxa da Solução PagBrasil:</p>
             
-            <p style="text-align: justify;">
-                Faixa aplicada para a Taxa Variável de Processamento e Taxa da <strong>Solução PagBrasil</strong> a partir da data de assinatura do <strong>Contrato</strong> até a primeira revisão: <strong>{!rangeLabel}</strong>
-            </p>
+            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                <p style="font-weight: bold;">1. Taxas de processamento e Taxa da Solução PagBrasil:</p>
+
+                <p style="text-align: justify;">
+                    Faixa aplicada para a Taxa Variável de Processamento e Taxa da <strong>Solução PagBrasil</strong> a partir da data de assinatura do <strong>Contrato</strong> até a primeira revisão: <strong>{!rangeLabel}</strong>
+                </p>
+            </apex:panelGroup>
             <p>
                 Primeira revisão de atualização das Taxa Variável: início de <strong>{!months}</strong>.
             </p>
@@ -153,9 +156,11 @@
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isIntermediation}">
-                            <th style="color: #0058B5;font-size:12px">
-                                Taxa da Solução PagBrasil<br/>Intermediação
-                            </th>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <th style="color: #0058B5;font-size:12px">
+                                    Taxa da Solução PagBrasil<br/>Intermediação
+                                </th>
+                            </apex:panelGroup>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!isGateway}">
                             <th style="color: #0058B5;font-size:12px">
@@ -184,14 +189,18 @@
                         <apex:panelGroup rendered="{!containsBoleto}">
                             <td>{!boletoOne}</td>
                         </apex:panelGroup>
-
+                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilOne}</td>
+                            </apex:panelGroup>
+                        </apex:panelGroup>
+                        
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <td>{!pagBrasilOne}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilOne}</td>
+                            </apex:panelGroup>                            
                             <td>{!pagBrasilGatewayOne}</td>
                         </apex:panelGroup>
-                        <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <td>{!pagBrasilOne}</td>
-                        </apex:panelGroup>                        
                     </tr>
                     <tr>
                         <td style="color: #0058B5;">2ª</td>
@@ -212,11 +221,16 @@
                             <td>{!boletoTwo}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <td>{!pagBrasilTwo}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilTwo}</td>
+                            </apex:panelGroup>   
+                        
                             <td>{!pagBrasilGatewayTwo}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <td>{!pagBrasilTwo}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilTwo}</td>
+                            </apex:panelGroup>       
                         </apex:panelGroup>
                     </tr>
                     <tr>
@@ -241,11 +255,15 @@
 
 
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <td>{!pagBrasilThree}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilThree}</td>
+                            </apex:panelGroup>   
                             <td>{!pagBrasilGatewayThree}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <td>{!pagBrasilThree}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilThree}</td>
+                            </apex:panelGroup>   
                         </apex:panelGroup>     
                     </tr>
                     <tr>
@@ -269,11 +287,15 @@
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <td>{!pagBrasilFour}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilFour}</td>
+                            </apex:panelGroup>   
                             <td>{!pagBrasilGatewayFour}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <td>{!pagBrasilFour}</td>
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                                <td>{!pagBrasilFour}</td>
+                            </apex:panelGroup>   
                         </apex:panelGroup>     
                     </tr>
                     <tr>
@@ -297,11 +319,15 @@
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
                             <td>-</td>
+                            </apex:panelGroup>   
                             <td>-</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
+                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
                             <td>-</td>
+                            </apex:panelGroup> 
                         </apex:panelGroup>     
                     </tr>
                 </tbody>
@@ -431,9 +457,11 @@
                         <td style="padding: 10px; width: 40%; text-align: left;">Frequência de Repasse</td>
                         <td style="padding: 10px; width: 10%; text-align: center;"></td>
                         <td style="padding: 10px; width: 50%; text-align: left;">
-                            <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Daily'}" value="Diário" />
-                            <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Weekly'}" value="Semanalmente" />
-                            <apex:outputText rendered="{!AND(opportunity.Settlement_Frequency_1__c <> 'Daily', opportunity.Settlement_Frequency_1__c <> 'Weekly')}" value="{!opportunity.Settlement_Frequency_1__c}" />
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(opportunity.Settlement_Frequency_1__c))}">
+                                <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Daily'}" value="Diário" />
+                                <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Weekly'}" value="Semanalmente" />
+                                <apex:outputText rendered="{!AND(opportunity.Settlement_Frequency_1__c <> 'Daily', opportunity.Settlement_Frequency_1__c <> 'Weekly')}" value="{!opportunity.Settlement_Frequency_1__c}" />
+                            </apex:outputPanel>
                         </td>
                     </tr>
                     <tr>
@@ -445,15 +473,15 @@
                         <td style="padding: 10px; width: 40%; text-align: left; vertical-align: top;border-bottom: 0px">Data Elegível para Liquidação</td>
                         <td colspan="2" style="width: 60%; text-align: left;border-bottom: 0px">
                             <apex:panelGroup rendered="{!containsPix}">
-                                <p>Pix: D+0</p>
+                                <p>Pix: D+{!antecipationFrequency}</p>
                             </apex:panelGroup>
                             
                             <apex:panelGroup rendered="{!containsDebito}">
-                                <p>Débito Flash<span style="vertical-align: super; font-size: 0.8em;">™</span>: D+0</p>
+                                <p>Débito Flash<span style="vertical-align: super; font-size: 0.8em;">™</span>: D+{!antecipationFrequency}</p>
                             </apex:panelGroup>
                             
                             <apex:panelGroup rendered="{!containsBoleto}">
-                                <p>Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>: D+0</p>
+                                <p>Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>: D+{!antecipationFrequency}</p>
                             </apex:panelGroup>
 
                             <apex:panelGroup rendered="{!AND(containsCartaoAndIsIntermediation, NOT(isFluxoMedio))}">
@@ -546,31 +574,34 @@
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback</td>
                         </tr>
-                        <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Taxa adicional de excesso de Chargebacks para transações com Cartão</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback de Cartão</td>
-                        </tr>
-                        <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Retenção pelo excesso de Chargebacks</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
-                                US$* por Chargeback de Cartão, caso o Estabelecimento, por 2 (dois) meses consecutivos, ultrapasse o montante de 100 Chargebacks e exceda 1,5% (um vírgula cinco por cento) do índice de CTR sobre o total de transações computadas em um mês de calendário.
-                            </td>
-                        </tr>
+
+                        <apex:panelGroup rendered="{!NOT(ISBLANK(excessChargeback))}">
+                            <tr>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Taxa adicional de excesso de Chargebacks para transações com Cartão</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback de Cartão</td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Retenção pelo excesso de Chargebacks</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
+                                    US$* por Chargeback de Cartão, caso o Estabelecimento, por 2 (dois) meses consecutivos, ultrapasse o montante de 100 Chargebacks e exceda 1,5% (um vírgula cinco por cento) do índice de CTR sobre o total de transações computadas em um mês de calendário.
+                                </td>
+                            </tr>
+                        </apex:panelGroup>
                     </apex:panelGroup>
                 </tbody>
             </table>
 
-            <p style="text-align: justify;">
-                * O valor será cobrado em Reais (R$) e o câmbio será realizado com base na taxa interbancária diária oficial (“câmbio intermediário 11:00h venda”) publicada na página do Banco Central do Brasil
-                <a href="https://www.bcb.gov.br" style="color: #0058B5; text-decoration: none;">(www.bcb.gov.br)</a> no dia de aplicação da retenção. A retenção será deduzida do valor a ser repassado ao <strong>Estabelecimento</strong>. 
-            </p>
-            
-            <p style="text-align: justify;">
-                O valor retido poderá ser devolvido em até 6 (seis) meses ao Estabelecimento, exceto se este ainda não tiver saído do programa de monitoramento das bandeiras, caso em que o valor ficará retido até que o <strong>Estabelecimento</strong> saia do referido programa. 
-            </p>
-            
+            <apex:panelGroup rendered="{!NOT(ISBLANK(excessChargeback))}">
+                <p style="text-align: justify;">
+                    * O valor será cobrado em Reais (R$) e o câmbio será realizado com base na taxa interbancária diária oficial (“câmbio intermediário 11:00h venda”) publicada na página do Banco Central do Brasil
+                    <a href="https://www.bcb.gov.br" style="color: #0058B5; text-decoration: none;">(www.bcb.gov.br)</a> no dia de aplicação da retenção. A retenção será deduzida do valor a ser repassado ao <strong>Estabelecimento</strong>. 
+                </p>
+                <p style="text-align: justify;">
+                        O valor retido poderá ser devolvido em até 6 (seis) meses ao Estabelecimento, exceto se este ainda não tiver saído do programa de monitoramento das bandeiras, caso em que o valor ficará retido até que o <strong>Estabelecimento</strong> saia do referido programa. 
+                </p>
+            </apex:panelGroup>
             <!--<div class="page-break"></div>
 
 <div style="text-align: right;">
@@ -623,22 +654,25 @@
                     </tr>
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Solução de carteira digital</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
+                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,20%</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de carteiras digitais como Google Pay ou Apple Pay</td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,2%</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>
-                    </tr>
-                    <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
-                    <apex:panelGroup rendered="{!pixGatewayBelowMinimum}">
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(oneClickFeeVariable))}">
+                        <tr>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!oneClickFeeVariable}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">Adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>
+                        </tr>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(oneClickFeeFixed))}">
                             <tr>
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Pix com 1-Click</td>
-                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!pixOneClick}</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!oneClickFeeFixed}</td>
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$, adicional sobre transações processadas com sucesso por meio de Pix com 1-Click</td>    
                             </tr>
                     </apex:panelGroup>
+                    <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
+
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">iFrame</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
@@ -677,13 +711,31 @@
             <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium (opcional)</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                        <td style="border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium (opcional)</td>
+                        <td style="border-bottom: 1px solid #000; width: 10%; text-align: center;">
                             {!pagShieldFee} <br/>
                             {!pagShieldFeePercent}
                         </td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                        <td style="border-bottom: 1px solid #000; width: 50%; text-align: left;">
                             R$ por transação revisada<br/>
+                            Sobre a transação revisada 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!NOT(ISBLANK(pagShieldOndemandFee))}">
+            <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield On Demand (opcional)</td>
+                        <td style="border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                            {!pagShieldOndemandFee}<br/>
+                            {!pagShieldOndemandFeePercent}
+                        </td>
+                        <td style="border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                            R$ por transação revisada
+                            <br/>
                             Sobre a transação revisada 
                         </td>
                     </tr>
@@ -693,25 +745,27 @@
 
             <br/>
 
-            <p style="font-weight: bold;">
-                {!IF(OR(isFluxoMedio, isGateway), "8", "9")}. PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span> - Solução para recorrência (opcional):
-            </p>
-            
-            <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
-                <tbody>
-                    <tr>
-                        <td style="border-bottom: 0px;padding: 10px; width: 40%; text-align: left;">
-                            PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
-                        </td>
-                        <td style="border-bottom: 0px;padding: 10px; width: 10%; text-align: center;">{!pagstreamfee}*</td>
-                        <td style="border-bottom: 0px;padding: 10px; width: 50%; text-align: left;">Sobre o valor transacionado via <br/> PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>, cobrança por Período de Pagamento</td>
-                    </tr>
-                </tbody>
-            </table> 
+            <apex:panelGroup rendered="{!NOT(ISBLANK(pagstreamfee))}">
+                <p style="font-weight: bold;">
+                    {!IF(OR(isFluxoMedio, isGateway), "8", "9")}. PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span> - Solução para recorrência (opcional):
+                </p>
+                
+                <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                    <tbody>
+                        <tr>
+                            <td style="border-bottom: 0px;padding: 10px; width: 40%; text-align: left;">
+                                PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                            </td>
+                            <td style="border-bottom: 0px;padding: 10px; width: 10%; text-align: center;">{!pagstreamfee}*</td>
+                            <td style="border-bottom: 0px;padding: 10px; width: 50%; text-align: left;">Sobre o valor transacionado via <br/> PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>, cobrança por Período de Pagamento</td>
+                        </tr>
+                    </tbody>
+                </table> 
 
-            <p style="text-align: justify">
-                * O <strong>Estabelecimento</strong> terá direito a uma redução da taxa de <strong>3,00%</strong> para <strong>2,00%</strong> no <strong>PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span></strong> se processar todos os seus pagamentos online na(s) <strong>Plataforma(s) do Estabelecimento</strong>, incluindo pagamentos recorrentes e únicos, por meio da <strong>Plataforma PagBrasil</strong>.  
-            </p>
+                <p style="text-align: justify">
+                    * O <strong>Estabelecimento</strong> terá direito a uma redução da taxa de <strong>3,00%</strong> para <strong>2,00%</strong> no <strong>PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span></strong> se processar todos os seus pagamentos online na(s) <strong>Plataforma(s) do Estabelecimento</strong>, incluindo pagamentos recorrentes e únicos, por meio da <strong>Plataforma PagBrasil</strong>.  
+                </p>
+            </apex:panelGroup>
             
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
@@ -732,10 +786,6 @@
             <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
-                        <td style="border-bottom: 0px;width: 40%; text-align: left;">
-                            Pix Automático <br/>
-                            *Data estimada de lançamento em junho de 2025
-                        </td>
                         <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
                         <td style="border-bottom: 0px;width: 50%; text-align: left;">
                             R$ adicional sobre transações processadas com sucesso por meio do Pix Automático 

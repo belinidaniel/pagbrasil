@@ -1,0 +1,25 @@
+Dear {!Contact.FirstName},
+
+Thank you for sending us the report.
+
+Best regards,
+
+---------------------
+
+Dear {!Contact.FirstName},
+
+Thank you for sending us the report.
+
+We noticed that these orders do not have a tracking number:
+
+Can you please check their status?
+
+Thank you and best regards,
+
+---------------------
+
+Boa tarde {!Contact.FirstName},
+
+Obrigada por nos enviar o relatório.
+
+Atenciosamente,

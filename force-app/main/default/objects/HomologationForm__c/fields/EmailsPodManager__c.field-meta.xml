@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EmailsPodManager__c</fullName>
-    <label>E-mail(s) Gerente de POD</label>
+    <label>E-mail(s) POD Manager</label>
     <length>1000</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

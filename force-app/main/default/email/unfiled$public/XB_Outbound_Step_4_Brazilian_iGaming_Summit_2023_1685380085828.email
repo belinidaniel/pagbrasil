@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="color:#000000;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Hi {{{Recipient.FirstName}}}<br />
+<span style="line-height:107%">How are you?</span></span></span></span><br />
+<br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Following the last email I sent you, I would like to bring you an overview of Xsolla’s case study – whose conversion rate doubled after adopting PagBrasil’s exclusive payment method.&nbsp;<br />
+<br />
+Before working with PagBrasil, Xsolla offered the traditional boleto bancário, which is a popular payment method in Brazil for consumers and businesses, issued in the form of a PDF file right at the time of purchase. However, that had several disadvantages: the boleto’s payment confirmation can take up to three days, it is not mobile-friendly, and it does not have real-time payment confirmation, automatic refund, or reminder emails.&nbsp;&nbsp;<br />
+<br />
+This is where Boleto Flash®, our own spin on the boleto, entered. It offers payment confirmation in less than an hour or instantly when paid with Pix, automatic refunds, reminders via email and SMS, flexible expiration date, customization with the company’s logo and name, and more all the while offering a seamless payment process for your customer.&nbsp;&nbsp;&nbsp;<br />
+<br />
+Having adopted Boleto Flash® in their payment checkout in Brazil, Xsolla’s results were impressive. Right after their first month with PagBrasil, they saw a 30% revenue increase. Overall, boleto conversion rates doubled with Boleto Flash®.&nbsp;</span></span><br />
+<br />
+<br />
+<br />
+<br />
+<span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span lang="EN-US" style="font-family:&quot;Arial&quot;,sans-serif"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">We are very interested in {{{Recipient.Company}}} </span></span></span></span></span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">operation and would be happy to look into possible partnerships.&nbsp;</span></span><br />
+<br />
+<span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">Best Regards,<br />
+<br />
+{{{Sender.Signature}}}</span></span></span></span><br />
+<br />
+&nbsp;</body>
+</html>

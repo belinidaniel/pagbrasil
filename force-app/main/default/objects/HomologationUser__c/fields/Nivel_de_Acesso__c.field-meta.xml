@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nivel_de_Acesso__c</fullName>
+    <label>Nível de Acesso</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Full User</fullName>
+                <default>false</default>
+                <label>Full User</label>
+            </value>
+            <value>
+                <fullName>Restricted User</fullName>
+                <default>false</default>
+                <label>Restricted User</label>
+            </value>
+            <value>
+                <fullName>View Only</fullName>
+                <default>false</default>
+                <label>View Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

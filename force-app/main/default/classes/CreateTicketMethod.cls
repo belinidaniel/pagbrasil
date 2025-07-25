@@ -2,8 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-22-2025
- * @last modified by  : Daniel Belini
+ * @last modified on  : 07-23-2025
+ * @last modified by  : Marcelo Duarte de Aguiar - PDF per HomologationForm
 **/
 public class CreateTicketMethod {
 
@@ -31,7 +31,7 @@ public class CreateTicketMethod {
         // sendPdfThroughEmail(input);
         sendIntegration(input);
         // Logic to create a ticket using the idOpportunity
-      createChildAccountsForHomologations(input.idOpportunity);
+        createChildAccountsForHomologations(input.idOpportunity);
     }
 
     // Method to send the PDF through email to test the PDF generation
@@ -52,7 +52,6 @@ public class CreateTicketMethod {
                     PageReference pg = Page.OpportunityFields;
                     pg.getParameters().put('id', input.idOpportunity);
                     pg.getParameters().put('homologationId', h.Id);
-
                     Blob filePdf = pg.getContentAsPDF();
 
                     Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
@@ -96,6 +95,8 @@ public class CreateTicketMethod {
 
         if (opp != null) {
             
+                List<PdfWrapper> filePdfList = new List<PdfWrapper>();
+
                 String pdfToken = '';
                 ZendeskService zendeskService = new ZendeskService();
                 String fileName = 'Opp_' + StringUtil.replaceCaracteresSpecials(opp.Name, '_');
@@ -113,13 +114,14 @@ public class CreateTicketMethod {
                     } else {
                         filePdf = pg.getContentaspdf();
                     }
+
                     // Extract the name between the first and second dot in the URL
                     String extractedName = extractNameFromUrl(h.Name);
+                    filePdfList.add(new PdfWrapper(filePdf, extractedName));
                     String pdfFileName = 'Opp_' + StringUtil.replaceCaracteresSpecials(opp.Name, '_') + '_' + extractedName + '.pdf';
                     pdfToken = zendeskService.createAttach(filePdf, pdfFileName, 'pdf');
                     pdfTokenList.add(pdfToken);
                 }
-
 
                 ZendeskTicketWrapper.TicketCheck ticketCheck = new ZendeskTicketWrapper.TicketCheck();
                 ticketCheck.pagShieldActivationCheck = input.pagShieldActivationCheck;
@@ -146,7 +148,16 @@ public class CreateTicketMethod {
                     opp.TicketCreationDate__c = Datetime.now();
 
                     createContentVersion(opp.Id, fileName, 'json', fileJson);
-                    createContentVersion(opp.Id, fileName, 'pdf', filePdf);
+                    
+                    for (PdfWrapper pdfWrapper : filePdfList) {
+                        String pdfFileName = 'Opp_' 
+                            + StringUtil.replaceCaracteresSpecials(opp.Name, '_') 
+                            + '_' 
+                            + pdfWrapper.homologationName 
+                            + '.pdf';
+
+                        createContentVersion(opp.Id, pdfFileName, 'pdf', pdfWrapper.pdf);
+                    }
 
                     update opp;
 
@@ -328,5 +339,15 @@ public class CreateTicketMethod {
 
         @InvocableVariable
         public String triggerIndication;
+    }
+
+    public class PdfWrapper {
+        public Blob pdf;
+        public String homologationName;
+
+        public PdfWrapper(Blob pdf, String homologationName) {
+            this.pdf = pdf;
+            this.homologationName = homologationName;
+        }
     }
 }

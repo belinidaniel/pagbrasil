@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EvidenceContactInformation__c</fullName>
-    <label>Evidências Informações de Contato</label>
+    <label>Evidence of Contact Information</label>
     <length>32768</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Email To Client XB Form Homologation</name>
+    <style>none</style>
+    <subject>Homologation procedure | PagBrasil &amp; {!Opportunity.Account}</subject>
+    <textOnly>Homologation procedure | PagBrasil &amp; {!Account.Name}
+
+
+Dear  {!Contact.FirstName},
+
+
+
+We hope this message finds you well.
+We are pleased to inform you that all parties have fully signed the Agreement. All legal procedures have been addressed, with only one operational step remaining: the Homologation procedure.
+
+
+
+
+You can access this link to complete the checklist. This may involve adjustments to your website and confirming the activation of optional features.
+
+
+Once the account is homologated, we will be ready to go live and start processing payments: !
+
+
+
+For any questions or issues during this process, please rely on your Account Manager for prompt assistance.
+
+
+
+We look forward to welcoming you aboard.
+
+Best regards,
+
+PagBrasil Customer Management Team
+
+access our exclusive
+
+news channel
+
+Click Here
+
+Talk to us
+
+Social Medias
+
+Porto Alegre   |    São Paulo   |   Barcelona    |    Singapura
+
+Sent by PagBrasil Pagamentos Eletrônicos Ltda.
+
+Av. Nilo Peçanha, 1221 / 902 - Boa Vista - Porto Alegre / RS - 91330-00C</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CompanyDetails__c</fullName>
-    <label>Detalhes da empresa</label>
+    <description>Add your company details (corporate name, e.g., &quot;ABC Inc.&quot; and registered address with city and country) in one of the following locations:</description>
+    <inlineHelpText>Add your company details (corporate name, e.g., &quot;ABC Inc.&quot; and registered address with city and country) in one of the following locations:</inlineHelpText>
+    <label>Company Details</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

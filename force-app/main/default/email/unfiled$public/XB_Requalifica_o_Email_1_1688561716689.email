@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">Hi, </span>{{{Recipient.FirstName}}}<span lang="EN-US">! I hope you’re doing well.</span></span><br />
+<br />
+<span style="line-height:107%"><span lang="EN-US">We appreciate your interest in PagBrasil and our services.</span></span><br />
+<br />
+<span style="line-height:107%"><span lang="EN-US">To ensure we tailor our solutions to {{{Recipient.Company}}}’s specific needs and assign the most suitable specialist for you, we kindly request your cooperation in answering a few more questions:</span></span></span></span><br />
+&nbsp;
+<ul>
+	<li style="margin-left:8px"><span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">What website do you intend to use for your endeavors in Brazil?</span></span></span></span></li>
+</ul>
+<span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"> &nbsp;</span></span>
+
+<ul>
+	<li style="margin-left:8px"><span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">Which products or services do you currently offer, and how do you intend to operate within the Brazilian market?</span></span></span></span></li>
+</ul>
+<span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"> &nbsp;</span></span>
+
+<ul>
+	<li style="margin-bottom:11px; margin-left:8px"><span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">If applicable, can you share your current monthly revenue in Brazil? If you aren’t selling to Brazil yet, do you have a revenue forecast here?</span></span></span></span></li>
+</ul>
+<br />
+<span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">We are looking forward to working alongside {{{Recipient.Company}}}.</span></span><br />
+<br />
+<span style="line-height:107%"><span lang="EN-US">Thank you in advance!<br />
+<br />
+<br />
+{{{Sender.Signature}}}</span></span></span></span></body>
+</html>

@@ -1,0 +1,5 @@
+Olá {!Contact.OwnerFirstName}
+
+A Oportunidade "{!Opportunity.Name}" está sem nenhuma atualização há mais de 30 dias. Por favor, verificar. 
+
+Obrigada!

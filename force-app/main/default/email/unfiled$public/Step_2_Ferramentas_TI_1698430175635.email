@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Hi, {{{Recipient.FirstName}}}.&nbsp;<br />
+<br />
+Brazil is in the top 10 countries in software usage, and integrating local payment methods like Pix is key to establishing a profitable and successful operation in the SaaS market in Brazil.&nbsp;<br />
+<br />
+When accessing {{{Recipient.Company}}}´s website, I noticed its user-friendly design, and your company´s strong commitment to innovation, which demonstrates your dedication to staying at the forefront of the industry. I´m convinced that expanding your customer base to Brazil can be a significant growth opportunity.&nbsp;<br />
+<br />
+At PagBrasil, we develop technologies that deliver the best payment experience, ensure seamless transactions, and consequently achieve the highest conversion rates in the market.&nbsp;<br />
+<br />
+Does it make sense for you to have a chat with us about optimizing your payment operations in Brazil?<br />
+<br />
+Best regards,<br />
+{{{Sender.Signature}}}</span></span><br />
+&nbsp;</body>
+</html>

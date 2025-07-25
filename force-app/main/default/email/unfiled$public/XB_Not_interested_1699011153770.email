@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Hi,&nbsp;{{{Recipient.FirstName}}}.<br />
+<br />
+Thank you for getting back to us. In case you want to resume our conversation in the future, please feel free to write back.<br />
+We will be happy to assist you.<br />
+<br />
+Wishing you the best in business.<br />
+<br />
+Thanks in advance.<br />
+{{{Sender.Signature}}}</span></span><br />
+<br />
+<br />
+&nbsp;</body>
+</html>

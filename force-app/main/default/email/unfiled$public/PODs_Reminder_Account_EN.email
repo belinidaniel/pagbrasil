@@ -1,0 +1,7 @@
+<p>Dear {!Contact.FirstName},</p>
+
+<p>Do you have any updates about the September report?</p>
+
+<p>Please let us know if you need any further assistance.<br />
+<br />
+Best regards,</p>

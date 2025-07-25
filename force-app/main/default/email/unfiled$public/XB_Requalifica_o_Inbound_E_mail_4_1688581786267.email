@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:14px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;"><span style="line-height:107%">Hey, {{{Recipient.FirstName}}}.</span><br />
+<br />
+<span style="line-height:107%">I’d like to emphasize the importance of the information I requested regarding {{{Recipient.Company}}}. Without it, I am unable to proceed with the introductory phase.</span><br />
+<br />
+<span style="line-height:107%">Kindly respond with the required info.</span><br />
+<br />
+<span style="line-height:107%">I await your response.</span><br />
+<br />
+{{{Sender.Signature}}}</span></span></body>
+</html>

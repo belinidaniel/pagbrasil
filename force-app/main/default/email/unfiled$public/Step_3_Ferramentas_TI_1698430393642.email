@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Hi, {{{Recipient.FirstName}}}.&nbsp;<br />
+<br />
+I see a lot of potential for {{{Recipient.Company}}} to increase its market share in Brazil, given its relevance within the software as a service segment.<br />
+<br />
+That said, for Brazilians, not having the option to pay using Pix or Boleto is a big obstacle.&nbsp;<br />
+<br />
+PagBrasil’s PagStream allows you to charge your Brazilian customers in a recurring manner while allowing them to pay using Pix and Boleto, as well as set customized subscription rules.<br />
+<br />
+Furthermore, our solution does not require any programming, allowing you to easily create and manage your subscriptions directly from PagBrasil´s dashboard.&nbsp;<br />
+<br />
+Can we connect to talk about {{{Recipient.Company}}}’s payment operations for Brazil?<br />
+<br />
+Best regards,<br />
+{{{Sender.Signature}}}</span></span><br />
+&nbsp;</body>
+</html>

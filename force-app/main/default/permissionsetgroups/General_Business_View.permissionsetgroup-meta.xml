@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>General Business View</label>
+    <permissionSets>Accounts_Can_View_All</permissionSets>
+    <permissionSets>Apex_Class_Acess</permissionSets>
+    <permissionSets>Bank_Options_Can_View_All</permissionSets>
+    <permissionSets>Big_Boosts_Can_View_All</permissionSets>
+    <permissionSets>Documents_Can_View_All</permissionSets>
+    <permissionSets>Homologation_Forms_Can_View</permissionSets>
+    <permissionSets>KYC_NB_Can_View</permissionSets>
+    <permissionSets>KYC_XB_Can_View</permissionSets>
+    <permissionSets>Lead_Can_View_All</permissionSets>
+    <permissionSets>Opportunities_Can_View_All</permissionSets>
+    <permissionSets>Opportunity_View_General_Business_Stages</permissionSets>
+    <permissionSets>Quote_Can_View</permissionSets>
+    <permissionSets>RCC_Can_View</permissionSets>
+    <permissionSets>Run_Flow_Acess</permissionSets>
+    <permissionSets>dfsle__DocuSign_User</permissionSets>
+    <permissionSets>dsfs__DocuSign_User</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

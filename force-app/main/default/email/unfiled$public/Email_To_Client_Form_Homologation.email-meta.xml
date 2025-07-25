@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Email To Client Form Homologation</name>
+    <style>none</style>
+    <subject>Onboarding PagBrasil - Homologação</subject>
+    <textOnly>Atualização do seu status: Homologação
+
+Veja detalhes
+
+Prezado(a) {!varContactFirstName},
+
+
+
+Estamos muito felizes em informar que o Contrato foi assinado por todas as partes. Uma vez que todos os processos legais foram realizados, falta somente um passo: o procedimento de homologação.
+
+
+
+Acesse aqui o link para o preenchimento das informações para a homologação.
+
+
+De acordo com o Decreto do Ecommerce (Lei nº 7962/13), esta etapa pode envolver alguns ajustes no site, além de confirmar algumas features opcionais que podem ajudar na sua conversão!
+
+
+
+Uma vez que a Homologaçãoesteja finalizada, estaremos prontos para iniciar o processamento dos pagamentos!
+
+Caso tenha dúvidas sobre o processo ou precise de qualquer assistência, por favor, fique à vontade para contatar o seu gerente de contas!
+
+
+
+Até breve,
+
+Equipe PagBrasil
+
+Acesse o nosso canal
+
+de notícias exclusivas
+
+Clique aqui
+
+Fale conosco
+
+Redes sociais
+
+Porto Alegre   |    São Paulo   |   Barcelona    |    Singapura
+
+Enviado por PagBrasil Pagamentos Eletrônicos Ltda.
+
+Av. Nilo Peçanha, 1221 / 902 - Boa Vista - Porto Alegre / RS - 91330-00C
+
+Se deseja não receber mais mensagens como esta, clique aqui.
+
+Visualizar como página web | Descadastrar</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

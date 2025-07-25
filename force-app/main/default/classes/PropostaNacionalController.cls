@@ -192,6 +192,8 @@ public class PropostaNacionalController {
     public String settlementFrequencyCreditCardPage2 { get; set; }
     public String settlementFrequencyPage1 { get; set; }
     public String settlementFrequencyPage2 { get; set; }
+    public String settlementFrequencyOthers1 { get; set; }
+    public String settlementFrequencyOthers2 { get; set; }
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -201,7 +203,7 @@ public class PropostaNacionalController {
                 'Opportunity.Settlement_Frequency_Test__c', 'Opportunity.Payout__c', 'Opportunity.Antecipation_Frequency_1__c',
                 'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c','Opportunity.Other_Payments_Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
                 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c',
-                'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.ApplePay__c', 'Opportunity.Visible_Settlement_Frequency__c', 'Opportunity.Visible_Anticipation_Frequency__c' });
+                'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.Other_Payments_Settlement_Frequency_2__c','Opportunity.Selected_Credit_Frequency__c', 'Opportunity.Selected_Credit_Frequency__c', 'Opportunity.Selected_Others_Frequency__c', 'Opportunity.ApplePay__c', 'Opportunity.Visible_Settlement_Frequency__c', 'Opportunity.Visible_Anticipation_Frequency__c' });
         }
 
         Quote quote = (Quote) stdController.getRecord();
@@ -555,7 +557,7 @@ public class PropostaNacionalController {
                     this.settlementFrequencyPage = 'D+7';   
                 }
                 when 'Biweekly' {
-                    this.settlementFrequency = 'bimestral';
+                    this.settlementFrequency = 'quinzenal';
                     this.settlementFrequencyPage = 'D+15';
                 }
                 when 'Monthly' {
@@ -578,7 +580,7 @@ public class PropostaNacionalController {
                     this.settlementFrequencyPage1 = 'D+7';   
                 }
                 when 'Biweekly' {
-                    this.settlementFrequencyCreditCardPage1 = 'bimestral';
+                    this.settlementFrequencyCreditCardPage1 = 'quinzenal';
                     this.settlementFrequencyPage1 = 'D+15';
                 }
                 when 'Monthly' {
@@ -586,8 +588,21 @@ public class PropostaNacionalController {
                     this.settlementFrequencyPage1 = 'D+31';
                 }
             }
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
+                when 'Daily' {
+                    this.settlementFrequencyOthers1 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyOthers1 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyOthers1 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyOthers1 = 'D+31';
+                }
+            }
         }
-
         if(quote.Opportunity.Settlement_Frequency_2__c != null){
             this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Settlement_Frequency_2__c {
@@ -600,12 +615,29 @@ public class PropostaNacionalController {
                     this.settlementFrequencyPage2 = 'D+7';   
                 }
                 when 'Biweekly' {
-                    this.settlementFrequencyCreditCardPage2 = 'bimestral';
+                    this.settlementFrequencyCreditCardPage2 = 'quinzenal';
                     this.settlementFrequencyPage2 = 'D+15';
                 }
                 when 'Monthly' {
                     this.settlementFrequencyCreditCardPage2 = 'mensal';
                     this.settlementFrequencyPage2 = 'D+31';
+                }
+                when 'Fluxo Médio' {
+                    this.settlementFrequencyCreditCardPage2 = 'no Fluxo Médio';
+                }
+            }
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_2__c {
+                when 'Daily' {
+                    this.settlementFrequencyOthers2 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyOthers2 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyOthers2 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyOthers2 = 'D+31';
                 }
             }
         }
@@ -619,6 +651,7 @@ public class PropostaNacionalController {
 
         String settlementOne = quote.Opportunity.Settlement_Frequency_1__c;
         String settlementTwo = quote.Opportunity.Settlement_Frequency_2__c;
+        if (this.settlementFrequencyCreditCardPage2 != null) this.showTwoOptions = true;
 
         validationFrequencyPage(settlementOne, antecipationOne, 'One');
         getParcelas(quote,'One');

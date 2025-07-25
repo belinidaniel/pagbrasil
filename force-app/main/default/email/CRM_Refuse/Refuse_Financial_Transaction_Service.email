@@ -1,0 +1,19 @@
+Dear {!Contact.FirstName},
+
+Thank you for your inquiry. 
+
+From what we could learn from your website you are offering a pure financial transaction service. We regret that we cannot process payments for financial transactions.
+
+Thank you for your understanding.
+
+Best regards,
+
+---- If insist that can invoice the buyer ---
+
+Dear {!Contact.FirstName},
+
+PagBrasil could process payments for Brazillian customers if your company was the one that sells and invoices the product/service to them. From what we could learn from your website you are offering a pure financial transaction service. We regret that we cannot process payments for financial transactions.
+
+Thank you for your understanding.
+
+Best regards,

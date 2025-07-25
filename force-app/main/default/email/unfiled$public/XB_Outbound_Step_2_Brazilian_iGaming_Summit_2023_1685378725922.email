@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="color:#000000;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Hi {{{Recipient.FirstName}}}</span></span></span><br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">How are you doing?&nbsp;</span></span><br />
+<br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Have you had the chance to read my previous email? I strongly believe our wide range of payment solutions can be valuable for your payment strategy, and we would be happy to meet up with you at the Brazilian iGaming Summit event.&nbsp;</span></span><br />
+<br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">As we have been helping companies like <strong>Samsung</strong>, <strong>Twitch </strong>and <strong>Epic Games</strong> expand their market share and fully explore the potential in Brazil, we can also create a project to seize opportunities for&nbsp;</span></span><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span lang="EN-US" style="font-family:&quot;Arial&quot;,sans-serif"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">{{{Recipient.Company}}} </span></span></span></span></span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">– boosting your conversion rates.&nbsp;<br />
+<br />
+For instance, with our exclusive Payment Link, your business can start processing payments right away without undergoing any form of technical integration: an ideal solution for both B2C and B2B business models.&nbsp;</span></span><br />
+<br />
+<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">I understand this is an interesting matter for you.&nbsp;<br />
+<br />
+Shall we schedule a meeting to connect?&nbsp;&nbsp;</span></span><br />
+<br />
+<span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">Best wishes,<br />
+<br />
+{{{Sender.Signature}}}</span></span></span></span><br />
+<br />
+&nbsp;</body>
+</html>

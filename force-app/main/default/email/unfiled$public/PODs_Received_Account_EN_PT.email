@@ -1,0 +1,25 @@
+<p>Dear {!Contact.FirstName},</p>
+
+<p>Thank you for sending us the report.</p>
+
+<p>Best regards,</p>
+
+<p>---------------------</p>
+
+<p>Dear {!Contact.FirstName},<br />
+<br />
+Thank you for sending us the report.<br />
+<br />
+We noticed that these orders do not have a tracking number:<br />
+<br />
+Can you please check their status?<br />
+<br />
+Thank you and best regards,</p>
+
+<p>---------------------</p>
+
+<p>Boa tarde {!Contact.FirstName},</p>
+
+<p>Obrigada por nos enviar o relat&oacute;rio.</p>
+
+<p>Atenciosamente,</p>

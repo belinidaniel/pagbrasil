@@ -1,0 +1,11 @@
+<p>Estimado {!Contact.FirstName},</p>
+
+<p>Muchas gracias por rellenar el cuestionario.</p>
+
+<p>Env&iacute;o adjunto nuestra propuesta comercial adaptada a su negocio.</p>
+
+<p>Ser&iacute;a genial si pudi&eacute;ramos programar una llamada para revisar los t&eacute;rminos y aclarar cualquier duda que surja.</p>
+
+<p>Quedo a la espera de su respuesta.</p>
+
+<p>Atentamente,</p>

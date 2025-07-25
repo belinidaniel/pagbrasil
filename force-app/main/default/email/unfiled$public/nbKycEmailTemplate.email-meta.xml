@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>nbKycEmailTemplate</name>
+    <style>none</style>
+    <subject>Pagbrasil - Preenchimento de Formulário</subject>
+    <textOnly>Aqui está a versão somente texto (plain text) do template de e-mail em português, fiel ao conteúdo original, pronta para personalização no Salesforce ou envio manual:
+
+Prezado(a) {!Contact.FirstName},
+
+Por favor, preencha o formulário KYC o mais breve possível para prosseguir com nosso processo de integração:
+
+Formulário KYC: https://kyc-staging.pagbrasil.com/?id={!KYC_XB__c.Unique_Link__c}
+
+Caso tenha alguma dúvida, entre em contato conosco.
+
+Obrigado.
+
+Atenciosamente,
+PagBrasil</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

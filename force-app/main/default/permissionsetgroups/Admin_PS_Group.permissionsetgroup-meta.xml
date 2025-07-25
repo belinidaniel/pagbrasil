@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Admin PS Group</label>
+    <permissionSets>Accounts_Can_Edit_All</permissionSets>
+    <permissionSets>Contact_Can_Edit_All</permissionSets>
+    <permissionSets>Homologation_Forms_Can_Edit_All</permissionSets>
+    <permissionSets>KYC_NB_Can_Edit_All</permissionSets>
+    <permissionSets>KYC_XB_Can_Edit_All</permissionSets>
+    <permissionSets>Opportunities_Can_Edit_All</permissionSets>
+    <permissionSets>Price_Book_Can_Edit_All</permissionSets>
+    <permissionSets>Product_Can_Edit_All</permissionSets>
+    <permissionSets>Quote_Can_Edit_All</permissionSets>
+    <permissionSets>RCC_Can_Edit_All</permissionSets>
+    <permissionSets>Taxes_Can_Edit_All</permissionSets>
+    <permissionSets>Taxes_Can_Edit_CEO_Director</permissionSets>
+    <permissionSets>dsfs__DocuSign_Administrator</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

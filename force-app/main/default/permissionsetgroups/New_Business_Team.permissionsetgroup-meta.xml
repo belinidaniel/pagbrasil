@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>New Business Team</label>
+    <permissionSets>Accounts_Can_View</permissionSets>
+    <permissionSets>Apex_Class_Acess</permissionSets>
+    <permissionSets>Bank_Options_Can_View_All</permissionSets>
+    <permissionSets>Big_Boosts_Can_View_All</permissionSets>
+    <permissionSets>Clauses_Can_Edit</permissionSets>
+    <permissionSets>Contact_Can_View</permissionSets>
+    <permissionSets>Homologation_Forms_Can_View</permissionSets>
+    <permissionSets>KYC_NB_Can_View</permissionSets>
+    <permissionSets>KYC_XB_Can_View</permissionSets>
+    <permissionSets>Lead_Can_Edit</permissionSets>
+    <permissionSets>Lead_Converter_Permission</permissionSets>
+    <permissionSets>Opportunities_Can_View_All</permissionSets>
+    <permissionSets>Opportunity_View_New_Business_Team_Stages</permissionSets>
+    <permissionSets>Quote_Can_View</permissionSets>
+    <permissionSets>RCC_Can_View</permissionSets>
+    <permissionSets>Taxes_Can_View_All</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

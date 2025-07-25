@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Português</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Answer Accepted Proposal_PT</name>
+    <style>none</style>
+    <subject>PagBrasil para {!Account.Name}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

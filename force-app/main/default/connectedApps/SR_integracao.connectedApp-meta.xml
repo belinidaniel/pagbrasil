@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>daniel.oliveira@srconsulting.io</contactEmail>
+    <label>SR integraçao</label>
+    <oauthConfig>
+        <callbackUrl>http://localhost:1717/OauthRedirect</callbackUrl>
+        <certificate>MIIDMzCCAhugAwIBAgIULH1gcK4KibvT0ILCxpZGUWmzjUgwDQYJKoZIhvcNAQELBQAwQjELMAkGA1UEBhMCQlIxCzAJBgNVBAgMAlJTMQwwCgYDVQQHDANQb2ExCzAJBgNVBAoMAlBCMQswCQYDVQQDDAJQQjAeFw0yNTA1MjkxNTQxNTZaFw0yNjA1MjkxNTQxNTZaMEIxCzAJBgNVBAYTAkJSMQswCQYDVQQIDAJSUzEMMAoGA1UEBwwDUG9hMQswCQYDVQQKDAJQQjELMAkGA1UEAwwCUEIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQD+kZz5xj1ii19/4d6SM+6ECCyxeYsOP2Sn5Dfib+VVVGoO8ULeTNgtl/tkjFfS7QU8nKPCHy6bGgJKG/r4BbIAAVbUJDl16Sqj83LSY865RiSG38IdBPKMPy2sSbKw8CnjpA4OUDntv1QvUspOcFSXnTgDwqRTw/CTifjzxM+sWf8ON4syOQXL59xn6Jkr59N5VOdvkEkDRz/OigaI6rkBbLcRErMsyiVdsY8boEeDs6PhpRgR/soIZ+NYzrNSNwRip3Mk2sP2fudBrDTBZ0yAvlBJww+FmNtgYmkYLyHWS7h0qSVeLD2NMEmBOd9vZxN88m6Jhpqo0vArB1VDMIgZAgMBAAGjITAfMB0GA1UdDgQWBBSwN8N0Izilu2VGNPB++J6CX0+GQTANBgkqhkiG9w0BAQsFAAOCAQEAnv8YD87TxQYWW52GPFO32i3iU8g+efRzR6MJcDkL9lw35uDS5NN9nC0HYnlzQLrJSoEerQBxUUqOwqhvZMjofTBiWt+ZUE222v5DbdioH1Unl9iG2YLnwKOZJcP8WqPM2fq+W4EgI1D8BLNAUdVDW7Hz05OpKMggy27uzSd+id/DokUmrqQs9xaiT4Y+tspSx06HFp3LjaONRMa0kQO4r4Qx3vcC6g3fZRFNgy/KPAVI8OmMU7qJtJHC37/6Dp8ecLc8rGfQt5wOVadNOn5dItC/C2EpK88wLCWW9STZlYm/udNB6jwlXIkF03V5q03oWz5PezQ8wPfW6N649/NYYA==</certificate>
+        <consumerKey>3MVG9O_Hkc8TP1aFv6JvbfnBmNy_YU8Hwon4g_ZTeo1KGPvqmESEM7KfWY4Mhq.VP_D7UkjUSLQJZMWHXlmVL</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isClientCredentialEnabled>true</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>true</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isNamedUserJwtEnabled>true</isNamedUserJwtEnabled>
+        <isPkceRequired>false</isPkceRequired>
+        <isRefreshTokenRotationEnabled>false</isRefreshTokenRotationEnabled>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <isSecretRequiredForTokenExchange>false</isSecretRequiredForTokenExchange>
+        <isTokenExchangeEnabled>false</isTokenExchangeEnabled>
+        <oauthClientCredentialUser>mgr.salesforce@pagbrasil.com.sandboxsr1</oauthClientCredentialUser>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>Content</scopes>
+        <scopes>SFAP</scopes>
+        <scopes>PwdlessLogin</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>BYPASS</ipRelaxation>
+        <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <profileName>System Administrator</profileName>
+    <profileName>Homologação Profile</profileName>
+    <profileName>Board - CEOs</profileName>
+    <profileName>Legal &amp; Compliance</profileName>
+    <profileName>Grow &amp; Customer Success</profileName>
+    <profileName>Process</profileName>
+    <profileName>Operations &amp; Support</profileName>
+    <profileName>New Business Team</profileName>
+    <profileName>New Business Management</profileName>
+    <profileName>Sales NB</profileName>
+    <profileName>Sales XB</profileName>
+    <profileName>Sales Management XB</profileName>
+    <profileName>Sales Management NB</profileName>
+    <profileName>Product</profileName>
+    <profileName>New Sales</profileName>
+    <profileName>General - Business</profileName>
+</ConnectedApp>

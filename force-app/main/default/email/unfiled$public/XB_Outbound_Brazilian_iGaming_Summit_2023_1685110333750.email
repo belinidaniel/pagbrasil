@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="color:#000000;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Hello&nbsp;{{{Recipient.FirstName}}}<br />
+<br />
+<span style="line-height:107%">I hope this email finds you well.<br />
+<br />
+I’m {{{Sender.FirstName}}} from PagBrasil.&nbsp;</span></span></span></span><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">We’re a payment processing company specialized in the Brazilian market.&nbsp;</span></span><br />
+<br />
+<span style="color:#000000;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;"><span style="line-height:107%">Since the announcement of a Governmental Project aiming to legislate betting houses, there have been lots of buzz and rumors about its impact.<br />
+<br />
+<span lang="EN-US">We may still not have a clear sight, but considering some legal analysis and ministers interviewing, we can reach some conclusions. It will require betting houses to present a local entity and to partially allocate their team and resources in Brazil – and that is just one of the future adjustments to come.<br />
+<br />
+I would be glad to provide you with more insights and we could, also, explore some opportunities to adapt to that situation with Pay in + Payout solutions, frictionless payment flows embracing Brazilian APMs (such as Pix, and PEC Flash), or recurring and anti-fraud solutions tailored for Brazil.</span></span></span></span><br />
+<br />
+<span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span lang="EN-US" style="font-family:&quot;Arial&quot;,sans-serif"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:11px;">Will&nbsp;{{{Recipient.Company}}} be attending Brazilian iGaming Summit in São Paulo? If so, would you be available to meet up in person with one of our Payment Specialists there?</span></span></span></span></span></span></span><br />
+<br />
+<span style="font-size:11px;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:107%"><span lang="EN-US">I look forward to hearing from you.<br />
+<br />
+Kind Regards.<br />
+<br />
+{{{Sender.Signature}}}</span></span></span></span><br />
+<br />
+&nbsp;</body>
+</html>

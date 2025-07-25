@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Legal_Compliance_Role_Edit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Legal &amp; Compliance Role Edit</label>
+        <sharedTo>
+            <role>Legal_and_Compliance</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Contract</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Homologation</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Legal_Compliance_Role_View</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Legal &amp; Compliance Role View</label>
+        <sharedTo>
+            <role>Legal_and_Compliance</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Discovery</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Negotiation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Go Live</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Processing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Closed Lost</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>AccountFPreSales_HeadsManager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Account F_PreSales / Heads_Manager</label>
+        <sharedTo>
+            <group>Heads</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AccountFarmer_PreSales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>AccountManager_AccountF_PreSales</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Account Manager / Account F_Pre Sales</label>
+        <sharedTo>
+            <group>AccountFarmer_PreSales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AccountManager</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Director_New_Business_Management</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director New Business Management</label>
+        <sharedTo>
+            <role>HeadBusinessDevelopmentNB</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>New_Business_Management</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Director_New_Sales_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director New Sales Role</label>
+        <sharedTo>
+            <role>HeadBusinessDevelopmentNB</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>New_Sales</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Director_Product_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director &amp; Product Role</label>
+        <sharedTo>
+            <role>HeadBusinessDevelopmentNB</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Product</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>General_Business_NB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>General - Business NB Role</label>
+        <sharedTo>
+            <role>General_Business</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>General_Business_XB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>General - Business XB Role</label>
+        <sharedTo>
+            <role>General_Business</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_XB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Grow_Customer_Sucess_NB_Roles</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Grow &amp; Customer Sucess NB Roles</label>
+        <sharedTo>
+            <role>Grow_Customer_Sucess</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Grow_Customer_Sucess_XB_Roles</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Grow &amp; Customer Sucess XB Roles</label>
+        <sharedTo>
+            <role>Grow_Customer_Sucess</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_XB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Heads_Managers</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Heads / Managers</label>
+        <sharedTo>
+            <group>Heads</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Heads</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>New_Business_Management_NB_Roles</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>New Business Management NB Role</label>
+        <sharedTo>
+            <role>New_Business_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>New_Business_Management_XB_Op_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>New Business Management XB Op Role</label>
+        <sharedTo>
+            <role>New_Business_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_XB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>New_Business_Management_XB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>New Business Management XB Role</label>
+        <sharedTo>
+            <role>New_Business_Team</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_XB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Operations_Support_NB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Operations &amp; Support NB Role</label>
+        <sharedTo>
+            <role>Opperations_Support</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Operations_Support_XB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Operations &amp; Support XB Role</label>
+        <sharedTo>
+            <role>Opperations_Support</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_XB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Process_NB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Process NB Role</label>
+        <sharedTo>
+            <role>Process</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Process_XB_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Process XB Role</label>
+        <sharedTo>
+            <role>Process</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_XB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

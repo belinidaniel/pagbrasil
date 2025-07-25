@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Hello, {{{Recipient.FirstName}}}. I hope you are doing well.<br />
+<br />
+I am {{{Sender_FirstName}}} from PagBrasil, a leading payment technology company in Brazil. Our solutions portfolio is trusted by global brands, such as Samsung, Epic Games, and Samsonite, for our unique local expertise.<br />
+<br />
+As Brazil is a vast country whose market has been steadily growing, as well as the most valuable IT sector in Latin America, fully exploring its market represents a great opportunity for {{{Recipient.Company}}} to increase its customer base and revenue.&nbsp;<br />
+<br />
+In Brazil, offering local payment methods, like Pix and Boleto, is vital for international companies looking to expand their operations as they are a must to engage effectively with the Brazilian audience.&nbsp;<br />
+<br />
+May we connect to discuss this further?<br />
+<br />
+Best regards,<br />
+{{{Sender.Signature}}}</span></span><br />
+&nbsp;</body>
+</html>

@@ -41,6 +41,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CommunitiesLandingController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesLandingControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ContactSelector</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -82,6 +90,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CreateOrganizationMethodTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateTicketForPix</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -430,6 +442,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>QuoteTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>QuoteTriggerHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1340,6 +1356,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Activate_Wallet__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>HomologationForm__c.Additional_for_Remote_Payments_Fixed__c</field>
         <readable>false</readable>
@@ -1392,6 +1413,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.BoletoFlash__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Cancellation_policy__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1541,6 +1567,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>HomologationForm__c.Invoice_Warning_Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Is_Store_on_Shopify__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>HomologationForm__c.Legal_Approval_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1612,6 +1648,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.OneClickBuyingTokenization__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.POD_Routine_for_Shopify_Merchant__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1712,6 +1753,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.PodReminder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HomologationForm__c.Product_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Produtos_Importados__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1826,12 +1877,42 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>HomologationForm__c.URL_My_Shopify__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>HomologationForm__c.URL__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.main_contact_email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationUser__c.Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationUser__c.Idioma__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationUser__c.Nivel_de_Acesso__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationUser__c.Nome_e_Sobrenome__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationUser__c.Users__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3801,6 +3882,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Product2.Flexibility__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Quote.Acceptable__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4328,6 +4414,10 @@
         <recordType>Opportunity.New_National</recordType>
     </layoutAssignments>
     <pageAccesses>
+        <apexPage>CommunitiesLanding</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>ContractCrossborderPage</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -4361,6 +4451,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>OpportunityFields</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>OpportunityPixPages</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -4431,6 +4525,34 @@
         <recordType>Taxes__c.TaxaSolucaoPagBrasil</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>Bank_Option__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Clauses__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>HomologationForm__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>HomologationUser__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>KYC_XB__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>KYC__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Taxes__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>
         <visibility>Hidden</visibility>

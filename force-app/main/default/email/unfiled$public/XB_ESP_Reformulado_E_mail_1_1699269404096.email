@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="height: auto; min-height: auto;"><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Hola,&nbsp;{{{Recipient.FirstName}}}.<br />
+<br />
+Gracias por contactar a PagBrasil. Con el fin de adaptar nuestras soluciones a las necesidades específicas de su negocio y asignar el especialista más adecuado para ti, te solicitamos amablemente tu colaboración para responder algunas preguntas:</span></span><br />
+&nbsp;
+<ul>
+	<li><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">¿Qué sitio web tienes previsto utilizar para tus proyectos en Brasil?</span></span></li>
+	<li><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">¿Qué productos o servicios ofreces actualmente y cómo tienes pensado operar en el mercado brasileño?</span></span></li>
+	<li><span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Si corresponde,&nbsp;¿podrías compartir tu facturación mensual actual en Brasil? Si aún no vendes en Brasil,&nbsp;¿tienes una proyección de ingresos aquí?</span></span></li>
+</ul>
+<span style="font-size:12px;"><span style="font-family:Segoe UI,Arial,Helvetica,sans-serif;">Espero con interés tu respuesta.<br />
+<br />
+{{{Sender.Signature}}}</span></span></body>
+</html>

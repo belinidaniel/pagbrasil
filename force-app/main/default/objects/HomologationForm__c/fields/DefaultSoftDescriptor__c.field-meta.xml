@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DefaultSoftDescriptor__c</fullName>
+    <description>Please inform the end customer that their credit card statement will show &quot;PB*XXXXXX, PORTO ALEGRE&quot; (XXXXXX will be replaced with your store&apos;s name). The soft descriptor is crucial to avoid chargebacks since most occur because the cardholder needs to identify the store&apos;s name or the city where we are located.</description>
     <externalId>false</externalId>
+    <inlineHelpText>Please inform the end customer that their credit card statement will show &quot;PB*XXXXXX, PORTO ALEGRE&quot; (XXXXXX will be replaced with your store&apos;s name). The soft descriptor is crucial to avoid chargebacks since most occur because the cardholder needs to identify the store&apos;s name or the city where we are located.</inlineHelpText>
     <label>Default Soft Descriptor</label>
     <length>255</length>
     <required>false</required>

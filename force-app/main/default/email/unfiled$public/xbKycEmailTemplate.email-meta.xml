@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>xbKycEmailTemplate</name>
+    <style>none</style>
+    <subject>Pagbrasil - Form Filling</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Please complete the KYC form at your earliest convenience to proceed with our onboarding process:
+
+KYC Form: https://kyc-xb-staging.pagbrasil.com/?id={!KYC_XB__c.Unique_Link__c}
+
+If you have any questions, feel free to contact us.
+
+Thank you.
+
+Kind Regards,
+PagBrasil</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

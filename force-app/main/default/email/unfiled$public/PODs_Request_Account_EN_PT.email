@@ -1,0 +1,21 @@
+<p>Dear {!Contact.FirstName},</p>
+
+<p>We would like to remind you that we have not yet received your shipping report for the month of XXX.</p>
+
+<p>You can find the instructions on how to create this report on the Merchant Guide Proof of Delivery, available at the PagBrasil Dashboard, tab Resources.</p>
+
+<p>Please let us know if you need any further assistance.</p>
+
+<p>Best regards,</p>
+
+<p>------</p>
+
+<p>Caro {!Contact.FirstName},</p>
+
+<p>Gostar&iacute;amos de lembr&aacute;-lo de que ainda n&atilde;o recebemos o shipping report referente ao m&ecirc;s de XXX.</p>
+
+<p>Voc&ecirc; pode encontrar instru&ccedil;&otilde;es sobre como criar esse relat&oacute;rio no guia &quot;Merchant Guide Proof of Delivery&quot;, dispon&iacute;vel no PagBrasil Dashboard, aba Resources.</p>
+
+<p>Em caso de d&uacute;vidas entre em contato conosco.<br />
+<br />
+Atenciosamente,</p>

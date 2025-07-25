@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalClientApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>daniel.belini@srconsulting.io</contactEmail>
+    <distributionState>Local</distributionState>
+    <isProtected>false</isProtected>
+    <label>Integração SR</label>
+    <orgScopedExternalApp>00DVA000001KYsz:Integracao_SR</orgScopedExternalApp>
+</ExternalClientApplication>

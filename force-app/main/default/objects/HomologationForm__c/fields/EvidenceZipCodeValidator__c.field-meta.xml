@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EvidenceZipCodeValidator__c</fullName>
-    <label>Evidências Verificação e Validador CEP</label>
+    <label>Evidence of Address Check</label>
     <length>16000</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

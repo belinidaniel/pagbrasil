@@ -395,6 +395,7 @@
 		<name>CustomPermission</name>
 	</types>
 	<types>
+		<members>ApprovalProcess</members>
 		<members>ApprovalProcess/Request_KYC_to_approval</members>
 		<members>ApprovalProcess/Request_RCC_to_approval</members>
 		<members>ApprovalProcess/Request_XB_KYC_to_approval</members>

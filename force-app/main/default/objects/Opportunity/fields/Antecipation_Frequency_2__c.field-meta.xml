@@ -53,21 +53,21 @@
         <valueSettings>
             <controllingFieldValue>Daily</controllingFieldValue>
             <controllingFieldValue>Weekly</controllingFieldValue>
-            <controllingFieldValue>Bimonthly</controllingFieldValue>
-            <valueName>Bimonthly</valueName>
+            <controllingFieldValue>Biweekly</controllingFieldValue>
+            <valueName>Biweekly</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Daily</controllingFieldValue>
             <controllingFieldValue>Weekly</controllingFieldValue>
+            <controllingFieldValue>Biweekly</controllingFieldValue>
             <controllingFieldValue>Monthly</controllingFieldValue>
-            <controllingFieldValue>Bimonthly</controllingFieldValue>
             <valueName>Monthly</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Daily</controllingFieldValue>
             <controllingFieldValue>Weekly</controllingFieldValue>
+            <controllingFieldValue>Biweekly</controllingFieldValue>
             <controllingFieldValue>Monthly</controllingFieldValue>
-            <controllingFieldValue>Bimonthly</controllingFieldValue>
             <valueName>Fluxo Médio</valueName>
         </valueSettings>
     </valueSet>

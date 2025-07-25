@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-23-2025
+  @last modified on  : 07-24-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -404,7 +404,7 @@
                                 <apex:panelGroup rendered="{!containsBoleto}">
                                     ,Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>
                                 </apex:panelGroup>
-                                :D+{!settlementFrequency}
+                                :D+{!antecipationFrequency}
                             </p>
                             <apex:panelGroup rendered="{!AND(containsCartao, NOT(isFluxoMedio))}">
                                 <P>Credit Card: D+{!settlementFrequency}</p>

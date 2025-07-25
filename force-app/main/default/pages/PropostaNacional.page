@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-23-2025
+  @last modified on  : 07-25-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -1017,7 +1017,7 @@
                                 <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
                                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                                         Termos de<br/>
-                                        repasse diário com<br/>
+                                        repasse {!settlementFrequencyCreditCardPage1} com<br/>
                                         antecipação {!antecipationFrequencyPageOne}
                                     </p>
 
@@ -1046,13 +1046,13 @@
                                     <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
                                     <div class="settlement-elegibility-item">
                                         <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
-                                        <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageOne}</p>
+                                        <p class="settlement-elegibility-value">{!settlementFrequencyOthers1}</p>
                                     </div>
                                     
-                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyPage1))}">
                                         <div class="settlement-elegibility-item">
                                             <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                            <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageOne}</p>
+                                            <p class="settlement-elegibility-value">{!settlementFrequencyPage1}</p>
                                         </div>
                                     </apex:panelGroup>
                                 </div>
@@ -1144,9 +1144,9 @@
                                     
                                     <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
-                                            Termos de<br/>
-                                            repasse diário com<br/>
-                                            antecipação {!antecipationFrequencyPageTwo}
+                                            Termos de repasse <br/>
+                                            {!settlementFrequencyCreditCardPage2} antecipação<br/>
+                                            no {!antecipationFrequencyPageTwo}
                                         </p>
 
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
@@ -1174,13 +1174,13 @@
                                         <p class="settlement-elegibility-title"><strong>Elegibilidade para liquidação</strong></p>
                                         <div class="settlement-elegibility-item">
                                             <p class="settlement-elegibility-label">Pix, Boleto Flash® e Débito Flash®:</p>
-                                            <p class="settlement-elegibility-value">{!frequencyPixBoletoDebitoFlashEligebleDatePageTwo}</p>
+                                            <p class="settlement-elegibility-value">{!settlementFrequencyOthers2}</p>
                                         </div>
                                         
-                                        <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
+                                        <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyPage2))}">
                                             <div class="settlement-elegibility-item">
                                                 <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                                <p class="settlement-elegibility-value">{!frequencyCardEligebleDatePageTwo}</p>
+                                                <p class="settlement-elegibility-value"> {!settlementFrequencyPage2}</p>
                                             </div>
                                         </apex:panelGroup>
                                     </div>
@@ -1294,6 +1294,11 @@
             <div class="page">
                 <img src="{!frequencyPage11}" class="background-image"/>
                 <div class="page-content">
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                        Termos de​<br/>
+                        repasse {!settlementFrequency}
+                    </p>
+                    <div style="padding: 307px 0px 0px 940px;font-weight: bolder;font-size: 19px;&quot;font-family: 'MontserratBol&quot;;font-family: 'MontserratBold';">{!settlementFrequencyPage}</div>
                     <p style="position: absolute; top: 5px; left: 122px; white-space: nowrap;">{!oppName}</p>
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>

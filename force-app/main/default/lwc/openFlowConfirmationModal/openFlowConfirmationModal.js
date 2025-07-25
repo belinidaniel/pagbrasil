@@ -91,11 +91,11 @@ export default class OpenFlowModal extends LightningElement {
         return isNational ? [
             { label: 'Daily', value: 'Daily' },
             { label: 'Weekly', value: 'Weekly' },
-            { label: 'Bimonthly', value: 'Bimonthly' },
+            { label: 'Biweekly', value: 'Biweekly' },
             { label: 'Monthly', value: 'Monthly' }
         ] : [
             { label: 'Weekly', value: 'Weekly' },
-            { label: 'Bimonthly', value: 'Bimonthly' },
+            { label: 'Biweekly', value: 'Biweekly' },
             { label: 'Monthly', value: 'Monthly' }
         ];
     }
@@ -113,16 +113,16 @@ export default class OpenFlowModal extends LightningElement {
         const isNational = this.recordTypeApiName.toLowerCase().includes('national');
         if (!isNational) {
             switch (settlementValue) {
-                case 'Weekly': return ['Weekly', 'Bimonthly', 'Monthly'];
-                case 'Bimonthly': return ['Bimonthly', 'Monthly'];
+                case 'Weekly': return ['Weekly', 'Biweekly', 'Monthly'];
+                case 'Biweekly': return ['Biweekly', 'Monthly'];
                 case 'Monthly': return ['Monthly'];
                 default: return [];
             }
         } else {
             switch (settlementValue) {
-                case 'Daily': return ['Daily', 'Weekly', 'Bimonthly', 'Monthly', 'Fluxo Médio'];
-                case 'Weekly': return ['Weekly', 'Bimonthly', 'Monthly', 'Fluxo Médio'];
-                case 'Bimonthly': return ['Bimonthly', 'Monthly', 'Fluxo Médio'];
+                case 'Daily': return ['Daily', 'Weekly', 'Biweekly', 'Monthly', 'Fluxo Médio'];
+                case 'Weekly': return ['Weekly', 'Biweekly', 'Monthly', 'Fluxo Médio'];
+                case 'Biweekly': return ['Biweekly', 'Monthly', 'Fluxo Médio'];
                 case 'Monthly': return ['Monthly', 'Fluxo Médio'];
                 default: return [];
             }

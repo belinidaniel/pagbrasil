@@ -16,11 +16,6 @@
         <label>Biweekly</label>
     </customValue>
     <customValue>
-        <fullName>Bimonthly</fullName>
-        <default>false</default>
-        <label>Bimonthly</label>
-    </customValue>
-    <customValue>
         <fullName>Monthly</fullName>
         <default>false</default>
         <label>Monthly</label>

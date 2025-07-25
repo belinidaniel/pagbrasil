@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-23-2025
+ * @last modified on  : 07-25-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -185,6 +185,13 @@ public class PropostaNacionalController {
     public List<String> pacotesSms { get; set; }
     public List<String> pacotesEmails { get; set; }
     public Boolean isShowPageRepasse { get; set; }
+
+    public string settlementFrequency { get; set; }
+    public String settlementFrequencyPage { get; set; }
+    public string settlementFrequencyCreditCardPage1 { get; set; }
+    public String settlementFrequencyCreditCardPage2 { get; set; }
+    public String settlementFrequencyPage1 { get; set; }
+    public String settlementFrequencyPage2 { get; set; }
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -535,34 +542,70 @@ public class PropostaNacionalController {
         if (quote.Opportunity.Other_Payments_Settlement_Frequency_1__c == null || quote.Opportunity.Other_Payments_Settlement_Frequency_1__c == null)
             return;
 
-        if (this.isGatewayAndIntermediation) {
+        this.settlementFrequency = null;
+        if(quote.Opportunity.Other_Payments_Settlement_Frequency_1__c != null){
+            this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
                 when 'Daily' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+                    this.settlementFrequency = 'diário';
+                    this.settlementFrequencyPage = 'D+0';
                 }
                 when 'Weekly' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11S';
+                    this.settlementFrequency = 'semanal';
+                    this.settlementFrequencyPage = 'D+7';   
                 }
-                when 'Bimonthly' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11B';
+                when 'Biweekly' {
+                    this.settlementFrequency = 'bimestral';
+                    this.settlementFrequencyPage = 'D+15';
                 }
                 when 'Monthly' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11M';
+                    this.settlementFrequency = 'mensal';
+                    this.settlementFrequencyPage = 'D+31';
                 }
             }
-        }else if (this.isIntermediation && !this.containsCreditCard) {
-            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
+        }
+
+
+        if(quote.Opportunity.Settlement_Frequency_1__c != null){
+            this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+            switch on quote.Opportunity.Settlement_Frequency_1__c {
                 when 'Daily' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+                    this.settlementFrequencyCreditCardPage1 = 'diário';
+                    this.settlementFrequencyPage1 = 'D+0';
                 }
                 when 'Weekly' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11S';
+                    this.settlementFrequencyCreditCardPage1 = 'semanal';
+                    this.settlementFrequencyPage1 = 'D+7';   
                 }
-                when 'Bimonthly' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11B';
+                when 'Biweekly' {
+                    this.settlementFrequencyCreditCardPage1 = 'bimestral';
+                    this.settlementFrequencyPage1 = 'D+15';
                 }
                 when 'Monthly' {
-                    this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11M';
+                    this.settlementFrequencyCreditCardPage1 = 'mensal';
+                    this.settlementFrequencyPage1 = 'D+31';
+                }
+            }
+        }
+
+        if(quote.Opportunity.Settlement_Frequency_2__c != null){
+            this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+            switch on quote.Opportunity.Settlement_Frequency_2__c {
+                when 'Daily' {
+                    this.settlementFrequencyCreditCardPage2 = 'diário';
+                    this.settlementFrequencyPage2 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyCreditCardPage2 = 'semanal';
+                    this.settlementFrequencyPage2 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyCreditCardPage2 = 'bimestral';
+                    this.settlementFrequencyPage2 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyCreditCardPage2 = 'mensal';
+                    this.settlementFrequencyPage2 = 'D+31';
                 }
             }
         }
@@ -601,8 +644,8 @@ public class PropostaNacionalController {
             setDailyFrequencyPageOne(antecipation);
         } else if (settlement == 'Weekly') {
             setWeeklyFrequencyPageOne(antecipation);
-        } else if (settlement == 'Bimonthly') {
-            setBimonthlyFrequencyPageOne(antecipation);
+        } else if (settlement == 'Biweekly') {
+            setBiweeklyFrequencyPageOne(antecipation);
         } else if (settlement == 'Monthly') {
             setMonthlyFrequencyPageOne(antecipation);
         }
@@ -616,7 +659,7 @@ public class PropostaNacionalController {
     private void setFrequencyPageTwo(String settlement, String antecipation) {
         if (settlement == 'Daily') setDailyFrequencyPageTwo(antecipation);
         else if (settlement == 'Weekly') setWeeklyFrequencyPageTwo(antecipation);
-        else if (settlement == 'Bimonthly') setBimonthlyFrequencyPageTwo(antecipation);
+        else if (settlement == 'Biweekly') setBiweeklyFrequencyPageTwo(antecipation);
         else if (settlement == 'Monthly') setMonthlyFrequencyPageTwo(antecipation);
 
         if (antecipation == 'Fluxo Médio') {
@@ -634,7 +677,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageOne = 'D+7';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'semanal';
-        } else if (antecipation == 'Bimonthly') {
+        } else if (antecipation == 'Biweekly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'quinzenal';
@@ -650,7 +693,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'semanal';
-        } else if (antecipation == 'Bimonthly') {
+        } else if (antecipation == 'Biweekly') {
             this.frequencyCardEligebleDatePageOne = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'quinzenal';
@@ -661,8 +704,8 @@ public class PropostaNacionalController {
         }
     }
 
-    private void setBimonthlyFrequencyPageOne(String antecipation) {
-        if (antecipation == 'Bimonthly') {
+    private void setBiweeklyFrequencyPageOne(String antecipation) {
+        if (antecipation == 'Biweekly') {
             this.frequencyCardEligebleDatePageOne = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageOne = 'D+0';
             this.antecipationFrequencyPageOne = 'quinzenal';
@@ -690,7 +733,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageTwo = 'D+7';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'semanal';
-        } else if (antecipation == 'Bimonthly') {
+        } else if (antecipation == 'Biweekly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'quinzenal';
@@ -706,7 +749,7 @@ public class PropostaNacionalController {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'semanal';
-        } else if (antecipation == 'Bimonthly') {
+        } else if (antecipation == 'Biweekly') {
             this.frequencyCardEligebleDatePageTwo = 'D+15';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'quinzenal';
@@ -717,8 +760,8 @@ public class PropostaNacionalController {
         }
     }
 
-    @TestVisible private void setBimonthlyFrequencyPageTwo(String antecipation) {
-        if (antecipation == 'Bimonthly') {
+    @TestVisible private void setBiweeklyFrequencyPageTwo(String antecipation) {
+        if (antecipation == 'Biweekly') {
             this.frequencyCardEligebleDatePageTwo = 'D+0';
             this.frequencyPixBoletoDebitoFlashEligebleDatePageTwo = 'D+0';
             this.antecipationFrequencyPageTwo = 'quinzenal';
@@ -1003,9 +1046,9 @@ public class PropostaNacionalController {
 
         if (page == 'One') {
             System.debug('getParcelas page: ' + this.taxaAntecipacao);
-            String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
-            System.debug('getParcelas antecipation: ' + antecipation);
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            String settlementFrequency = quote.Opportunity.Settlement_Frequency_1__c;
+            System.debug('getParcelas settlementFrequency: ' + settlementFrequency);
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
             if(!taxes.isEmpty()) {
                 this.isFrequency = true;
             }
@@ -1054,8 +1097,8 @@ public class PropostaNacionalController {
         }
 
         if (page == 'Two') {
-            String antecipation = quote.Opportunity.Antecipation_Frequency_2__c;
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            String settlementFrequency = quote.Opportunity.Settlement_Frequency_2__c;
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
             if(!taxes.isEmpty()) {
                 this.isFrequency = true;
             }

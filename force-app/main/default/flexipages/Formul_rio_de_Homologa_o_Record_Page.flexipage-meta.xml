@@ -132,6 +132,58 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Login__c</fieldItem>
+                <identifier>RecordLogin_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-bc3a1f2f-16f2-4a9b-aaaa-fdfedb457b3f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Password__c</fieldItem>
+                <identifier>RecordSenha_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-3c8b7cdb-a477-4142-a100-8175448a2bda</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-bc3a1f2f-16f2-4a9b-aaaa-fdfedb457b3f</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-3c8b7cdb-a477-4142-a100-8175448a2bda</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c8db300a-cc98-4dce-8f52-64924a99dbcf</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.MccCode__c</fieldItem>
                 <identifier>RecordMCC_Code__cField</identifier>
             </fieldInstance>
@@ -1185,58 +1237,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Login__c</fieldItem>
-                <identifier>RecordLogin_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-bc3a1f2f-16f2-4a9b-aaaa-fdfedb457b3f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Password__c</fieldItem>
-                <identifier>RecordSenha_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-3c8b7cdb-a477-4142-a100-8175448a2bda</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-bc3a1f2f-16f2-4a9b-aaaa-fdfedb457b3f</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-3c8b7cdb-a477-4142-a100-8175448a2bda</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column2</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-c8db300a-cc98-4dce-8f52-64924a99dbcf</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.BoletoBancario__c</fieldItem>
                 <identifier>RecordBoletoBancario__cField</identifier>
             </fieldInstance>
@@ -1703,6 +1703,24 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-c8db300a-cc98-4dce-8f52-64924a99dbcf</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Informações da loja</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-08841f5b-1b40-4a95-9736-5075afa3459f</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -1890,24 +1908,6 @@
                         <rightValue>Pix_International_Pix_Roaming</rightValue>
                     </criteria>
                 </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-c8db300a-cc98-4dce-8f52-64924a99dbcf</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Informações da loja</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

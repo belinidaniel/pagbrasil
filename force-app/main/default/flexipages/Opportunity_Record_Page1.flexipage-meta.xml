@@ -19,7 +19,7 @@
                         <valueListItems>
                             <value>Opportunity.Confirm_Processing_Date</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -34,12 +34,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.RequestLegalChange</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -55,12 +60,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Homologation_Approval</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -71,12 +81,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Confirm_Accounts</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -97,12 +112,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Accept_Proposal</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Has_Synced_Quote__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -130,6 +150,11 @@
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -138,7 +163,7 @@
                         <valueListItems>
                             <value>Opportunity.Reject_Proposal</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Has_Synced_Quote__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -169,12 +194,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.New_Quote</value>
                             <visibilityRule>
-                                <booleanFilter>(1 OR 2 ) AND 3 AND 4</booleanFilter>
+                                <booleanFilter>(1 OR 2 ) AND 3 AND 4 AND 5</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -192,6 +222,11 @@
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -226,7 +261,7 @@
                         <valueListItems>
                             <value>Opportunity.RCC</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -252,12 +287,17 @@
                                     <operator>NE</operator>
                                     <rightValue>Approved</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.Enviar_KYC</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.SyncedQuote.CustomerAcceptance__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -270,6 +310,11 @@
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -294,7 +339,7 @@
                         <valueListItems>
                             <value>CustomButton.Opportunity.Deca0GVA000002ii932AA</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.RecordType.Name}</leftValue>
                                     <operator>EQUAL</operator>
@@ -310,12 +355,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>CustomButton.Opportunity.Deca0GVA000002njsT2AQ</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.RecordType.Name}</leftValue>
                                     <operator>EQUAL</operator>
@@ -331,12 +381,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.CreateOrganizationZD</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Account.OrganizationId__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -351,12 +406,17 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Opportunity.CreateTicketZD</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -375,13 +435,24 @@
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
                             <visibilityRule>
+                                <booleanFilter>1 AND 2</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Is_Opportunity_Valid__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -474,8 +545,14 @@
                 <fieldItem>Record.AccountId</fieldItem>
                 <identifier>RecordAccountIdField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -491,10 +568,20 @@
                 <fieldItem>Record.AccountId</fieldItem>
                 <identifier>RecordAccountIdField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -541,7 +628,7 @@
                 <fieldItem>Record.Product_or_service_website_URL__c</fieldItem>
                 <identifier>RecordProduct_or_service_website_URL_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -551,6 +638,10 @@
                         <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -564,9 +655,15 @@
                 <fieldItem>Record.TierCS__c</fieldItem>
                 <identifier>RecordTierCS_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TicketId__c}</leftValue>
                         <operator>NE</operator>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -580,8 +677,18 @@
                 <fieldItem>Record.TierCS__c</fieldItem>
                 <identifier>RecordTierCS_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.TicketId__c}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
                         <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
@@ -601,15 +708,48 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Preferred_Language__c</fieldItem>
                 <identifier>RecordPreferred_Language__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Crossborder</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Preferred_Language__c</fieldItem>
+                <identifier>RecordPreferred_Language_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR (1 AND 3)</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -618,16 +758,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Probability</fieldItem>
-                <identifier>RecordProbabilityField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -642,10 +772,34 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Hibernate__c</fieldItem>
                 <identifier>RecordHibernate_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Hibernate__c</fieldItem>
+                <identifier>RecordHibernate_cField2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -695,8 +849,14 @@
                 <fieldItem>Record.BusinessModelType__c</fieldItem>
                 <identifier>RecordBusinessModelType_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -712,10 +872,20 @@
                 <fieldItem>Record.BusinessModelType__c</fieldItem>
                 <identifier>RecordBusinessModelType_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -729,8 +899,14 @@
                 <fieldItem>Record.nb_receita_mensal__c</fieldItem>
                 <identifier>Recordnb_receita_mensal_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -746,10 +922,20 @@
                 <fieldItem>Record.nb_receita_mensal__c</fieldItem>
                 <identifier>Recordnb_receita_mensal_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -780,10 +966,20 @@
                 <fieldItem>Record.previs_fat_rs__c</fieldItem>
                 <identifier>Recordprevis_fat_rs_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -797,8 +993,14 @@
                 <fieldItem>Record.AverageSalesTicket__c</fieldItem>
                 <identifier>RecordTicket_Medio_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -814,10 +1016,20 @@
                 <fieldItem>Record.AverageSalesTicket__c</fieldItem>
                 <identifier>RecordAverageSalesTicket_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -889,10 +1101,73 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Cartao_Credito_Mensal__c</fieldItem>
                 <identifier>RecordCartao_Credito_Mensal_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Cartao_Credito_Mensal__c</fieldItem>
+                <identifier>RecordCartao_Credito_Mensal_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Cartao_Debito_Mensal__c</fieldItem>
+                <identifier>RecordCartao_Debito_Mensal__cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -902,7 +1177,47 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Cartao_Debito_Mensal__c</fieldItem>
-                <identifier>RecordCartao_Debito_Mensal__cField</identifier>
+                <identifier>RecordCartao_Debito_Mensal_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Boleto_Share__c</fieldItem>
+                <identifier>RecordBoleto_Share_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -912,7 +1227,47 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Boleto_Share__c</fieldItem>
-                <identifier>RecordBoleto_Share_cField</identifier>
+                <identifier>RecordBoleto_Share_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.PixMensal__c</fieldItem>
+                <identifier>RecordPixMensal_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -922,7 +1277,24 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.PixMensal__c</fieldItem>
-                <identifier>RecordPixMensal_cField</identifier>
+                <identifier>RecordPixMensal_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-8e384e2b-5224-4f47-8d73-477fac01775f</name>
@@ -938,8 +1310,14 @@
                 <fieldItem>Record.PSP__c</fieldItem>
                 <identifier>RecordPSP_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -955,10 +1333,20 @@
                 <fieldItem>Record.PSP__c</fieldItem>
                 <identifier>RecordPSP_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -972,8 +1360,14 @@
                 <fieldItem>Record.PaymentRecurrence__c</fieldItem>
                 <identifier>RecordRecorrencia_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -989,10 +1383,20 @@
                 <fieldItem>Record.PaymentRecurrence__c</fieldItem>
                 <identifier>RecordPaymentRecurrence_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1006,8 +1410,14 @@
                 <fieldItem>Record.Antecipation__c</fieldItem>
                 <identifier>RecordAntecipation__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1023,10 +1433,20 @@
                 <fieldItem>Record.Antecipation__c</fieldItem>
                 <identifier>RecordAntecipation_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1040,8 +1460,14 @@
                 <fieldItem>Record.Product_Type__c</fieldItem>
                 <identifier>RecordProduct_Type__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1057,10 +1483,20 @@
                 <fieldItem>Record.Product_Type__c</fieldItem>
                 <identifier>RecordProduct_Type_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1074,8 +1510,14 @@
                 <fieldItem>Record.IntegrationType__c</fieldItem>
                 <identifier>RecordIntegrationType_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1091,10 +1533,20 @@
                 <fieldItem>Record.IntegrationType__c</fieldItem>
                 <identifier>RecordIntegrationType_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1108,7 +1560,7 @@
                 <fieldItem>Record.Integracao_Outra__c</fieldItem>
                 <identifier>RecordIntegracao_Outra_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.IntegrationType__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1116,6 +1568,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1131,16 +1588,25 @@
                 <fieldItem>Record.Integracao_Outra__c</fieldItem>
                 <identifier>RecordIntegracao_Outra_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2 AND 3) OR 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.IntegrationType__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Other</rightValue>
                     </criteria>
                     <criteria>
-                        <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1154,8 +1620,14 @@
                 <fieldItem>Record.Current_Platform__c</fieldItem>
                 <identifier>RecordCurrent_Platform_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1171,10 +1643,20 @@
                 <fieldItem>Record.Current_Platform__c</fieldItem>
                 <identifier>RecordCurrent_Platform_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1211,7 +1693,7 @@
                 <fieldItem>Record.Other_Platform__c</fieldItem>
                 <identifier>RecordOther_Platform_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Current_Platform__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1221,6 +1703,10 @@
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1234,8 +1720,14 @@
                 <fieldItem>Record.Segmento__c</fieldItem>
                 <identifier>RecordSegmento_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1251,10 +1743,20 @@
                 <fieldItem>Record.Segmento__c</fieldItem>
                 <identifier>RecordSegmento_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1268,7 +1770,7 @@
                 <fieldItem>Record.SegmentoOutrosSpecify__c</fieldItem>
                 <identifier>RecordSegmentoOutrosSpecify_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Segmento__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1276,6 +1778,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1291,7 +1798,7 @@
                 <fieldItem>Record.SegmentoOutrosSpecify__c</fieldItem>
                 <identifier>RecordSegmentoOutrosSpecify_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2 AND 3) OR (1 AND 4)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Segmento__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1301,6 +1808,15 @@
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1314,7 +1830,7 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordClasseDeProdutos_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1324,6 +1840,11 @@
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>NaTional</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1337,7 +1858,7 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordProductClass_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2 AND 3) OR (2 AND 4)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1347,6 +1868,47 @@
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>NaTional</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ProductClass__c</fieldItem>
+                <identifier>RecordProductClass_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2 AND 3) OR (2 AND 4)</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1360,7 +1922,7 @@
                 <fieldItem>Record.Moeda__c</fieldItem>
                 <identifier>RecordMoeda_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
@@ -1368,6 +1930,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1383,7 +1950,7 @@
                 <fieldItem>Record.Moeda__c</fieldItem>
                 <identifier>RecordMoeda_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2 AND 3) OR (1 AND 4)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
@@ -1391,6 +1958,32 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Descricao_Empresa__c</fieldItem>
+                <identifier>RecordDescricao_Empresa_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1404,7 +1997,19 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Descricao_Empresa__c</fieldItem>
-                <identifier>RecordDescricao_Empresa_cField</identifier>
+                <identifier>RecordDescricao_Empresa_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1416,8 +2021,14 @@
                 <fieldItem>Record.Agency__c</fieldItem>
                 <identifier>RecordAg_ncia_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1433,7 +2044,7 @@
                 <fieldItem>Record.Agency__c</fieldItem>
                 <identifier>RecordAgency_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 AND 2 AND 3) OR (1 AND 4)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.DisableAgency__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1443,6 +2054,15 @@
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1484,8 +2104,14 @@
                 <fieldItem>Record.NationalPaymentMethod__c</fieldItem>
                 <identifier>RecordNationalPaymentMethod_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1501,10 +2127,20 @@
                 <fieldItem>Record.NationalPaymentMethod__c</fieldItem>
                 <identifier>RecordNationalPaymentMethod_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1518,8 +2154,14 @@
                 <fieldItem>Record.PagShield__c</fieldItem>
                 <identifier>RecordPagShield__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1535,10 +2177,20 @@
                 <fieldItem>Record.PagShield__c</fieldItem>
                 <identifier>RecordPagShield_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1552,8 +2204,14 @@
                 <fieldItem>Record.PagShield_Premium__c</fieldItem>
                 <identifier>RecordPagShield_Premium__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1569,10 +2227,20 @@
                 <fieldItem>Record.PagShield_Premium__c</fieldItem>
                 <identifier>RecordPagShield_Premium_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1586,8 +2254,14 @@
                 <fieldItem>Record.PagShield_Premium_On_Demand__c</fieldItem>
                 <identifier>RecordPagShield_Premium_On_Demand__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1603,10 +2277,20 @@
                 <fieldItem>Record.PagShield_Premium_On_Demand__c</fieldItem>
                 <identifier>RecordPagShield_Premium_On_Demand_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1624,8 +2308,14 @@
                 <fieldItem>Record.BusinessModel__c</fieldItem>
                 <identifier>RecordBusinessModel_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1641,8 +2331,14 @@
                 <fieldItem>Record.BusinessModel__c</fieldItem>
                 <identifier>RecordBusinessModel_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1658,8 +2354,14 @@
                 <fieldItem>Record.UsePagstream__c</fieldItem>
                 <identifier>RecordUtilizar_Pagstream_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1675,10 +2377,20 @@
                 <fieldItem>Record.UsePagstream__c</fieldItem>
                 <identifier>RecordUsePagstream_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1692,8 +2404,14 @@
                 <fieldItem>Record.Payout__c</fieldItem>
                 <identifier>RecordPayout_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1709,10 +2427,20 @@
                 <fieldItem>Record.Payout__c</fieldItem>
                 <identifier>RecordPayout_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1726,8 +2454,14 @@
                 <fieldItem>Record.GooglePay__c</fieldItem>
                 <identifier>RecordGooglePay_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1743,10 +2477,20 @@
                 <fieldItem>Record.GooglePay__c</fieldItem>
                 <identifier>RecordGooglePay_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1760,8 +2504,14 @@
                 <fieldItem>Record.ApplePay__c</fieldItem>
                 <identifier>RecordApplePay_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1777,10 +2527,20 @@
                 <fieldItem>Record.ApplePay__c</fieldItem>
                 <identifier>RecordApplePay_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1794,8 +2554,14 @@
                 <fieldItem>Record.PixOneClick__c</fieldItem>
                 <identifier>RecordPixOneClick__cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1811,10 +2577,20 @@
                 <fieldItem>Record.PixOneClick__c</fieldItem>
                 <identifier>RecordPixOneClick_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1828,10 +2604,16 @@
                 <fieldItem>Record.Pix_Automatico__c</fieldItem>
                 <identifier>RecordPix_Automatico_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1845,8 +2627,35 @@
                 <fieldItem>Record.Pix_Automatico__c</fieldItem>
                 <identifier>RecordPix_Automatico_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ZeroAuthCreditCard__c</fieldItem>
+                <identifier>RecordZeroAuthCreditCard_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1860,7 +2669,36 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.ZeroAuthCreditCard__c</fieldItem>
-                <identifier>RecordZeroAuthCreditCard_cField</identifier>
+                <identifier>RecordZeroAuthCreditCard_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ThreeDSCreditCard__c</fieldItem>
+                <identifier>RecordThreeDSCreditCard_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1870,7 +2708,19 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.ThreeDSCreditCard__c</fieldItem>
-                <identifier>RecordThreeDSCreditCard_cField</identifier>
+                <identifier>RecordThreeDSCreditCard_cField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-8638574b-803d-4293-8b3a-8f64dd4bcffb</name>
@@ -1910,7 +2760,7 @@
                 <fieldItem>Record.Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_1__cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1918,6 +2768,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1933,7 +2788,7 @@
                 <fieldItem>Record.Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_1_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1941,6 +2796,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1956,7 +2816,7 @@
                 <fieldItem>Record.Settlement_Frequency_2__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_2__cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1964,6 +2824,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -1979,7 +2844,7 @@
                 <fieldItem>Record.Settlement_Frequency_2__c</fieldItem>
                 <identifier>RecordSettlement_Frequency_2_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1987,6 +2852,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Settlement_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2002,7 +2872,7 @@
                 <fieldItem>Record.Other_Payments_Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordOther_Payments_Settlement_Frequency_1_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Visible_Others_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2010,6 +2880,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2025,7 +2900,7 @@
                 <fieldItem>Record.Other_Payments_Settlement_Frequency_1__c</fieldItem>
                 <identifier>RecordOther_Payments_Settlement_Frequency_1_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Visible_Others_Settlement_Frequency__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2033,6 +2908,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2052,7 +2932,7 @@
                 <fieldItem>Record.Antecipation_Frequency_1__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_1__cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2060,6 +2940,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2075,7 +2960,7 @@
                 <fieldItem>Record.Antecipation_Frequency_1__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_1_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2083,6 +2968,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2098,7 +2988,7 @@
                 <fieldItem>Record.Antecipation_Frequency_2__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_2__cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2106,6 +2996,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2121,7 +3016,7 @@
                 <fieldItem>Record.Antecipation_Frequency_2__c</fieldItem>
                 <identifier>RecordAntecipation_Frequency_2_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2129,6 +3024,11 @@
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Visible_Anticipation_Frequency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2167,15 +3067,21 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.DataConversaoProcessing__c</fieldItem>
-                <identifier>RecordDataConversaoProcessing_cField2</identifier>
+                <identifier>RecordDataConversaoProcessing_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
-                        <operator>EQUAL</operator>
+                        <operator>NE</operator>
                         <rightValue>Processing</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2184,15 +3090,21 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.DataConversaoProcessing__c</fieldItem>
-                <identifier>RecordDataConversaoProcessing_cField</identifier>
+                <identifier>RecordDataConversaoProcessing_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
-                        <operator>NE</operator>
+                        <operator>EQUAL</operator>
                         <rightValue>Processing</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2238,8 +3150,14 @@
                 <fieldItem>Record.TeseProspeccao__c</fieldItem>
                 <identifier>RecordTeseProspeccao_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2255,10 +3173,20 @@
                 <fieldItem>Record.TeseProspeccao__c</fieldItem>
                 <identifier>RecordTeseProspeccao_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2272,8 +3200,14 @@
                 <fieldItem>Record.Data_de_indicacao__c</fieldItem>
                 <identifier>RecordData_de_indicacao_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2289,10 +3223,20 @@
                 <fieldItem>Record.Data_de_indicacao__c</fieldItem>
                 <identifier>RecordData_de_indicacao_cField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2306,8 +3250,14 @@
                 <fieldItem>Record.qual_cliente_indicou__c</fieldItem>
                 <identifier>Recordqual_cliente_indicou_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2323,10 +3273,20 @@
                 <fieldItem>Record.qual_cliente_indicou__c</fieldItem>
                 <identifier>Recordqual_cliente_indicou_cField4</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2340,8 +3300,14 @@
                 <fieldItem>Record.Operacao__c</fieldItem>
                 <identifier>RecordOperacao_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2357,10 +3323,20 @@
                 <fieldItem>Record.Operacao__c</fieldItem>
                 <identifier>RecordOperacao_cField3</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2378,8 +3354,14 @@
                 <fieldItem>Record.LeadSource</fieldItem>
                 <identifier>RecordLeadSourceField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
@@ -2395,10 +3377,20 @@
                 <fieldItem>Record.LeadSource</fieldItem>
                 <identifier>RecordLeadSourceField2</identifier>
                 <visibilityRule>
+                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -2417,10 +3409,39 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.First_Appointment_Status__c</fieldItem>
+                <identifier>RecordFirst_Appointment_Status_cField2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.First_Appointment_Status__c</fieldItem>
                 <identifier>RecordFirst_Appointment_Status_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-ec056c6f-c73d-405f-ad8f-773494d52bee</name>
@@ -2869,10 +3890,16 @@
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Contract</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2890,10 +3917,16 @@
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab3</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Contract</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -3062,7 +4095,7 @@
                 <componentName>homologationFormList</componentName>
                 <identifier>c_homologationFormList</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
+                    <booleanFilter>(1 OR 2 ) AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>EQUAL</operator>
@@ -3072,6 +4105,11 @@
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Contract</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

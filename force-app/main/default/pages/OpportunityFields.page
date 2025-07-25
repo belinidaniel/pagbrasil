@@ -1,453 +1,507 @@
-<!--
-  @description : Reformulated PDF layout keeping visual style
-  @author      : Marcelo Duarte de Aguiar
--->
 <apex:page controller="OpportunityFieldsPageController"
-        showHeader="false"
-        applyHtmlTag="false"
-        applyBodyTag="false"
-        standardStylesheets="false"
-        showQuickActionVfHeader="false"
-        renderAs="pdf">
+    showHeader="false"
+    applyHtmlTag="false"
+    applyBodyTag="false"
+    renderAs="pdf"
+    standardStylesheets="false">
+
 
     <html>
         <head>
-            <!-- identical visual style (minor tweaks for column wrap) -->
             <style type="text/css">
                 table {
                     border-collapse: collapse;
-                    margin: 25px 0;
                     font-size: .98em;
                     font-family: 'Segoe UI', Arial, sans-serif;
                     width: 100%;
+                    margin: 25px 0;
+                    page-break-inside: avoid;
                     background:#fff;
                 }
-                th,td{border:1px solid #b0b0b0;padding:12px 15px;}
-                th{
-                    background:#2d3e50;color:#f5f5f5;text-align:center;
-                    font-weight:600;font-size:1.05em;letter-spacing:.5px;
+                th, td {
+                    border: 1px solid #b0b0b0;
+                    padding: 12px 15px;
                 }
-                tr{page-break-inside:avoid;}
-                tr:nth-child(even) td{background:#f3f6fa;}
-                tr:nth-child(odd)  td{background:#e9edf2;}
-                tbody tr{border-bottom:1px solid #b0b0b0;}
-                h1{font-family:'Segoe UI',Arial,sans-serif;font-size:1.8em;font-weight:700;
-                    color:#1a365d;margin:35px 0 20px 0;padding:15px 0 10px 0;
-                    border-bottom:3px solid #3182ce;text-transform:uppercase;letter-spacing:1px;
-                    background:linear-gradient(135deg,#f7fafc 0%,#edf2f7 100%);
-                    padding-left:15px;border-radius:5px 5px 0 0;}
-                h2{font-family:'Segoe UI',Arial,sans-serif;font-size:1.3em;font-weight:600;
-                    color:#2d3748;margin:25px 0 10px 0;padding:10px 0 8px 12px;
-                    border-left:4px solid #4299e1;background:#f1f5f9;border-radius:0 5px 5px 0;
-                    text-transform:capitalize;letter-spacing:.3px;}
-                h3{font-family:'Segoe UI',Arial,sans-serif;font-size:1.1em;font-weight:600;
-                    color:#4a5568;margin:20px 0 8px 0;padding:8px 0 6px 10px;
-                    border-left:3px solid #63b3ed;background:#f7fafc;border-radius:0 3px 3px 0;}
-                h1:not(:first-child){margin-top:45px;}
+                th {
+                    background: #2d3e50;
+                    color: #f5f5f5;
+                    font-weight: 600;
+                    font-size: 1.05em;
+                    letter-spacing: .5px;
+                    text-align: left;
+                    width: 40%;
+                }
+                td {
+                    background: #f3f6fa;
+                    text-align: left;
+                    width: 60%;
+                }
+                tr:nth-child(odd) th {
+                    background: #2d3e50;
+                    color: #f5f5f5;
+                }
+                tr:nth-child(odd) td {
+                    background: #e9edf2;
+                }
+                h1 {
+                    font-family: 'Segoe UI', Arial, sans-serif;
+                    font-size: 1.8em;
+                    font-weight: 700;
+                    color: #1a365d;
+                    margin: 35px 0 20px;
+                    padding: 15px 0 10px 15px;
+                    border-bottom: 3px solid #3182ce;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+                    border-radius: 5px 5px 0 0;
+                    page-break-after: avoid;
+                    page-break-inside: avoid;
+                }
+                h2 {
+                    font-family: 'Segoe UI', Arial, sans-serif;
+                    font-size: 1.3em;
+                    font-weight: 600;
+                    color: #2d3748;
+                    margin: 25px 0 10px;
+                    padding: 10px 0 8px 12px;
+                    border-left: 4px solid #4299e1;
+                    background: #f1f5f9;
+                    border-radius: 0 5px 5px 0;
+                    text-transform: capitalize;
+                    letter-spacing: .3px;
+                    page-break-after: avoid;
+                    page-break-inside: avoid;
+                }
+                h3 {
+                    font-family: 'Segoe UI', Arial, sans-serif;
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    color: #4a5568;
+                    margin: 20px 0 8px;
+                    padding: 8px 0 6px 10px;
+                    border-left: 3px solid #63b3ed;
+                    background: #f7fafc;
+                    border-radius: 0 3px 3px 0;
+                    page-break-after: avoid;
+                    page-break-inside: avoid;
+                }
+                div.section-wrapper {
+                    page-break-inside: avoid;
+                }
             </style>
         </head>
-
         <body>
-
-            <!-- ------------- OPPORTUNITY HEADER ------------- -->
-            <h1>OPPORTUNITY: {!wrapper.name}</h1>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>ID</td><td>{!wrapper.id}</td></tr>
-                <tr><td>Product Type</td><td>{!wrapper.productType}</td></tr>
-                <tr><td>Business Model</td><td>{!wrapper.businessModel}</td></tr>
-                <tr><td>Integration Type</td><td>{!wrapper.integrationType}</td></tr>
-            </table>
-
-            <!-- ========================================================= -->
-            <!--  One PDF is rendered per HomologationForm.  The page       -->
-            <!--  receives the homologationId in the URL and shows a single -->
-            <!--  homologation block.  All <apex:repeat > removed.           -->
-            <!-- ========================================================= -->
-
             <apex:variable var="form" value="{!homologationForms[0]}"/>
             <apex:variable var="isCross" value="{!wrapper.isCrossBorder}"/>
 
-            <!-- ------------- CONFIGURATION ------------- -->
-            <h1>CONFIGURATION</h1>
 
-            <!-- Main -->
-            <h2>Main</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Name</td><td>{!wrapper.name}</td></tr>
-                <tr><td>Account Name</td><td>{!wrapper.account.name}</td></tr>
-                <tr><td>Final Risk</td><td>{!rccWrapper.finalRisk}</td></tr>
+            <apex:outputPanel rendered="{!hasMainSection}">
+                <div class="section-wrapper">
+                    <h1>OPPORTUNITY: {!wrapper.name}</h1>
+                    <table>
+                        <tr><th>ID</th> <td>{!wrapper.id}</td></tr>
+                        <tr><th>Product Type</th> <td>{!wrapper.productType}</td></tr>
+                        <tr><th>Business Model</th> <td>{!wrapper.businessModel}</td></tr>
+                        <tr><th>Integration Type</th> <td>{!wrapper.integrationType}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
 
-                <tr><td>Login</td><td>{!form.Login__c}</td></tr>
-                <tr><td>Password</td><td>{!form.Password__c}</td></tr>
-                <tr><td>Main contact of the operation Email(s)</td><td>{!form.main_contact_email__c}</td></tr>
 
-                <apex:outputPanel rendered="{!isCross}">
-                    <tr><td>POD Manager email(s)</td><td>{!form.EmailsPodManager__c}</td></tr>
-                    <tr><td>POD Reminder</td><td>{!form.PodReminder__c}</td></tr>
-                </apex:outputPanel>
-            </table>
+            <apex:outputPanel rendered="{!hasMainSection}">
+                <div class="section-wrapper">
+                    <h1>CONFIGURATION</h1>
 
-            <!-- Billing Information section - corrigida -->
-            <h2>Billing Information (invoice)</h2>
-            <table>
-                <tr>
-                    <th>Label</th>
-                    <th>Value</th>
-                </tr>
-                <tr>
-                    <td>Category</td>
-                    <td>{!form.Category__c}</td>
-                </tr>
-                <tr>
-                    <td>MCC Code</td>
-                    <td>{!form.MccCode__c}</td>
-                </tr>
-                <tr>
-                    <td>VAT/CNPJ</td>
-                    <td>{!kycWrapper.fiscalRegistration}</td>
-                </tr>
-                <tr>
-                    <td>Business Name</td>
-                    <td>{!kycWrapper.legalName}</td>
-                </tr>
-                <tr>
-                    <td>Country</td>
-                    <td>{!kycWrapper.country}</td>
-                </tr>
-                <tr>
-                    <td>State</td>
-                    <td>{!kycWrapper.state}</td>
-                </tr>
-                <tr>
-                    <td>City</td>
-                    <td>{!kycWrapper.city}</td>
-                </tr>
-                <tr>
-                    <td>Postal Code</td>
-                    <td>{!kycWrapper.postalCode}</td>
-                </tr>
-                <tr>
-                    <td>Billing Number</td>
-                    <td>{!kycWrapper.streetNumber}</td>
-                </tr>
-                <tr>
-                    <td>Billing Complement</td>
-                    <td>{!kycWrapper.complement}</td>
-                </tr>
-                <tr>
-                    <td>Contract Start Date</td>
-                    <td>{!wrapper.contractStartDateCharge}</td>
-                </tr>
-                <tr>
-                    <td>KYC Last Modified Date</td>
-                    <td>{!kycWrapper.lastModifiedDate}</td>
-                </tr>
-                <tr>
-                    <td>Financial contact email(s)</td>
-                    <td>
-                        <apex:repeat value="{!kycWrapper.kycContacts}" var="contact">
-                            <apex:outputPanel rendered="{!IF(CONTAINS(contact.Type__c, 'Financeiro'), true, false)}">
-                                {!contact.Email};
+
+                    <h2>Main</h2>
+                    <table>
+                        <tr><th>Name</th><td>{!wrapper.name}</td></tr>
+                        <tr><th>Account Name</th><td>{!wrapper.account.name}</td></tr>
+                        <tr><th>Final Risk</th><td>{!rccWrapper.finalRisk}</td></tr>
+                        <tr><th>Login</th><td>{!form.Login__c}</td></tr>
+                        <tr><th>Password</th><td>{!form.Password__c}</td></tr>
+                        <tr><th>Main contact of the operation Email(s)</th><td>{!form.main_contact_email__c}</td></tr>
+                        <apex:outputPanel rendered="{!isCross}">
+                            <tr><th>POD Manager email(s)</th><td>{!form.EmailsPodManager__c}</td></tr>
+                            <tr><th>POD Reminder</th><td>{!form.PodReminder__c}</td></tr>
+                        </apex:outputPanel>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasBillingInfo}">
+                <div class="section-wrapper">
+                    <h2>Billing Information (invoice)</h2>
+                    <table>
+                        <tr><th>Category</th><td>{!form.Category__c}</td></tr>
+                        <tr><th>MCC Code</th><td>{!form.MccCode__c}</td></tr>
+                        <tr><th>VAT/CNPJ</th><td>{!kycWrapper.fiscalRegistration}</td></tr>
+                        <tr><th>Business Name</th><td>{!kycWrapper.legalName}</td></tr>
+                        <tr><th>Country</th><td>{!kycWrapper.country}</td></tr>
+                        <tr><th>State</th><td>{!kycWrapper.state}</td></tr>
+                        <tr><th>City</th><td>{!kycWrapper.city}</td></tr>
+                        <tr><th>Postal Code</th><td>{!kycWrapper.postalCode}</td></tr>
+                        <tr><th>Billing Number</th><td>{!kycWrapper.streetNumber}</td></tr>
+                        <tr><th>Billing Complement</th><td>{!kycWrapper.complement}</td></tr>
+                        <tr><th>Contract Start Date</th><td>{!wrapper.contractStartDateCharge}</td></tr>
+                        <tr><th>KYC Last Modified Date</th><td>{!kycWrapper.lastModifiedDate}</td></tr>
+                        <tr><th>Financial contact email(s)</th>
+                            <td>
+                                <apex:repeat value="{!kycWrapper.kycContacts}" var="contact">
+                                    <apex:outputPanel rendered="{!IF(CONTAINS(contact.Type__c, 'Financeiro'), true, false)}">
+                                        {!contact.Email};
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        CNPJ: {!kycWrapper.bankAccountDocument}<br/>
+                        Bank Name: {!kycWrapper.bankName}<br/>
+                        Bank Number: <i>{!kycWrapper.bankNumber}</i><br/>
+                        Agency Number: {!kycWrapper.bankAgency}
+                    </div>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasPayments}">
+                <div class="section-wrapper">
+                    <h1>ADMIN CONFIGURATION</h1>
+                    <h2>Payments</h2>
+                    <h3>Authorized payments</h3>
+                    <table>
+                        <tr><th>B = Boleto bancário</th><td>{!IF(form.BoletoBancario__c='Sim','Yes','No')}</td></tr>
+                        <tr><th>F = Boleto Flash</th><td>{!IF(form.BoletoFlash__c='Sim','Yes','No')}</td></tr>
+                        <tr><th>X = Pix</th><td>{!IF(form.Pix__c='Sim','Yes','No')}</td></tr>
+                        <tr><th>C = Cartão de crédito</th><td>{!IF(form.CartaoDeCredito__c='Sim','Yes','No')}</td></tr>
+                        <tr><th>D = Cartão de Débito/Débito Flash</th><td>{!IF(form.DebitoDebitoFlash__c='Sim','Yes','No')}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasPaymentAlert}">
+                <div class="section-wrapper">
+                    <h3>Payment Alert</h3>
+                    <table>
+                        <tr><th>B = Boleto bancário</th><td>{!IF(CONTAINS(form.PaymentAlert__c,'Boleto'),'Yes','No')}</td></tr>
+                        <tr><th>F = Boleto Flash</th><td>{!IF(CONTAINS(form.PaymentAlert__c,'Flash'),'Yes','No')}</td></tr>
+                        <tr><th>X = Pix</th><td>{!IF(CONTAINS(form.PaymentAlert__c,'Pix'),'Yes','No')}</td></tr>
+                        <tr><th>C = Cartão de crédito</th><td>{!IF(CONTAINS(form.PaymentAlert__c,'Credito'),'Yes','No')}</td></tr>
+                        <tr><th>D = Cartão de Débito/Débito Flash</th><td>{!IF(CONTAINS(form.PaymentAlert__c,'Debito'),'Yes','No')}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasTransferRelease}">
+                <div class="section-wrapper">
+                    <h2>Transfer Release Schedule</h2>
+                    <table>
+                        <tr>
+                            <th>Transfer Release Schedule</th>
+                            <td>{!IF(wrapper.payout,'Não','Sim')}</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><i>[TODO – elegible-date grid from Quote / Contract]</i></td>
+                        </tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasFunctionalities}">
+                <div class="section-wrapper">
+                    <h2>Functionalities</h2>
+                    <table>
+                        <tr>
+                            <th>Block Refund:</th>
+                            <td>{!form.BlockRefund__c}</td>
+                        </tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasShipment}">
+                <div class="section-wrapper">
+                    <h2>Shipment</h2>
+                    <table>
+                        <tr><th>Closing Frequency</th><td>{!wrapper.settlementFrequency}</td></tr>
+                        <apex:outputPanel rendered="{!isCross}">
+                            <tr><th>Spread on transaction value (as fee)</th><td><i>[TODO]</i></td></tr>
+                        </apex:outputPanel>
+                        <tr><th>Spread in net value (in exchange rate)</th><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
+                        <tr><th>Minimum Amount for Transfer</th><td>{!wrapper.valorMinimoRepasse.totalPrice}</td></tr>
+                        <tr><th>Reserve</th><td>{!wrapper.Reserva.percentValue}</td></tr>
+                        <tr><th>Remittance Currency</th><td>{!wrapper.moeda}</td></tr>
+                        <tr><th>Transfer Fee</th><td>{!wrapper.taxaTransferencia.totalPrice}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasPagShieldSection}">
+                <div class="section-wrapper">
+                    <h2>PagShield</h2>
+                    <table>
+                        <tr><th>PagShield</th><td>{!IF(wrapper.pagShield,'Yes','No')}</td></tr>
+                        <tr><th>PagShield Tax</th><td><i>[TODO]</i></td></tr>
+                        <tr><th>PagShield Premium</th><td>{!IF(wrapper.pagShieldPremium,'Yes','No')}</td></tr>
+                        <tr><th>PagShield Premium Variable Rate</th><td><i>[TODO]</i></td></tr>
+                        <tr><th>PagShield Premium Flat Rate</th><td><i>[TODO]</i></td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasProducts_BankBillet
+                || hasProducts_Pix
+                || hasProducts_CreditCard
+                || hasProducts_PaymentLink
+                || hasProducts_Pagstream}">
+                <div class="section-wrapper">
+                    <h1>PRODUCTS</h1>
+
+
+                    <apex:outputPanel rendered="{!hasProducts_BankBillet}">
+                        <h2>Bank Billet</h2>
+                        <table>
+                            <tr><th>Auto Cancellation</th><td>{!form.AutomaticCancellation__c}</td></tr>
+                            <tr><th>Business days after expiration to cancel (default and minimum, 2 days)</th><td>{!form.NumberOfDays__c}</td></tr>
+                        </table>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel rendered="{!hasProducts_Pix}">
+                        <h2>Pix</h2>
+                        <table>
+                            <tr><th>Pix Open Finance</th><td>{!IF(form.Pix_Open_Finance__c,'Yes','No')}</td></tr>
+                            <tr><th>Pix valid for</th><td>{!form.Pix_Valid_For__c}</td></tr>
+                        </table>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel rendered="{!hasProducts_CreditCard}">
+                        <h2>Credit Card</h2>
+                        <table>
+                            <tr><th>Recurrence with credit card</th><td>{!form.CreditCardRecurrence__c}</td></tr>
+                            <tr><th>Installment Recurrence</th><td>{!form.InstallmentRecurrence__c}</td></tr>
+                            <tr><th>Google Pay</th><td>{!IF(wrapper.googlePay,'Yes','No')}</td></tr>
+                            <tr><th>Apple Pay</th><td>{!IF(wrapper.applePay,'Yes','No')}</td></tr>
+                            <tr><th>Default Soft Descriptor</th><td>{!form.DefaultSoftDescriptor__c}</td></tr>
+                            <tr><th>Max installments amount</th><td>{!form.MaximumNumberInstallments__c}</td></tr>
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(form.Minimum_Amount_per_Installment__c))}">
+                                <tr><th>Min installment value</th><td>{!form.Minimum_Amount_per_Installment__c}</td></tr>
                             </apex:outputPanel>
-                        </apex:repeat>
-                    </td>
-                </tr>
-            </table>
-
-            <!-- Lista de dados bancários -->
-            <div>
-                CNPJ: {!kycWrapper.bankAccountDocument}<br/>
-                Bank Name: {!kycWrapper.bankName}<br/>
-                Bank Number: <i>{!kycWrapper.bankNumber}</i><br/>
-                Agency Number: {!kycWrapper.bankAgency}
-            </div>
+                            <tr><th>Minimum number of installments to add interest to the amount</th><td>{!form.MinimumInstallmentsForInterest__c}</td></tr>
+                            <tr><th>Interest repass method to customer</th><td>{!form.InterestRepassMethodToCustomer__c}</td></tr>
+                            <tr><th>Monthly interest on customer installments</th><td>{!form.MonthlyInterestOnCustomerInstallments__c}</td></tr>
+                        </table>
+                    </apex:outputPanel>
 
 
-            <!-- ------------- ADMIN CONFIGURATION ------------- -->
-            <h1>ADMIN CONFIGURATION</h1>
+                    <apex:outputPanel rendered="{!hasProducts_PaymentLink}">
+                        <h2>Payment Link</h2>
+                        <table>
+                            <tr><th>Discount per payment method</th><td>{!form.PaymentLinkEmailService__c}</td></tr>
+                            <tr><th>Discount – Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
+                            <tr><th>Discount – PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
+                        </table>
+                    </apex:outputPanel>
 
-            <!-- Payments -->
-            <h2>Payments</h2>
-            <h3>Authorized payments</h3>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>B = Boleto bancário</td><td>{!IF(form.BoletoBancario__c='Sim','Yes','No')}</td></tr>
-                <tr><td>F = Boleto Flash</td><td>{!IF(form.BoletoFlash__c='Sim','Yes','No')}</td></tr>
-                <tr><td>X = Pix</td><td>{!IF(form.Pix__c='Sim','Yes','No')}</td></tr>
-                <tr><td>C = Cartão de crédito</td><td>{!IF(form.CartaoDeCredito__c='Sim','Yes','No')}</td></tr>
-                <tr><td>D = Cartão de Débito/Débito Flash</td><td>{!IF(form.DebitoDebitoFlash__c='Sim','Yes','No')}</td></tr>
-            </table>
 
-            <h3>Payment Alert</h3>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>B = Boleto bancário</td>
-                    <td>{!IF(CONTAINS(form.PaymentAlert__c,'Boleto'),'Yes','No')}</td></tr>
-                <tr><td>F = Boleto Flash</td>
-                    <td>{!IF(CONTAINS(form.PaymentAlert__c,'Flash'),'Yes','No')}</td></tr>
-                <tr><td>X = Pix</td>
-                    <td>{!IF(CONTAINS(form.PaymentAlert__c,'Pix'),'Yes','No')}</td></tr>
-                <tr><td>C = Cartão de crédito</td>
-                    <td>{!IF(CONTAINS(form.PaymentAlert__c,'Credito'),'Yes','No')}</td></tr>
-                <tr><td>D = Cartão de Débito/Débito Flash</td>
-                    <td>{!IF(CONTAINS(form.PaymentAlert__c,'Debito'),'Yes','No')}</td></tr>
-            </table>
-
-            <!-- Transfer Release Schedule -->
-            <h2>Transfer Release Schedule</h2>
-            <table>
-                <tr>
-                    <td>Transfer Release Schedule</td>
-                    <td>{!IF(wrapper.payout,'Não','Sim')}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><i>[TODO – elegible-date grid from Quote / Contract]</i></td>
-                </tr>
-            </table>
-
-            <!-- Functionalities -->
-            <h2>Functionalities</h2>
-            <p>Block Refund: {!form.BlockRefund__c}</p>
-
-            <!-- Shipment -->
-            <h2>Shipment</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Closing Frequency</td><td>{!wrapper.settlementFrequency}</td></tr>
-                <apex:outputPanel rendered="{!isCross}">
-                    <tr><td>Spread on transaction value (as fee)</td><td><i>[TODO]</i></td></tr>
-                </apex:outputPanel>
-                <tr><td>Spread in net value (in exchange rate)</td><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
-                <tr><td>Minimum Amount for Transfer</td><td>{!wrapper.valorMinimoRepasse.totalPrice}</td></tr>
-                <tr><td>Reserve</td><td>{!wrapper.Reserva.percentValue}</td></tr>
-                <tr><td>Remittance Currency</td><td>{!wrapper.moeda}</td></tr>
-                <tr><td>Transfer Fee</td><td>{!wrapper.taxaTransferencia.totalPrice}</td></tr>
-            </table>
-
-            <!-- PagShield -->
-            <h2>PagShield</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>PagShield</td><td>{!IF(wrapper.pagShield,'Yes','No')}</td></tr>
-                <tr><td>PagShield Tax</td><td><i>[TODO]</i></td></tr>
-                <tr><td>PagShield Premium</td><td>{!IF(wrapper.pagShieldPremium,'Yes','No')}</td></tr>
-                <tr><td>PagShield Premium Variable Rate</td><td><i>[TODO]</i></td></tr>
-                <tr><td>PagShield Premium Flat Rate</td><td><i>[TODO]</i></td></tr>
-            </table>
-
-            <!-- ------------- PRODUCTS ------------- -->
-            <h1>PRODUCTS</h1>
-
-            <!-- Bank Billet -->
-            <h2>Bank Billet</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Auto Cancellation</td><td>{!form.AutomaticCancellation__c}</td></tr>
-                <tr><td>Business days after expiration to cancel (default and minimum, 2 days)</td>
-                    <td>{!form.NumberOfDays__c}</td></tr>
-            </table>
-
-            <!-- Pix -->
-            <h2>Pix</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Pix Open Finance</td>
-                    <td>{!IF(form.Pix_Open_Finance__c,'Yes','No')}</td></tr>
-                <tr><td>Pix valid for</td><td>{!form.Pix_Valid_For__c}</td></tr>
-            </table>
-
-            <!-- Credit Card -->
-            <h2>Credit Card</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Recurrence with credit card</td><td>{!form.CreditCardRecurrence__c}</td></tr>
-                <tr><td>Installment Recurrence</td><td>{!form.InstallmentRecurrence__c}</td></tr>
-                <tr><td>Google Pay</td><td>{!IF(wrapper.googlePay,'Yes','No')}</td></tr>
-                <tr><td>Apple Pay</td><td>{!IF(wrapper.applePay,'Yes','No')}</td></tr>
-                <tr><td>Default Soft Descriptor</td><td>{!form.DefaultSoftDescriptor__c}</td></tr>
-                <tr><td>Max installments amount</td><td>{!form.MaximumNumberInstallments__c}</td></tr>
-                <apex:outputPanel rendered="{!NOT(ISBLANK(form.Minimum_Amount_per_Installment__c))}">
-                    <tr><td>Min installment value</td><td>{!form.Minimum_Amount_per_Installment__c}</td></tr>
-                </apex:outputPanel>
-                <tr><td>Minimum number of installments to add interest to the amount</td>
-                    <td>{!form.MinimumInstallmentsForInterest__c}</td></tr>
-                <tr><td>Interest repass method to customer</td><td>{!form.InterestRepassMethodToCustomer__c}</td></tr>
-                <tr><td>Monthly interest on customer installments</td>
-                    <td>{!form.MonthlyInterestOnCustomerInstallments__c}</td></tr>
-            </table>
-
-            <!-- Payment Link -->
-            <h2>Payment Link</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Discount per payment method</td><td>{!form.PaymentLinkEmailService__c}</td></tr>
-                <tr><td>Discount – Flash Billet</td><td>{!form.FlashBoleto__c}</td></tr>
-                <tr><td>Discount – PagBrasil Pix</td><td>{!form.PagBrasilPix__c}</td></tr>
-            </table>
-
-            <!-- Pagstream -->
-            <h2>Pagstream</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>PagStream</td><td>{!form.PagStream__c}</td></tr>
-                <tr><td>Subscriber Area</td><td>{!form.Subscriber_Area__c}</td></tr>
-            </table>
-
-            <!-- ------------- ACCOUNT FEES ------------- -->
-            <h1>ACCOUNT FEES</h1>
-
-            <!-- Maintenance -->
-            <h2>Maintenance</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Maintenance fee</td><td>{!wrapper.taxaMinimaManutencao.totalPrice}</td></tr>
-                <tr><td>Minimum fee charging date</td><td>{!wrapper.contractStartDateCharge}</td></tr>
-                <tr><td>PagBrasil Solution fee</td><td>{!wrapper.taxaSolucaoPagBrasil.percentValue}</td></tr>
-                <tr><td>PagStream Fee</td><td>{!wrapper.taxaPagStream.totalPrice}%</td></tr>
-                <tr><td>Minimum PagStream maintenance fee</td><td>{!wrapper.taxaMinimaPagStream.totalPrice}</td></tr>
-            </table>
-
-            <!-- Monthly Anticipation Fee -->
-            <h2>Monthly Anticipation Fee</h2>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Frequency for Credit Card Interest</td><td><i>[TODO]</i></td></tr>
-                <tr><td>Base Advance Rate</td><td>{!wrapper.taxaBaseAntecipacao.totalPrice}</td></tr>
-            </table>
-
-            <!-- Fees -->
-            <h2>Fees</h2>
-            <table>
-                <tr><th>Processing</th><th>Fixed (BRL)</th><th>Variable (%)</th></tr>
-                <tr><td>Boleto / Boleto Flash</td><td></td>
-                    <td>{!wrapper.taxaProcessamentoBoleto.percentValue}%</td></tr>
-                <tr><td>PagBrasil Pix</td><td></td>
-                    <td>{!wrapper.taxaProcessamentoPix.percentValue}%</td></tr>
-                <tr><td>Cash Card</td><td></td>
-                    <td>{!wrapper.taxaProcessamentoCredito.percentValue}%</td></tr>
-                <!-- other rows kept identical -->
-                <tr><td>Chargeback fee type</td><td style="background:#b7fcb7">Fixed</td><td></td></tr>
-            </table>
-
-            <!-- ------------- E-MAIL AND SMS SERVICE ------------- -->
-            <h1>E-MAIL AND SMS SERVICE</h1>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Bank Slip Email Service</td><td>{!form.BankSlipEmailService__c}</td></tr>
-                <tr><td>Pix Email Service</td><td>{!form.PixEmailService__c}</td></tr>
-                <tr><td>Payment Confirmation Email</td><td>{!form.PaymentConfirmationEmailService__c}</td></tr>
-                <tr><td>Payment Link Email</td><td>{!form.PaymentLinkEmailService__c}</td></tr>
-                <tr><td>Bank Slip SMS Service</td><td>{!form.BankSlipSmsService__c}</td></tr>
-            </table>
-
-            <!-- Email Package -->
-            <h2>Email Package</h2>
-            <table>
-                <tr><th>Package</th><th>Price (BRL)</th></tr>
-                <tr><td>1000</td><td>{!wrapper.pacoteMilEmails.totalPrice}</td></tr>
-                <tr><td>10000</td><td>{!wrapper.pacoteDezMilEmails.totalPrice}</td></tr>
-                <tr><td>100000</td><td>{!wrapper.pacoteCemMilEmails.totalPrice}</td></tr>
-                <tr><td>Package</td><td>{!form.EmailPackage__c}</td></tr>
-            </table>
-
-            <!-- SMS Package -->
-            <h2>SMS Package</h2>
-            <table>
-                <tr><th>Package</th><th>Price (BRL)</th></tr>
-                <tr><td>500</td><td>{!wrapper.pacote500sms.totalPrice}</td></tr>
-                <tr><td>1000</td><td>{!wrapper.pacoteMilSms.totalPrice}</td></tr>
-                <tr><td>10000</td><td>{!wrapper.pacoteDezMilSms.totalPrice}</td></tr>
-                <tr><td>Package</td><td>{!form.SmsPackage__c}</td></tr>
-            </table>
-
-            <!-- ------------- USERS ------------- -->
-            <h1>USERS</h1>
-            <apex:repeat value="{!homologationUsers}" var="u">
-                <h2>User {!u.Name}</h2>
-                <table>
-                    <tr><th>Access Level</th><td>{!u.Nivel_de_Acesso__c}</td></tr>
-                    <tr><th>Full Name</th><td>{!u.Nome_e_Sobrenome__c}</td></tr>
-                    <tr><th>Email</th><td>{!u.Email__c}</td></tr>
-                    <tr><th>Language</th><td>{!u.Idioma__c}</td></tr>
-                </table>
-            </apex:repeat>
-
-            <!-- PagShield section -->
-            <h1>PAGSHIELD</h1>
-            <table>
-                <tr><th>Label</th><th>Value</th></tr>
-                <tr><td>Minimum Amount to Activate PagShield</td>
-                    <td>{!form.Minimum_Amount_to_Activate_PagShield__c}</td></tr>
-                <tr><td>Contact email for pre-authorizations notifications</td>
-                    <td>{!form.Contact_email_for_notification__c}</td></tr>
-            </table>
-
-            <!-- Shopify -->
-            <apex:outputPanel rendered="{!wrapper.containsShopify}">
-                <h1>SHOPIFY</h1>
-                <table>
-                    <tr><td>Allow CPF/CNPJ</td>
-                        <td>{!form.Allow_CPF_CNPJ__c}</td></tr>
-                    <tr><td>One-Click Buying / Tokenization</td>
-                        <td>{!form.OneClickBuyingTokenization__c}</td></tr>
-                </table>
-
-                <h2>Shopify Discount</h2>
-                <table>
-                    <tr><th>Label</th><th>Value</th></tr>
-                    <tr><td>Discount per method payment</td><td>{!form.ShopifyDiscount__c}</td></tr>
-                    <tr><td>Discount – Flash Billet</td><td>{!form.FlashBoleto__c}</td></tr>
-                    <tr><td>Discount – PagBrasil Pix</td><td>{!form.PagBrasilPix__c}</td></tr>
-                    <tr><td>Pix Pending</td><td>{!form.PixPending__c}</td></tr>
-                </table>
+                    <apex:outputPanel rendered="{!hasProducts_Pagstream}">
+                        <h2>Pagstream</h2>
+                        <table>
+                            <tr><th>PagStream</th><td>{!form.PagStream__c}</td></tr>
+                            <tr><th>Subscriber Area</th><td>{!form.Subscriber_Area__c}</td></tr>
+                        </table>
+                    </apex:outputPanel>
+                </div>
             </apex:outputPanel>
 
-            <!-- Payout -->
-            <h1>PAYOUT</h1>
-            <table>
-                <tr><td>Payout?</td><td>{!IF(wrapper.payout,'Yes','No')}</td></tr>
-                <tr><td>Transaction Type</td><td>{!form.TransactionType__c}</td></tr>
-                <tr><td>Payout Postponement (days)</td><td>D+3</td></tr>
-            </table>
 
-            <h2>Fees</h2>
-            <table>
-                <tr><th></th><th>Fixed (BRL)</th><th>Variable (%)</th></tr>
-                <tr><td>Payout to payee</td><td></td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
-                <tr><td>Payout to merchant account</td>
-                    <td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td></td></tr>
-                <tr><td>Payee approval or rejection</td><td><i>[TODO]</i></td><td><i>[TODO]</i></td></tr>
-            </table>
-
-            <!-- Gateway -->
-            <apex:outputPanel rendered="{!wrapper.containsGateway}">
-                <h1>GATEWAY</h1>
-
-                <h2>Cielo 3.0</h2>
-                <p>Merchant ID: {!form.MerchantId__c}<br/>
-                   Merchant Key: {!form.MerchantKey__c}</p>
-
-                <h2>e-Rede</h2>
-                <p>PV: {!form.Pv__c}<br/>
-                   Token: {!form.Token__c}</p>
-
-                <h2>Stone</h2>
-                <p>MID (Merchant ID): {!form.MidMerchantId__c}<br/>
-                   Terminal ID: {!form.TerminalId__c}<br/>
-                   RegKey: {!form.RegKey__c}</p>
-
-                <h2>Maintenance</h2>
-                <table>
-                    <tr><th>Label</th><th>Value</th></tr>
-                    <tr><td>Minimum Fee</td><td>{!wrapper.taxaMinimaManutencao.totalPrice}</td></tr>
-                    <tr><td>Starting date for charging the minimum fee</td>
-                        <td>{!wrapper.contractStartDateCharge}</td></tr>
-                    <tr><td>Plugin</td><td>{!wrapper.taxaSolucaoPagBrasil.percentValue}</td></tr>
-                </table>
+            <apex:outputPanel rendered="{!hasAccountFees_Maintenance
+                || hasAccountFees_MonthlyAnticipation
+                || hasAccountFees_Fees}">
+                <div class="section-wrapper">
+                    <h1>ACCOUNT FEES</h1>
+                    <apex:outputPanel rendered="{!hasAccountFees_Maintenance}">
+                        <h2>Maintenance</h2>
+                        <table>
+                            <tr><th>Maintenance fee</th><td>{!wrapper.taxaMinimaManutencao.totalPrice}</td></tr>
+                            <tr><th>Minimum fee charging date</th><td>{!wrapper.contractStartDateCharge}</td></tr>
+                            <tr><th>PagBrasil Solution fee</th><td>{!wrapper.taxaSolucaoPagBrasil.percentValue}</td></tr>
+                            <tr><th>PagStream Fee</th><td>{!wrapper.taxaPagStream.totalPrice}%</td></tr>
+                            <tr><th>Minimum PagStream maintenance fee</th><td>{!wrapper.taxaMinimaPagStream.totalPrice}</td></tr>
+                        </table>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!hasAccountFees_MonthlyAnticipation}">
+                        <h2>Monthly Anticipation Fee</h2>
+                        <table>
+                            <tr><th>Frequency for Credit Card Interest</th><td><i>[TODO]</i></td></tr>
+                            <tr><th>Base Advance Rate</th><td>{!wrapper.taxaBaseAntecipacao.totalPrice}</td></tr>
+                        </table>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!hasAccountFees_Fees}">
+                        <h2>Fees</h2>
+                        <table>
+                            <tr>
+                                <th>Processing</th>
+                                <td>Fixed (BRL)</td>
+                                <td>Variable (%)</td>
+                            </tr>
+                            <tr><th>Boleto / Boleto Flash</th><td></td><td>{!wrapper.taxaProcessamentoBoleto.percentValue}%</td></tr>
+                            <tr><th>PagBrasil Pix</th><td></td><td>{!wrapper.taxaProcessamentoPix.percentValue}%</td></tr>
+                            <tr><th>Cash Card</th><td></td><td>{!wrapper.taxaProcessamentoCredito.percentValue}%</td></tr>
+                            <tr><th>Chargeback fee type</th><td style="background:#b7fcb7">Fixed</td><td></td></tr>
+                        </table>
+                    </apex:outputPanel>
+                </div>
             </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasEmailSmsService}">
+                <div class="section-wrapper">
+                    <h1>E-MAIL AND SMS SERVICE</h1>
+                    <table>
+                        <tr><th>Bank Slip Email Service</th><td>{!form.BankSlipEmailService__c}</td></tr>
+                        <tr><th>Pix Email Service</th><td>{!form.PixEmailService__c}</td></tr>
+                        <tr><th>Payment Confirmation Email</th><td>{!form.PaymentConfirmationEmailService__c}</td></tr>
+                        <tr><th>Payment Link Email</th><td>{!form.PaymentLinkEmailService__c}</td></tr>
+                        <tr><th>Bank Slip SMS Service</th><td>{!form.BankSlipSmsService__c}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasEmailPackage}">
+                <div class="section-wrapper">
+                    <h2>Email Package</h2>
+                    <table>
+                        <tr><th>1000</th><td>{!wrapper.pacoteMilEmails.totalPrice}</td></tr>
+                        <tr><th>10000</th><td>{!wrapper.pacoteDezMilEmails.totalPrice}</td></tr>
+                        <tr><th>100000</th><td>{!wrapper.pacoteCemMilEmails.totalPrice}</td></tr>
+                        <tr><th>Package</th><td>{!form.EmailPackage__c}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasSmsPackage}">
+                <div class="section-wrapper">
+                    <h2>SMS Package</h2>
+                    <table>
+                        <tr><th>500</th><td>{!wrapper.pacote500sms.totalPrice}</td></tr>
+                        <tr><th>1000</th><td>{!wrapper.pacoteMilSms.totalPrice}</td></tr>
+                        <tr><th>10000</th><td>{!wrapper.pacoteDezMilSms.totalPrice}</td></tr>
+                        <tr><th>Package</th><td>{!form.SmsPackage__c}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasHomologationUsers}">
+                <div class="section-wrapper">
+                    <h1>USERS</h1>
+                    <apex:repeat value="{!homologationUsers}" var="u">
+                        <div class="section-wrapper">
+                            <h2>User {!u.Name}</h2>
+                            <table>
+                                <tr><th>Access Level</th><td>{!u.Nivel_de_Acesso__c}</td></tr>
+                                <tr><th>Full Name</th><td>{!u.Nome_e_Sobrenome__c}</td></tr>
+                                <tr><th>Email</th><td>{!u.Email__c}</td></tr>
+                                <tr><th>Language</th><td>{!u.Idioma__c}</td></tr>
+                            </table>
+                        </div>
+                    </apex:repeat>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasPagShieldSection}">
+                <div class="section-wrapper">
+                    <h1>PAGSHIELD</h1>
+                    <table>
+                        <tr><th>Minimum Amount to Activate PagShield</th><td>{!form.Minimum_Amount_to_Activate_PagShield__c}</td></tr>
+                        <tr><th>Contact email for pre-authorizations notifications</th><td>{!form.Contact_email_for_notification__c}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasShopify}">
+                <div class="section-wrapper">
+                    <h1>SHOPIFY</h1>
+                    <table>
+                        <tr><th>Allow CPF/CNPJ</th><td>{!form.Allow_CPF_CNPJ__c}</td></tr>
+                        <tr><th>One-Click Buying / Tokenization</th><td>{!form.OneClickBuyingTokenization__c}</td></tr>
+                    </table>
+                    <h2>Shopify Discount</h2>
+                    <table>
+                        <tr><th>Discount per method payment</th><td>{!form.ShopifyDiscount__c}</td></tr>
+                        <tr><th>Discount – Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
+                        <tr><th>Discount – PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
+                        <tr><th>Pix Pending</th><td>{!form.PixPending__c}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasPayout}">
+                <div class="section-wrapper">
+                    <h1>PAYOUT</h1>
+                    <table>
+                        <tr><th>Payout?</th><td>{!IF(wrapper.payout,'Yes','No')}</td></tr>
+                        <tr><th>Transaction Type</th><td>{!form.TransactionType__c}</td></tr>
+                        <tr><th>Payout Postponement (days)</th><td>D+3</td></tr>
+                    </table>
+                    <h2>Fees</h2>
+                    <table>
+                        <tr>
+                            <th></th><td>Fixed (BRL)</td><td>Variable (%)</td>
+                        </tr>
+                        <tr><th>Payout to payee</th><td></td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
+                        <tr><th>Payout to merchant account</th><td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td></td></tr>
+                        <tr><th>Payee approval or rejection</th><td><i>[TODO]</i></td><td><i>[TODO]</i></td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel rendered="{!hasGateway}">
+                <div class="section-wrapper">
+                    <h1>GATEWAY</h1>
+                    <h2>Cielo 3.0</h2>
+                    <table>
+                        <tr><th>Merchant ID</th><td>{!form.MerchantId__c}</td></tr>
+                        <tr><th>Merchant Key</th><td>{!form.MerchantKey__c}</td></tr>
+                    </table>
+                    <h2>e-Rede</h2>
+                    <table>
+                        <tr><th>PV</th><td>{!form.Pv__c}</td></tr>
+                        <tr><th>Token</th><td>{!form.Token__c}</td></tr>
+                    </table>
+                    <h2>Stone</h2>
+                    <table>
+                        <tr><th>MID (Merchant ID)</th><td>{!form.MidMerchantId__c}</td></tr>
+                        <tr><th>Terminal ID</th><td>{!form.TerminalId__c}</td></tr>
+                        <tr><th>RegKey</th><td>{!form.RegKey__c}</td></tr>
+                    </table>
+                    <h2>Maintenance</h2>
+                    <table>
+                        <tr><th>Minimum Fee</th><td>{!wrapper.taxaMinimaManutencao.totalPrice}</td></tr>
+                        <tr><th>Starting date for charging the minimum fee</th><td>{!wrapper.contractStartDateCharge}</td></tr>
+                        <tr><th>Plugin</th><td>{!wrapper.taxaSolucaoPagBrasil.percentValue}</td></tr>
+                    </table>
+                </div>
+            </apex:outputPanel>
+
 
         </body>
     </html>

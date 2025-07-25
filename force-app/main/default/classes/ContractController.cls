@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-23-2025
+ * @last modified on  : 07-24-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -157,8 +157,8 @@ public class ContractController {
 
         if(!Test.isRunningTest()){
             stdController.addFields(new List<String>{ 'Id', 'Name', 'Integracao__c','Other_Payments_Settlement_Frequency_1__c', 'RequestChangeClause__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
-                'Settlement_Frequency_Test__c', 'Account.CNPJ__c', 'AccountId', 'Account.Nome_Empresarial__c', 'NationalPaymentMethod__c', 'Payout__c',
-                'Antecipation_Frequency_1__c', 'Settlement_Frequency_1__c', 'RecordType.DeveloperName', 'IntegrationType__c', 'Product_Type__c' });
+                'Settlement_Frequency_Test__c', 'Account.CNPJ__c', 'AccountId', 'Account.Nome_Empresarial__c', 'NationalPaymentMethod__c', 'Payout__c', 
+                'Antecipation_Frequency_1__c', 'Antecipation_Frequency_2__c', 'Settlement_Frequency_1__c','Settlement_Frequency_2__c', 'Selected_Credit_Frequency__c', 'RecordType.DeveloperName', 'Selected_Credit_Frequency__c', 'Selected_Others_Frequency__c', 'IntegrationType__c', 'Product_Type__c' });
         }
 
         Opportunity opp = (Opportunity) stdController.getRecord();
@@ -634,36 +634,40 @@ public class ContractController {
         this.settlementFrequency = '0';
         this.antecipationFrequency = '0';
 
-        if(String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c) && String.isNotBlank(this.opportunity.Settlement_Frequency_1__c)) {
-            if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Daily')) {
+        if(this.opportunity.Selected_Others_Frequency__c == '1'){ 
+            if(String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c) && String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c)) {
                 if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Daily')) this.antecipationFrequency = '0';
                 if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
                 if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
                 if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
             }
-
-            if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Weekly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
-            }
-
-            if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Biweekly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '0';
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
-            }
-
-            if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Monthly')) {
-                if (this.opportunity.Antecipation_Frequency_1__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '0';
-            }
-            
         }
 
-        if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Other_Payments_Settlement_Frequency_1__c)) {
-                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
-                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
-                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
-                if (this.opportunity.Other_Payments_Settlement_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+        if(this.opportunity.Selected_Others_Frequency__c == '2'){ 
+            if(String.isNotBlank(this.opportunity.Antecipation_Frequency_2__c) && String.isNotBlank(this.opportunity.Antecipation_Frequency_2__c)) {
+                if (this.opportunity.Antecipation_Frequency_2__c.equalsIgnoreCase('Daily')) this.antecipationFrequency = '0';
+                if (this.opportunity.Antecipation_Frequency_2__c.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
+                if (this.opportunity.Antecipation_Frequency_2__c.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
+                if (this.opportunity.Antecipation_Frequency_2__c.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
+            }
+        }
+
+        
+        if(this.opportunity.Selected_Credit_Frequency__c == '1'){
+            if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Settlement_Frequency_1__c)) {
+                    if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
+                    if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
+                    if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
+                    if (this.opportunity.Settlement_Frequency_1__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+            }
+        }
+        if(this.opportunity.Selected_Credit_Frequency__c == '2'){
+            if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Settlement_Frequency_2__c)) {
+                    if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
+                    if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
+                    if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
+                    if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+            }
         }
         List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c =: this.opportunity.Antecipation_Frequency_1__c AND TaxaBaseAntecipacao__c =: this.taxaAntecipacao AND IsActive__c = true];
 

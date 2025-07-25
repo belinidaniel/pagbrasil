@@ -6,10 +6,6 @@
     <picklistValues>
         <picklist>AntecipationFrequency__c</picklist>
         <values>
-            <fullName>Bimonthly</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Biweekly</fullName>
             <default>false</default>
         </values>

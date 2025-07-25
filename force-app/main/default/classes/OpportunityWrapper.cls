@@ -25,6 +25,8 @@ public class OpportunityWrapper {
 	public Boolean payout { get; set; }
 	public Boolean googlePay { get; set; }
 	public Boolean applePay { get; set; }
+	public Boolean pagShield { get; set; }
+	public Boolean pagShieldPremium { get; set; }
 	public Boolean pagShieldPremiumOnDemand { get; set; }
 	public String recordType { get; set; }
 	public AccountWrapper account { get; set; }
@@ -87,6 +89,8 @@ public class OpportunityWrapper {
 		this.isCrossBorder = opp.RecordType.Name == 'Crossborder';
 		this.containsShopify = opp.IntegrationType__c != null ? opp.IntegrationType__c.contains('Shopify') : false;
 		this.containsGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
+		this.pagShield = opp.PagShield__c;
+		this.pagShieldPremium = opp.PagShield_Premium__c;
 
 		// Map Account properties
 		if (opp.Account != null) {
@@ -544,6 +548,7 @@ public class OpportunityWrapper {
 		public String admStreetNumber { get; set; }
 		public String admAddress { get; set; }
 		public String bankAccount { get; set; }
+		public String bankAccountDocument { get; set; }
 		public String bankAgency { get; set; }
 		public String beneficiary { get; set; }
 		public String bankName { get; set; }
@@ -574,69 +579,162 @@ public class OpportunityWrapper {
 		public String status { get; set; }
 		public String storeURL { get; set; }
 		public Id opportunityId { get; set; }
+		public Decimal stageNumber { get; set; }
+		public Decimal urlsQuantity { get; set; }
+		public String uniqueLink { get; set; }
+		public String legalApprovalStatus { get; set; }
 		public List<Contact> kycContacts { get; set; }
 
+		// Campos exclusivos de KYC__c
+		public String proprietaryContact { get; set; }
+		public String bankOption { get; set; }
+		public String bankNumber { get; set; }
+		public String mainContact { get; set; }
+		public String personalContact { get; set; }
 		public KycWrapper(SObject kyc) {
 			if (kyc.getSObjectType() == KYC__c.SObjectType) {
-				KYC__c kycNb = (KYC__c)kyc;
-				this.id = kycNb.Id;
-				this.name = kycNb.Name;
-				this.lastModifiedDate = kycNb.LastModifiedDate;
-				this.kycContacts = kycNb.KYC_Contacts__r;
-			} else if (kyc.getSObjectType() == KYC_XB__c.SObjectType) {
-				KYC_XB__c kycXb = (KYC_XB__c)kyc;
-				this.id = kycXb.Id;
-				this.name = kycXb.Name;
-				this.lastModifiedDate = kycXb.LastModifiedDate;
-				this.clientAccountId = kycXb.Client_Account__c;
-				this.uniqueAddress = kycXb.Unique_Address__c;
-				this.city = kycXb.City__c != null ? kycXb.City__c : '';
-				this.state = kycXb.State__c != null ? kycXb.State__c : '';
-				this.country = kycXb.Country__c != null ? kycXb.Country__c : '';
-				this.postalCode = kycXb.Postal_Code__c;
-				this.streetNumber = kycXb.Street_Number__c;
-				this.address = kycXb.Address__c;
-				this.admCity = kycXb.Administrative_City__c != null ? kycXb.Administrative_City__c : '';
-				this.admState = kycXb.Administrative_State__c != null ? kycXb.Administrative_State__c : '';
-				this.admCountry = kycXb.Administrative_Country__c != null ? kycXb.Administrative_Country__c : '';
-				this.admPostalCode = kycXb.Adm_Postal_Code__c != null ? kycXb.Adm_Postal_Code__c : '';
-				this.admStreetNumber = kycXb.Administrative_Street_Number__c != null ? kycXb.Administrative_Street_Number__c : '';
-				this.admAddress = kycXb.Adm_Address__c != null ? kycXb.Adm_Address__c : '';
-				this.bankAccount = kycXb.Bank_Account__c != null ? kycXb.Bank_Account__c : '';
-				this.bankAgency = kycXb.Bank_Agency__c != null ? kycXb.Bank_Agency__c : '';
-				this.beneficiary = kycXb.Beneficiary__c != null ? kycXb.Beneficiary__c : '';
-				this.bankName = kycXb.Bank_Name__c != null ? kycXb.Bank_Name__c : '';
-				this.bankBranchAddress = kycXb.Bank_Branch_Address__c != null ? kycXb.Bank_Branch_Address__c : '';
-				this.swiftCode = kycXb.Swift_Code__c != null ? kycXb.Swift_Code__c : '';
-				this.abaRoutingNumber = kycXb.ABA_Routing_Number__c != null ? kycXb.ABA_Routing_Number__c : '';
-				this.ibanNumber = kycXb.IBAN_Number__c != null ? kycXb.IBAN_Number__c : '';
-				this.bankHasIntermediary = kycXb.Bank_Has_Intermediary__c != null ? kycXb.Bank_Has_Intermediary__c : false;
-				this.intermediaryBankName = kycXb.Intermediary_Bank_Name__c != null ? kycXb.Intermediary_Bank_Name__c : '';
-				this.wireInstructions = kycXb.Wire_Instructions__c != null ? kycXb.Wire_Instructions__c : '';
-				this.companyType = kycXb.Company_Type__c != null ? kycXb.Company_Type__c : '';
-				this.companyURL = kycXb.Company_URL__c != null ? kycXb.Company_URL__c : '';
-				this.conformity = kycXb.Conformity__c;
-				this.corporateGroup = kycXb.Corporate_Group__c;
-				this.corporateName = kycXb.Corporate_Name__c != null ? kycXb.Corporate_Name__c : '';
-				this.corporateRegistration = kycXb.Corporate_Registration__c != null ? kycXb.Corporate_Registration__c : '';
-				this.corporateURL = kycXb.Corporate_URL__c != null ? kycXb.Corporate_URL__c : '';
-				this.foundingDate = kycXb.Founding_Date__c;
-				this.tradeName = kycXb.Trade_Name__c != null ? kycXb.Trade_Name__c : '';
-				this.legalName = kycXb.Legal_Name__c != null ? kycXb.Legal_Name__c : '';
-				this.fiscalRegistration = kycXb.Fiscal_Registration__c != null ? kycXb.Fiscal_Registration__c : '';
-				this.complement = kycXb.Complement__c != null ? kycXb.Complement__c : '';
-				this.integrationType = kycXb.Integration_Type__c != null ? kycXb.Integration_Type__c : '';
-				this.hasPEP = kycXb.Has_PEP__c != null ? kycXb.Has_PEP__c : false;
-				this.serviceCategory = kycXb.Service_Category__c != null ? kycXb.Service_Category__c : '';
-				this.serviceDescription = kycXb.Service_Description__c != null ? kycXb.Service_Description__c : '';
-				this.serviceShipping = kycXb.Service_Shipping__c != null ? kycXb.Service_Shipping__c : '';
-				this.status = kycXb.Status__c != null ? kycXb.Status__c : '';
-				this.storeURL = kycXb.Store_URL__c;
-				this.opportunityId = kycXb.Opportunity__c;
-				this.kycContacts = kycXb.Contacts__r;
-			} else {
+				KYC__c k = (KYC__c)kyc;
+
+				this.id = k.Id;
+				this.name = k.Name;
+				this.lastModifiedDate = k.LastModifiedDate;
+				this.opportunityId = k.Opportunity__c;
+				this.uniqueAddress = k.Unique_Address__c;
+				this.city = k.City__c;
+				this.state = k.State__c;
+				this.country = k.Country__c;
+				this.postalCode = k.Postal_Code__c;
+				this.streetNumber = k.Street_Number__c;
+				this.address = k.Address__c;
+				this.admCity = k.Adm_City__c;
+				this.admState = k.Adm_State__c;
+				this.admCountry = k.Adm_Country__c;
+				this.admPostalCode = k.Adm_Postal_Code__c;
+				this.admStreetNumber = k.Adm_Street_Number__c;
+				this.admAddress = k.Adm_Address__c;
+				this.bankAccount = k.Bank_Account__c;
+				this.bankAccountDocument = k.Bank_Account_Document__c;
+				this.bankAgency = k.Bank_Agency__c;
+				this.bankName = k.Bank_Name__c;
+				this.complement = k.Complement__c;
+				this.companyType = k.Company_Type__c;
+				this.companyURL = k.Company_URL__c;
+				this.conformity = k.Conformity__c;
+				this.corporateGroup = k.Corporate_Group__c;
+				this.corporateName = k.Corporate_Name__c;
+				this.corporateRegistration = k.Corporate_Registration__c;
+				this.corporateURL = k.Corporate_URL__c;
+				this.foundingDate = k.Founding_Date__c;
+				this.tradeName = k.Trade_Name__c;
+				this.legalName = k.Legal_Name__c;
+				this.fiscalRegistration = k.Fiscal_Registration__c;
+				this.integrationType = k.Integration_Type__c;
+				this.serviceCategory = k.Service_Category__c;
+				this.serviceDescription = k.Service_Description__c;
+				this.serviceShipping = k.Service_Shipping__c;
+				this.status = k.Status__c;
+				this.storeURL = k.Store_URL__c;
+				this.stageNumber = k.Stage_Number__c; //
+				this.urlsQuantity = k.URLs_Quantity__c; //
+				this.uniqueLink = k.Unique_Link__c;
+				this.legalApprovalStatus = k.Legal_Approval_Status__c;
+				this.mainContact = k.Main_Contact__c;
+				this.personalContact = k.Personal_Contact__c;
+				this.bankOption = k.Bank_Option__c;
+				this.bankNumber = k.Bank_Number__c;
+				this.proprietaryContact = k.Proprietary_Contact__c;
+
+				this.kycContacts = k.KYC_Contacts__r;
+			}
+			else if (kyc.getSObjectType() == KYC_XB__c.SObjectType) {
+				KYC_XB__c k = (KYC_XB__c)kyc;
+
+				this.id = k.Id;
+				this.name = k.Name;
+				this.lastModifiedDate = k.LastModifiedDate;
+				this.opportunityId = k.Opportunity__c;
+				this.clientAccountId = k.Client_Account__c;
+				this.uniqueAddress = k.Unique_Address__c;
+				this.city = k.City__c;
+				this.state = k.State__c;
+				this.country = k.Country__c;
+				this.postalCode = k.Postal_Code__c;
+				this.streetNumber = k.Street_Number__c;
+				this.address = k.Address__c;
+				this.admCity = k.Administrative_City__c;
+				this.admState = k.Administrative_State__c;
+				this.admCountry = k.Administrative_Country__c;
+				this.admPostalCode = k.Adm_Postal_Code__c;
+				this.admStreetNumber = k.Administrative_Street_Number__c;
+				this.admAddress = k.Adm_Address__c;
+				this.bankAccount = k.Bank_Account__c;
+				this.bankAgency = k.Bank_Agency__c;
+				this.beneficiary = k.Beneficiary__c;
+				this.bankName = k.Bank_Name__c;
+				this.bankBranchAddress = k.Bank_Branch_Address__c;
+				this.swiftCode = k.Swift_Code__c;
+				this.abaRoutingNumber = k.ABA_Routing_Number__c;
+				this.ibanNumber = k.IBAN_Number__c;
+				this.bankHasIntermediary = k.Bank_Has_Intermediary__c;
+				this.intermediaryBankName = k.Intermediary_Bank_Name__c;
+				this.wireInstructions = k.Wire_Instructions__c;
+				this.companyType = k.Company_Type__c;
+				this.companyURL = k.Company_URL__c;
+				this.conformity = k.Conformity__c;
+				this.corporateGroup = k.Corporate_Group__c;
+				this.corporateName = k.Corporate_Name__c;
+				this.corporateRegistration = k.Corporate_Registration__c;
+				this.corporateURL = k.Corporate_URL__c;
+				this.foundingDate = k.Founding_Date__c;
+				this.tradeName = k.Trade_Name__c;
+				this.legalName = k.Legal_Name__c;
+				this.fiscalRegistration = k.Fiscal_Registration__c;
+				this.complement = k.Complement__c;
+				this.integrationType = k.Integration_Type__c;
+				this.hasPEP = k.Has_PEP__c;
+				this.serviceCategory = k.Service_Category__c;
+				this.serviceDescription = k.Service_Description__c;
+				this.serviceShipping = k.Service_Shipping__c;
+				this.status = k.Status__c;
+				this.storeURL = k.Store_URL__c;
+				this.stageNumber = k.Stage_Number__c; //
+				this.urlsQuantity = k.URLs_Quantity__c; //
+				this.uniqueLink = k.Unique_Link__c;
+				this.legalApprovalStatus = k.LegalApprovalStatus__c;
+
+				this.kycContacts = k.Contacts__r;
+			}
+			else {
 				throw new AuraHandledException('Unsupported KYC object type: ' + kyc.getSObjectType());
 			}
 		}
+
+		public String getVatOrCnpj() {
+			return this.fiscalRegistration;
+		}
+
+		public String getBusinessName() {
+			return this.legalName;
+		}
+
+		public String getBillingNumber() {
+			return this.streetNumber;
+		}
+
+		public String getBillingComplement() {
+			return this.complement;
+		}
+
+		public String getFinancialEmails() {
+			if (this.kycContacts == null) return '';
+			List<String> emails = new List<String>();
+			for (Contact c : this.kycContacts) {
+				if (c.Type__c != null && c.Type__c.contains('Financeiro') && c.Email != null) {
+					emails.add(c.Email);
+				}
+			}
+			return String.join(emails, '; ');
+		}
 	}
+
 }

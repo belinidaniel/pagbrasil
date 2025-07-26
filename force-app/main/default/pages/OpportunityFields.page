@@ -167,7 +167,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasPayments}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>ADMIN CONFIGURATION</h1>
                     <h2>Payments</h2>
@@ -205,9 +205,75 @@
                             <th>Transfer Release Schedule</th>
                             <td>{!IF(wrapper.payout,'Não','Sim')}</td>
                         </tr>
+                    </table>
+                    <table>
                         <tr>
-                            <th></th>
-                            <td><i>[TODO – elegible-date grid from Quote / Contract]</i></td>
+                            <th>Processing</th>
+                            <th>D + n</th>
+                        </tr>
+                        <tr>
+                            <td>Pix</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Bank Billet</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Flash Billet</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Flash Debit</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 1x</td>
+                            <td>31</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 2x</td>
+                            <td>46</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 3x</td>
+                            <td>61</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 4x</td>
+                            <td>76</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 5x</td>
+                            <td>91</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 6x</td>
+                            <td>106</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 7x</td>
+                            <td>121</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 8x</td>
+                            <td>136</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 9x</td>
+                            <td>151</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 10x</td>
+                            <td>166</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 11x</td>
+                            <td>181</td>
+                        </tr>
+                        <tr>
+                            <td>Credit Card 12x</td>
+                            <td>196</td>
                         </tr>
                     </table>
                 </div>
@@ -219,13 +285,12 @@
                     <h2>Functionalities</h2>
                     <table>
                         <tr>
-                            <th>Block Refund:</th>
+                            <th>Block Refund</th>
                             <td>{!form.BlockRefund__c}</td>
                         </tr>
                     </table>
                 </div>
             </apex:outputPanel>
-
 
             <apex:outputPanel rendered="{!hasShipment}">
                 <div class="section-wrapper">
@@ -233,9 +298,9 @@
                     <table>
                         <tr><th>Closing Frequency</th><td>{!wrapper.settlementFrequency}</td></tr>
                         <apex:outputPanel rendered="{!isCross}">
-                            <tr><th>Spread on transaction value (as fee)</th><td><i>[TODO]</i></td></tr>
+                            <tr><th>Spread on transaction value (as fee)</th><td><i>{!wrapper.currencyMarkupSpread.percentValue}</i></td></tr>
+                            <tr><th>Spread in net value (in exchange rate)</th><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
                         </apex:outputPanel>
-                        <tr><th>Spread in net value (in exchange rate)</th><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
                         <tr><th>Minimum Amount for Transfer</th><td>{!wrapper.valorMinimoRepasse.totalPrice}</td></tr>
                         <tr><th>Reserve</th><td>{!wrapper.Reserva.percentValue}</td></tr>
                         <tr><th>Remittance Currency</th><td>{!wrapper.moeda}</td></tr>
@@ -353,8 +418,8 @@
                         <table>
                             <tr>
                                 <th>Processing</th>
-                                <td>Fixed (BRL)</td>
-                                <td>Variable (%)</td>
+                                <th>Fixed (BRL)</th>
+                                <th>Variable (%)</th>
                             </tr>
                             <tr><th>Boleto / Boleto Flash</th><td></td><td>{!wrapper.taxaProcessamentoBoleto.percentValue}%</td></tr>
                             <tr><th>PagBrasil Pix</th><td></td><td>{!wrapper.taxaProcessamentoPix.percentValue}%</td></tr>
@@ -464,7 +529,7 @@
                     <h2>Fees</h2>
                     <table>
                         <tr>
-                            <th></th><td>Fixed (BRL)</td><td>Variable (%)</td>
+                            <th></th><th>Fixed (BRL)</th><th>Variable (%)</th>
                         </tr>
                         <tr><th>Payout to payee</th><td></td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
                         <tr><th>Payout to merchant account</th><td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td></td></tr>

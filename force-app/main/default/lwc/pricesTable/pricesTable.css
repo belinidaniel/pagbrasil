@@ -1,0 +1,22 @@
+/* Custom CSS for the table container */
+.scrollable_y_custom {
+    max-height: 3000px;
+    margin: 0 auto;
+    border-left: solid 1px lightgrey;
+    border-radius: 5px;
+    overflow-x: auto; /* Use auto instead of scroll for both axes */
+    overflow-y: auto; /* Ensures it scrolls when content overflows */
+    padding-top: 0rem;
+}
+
+
+:host {
+    display: block;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}

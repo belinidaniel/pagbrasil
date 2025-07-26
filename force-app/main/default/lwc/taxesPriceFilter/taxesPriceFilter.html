@@ -1,0 +1,101 @@
+<!--
+  @description       : 
+  @author            : Daniel Belini
+  @group             : 
+  @last modified on  : 07-26-2025
+  @last modified by  : Daniel Belini
+-->
+<template>
+    <lightning-layout>
+        <!-- Coluna 1 -->
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={productOptions}
+                    title="Produtos"
+                    name="selectedProductId"
+                    placeholder="Selecione um ou mais produtos"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+            <div class="div-align">
+                <c-multi-picklist
+                    options={businessModelOptions}
+                    title="Business Model"
+                    name="selectedBusinessModel"
+                    placeholder="Selecione o(s) modelo(s) de negócio"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+            <div class="div-align">
+                <c-multi-picklist
+                    options={integrationTypeOptions}
+                    title="Integration Type"
+                    name="selectedIntegrationType"
+                    placeholder="Selecione o(s) tipo(s) de integração"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item>
+        <!-- Coluna 2 -->
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={taxRegionOptions}
+                    title="Tax Region"
+                    name="selectedTaxRegion"
+                    placeholder="Selecione a(s) região(ões) tributária(s)"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+            <div class="div-align">
+                <c-multi-picklist
+                    options={productNameOptions}
+                    title="Product Name"
+                    name="selectedProductName"
+                    placeholder="Selecione o(s) nome(s) do produto"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+            <div class="div-align">
+                <c-multi-picklist
+                    options={typeOptions}
+                    title="Type"
+                    name="selectedType"
+                    placeholder="Selecione o(s) tipo(s)"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item>
+        <!-- Coluna 3 -->
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={statusTaxaOptions}
+                    title="Status Taxa"
+                    name="selectedStatusTaxa"
+                    placeholder="Selecione o(s) status da taxa"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+            <div class="div-align">
+                <c-multi-picklist
+                    options={processingTypeOptions}
+                    title="Processing Type"
+                    name="selectedProcessingType"
+                    placeholder="Selecione o(s) tipo(s) de processamento"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+            <div class="div-align">
+                <c-multi-picklist
+                    options={recordTypeNameOptions}
+                    title="Record Type Name"
+                    name="selectedRecordTypeName"
+                    placeholder="Selecione o(s) tipo(s) de registro"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

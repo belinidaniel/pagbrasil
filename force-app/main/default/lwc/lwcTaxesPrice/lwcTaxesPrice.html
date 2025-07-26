@@ -1,0 +1,74 @@
+<!--
+  @description       : Gerenciar Taxas e Preços de Produtos
+  @author            : Daniel Belini
+  @group             : 
+  @last modified on  : 07-26-2025
+  @last modified by  : Daniel Belini
+-->
+<template>
+    <div style="background: white;">
+        <lightning-tabset>
+            <lightning-tab label="Taxas Sem Flexibilização" value="taxesWithoutFlexibility" onactive={handleTabChange}>
+                <c-taxes-price-filter
+                    is-flexible=false
+                    product-options={productOptions}
+                    business-model-options={businessModelOptions}
+                    integration-type-options={integrationTypeOptions}
+                    tax-region-options={taxRegionOptions}
+                    product-class-options={productClassOptions}
+                    type-options={typeOptions}
+                    status-taxa-options={statusTaxaOptions}
+                    processing-type-options={processingTypeOptions}
+                    record-type-name-options={recordTypeNameOptions}
+                    product-name-options={productNameOptions}
+                    selected-product-id={selectedProductId} 
+                    ontaxesfilterchange={handleSearchTerms}
+                    >
+                </c-taxes-price-filter>
+                <div class="slds-m-around_small" style="margin-top: 0px;margin-left: 0px;margin-right: 0px;">
+                    <c-prices-table
+                        data={displayedData}
+                        columns={columnsWithoutFlexibility}
+                        records-total={recordsTotal}
+                        onsave={handleSave}
+                        onsearch={handleSearchButton}
+                        show-result={showResult}
+                        is-loading={isLoading}
+                    ></c-prices-table>
+                </div>
+            </lightning-tab>
+            <lightning-tab label="Taxas Com Flexibilização" value="taxesWithFlexibility" onactive={handleTabChange}>
+                <c-taxes-price-filter
+                    is-flexible=true
+                    product-options={productOptions}
+                    business-model-options={businessModelOptions}
+                    integration-type-options={integrationTypeOptions}
+                    tax-region-options={taxRegionOptions}
+                    product-class-options={productClassOptions}
+                    type-options={typeOptions}
+                    status-taxa-options={statusTaxaOptions}
+                    processing-type-options={processingTypeOptions}
+                    record-type-name-options={recordTypeNameOptions}
+                    product-name-options={productNameOptions}
+                    selected-product-id={selectedProductId} 
+                    ontaxesfilterchange={handleSearchTerms}
+                    >
+                    <div class="slds-m-around_small" style="margin-top: 0px;margin-left: 0px;margin-right: 0px;">
+                        <c-prices-table
+                            data={displayedData}
+                            columns={columnsWithFlexibility}
+                            records-total={recordsTotal}
+                            onsave={handleSave}
+                            onsearch={handleSearchButton}
+                            show-result={showResult}
+                            is-loading={isLoading}
+                        ></c-prices-table>
+                    </div>
+                </c-taxes-price-filter>
+            </lightning-tab>
+        </lightning-tabset>
+        <div if:true={isLoading} class="slds-align_absolute-center slds-mre-top_medium">
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </div>
+    </div>
+</template>

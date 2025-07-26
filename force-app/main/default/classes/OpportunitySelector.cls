@@ -161,7 +161,15 @@ public without sharing class OpportunitySelector {
                 Account.OrganizationId__c,
                 RecordType.DeveloperName,
                 PagShield__c,
-                PagShield_Premium__c
+                PagShield_Premium__c,
+                Antecipation_Frequency_2__c,
+                Settlement_Frequency_2__c,
+                Visible_Settlement_Frequency__c,
+                Visible_Others_Settlement_Frequency__c,
+                Other_Payments_Settlement_Frequency_1__c,
+                Other_Payments_Settlement_Frequency_2__c,
+                Selected_Credit_Frequency__c,
+                Selected_Others_Frequency__c
             FROM Opportunity
             WHERE Id = :opportunityId
         ];
@@ -246,6 +254,15 @@ public without sharing class OpportunitySelector {
                 Account.ParentId,
                 PagShield_Premium__c,
                 RecordType.DeveloperName,
+                Visible_Others_Settlement_Frequency__c,
+                Settlement_Frequency_2__c,
+                Antecipation_Frequency_1__c,
+                Antecipation_Frequency_2__c,
+                Visible_Settlement_Frequency__c,
+                Other_Payments_Settlement_Frequency_1__c,
+                Other_Payments_Settlement_Frequency_2__c,
+                Selected_Credit_Frequency__c,
+                Selected_Others_Frequency__c,
                 (SELECT Id,
                         Login__c,
                         Password__c,

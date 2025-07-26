@@ -654,6 +654,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.EvidenceInfoValidator__c</fieldItem>
                 <identifier>RecordEvidencias_Validador_Info_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RequirementInfoValidator__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Yes</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-2da3c3f3-f2da-4730-b21e-870bab303466</name>
@@ -748,8 +755,25 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.PaymentAlert__c</fieldItem>
-                <identifier>RecordPayment_Alert__cField</identifier>
+                <fieldItem>Record.Account_in_Mode__c</fieldItem>
+                <identifier>RecordAccount_in_Mode__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Email_to_Receive_Account_Instructions__c</fieldItem>
+                <identifier>RecordEmail_to_Receive_Account_Instructions__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -768,38 +792,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Email_s_for_notification_of_pre_auths__c</fieldItem>
+                <identifier>RecordEmail_s_for_notification_of_pre_auths__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.PagShield_Premium__c</fieldItem>
                 <identifier>RecordPagShield_Premium__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.PagShield__c</fieldItem>
-                <identifier>RecordPagShield__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Minimum_Amount_to_Activate_PagShield__c</fieldItem>
-                <identifier>RecordMinimum_Amount_to_Activate_PagShield__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.BlockRefund__c</fieldItem>
-                <identifier>RecordBlock_Refund__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-09ceac42-e333-4e17-ae2c-7b68b97afddb</name>
@@ -812,15 +816,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Account_in_Mode__c</fieldItem>
-                <identifier>RecordAccount_in_Mode__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.AgendaDeLiberacao__c</fieldItem>
+                <identifier>RecordAgendaDeLiberacao__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.BlockRefund__c</fieldItem>
+                <identifier>RecordBlock_Refund__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1109,8 +1116,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.AgendaDeLiberacao__c</fieldItem>
-                <identifier>RecordAgendaDeLiberacao__cField</identifier>
+                <fieldItem>Record.Activate_Wallet__c</fieldItem>
+                <identifier>RecordActivate_Wallet__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-187a041a-48ad-4315-a792-89826f7d4dba</name>
@@ -1135,6 +1142,36 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Minimum_Amount_per_Installment__c</fieldItem>
                 <identifier>RecordMinimum_Amount_per_Installment__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.MinimumInstallmentsForInterest__c</fieldItem>
+                <identifier>RecordQuantidade_minima_de_Parcelas_para_Juros_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.InterestRepassMethodToCustomer__c</fieldItem>
+                <identifier>RecordForma_repasse_Juros_ao_cliente_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.MonthlyInterestOnCustomerInstallments__c</fieldItem>
+                <identifier>RecordJuros_mensal_de_Parcelamento_ao_cliente_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c18a5435-e4ed-4486-a976-e5f66dd2e546</name>
@@ -1299,16 +1336,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.PixPending__c</fieldItem>
                 <identifier>RecordPixPending__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Activate_Wallet__c</fieldItem>
-                <identifier>RecordActivate_Wallet__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1483,6 +1510,38 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <name>Facet-11a17941-d3f9-44e5-b65f-c6d860a82b10</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>Facet-2158e3d3-201e-42f3-8fea-1aa25faa0d04</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-11a17941-d3f9-44e5-b65f-c6d860a82b10</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column33</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-2158e3d3-201e-42f3-8fea-1aa25faa0d04</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column34</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-bbaf5d48-54d2-49ae-b547-26890bbe06c6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -1519,16 +1578,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.PbCheckoutDiscount__c</fieldItem>
-                <identifier>RecordDesconto_PB_Checkout_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.PagBrasilPix__c</fieldItem>
                 <identifier>RecordPagBrasil_Pix_cField</identifier>
             </fieldInstance>
@@ -1553,8 +1602,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.MinimumInstallmentsForInterest__c</fieldItem>
-                <identifier>RecordQuantidade_minima_de_Parcelas_para_Juros_cField</identifier>
+                <fieldItem>Record.PbCheckoutDiscount__c</fieldItem>
+                <identifier>RecordDesconto_PB_Checkout_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1563,8 +1612,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.InterestRepassMethodToCustomer__c</fieldItem>
-                <identifier>RecordForma_repasse_Juros_ao_cliente_cField</identifier>
+                <fieldItem>Record.Checkout_Boleto_Flash__c</fieldItem>
+                <identifier>RecordCheckout_Boleto_Flash_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1573,8 +1622,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.MonthlyInterestOnCustomerInstallments__c</fieldItem>
-                <identifier>RecordJuros_mensal_de_Parcelamento_ao_cliente_cField</identifier>
+                <fieldItem>Record.Checkout_PagBrasil_Pix__c</fieldItem>
+                <identifier>RecordCheckout_PagBrasil_Pix__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-93da4432-07b8-4c63-99a4-fb1a89bfbf66</name>
@@ -2154,6 +2203,24 @@
                         <rightValue>Pix_International_Pix_Roaming</rightValue>
                     </criteria>
                 </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-bbaf5d48-54d2-49ae-b547-26890bbe06c6</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Payment Alert</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection17</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

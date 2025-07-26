@@ -17,14 +17,11 @@
         <inputParameters>
             <name>senderType</name>
             <value>
-                <stringValue>OrgWideEmailAddress</stringValue>
+                <stringValue>DefaultWorkflowUser</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>senderAddress</name>
-            <value>
-                <stringValue>naoresponda@pagbrasil.com</stringValue>
-            </value>
         </inputParameters>
         <inputParameters>
             <name>composeEmailContent</name>

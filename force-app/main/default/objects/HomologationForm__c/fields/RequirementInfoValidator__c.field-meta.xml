@@ -11,14 +11,36 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Yes</fullName>
+                <fullName>I will use PagBrasil&apos;s plugin and I want to activate the validators</fullName>
                 <default>false</default>
-                <label>Yes</label>
+                <label>I will use PagBrasil&apos;s plugin and I want to activate the validators</label>
+            </value>
+            <value>
+                <fullName>I already have the fields and do not want to activate the validators</fullName>
+                <default>false</default>
+                <label>I already have the fields and do not want to activate the validators</label>
+            </value>
+            <value>
+                <fullName>My integration will be via API, iFrame, or PagBrasil.JS, and i have my own validators</fullName>
+                <default>false</default>
+                <label>My integration will be via API, iFrame, or PagBrasil.JS, and i have my own validators</label>
+            </value>
+            <value>
+                <fullName>Integration is not API, a validator already exists</fullName>
+                <default>false</default>
+                <label>Integration is not API, a validator already exists</label>
             </value>
             <value>
                 <fullName>No</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>No</label>
+            </value>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Yes</label>
             </value>
         </valueSetDefinition>
     </valueSet>

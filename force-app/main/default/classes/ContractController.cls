@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-24-2025
+ * @last modified on  : 07-28-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -630,9 +630,9 @@ public class ContractController {
         }
 
         // If not present in quote, ensure values are empty so VF page does not display them
-        this.settlementFrequency = '0';
-        this.settlementFrequency = '0';
-        this.antecipationFrequency = '0';
+        this.settlementFrequency = '';
+        this.settlementFrequency = '';
+        this.antecipationFrequency = '';
 
         if(this.opportunity.Selected_Others_Frequency__c == '1'){ 
             if(String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c) && String.isNotBlank(this.opportunity.Antecipation_Frequency_1__c)) {
@@ -662,13 +662,14 @@ public class ContractController {
             }
         }
         if(this.opportunity.Selected_Credit_Frequency__c == '2'){
-            if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Settlement_Frequency_2__c)) {
+        if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Settlement_Frequency_2__c)) {
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
             }
         }
+        
         List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c =: this.opportunity.Antecipation_Frequency_1__c AND TaxaBaseAntecipacao__c =: this.taxaAntecipacao AND IsActive__c = true];
 
         List<Contact> contactsRepresentative = [SELECT Id, Name, Type__c, Title FROM Contact WHERE Type__c INCLUDES ('Representante Legal') AND AccountId =: opp.AccountId ORDER BY CreatedDate DESC];

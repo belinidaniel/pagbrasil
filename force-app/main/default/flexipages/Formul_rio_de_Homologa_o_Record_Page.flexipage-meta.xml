@@ -311,112 +311,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Category__c</fieldItem>
-                <identifier>RecordCategory__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Contact_email_for_notification__c</fieldItem>
-                <identifier>RecordContact_email_for_notification__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Allow_CPF_CNPJ__c</fieldItem>
-                <identifier>RecordAllow_CPF_CNPJ__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Subscriber_Area__c</fieldItem>
-                <identifier>RecordSubscriber_Area__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.PodReminder__c</fieldItem>
-                <identifier>RecordPOD_Reminder__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Crossborder</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.EmailsPodManager__c</fieldItem>
-                <identifier>RecordEmails_Gerente_de_POD__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Crossborder</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-6d2b8d7a-c6cc-4672-a860-de1b7d7de9f4</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-2b181b4c-62be-4799-b3a7-879af97b4366</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column13</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-6d2b8d7a-c6cc-4672-a860-de1b7d7de9f4</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column14</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-08841f5b-1b40-4a95-9736-5075afa3459f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.SalesProcess__c</fieldItem>
                 <identifier>RecordSalesProcess__cField</identifier>
             </fieldInstance>
@@ -622,6 +516,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Require_Address_Check__c</fieldItem>
+                <identifier>RecordRequire_Address_Check__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.RequirementZipCodeValidator__c</fieldItem>
                 <identifier>RecordExigencia_Validador_CEP_cField</identifier>
             </fieldInstance>
@@ -658,7 +562,7 @@
                     <criteria>
                         <leftValue>{!Record.RequirementInfoValidator__c}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>Yes</rightValue>
+                        <rightValue>I will use PagBrasil&apos;s plugin and I want to activate the validators</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -667,6 +571,33 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Boleto_PIX_Flash_confirmation_reminder__c</fieldItem>
+                <identifier>RecordBoleto_PIX_Flash_confirmation_reminder_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Company_Email_SMS_Template__c</fieldItem>
+                <identifier>RecordCompany_Email_SMS_Template_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Boleto_PIX_Flash_confirmation_reminder__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>I will use my solution for sending order confirmation and reminders</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -729,6 +660,111 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-4dc27aab-1b6f-4a50-871b-bdc7c1b92bfb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-c8db300a-cc98-4dce-8f52-64924a99dbcf</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Store Information | Informações da Loja</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-c2b59c3b-2c91-408f-8ebd-0c977eecfc86</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Sales Process | Processo de Vendas</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection15</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Crossborder</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-0fb04b09-2a35-4255-aea1-1cd152f1403d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Delivery information  | Informações de entrega</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-4dc27aab-1b6f-4a50-871b-bdc7c1b92bfb</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Validators and features for plugins  | Validadores e recursos para plugins</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection16</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-aca7b34f-406e-4339-bf22-c2893e2d8f32</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-aca7b34f-406e-4339-bf22-c2893e2d8f32</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Homologation - Compliance</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection2</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-ebed7196-6693-44e1-8ea4-6f1008b38d4d</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -1510,10 +1546,60 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Has_Bank_Slip_Alert__c</fieldItem>
+                <identifier>RecordHas_Bank_Slip_Alert__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Has_Boleto_Flash_Alert__c</fieldItem>
+                <identifier>RecordHas_Boleto_Flash_Alert__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Has_Debit_Card_Flash_Alert__c</fieldItem>
+                <identifier>RecordHas_Debit_Card_Flash_Alert__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-11a17941-d3f9-44e5-b65f-c6d860a82b10</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Has_Pix_Alert__c</fieldItem>
+                <identifier>RecordHas_Pix_Alert__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Has_Credit_Card_Alert__c</fieldItem>
+                <identifier>RecordHas_Credit_Card_Alert__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-2158e3d3-201e-42f3-8fea-1aa25faa0d04</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1558,8 +1644,15 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.ShopifyDiscount__c</fieldItem>
-                <identifier>RecordDesconto_Shopify_cField</identifier>
+                <fieldItem>Record.Has_Shopify_Discount__c</fieldItem>
+                <identifier>RecordHas_Shopify_Discount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.NotInterestedInOfferingDiscount__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>No</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1570,6 +1663,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.FlashBoleto__c</fieldItem>
                 <identifier>RecordBoleto_Flash_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Has_Shopify_Discount__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1580,6 +1680,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.PagBrasilPix__c</fieldItem>
                 <identifier>RecordPagBrasil_Pix_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Has_Shopify_Discount__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-2be46bd1-509e-46a8-a41d-88e5a13a630c</name>
@@ -1602,8 +1709,15 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.PbCheckoutDiscount__c</fieldItem>
-                <identifier>RecordDesconto_PB_Checkout_cField</identifier>
+                <fieldItem>Record.Has_PB_Checkout_Discount__c</fieldItem>
+                <identifier>RecordHas_PB_Checkout_Discount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.NotInterestedInOfferingDiscount__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>No</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1614,6 +1728,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Checkout_Boleto_Flash__c</fieldItem>
                 <identifier>RecordCheckout_Boleto_Flash_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Has_PB_Checkout_Discount__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1624,6 +1745,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Checkout_PagBrasil_Pix__c</fieldItem>
                 <identifier>RecordCheckout_PagBrasil_Pix__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Has_PB_Checkout_Discount__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-93da4432-07b8-4c63-99a4-fb1a89bfbf66</name>
@@ -1856,162 +1984,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CreatedById</fieldItem>
-                <identifier>RecordCreatedByIdField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-46e59cac-4bc3-4144-9296-5b7bdeb2742f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.LastModifiedById</fieldItem>
-                <identifier>RecordLastModifiedByIdField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-6584f37b-0ffa-425b-b5c9-d995c98135a7</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-46e59cac-4bc3-4144-9296-5b7bdeb2742f</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-6584f37b-0ffa-425b-b5c9-d995c98135a7</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column4</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-f0091d10-3f2c-4fca-bbf6-b39e82be37e1</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-c8db300a-cc98-4dce-8f52-64924a99dbcf</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Store Information | Informações da Loja</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-08841f5b-1b40-4a95-9736-5075afa3459f</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Compliance</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection7</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Pix_International_Pix_Roaming</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-c2b59c3b-2c91-408f-8ebd-0c977eecfc86</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Sales Process | Processo de Vendas</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection15</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Crossborder</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-0fb04b09-2a35-4255-aea1-1cd152f1403d</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Delivery information  | Informações de entrega</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection6</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-4dc27aab-1b6f-4a50-871b-bdc7c1b92bfb</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Validators and features for plugins  | Validadores e recursos para plugins</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection16</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -2271,6 +2243,104 @@
                         <rightValue>NaTional</rightValue>
                     </criteria>
                 </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-0ef21b74-ce3f-48d5-a94b-c1e966bbfb4c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-0ef21b74-ce3f-48d5-a94b-c1e966bbfb4c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Dashboard - Configurations</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection2</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-691d1e5a-3470-41e8-a357-3e8846696cf2</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CreatedById</fieldItem>
+                <identifier>RecordCreatedByIdField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-46e59cac-4bc3-4144-9296-5b7bdeb2742f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.LastModifiedById</fieldItem>
+                <identifier>RecordLastModifiedByIdField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-6584f37b-0ffa-425b-b5c9-d995c98135a7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-46e59cac-4bc3-4144-9296-5b7bdeb2742f</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6584f37b-0ffa-425b-b5c9-d995c98135a7</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-f0091d10-3f2c-4fca-bbf6-b39e82be37e1</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>accordionSections</name>
+                    <value>Facet-ebed7196-6693-44e1-8ea4-6f1008b38d4d</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordion</componentName>
+                <identifier>flexipage_accordion</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>accordionSections</name>
+                    <value>Facet-691d1e5a-3470-41e8-a357-3e8846696cf2</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordion</componentName>
+                <identifier>flexipage_accordion2</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-25-2025
+  @last modified on  : 07-28-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -1145,8 +1145,7 @@
                                     <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                                             Termos de repasse <br/>
-                                            {!settlementFrequencyCreditCardPage2} com repasse<br/>
-                                            de cartão de crédito <br/>
+                                            {!settlementFrequencyCreditCardPage2} Antecipação<br/>
                                             {!settlementFrequencyCreditCardPage2}
                                         </p>
 
@@ -1295,15 +1294,18 @@
         <apex:panelGroup rendered="{!AND(isShowPageRepasse, isGatewayAndIntermediation, NOT(containsCreditCard))}">            
             <div class="page">
                 <img src="{!frequencyPage11}" class="background-image"/>
-                <div class="page-content">
-                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
-                        Termos de​<br/>
+                <div class="page-content">  
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                        Termos de​<br/> 
                         repasse {!settlementFrequency}
                     </p>
-                    <div style="padding: 307px 0px 0px 940px;font-weight: bolder;font-size: 19px;font-family: 'MontserratBold';">{!settlementFrequencyPage}</div>
-                    <p style="position: absolute; top: 5px; left: 122px; white-space: nowrap;">{!oppName}</p>
+                    <div style="padding: 370px 0px 0px 960px; font-weight: 400; font-size: 15px;">{!settlementFrequencyPage}</div>
+                    <p style="position: absolute; top: 12px; left: 131px; white-space: nowrap;">{!oppName}</p>
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
             </div>
         </apex:panelGroup>
 

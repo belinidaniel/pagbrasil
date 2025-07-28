@@ -644,7 +644,10 @@ public without sharing class OpportunitySelector {
                         MaximumNumberInstallments__c,
                         PagStream__c,
                         Subscriber_Area__c,
-                        Minimum_Amount_to_Activate_PagShield__c
+                        Minimum_Amount_to_Activate_PagShield__c,
+                        Allow_CPF_CNPJ__c,
+                        PixPending__c,
+                        PixOpenFinance__c
             FROM HomologationForm__c
             WHERE Opportunity__c = :opportunityId
         ];
@@ -744,7 +747,10 @@ public without sharing class OpportunitySelector {
                         MaximumNumberInstallments__c,
                         PagStream__c,
                         Subscriber_Area__c,
-                        Minimum_Amount_to_Activate_PagShield__c
+                        Minimum_Amount_to_Activate_PagShield__c,
+                        Allow_CPF_CNPJ__c,
+                        PixPending__c,
+                        PixOpenFinance__c
         FROM HomologationForm__c
         WHERE Id = :homologationId
         LIMIT 1

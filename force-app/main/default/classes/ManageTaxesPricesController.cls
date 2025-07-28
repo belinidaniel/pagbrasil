@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-27-2025
+ * @last modified on  : 07-28-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class ManageTaxesPricesController {
@@ -122,7 +122,7 @@ public with sharing class ManageTaxesPricesController {
     // Busca taxas com flexibilização para um produto específico (ou todos)
     @AuraEnabled(cacheable=true)
     public static List<Taxes__c> getTaxesWithFlex(String productId) {
-        String query = 'SELECT Id, BusinessModel__c, IntegrationType__c, Product__c, UnitPrice__c, PercentValue__c, FlexHead__c, FlexBoard__c, IsPercent__c, StatusTaxa__c, TaxaBaseAntecipacao__c, ProcessingType__c, RecordTypeName__c, RangeFaixaInicial__c, RangeFaixaFinal__c, Flexibilization__c, TicketInicial__c, InstallmentNumber__c, AntecipationFrequency__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, IsActive__c, TaxRegion__c, Can_Edit_All_Taxes__c, ProductClass__c, Type__c, IsGatewayAndIntermediation__c FROM Taxes__c WHERE Flexibilization__c = true';
+        String query = 'SELECT Id, BusinessModel__c, IntegrationType__c, Product__c, UnitPrice__c, PercentValue__c, FlexHead__c, FlexBoard__c, IsPercent__c, StatusTaxa__c, TaxaBaseAntecipacao__c, ProcessingType__c, RecordTypeName__c, RangeFaixaInicial__c, RangeFaixaFinal__c, Flexibilization__c, TicketInicial__c, InstallmentNumber__c, AntecipationFrequency__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, IsActive__c, TaxRegion__c, Can_Edit_All_Taxes__c, ProductClass__c, Type__c, IsGatewayAndIntermediation__c FROM Taxes__c WHERE Product__c != null ';
         if (String.isNotBlank(productId)) {
             query += ' AND Product__c = :productId';
         }
@@ -157,7 +157,7 @@ public with sharing class ManageTaxesPricesController {
                     Schema.DisplayType dtype = fieldMap.get(key).getDescribe().getType();
                     if (value == null) {
                         pbe.put(key, null);
-                    } else if (dtype == Schema.DisplayType.DOUBLE || dtype == Schema.DisplayType.CURRENCY) {
+                    } else if (dtype == Schema.DisplayType.DOUBLE || dtype == Schema.DisplayType.CURRENCY || dtype == Schema.DisplayType.PERCENT) {
                         pbe.put(key, Decimal.valueOf(String.valueOf(value)));
                     } else if (dtype == Schema.DisplayType.INTEGER) {
                         pbe.put(key, Integer.valueOf(String.valueOf(value)));
@@ -245,7 +245,7 @@ public with sharing class ManageTaxesPricesController {
             filter = (TaxesPriceFilterDTO)JSON.deserialize(filterJson, TaxesPriceFilterDTO.class);
         }
         List<SObject> result;
-        String baseQuery = 'SELECT Id, BusinessModel__c, IntegrationType__c, Product__c, UnitPrice__c, PercentValue__c, FlexHead__c, FlexBoard__c, IsPercent__c, StatusTaxa__c, TaxaBaseAntecipacao__c, ProcessingType__c, RecordTypeName__c, RangeFaixaInicial__c, RangeFaixaFinal__c, Flexibilization__c, TicketInicial__c, InstallmentNumber__c, AntecipationFrequency__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, IsActive__c, TaxRegion__c, Can_Edit_All_Taxes__c, ProductClass__c, Type__c, IsGatewayAndIntermediation__c FROM Taxes__c WHERE Product__c != null ';
+        String baseQuery = 'SELECT Id, Name, BusinessModel__c, IntegrationType__c, Product__c, Product__r.Name, UnitPrice__c, PercentValue__c, FlexHead__c, FlexBoard__c, IsPercent__c, StatusTaxa__c, TaxaBaseAntecipacao__c, ProcessingType__c, RecordTypeName__c, RangeFaixaInicial__c, RangeFaixaFinal__c, Flexibilization__c, TicketInicial__c, InstallmentNumber__c, AntecipationFrequency__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, IsActive__c, TaxRegion__c, Can_Edit_All_Taxes__c, ProductClass__c, Type__c, IsGatewayAndIntermediation__c FROM Taxes__c WHERE Product__c != null ';
         List<String> whereClauses = new List<String>();
         // Business Model Exception
         if (filter.selectedBusinessModel != null && !filter.selectedBusinessModel.isEmpty()) {
@@ -254,7 +254,7 @@ public with sharing class ManageTaxesPricesController {
                 if (bm == 'Intermediation') {
                     bmClauses.add('BusinessModel__c = \'Intermediation\'');
                 } else {
-                    bmClauses.add('BusinessModel__c LIKE \'%' + bm + '%\'');
+                    bmClauses.add('BusinessModel__c LIKE \'%' + String.escapeSingleQuotes(bm) + '%\'');
                 }
             }
             whereClauses.add('(' + String.join(bmClauses, ' OR ') + ')');
@@ -283,17 +283,21 @@ public with sharing class ManageTaxesPricesController {
         if (filter.selectedProductName != null && !filter.selectedProductName.isEmpty()) {
             whereClauses.add('Product__r.Name IN :filter.selectedProductName');
         }
-            List<String> selectedProductIds = filter?.selectedProductId;
-            if (selectedProductIds != null && !selectedProductIds.isEmpty()) {
-                whereClauses.add('Product2Id IN :selectedProductIds');
-            }
+        if (filter.selectedProductId != null && !filter.selectedProductId.isEmpty()) {
+            whereClauses.add('Product__c IN :filter.selectedProductId');
+        }
         String finalQuery = baseQuery;
         if (!whereClauses.isEmpty()) {
             finalQuery += ' AND ' + String.join(whereClauses, ' AND ');
         }
-        finalQuery += ' ORDER BY Pricebook2.Name, Product2.Name';
+        finalQuery += ' ORDER BY Product__r.Name, Name';
         System.debug('FINAL QUERY FLEX: ' + finalQuery);
-        result = Database.query(finalQuery);
+        try {
+            result = Database.query(finalQuery);
+        } catch (Exception e) {
+            System.debug('Query failed: ' + e.getMessage());
+            throw new AuraHandledException('Query failed: ' + e.getMessage());
+        }
         return JSON.serialize(result);
     }
 

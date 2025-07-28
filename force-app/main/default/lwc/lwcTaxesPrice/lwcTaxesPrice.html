@@ -2,7 +2,7 @@
   @description       : Gerenciar Taxas e Preços de Produtos
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-26-2025
+  @last modified on  : 07-28-2025
   @last modified by  : Daniel Belini
 -->
 <template>
@@ -53,18 +53,18 @@
                     selected-product-id={selectedProductId} 
                     ontaxesfilterchange={handleSearchTerms}
                     >
-                    <div class="slds-m-around_small" style="margin-top: 0px;margin-left: 0px;margin-right: 0px;">
-                        <c-prices-table
-                            data={displayedData}
-                            columns={columnsWithFlexibility}
-                            records-total={recordsTotal}
-                            onsave={handleSave}
-                            onsearch={handleSearchButton}
-                            show-result={showResult}
-                            is-loading={isLoading}
-                        ></c-prices-table>
-                    </div>
                 </c-taxes-price-filter>
+                <div class="slds-m-around_small" style="margin-top: 0px;margin-left: 0px;margin-right: 0px;">
+                    <c-prices-table
+                        data={displayedData}
+                        columns={columnsWithFlexibility}
+                        records-total={recordsTotal}
+                        onsave={handleSave}
+                        onsearch={handleSearchButton}
+                        show-result={showResult}
+                        is-loading={isLoading}
+                    ></c-prices-table>
+                </div>
             </lightning-tab>
         </lightning-tabset>
         <div if:true={isLoading} class="slds-align_absolute-center slds-mre-top_medium">

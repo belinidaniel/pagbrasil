@@ -9,33 +9,30 @@ import getProcessingTypes from '@salesforce/apex/ManageTaxesPricesController.get
 import getRecordTypeNames from '@salesforce/apex/ManageTaxesPricesController.getRecordTypeNames';
 import getProductNames from '@salesforce/apex/ManageTaxesPricesController.getProductNames';
 import getProductOptions from '@salesforce/apex/ManageTaxesPricesController.getProductOptions';
-import getPricebookEntries from '@salesforce/apex/ManageTaxesPricesController.getPricebookEntries';
-import updatePricebookEntries from '@salesforce/apex/ManageTaxesPricesController.updateTaxes';
-import updatePriceEntrys from '@salesforce/apex/ManageTaxesPricesController.updatePriceEntrys';
 import filterTaxesOrPrices from '@salesforce/apex/ManageTaxesPricesController.filterTaxesOrPrices';
+const LOCAL_STORAGE_WIDTH = 'userColumnSettings';
+
 
 const COLUMNSWITHFLEXIBILITY = [
-    { label: 'Name', fieldName: 'Name', editable: false },
-    { label: 'CurrencyIsoCode', fieldName: 'CurrencyIsoCode', editable: false },
-    { label: 'Unit Price', fieldName: 'UnitPrice', type: 'currency', editable: true },
-    { label: 'Is Active', fieldName: 'IsActive', type: 'boolean', editable: true },
-    { label: 'Product Code', fieldName: 'ProductCode', editable: false },
-    { label: 'Is Percent', fieldName: 'IsPercent__c', type: 'boolean', editable: true },
-    { label: 'CurrencyIsoCode__c', fieldName: 'CurrencyIsoCode__c', editable: true },
-    { label: 'Order', fieldName: 'Order__c', editable: true },
-    { label: 'Optional', fieldName: 'Optional__c', type: 'boolean', editable: true }
+    { label : 'Business Model1', fieldName: 'BusinessModel__c', editable: false, initialWidth : 300},
+    { label: 'Name', fieldName: 'NameUrl', type: 'url', typeAttributes: { label: { fieldName: 'Name' }, target: '_blank' }, editable: false },
+    { label: 'CurrencyIsoCode', fieldName: 'CurrencyIsoCode', editable: false, initialWidth : 100},
+    { label: 'Unit Price', fieldName: 'UnitPrice', type: 'currency', editable: true, initialWidth : 150},
+    { label: 'Is Active', fieldName: 'IsActive', type: 'boolean', editable: true, initialWidth : 150},
+    { label: 'Product Code', fieldName: 'ProductCode', editable: false, initialWidth : 150},
+    { label: 'Is Percent', fieldName: 'IsPercent__c', type: 'boolean', editable: true, initialWidth : 150},
+    { label: 'Order', fieldName: 'Order__c', editable: true, initialWidth : 150}
 ];
 
 const COLUMNSWITHOUTFLEXIBILITY = [
-    { label: 'Name', fieldName: 'Name', editable: false },
-    { label: 'CurrencyIsoCode', fieldName: 'CurrencyIsoCode', editable: false },
-    { label: 'Unit Price', fieldName: 'UnitPrice', type: 'currency', editable: true },
-    { label: 'Is Active', fieldName: 'IsActive', type: 'boolean', editable: true },
-    { label: 'Product Code', fieldName: 'ProductCode', editable: false },
-    { label: 'Is Percent', fieldName: 'IsPercent__c', type: 'boolean', editable: true },
-    { label: 'CurrencyIsoCode__c', fieldName: 'CurrencyIsoCode__c', editable: true },
-    { label: 'Order', fieldName: 'Order__c', editable: true },
-    { label: 'Optional', fieldName: 'Optional__c', type: 'boolean', editable: true }
+    { label : 'Business Model', fieldName: 'Pricebook2Name', editable: false, initialWidth : 300},
+    { label: 'Name', fieldName: 'NameUrl', type: 'url', typeAttributes: { label: { fieldName: 'Name' }, target: '_blank' }, editable: false },
+    { label: 'Is Percent', fieldName: 'IsPercent__c', type: 'boolean', editable: true, initialWidth: 150 },
+    { label: 'CurrencyIsoCode', fieldName: 'CurrencyIsoCode', editable: false, initialWidth : 150 },
+    { label: 'Unit Price', fieldName: 'UnitPrice', type: 'currency', editable: true, initialWidth: 150 },
+    { label: 'Percent Value', fieldName: 'PercentValue__c', type: 'number', editable: true, initialWidth: 150 },
+    { label: 'Order', fieldName: 'Order__c', editable: true, initialWidth: 100 },
+    { label: 'Active', fieldName: 'IsActive', type: 'boolean', editable: true, initialWidth: 150 }
 ];
 export default class LwcTaxesPrice extends LightningElement {
     @track businessModelOptions = [];
@@ -107,6 +104,12 @@ export default class LwcTaxesPrice extends LightningElement {
     handleSearchTerms(event) {
         const filter = event.detail.value;
         this.searchTerm = filter;
+        // Optionally clear table if filter is empty
+        if (!filter || Object.keys(filter).length === 0) {
+            this.displayedData = [];
+            this.recordsTotal = '0/0';
+            this.showResult = false;
+        }
     }
 
 
@@ -114,11 +117,26 @@ export default class LwcTaxesPrice extends LightningElement {
         this.isLoading = true;
         try {
             const filterJson = JSON.stringify(this.searchTerm);
-            console.log('Search initiated with filter:', filterJson);
             const resultJson = await filterTaxesOrPrices({ filterJson , isFlex: this.searchTerm?.isFlexible == null ? false : this.searchTerm?.isFlexible });
-            this.displayedData = JSON.parse(resultJson);
+            let data = JSON.parse(resultJson);
+            data = data.map(row => {
+                if (row.Pricebook2 && row.Pricebook2.Name) {
+                    row.Pricebook2Name = row.Pricebook2.Name;
+                }
+                if (this.searchTerm?.isFlexible) {
+                    row.NameUrl = `/lightning/r/Taxes__c/${row.Id}/view`;
+                } else {
+                    row.NameUrl = `/lightning/r/PricebookEntry/${row.Id}/view`;
+                }
+                return row;
+            });
+            this.displayedData = data;
             this.recordsTotal = `${this.displayedData.length}/${this.displayedData.length}`;
             this.showResult = true;
+            // Notify child table to refresh
+            this.template.querySelectorAll('c-prices-table').forEach(table => {
+                if (table.refreshTable) table.refreshTable(data);
+            });
         } catch (e) {
             this.displayedData = [];
             this.showResult = false;
@@ -127,10 +145,19 @@ export default class LwcTaxesPrice extends LightningElement {
         this.isLoading = false;
     }
 
-    handleClear() {
+    handleClear(event) {
         this.selectedProductId = '';
         this.displayedData = [];
         this.showResult = false;
         this.recordsTotal = '0/0';
+        // Clear child tables
+        this.template.querySelectorAll('c-prices-table').forEach(table => {
+            if (table.refreshTable) table.refreshTable([]);
+        });
+        // Clear filter component
+        const filterComps = this.template.querySelectorAll('c-taxes-price-filter');
+        filterComps.forEach(filter => {
+            if (filter.handleClear) filter.handleClear();
+        });
     }
 }

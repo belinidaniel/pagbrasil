@@ -2,24 +2,25 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-26-2025
+  @last modified on  : 07-27-2025
   @last modified by  : Daniel Belini
 -->
 <template>
     <div class="slds-table_fixed-layout">
         <lightning-layout>
             <lightning-layout-item size="4">
-                <div class="total-Records">
+                <div class="total-Records" style="padding: 25px;">
                     Total Records: {recordsTotal}
                 </div>
             </lightning-layout-item>
             <lightning-layout-item size="4">
-                <div style="margin-top: 25px; text-align: right;">
-                    <lightning-button label="Save" variant="brand" onclick={handleSaveButton} style="margin-right: 10px;" disabled={disableSave}></lightning-button>
+                <div style="margin-top: 25px; text-align: center;">
                     <lightning-button label="Search" variant="brand" onclick={handleSearchEvent} style="margin-right: 10px;"></lightning-button>
                     <lightning-button label="Clear" variant="neutral" onclick={handleClear} style="margin-right: 10px;"></lightning-button>
-                    <lightning-button label="resize columns" variant="neutral" onclick={handleRollbackColumn} style="margin-right: 10px;"></lightning-button>
-                    <lightning-button label="Export As CSV" variant="neutral" disabled={disableCsv} onclick={handleExport} style="margin-right: 10px;"></lightning-button>
+                    <lightning-button label="Save" variant="brand" onclick={handleSaveButton} style="margin-right: 10px;" disabled={disableSave}></lightning-button>
+
+                    <!-- <lightning-button label="resize columns" variant="neutral" onclick={handleRollbackColumn} style="margin-right: 10px;"></lightning-button>
+                    <lightning-button label="Export As CSV" variant="neutral" disabled={disableCsv} onclick={handleExport} style="margin-right: 10px;"></lightning-button> -->
                 </div>
             </lightning-layout-item>
             <lightning-layout-item size="3">
@@ -36,8 +37,8 @@
             <div style="height: 70vh;">
                 <lightning-datatable
                     key-field="Id"
-                    data={data}
-                    columns={columnsWithoutFlexibility}
+                    data={filteredData}
+                    columns={columns}
                     onsave={handleSave}
                     oncellchange={handleCellChange}
                     draft-values={draftValues}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>FlashBoleto__c</fullName>
-    <label>Shopify Boleto Flash</label>
+    <fullName>Checkout_PagBrasil_Pix__c</fullName>
+    <label>Checkout PagBrasil Pix</label>
     <precision>18</precision>
     <required>false</required>
     <scale>4</scale>

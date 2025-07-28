@@ -1,0 +1,11 @@
+<template>
+    <c-custom-data-table
+        key-field="Id"
+        data={taxes}
+        columns={columns}
+        onsave={handleSave}
+        draft-values={draftValues}
+        hide-checkbox-column
+        is-loading={isLoading}>
+    </c-custom-data-table>
+</template>

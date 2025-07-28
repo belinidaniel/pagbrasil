@@ -17,7 +17,7 @@
         <inputParameters>
             <name>senderType</name>
             <value>
-                <stringValue>OrgWideEmailAddress</stringValue>
+                <stringValue>DefaultWorkflowUser</stringValue>
             </value>
         </inputParameters>
         <inputParameters>

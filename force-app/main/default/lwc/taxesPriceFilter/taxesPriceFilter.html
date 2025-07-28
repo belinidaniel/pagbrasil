@@ -1,0 +1,77 @@
+<!--
+  @description       : 
+  @author            : Daniel Belini
+  @group             : 
+  @last modified on  : 07-27-2025
+  @last modified by  : Daniel Belini
+-->
+<template>
+    <lightning-layout>
+        <!-- Row 1: Type | Business Model | Produtos -->
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={typeOptions}
+                    title="Type"
+                    name="selectedType"
+                    placeholder="Selecione o(s) tipo(s)"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={businessModelOptions}
+                    title="Business Model"
+                    name="selectedBusinessModel"
+                    placeholder="Selecione o(s) modelo(s) de negócio"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={productOptions}
+                    title="Produtos"
+                    name="selectedProductId"
+                    placeholder="Selecione um ou mais produtos"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout>
+        <!-- Row 2: Record Type Name | Is Percent -->
+        <!-- <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-multi-picklist
+                    options={recordTypeNameOptions}
+                    title="Record Type Name"
+                    name="selectedRecordTypeName"
+                    placeholder="Selecione o(s) tipo(s) de registro"
+                    onselectionchange={handleSelectionChange}
+                ></c-multi-picklist>
+            </div>
+        </lightning-layout-item> -->
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-button-radio
+                    title="Is Percent"
+                    name="isPercent"
+                    onselectionchange={handleSelectionChangeBoolean}
+                ></c-button-radio>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="4">
+            <div class="div-align">
+                <c-button-radio
+                    title="Is Active"
+                    name="isActive"
+                    onselectionchange={handleSelectionChangeBoolean}
+                ></c-button-radio>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

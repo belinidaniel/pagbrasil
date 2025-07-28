@@ -1,0 +1,22 @@
+<template>
+    <!-- sldsValidatorIgnoreNextLine -->
+    <fieldset class="slds-form-element">
+        <legend class="slds-form-element__legend slds-form-element__label">{title}</legend>
+        <div class="slds-form-element__control">
+            <div class="slds-radio_button-group">
+                <span class="slds-button slds-radio_button">
+                    <input type="radio" name={radioName} id={yesRadioId} value="yes" checked={isYesChecked} onchange={handleRadioChange} />
+                    <label class="slds-radio_button__label" for={yesRadioId}>
+                        <span class="slds-radio_faux">Yes</span>
+                    </label>
+                </span>
+                <span class="slds-button slds-radio_button">
+                    <input type="radio" name={radioName} id={noRadioId} value="no" checked={isNoChecked} onchange={handleRadioChange} />
+                    <label class="slds-radio_button__label" for={noRadioId}>
+                        <span class="slds-radio_faux">No</span>
+                    </label>
+                </span>
+            </div>
+        </div>
+    </fieldset>
+</template>

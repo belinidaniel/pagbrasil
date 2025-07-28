@@ -1431,6 +1431,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Checkout_Boleto_Flash__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Checkout_PagBrasil_Pix__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>HomologationForm__c.Cielo30__c</field>
         <readable>false</readable>
@@ -1488,6 +1498,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.EmailPackage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Email_s_for_notification_of_pre_auths__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Email_to_Receive_Account_Instructions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

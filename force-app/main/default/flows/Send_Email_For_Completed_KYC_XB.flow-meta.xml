@@ -38,7 +38,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>O KYC XB da oportunidade {!Get_Opportunity.Name} foi preenchido pelo cliente. Por favor, verifique as informações fornecidas e aprove ou solicite correção.</stringValue>
+                <stringValue>&lt;p&gt;O KYC XB da oportunidade {!Get_Opportunity.Name} foi preenchido pelo cliente. Por favor, verifique as informações fornecidas e aprove ou solicite correção.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Record_Url}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
         <nameSegment>emailSimple</nameSegment>
@@ -48,6 +48,11 @@
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
+    <formulas>
+        <name>Record_Url</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; {!$Record.Id}</expression>
+    </formulas>
     <interviewLabel>Send Email For Completed KYC XB {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Send Email For Completed KYC XB</label>
     <processMetadataValues>
@@ -116,4 +121,14 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>recordUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>LEFT({!$Api.Partner_Server_URL_340}, FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340}) - 1) &amp; &quot;/&quot; &amp; {!$Record.Id}</stringValue>
+        </value>
+    </variables>
 </Flow>

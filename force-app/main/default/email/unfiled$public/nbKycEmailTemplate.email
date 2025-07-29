@@ -40,7 +40,7 @@
                     </span>
                     <span style="display:block;font-family:Calibri,Arial,sans-serif;font-size:13px;margin-top:10px;">
                       Por favor, preencha o formulário KYC o mais breve possível para que possamos prosseguir com o seu processo de integração:<br><br>
-                      <a href="https://kyc-staging.pagbrasil.com/?id={!KYC__c.Unique_Link__c}"
+                      <a href="{!$Label.KYC_Staging_URL}/?id={!KYC__c.Unique_Link__c}"
                          style="display:inline-block;padding:6px 18px;background-color:#238c45;color:#fff;font-family:Calibri,Arial,sans-serif;font-size:12px;font-weight:bold;text-decoration:none;border-radius:6px;box-shadow:0 2px 8px rgba(35,140,69,0.12);transition:background 0.2s;border:none;">
                         Formulário KYC
                       </a><br><br>

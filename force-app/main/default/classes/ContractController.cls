@@ -662,7 +662,7 @@ public class ContractController {
             }
         }
         if(this.opportunity.Selected_Credit_Frequency__c == '2'){
-        if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Settlement_Frequency_2__c)) {
+            if(settlementFrequency == '0' && String.isNotBlank(this.opportunity.Settlement_Frequency_2__c)) {
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
                     if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';

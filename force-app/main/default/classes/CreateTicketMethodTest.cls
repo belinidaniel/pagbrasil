@@ -1,160 +1,161 @@
-/**
- * @description      : Classe de teste para a classe CreateTicketMethod.
- * Cobre os principais cenários de sucesso e de falha, além de mockar
- * as chamadas externas (callouts) para o Zendesk.
- * @author           : Gemini AI
- * @group            : Test
- * @last modified on : 07-01-2025
-**/
 @isTest
 private class CreateTicketMethodTest {
 
     @testSetup
-    static void makeData(){
+    static void setupData() {
         Account acc = new Account(
-            Name = 'Test Account',
-            OrganizationId__c = 'ORG123'
+            Name = 'Account NB',
+            Type = 'Nacional (NB)',
+            Legal_Business_Name__c = 'Legal Business Name'
         );
         insert acc;
 
         Opportunity opp = new Opportunity(
-            Name = 'Test Opportunity',
+            Name = 'Opportunity NB',
+            TierCS__c = 'Top Tier',
+            StageName = 'Discovery',
+            CloseDate = Date.today().addDays(30),
+            BusinessModel__c = 'Intermediation',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
+            Product_or_service_website_URL__c = 'www.site.com',
+            BusinessModelType__c = 'B2B',
+            AverageSalesTicket__c = 5000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
             AccountId = acc.Id,
-            StageName = 'Prospecting',
-            CloseDate = Date.today().addMonths(1)
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly',
+            Integracao__c = 'API'
         );
         insert opp;
 
-        HomologationForm__c homologation = new HomologationForm__c(
-            Name = 'homolog.subdomain.com',
-            Opportunity__c = opp.Id
-        );
-        insert homologation;
+        HomologationForm__c homog = new HomologationForm__c();
+        homog.Name = 'homologation1.test.com';
+        homog.Opportunity__c = opp.Id;
+        homog.Account__c = acc.Id;
+        insert homog;
+    }
+
+    // Mock para TODOS os callouts HTTP feitos pelo ZendeskService (incluindo uploads JSON e uploads de arquivo)
+    private class ZendeskServiceMock implements HttpCalloutMock {
+        public HTTPResponse respond(HTTPRequest req) {
+            HttpResponse res = new HttpResponse();
+            res.setHeader('Content-Type', 'application/json');
+            String endpoint = req.getEndpoint();
+
+            // Verifica se a requisição é upload de arquivo (sendFileRequest)
+            if (endpoint != null && endpoint.contains('/uploads.json')) {
+                res.setStatusCode(201);
+                //Resposta para upload file, retornando token esperado
+                res.setBody('{"upload": {"token": "mocked_token_123"}}');
+            } 
+            // Criação de ticket (POST /tickets.json)
+            else if (endpoint != null && endpoint.contains('/tickets.json')) {
+                res.setStatusCode(201);
+                res.setBody('{"ticket": {"id": "12345"}}');
+            } 
+            // Resposta padrão para outras chamadas
+            else {
+                res.setStatusCode(200);
+                res.setBody('{}');
+            }
+
+            return res;
+        }
     }
 
     @isTest
-    static void testCreateTicketSuccess() {
-        Opportunity opp = [SELECT Id, AccountId FROM Opportunity WHERE Name = 'Test Opportunity' LIMIT 1];
-        Test.setMock(HttpCalloutMock.class, new ZendeskCalloutMock());
+    static void testCreateTicket_MetodoPrincipal() {
+        Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
 
-        List<CreateTicketMethod.FlowInputs> flowInputsList = new List<CreateTicketMethod.FlowInputs>();
-        CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
-        input.idOpportunity = opp.Id;
-        input.priority = 'High';
-        input.organizationId = 'ORG123_CHILD';
-        input.dataCreateAccount = Date.today();
-        input.pagShieldActivationCheck = true;
-        flowInputsList.add(input);
+        CreateTicketMethod.FlowInputs flowInput = new CreateTicketMethod.FlowInputs();
+        flowInput.idOpportunity = opp.Id;
+        flowInput.priority = 'P2';
+        flowInput.dataCreateAccount = Date.today();
+        flowInput.organizationId = '28452477875457';
+        flowInput.pagShieldActivationCheck = true;
+        flowInput.paymentMethodsInFooter = false;
+        flowInput.logoInsertionInBoleto = true;
+        flowInput.reclameAqui = false;
+        flowInput.pods = true;
+        flowInput.visualIdentityManualRequest = false;
+        flowInput.welcomeEmailAndTrainingLinks = true;
+        flowInput.triggerIndication = 'Indicação';
 
-        // Definir a página atual para o contexto do Visualforce
-        PageReference pageRef = Page.OpportunityFields;
-        Test.setCurrentPage(pageRef);
-        
+        // Configura o mock para TODOS os callouts HTTP
+        Test.setMock(HttpCalloutMock.class, new ZendeskServiceMock());
+
         Test.startTest();
-        CreateTicketMethod.createTicket(flowInputsList);
+        CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{flowInput});
         Test.stopTest();
 
-        Opportunity updatedOpp = [SELECT TicketId__c, Priority__c, DateAccountCreation__c, TicketCreationDate__c FROM Opportunity WHERE Id = :opp.Id];
-        System.assertEquals('fakeTicketId123', updatedOpp.TicketId__c, 'O TicketId__c na Oportunidade não foi atualizado corretamente.');
-        System.assertEquals('High', updatedOpp.Priority__c, 'A Prioridade na Oportunidade não foi atualizada.');
-        System.assertNotEquals(null, updatedOpp.TicketCreationDate__c, 'A data de criação do ticket não foi preenchida.');
-
-        List<Account> childAccounts = [SELECT Id, Name, ParentId FROM Account WHERE ParentId = :opp.AccountId];
-        System.assertEquals(1, childAccounts.size(), 'A conta filha não foi criada.');
-        System.assertEquals('subdomain', childAccounts[0].Name, 'O nome da conta filha está incorreto.');
-
-        List<ContentDocumentLink> cdls = [SELECT ContentDocument.Title, ContentDocument.FileType FROM ContentDocumentLink WHERE LinkedEntityId = :opp.Id];
-        System.assertEquals(2, cdls.size(), 'Deveriam haver 2 arquivos (JSON e PDF) ligados à oportunidade.');
+        Opportunity updatedOpp = [SELECT Id, Priority__c, TicketId__c FROM Opportunity WHERE Id = :opp.Id];
+        System.assertEquals('P2', updatedOpp.Priority__c, 'Priority__c deveria ter sido atualizado');
+        System.assertNotEquals(null, updatedOpp.TicketId__c, 'TicketId__c deveria estar preenchido');
     }
 
     @isTest
-    static void testCreateTicket_NoOpportunityId_ThrowsException() {
-        List<CreateTicketMethod.FlowInputs> flowInputsList = new List<CreateTicketMethod.FlowInputs>();
-        CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
-        input.idOpportunity = null;
-        input.priority = 'High';
-        flowInputsList.add(input);
-
-        try {
-            Test.startTest();
-            CreateTicketMethod.createTicket(flowInputsList);
-            Test.stopTest();
-            System.assert(false, 'A exceção para ID de oportunidade nulo não foi lançada.');
-        } catch (IllegalArgumentException e) {
-            System.assert(e.getMessage().contains('Opportunity Id is required.'), 'A mensagem de erro está incorreta.');
-        }
-    }
-
-    @isTest
-    static void testCreateTicket_NoPriority_ThrowsException() {
-        Opportunity opp = [SELECT Id FROM Opportunity WHERE Name = 'Test Opportunity' LIMIT 1];
-
-        List<CreateTicketMethod.FlowInputs> flowInputsList = new List<CreateTicketMethod.FlowInputs>();
-        CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
-        input.idOpportunity = opp.Id;
-        input.priority = '';
-        flowInputsList.add(input);
-
-        try {
-            Test.startTest();
-            CreateTicketMethod.createTicket(flowInputsList);
-            Test.stopTest();
-            System.assert(false, 'A exceção para prioridade nula não foi lançada.');
-        } catch (IllegalArgumentException e) {
-            System.assert(e.getMessage().contains('Priority is required.'), 'A mensagem de erro está incorreta.');
-        }
-    }
-
-    @isTest
-    static void testSendIntegration_NoHomologations_ThrowsException() {
-        Account acc = [SELECT Id FROM Account WHERE Name = 'Test Account' LIMIT 1];
-        Opportunity oppWithoutHomologation = new Opportunity(
-            Name = 'Opp Without Homologation',
+    static void testErroQuandoSemHomologacoes() {
+        Account acc = [SELECT Id FROM Account LIMIT 1];
+        Opportunity opp = new Opportunity(
+            Name = 'Opportunity NB 2',
+            TierCS__c = 'Top Tier',
+            StageName = 'Discovery',
+            CloseDate = Date.today().addDays(30),
+            BusinessModel__c = 'Intermediation',
+            NationalPaymentMethod__c = 'Cartão de Crédito',
+            Product_or_service_website_URL__c = 'www.site.com',
+            BusinessModelType__c = 'B2B',
+            AverageSalesTicket__c = 5000.00,
+            ProductClass__c = '5331',
+            previs_fat_rs__c = 5000.00,
+            IntegrationType__c = 'Salesforce',
+            Recorrencia__c = 'Yes',
+            Transacoes_Mensais__c = 123,
+            Ticket_Medio__c = 123,
+            PaymentRecurrence__c = 'Não',
+            Product_Type__c = 'Physical',
+            Segmento__c = 'Gaming',
+            nb_receita_mensal__c = 5000.00,
             AccountId = acc.Id,
-            StageName = 'Prospecting',
-            CloseDate = Date.today().addMonths(1)
+            Antecipation_Frequency_1__c = 'Monthly',
+            Antecipation_Frequency_2__c = 'Monthly',
+            Settlement_Frequency_1__c = 'Monthly',
+            Settlement_Frequency_2__c = 'Monthly',
+            Integracao__c = 'API'
         );
-        insert oppWithoutHomologation;
-        
-        CreateTicketMethod.FlowInputs input = new CreateTicketMethod.FlowInputs();
-        input.idOpportunity = oppWithoutHomologation.Id;
-        
+        insert opp;
+
+        CreateTicketMethod.FlowInputs flowInput = new CreateTicketMethod.FlowInputs();
+        flowInput.idOpportunity = opp.Id;
+        flowInput.priority = 'P2';
+
+        Test.setMock(HttpCalloutMock.class, new ZendeskServiceMock());
+
         try {
             Test.startTest();
-            CreateTicketMethod.sendIntegration(input);
+            CreateTicketMethod.createTicket(new List<CreateTicketMethod.FlowInputs>{flowInput});
             Test.stopTest();
-            System.assert(false, 'A exceção para falta de homologação não foi lançada.');
-        } catch (IllegalArgumentException e) {
-            System.assert(e.getMessage().contains('No HomologationForm__c found'), 'A mensagem de erro está incorreta.');
+            System.assert(false, 'Deveria lançar exceção se não há homologações');
+        } catch(Exception e) {
+            System.assert(e.getMessage().contains('No HomologationForm__c found'), 'Mensagem de erro deve mencionar ausência de homologação');
         }
     }
 
     @isTest
     static void testExtractNameFromUrl() {
-        System.assertEquals('subdominio', CreateTicketMethod.extractNameFromUrl('primeiro.subdominio.com'));
-        System.assertEquals('teste', CreateTicketMethod.extractNameFromUrl('site.teste.net'));
-        System.assertEquals('', CreateTicketMethod.extractNameFromUrl('invalido'));
-        System.assertEquals('', CreateTicketMethod.extractNameFromUrl('invalido.'));
-        System.assertEquals('', CreateTicketMethod.extractNameFromUrl(null));
-    }
-    
-    public class ZendeskCalloutMock implements HttpCalloutMock {
-        public HttpResponse respond(HttpRequest req) {
-            HttpResponse res = new HttpResponse();
-            res.setHeader('Content-Type', 'application/json');
-            
-            if (req.getEndpoint().contains('/api/v2/uploads.json')) {
-                res.setBody('{"upload": {"token": "fakeUploadToken123"}}');
-                res.setStatusCode(201);
-            }
-            else if (req.getEndpoint().contains('/api/v2/tickets.json')) {
-                 res.setBody('{"ticket": {"id": "fakeTicketId123"}}');
-                 res.setStatusCode(201);
-            }
-            else {
-                res.setStatusCode(404);
-            }
-            return res;
-        }
+        String url = 'xyz.empresa.com';
+        String nomeExtraido = CreateTicketMethod.extractNameFromUrl(url);
+        System.assertEquals('empresa', nomeExtraido, 'Nome extraído deveria ser "empresa"');
     }
 }

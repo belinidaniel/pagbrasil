@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Opperations &amp; Support</name>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
-    <parentRole>CEO</parentRole>
+    <parentRole>Director</parentRole>
 </Role>

@@ -82,24 +82,12 @@ export default class LwcTaxesPrice extends LightningElement {
     }
 
     clearTableAndFilters() {
-        // Reset data properties
         this.displayedData = [];
         this.recordsTotal = '0/0';
         this.showResult = false;
         this.searchTerm = {};
-
-        // Explicitly clear the child table
-        this.template.querySelectorAll('c-prices-table').forEach(table => {
-            if (table.refreshTable) {
-                table.refreshTable([]);
-            }
-        });
-
-        // Clear the filters in the active tab's filter component
         this.template.querySelectorAll('c-taxes-price-filter').forEach(filter => {
-            // Check if the filter component is inside the active tab before clearing
-            const parentTab = filter.closest('lightning-tab');
-            if (parentTab && parentTab.value === this.activeTab && filter.handleClear) {
+            if (filter.handleClear) {
                 filter.handleClear();
             }
         });
@@ -182,7 +170,7 @@ export default class LwcTaxesPrice extends LightningElement {
         this.isLoading = false;
     }
 
-    handleClear() {
+    handleClear(event) {
         this.clearTableAndFilters();
     }
 }

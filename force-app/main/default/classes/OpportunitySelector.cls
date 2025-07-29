@@ -95,12 +95,14 @@ public without sharing class OpportunitySelector {
                 Homologation_Completed__c,
                 RecordType.Name,
                 AccountId,
+            	Account.RecordTypeId,
                 Account.Name,
                 Account.Nome_Empresarial__c,
                 Account.Phone,
                 Account.Website,
                 Account.VATCNPJ__c,
                 Account.OrganizationId__c,
+            	Account.Type,
                 RecordType.DeveloperName
             FROM Opportunity
             WHERE Id IN :oppIds
@@ -217,6 +219,7 @@ public without sharing class OpportunitySelector {
                 Integracao__c,
                 RecordType.Name,
                 Account.Name,
+            	Account.RecordTypeId,
                 DateAccountCreation__c,
                 Account.OrganizationId__c,
                 Account.BillingStreet,
@@ -252,6 +255,7 @@ public without sharing class OpportunitySelector {
                 Account.CustomerFinalSupportChannelUrl__c,
                 Account.CustomerFinalSupportChannelEmail__c,
                 Account.ParentId,
+            	Account.Type,
                 PagShield_Premium__c,
                 RecordType.DeveloperName,
                 Visible_Others_Settlement_Frequency__c,

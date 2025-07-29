@@ -18,7 +18,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>daniel.oliveira@srconsulting.io</name>
+                <name>lucas.nannini@pagbrasil.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

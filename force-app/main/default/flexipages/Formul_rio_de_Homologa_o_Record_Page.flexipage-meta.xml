@@ -258,13 +258,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.DefaultSoftDescriptor__c</fieldItem>
                 <identifier>RecordDefault_Soft_Descriptor__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Is_Store_on_Shopify__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

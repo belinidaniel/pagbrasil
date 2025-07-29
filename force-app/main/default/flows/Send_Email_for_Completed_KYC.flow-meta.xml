@@ -41,7 +41,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>O KYC da oportunidade {!Get_Opportunity.Name} foi preenchido pelo cliente. Por favor, verifique as informações fornecidas e aprove ou solicite correção.</stringValue>
+                <stringValue>&lt;p&gt;O KYC da oportunidade {!Get_Opportunity.Name} foi preenchido pelo cliente. Por favor, verifique as informações fornecidas e aprove ou solicite correção.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Record_Url}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -57,6 +57,11 @@
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
+    <formulas>
+        <name>Record_Url</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; {!$Record.Id}</expression>
+    </formulas>
     <interviewLabel>Send Email for Completed KYC {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Send Email for Completed KYC</label>
     <processMetadataValues>

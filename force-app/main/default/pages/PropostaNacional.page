@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-28-2025
+  @last modified on  : 07-29-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -1017,12 +1017,12 @@
                                 <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
                                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                                         Termos de<br/>
-                                        repasse {!settlementFrequencyCreditCardPage1} com<br/>
+                                        repasse {!settlementFrequencyPage1} com<br/>
                                         antecipação {!settlementFrequencyCreditCardPage1}
                                     </p>
 
                                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                        Antecipação {!settlementFrequencyCreditCardPage1}
+                                        Antecipação {!antecipationFrequencyPage1}
                                     </p>
                                 </apex:panelGroup>
                                 <apex:panelGroup rendered="{!ISBLANK(settlementFrequencyCreditCardPage1)}">
@@ -1049,10 +1049,10 @@
                                         <p class="settlement-elegibility-value">{!settlementFrequencyOthers1}</p>
                                     </div>
                                     
-                                    <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyPage1))}">
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyCardPage1))}">
                                         <div class="settlement-elegibility-item">
                                             <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                            <p class="settlement-elegibility-value">{!settlementFrequencyPage1}</p>
+                                            <p class="settlement-elegibility-value">{!settlementFrequencyCardPage1}</p>
                                         </div>
                                     </apex:panelGroup>
                                 </div>
@@ -1146,11 +1146,11 @@
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                                             Termos de repasse <br/>
                                             {!settlementFrequencyCreditCardPage2} Antecipação<br/>
-                                            {!settlementFrequencyCreditCardPage2}
+                                            {!antecipationFrequencyPage2}
                                         </p>
 
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                            Antecipação {!settlementFrequencyCreditCardPage2}
+                                            Antecipação {!antecipationFrequencyPage2}
                                         </p>
                                     </apex:panelGroup>
                                     <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
@@ -1178,10 +1178,10 @@
                                                 <p class="settlement-elegibility-value">{!settlementFrequencyOthers2}</p>
                                             </div>
                                         </apex:panelGroup>
-                                        <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyPage2))}">
+                                        <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyCardPage2))}">
                                             <div class="settlement-elegibility-item">
                                                 <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                                <p class="settlement-elegibility-value"> {!settlementFrequencyPage2}</p>
+                                                <p class="settlement-elegibility-value"> {!settlementFrequencyCardPage2}</p>
                                             </div>
                                         </apex:panelGroup>
                                     </div>

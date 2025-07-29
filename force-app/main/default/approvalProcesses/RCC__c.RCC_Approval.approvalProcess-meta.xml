@@ -19,8 +19,8 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>luis.tavares@srconsulting.io</name>
-                <type>user</type>
+                <name>Legal_Compliance</name>
+                <type>queue</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

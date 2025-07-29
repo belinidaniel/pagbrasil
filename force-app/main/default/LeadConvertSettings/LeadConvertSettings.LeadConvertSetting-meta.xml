@@ -16,6 +16,10 @@
             <outputField>Billing_State__c</outputField>
         </mappingFields>
         <mappingFields>
+            <inputField>LinkedIn__c</inputField>
+            <outputField>Linkedin__c</outputField>
+        </mappingFields>
+        <mappingFields>
             <inputField>Expected_Account_Type__c</inputField>
             <outputField>Lead_Expected_Record_Type__c</outputField>
         </mappingFields>
@@ -23,6 +27,10 @@
     </objectMapping>
     <objectMapping>
         <inputObject>Lead</inputObject>
+        <mappingFields>
+            <inputField>LinkedInContato__c</inputField>
+            <outputField>Linkedin__c</outputField>
+        </mappingFields>
         <mappingFields>
             <inputField>Lead_Area__c</inputField>
             <outputField>Lead_Area__c</outputField>

@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-25-2025
+ * @last modified on  : 07-29-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -188,12 +188,18 @@ public class PropostaNacionalController {
 
     public string settlementFrequency { get; set; }
     public String settlementFrequencyPage { get; set; }
+    public string settlementFrequencyPage1 { get; set; }
     public string settlementFrequencyCreditCardPage1 { get; set; }
     public String settlementFrequencyCreditCardPage2 { get; set; }
-    public String settlementFrequencyPage1 { get; set; }
-    public String settlementFrequencyPage2 { get; set; }
+
+    public String settlementFrequencyCardPage1 { get; set; }
+    public String settlementFrequencyCardPage2 { get; set; }
+
     public String settlementFrequencyOthers1 { get; set; }
     public String settlementFrequencyOthers2 { get; set; }
+
+    public String antecipationFrequencyPage1 { get; set; }
+    public String antecipationFrequencyPage2 { get; set; }
 
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
@@ -572,20 +578,20 @@ public class PropostaNacionalController {
             this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Settlement_Frequency_1__c {
                 when 'Daily' {
-                    this.settlementFrequencyCreditCardPage1 = 'diário';
-                    this.settlementFrequencyPage1 = 'D+0';
+                    this.settlementFrequencyPage1 = 'diário';
+                    this.settlementFrequencyCardPage1 = 'D+0';
                 }
                 when 'Weekly' {
-                    this.settlementFrequencyCreditCardPage1 = 'semanal';
-                    this.settlementFrequencyPage1 = 'D+7';   
+                    this.settlementFrequencyPage1 = 'semanal';
+                    this.settlementFrequencyCardPage1 = 'D+7';   
                 }
                 when 'Biweekly' {
-                    this.settlementFrequencyCreditCardPage1 = 'quinzenal';
-                    this.settlementFrequencyPage1 = 'D+15';
+                    this.settlementFrequencyPage1 = 'quinzenal';
+                    this.settlementFrequencyCardPage1 = 'D+15';
                 }
                 when 'Monthly' {
-                    this.settlementFrequencyCreditCardPage1 = 'mensal';
-                    this.settlementFrequencyPage1 = 'D+31';
+                    this.settlementFrequencyPage1 = 'mensal';
+                    this.settlementFrequencyCardPage1 = 'D+31';
                 }
             }
             switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
@@ -603,30 +609,140 @@ public class PropostaNacionalController {
                 }
             }
         }
+
         if(quote.Opportunity.Settlement_Frequency_2__c != null){
             this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Settlement_Frequency_2__c {
                 when 'Daily' {
                     this.settlementFrequencyCreditCardPage2 = 'diário';
-                    this.settlementFrequencyPage2 = 'D+0';
+                    this.settlementFrequencyCardPage2 = 'D+0';
                 }
                 when 'Weekly' {
                     this.settlementFrequencyCreditCardPage2 = 'semanal';
-                    this.settlementFrequencyPage2 = 'D+7';   
+                    this.settlementFrequencyCardPage2 = 'D+7';   
                 }
                 when 'Biweekly' {
                     this.settlementFrequencyCreditCardPage2 = 'quinzenal';
-                    this.settlementFrequencyPage2 = 'D+15';
+                    this.settlementFrequencyCardPage2 = 'D+15';
                 }
                 when 'Monthly' {
                     this.settlementFrequencyCreditCardPage2 = 'mensal';
-                    this.settlementFrequencyPage2 = 'D+31';
+                    this.settlementFrequencyCardPage2 = 'D+31';
                 }
                 when 'Fluxo Médio' {
                     this.settlementFrequencyCreditCardPage2 = 'no Fluxo Médio';
                 }
             }
             switch on quote.Opportunity.Other_Payments_Settlement_Frequency_2__c {
+                when 'Daily' {
+                    this.settlementFrequencyOthers2 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyOthers2 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyOthers2 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyOthers2 = 'D+31';
+                }
+            }
+        }
+
+                if(quote.Opportunity.Settlement_Frequency_1__c != null){
+            this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+            switch on quote.Opportunity.Settlement_Frequency_1__c {
+                when 'Daily' {
+                    this.settlementFrequencyPage1 = 'diário';
+                    this.settlementFrequencyCardPage1 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyPage1 = 'semanal';
+                    this.settlementFrequencyCardPage1 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyPage1 = 'quinzenal';
+                    this.settlementFrequencyCardPage1 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyPage1 = 'mensal';
+                    this.settlementFrequencyCardPage1 = 'D+31';
+                }
+            }
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
+                when 'Daily' {
+                    this.settlementFrequencyOthers1 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyOthers1 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyOthers1 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyOthers1 = 'D+31';
+                }
+            }
+        }
+
+        if(quote.Opportunity.Antecipation_Frequency_1__c != null){
+            this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+            switch on quote.Opportunity.Antecipation_Frequency_1__c {
+                when 'Daily' {
+                    this.antecipationFrequencyPage1= 'diário';
+                }
+                when 'Weekly' {
+                    this.antecipationFrequencyPage1= 'semanal';
+                }
+                when 'Biweekly' {
+                    this.antecipationFrequencyPage1= 'quinzenal';
+                }
+                when 'Monthly' {
+                    this.antecipationFrequencyPage1= 'mensal';
+                }
+                when 'Fluxo Médio' {
+                    this.antecipationFrequencyPage1 = 'no Fluxo Médio';
+                }
+            }
+
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
+                when 'Daily' {
+                    this.settlementFrequencyOthers1 = 'D+0';
+                }
+                when 'Weekly' {
+                    this.settlementFrequencyOthers1 = 'D+7';   
+                }
+                when 'Biweekly' {
+                    this.settlementFrequencyOthers1 = 'D+15';
+                }
+                when 'Monthly' {
+                    this.settlementFrequencyOthers1 = 'D+31';
+                }
+            }
+        }
+
+        
+        if(quote.Opportunity.Antecipation_Frequency_2__c != null){
+            this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
+            switch on quote.Opportunity.Antecipation_Frequency_2__c {
+                when 'Daily' {
+                    this.antecipationFrequencyPage2= 'diário';
+                }
+                when 'Weekly' {
+                    this.antecipationFrequencyPage2= 'semanal';
+                }
+                when 'Biweekly' {
+                    this.antecipationFrequencyPage2= 'quinzenal';
+                }
+                when 'Monthly' {
+                    this.antecipationFrequencyPage2= 'mensal';
+                }
+                when 'Fluxo Médio' {
+                    this.antecipationFrequencyPage2 = 'no Fluxo Médio';
+                }
+            }
+
+            switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
                 when 'Daily' {
                     this.settlementFrequencyOthers2 = 'D+0';
                 }

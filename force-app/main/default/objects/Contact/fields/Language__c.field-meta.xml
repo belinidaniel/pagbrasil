@@ -12,12 +12,12 @@
             <value>
                 <fullName>Português</fullName>
                 <default>false</default>
-                <label>Português</label>
+                <label>Portuguese</label>
             </value>
             <value>
                 <fullName>Inglês</fullName>
                 <default>false</default>
-                <label>Inglês</label>
+                <label>English</label>
             </value>
         </valueSetDefinition>
     </valueSet>

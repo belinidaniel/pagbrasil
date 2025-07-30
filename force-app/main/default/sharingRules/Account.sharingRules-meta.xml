@@ -33,99 +33,67 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Director_New_Sales_Role</fullName>
+        <fullName>Board_CEO_Roles</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
+            <caseAccessLevel>Edit</caseAccessLevel>
             <contactAccessLevel>Edit</contactAccessLevel>
             <opportunityAccessLevel>Edit</opportunityAccessLevel>
         </accountSettings>
-        <label>Director New Sales Role</label>
+        <label>Board CEO Roles</label>
         <sharedTo>
-            <role>HeadBusinessDevelopmentNB</role>
+            <role>CEO</role>
         </sharedTo>
         <sharedFrom>
-            <role>New_Sales</role>
+            <role>CEO</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Director_Product_Role</fullName>
-        <accessLevel>Edit</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Edit</contactAccessLevel>
-            <opportunityAccessLevel>Edit</opportunityAccessLevel>
-        </accountSettings>
-        <label>Director Product Role</label>
-        <sharedTo>
-            <role>HeadBusinessDevelopmentNB</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Product</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>General_Business_NB_Role</fullName>
+        <fullName>Client_Management_Role</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
             <caseAccessLevel>None</caseAccessLevel>
             <contactAccessLevel>Read</contactAccessLevel>
             <opportunityAccessLevel>Read</opportunityAccessLevel>
         </accountSettings>
-        <label>General - Business NB Role</label>
+        <label>Client Management Role</label>
+        <sharedTo>
+            <role>Cliet_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>leaves_of_the_hierarchy_tree</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Director_Roles</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Director Roles</label>
+        <sharedTo>
+            <role>Director</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Director</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>General_Business_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>Read</opportunityAccessLevel>
+        </accountSettings>
+        <label>General Business Role</label>
         <sharedTo>
             <role>General_Business</role>
         </sharedTo>
         <sharedFrom>
-            <role>Sales_NB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Grow_Customer_Sucess_NB_Roles</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>Grow &amp; Customer Sucess NB Roles</label>
-        <sharedTo>
-            <role>Grow_Customer_Sucess</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_NB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Grow_Customer_Sucess_XB_Roles</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>Grow &amp; Customer Sucess XB Roles</label>
-        <sharedTo>
-            <role>Grow_Customer_Sucess</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_XB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>HeadNBManagerNB</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>Read</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>Head NB / Manager NB</label>
-        <sharedTo>
-            <role>Sales_NB</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>HeadBusinessDevelopmentNB</role>
+            <group>leaves_of_the_hierarchy_tree</group>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -145,144 +113,160 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Legal_Compliance_NB_Role</fullName>
+        <fullName>Legal_Compliance_Role</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
             <caseAccessLevel>None</caseAccessLevel>
             <contactAccessLevel>Edit</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
         </accountSettings>
-        <label>Legal &amp; Compliance NB Role</label>
+        <label>Legal &amp; Compliance Role</label>
         <sharedTo>
             <role>Legal_and_Compliance</role>
         </sharedTo>
         <sharedFrom>
-            <role>Sales_NB</role>
+            <group>leaves_of_the_hierarchy_tree</group>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Legal_Compliance_XB_Role</fullName>
+        <fullName>New_Business_Management</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
             <caseAccessLevel>None</caseAccessLevel>
             <contactAccessLevel>Edit</contactAccessLevel>
             <opportunityAccessLevel>Edit</opportunityAccessLevel>
         </accountSettings>
-        <label>Legal &amp; Compliance XB Role</label>
-        <sharedTo>
-            <role>Legal_and_Compliance</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_XB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>New_Business_Management_NB_Role</fullName>
-        <accessLevel>Edit</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Edit</contactAccessLevel>
-            <opportunityAccessLevel>Edit</opportunityAccessLevel>
-        </accountSettings>
-        <label>New Business Management NB Role</label>
+        <label>New Business Management</label>
         <sharedTo>
             <role>New_Business_Management</role>
         </sharedTo>
         <sharedFrom>
-            <role>Sales_NB</role>
+            <group>leaves_of_the_hierarchy_tree</group>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>New_Business_Management_XB_Role</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>General - Business XB Role</label>
-        <sharedTo>
-            <role>General_Business</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_XB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>New_Business_Management_XB_Roles</fullName>
+        <fullName>New_Business_Management_Role</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
+            <caseAccessLevel>Edit</caseAccessLevel>
             <contactAccessLevel>Edit</contactAccessLevel>
             <opportunityAccessLevel>Edit</opportunityAccessLevel>
         </accountSettings>
-        <label>New Business Management XB Roles</label>
+        <label>New Business Management Role</label>
         <sharedTo>
             <role>New_Business_Management</role>
         </sharedTo>
         <sharedFrom>
-            <role>Sales_XB</role>
+            <role>New_Business_Management</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>New_Business_Team_NB_Role</fullName>
+        <fullName>New_Business_Team_Role</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
             <caseAccessLevel>None</caseAccessLevel>
             <contactAccessLevel>Read</contactAccessLevel>
             <opportunityAccessLevel>Read</opportunityAccessLevel>
         </accountSettings>
-        <label>New Business Team NB Role</label>
+        <label>New Business Team Role</label>
         <sharedTo>
             <role>New_Business_Team</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>leaves_of_the_hierarchy_tree</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>New_Business_Team_Roles</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>New Business Team Role</label>
+        <sharedTo>
+            <role>New_Business_Team</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>New_Business_Team</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>New_Sales_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>New Sales Role</label>
+        <sharedTo>
+            <role>New_Sales</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>New_Sales</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Process_Role</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>Read</opportunityAccessLevel>
+        </accountSettings>
+        <label>Process Role</label>
+        <sharedTo>
+            <role>Process</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>leaves_of_the_hierarchy_tree</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Product_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Product Role</label>
+        <sharedTo>
+            <role>Product</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Product</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_NB_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sales NB Role</label>
+        <sharedTo>
+            <role>Sales_NB</role>
         </sharedTo>
         <sharedFrom>
             <role>Sales_NB</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>New_Business_Team_XB_Role</fullName>
-        <accessLevel>Read</accessLevel>
+        <fullName>Sales_XB_Role</fullName>
+        <accessLevel>Edit</accessLevel>
         <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
         </accountSettings>
-        <label>New Business Team XB Role</label>
+        <label>Sales XB Role</label>
         <sharedTo>
-            <role>New_Business_Team</role>
-        </sharedTo>
-        <sharedFrom>
             <role>Sales_XB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Process_NB_Role</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>Process NB Role</label>
-        <sharedTo>
-            <role>Process</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_NB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Process_XB_Role</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>Process XB Role</label>
-        <sharedTo>
-            <role>Process</role>
         </sharedTo>
         <sharedFrom>
             <role>Sales_XB</role>

@@ -575,6 +575,7 @@
         </inputAssignments>
         <object>Opportunity</object>
     </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>ErrorScreen1</name>
         <label>ErrorScreen1</label>

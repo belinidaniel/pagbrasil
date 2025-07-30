@@ -17,17 +17,17 @@
             <value>
                 <fullName>Cartão de Crédito</fullName>
                 <default>false</default>
-                <label>Cartão de Crédito</label>
+                <label>Credit Card</label>
             </value>
             <value>
                 <fullName>Débito Flash</fullName>
                 <default>false</default>
-                <label>Débito Flash</label>
+                <label>Flash Debit</label>
             </value>
             <value>
                 <fullName>Boleto Flash</fullName>
                 <default>false</default>
-                <label>Boleto Flash</label>
+                <label>Flash Slip</label>
             </value>
         </valueSetDefinition>
     </valueSet>

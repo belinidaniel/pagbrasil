@@ -37,7 +37,8 @@ export default class PricesTable extends LightningElement {
             .then(() => {
                 this.draftValues = [];
                 this.disableSave = true;
-                this.loadData();
+                // Notify parent to refresh from backend
+                this.handleSearchEvent();
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
@@ -45,6 +46,7 @@ export default class PricesTable extends LightningElement {
                         variant: 'success'
                     })
                 );
+                this.isLoading = false;
             })
             .catch(() => {
                 this.isLoading = false;

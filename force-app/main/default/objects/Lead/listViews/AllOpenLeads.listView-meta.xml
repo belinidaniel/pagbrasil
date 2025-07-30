@@ -9,9 +9,9 @@
     <columns>LEAD.EMAIL</columns>
     <columns>LEAD.STATUS</columns>
     <columns>CORE.USERS.FIRST_NAME</columns>
-    <columns>LEAD.CREATED_DATE</columns>
-    <columns>LEAD.PHONE</columns>
     <columns>Qualificador__c</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.LAST_UPDATE</columns>
     <filterScope>Everything</filterScope>
     <label>Todos os Leads Abertos</label>
 </ListView>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PagBrasilSolutionForTransferringFee__c</fullName>
-    <label>Solução PagBrasil para Transferir taxa</label>
+    <label>PagBrasil Solution for Transfering Fee</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Address_Check__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Make sure all email address fields are mandatory. PagBrasil offers a free ZIP code validator (except for Magento). Please check the box below if you want this tool enabled.</description>
+    <inlineHelpText>Make sure all email address fields are mandatory. PagBrasil offers a free ZIP code validator (except for Magento). Please check the box below if you want this tool enabled.</inlineHelpText>
+    <label>Require Address Check</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

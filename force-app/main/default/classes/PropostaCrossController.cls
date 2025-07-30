@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-23-2025
+ * @last modified on  : 07-29-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -117,7 +117,7 @@ public class PropostaCrossController {
 
         if(!Test.isRunningTest()){
             stdController.addFields(new List<String>{
-                'Account.Name', 'Account.Website', 'Opportunity.Name','Opportunity.Owner.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
+                'Account.Name', 'Account.Website','Opportunity.Name','Opportunity.Owner.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
                 'Opportunity.Product_Type__c', 'Opportunity.Payout__c', 'Opportunity.ApplePay__c', 'Opportunity.GooglePay__c', 'Opportunity.Antecipation_Frequency_1__c', 'Opportunity.Antecipation_Frequency_2__c',
                 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.Pix_Automatico__c',
                 'Opportunity.Moeda__c', 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
@@ -146,7 +146,7 @@ public class PropostaCrossController {
 
     private void productsPopulation(Quote quote) {
 
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
+        List<QuoteLineItem> quoteLineItems = [SELECT Id,Description,PercentValue__c,IsMain__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
 
         for(QuoteLineItem quoteLineItem : quoteLineItems)
             processQuoteLineItem(quoteLineItem);
@@ -260,7 +260,9 @@ public class PropostaCrossController {
                 this.pagBrasilSolutionFee = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'ANTICIPATION_FEES' {
-                this.anticipationFees = validateNumbersWithRegex(quoteLineItem.Price__c);
+                if(quoteLineItem.IsMain__c){
+                    this.anticipationFees = String.valueOf(quoteLineItem.PercentValue__c);
+                }
             }
             when 'SETUP_FEE_USD' {
                 if (this.opportunityCurrency == 'USD')

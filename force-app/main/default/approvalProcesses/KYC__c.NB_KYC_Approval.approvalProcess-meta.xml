@@ -32,8 +32,8 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>daniel.oliveira@srconsulting.io</name>
-                <type>user</type>
+                <name>Legal_Compliance</name>
+                <type>queue</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

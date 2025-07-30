@@ -151,6 +151,12 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Linkedin__c</fieldItem>
+                <identifier>RecordLinkedin__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-ad056fa1-17bb-4888-a4f3-31aed5413cce</name>
         <type>Facet</type>
     </flexiPageRegions>

@@ -851,6 +851,7 @@
         <profile>Sales NB</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
+    <tabs>Edit_o_das_Taxas</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>standard-Lead</tabs>

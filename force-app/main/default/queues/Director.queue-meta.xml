@@ -4,7 +4,7 @@
     <name>Director</name>
     <queueMembers>
         <roles>
-            <role>HeadBusinessDevelopmentNB</role>
+            <role>Director</role>
         </roles>
     </queueMembers>
     <queueSobject>

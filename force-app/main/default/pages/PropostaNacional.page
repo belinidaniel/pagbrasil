@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-25-2025
+  @last modified on  : 07-29-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -107,7 +107,6 @@
 <apex:variable var="settlementFrequencyCreditCardPage1" value="{!settlementFrequencyCreditCardPage1}" />
 <apex:variable var="settlementFrequencyCreditCardPage2" value="{!settlementFrequencyCreditCardPage2}" />
 <apex:variable var="settlementFrequencyCreditCardPage1" value="{!settlementFrequencyCreditCardPage1}" />
-<apex:variable var="settlementFrequencyCreditCardPage2" value="{!settlementFrequencyCreditCardPage2}" />
 <apex:variable var="frequencyPixBoletoDebitoFlashEligebleDatePageOne" value="{!frequencyPixBoletoDebitoFlashEligebleDatePageOne}" />
 <apex:variable var="frequencyPixBoletoDebitoFlashEligebleDatePageTwo" value="{!frequencyPixBoletoDebitoFlashEligebleDatePageTwo}" />
 <apex:variable var="frequencyPage11" value="{!frequencyPage11}" />
@@ -1017,15 +1016,14 @@
                                 <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
                                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
                                         Termos de<br/>
-                                        repasse {!settlementFrequencyCreditCardPage1} com<br/>
-                                        antecipação {!settlementFrequencyCreditCardPage1}
+                                        repasse {!settlementFrequencyPage1} com<br/>
+                                        antecipação {!antecipationFrequencyPage1}
                                     </p>
-
                                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                        Antecipação {!settlementFrequencyCreditCardPage1}
+                                        Antecipação {!antecipationFrequencyPage1}
                                     </p>
                                 </apex:panelGroup>
-                                <apex:panelGroup rendered="{!ISBLANK(settlementFrequencyCreditCardPage1)}">
+                                <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
                                     <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                                         Termos de repasse diário<br/>
                                         com repasse de Cartão<br/>
@@ -1049,10 +1047,10 @@
                                         <p class="settlement-elegibility-value">{!settlementFrequencyOthers1}</p>
                                     </div>
                                     
-                                    <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyPage1))}">
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyCardPage1))}">
                                         <div class="settlement-elegibility-item">
                                             <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                            <p class="settlement-elegibility-value">{!settlementFrequencyPage1}</p>
+                                            <p class="settlement-elegibility-value">{!settlementFrequencyCardPage1}</p>
                                         </div>
                                     </apex:panelGroup>
                                 </div>
@@ -1086,7 +1084,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyCreditCardPage1))}">
+                                            <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageOne))}">
                                                 <tr>
                                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Taxa</td>
                                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueOne}</td>
@@ -1103,7 +1101,7 @@
                                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">{!frequencyPageOneValueTwelve}</td>
                                                 </tr>
                                             </apex:panelGroup>    
-                                            <apex:panelGroup rendered="{!ISBLANK(settlementFrequencyCreditCardPage1)}">
+                                            <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageOne)}">
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: left; font-size: 14px; font-weight: bold;">Elegibilidade para Liquidação</td>
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+31</td>
                                                 <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 12px; text-align: center; color: #808080">D+46</td>
@@ -1142,30 +1140,28 @@
                                         Opção 2
                                     </p>
                                     
-                                    <apex:panelGroup rendered="{!NOT(ISBLANK(frequencyCardEligebleDatePageTwo))}">
-                                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
-                                            Termos de repasse <br/>
-                                            {!settlementFrequencyCreditCardPage2} com repasse<br/>
-                                            de cartão de crédito <br/>
-                                            {!settlementFrequencyCreditCardPage2}
-                                        </p>
-
-                                        <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
-                                            Antecipação {!settlementFrequencyCreditCardPage2}
-                                        </p>
+                                    <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyCreditCardPage2))}">
+                                        <apex:panelGroup rendered="{!NOT(showTwoFluxoMedio2)}">
+                                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 40px; font-weight: 900;">
+                                                Termos de<br/>
+                                                repasse {!settlementFrequencyCreditCardPage2} com<br/>
+                                                antecipação {!antecipationFrequencyPage2}
+                                            </p>
+                                            <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
+                                                Antecipação {!antecipationFrequencyPage2}
+                                            </p>
+                                        </apex:panelGroup>
                                     </apex:panelGroup>
-                                    <apex:panelGroup rendered="{!ISBLANK(frequencyCardEligebleDatePageTwo)}">
+                                    <apex:panelGroup rendered="{!showTwoFluxoMedio2}">
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
                                             Termos de repasse diário<br/>
                                             com repasse de Cartão<br/>
                                             de Crédito no fluxo médio
                                         </p>
-
                                         <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 410px; left: 90px; white-space: nowrap; color: #202020; font-size: 18px; font-weight: 900;">
                                             Cartão de crédito
                                         </p>
                                     </apex:panelGroup>
-                                
                                     <div style="position: absolute; top: 140px; left: 580px; font-size: 16px; line-height: 1.5; width: 450px;">
                                         <p><strong>Repasse diário:</strong><br/>
                                         Diariamente em dias úteis referente às <strong>transações elegíveis</strong> para liquidação* em D-3 da data do repasse.</p>
@@ -1179,10 +1175,10 @@
                                                 <p class="settlement-elegibility-value">{!settlementFrequencyOthers2}</p>
                                             </div>
                                         </apex:panelGroup>
-                                        <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyPage2))}">
+                                        <apex:panelGroup rendered="{!NOT(ISBLANK(settlementFrequencyCardPage2))}">
                                             <div class="settlement-elegibility-item">
                                                 <p class="settlement-elegibility-label">Cartão de crédito:</p>
-                                                <p class="settlement-elegibility-value"> {!settlementFrequencyPage2}</p>
+                                                <p class="settlement-elegibility-value"> {!settlementFrequencyCardPage2}</p>
                                             </div>
                                         </apex:panelGroup>
                                     </div>
@@ -1295,15 +1291,18 @@
         <apex:panelGroup rendered="{!AND(isShowPageRepasse, isGatewayAndIntermediation, NOT(containsCreditCard))}">            
             <div class="page">
                 <img src="{!frequencyPage11}" class="background-image"/>
-                <div class="page-content">
-                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 130px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
-                        Termos de​<br/>
+                <div class="page-content">  
+                    <p style="font-family: 'MontserratBold', sans-serif; position: absolute; top: 170px; left: 90px; white-space: nowrap; color: #202020; font-size: 36px; font-weight: 900;">
+                        Termos de​<br/> 
                         repasse {!settlementFrequency}
                     </p>
-                    <div style="padding: 307px 0px 0px 940px;font-weight: bolder;font-size: 19px;font-family: 'MontserratBold';">{!settlementFrequencyPage}</div>
-                    <p style="position: absolute; top: 5px; left: 122px; white-space: nowrap;">{!oppName}</p>
+                    <div style="padding: 370px 0px 0px 960px; font-weight: 400; font-size: 15px;">{!settlementFrequencyPage}</div>
+                    <p style="position: absolute; top: 12px; left: 131px; white-space: nowrap;">{!oppName}</p>
                 </div>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
+                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+                <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+                <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
             </div>
         </apex:panelGroup>
 

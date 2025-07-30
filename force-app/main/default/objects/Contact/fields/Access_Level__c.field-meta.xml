@@ -12,17 +12,17 @@
             <value>
                 <fullName>Usuário Completo</fullName>
                 <default>false</default>
-                <label>Usuário Completo</label>
+                <label>Full Access</label>
             </value>
             <value>
                 <fullName>Usuário Restrito</fullName>
                 <default>false</default>
-                <label>Usuário Restrito</label>
+                <label>Restrict Access</label>
             </value>
             <value>
                 <fullName>Usuário Visualização</fullName>
                 <default>false</default>
-                <label>Usuário Visualização</label>
+                <label>Read Only</label>
             </value>
         </valueSetDefinition>
     </valueSet>

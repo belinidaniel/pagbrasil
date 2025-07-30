@@ -23,7 +23,7 @@
                     padding: 12px 15px;
                 }
                 th {
-                    background: #2d3e50;
+                    background: #0058B5;
                     color: #f5f5f5;
                     font-weight: 600;
                     font-size: 1.05em;
@@ -37,7 +37,7 @@
                     width: 60%;
                 }
                 tr:nth-child(odd) th {
-                    background: #2d3e50;
+                    background: #0058B5;
                     color: #f5f5f5;
                 }
                 tr:nth-child(odd) td {
@@ -47,7 +47,7 @@
                     font-family: 'Segoe UI', Arial, sans-serif;
                     font-size: 1.8em;
                     font-weight: 700;
-                    color: #1a365d;
+                    color: #0058B5;
                     margin: 35px 0 20px;
                     padding: 15px 0 10px 15px;
                     border-bottom: 3px solid #3182ce;
@@ -96,7 +96,7 @@
             <apex:variable var="isCross" value="{!wrapper.isCrossBorder}"/>
 
 
-            <apex:outputPanel rendered="{!hasMainSection}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>OPPORTUNITY: {!wrapper.name}</h1>
                     <table>
@@ -109,7 +109,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasMainSection}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>CONFIGURATION</h1>
 
@@ -131,7 +131,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasBillingInfo}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>Billing Information (invoice)</h2>
                     <table>
@@ -183,7 +183,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasPaymentAlert}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h3>Payment Alert</h3>
                     <table>
@@ -197,7 +197,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasTransferRelease}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>Transfer Release Schedule</h2>
                     <table>
@@ -280,7 +280,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasFunctionalities}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>Functionalities</h2>
                     <table>
@@ -292,7 +292,7 @@
                 </div>
             </apex:outputPanel>
 
-            <apex:outputPanel rendered="{!hasShipment}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>Shipment</h2>
                     <table>
@@ -310,30 +310,26 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasPagShieldSection}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>PagShield</h2>
                     <table>
                         <tr><th>PagShield</th><td>{!IF(wrapper.pagShield,'Yes','No')}</td></tr>
-                        <tr><th>PagShield Tax</th><td><i>[TODO]</i></td></tr>
+                        <tr><th>PagShield Tax</th><td><i>{!wrapper.taxaPagshield.totalPrice}</i></td></tr>
                         <tr><th>PagShield Premium</th><td>{!IF(wrapper.pagShieldPremium,'Yes','No')}</td></tr>
-                        <tr><th>PagShield Premium Variable Rate</th><td><i>[TODO]</i></td></tr>
-                        <tr><th>PagShield Premium Flat Rate</th><td><i>[TODO]</i></td></tr>
+                        <tr><th>PagShield Premium Fixed Rate</th><td><i>{!wrapper.taxaPagshieldPremiumFixa.totalPrice}</i></td></tr>
+                        <tr><th>PagShield Premium Variable Fee</th><td><i>{!wrapper.taxaPagshieldPremiumVariavel.percentValue}</i></td></tr>
                     </table>
                 </div>
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasProducts_BankBillet
-                || hasProducts_Pix
-                || hasProducts_CreditCard
-                || hasProducts_PaymentLink
-                || hasProducts_Pagstream}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>PRODUCTS</h1>
 
 
-                    <apex:outputPanel rendered="{!hasProducts_BankBillet}">
+                    <apex:outputPanel >
                         <h2>Bank Billet</h2>
                         <table>
                             <tr><th>Auto Cancellation</th><td>{!form.AutomaticCancellation__c}</td></tr>
@@ -342,7 +338,7 @@
                     </apex:outputPanel>
 
 
-                    <apex:outputPanel rendered="{!hasProducts_Pix}">
+                    <apex:outputPanel >
                         <h2>Pix</h2>
                         <table>
                             <tr><th>Pix Open Finance</th><td>{!IF(form.Pix_Open_Finance__c,'Yes','No')}</td></tr>
@@ -351,7 +347,7 @@
                     </apex:outputPanel>
 
 
-                    <apex:outputPanel rendered="{!hasProducts_CreditCard}">
+                    <apex:outputPanel >
                         <h2>Credit Card</h2>
                         <table>
                             <tr><th>Recurrence with credit card</th><td>{!form.CreditCardRecurrence__c}</td></tr>
@@ -370,17 +366,17 @@
                     </apex:outputPanel>
 
 
-                    <apex:outputPanel rendered="{!hasProducts_PaymentLink}">
+                    <apex:outputPanel >
                         <h2>Payment Link</h2>
                         <table>
-                            <tr><th>Discount per payment method</th><td>{!form.PaymentLinkEmailService__c}</td></tr>
-                            <tr><th>Discount – Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
-                            <tr><th>Discount – PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
+                            <tr><th>Payment method</th><th>Discount</th></tr>
+                            <tr><th>Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
+                            <tr><th>PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
                         </table>
                     </apex:outputPanel>
 
 
-                    <apex:outputPanel rendered="{!hasProducts_Pagstream}">
+                    <apex:outputPanel >
                         <h2>Pagstream</h2>
                         <table>
                             <tr><th>PagStream</th><td>{!form.PagStream__c}</td></tr>
@@ -391,29 +387,27 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasAccountFees_Maintenance
-                || hasAccountFees_MonthlyAnticipation
-                || hasAccountFees_Fees}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>ACCOUNT FEES</h1>
-                    <apex:outputPanel rendered="{!hasAccountFees_Maintenance}">
+                    <apex:outputPanel >
                         <h2>Maintenance</h2>
                         <table>
                             <tr><th>Maintenance fee</th><td>{!wrapper.taxaMinimaManutencao.totalPrice}</td></tr>
                             <tr><th>Minimum fee charging date</th><td>{!wrapper.contractStartDateCharge}</td></tr>
                             <tr><th>PagBrasil Solution fee</th><td>{!wrapper.taxaSolucaoPagBrasil.percentValue}</td></tr>
                             <tr><th>PagStream Fee</th><td>{!wrapper.taxaPagStream.totalPrice}%</td></tr>
-                            <tr><th>Minimum PagStream maintenance fee</th><td>{!wrapper.taxaMinimaPagStream.totalPrice}</td></tr>
+                            <tr><th>Minimum PagStream® maintenance fee</th><td>{!wrapper.taxaMinimaPagStream.totalPrice}</td></tr>
                         </table>
                     </apex:outputPanel>
-                    <apex:outputPanel rendered="{!hasAccountFees_MonthlyAnticipation}">
+                    <apex:outputPanel >
                         <h2>Monthly Anticipation Fee</h2>
                         <table>
-                            <tr><th>Frequency for Credit Card Interest</th><td><i>[TODO]</i></td></tr>
-                            <tr><th>Base Advance Rate</th><td>{!wrapper.taxaBaseAntecipacao.totalPrice}</td></tr>
+                            <h3>Frequency for Credit Card Interest</h3>
+                            <tr><th>Base Anticipation Fee</th><td>{!wrapper.taxaBaseAntecipacao.totalPrice}</td></tr>
                         </table>
                     </apex:outputPanel>
-                    <apex:outputPanel rendered="{!hasAccountFees_Fees}">
+                    <apex:outputPanel >
                         <h2>Fees</h2>
                         <table>
                             <tr>
@@ -421,17 +415,31 @@
                                 <th>Fixed (BRL)</th>
                                 <th>Variable (%)</th>
                             </tr>
-                            <tr><th>Boleto / Boleto Flash</th><td></td><td>{!wrapper.taxaProcessamentoBoleto.percentValue}%</td></tr>
-                            <tr><th>PagBrasil Pix</th><td></td><td>{!wrapper.taxaProcessamentoPix.percentValue}%</td></tr>
-                            <tr><th>Cash Card</th><td></td><td>{!wrapper.taxaProcessamentoCredito.percentValue}%</td></tr>
-                            <tr><th>Chargeback fee type</th><td style="background:#b7fcb7">Fixed</td><td></td></tr>
+                            <tr><th>Boleto / Boleto Flash</th><td>{!wrapper.taxaProcessamentoBoleto.totalPrice}</td><td>{!wrapper.taxaProcessamentoBoleto.percentValue}%</td></tr>
+                            <tr><th>PagBrasil Pix</th><td>{!wrapper.taxaProcessamentoPix.totalPrice}</td><td>{!wrapper.taxaProcessamentoPix.percentValue}%</td></tr>
+                            <tr><th>Cash Card</th><td>{!wrapper.taxaProcessamentoCredito.totalPrice}</td><td>{!wrapper.taxaProcessamentoCredito.percentValue}%</td></tr>
+                            <tr><th>Credit Card 2-6</th><td>{!wrapper.taxaProcessamentoCredito2a6.totalPrice}</td><td>{!wrapper.taxaProcessamentoCredito2a6.percentValue}%</td></tr>
+                            <tr><th>Credit Card 7-12</th><td>{!wrapper.taxaProcessamentoCredito7a12.totalPrice}</td><td>{!wrapper.taxaProcessamentoCredito7a12.percentValue}%</td></tr>
+                            <tr><th>Flash Debit</th><td>{!wrapper.taxaProcessamentoDebito.totalPrice}</td><td>{!wrapper.taxaProcessamentoDebito.percentValue}%</td></tr>
+                            <tr rendered="{!wrapper.googlePay}"><th>Google/Apple Pay</th><td>{!wrapper.solucaoCarteiraDigital.totalPrice}</td><td>{!wrapper.solucaoCarteiraDigital.percentValue}%</td></tr>
+                            <tr rendered="{!OR(form.Pix_Open_Finance__c, form.PixOpenFinance__c == 'Sim')}">
+                                <th>Pix Open Finance</th>
+                                <td>{!wrapper.solucaoCarteiraDigital.totalPrice}</td>
+                                <td>{!wrapper.solucaoCarteiraDigital.percentValue}%</td>
+                            </tr>
+                            <tr><th>Zero Auth</th><td>{!wrapper.zeroAuth.totalPrice}</td><td>{!wrapper.zeroAuth.percentValue}%</td></tr>
+                            <tr><th>Credit/Debit Card Refund</th><td>{!wrapper.cardRefund.totalPrice}</td><td>{!wrapper.cardRefund.percentValue}%</td></tr>
+                            <tr><th>Pix Refund</th><td>{!wrapper.pixRefund.totalPrice}</td><td>{!wrapper.pixRefund.percentValue}%</td></tr>
+                            <!--><tr><th>Billet and others refund</th><td>[TODO]</td></tr><-->
+                            <tr><th>Chargeback Fee</th><td>{!wrapper.chargeback.totalPrice}</td></tr>
+                            <tr><th>Chargeback fee type</th><td style="background:#b7fcb7">Fixed</td></tr>
                         </table>
                     </apex:outputPanel>
                 </div>
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasEmailSmsService}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>E-MAIL AND SMS SERVICE</h1>
                     <table>
@@ -445,7 +453,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasEmailPackage}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>Email Package</h2>
                     <table>
@@ -458,7 +466,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasSmsPackage}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h2>SMS Package</h2>
                     <table>
@@ -471,7 +479,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasHomologationUsers}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>USERS</h1>
                     <apex:repeat value="{!homologationUsers}" var="u">
@@ -489,7 +497,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasPagShieldSection}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>PAGSHIELD</h1>
                     <table>
@@ -500,7 +508,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasShopify}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>SHOPIFY</h1>
                     <table>
@@ -509,7 +517,7 @@
                     </table>
                     <h2>Shopify Discount</h2>
                     <table>
-                        <tr><th>Discount per method payment</th><td>{!form.ShopifyDiscount__c}</td></tr>
+                        <tr><th>Discount per payment method</th><td>{!form.ShopifyDiscount__c}</td></tr>
                         <tr><th>Discount – Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
                         <tr><th>Discount – PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
                         <tr><th>Pix Pending</th><td>{!form.PixPending__c}</td></tr>
@@ -518,7 +526,7 @@
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasPayout}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>PAYOUT</h1>
                     <table>
@@ -531,15 +539,15 @@
                         <tr>
                             <th></th><th>Fixed (BRL)</th><th>Variable (%)</th>
                         </tr>
-                        <tr><th>Payout to payee</th><td></td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
-                        <tr><th>Payout to merchant account</th><td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td></td></tr>
-                        <tr><th>Payee approval or rejection</th><td><i>[TODO]</i></td><td><i>[TODO]</i></td></tr>
+                        <tr><th>Payout to payee</th><td>{!wrapper.taxaTransferenciaFornecedores.totalPrice}</td><td>{!wrapper.taxaTransferenciaFornecedores.percentValue}%</td></tr>
+                        <tr><th>Payout to merchant account</th><td>{!wrapper.taxaPayout.totalPrice}</td><td>{!wrapper.taxaPayout.percentValue}%</td></tr>
+                        <tr><th>Payee approval or rejection</th><td>{!wrapper.taxaPayoutService.totalPrice}</td><td>{!wrapper.taxaPayoutService.percentValue}%</td></tr>
                     </table>
                 </div>
             </apex:outputPanel>
 
 
-            <apex:outputPanel rendered="{!hasGateway}">
+            <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>GATEWAY</h1>
                     <h2>Cielo 3.0</h2>

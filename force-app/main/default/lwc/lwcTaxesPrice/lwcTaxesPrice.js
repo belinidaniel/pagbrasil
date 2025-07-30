@@ -14,14 +14,19 @@ const LOCAL_STORAGE_WIDTH = 'userColumnSettings';
 
 
 const COLUMNSWITHFLEXIBILITY = [
-    { label : 'Business Model1', fieldName: 'BusinessModel__c', editable: false, initialWidth : 300},
-    { label: 'Name', fieldName: 'NameUrl', type: 'url', typeAttributes: { label: { fieldName: 'Name' }, target: '_blank' }, editable: false },
-    { label: 'CurrencyIsoCode', fieldName: 'CurrencyIsoCode', editable: false, initialWidth : 100},
-    { label: 'Unit Price', fieldName: 'UnitPrice', type: 'currency', editable: true, initialWidth : 150},
-    { label: 'Is Active', fieldName: 'IsActive', type: 'boolean', editable: true, initialWidth : 150},
-    { label: 'Product Code', fieldName: 'ProductCode', editable: false, initialWidth : 150},
-    { label: 'Is Percent', fieldName: 'IsPercent__c', type: 'boolean', editable: true, initialWidth : 150},
-    { label: 'Order', fieldName: 'Order__c', editable: true, initialWidth : 150}
+    { label: 'Business Model', fieldName: 'BusinessModel__c', editable: false, initialWidth: 200 },
+    { label: 'Product Name', fieldName: 'NameUrl', type: 'url', typeAttributes: { label: { fieldName: 'ProductName' }, target: '_blank' }, editable: false, initialWidth: 250 },
+    { label: 'Is Percent', fieldName: 'IsPercent__c', type: 'boolean', editable: true, initialWidth: 100 },
+    { label: 'Unit Price', fieldName: 'UnitPrice__c', type: 'currency', editable: true, initialWidth: 120 },
+    { label: 'Percent Price', fieldName: 'PercentValue__c', type: 'number', editable: true, initialWidth: 120, typeAttributes: { maximumFractionDigits: '2' } },
+    { label: 'Range Faixa Inicial', fieldName: 'RangeFaixaInicial__c', type: 'number', editable: true, initialWidth: 150 },
+    { label: 'Range Faixa Final', fieldName: 'RangeFaixaFinal__c', type: 'number', editable: true, initialWidth: 150 },
+    { label: 'Ticket Inicial', fieldName: 'TicketInicial__c', type: 'number', editable: true, initialWidth: 120 },
+    { label: 'Ticket Final', fieldName: 'TicketFinal__c', type: 'number', editable: true, initialWidth: 120 },
+    { label: 'Receita Mensal Final', fieldName: 'ReceitaMensalFinal__c', type: 'number', editable: true, initialWidth: 180 },
+    { label: 'Flex Head', fieldName: 'FlexHead__c', type: 'number', editable: true, initialWidth: 120, typeAttributes: { maximumFractionDigits: '2' } },
+    { label: 'Flex Board', fieldName: 'FlexBoard__c', type: 'number', editable: true, initialWidth: 120, typeAttributes: { maximumFractionDigits: '2' } },
+    { label: 'Product Class', fieldName: 'ProductClass__c', editable: false, initialWidth: 150 }
 ];
 
 const COLUMNSWITHOUTFLEXIBILITY = [
@@ -53,9 +58,10 @@ export default class LwcTaxesPrice extends LightningElement {
 
     @track displayedData = [];
     @track recordsTotal = '0/0';
-    @track searchTerm = '';
+    @track searchTerm = {};
     @track showResult = false;
     @track selectedProductId = '';
+    activeTab = 'taxesWithoutFlexibility';
 
     async connectedCallback() {
         await this.loadBusinessModels();
@@ -68,6 +74,23 @@ export default class LwcTaxesPrice extends LightningElement {
         await this.loadRecordTypeNames();
         await this.loadProductNames();
         await this.loadProductOptions();
+    }
+
+    handleTabChange(event) {
+        this.activeTab = event.target.value;
+        this.clearTableAndFilters();
+    }
+
+    clearTableAndFilters() {
+        this.displayedData = [];
+        this.recordsTotal = '0/0';
+        this.showResult = false;
+        this.searchTerm = {};
+        this.template.querySelectorAll('c-taxes-price-filter').forEach(filter => {
+            if (filter.handleClear) {
+                filter.handleClear();
+            }
+        });
     }
 
     async loadBusinessModels() {
@@ -106,9 +129,7 @@ export default class LwcTaxesPrice extends LightningElement {
         this.searchTerm = filter;
         // Optionally clear table if filter is empty
         if (!filter || Object.keys(filter).length === 0) {
-            this.displayedData = [];
-            this.recordsTotal = '0/0';
-            this.showResult = false;
+            this.clearTableAndFilters();
         }
     }
 
@@ -117,15 +138,19 @@ export default class LwcTaxesPrice extends LightningElement {
         this.isLoading = true;
         try {
             const filterJson = JSON.stringify(this.searchTerm);
-            const resultJson = await filterTaxesOrPrices({ filterJson , isFlex: this.searchTerm?.isFlexible == null ? false : this.searchTerm?.isFlexible });
+            const isFlexible = this.activeTab === 'taxesWithFlexibility';
+            const resultJson = await filterTaxesOrPrices({ filterJson , isFlex: isFlexible });
             let data = JSON.parse(resultJson);
             data = data.map(row => {
-                if (row.Pricebook2 && row.Pricebook2.Name) {
-                    row.Pricebook2Name = row.Pricebook2.Name;
-                }
-                if (this.searchTerm?.isFlexible) {
+                if (isFlexible) {
+                    if (row.Product__r) {
+                        row.ProductName = row.Product__r.Name;
+                    }
                     row.NameUrl = `/lightning/r/Taxes__c/${row.Id}/view`;
                 } else {
+                    if (row.Pricebook2 && row.Pricebook2.Name) {
+                        row.Pricebook2Name = row.Pricebook2.Name;
+                    }
                     row.NameUrl = `/lightning/r/PricebookEntry/${row.Id}/view`;
                 }
                 return row;
@@ -146,18 +171,6 @@ export default class LwcTaxesPrice extends LightningElement {
     }
 
     handleClear(event) {
-        this.selectedProductId = '';
-        this.displayedData = [];
-        this.showResult = false;
-        this.recordsTotal = '0/0';
-        // Clear child tables
-        this.template.querySelectorAll('c-prices-table').forEach(table => {
-            if (table.refreshTable) table.refreshTable([]);
-        });
-        // Clear filter component
-        const filterComps = this.template.querySelectorAll('c-taxes-price-filter');
-        filterComps.forEach(filter => {
-            if (filter.handleClear) filter.handleClear();
-        });
+        this.clearTableAndFilters();
     }
 }

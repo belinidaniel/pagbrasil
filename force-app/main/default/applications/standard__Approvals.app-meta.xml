@@ -602,6 +602,7 @@
         <profile>Default</profile>
     </profileActionOverrides>
     <tabs>standard-ApprovalsHome</tabs>
+    <tabs>Edit_o_das_Taxas</tabs>
     <tabs>KYC__c</tabs>
     <tabs>KYC_XB__c</tabs>
     <tabs>Clauses__c</tabs>
@@ -614,6 +615,9 @@
         </mappings>
         <mappings>
             <tab>Clauses__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Edit_o_das_Taxas</tab>
         </mappings>
         <mappings>
             <tab>HomologationUser__c</tab>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-24-2025
+  @last modified on  : 07-28-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -457,10 +457,11 @@
                         <td style="padding: 10px; width: 40%; text-align: left;">Frequência de Repasse</td>
                         <td style="padding: 10px; width: 10%; text-align: center;"></td>
                         <td style="padding: 10px; width: 50%; text-align: left;">
-                            <apex:outputPanel rendered="{!NOT(ISBLANK(opportunity.Settlement_Frequency_1__c))}">
-                                <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Daily'}" value="Diário" />
-                                <apex:outputText rendered="{!opportunity.Settlement_Frequency_1__c = 'Weekly'}" value="Semanalmente" />
-                                <apex:outputText rendered="{!AND(opportunity.Settlement_Frequency_1__c <> 'Daily', opportunity.Settlement_Frequency_1__c <> 'Weekly')}" value="{!opportunity.Settlement_Frequency_1__c}" />
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(settlementFrequency))}">
+                                <apex:outputText rendered="{!settlementFrequency = '0'}" value="Diário" />
+                                <apex:outputText rendered="{!settlementFrequency = '7'}" value="Semanalmente" />
+                                <apex:outputText rendered="{!settlementFrequency = '15'}" value="Quinzenalmente" />
+                                <apex:outputText rendered="{!settlementFrequency = '30'}" value="Mensalmente" />
                             </apex:outputPanel>
                         </td>
                     </tr>

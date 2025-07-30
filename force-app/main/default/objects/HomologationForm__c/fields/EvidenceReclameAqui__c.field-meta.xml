@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>EvidenceReclameAqui__c</fullName>
-    <label>Evidências Reclame Aqui</label>
+    <label>Evidence of Reclame Aqui</label>
     <length>16000</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>

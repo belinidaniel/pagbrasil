@@ -53,7 +53,7 @@ export default class TaxesPriceFilter extends LightningElement {
     @api
     handleClear() {
         this.searchBranch = {
-            isFlexible: this.isFlexible, // Always set isFlexible correctly
+            isFlexible: this.isFlexible,
             selectedBusinessModel: [],
             selectedIntegrationType: [],
             selectedTaxRegion: [],
@@ -64,14 +64,23 @@ export default class TaxesPriceFilter extends LightningElement {
             selectedRecordTypeName: [],
             selectedProductName: [],
             selectedProductId: [],
-            isPercent: false, // Assuming this is a boolean for percent filter
-            isActive: true // Assuming this is a boolean for active filter
+            isPercent: null,
+            isActive: null
         };
-        // Limpar selects se necessário
-        this.template.querySelectorAll('lightning-combobox').forEach(combo => {
-            combo.value = '';
+
+        // Reset all input fields
+        this.template.querySelectorAll('lightning-combobox').forEach(combobox => {
+            combobox.value = null;
         });
-        // Dispatch filter change with cleared filters
+        this.template.querySelectorAll('lightning-input').forEach(input => {
+            if (input.type === 'checkbox' || input.type === 'checkbox-button') {
+                input.checked = false;
+            } else {
+                input.value = null;
+            }
+        });
+
+        // Notify the parent component that filters are cleared
         this.handleSearch();
     }
 

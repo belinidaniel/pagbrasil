@@ -8,10 +8,9 @@
     <permissionSets>Big_Boosts_Can_View_All</permissionSets>
     <permissionSets>Documents_Can_View_All</permissionSets>
     <permissionSets>Homologation_Forms_Can_View</permissionSets>
-    <permissionSets>KYC_NB_Can_View</permissionSets>
     <permissionSets>KYC_XB_Can_View</permissionSets>
     <permissionSets>Lead_Can_View_All</permissionSets>
-    <permissionSets>Opportunities_Can_View_All</permissionSets>
+    <permissionSets>Opportunities_Can_View_XB</permissionSets>
     <permissionSets>Opportunity_View_General_Business_Stages</permissionSets>
     <permissionSets>Quote_Can_View</permissionSets>
     <permissionSets>RCC_Can_View</permissionSets>

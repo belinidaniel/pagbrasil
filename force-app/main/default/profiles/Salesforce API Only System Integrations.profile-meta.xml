@@ -717,6 +717,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.Linkedin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.Marketing__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1417,6 +1422,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>HomologationForm__c.Boleto_PIX_Flash_confirmation_reminder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>HomologationForm__c.Cancellation_policy__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1448,6 +1458,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.CompanyDetails__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Company_Email_SMS_Template__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1574,6 +1589,41 @@
         <editable>false</editable>
         <field>HomologationForm__c.FlashBoleto__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_Bank_Slip_Alert__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_Boleto_Flash_Alert__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_Credit_Card_Alert__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_Debit_Card_Flash_Alert__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_PB_Checkout_Discount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_Pix_Alert__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Has_Shopify_Discount__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1813,6 +1863,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>HomologationForm__c.Remittance_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>HomologationForm__c.Require_Address_Check__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4253,6 +4308,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>RCC__c.Result__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>RCC__c.RevisionFormula__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

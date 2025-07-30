@@ -38,7 +38,7 @@
         <accessLevel>Edit</accessLevel>
         <label>Director New Business Management</label>
         <sharedTo>
-            <role>HeadBusinessDevelopmentNB</role>
+            <role>Director</role>
         </sharedTo>
         <sharedFrom>
             <role>New_Business_Management</role>
@@ -49,7 +49,7 @@
         <accessLevel>Edit</accessLevel>
         <label>Director New Sales Role</label>
         <sharedTo>
-            <role>HeadBusinessDevelopmentNB</role>
+            <role>Director</role>
         </sharedTo>
         <sharedFrom>
             <role>New_Sales</role>
@@ -60,7 +60,7 @@
         <accessLevel>Edit</accessLevel>
         <label>Director Product Role</label>
         <sharedTo>
-            <role>HeadBusinessDevelopmentNB</role>
+            <role>Director</role>
         </sharedTo>
         <sharedFrom>
             <role>Product</role>
@@ -93,7 +93,7 @@
         <accessLevel>Read</accessLevel>
         <label>Grow &amp; Customer Sucess NB Roles</label>
         <sharedTo>
-            <role>Grow_Customer_Sucess</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <role>Sales_NB</role>
@@ -104,7 +104,7 @@
         <accessLevel>Read</accessLevel>
         <label>Grow &amp; Customer Sucess XB Roles</label>
         <sharedTo>
-            <role>Grow_Customer_Sucess</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <role>Sales_XB</role>

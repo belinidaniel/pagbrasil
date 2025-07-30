@@ -15,6 +15,12 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>DefaultWorkflowUser</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>useEmailTemplate</name>
             <value>
                 <stringValue>True</stringValue>
@@ -56,7 +62,13 @@
         <inputParameters>
             <name>emailAddresses</name>
             <value>
-                <elementReference>Send_To</elementReference>
+                <elementReference>Copy_1_of_Send_To</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>DefaultWorkflowUser</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -74,7 +86,7 @@
         <inputParameters>
             <name>recipientId</name>
             <value>
-                <elementReference>get_selected_contact.Id</elementReference>
+                <elementReference>Copy_1_of_get_selected_contact.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -102,7 +114,7 @@
         <name>nb_or_xb_opportunity</name>
         <label>nb or xb opportunity?</label>
         <locationX>314</locationX>
-        <locationY>458</locationY>
+        <locationY>242</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>national</name>
@@ -180,13 +192,41 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>get_KYC_NB</name>
-        <label>get KYC_NB</label>
-        <locationX>50</locationX>
+        <name>Copy_1_of_get_selected_contact</name>
+        <label>Copy 1 of get selected contact</label>
+        <locationX>314</locationX>
         <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>syncing_KYC_NB_Number</targetReference>
+            <targetReference>syncing_KYC_XB_Number</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>get_opportunity.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Email</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Copy_1_of_Send_To</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>get_KYC_NB</name>
+        <label>get KYC_NB</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>KYC_Screen</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -204,10 +244,10 @@
         <name>get_KYC_XB</name>
         <label>get KYC_XB</label>
         <locationX>314</locationX>
-        <locationY>566</locationY>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>syncing_KYC_XB_Number</targetReference>
+            <targetReference>Copy_1_of_KYC_Screen</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -228,7 +268,7 @@
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>KYC_Screen</targetReference>
+            <targetReference>nb_or_xb_opportunity</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -245,11 +285,11 @@
     <recordLookups>
         <name>get_selected_contact</name>
         <label>get selected contact</label>
-        <locationX>314</locationX>
-        <locationY>350</locationY>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>nb_or_xb_opportunity</targetReference>
+            <targetReference>syncing_KYC_NB_Number</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -319,10 +359,68 @@
         <object>Opportunity</object>
     </recordUpdates>
     <screens>
+        <name>Copy_1_of_KYC_Screen</name>
+        <label>Copy 1 of KYC Screen</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Copy_1_of_get_selected_contact</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_1_of_testoppname</name>
+            <fieldText>&lt;p&gt;{!get_opportunity.Name}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Send_To</name>
+            <choiceReferences>Emails</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Send to</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Copy_1_of_Display_Url_Else</name>
+            <fieldText>&lt;p&gt;{!$Label.KYC_XB_Staging_URL}/?id={!get_KYC_XB.Unique_Link__c}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Send</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>KYC_Screen</name>
         <label>KYC Screen</label>
-        <locationX>314</locationX>
-        <locationY>242</locationY>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -350,6 +448,19 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Display_Url_National</name>
+            <fieldText>&lt;p&gt;{!$Label.KYC_Staging_URL}/?id={!get_KYC_NB.Unique_Link__c}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
             <styleProperties>
                 <verticalAlignment>
                     <stringValue>top</stringValue>

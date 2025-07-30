@@ -11,14 +11,41 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Yes</fullName>
+                <fullName>I want to activate the zip code validator</fullName>
                 <default>false</default>
-                <label>Yes</label>
+                <label>I want to activate the zip code validator</label>
+            </value>
+            <value>
+                <fullName>I already have and do not want to activate the zip code validator</fullName>
+                <default>false</default>
+                <label>I already have and do not want to activate the zip code validator</label>
+            </value>
+            <value>
+                <fullName>My integration will be via API, iFrame, or PagBrasil.JS, and i have my own validators</fullName>
+                <default>false</default>
+                <label>My integration will be via API, iFrame, or PagBrasil.JS, and i have my own validators</label>
+            </value>
+            <value>
+                <fullName>Integration is not API, a validator already exists</fullName>
+                <default>false</default>
+                <label>Integration is not API, a validator already exists</label>
+            </value>
+            <value>
+                <fullName>Digital product, validator is not required</fullName>
+                <default>false</default>
+                <label>Digital product, validator is not required</label>
             </value>
             <value>
                 <fullName>No</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>No</label>
+            </value>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Yes</label>
             </value>
         </valueSetDefinition>
     </valueSet>

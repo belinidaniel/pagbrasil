@@ -2,8 +2,8 @@
  * @description			:
  * @author				: Hersilio Belini de Oliveira
  * @group				:
- * @last modified on	: 2025-01-14
- * @last modified by	: Hersilio Belini de Oliveira
+ * @last modified on	: 07-29-2025
+ * @last modified by	: Daniel Belini
 **/
 public class OpportunityWrapper {
 	public String id { get; set; }
@@ -56,14 +56,23 @@ public class OpportunityWrapper {
 	public QuoteLineItemWrapper pacoteDezMilSms { get; set; }
 	public QuoteLineItemWrapper taxaTransferenciaFornecedores { get; set; }
 	public QuoteLineItemWrapper taxaPayout { get; set; }
+	public QuoteLineItemWrapper taxaPayoutService { get; set; }
 	public QuoteLineItemWrapper taxaMinimaManutencao { get; set; }
 	public QuoteLineItemWrapper taxaSolucaoPagBrasil { get; set; }
 	public QuoteLineItemWrapper valorMinimoRepasse { get; set; }
 	public QuoteLineItemWrapper Reserva { get; set; }
 	public QuoteLineItemWrapper taxaTransferencia { get; set; }
 	public QuoteLineItemWrapper currencyMarkupSpread { get; set; }
+	public QuoteLineItemWrapper taxaPagshield {get; set; }
+	public QuoteLineItemWrapper taxaPagshieldPremiumVariavel {get; set; }
+	public QuoteLineItemWrapper taxaPagshieldPremiumFixa {get; set; }
+	public QuoteLineItemWrapper zeroAuth { get; set; }
+	public QuoteLineItemWrapper cardRefund { get; set; }
+	public QuoteLineItemWrapper pixRefund { get; set; }
+	public QuoteLineItemWrapper chargeback { get; set; }
+	public QuoteLineItemWrapper solucaoCarteiraDigital { get; set; }
 
-
+	
 
 	// Constructor
 	public OpportunityWrapper(Opportunity opp) {
@@ -91,6 +100,7 @@ public class OpportunityWrapper {
 		this.containsGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
 		this.pagShield = opp.PagShield__c;
 		this.pagShieldPremium = opp.PagShield_Premium__c;
+
 
 		// Map Account properties
 		if (opp.Account != null) {
@@ -134,7 +144,9 @@ public class OpportunityWrapper {
 					this.taxaMinimaPagStream = new QuoteLineItemWrapper(qli);
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_ANTECIPACAO') {
-					this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
+					if(qli.IsMain__c){
+						this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
+					}
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_PROCESS_BOLETO' && qli.IsMain__c == true) {
 					this.taxaProcessamentoBoleto = new QuoteLineItemWrapper(qli);
@@ -198,6 +210,33 @@ public class OpportunityWrapper {
 				}
 				else if (qli.Product2.ProductCode == 'CURRENCY_EXCHANGE_MARKUP_SPREAD') {
 					this.currencyMarkupSpread = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'PAGSHIELD_PREMIUM_FIXED_FEE') {
+					this.taxaPagshieldPremiumFixa = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'PAGSHIELD_PREMIUM_VARIABLE_FEE') {
+					this.taxaPagshieldPremiumVariavel = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'PAGSHIELD_FRAUD_PREVENTION') {
+					this.taxaPagshield = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'PAYOUT_SERVICE_FEE') {
+					this.taxaPayoutService = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'ZERO_AUTH_CREDIT_CARD') {
+					this.zeroAuth = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'REFUND_BANK_TRANSFER') {
+					this.cardRefund = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'REFUND_CARD_ACQUIRER_PIX') {
+					this.pixRefund = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'CHARGEBACK') {
+					this.chargeback = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'SOLUCAO_CARTEIRA_DIGITAL') {
+					this.solucaoCarteiraDigital = new QuoteLineItemWrapper(qli);
 				}
 			}
 		}
@@ -736,5 +775,4 @@ public class OpportunityWrapper {
 			return String.join(emails, '; ');
 		}
 	}
-
 }

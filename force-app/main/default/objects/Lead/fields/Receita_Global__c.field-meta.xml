@@ -13,7 +13,7 @@
             <value>
                 <fullName>Acima de 100M</fullName>
                 <default>false</default>
-                <label>Acima de 100M</label>
+                <label>Over 100M</label>
             </value>
             <value>
                 <fullName>R$10M - R$100M</fullName>
@@ -28,7 +28,7 @@
             <value>
                 <fullName>Até R$1M</fullName>
                 <default>false</default>
-                <label>Até R$1M</label>
+                <label>Below R$1M</label>
             </value>
         </valueSetDefinition>
     </valueSet>

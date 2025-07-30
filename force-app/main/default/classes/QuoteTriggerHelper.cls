@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-23-2025
+ * @last modified on  : 07-29-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -138,11 +138,11 @@ public with sharing class QuoteTriggerHelper {
         Boolean isIntermediation = opportunity.BusinessModel__c == 'Intermediation';
         Boolean isGateway = opportunity.BusinessModel__c == 'Gateway';
         Boolean isPixAutomatic = priceBookEntry.Product2.ProductCode.contains('PIX_AUTO');
-        Boolean isPagstream = priceBookEntry.Product2.ProductCode.contains('_PAGSTREAM');
+        Boolean isPagstreamMaintenance = priceBookEntry.Product2.ProductCode.contains('PAGSTREAM_MAINTENANCE_MINIMUM_FEE');
         Boolean isPackage = priceBookEntry.Product2.ProductCode.contains('SMS') || priceBookEntry.Product2.ProductCode.contains('EMAILS');
         Boolean isTaxaParcela2a6 = priceBookEntry.Product2.ProductCode.contains('TAXA_PARC_2A6'); //added
         Boolean isTaxaParcela7a12 = priceBookEntry.Product2.ProductCode.contains('TAXA_PARC_7A12'); //added
-        Boolean isTaxaAntecipacao = priceBookEntry.Product2.ProductCode.contains('TAXA_ANTECIPACAO');
+        Boolean isTaxaAntecipacao = priceBookEntry.Product2.ProductCode.contains('TAXA_ANTECIPACAO') || priceBookEntry.Product2.ProductCode.contains('ANTECIPATION_FEES'); //alterado
         Boolean isTaxaChargeback = priceBookEntry.Product2.ProductCode.contains('TAXA_CHARGEBACK');
         Boolean isTaxaExcessoChargeback = priceBookEntry.Product2.ProductCode.contains('TAXA_EXCESSO_CHARGEBACK'); //added
         Boolean isCarteiraDigital = priceBookEntry.Product2.ProductCode.contains('CARTEIRA_DIGITAL'); //added
@@ -233,7 +233,7 @@ public with sharing class QuoteTriggerHelper {
         }
 
 
-        if(isPagstreamTax || isPagstreamMin){
+        if(isPagstreamTax || isPagstreamMin || isPagstreamMaintenance || priceBookEntry.Product2.ProductCode == 'REMITTANCE_FEE_SUPPLIERS') { //added
             if (!opportunity.UsePagstream__c || !paymentMethod.contains('CARTAO DE CREDITO')) { //alterado campo
                 return true; //added
             }

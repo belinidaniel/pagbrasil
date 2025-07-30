@@ -1410,7 +1410,7 @@
                 <fieldItem>Record.Antecipation__c</fieldItem>
                 <identifier>RecordAntecipation__cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
+                    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1420,6 +1420,11 @@
                         <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1433,7 +1438,7 @@
                 <fieldItem>Record.Antecipation__c</fieldItem>
                 <identifier>RecordAntecipation_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+                    <booleanFilter>((1 AND 2) OR 3) AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Discovery__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1447,6 +1452,11 @@
                     <criteria>
                         <leftValue>{!Record.Name}</leftValue>
                         <operator>EQUAL</operator>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1830,7 +1840,7 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordClasseDeProdutos_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>(1 OR 3) AND 2</booleanFilter>
+                    <booleanFilter>((1 OR 3) AND 2) AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1846,6 +1856,11 @@
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
@@ -1858,7 +1873,7 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordProductClass_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>(1 AND 2 AND 3) OR (2 AND 4)</booleanFilter>
+                    <booleanFilter>((1 AND 2 AND 3) OR (2 AND 4)) AND 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1878,6 +1893,11 @@
                         <leftValue>{!Record.Name}</leftValue>
                         <operator>EQUAL</operator>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
+                    </criteria>
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
@@ -1890,7 +1910,7 @@
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordProductClass_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>(1 AND 2 AND 3) OR (2 AND 4)</booleanFilter>
+                    <booleanFilter>((1 AND 2 AND 3) OR (2 AND 4)) AND 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Edit_Fields_Negotiation__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -1909,6 +1929,11 @@
                     <criteria>
                         <leftValue>{!Record.Name}</leftValue>
                         <operator>EQUAL</operator>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>NaTional</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>

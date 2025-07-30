@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-21-2025
+ * @last modified on  : 07-29-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -144,8 +144,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     Decimal discount = QuoteTriggerHelper.applyDiscount(opportunity, priceBookEntry, this.integrations);
                     if( quote.Pricebook2Id != priceBookEntry.Pricebook2Id ){
                     }
-                    System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
-                    System.debug('PricebookId - ' + priceBookEntry.UnitPrice);
                     quoteLineItems.add(new QuoteLineItem(
                         PricebookEntryId = priceBookEntry.Id,
                         Product2Id = priceBookEntry.Product2Id,
@@ -226,22 +224,21 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
         for(Taxes__c tax : taxes){
 
-       
+            System.debug('Tax - ' + taxMap.get('01tVA0000052w8NYAQ').size());
             Boolean isTicketRange = tax.TicketInicial__c <= opportunity.AverageSalesTicket__c && (tax.TicketFinal__c > opportunity.AverageSalesTicket__c || tax.TicketFinal__c == null);
             Boolean isInsideRange = 
                 (opportunity.previs_fat_rs__c >= tax.RangeFaixaInicial__c) &&
                 (opportunity.previs_fat_rs__c < tax.RangeFaixaFinal__c);
             switch on tax.RecordTypeName__c {
                 when 'TaxaBaseAntecipacao' {
-
+                        System.debug('TaxaBaseAntecipacao - ' + tax.Id);
                         percentValue = tax.PercentValue__c;
                         isTaxMain = true;
                         taxId = tax.Id;
+                        this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;
                 }
                 when 'TaxaProcessamento' {
-                    System.debug('TaxaSolucaoPagBrasil - ' + tax.Product__r.ProductCode );
-                    System.debug('TaxaSolucaoPagBrasil - ' + tax.ProductClass__c);
                     if(
                         (paymentMethod.contains(CREDITO) && tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
                         (paymentMethod.contains(DEBITO) &&  tax.ProductClass__c != null && tax.ProductClass__c.contains(opportunity.ProductClass__c) ||
@@ -269,8 +266,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     }
                 }
                 when 'TaxaGateway' {
-                    System.debug(' tax.UnitPrice__c - ' +  tax.Id);
-                    System.debug(' tax.UnitPrice__c - ' +  tax.UnitPrice__c);
                     if(opportunity.BusinessModel__c.contains('Gateway')){
                         unitPrice = tax.UnitPrice__c;
                         isTaxMain = true;

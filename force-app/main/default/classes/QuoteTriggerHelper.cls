@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-28-2025
+ * @last modified on  : 07-29-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -142,7 +142,7 @@ public with sharing class QuoteTriggerHelper {
         Boolean isPackage = priceBookEntry.Product2.ProductCode.contains('SMS') || priceBookEntry.Product2.ProductCode.contains('EMAILS');
         Boolean isTaxaParcela2a6 = priceBookEntry.Product2.ProductCode.contains('TAXA_PARC_2A6'); //added
         Boolean isTaxaParcela7a12 = priceBookEntry.Product2.ProductCode.contains('TAXA_PARC_7A12'); //added
-        Boolean isTaxaAntecipacao = priceBookEntry.Product2.ProductCode.contains('TAXA_ANTECIPACAO');
+        Boolean isTaxaAntecipacao = priceBookEntry.Product2.ProductCode.contains('TAXA_ANTECIPACAO') || priceBookEntry.Product2.ProductCode.contains('ANTECIPATION_FEES'); //alterado
         Boolean isTaxaChargeback = priceBookEntry.Product2.ProductCode.contains('TAXA_CHARGEBACK');
         Boolean isTaxaExcessoChargeback = priceBookEntry.Product2.ProductCode.contains('TAXA_EXCESSO_CHARGEBACK'); //added
         Boolean isCarteiraDigital = priceBookEntry.Product2.ProductCode.contains('CARTEIRA_DIGITAL'); //added

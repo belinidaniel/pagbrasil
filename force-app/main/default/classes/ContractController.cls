@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-28-2025
+ * @last modified on  : 07-29-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -156,7 +156,7 @@ public class ContractController {
     public ContractController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
-            stdController.addFields(new List<String>{ 'Id', 'Name', 'Integracao__c','Other_Payments_Settlement_Frequency_1__c', 'RequestChangeClause__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
+            stdController.addFields(new List<String>{ 'Id', 'Name','Integracao__c','Other_Payments_Settlement_Frequency_1__c', 'RequestChangeClause__c', 'BusinessModel__c', 'previs_fat_rs__c', 'AntecipationFrequency__c',
                 'Settlement_Frequency_Test__c', 'Account.CNPJ__c', 'AccountId', 'Account.Nome_Empresarial__c', 'NationalPaymentMethod__c', 'Payout__c', 
                 'Antecipation_Frequency_1__c', 'Antecipation_Frequency_2__c', 'Settlement_Frequency_1__c','Settlement_Frequency_2__c', 'Selected_Credit_Frequency__c', 'RecordType.DeveloperName', 'Selected_Credit_Frequency__c', 'Selected_Others_Frequency__c', 'IntegrationType__c', 'Product_Type__c' });
         }
@@ -207,7 +207,7 @@ public class ContractController {
 
         this.isFluxoMedio = String.isNotBlank(opp.Antecipation_Frequency_1__c) && opp.Antecipation_Frequency_1__c.contains('Fluxo Médio');
         try {
-            this.quote = [SELECT Id,Name,Status,QuoteNumber, (SELECT Id, Price__c, MonthlyRevenue__c, MonthlyRevenueCode__c, InitialMonthlyRevenue__c, FinalMonthlyRevenue__c, Product2.ProductCode,UnitPrice, PercentValue__c FROM QuoteLineItems ORDER BY Order__c) FROM Quote WHERE OpportunityId = :opp.Id ORDER BY CreatedDate DESC LIMIT 1];
+            this.quote = [SELECT Id,Name,Status,QuoteNumber, (SELECT Id, Price__c, MonthlyRevenue__c, MonthlyRevenueCode__c, InitialMonthlyRevenue__c, FinalMonthlyRevenue__c, Product2.ProductCode,UnitPrice, PercentValue__c,IsMain__c FROM QuoteLineItems ORDER BY Order__c) FROM Quote WHERE OpportunityId = :opp.Id ORDER BY CreatedDate DESC LIMIT 1];
         } catch(QueryException e) {
             throw new QueryException('Nenhuma Quote encontrada para esta oportunidade.');
         }
@@ -340,7 +340,9 @@ public class ContractController {
                         this.minimumMaintenanceFee = price;
                     }
                     when 'ANTICIPATION_FEES' {
-                        this.taxaAntecipacao = String.valueOf(quoteLineItem.PercentValue__c);
+                        if(quoteLineItem.IsMain__c){
+                            this.taxaAntecipacao = String.valueOf(quoteLineItem.PercentValue__c);
+                        }
                     }
                     when 'TAXA_TOKENIZACAO' {
                         this.taxaToken = price;
@@ -506,7 +508,9 @@ public class ContractController {
                         this.minimumMaintenanceFee = price;
                     }
                     when 'TAXA_ANTECIPACAO' {
-                        this.taxaAntecipacao = String.valueOf(quoteLineItem.PercentValue__c);
+                        if(quoteLineItem.IsMain__c){
+                            this.taxaAntecipacao = String.valueOf(quoteLineItem.PercentValue__c);
+                        }
                     }
                     when 'TAXA_TOKENIZACAO' {
                         this.taxaToken = price;

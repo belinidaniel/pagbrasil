@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RevisionFormula__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    Final_Risk__c,
+    &quot;Baixo&quot;, &quot;1 Ano&quot;,
+    &quot;Médio&quot;, &quot;6 Meses&quot;,
+    &quot;Alto&quot;, &quot;3 Meses&quot;,
+    &quot;Extremo&quot;, &quot;1 Mês&quot;,
+				&quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Revision</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

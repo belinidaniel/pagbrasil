@@ -2231,9 +2231,9 @@
                 <identifier>flexipage_fieldSection5</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.Opportunity__r.RecordType.Name}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>NaTional</rightValue>
+                        <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

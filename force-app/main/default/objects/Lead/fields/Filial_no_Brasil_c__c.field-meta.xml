@@ -12,12 +12,12 @@
             <value>
                 <fullName>Sim</fullName>
                 <default>false</default>
-                <label>Sim</label>
+                <label>Yes</label>
             </value>
             <value>
                 <fullName>Não</fullName>
                 <default>false</default>
-                <label>Não</label>
+                <label>No</label>
             </value>
             <value>
                 <fullName>N/A</fullName>

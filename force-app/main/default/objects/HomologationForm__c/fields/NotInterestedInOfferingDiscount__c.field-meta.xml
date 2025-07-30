@@ -13,12 +13,12 @@
             <value>
                 <fullName>Yes</fullName>
                 <default>false</default>
-                <label>Yes</label>
+                <label>I&apos;m not interested in offering discounts</label>
             </value>
             <value>
                 <fullName>No</fullName>
                 <default>false</default>
-                <label>No</label>
+                <label>I want to offer discounts</label>
             </value>
         </valueSetDefinition>
     </valueSet>

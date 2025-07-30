@@ -3,17 +3,17 @@
     <customValue>
         <fullName>Comercial</fullName>
         <default>false</default>
-        <label>Comercial</label>
+        <label>Commercial</label>
     </customValue>
     <customValue>
         <fullName>Financeiro</fullName>
         <default>false</default>
-        <label>Financeiro</label>
+        <label>Financial</label>
     </customValue>
     <customValue>
         <fullName>Expansão</fullName>
         <default>false</default>
-        <label>Expansão</label>
+        <label>Expansion</label>
     </customValue>
     <customValue>
         <fullName>E-commerce</fullName>
@@ -23,12 +23,12 @@
     <customValue>
         <fullName>Digital/Inovação</fullName>
         <default>false</default>
-        <label>Digital/Inovação</label>
+        <label>Digital/Innovation</label>
     </customValue>
     <customValue>
         <fullName>Diretoria</fullName>
         <default>false</default>
-        <label>Diretoria</label>
+        <label>Board</label>
     </customValue>
     <masterLabel>Área do lead</masterLabel>
     <sorted>false</sorted>

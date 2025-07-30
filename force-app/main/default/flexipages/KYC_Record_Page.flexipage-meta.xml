@@ -1122,6 +1122,86 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p class=&quot;ql-indent-1&quot;&gt;SAQ – D (&amp;lt; 6 milhões de transações de cartão de crédito e débito por ano) AoC (&amp;gt; 6 milhões de transações de cartão de crédito e débito por ano)&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Integration_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>API</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Integration_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Magento 2.3</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p class=&quot;ql-indent-1&quot;&gt;SAQ - A&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Integration_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>PagBrasil.JS</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p class=&quot;ql-indent-1&quot;&gt;N/A - Integração não necessita certificado PCI&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText3</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Integration_Type__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>API</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Integration_Type__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Magento 2.3</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Integration_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>PagBrasil.JS</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>parentFieldApiName</name>
                     <value>KYC__c.Id</value>
                 </componentInstanceProperties>

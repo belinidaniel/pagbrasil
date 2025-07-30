@@ -2,8 +2,8 @@
  * @description			:
  * @author				: Hersilio Belini de Oliveira
  * @group				:
- * @last modified on	: 2025-01-14
- * @last modified by	: Hersilio Belini de Oliveira
+ * @last modified on	: 07-29-2025
+ * @last modified by	: Daniel Belini
 **/
 public class OpportunityWrapper {
 	public String id { get; set; }
@@ -144,7 +144,9 @@ public class OpportunityWrapper {
 					this.taxaMinimaPagStream = new QuoteLineItemWrapper(qli);
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_ANTECIPACAO') {
-					this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
+					if(qli.IsMain__c){
+						this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
+					}
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_PROCESS_BOLETO' && qli.IsMain__c == true) {
 					this.taxaProcessamentoBoleto = new QuoteLineItemWrapper(qli);

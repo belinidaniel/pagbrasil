@@ -201,6 +201,9 @@ public class PropostaNacionalController {
     public String antecipationFrequencyPage1 { get; set; }
     public String antecipationFrequencyPage2 { get; set; }
 
+    public Boolean showTwoFluxoMedio1 { get; set; }
+    public Boolean showTwoFluxoMedio2 { get; set; }
+
     public PropostaNacionalController(ApexPages.StandardController stdController) {
 
         if(!Test.isRunningTest()){
@@ -395,7 +398,7 @@ public class PropostaNacionalController {
         pacotesSms = new List<String>();
         pacotesEmails = new List<String>();
         
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
+        List<QuoteLineItem> quoteLineItems = [SELECT Id,IsMain__c,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
             if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_500_SMS') {
                 pacotesSms.add(quoteLineItem.Product2.Name + ':' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
@@ -410,7 +413,9 @@ public class PropostaNacionalController {
     private void processQuoteLineItem(QuoteLineItem quoteLineItem) {
         switch on quoteLineItem.Product2.ProductCode {
             when 'TAXA_ANTECIPACAO' {
-                this.taxaAntecipacao = String.valueof(quoteLineItem.PercentValue__c);
+                if(quoteLineItem.IsMain__c){
+                    this.taxaAntecipacao = String.valueOf(quoteLineItem.PercentValue__c);
+                }
             }
             when 'TAXA_PAGSTREAM' {
                 this.taxaPagStream = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
@@ -551,6 +556,8 @@ public class PropostaNacionalController {
             return;
 
         this.settlementFrequency = null;
+        this.showTwoFluxoMedio1 = false;
+        this.showTwoFluxoMedio2 = false;
         if(quote.Opportunity.Other_Payments_Settlement_Frequency_1__c != null){
             this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Other_Payments_Settlement_Frequency_1__c {
@@ -630,7 +637,8 @@ public class PropostaNacionalController {
                     this.settlementFrequencyCardPage2 = 'D+31';
                 }
                 when 'Fluxo Médio' {
-                    this.settlementFrequencyCreditCardPage2 = 'no Fluxo Médio';
+                    this.settlementFrequencyCreditCardPage2 = 'Fluxo Médio';
+                    this.showTwoFluxoMedio2 = true;
                 }
             }
             switch on quote.Opportunity.Other_Payments_Settlement_Frequency_2__c {
@@ -689,7 +697,7 @@ public class PropostaNacionalController {
             this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Antecipation_Frequency_1__c {
                 when 'Daily' {
-                    this.antecipationFrequencyPage1= 'diário';
+                    this.antecipationFrequencyPage1= 'diária';
                 }
                 when 'Weekly' {
                     this.antecipationFrequencyPage1= 'semanal';
@@ -702,6 +710,8 @@ public class PropostaNacionalController {
                 }
                 when 'Fluxo Médio' {
                     this.antecipationFrequencyPage1 = 'no Fluxo Médio';
+                    this.showTwoFluxoMedio1 = true;
+
                 }
             }
 
@@ -726,7 +736,7 @@ public class PropostaNacionalController {
             this.frequencyPage11 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina11D';
             switch on quote.Opportunity.Antecipation_Frequency_2__c {
                 when 'Daily' {
-                    this.antecipationFrequencyPage2= 'diário';
+                    this.antecipationFrequencyPage2= 'diária';
                 }
                 when 'Weekly' {
                     this.antecipationFrequencyPage2= 'semanal';
@@ -738,7 +748,7 @@ public class PropostaNacionalController {
                     this.antecipationFrequencyPage2= 'mensal';
                 }
                 when 'Fluxo Médio' {
-                    this.antecipationFrequencyPage2 = 'no Fluxo Médio';
+                    this.showTwoFluxoMedio2 = true;
                 }
             }
 

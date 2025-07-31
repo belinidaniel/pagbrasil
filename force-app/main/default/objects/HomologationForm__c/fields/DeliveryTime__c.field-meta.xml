@@ -13,17 +13,17 @@
             <value>
                 <fullName>O prazo de entrega é calculado na página de checkout antes de concluir o pagamento</fullName>
                 <default>false</default>
-                <label>O prazo de entrega é calculado na página de checkout antes de concluir o pagamento</label>
+                <label>The delivery time is calculated on the checkout page before the payment</label>
             </value>
             <value>
                 <fullName>O tempo médio de entrega é mostrado na página Termos e Condições, Política de Entrega ou FAQ</fullName>
                 <default>false</default>
-                <label>O tempo médio de entrega é mostrado na página Termos e Condições, Política de Entrega ou FAQ</label>
+                <label>The average delivery time is shown on the Terms and Conditions, Delivery Policy, or FAQ</label>
             </value>
             <value>
                 <fullName>O prazo de entrega é informado no e-mail de confirmação do pedido</fullName>
                 <default>false</default>
-                <label>O prazo de entrega é informado no e-mail de confirmação do pedido</label>
+                <label>The delivery time is provided in the order confirmation email</label>
             </value>
         </valueSetDefinition>
     </valueSet>

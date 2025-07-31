@@ -518,6 +518,10 @@
                 <behavior>Edit</behavior>
                 <field>Has_PB_Checkout_Discount__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Verify_CPF_CNPJ__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

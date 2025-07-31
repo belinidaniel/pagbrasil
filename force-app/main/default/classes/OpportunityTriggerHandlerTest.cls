@@ -140,7 +140,7 @@ private class OpportunityTriggerHandlerTest {
         Opportunity opp = [SELECT Id FROM Opportunity WHERE Account.Name = 'company xb' LIMIT 1];
         Quote quote = [SELECT Id, Status FROM Quote WHERE OpportunityId = :opp.Id AND Name = '124313' LIMIT 1];
         
-        quote.Status = 'Pending Approval Head';
+        quote.Status = 'Pending Approval';
         update quote;
     
         Test.startTest();

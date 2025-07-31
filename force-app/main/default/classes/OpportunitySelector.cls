@@ -361,7 +361,8 @@ public without sharing class OpportunitySelector {
 						API_Variable__c,
 						PagBrasil_Mobile_POS_Fixed__c,
 						PagBrasil_Mobile_POS_Variable__c,
-                        Minimum_Amount_to_Activate_PagShield__c
+                        Minimum_Amount_to_Activate_PagShield__c,
+						Verify_CPF_CNPJ__c
                 FROM HomologationForms__r)
             FROM Opportunity
             WHERE Id = :opportunityId
@@ -651,7 +652,8 @@ public without sharing class OpportunitySelector {
                         Minimum_Amount_to_Activate_PagShield__c,
                         Allow_CPF_CNPJ__c,
                         PixPending__c,
-                        PixOpenFinance__c
+                        PixOpenFinance__c,
+						Verify_CPF_CNPJ__c
             FROM HomologationForm__c
             WHERE Opportunity__c = :opportunityId
         ];
@@ -754,7 +756,8 @@ public without sharing class OpportunitySelector {
                         Minimum_Amount_to_Activate_PagShield__c,
                         Allow_CPF_CNPJ__c,
                         PixPending__c,
-                        PixOpenFinance__c
+                        PixOpenFinance__c,
+						Verify_CPF_CNPJ__c
         FROM HomologationForm__c
         WHERE Id = :homologationId
         LIMIT 1

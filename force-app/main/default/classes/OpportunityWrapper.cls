@@ -407,7 +407,7 @@ public class OpportunityWrapper {
 		public Boolean hasRemotePaymentTax { get; set; }
 		public Decimal currentSpread { get; set; }
 		public Decimal additionalSpread { get; set; }
-
+        public Boolean verifyCpfCnpj { get; set; }
 
 		// Constructor to initialize the wrapper from a HomologationForms__c record
 		public HomologationFormWrapper(HomologationForm__c form) {
@@ -507,6 +507,7 @@ public class OpportunityWrapper {
 			this.hasApiTax = (form.API_Fixed__c != null || form.API_Variable__c != null);
 			this.hasMobilePosTax = (form.Additional_for_Remote_Payments_Fixed__c != null || form.Additional_for_Remote_Payments_Variable__c != null);
 			this.hasRemotePaymentTax = (form.PagBrasil_Mobile_POS_Fixed__c != null || form.PagBrasil_Mobile_POS_Variable__c != null);
+			this.verifyCpfCnpj = form.Verify_CPF_CNPJ__c;
             this.currentSpread = 2.5;
             this.additionalSpread = 1.5;
 		}

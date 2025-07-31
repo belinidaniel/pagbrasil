@@ -870,10 +870,10 @@
     </choices>
     <choices>
         <name>Em_Partes</name>
-        <choiceText>{!In_Parts_Formula}</choiceText>
+        <choiceText>In Parts</choiceText>
         <dataType>String</dataType>
         <value>
-            <elementReference>In_Parts_Formula</elementReference>
+            <stringValue>In Parts</stringValue>
         </value>
     </choices>
     <choices>
@@ -886,10 +886,10 @@
     </choices>
     <choices>
         <name>Nao</name>
-        <choiceText>Não</choiceText>
+        <choiceText>No</choiceText>
         <dataType>String</dataType>
         <value>
-            <stringValue>Nao</stringValue>
+            <stringValue>No</stringValue>
         </value>
     </choices>
     <choices>
@@ -902,10 +902,10 @@
     </choices>
     <choices>
         <name>Sim</name>
-        <choiceText>{!Yes_Formula}</choiceText>
+        <choiceText>Yes</choiceText>
         <dataType>String</dataType>
         <value>
-            <elementReference>Yes_Formula</elementReference>
+            <stringValue>Yes</stringValue>
         </value>
     </choices>
     <choices>
@@ -1467,7 +1467,7 @@
     <formulas>
         <name>EditRiskFinal</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!$UserRole.Name} = &apos;Account Manager&apos;, False, True)</expression>
+        <expression>IF({!$UserRole.Name} = &apos;Legal &amp; Compliance&apos;, False, True)</expression>
     </formulas>
     <formulas>
         <name>Final_Risk</name>
@@ -1556,6 +1556,28 @@
         <expression>IF(TEXT({!$User.LanguageLocaleKey}) = &quot;en_US&quot;, &quot;1 Month&quot;, &quot;1 Mês&quot;)</expression>
     </formulas>
     <formulas>
+        <name>pontuacaoFormula</name>
+        <dataType>Number</dataType>
+        <expression>(
+    {!segmentRiskFormula}
+)
+*
+(
+    CASE({!Question3}, {!Sim}, 1, {!Nao}, 5, {!Em_Partes}, 2, 0)
+    +
+    CASE({!Question4}, {!Sim}, 1, {!Nao}, 5, {!Em_Partes}, 2, 0)
+    +
+    CASE({!Question5}, {!Sim}, 1, {!Nao}, 5, {!Em_Partes}, 2, 0)
+    +
+    CASE({!Question6}, {!Sim}, 1, {!Nao}, 5, {!Em_Partes}, 2, 0)
+    +
+    CASE({!Question7}, {!Sim}, 1, {!Nao}, 5, {!Em_Partes}, 2, 0)
+    +
+    CASE({!Question8}, {!Sim}, 1, {!Nao}, 5, {!Em_Partes}, 2, 0)
+)</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
         <name>Question</name>
         <dataType>String</dataType>
         <expression>LEFT({!Loop_Question_and_Response}, FIND(&quot;|&quot;,{!Loop_Question_and_Response} ) - 1)</expression>
@@ -1619,6 +1641,80 @@
         <name>Response</name>
         <dataType>String</dataType>
         <expression>RIGHT({!Loop_Question_and_Response}, LEN({!Loop_Question_and_Response}) - FIND(&quot;|&quot;, {!Loop_Question_and_Response}))</expression>
+    </formulas>
+    <formulas>
+        <name>revisaoFormula</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+{!Risco_Final},
+&quot;Low&quot;, &quot;1 Year&quot;,
+&quot;Medium&quot;, &quot;6 Months&quot;,
+&quot;High&quot;, &quot;3 Months&quot;,
+&quot;Extreme&quot;, &quot;1 Month&quot;,
+&quot;No review yet&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>riscoSugeridoFormula</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!pontuacaoFormula} &lt;= 6, 
+    &quot;Low&quot;, 
+    IF(
+        {!pontuacaoFormula} &lt;= 12, 
+        &quot;Medium&quot;, 
+        IF(
+            {!pontuacaoFormula} &lt;= 75, 
+            &quot;High&quot;, 
+            &quot;Extreme&quot;
+        )
+    )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>segmentRiskFormula</name>
+        <dataType>Number</dataType>
+        <expression>CASE(
+        {!Get_Opportunity.Segmento__c},
+        &quot;Acessórios&quot;, 2,
+        &quot;Conteúdo Adulto&quot;, 150,
+        &quot;Bares e Restaurantes&quot;, 2,
+        &quot;Bebidas&quot;, 1,
+        &quot;Vestuário&quot;, 2,
+        &quot;Construção civil&quot;, 2,
+        &quot;Cosméticos&quot;, 2,
+        &quot;Criptomoedas&quot;, 150,
+        &quot;Decoração&quot;, 2,
+        &quot;Digital&quot;, 1,
+        &quot;Dropshipping&quot;, 2,
+        &quot;Educação&quot;, 1,
+        &quot;E-learning&quot;, 1,
+        &quot;Eletronics&quot;, 5,
+        &quot;Eventos&quot;, 150,
+        &quot;Alimentos&quot;, 1,
+        &quot;Food &amp; Beverage&quot;, 1,
+        &quot;Calçados&quot;, 1,
+        &quot;Móveis e/ou eletrodomésticos&quot;, 2,
+        &quot;Jogos de azar e apostas&quot;, 150,
+        &quot;Gaming&quot;, 2,
+        &quot;Grocery&quot;, 1,
+        &quot;Home Appliances&quot;, 2,
+        &quot;Hotéis&quot;, 5,
+        &quot;Joias/Relógios&quot;, 2,
+        &quot;Marketplace&quot;, 2,
+        &quot;PSP&quot;, 2,
+        &quot;Pet&quot;, 1,
+        &quot;Restaurantes&quot;, 1,
+        &quot;Sexshop&quot;, 1,
+        &quot;Software/Saas B2B&quot;, 1,
+        &quot;Papelaria&quot;, 1,
+        &quot;Suplementos/Farmacêuticos&quot;, 2,
+        &quot;Integrador Técnico&quot;, 1,
+        &quot;Turismo&quot;, 5,
+        &quot;Outros&quot;, 5,
+        0
+    )</expression>
+        <scale>0</scale>
     </formulas>
     <formulas>
         <name>SixMonths</name>
@@ -2081,7 +2177,7 @@
     </recordUpdates>
     <screens>
         <name>FormularioRCC</name>
-        <label>Formulario RCC</label>
+        <label>RCC Form</label>
         <locationX>974</locationX>
         <locationY>866</locationY>
         <allowBack>false</allowBack>
@@ -2090,6 +2186,19 @@
         <connector>
             <targetReference>Validate_Change_Risk_Final_Edit_Fields</targetReference>
         </connector>
+        <fields>
+            <name>RCC_Form_Title</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 20px;&quot;&gt;RCC Form&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
         <fields>
             <name>FormularioRCC_Section1</name>
             <fieldType>RegionContainer</fieldType>
@@ -2102,13 +2211,21 @@
                     <defaultValue>
                         <elementReference>Get_Opportunity.Segmento__c</elementReference>
                     </defaultValue>
-                    <fieldText>Segmento</fieldText>
+                    <fieldText>Segment (Industry)</fieldText>
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <booleanValue>true</booleanValue>
                     </isDisabled>
                     <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2125,15 +2242,23 @@
                     <name>RiscoSegmento</name>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>Get_Risk.Risco__c</elementReference>
+                        <elementReference>segmentRiskFormula</elementReference>
                     </defaultValue>
-                    <fieldText>Risco Segmento</fieldText>
+                    <fieldText>Segment Risk</fieldText>
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <booleanValue>true</booleanValue>
                     </isDisabled>
                     <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2145,10 +2270,18 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Formulario</name>
-            <fieldText>Formulário</fieldText>
+            <fieldText>Form</fieldText>
             <fieldType>RegionContainer</fieldType>
             <fields>
                 <name>Formulario_Column1</name>
@@ -2158,13 +2291,21 @@
                     <defaultValue>
                         <stringValue>{!SavedQuestion_1}</stringValue>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_1}</fieldText>
+                    <fieldText>How is the merchant&apos;s demand generated?</fieldText>
                     <fieldType>LargeTextArea</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question3</name>
@@ -2175,13 +2316,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_3</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_3}</fieldText>
+                    <fieldText>Is the description of the product/service sent or made avaiable clear?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question5</name>
@@ -2192,13 +2341,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_5</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_5}</fieldText>
+                    <fieldText>Any activity carried out with products/services restricted by PagBrasil&apos;s policies?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question7</name>
@@ -2209,13 +2366,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_7</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_7}</fieldText>
+                    <fieldText>Does the merchant have a good reputation in the market?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>ReclameAqui_URL</name>
@@ -2227,6 +2392,14 @@
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2243,13 +2416,21 @@
                     <defaultValue>
                         <stringValue>{!SavedQuestion_9}</stringValue>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_9}</fieldText>
+                    <fieldText>Who was the negotiation with?</fieldText>
                     <fieldType>LargeTextArea</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2267,13 +2448,21 @@
                     <defaultValue>
                         <stringValue>{!SavedQuestion_2}</stringValue>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_2}</fieldText>
+                    <fieldText>How will the sales forecast be achieved?</fieldText>
                     <fieldType>LargeTextArea</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question4</name>
@@ -2284,13 +2473,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_4</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_4}</fieldText>
+                    <fieldText>Can the product/services be considered of good quality?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question6</name>
@@ -2301,13 +2498,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_6</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_6}</fieldText>
+                    <fieldText>Does the merchant already have a presence in the market?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question8</name>
@@ -2318,13 +2523,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_8</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_8}</fieldText>
+                    <fieldText>Is the expected sales forecast realistic for this product/service category?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question10</name>
@@ -2335,13 +2548,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_10</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_10}</fieldText>
+                    <fieldText>How was the ID Check conducted with the legal representative?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Social_media_URL</name>
@@ -2353,6 +2574,14 @@
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2389,6 +2618,14 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Question11</name>
@@ -2398,13 +2635,21 @@
                     <defaultValue>
                         <elementReference>SavedQuestion_11</elementReference>
                     </defaultValue>
-                    <fieldText>{!$Label.RCC_Question_11}</fieldText>
+                    <fieldText>Do we have direct contact or was the legal representative&apos;s business email provided during KYC?</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditQuestions</elementReference>
                     </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2433,27 +2678,47 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Resultado</name>
-            <fieldText>Resultado</fieldText>
+            <fieldText>Result</fieldText>
             <fieldType>RegionContainer</fieldType>
             <fields>
                 <name>Resultado_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Pontuacao</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>Result_Score</elementReference>
-                    </defaultValue>
-                    <fieldText>Pontuação</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isDisabled>
-                        <booleanValue>true</booleanValue>
-                    </isDisabled>
-                    <isRequired>false</isRequired>
+                    <name>Score</name>
+                    <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(134, 134, 134);&quot;&gt;Score: &lt;/span&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;{!pontuacaoFormula}﻿&lt;/strong&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Risco_Sugerido</name>
+                    <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(134, 134, 134);&quot;&gt;Suggested risk: &lt;/span&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;{!riscoSugeridoFormula} &lt;/strong&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>LiberarAlteracoes</name>
@@ -2461,10 +2726,21 @@
                     <defaultValue>
                         <elementReference>EditFields</elementReference>
                     </defaultValue>
-                    <fieldText>Liberar Alterações</fieldText>
+                    <fieldText>Allow Changes</fieldText>
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isDisabled>
+                        <elementReference>EditRiskFinal</elementReference>
+                    </isDisabled>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2479,42 +2755,13 @@
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>3</stringValue>
+                        <stringValue>6</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
             </fields>
             <fields>
                 <name>Resultado_Column2</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>RiscoSugerido</name>
-                    <choiceReferences>ChoiceLow</choiceReferences>
-                    <choiceReferences>ChoiceMedium</choiceReferences>
-                    <choiceReferences>ChoiceHigh</choiceReferences>
-                    <choiceReferences>ChoiceExtreme</choiceReferences>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>SavedRisk</elementReference>
-                    </defaultValue>
-                    <fieldText>Risco Sugerido</fieldText>
-                    <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isDisabled>
-                        <booleanValue>true</booleanValue>
-                    </isDisabled>
-                    <isRequired>false</isRequired>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>3</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>Resultado_Column3</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Risco_Final</name>
@@ -2524,64 +2771,59 @@
                     <choiceReferences>ChoiceExtreme</choiceReferences>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>SavedFinalRisk</elementReference>
+                        <elementReference>riscoSugeridoFormula</elementReference>
                     </defaultValue>
-                    <fieldText>Risco Final</fieldText>
+                    <fieldText>Final Risk</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <helpText>&lt;p&gt;Only Legal &amp;amp; Compliance can edit&lt;/p&gt;</helpText>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <elementReference>EditRiskFinal</elementReference>
                     </isDisabled>
                     <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>3</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>Resultado_Column4</name>
-                <fieldType>Region</fieldType>
                 <fields>
-                    <name>Revisao</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>Revision</elementReference>
-                    </defaultValue>
-                    <fieldText>Revisão</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isDisabled>
-                        <booleanValue>true</booleanValue>
-                    </isDisabled>
-                    <isRequired>false</isRequired>
+                    <name>RevisionFormula</name>
+                    <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(134, 134, 134);&quot;&gt;Revision: &lt;/span&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;{!revisaoFormula}﻿&lt;/strong&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>3</stringValue>
+                        <stringValue>6</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>Result_Score</leftValueReference>
-                    <operator>GreaterThan</operator>
-                    <rightValue>
-                        <numberValue>-1.0</numberValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>848</locationX>

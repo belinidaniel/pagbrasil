@@ -3,7 +3,7 @@
     <fullName>SegmentoOutrosSpecify__c</fullName>
     <externalId>false</externalId>
     <inlineHelpText>Specify the Industry Segment</inlineHelpText>
-    <label>Segmento Outros Específico</label>
+    <label>Specify Industry</label>
     <length>30</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

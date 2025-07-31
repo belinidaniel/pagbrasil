@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-28-2025
+  @last modified on  : 07-30-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -92,7 +92,16 @@
                 font-weight: bold;
                 z-index: 1000;
             }
-                
+            .no-margin{
+                margin: 0rem;
+                page-break-inside: avoid;
+            }
+            
+            .group {
+                min-height: 30px;
+                margin: 0px;
+                line-height: 1.3;
+            }
             </style>
         </head>
         
@@ -549,40 +558,45 @@
             </apex:panelGroup>
             
             <br/> 
+            <div class="group no-margin">
+                <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "4", "5")}. Reserva: </p>
+                <apex:outputText value="Reserva: &nbsp;&nbsp;" escape="false" />
+                <apex:outputText value="{!reserve}" escape="false" />  
+            </div>
 
-            <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "4", "5")}. Reserva: </p>
-            <apex:outputText value="Reserva: &nbsp;&nbsp;" escape="false" />
-            <apex:outputText value="{!reserve}" escape="false" />
-
-            <br/><br/><br/>
+            <br/>
             
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "5", "6")}. Custos de devolução e estornos: </p>
             <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
-                    <tr>
-                        <td style="width: 40%; text-align: left;">Reembolso via adquirente ou Pix</td>
-                        <td style="width: 10%; text-align: center;">{!pix}</td>
-                        <td style="width: 50%; text-align: left;">R$ por transação</td>
-                    </tr>
-                    <tr>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Reembolso via transferência bancária</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
-                        <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação</td>
-                    </tr>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(pix))}">
+                        <tr class="group no-margin">
+                            <td style="width: 40%; text-align: left;">Reembolso via adquirente ou Pix</td>
+                            <td style="width: 10%; text-align: center;">{!pix}</td>
+                            <td style="width: 50%; text-align: left;">R$ por transação</td>
+                        </tr>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(refundTransfer))}">
+                        <tr class="group no-margin">
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Reembolso via transferência bancária</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!refundTransfer}</td>
+                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por transação</td>
+                        </tr>
+                    </apex:panelGroup>
                     <apex:panelGroup rendered="{!containsCartaoAndIsIntermediation }">
-                        <tr>
+                        <tr  class="group no-margin">
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Chargeback</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!chargeback}</td>
                             <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback</td>
                         </tr>
 
                         <apex:panelGroup rendered="{!NOT(ISBLANK(excessChargeback))}">
-                            <tr>
+                            <tr  class="group no-margin">
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">Taxa adicional de excesso de Chargebacks para transações com Cartão</td>
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">{!excessChargeback}</td>
                                 <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;">R$ por Chargeback de Cartão</td>
                             </tr>
-                            <tr>
+                            <tr class="group no-margin">
                                 <td style="border-top: 1px solid #000; border-bottom: 0px; width: 40%; text-align: left;">Retenção pelo excesso de Chargebacks</td>
                                 <td style="border-top: 1px solid #000; border-bottom: 0px; width: 10%; text-align: center;">25,00</td>
                                 <td style="border-top: 1px solid #000; border-bottom: 0px; width: 50%; text-align: left;">
@@ -593,7 +607,6 @@
                     </apex:panelGroup>
                 </tbody>
             </table>
-
             <apex:panelGroup rendered="{!NOT(ISBLANK(excessChargeback))}">
                 <p style="text-align: justify;">
                     * O valor será cobrado em Reais (R$) e o câmbio será realizado com base na taxa interbancária diária oficial (“câmbio intermediário 11:00h venda”) publicada na página do Banco Central do Brasil
@@ -603,17 +616,9 @@
                         O valor retido poderá ser devolvido em até 6 (seis) meses ao Estabelecimento, exceto se este ainda não tiver saído do programa de monitoramento das bandeiras, caso em que o valor ficará retido até que o <strong>Estabelecimento</strong> saia do referido programa. 
                 </p>
             </apex:panelGroup>
-            <!--<div class="page-break"></div>
-
-<div style="text-align: right;">
-<img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>
-</div> -->
             <br/>
-
             <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "6", "7")}. Serviço Opcionais: </p>
-            <div style="margin-left:5px">
                 Serviço de mensagem de <br/> confirmação e lembrete de <br/>  Boleto Flash<span style="vertical-align: super; font-size: 0.8em;">®</span>, Pix e Link de <br/> Pagamento
-            </div>
             <table style="margin-top: 1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
@@ -643,7 +648,7 @@
                     </tr>
                     <apex:panelGroup rendered="{!containsPagBrasilDefinition}">
                         <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">pacote de SMS e e-mails</td>
+                            <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 45%; padding-top:40px; text-align: left;">pacote de SMS e e-mails</td>
                             <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">0,00</td>
                             <td style="border-top: 0px solid #000; border-bottom: 1px solid #000; width: 50%; text-align: left;"> R$ por pacote <br/>(incluído somente com a contratação da Solução PagBrasil) </td>
                         </tr>
@@ -673,7 +678,6 @@
                             </tr>
                     </apex:panelGroup>
                     <p>* Data de Início da cobrança de percentual sobre o Pix com 1-Click: 1° de Janeiro de 2026.</p>
-
                     <tr>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 40%; text-align: left;">iFrame</td>
                         <td style="border-top: 1px solid #000; border-bottom: 1px solid #000; width: 10%; text-align: center;">85,00</td>
@@ -693,133 +697,137 @@
                     </tr>
                 </tbody>
             </table>
-
-            <br/>
-
-            <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "7", "8")}. PagShield: </p>
             <apex:panelGroup rendered="{!hasPagShield}">
-            <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
-                <tbody>
-                    <tr>
-                        <td style="width: 40%; text-align: left;">PagShield prevenção de fraude ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatório', 'opcional')})</td>
-                        <td style="width: 10%; text-align: center;">{!pagShield}</td>
-                        <td style="width: 50%; text-align: left;">R$ por transação analisada</td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="group no-margin">
+                    <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "7", "8")}. PagShield: </p>
+                    <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 40%; text-align: left;">PagShield prevenção de fraude ({!IF(opportunity.Product_Type__c = 'Physical', 'mandatório', 'opcional')})</td>
+                                <td style="width: 10%; text-align: center;">{!pagShield}</td>
+                                <td style="width: 50%; text-align: left;">R$ por transação analisada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </apex:panelGroup>
             <apex:panelGroup rendered="{!hasPagShieldPremium}">
-            <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
-                <tbody>
-                    <tr>
-                        <td style="border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium (opcional)</td>
-                        <td style="border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            {!pagShieldFee} <br/>
-                            {!pagShieldFeePercent}
-                        </td>
-                        <td style="border-bottom: 1px solid #000; width: 50%; text-align: left;">
-                            R$ por transação revisada<br/>
-                            Sobre a transação revisada 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="group no-margin">
+                    <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                        <tbody>
+                            <tr  class="group no-margin">
+                                <td style="border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield Premium (opcional)</td>
+                                <td style="border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                                    {!pagShieldFee} <br/>
+                                    {!pagShieldFeePercent}
+                                </td>
+                                <td style="border-bottom: 1px solid #000; width: 50%; text-align: left;"  class="group no-margin">
+                                    R$ por transação revisada<br/>
+                                    Sobre a transação revisada 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </apex:panelGroup>
             <apex:panelGroup rendered="{!NOT(ISBLANK(pagShieldOndemandFee))}">
-            <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
-                <tbody>
-                    <tr>
-                        <td style="border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield On Demand (opcional)</td>
-                        <td style="border-bottom: 1px solid #000; width: 10%; text-align: center;">
-                            {!pagShieldOndemandFee}<br/>
-                            {!pagShieldOndemandFeePercent}
-                        </td>
-                        <td style="border-bottom: 1px solid #000; width: 50%; text-align: left;">
-                            R$ por transação revisada
-                            <br/>
-                            Sobre a transação revisada 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </apex:panelGroup>
-
-            <br/>
-
-            <apex:panelGroup rendered="{!NOT(ISBLANK(pagstreamfee))}">
-                <p style="font-weight: bold;">
-                    {!IF(OR(isFluxoMedio, isGateway), "8", "9")}. PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span> - Solução para recorrência (opcional):
-                </p>
-                
+            <div class="group no-margin">
                 <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                     <tbody>
                         <tr>
-                            <td style="border-bottom: 0px;padding: 10px; width: 40%; text-align: left;">
-                                PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                            <td style="border-bottom: 1px solid #000; width: 40%; text-align: left;">PagShield On Demand (opcional)</td>
+                            <td style="border-bottom: 1px solid #000; width: 10%; text-align: center;">
+                                {!pagShieldOndemandFee}<br/>
+                                {!pagShieldOndemandFeePercent}
                             </td>
-                            <td style="border-bottom: 0px;padding: 10px; width: 10%; text-align: center;">{!pagstreamfee}*</td>
-                            <td style="border-bottom: 0px;padding: 10px; width: 50%; text-align: left;">Sobre o valor transacionado via <br/> PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>, cobrança por Período de Pagamento</td>
+                            <td style="border-bottom: 1px solid #000; width: 50%; text-align: left;">
+                                R$ por transação revisada
+                                <br/>
+                                Sobre a transação revisada 
+                            </td>
                         </tr>
                     </tbody>
-                </table> 
+                </table>
+            </div>    
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!NOT(ISBLANK(pagstreamfee))}">
+                <div class="group no-margin">
+                    <p style="font-weight: bold;">
+                        {!IF(OR(isFluxoMedio, isGateway), "8", "9")}. PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span> - Solução para recorrência (opcional):
+                    </p>
+                    
+                    <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                        <tbody>
+                            <tr>
+                                <td style="border-bottom: 0px;padding: 10px; width: 40%; text-align: left;">
+                                    PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                                </td>
+                                <td style="border-bottom: 0px;padding: 10px; width: 10%; text-align: center;">{!pagstreamfee}*</td>
+                                <td style="border-bottom: 0px;padding: 10px; width: 50%; text-align: left;">Sobre o valor transacionado via <br/> PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>, cobrança por Período de Pagamento</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
 
                 <p style="text-align: justify">
                     * O <strong>Estabelecimento</strong> terá direito a uma redução da taxa de <strong>3,00%</strong> para <strong>2,00%</strong> no <strong>PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span></strong> se processar todos os seus pagamentos online na(s) <strong>Plataforma(s) do Estabelecimento</strong>, incluindo pagamentos recorrentes e únicos, por meio da <strong>Plataforma PagBrasil</strong>.  
                 </p>
             </apex:panelGroup>
-            
-            <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
-                <tbody>
-                    <tr>
-                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 40%; text-align: left;">
-                            Taxa mínima de manutenção do PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
-                        </td>
-                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">{!pagstreamMin}</td>
-                        <td style="border-top:1px solid #000; border-bottom: 0px;width: 50%; text-align: left;">
-                            R$ por mês para PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            
-            <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "9", "10")}. Pix Automático: </p>
-            <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
-                <tbody>
-                    <tr>
-                        <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
-                        <td style="border-bottom: 0px;width: 50%; text-align: left;">
-                            R$ adicional sobre transações processadas com sucesso por meio do Pix Automático 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br/>
+            <apex:panelGroup rendered="{!NOT(ISBLANK(pagstreamMin))}">
+                <div class="group no-margin">
+                    <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
+                        <tbody>
+                                <tr>
+                                    <td style="border-top:1px solid #000; border-bottom: 0px;width: 40%; text-align: left;">
+                                        Taxa mínima de manutenção do PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                                    </td>
+                                    <td style="border-top:1px solid #000; border-bottom: 0px;width: 10%; text-align: center;">{!pagstreamMin}</td>
+                                    <td style="border-top:1px solid #000; border-bottom: 0px;width: 50%; text-align: left;">
+                                    R$ por mês para PagStream<span style="vertical-align: super; font-size: 0.8em;">®</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!NOT(ISBLANK(pixAuto))}">
+                <div class="group no-margin">
+                    <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "9", "10")}. Pix Automático: </p>
+                    <table style="width: 100%; border-collapse: collapse; table-layout: auto; text-align: left;">
+                        <tbody>
+                            <tr>
+                                <td style="border-bottom: 0px;width: 10%; text-align: center;">{!pixAuto}</td>
+                                <td style="border-bottom: 0px;width: 50%; text-align: left;">
+                                    R$ adicional sobre transações processadas com sucesso por meio do Pix Automático 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                </div>
 
+            </apex:panelGroup>
             <apex:panelGroup rendered="{!isPayout}">
-                <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "10", "11")}. Serviço de Payout: </p>
-                <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
-                    <tbody>
-                        <tr>
-                            <td style="padding: 10px; width: 40%; text-align: left;">Taxa de transferência para Fornecedores</td>
-                            <td style="padding: 10px; width: 10%; text-align: center;">{!supplierFee}</td>
-                            <td style="padding: 10px; width: 50%; text-align: left;">R$ por repasse</td>
-                        </tr>
-                        <tr>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Taxa de Serviço de Payout</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">{!payoutFee}</td>
-                            <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">Sobre o valor transferido via payout, cobrado por Período de Pagamento</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="group no-margin">
+                    <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "10", "11")}. Serviço de Payout: </p>
+                    <table style="width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; width: 40%; text-align: left;">Taxa de transferência para Fornecedores</td>
+                                <td style="padding: 10px; width: 10%; text-align: center;">{!supplierFee}</td>
+                                <td style="padding: 10px; width: 50%; text-align: left;">R$ por repasse</td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 40%; text-align: left;">Taxa de Serviço de Payout</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 10%; text-align: center;">{!payoutFee}</td>
+                                <td style="border-top: 1px solid #000; border-bottom: 0px solid #000; width: 50%; text-align: left;">Sobre o valor transferido via payout, cobrado por Período de Pagamento</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </apex:panelGroup>
             <br/>
-<!-- 
-            <apex:panelGroup rendered="{!NOT (isPayout)}">
-                <p style="font-weight: bold;">{!IF(OR(isFluxoMedio, isGateway), "10", "11")}. Alterações às condições gerais dos Termos e Condições: </p>
-                <apex:outputText value="A Cláusula XX sera substituída por:" escape="false" />                
-            </apex:panelGroup> -->
-            
+
             <div class="page-break"></div>
             <div style="text-align: right;">
                 <img src="{!URLFOR($Resource.Logo2025)}" style="width: 25%; height: 25%;"/>

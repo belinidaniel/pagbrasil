@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -28,7 +30,7 @@
                 <field>LinkedInContato__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Revenue_Forecast__c</field>
             </layoutItems>
             <layoutItems>
@@ -107,7 +109,7 @@
                 <field>previs_fat_rs__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Receita_Mensal__c</field>
             </layoutItems>
             <layoutItems>
@@ -149,7 +151,7 @@
                 <field>Integration_Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Integracao__c</field>
             </layoutItems>
             <layoutItems>

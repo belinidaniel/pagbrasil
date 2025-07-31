@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-29-2025
+ * @last modified on  : 07-31-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -231,10 +231,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 (opportunity.previs_fat_rs__c < tax.RangeFaixaFinal__c);
             switch on tax.RecordTypeName__c {
                 when 'TaxaBaseAntecipacao' {
-                        System.debug('TaxaBaseAntecipacao - ' + tax.Id);
-                        percentValue = tax.PercentValue__c;
-                        isTaxMain = true;
-                        taxId = tax.Id;
                         this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
                         break;
                 }

@@ -251,6 +251,15 @@ public with sharing class QuoteTriggerHelper {
             }
         }
 
+        if(priceBookEntry.Product2.ProductCode == 'TAXA_PAGBRASIL' && isGateway) { //added
+                return true;
+        }
+
+        if(priceBookEntry.Product2.ProductCode == 'TAXA_PAGBRASIL' && isGateway && isIntermediation) { //added
+            if(!isPlugin(opportunity.integrationType__c)){
+                return true;
+            }
+        }
         
         // Zero-auth CARTAO DE CREDITO (flag zero-auth, intermediation/gateway, cross/nacional)
         if (isZeroAuth) { //added

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-28-2025
+ * @last modified on  : 08-06-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class ManageTaxesPricesController {
@@ -151,9 +151,6 @@ public with sharing class ManageTaxesPricesController {
                     if (key == 'attributes') continue;
                     if (!fieldMap.containsKey(key)) continue; // skip unknown fields
                     Object value = row.get(key);
-                    System.debug('Processing key: ' + key + ', value: ' + value);
-                    System.debug('Field type: ' + fieldMap.get(key).getDescribe().getType());
-
                     Schema.DisplayType dtype = fieldMap.get(key).getDescribe().getType();
                     if (value == null) {
                         pbe.put(key, null);

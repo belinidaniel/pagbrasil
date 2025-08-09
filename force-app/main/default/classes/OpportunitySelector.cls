@@ -103,7 +103,8 @@ public without sharing class OpportunitySelector {
                 Account.VATCNPJ__c,
                 Account.OrganizationId__c,
             	Account.Type,
-                RecordType.DeveloperName
+                RecordType.DeveloperName,
+                Date_of_First_Review__c
             FROM Opportunity
             WHERE Id IN :oppIds
         ];
@@ -171,7 +172,8 @@ public without sharing class OpportunitySelector {
                 Other_Payments_Settlement_Frequency_1__c,
                 Other_Payments_Settlement_Frequency_2__c,
                 Selected_Credit_Frequency__c,
-                Selected_Others_Frequency__c
+                Selected_Others_Frequency__c,
+                Date_of_First_Review__c
             FROM Opportunity
             WHERE Id = :opportunityId
         ];
@@ -267,6 +269,7 @@ public without sharing class OpportunitySelector {
                 Other_Payments_Settlement_Frequency_2__c,
                 Selected_Credit_Frequency__c,
                 Selected_Others_Frequency__c,
+                Date_of_First_Review__c,
                 (SELECT Id,
                         Login__c,
                         Password__c,
@@ -343,6 +346,7 @@ public without sharing class OpportunitySelector {
                         Pix__c,
                         PagStream__c,
                         Allow_CPF_CNPJ__c,
+        				Verify_CPF_CNPJ__c,
                         Subscriber_Area__c,
                         AgendaDeLiberacao__c,
                         PixOpenFinance__c,
@@ -362,7 +366,9 @@ public without sharing class OpportunitySelector {
 						PagBrasil_Mobile_POS_Fixed__c,
 						PagBrasil_Mobile_POS_Variable__c,
                         Minimum_Amount_to_Activate_PagShield__c,
-						Verify_CPF_CNPJ__c
+                        Email_to_Receive_Account_Instructions__c,
+                        Email_s_for_notification_of_pre_auths__c,
+                        URL_My_Shopify__c
                 FROM HomologationForms__r)
             FROM Opportunity
             WHERE Id = :opportunityId
@@ -651,9 +657,12 @@ public without sharing class OpportunitySelector {
                         Subscriber_Area__c,
                         Minimum_Amount_to_Activate_PagShield__c,
                         Allow_CPF_CNPJ__c,
+        				Verify_CPF_CNPJ__c,
                         PixPending__c,
                         PixOpenFinance__c,
-						Verify_CPF_CNPJ__c
+                        Email_to_Receive_Account_Instructions__c,
+                        Email_s_for_notification_of_pre_auths__c,
+                        URL_My_Shopify__c
             FROM HomologationForm__c
             WHERE Opportunity__c = :opportunityId
         ];
@@ -755,9 +764,12 @@ public without sharing class OpportunitySelector {
                         Subscriber_Area__c,
                         Minimum_Amount_to_Activate_PagShield__c,
                         Allow_CPF_CNPJ__c,
+        				Verify_CPF_CNPJ__c,
                         PixPending__c,
                         PixOpenFinance__c,
-						Verify_CPF_CNPJ__c
+                        Email_to_Receive_Account_Instructions__c,
+                        Email_s_for_notification_of_pre_auths__c,
+                        URL_My_Shopify__c
         FROM HomologationForm__c
         WHERE Id = :homologationId
         LIMIT 1

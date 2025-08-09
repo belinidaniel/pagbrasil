@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-30-2025
+  @last modified on  : 08-08-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -131,7 +131,7 @@
             <apex:outputText value="{!termClauses}" escape="false" />
             
             
-            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+            <apex:panelGroup>
                 <p style="font-weight: bold;">1. Taxas de processamento e Taxa da Solução PagBrasil:</p>
 
                 <p style="text-align: justify;">
@@ -470,7 +470,7 @@
                                 <apex:outputText rendered="{!settlementFrequency = '0'}" value="Diário" />
                                 <apex:outputText rendered="{!settlementFrequency = '7'}" value="Semanalmente" />
                                 <apex:outputText rendered="{!settlementFrequency = '15'}" value="Quinzenalmente" />
-                                <apex:outputText rendered="{!settlementFrequency = '30'}" value="Mensalmente" />
+                                <apex:outputText rendered="{!settlementFrequency = '31'}" value="Mensalmente" />
                             </apex:outputPanel>
                         </td>
                     </tr>

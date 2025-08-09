@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-29-2025
+ * @last modified on  : 08-08-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -239,6 +239,7 @@ public class PropostaNacionalController {
         this.page10 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina10DF';
 
         this.stringDate = formatStringDate();
+        this.isFrequency = quote.Opportunity.Visible_Settlement_Frequency__c;
     }
 
     private String validateNumbersWithRegex(String value) {

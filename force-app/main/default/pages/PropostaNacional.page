@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-29-2025
+  @last modified on  : 08-07-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -1760,59 +1760,10 @@
                 <img src="{!$Resource.GoogleEApplePayPage}" class="background-image"/>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
             </div>
-
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
         </apex:panelGroup>
-    
-        <!-- Page 19 -->
-        <!-- <div class="page">
-            <img src="{!$Resource.PNPagina19e20Pontos}" class="background-image"/>
-            <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
-                <p style="position: absolute; top: 90px; left: 578px; white-space: nowrap; font-size: 34px;">Google Pay</p>
-                <apex:outputText value="Simplifique a jornada do cliente, facilitando a conclusão " style="position: absolute; top: 235px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="do pagamento em apenas alguns cliques" style="position: absolute; top: 255px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="Aumente a reputação de seu site com uma solução de " style="position: absolute; top: 308px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
-                <apex:outputText value="pagamento Google em seu checkout" style="position: absolute; top: 328px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="Garanta mais conversão, reduzindo a chance de erros no " style="position: absolute; top: 380px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
-                <apex:outputText value="preenchimento das informações de pagamento" style="position: absolute; top: 400px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="0,2% adicional a taxa de cartão de crédito" style="position: absolute; top: 450px; left: 575px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false" />
-                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
-                <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
-                <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
-            </div>
-            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
-            <img src="{!$Resource.PNPagina19GPayCelular}" style="position:absolute; z-index: 3; top:60px; left: 250px; width: 320px;"/>
-            <img src="{!$Resource.PNPagina19GPayCoresLogo}" style="position:absolute; z-index: 2; top:115px; width: 310px !important; height: 420px;"/>
-        </div>
-
-        <!-- Page 20 -->
-        <!-- <div class="page">
-            <img src="{!$Resource.PNPagina19e20Pontos}" class="background-image"/>
-            <div class="page-content">
-                <p style="position: absolute; top: 5px; left: 20px; white-space: nowrap ;color: #595959">Proposta Comercial | {!oppName}</p>
-                <p style="position: absolute; top: 85px; left: 578px; white-space: nowrap; font-size: 34px;">Apple Pay</p>
-                <apex:outputText value="Simplifique a jornada do cliente, facilitando a conclusão " style="position: absolute; top: 235px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="do pagamento em apenas alguns cliques" style="position: absolute; top: 255px; left: 605px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="Aumente a reputação de seu site com uma solução de " style="position: absolute; top: 308px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
-                <apex:outputText value="pagamento iOS em seu checkout" style="position: absolute; top: 328px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="Garanta mais conversão, reduzindo a chance de erros no " style="position: absolute; top: 380px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;" escape="false"/>
-                <apex:outputText value="preenchimento das informações de pagamento" style="position: absolute; top: 400px; left: 600px; white-space: nowrap; color: #404040; font-size: 15px;"/>
-                <apex:outputText value="0,2% adicional a taxa de cartão de crédito" style="position: absolute; top: 450px; left: 575px; white-space: nowrap; color: #161716; font-size: 15px; font-weight: bold;" escape="false" />
-                <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
-                <apex:outputText value="informação confidencial - " style="position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
-                <apex:outputText value="Não divulgar" style="position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
-            </div>
-            <div style="position:absolute; z-index: 2; top:120px; left: 0; width: 320px; height: 380px; background-color: #000">
-                <div style="position: relative; width: 100%; height: 100%;">
-                    <img src="{!$Resource.PNPagina20ApplePay}" style="position:absolute; z-index: 3; bottom:20px; left: 0px; width: 40%;"/>
-                </div>
-            </div>
-            <img src="{!$Resource.Logo2025Preta}" style="position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
-            <img src="{!$Resource.PNPagina20Celular}" style="position:absolute; z-index: 3; top:60px; left: 250px; width: 325px;"/>
-        </div> --> 
-
-        
-        
         <!-- Page 21 -->
         <div class="page">
             <div class="background-color-blue-100"> 

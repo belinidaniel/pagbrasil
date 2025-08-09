@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 08-04-2025
+ * @last modified on  : 08-08-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -167,7 +167,8 @@ public class ContractController {
         this.isGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
         this.isIntermediation = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Intermediation') : false;
 
-        this.pixAuto = '1,90';
+        // this.pixAuto = '1,90';
+                
         if(String.isNotBlank(opp.RecordType.DeveloperName) && opp.RecordType.DeveloperName.contains('Crossborder')){
             this.isCrossborder = true;
         }
@@ -190,9 +191,54 @@ public class ContractController {
             this.legalName = kycXB.Legal_Name__c;
         }
 
-        this.maintenanceDate = formatDate(ApexPages.currentPage().getParameters().get('maintenanceDate'), isCrossborder);
+        this.maintenanceDate = formatDate(ApexPages.currentPage().getParameters().get('maintenanceDate'), this.isCrossborder);
         this.months = ApexPages.currentPage().getParameters().get('month');
-        this.contractDate = formatDate(ApexPages.currentPage().getParameters().get('contractDate'), isCrossborder);
+        if (!this.isCrossborder && String.isNotBlank(this.months)) {
+            // If the month string contains "de", split and translate only the month part
+            if (this.months.contains(' de ')) {
+            String[] parts = this.months.split(' de ');
+            if (parts.size() > 1) {
+                Map<String, String> enToPtMonths = new Map<String, String>{
+                'January' => 'janeiro',
+                'February' => 'fevereiro',
+                'March' => 'março',
+                'April' => 'abril',
+                'May' => 'maio',
+                'June' => 'junho',
+                'July' => 'julho',
+                'August' => 'agosto',
+                'September' => 'setembro',
+                'October' => 'outubro',
+                'November' => 'novembro',
+                'December' => 'dezembro'
+                };
+                String monthEn = parts[0].trim();
+                String year = parts[1].trim();
+                if (enToPtMonths.containsKey(monthEn)) {
+                this.months = enToPtMonths.get(monthEn) + ' de ' + year;
+                }
+            }
+            } else {
+            Map<String, String> enToPtMonths = new Map<String, String>{
+                'January' => 'janeiro',
+                'February' => 'fevereiro',
+                'March' => 'março',
+                'April' => 'abril',
+                'May' => 'maio',
+                'June' => 'junho',
+                'July' => 'julho',
+                'August' => 'agosto',
+                'September' => 'setembro',
+                'October' => 'outubro',
+                'November' => 'novembro',
+                'December' => 'dezembro'
+            };
+            if (enToPtMonths.containsKey(this.months)) {
+                this.months = enToPtMonths.get(this.months);
+            }
+            }
+        }
+        this.contractDate = formatDate(ApexPages.currentPage().getParameters().get('contractDate'), this.isCrossborder);
 
 
         this.containsPagBrasilDefinition = String.isNotBlank(opp.IntegrationType__c) && new List<String> {
@@ -578,6 +624,7 @@ public class ContractController {
                         this.oneClickFeeVariable = price;
                     }
                     when 'ONE_PIX_FIXED_FEE'{
+                        System.debug('One Click Fee Fixed: ' + price);
                         this.oneClickFeeFixed = price;
                     }
                     when 'TAXA_GATEWAY_PIX' {
@@ -651,29 +698,49 @@ public class ContractController {
             if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
             if (this.opportunity.Settlement_Frequency_2__c.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
         }
+        
         System.debug('Selected_Credit_Frequency__c -> ' + this.opportunity.Antecipation_Frequency_1__c);   
-        if(this.opportunity.Selected_Others_Frequency__c == '1' && this.opportunity.Antecipation_Frequency_1__c != null){ 
+        if( this.opportunity.Antecipation_Frequency_1__c != null){ 
             if (this.opportunity.Antecipation_Frequency_1__c?.equalsIgnoreCase('Daily')) this.antecipationFrequency = '0';
             if (this.opportunity.Antecipation_Frequency_1__c?.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
             if (this.opportunity.Antecipation_Frequency_1__c?.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
             if (this.opportunity.Antecipation_Frequency_1__c?.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
         }
-
-        if(this.opportunity.Selected_Others_Frequency__c == '2'  && this.opportunity.Antecipation_Frequency_2__c != null){ 
+        if(this.opportunity.Antecipation_Frequency_2__c != null){ 
             if (this.opportunity.Antecipation_Frequency_2__c?.equalsIgnoreCase('Daily')) this.antecipationFrequency = '0';
             if (this.opportunity.Antecipation_Frequency_2__c?.equalsIgnoreCase('Weekly')) this.antecipationFrequency = '7';
             if (this.opportunity.Antecipation_Frequency_2__c?.equalsIgnoreCase('Biweekly')) this.antecipationFrequency = '15';
             if (this.opportunity.Antecipation_Frequency_2__c?.equalsIgnoreCase('Monthly')) this.antecipationFrequency = '31';
         }
-        
-        List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c =: this.opportunity.Antecipation_Frequency_1__c AND TaxaBaseAntecipacao__c =: this.taxaAntecipacao AND IsActive__c = true];
 
+        if(this.opportunity.Selected_Others_Frequency__c == '1'  && (this.isGateway || !this.containsCartao)){ 
+            if (this.opportunity.Other_Payments_Settlement_Frequency_1__c?.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
+            if (this.opportunity.Other_Payments_Settlement_Frequency_1__c?.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
+            if (this.opportunity.Other_Payments_Settlement_Frequency_1__c?.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
+            if (this.opportunity.Other_Payments_Settlement_Frequency_1__c?.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+        }
+        if(this.opportunity.Selected_Others_Frequency__c == '2'  && (this.isGateway || !this.containsCartao)){ 
+            if (this.opportunity.Other_Payments_Settlement_Frequency_2__c?.equalsIgnoreCase('Daily')) this.settlementFrequency = '0';
+            if (this.opportunity.Other_Payments_Settlement_Frequency_2__c?.equalsIgnoreCase('Weekly')) this.settlementFrequency = '7';
+            if (this.opportunity.Other_Payments_Settlement_Frequency_2__c?.equalsIgnoreCase('Biweekly')) this.settlementFrequency = '15';
+            if (this.opportunity.Other_Payments_Settlement_Frequency_2__c?.equalsIgnoreCase('Monthly')) this.settlementFrequency = '31';
+        }
+
+        if(this.antecipationFrequency ==''){
+            this.antecipationFrequency = this.settlementFrequency;
+        }
+        String typeFrequency = this.opportunity.RecordType.DeveloperName == 'Crossborder' ? 'Crossborder' : 'National';
+        List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c =: this.opportunity.Antecipation_Frequency_1__c AND TaxaBaseAntecipacao__c =: this.taxaAntecipacao AND IsActive__c = true AND Type__c =: typeFrequency];
+        
         List<Contact> contactsRepresentative = [SELECT Id, Name, Type__c, Title FROM Contact WHERE Type__c INCLUDES ('Representante Legal') AND AccountId =: opp.AccountId ORDER BY CreatedDate DESC];
         this.contacts = contactsRepresentative;
-        System.debug('contactsRepresentative ' + contactsRepresentative);
-        System.debug('taxes -> ' + taxes);
-        System.debug('Frequencia -> ' + this.opportunity.Antecipation_Frequency_1__c);
-        System.debug('Antecipacao -> ' + this.taxaAntecipacao);
+
+
+        //se for cartao de credito e intermediacao 
+        // antecipationFrequency = settlementFrequency        
+        if(this.containsCartao && isIntermediation ){
+            this.antecipationFrequency = this.settlementFrequency;
+        }
         if(taxes.isEmpty()){
             this.isFrequency = false;
         }
@@ -809,7 +876,7 @@ public class ContractController {
                 'January', 'February', 'March', 'April', 'May', 'June',
                 'July', 'August', 'September', 'October', 'November', 'December'
             };
-
+            System.debug('isCrossborder ' + isCrossborder);
             List<String> months = isCrossborder ? monthsEN : monthsPT;
 
             Integer day = contractDate.day();
@@ -861,10 +928,9 @@ public class ContractController {
         if(pixGatewayValue < minValue){
             oneClickFee = minValue - pixGatewayValue;
         }
-        System.debug('verifyOnePixFee = oneClickFee: ' + oneClickFee);
-
         // Only set if > 0
-        this.oneClickFeeFixed = (oneClickFee > 0) ? String.valueOf(oneClickFee.setScale(2)) : '';
+        this.oneClickFeeFixed = (oneClickFee > 0) ? String.valueOf(oneClickFee.setScale(2)) : '0.0';
+        this.pixAuto = (oneClickFee > 0) ? String.valueOf(pixGatewayValue.setScale(2)) : '0.0';
     }
 
     @AuraEnabled

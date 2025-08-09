@@ -2,8 +2,8 @@
  * @description			:
  * @author				: Hersilio Belini de Oliveira
  * @group				:
- * @last modified on	: 07-29-2025
- * @last modified by	: Daniel Belini
+ * @last modified on	: 2025-01-14
+ * @last modified by	: Hersilio Belini de Oliveira
 **/
 public class OpportunityWrapper {
 	public String id { get; set; }
@@ -35,6 +35,7 @@ public class OpportunityWrapper {
 	public List<QuoteLineItemWrapper> contracts { get; set; }
 	public Rcc__c rcc { get; set; }
 	public String moeda { get; set; }
+	public String dateOfFirstReview { get; set; }
 	public QuoteLineItemWrapper taxaPagShieldItem { get; set; }
 	public QuoteLineItemWrapper taxaMinimaManutencaoSF { get; set; }
 	public QuoteLineItemWrapper taxaMinimaManutencaoPagStream { get; set; }
@@ -71,7 +72,11 @@ public class OpportunityWrapper {
 	public QuoteLineItemWrapper pixRefund { get; set; }
 	public QuoteLineItemWrapper chargeback { get; set; }
 	public QuoteLineItemWrapper solucaoCarteiraDigital { get; set; }
-
+	public QuoteLineItemWrapper taxaGatewayPix { get; set; }
+	public QuoteLineItemWrapper taxaGatewayDebito { get; set; }
+	public QuoteLineItemWrapper taxaGatewayCredito { get; set; }
+	public QuoteLineItemWrapper taxaGatewayBoleto { get; set; }
+	public QuoteLineItemWrapper taxaChargeback { get; set; }
 	
 
 	// Constructor
@@ -100,6 +105,7 @@ public class OpportunityWrapper {
 		this.containsGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
 		this.pagShield = opp.PagShield__c;
 		this.pagShieldPremium = opp.PagShield_Premium__c;
+		this.dateOfFirstReview = opp.Date_of_First_Review__c;
 
 
 		// Map Account properties
@@ -144,9 +150,7 @@ public class OpportunityWrapper {
 					this.taxaMinimaPagStream = new QuoteLineItemWrapper(qli);
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_ANTECIPACAO') {
-					if(qli.IsMain__c){
-						this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
-					}
+					this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_PROCESS_BOLETO' && qli.IsMain__c == true) {
 					this.taxaProcessamentoBoleto = new QuoteLineItemWrapper(qli);
@@ -237,6 +241,21 @@ public class OpportunityWrapper {
 				}
 				else if (qli.Product2.ProductCode == 'SOLUCAO_CARTEIRA_DIGITAL') {
 					this.solucaoCarteiraDigital = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_PIX') {
+					this.taxaGatewayPix = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_CREDITO') {
+					this.taxaGatewayCredito = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_DEBITO') {
+					this.taxaGatewayDebito = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_BOLETO') {
+					this.taxaGatewayBoleto = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_CHARGEBACK') {
+					this.taxaChargeback = new QuoteLineItemWrapper(qli);
 				}
 			}
 		}
@@ -389,6 +408,7 @@ public class OpportunityWrapper {
 		public String pagStream { get; set; }
 		public String subscriberArea { get; set; }
 		public String allowCpfCnpj { get; set; }
+        public Boolean verifyCpfCnpj { get; set; }
 		public String pixPending2 { get; set; }
 		public Date requestDate { get; set; }
 		public String accountMode { get; set; }
@@ -407,7 +427,7 @@ public class OpportunityWrapper {
 		public Boolean hasRemotePaymentTax { get; set; }
 		public Decimal currentSpread { get; set; }
 		public Decimal additionalSpread { get; set; }
-        public Boolean verifyCpfCnpj { get; set; }
+
 
 		// Constructor to initialize the wrapper from a HomologationForms__c record
 		public HomologationFormWrapper(HomologationForm__c form) {
@@ -491,6 +511,7 @@ public class OpportunityWrapper {
 			this.pagStream = form.PagStream__c;
 			this.subscriberArea = form.Subscriber_Area__c;
 			this.allowCpfCnpj = form.Allow_CPF_CNPJ__c;
+            this.verifyCpfCnpj = form.Verify_CPF_CNPJ__c;
 			this.pixPending2 = form.PixPending__c;
 			this.requestDate = form.Account_Request_Date__c;
 			this.accountMode = form.Account_in_Mode__c;
@@ -507,7 +528,6 @@ public class OpportunityWrapper {
 			this.hasApiTax = (form.API_Fixed__c != null || form.API_Variable__c != null);
 			this.hasMobilePosTax = (form.Additional_for_Remote_Payments_Fixed__c != null || form.Additional_for_Remote_Payments_Variable__c != null);
 			this.hasRemotePaymentTax = (form.PagBrasil_Mobile_POS_Fixed__c != null || form.PagBrasil_Mobile_POS_Variable__c != null);
-			this.verifyCpfCnpj = form.Verify_CPF_CNPJ__c;
             this.currentSpread = 2.5;
             this.additionalSpread = 1.5;
 		}
@@ -770,6 +790,17 @@ public class OpportunityWrapper {
 			List<String> emails = new List<String>();
 			for (Contact c : this.kycContacts) {
 				if (c.Type__c != null && c.Type__c.contains('Financeiro') && c.Email != null) {
+					emails.add(c.Email);
+				}
+			}
+			return String.join(emails, '; ');
+		}
+
+		public String getTechnicalEmails() {
+			if (this.kycContacts == null) return '';
+			List<String> emails = new List<String>();
+			for (Contact c : this.kycContacts) {
+				if (c.Type__c != null && c.Type__c.contains('Technical') && c.Email != null) {
 					emails.add(c.Email);
 				}
 			}

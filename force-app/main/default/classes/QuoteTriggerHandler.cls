@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-31-2025
+ * @last modified on  : 08-07-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -158,9 +158,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             }
         }
         
-        // Pix 1-Click adjustment logic
-        // adjustPixOneClickFee(quoteLineItems);
-        //verify here 
         if(!quoteLineItems.isEmpty()){
             insert quoteLineItems;
         }
@@ -224,7 +221,6 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
         for(Taxes__c tax : taxes){
 
-            System.debug('Tax - ' + taxMap.get('01tVA0000052w8NYAQ').size());
             Boolean isTicketRange = tax.TicketInicial__c <= opportunity.AverageSalesTicket__c && (tax.TicketFinal__c > opportunity.AverageSalesTicket__c || tax.TicketFinal__c == null);
             Boolean isInsideRange = 
                 (opportunity.previs_fat_rs__c >= tax.RangeFaixaInicial__c) &&
@@ -242,12 +238,11 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         (paymentMethod.contains(BOLETO) || paymentMethod.contains(PIX) ||  paymentMethod.contains(CREDIT_CARD) || paymentMethod.contains(DEBITO)) && isTicketRange ) 
                     ){
                         this.addOtherTaxRanges(taxes, tax, quote, priceBookEntry, quoteLineItems, opportunity);
+
                         break;
                     }
                 }
                 when 'TaxaSolucaoPagBrasil' {
-                 
-
                     if(
                         (opportunity.BusinessModel__c.contains('Intermediation') && tax.Product__r.ProductCode == 'TAXA_PAGBRASIL')
                      || 
@@ -316,10 +311,9 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
     * @param quoteLineItems
     **/
     private void addOtherTaxRanges(List<Taxes__c> taxes, Taxes__c tax, Quote quote, PricebookEntry priceBookEntry, List<QuoteLineItem> quoteLineItems, Opportunity opportunity){
-        for(Taxes__c currentTax : taxes){
-            
-
-            //comentei && currentTax.Id != tax.Id
+        for(Taxes__c currentTax : taxes){   
+            Boolean isGatewayTax = priceBookEntry.Product2.ProductCode.contains('TAXA_GATEWAY_')? true : false;
+            Boolean isMainTax = false;
             if(currentTax.RecordTypeName__c == tax.RecordTypeName__c &&
                currentTax.Product__c == tax.Product__c &&
                currentTax.TicketInicial__c == tax.TicketInicial__c &&
@@ -329,12 +323,14 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
             Boolean isInsideRange = 
                 (opportunity.previs_fat_rs__c >= currentTax.RangeFaixaInicial__c) &&
                 (opportunity.previs_fat_rs__c < currentTax.RangeFaixaFinal__c);
-
                 if(currentTax.Type__c != null && currentTax.Type__c != opportunity.Recordtype.DeveloperName.toLowerCase() ){
                     continue;
                 }
-                    System.debug('PricebookId - ' + priceBookEntry.Pricebook2Id);
-                   quoteLineItems.add(new QuoteLineItem(
+                 
+                if(isGatewayTax || isInsideRange){
+                    isMainTax = true;
+                }
+                quoteLineItems.add(new QuoteLineItem(
                     PricebookEntryId = priceBookEntry.Id,
                     Product2Id = priceBookEntry.Product2Id,
                     Quantity = 1,
@@ -342,7 +338,7 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                     PercentValue__c  = currentTax.percentValue__c,
                     QuoteId = quote.Id,
                     UseTaxa__c = true,
-                    IsMain__c = isInsideRange,
+                    IsMain__c = isMainTax,
                     Tax__c = currentTax.Id
                 ));
             }

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 07-31-2025
+ * @last modified on  : 08-08-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -90,7 +90,10 @@ public with sharing class QuoteTriggerHelper {
                WHERE IsActive = true
                  AND Pricebook2.IsActive = true
                  AND Pricebook2.BusinessModel__c =: businessModel 
-                 AND Pricebook2.IsCrossBoard__c =: isCrossBoard];
+                 AND Pricebook2.IsCrossBoard__c =: isCrossBoard
+                 Order by Order__c
+                 ];
+                 
     }
 
     public static Boolean hasGatewayAndIntermediation(String businessModel) {
@@ -240,7 +243,7 @@ public with sharing class QuoteTriggerHelper {
         }
 
         if(isPackage){
-            if(isPlugin(opportunity.integrationType__c) && opportunity.IntegrationType__c != 'PB Checkout'){
+            if(isPlugin(opportunity.integrationType__c) && opportunity.IntegrationType__c == 'PB Checkout'){
                 return true;
             }
         }
@@ -255,7 +258,7 @@ public with sharing class QuoteTriggerHelper {
                 return true;
         }
 
-        if(priceBookEntry.Product2.ProductCode == 'TAXA_PAGBRASIL' && isGateway && isIntermediation) { //added
+        if(priceBookEntry.Product2.ProductCode == 'TAXA_PAGBRASIL' && isGatewayAndIntermediation) { //added
             if(!isPlugin(opportunity.integrationType__c)){
                 return true;
             }

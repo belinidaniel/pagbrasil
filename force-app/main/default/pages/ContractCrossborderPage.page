@@ -2,7 +2,7 @@
   @description       : 
   @author            : Hersilio Belini de Oliveira
   @group             : 
-  @last modified on  : 07-30-2025
+  @last modified on  : 08-07-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -378,7 +378,14 @@
                     <tr>
                         <td style="padding: 10px; width: 49%; text-align: left;">Settlement frequency </td>
                         <td style="padding: 10px; width: 10%; text-align: center;"></td>
-                        <td style="padding: 10px; width: 50%; text-align: left;">{!opportunity.Settlement_Frequency_1__c}</td>
+                        <td style="padding: 10px; width: 50%; text-align: left;">
+                            <apex:outputPanel rendered="{!NOT(ISBLANK(settlementFrequency))}">
+                                <apex:outputText rendered="{!settlementFrequency = '0'}" value="Daily" />
+                                <apex:outputText rendered="{!settlementFrequency = '7'}" value="Weekly" />
+                                <apex:outputText rendered="{!settlementFrequency = '15'}" value="Biweekly" />
+                                <apex:outputText rendered="{!settlementFrequency = '31'}" value="Monthly" />
+                            </apex:outputPanel>
+                        </td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; width: 49%; text-align: left;">Currency</td>
@@ -401,7 +408,7 @@
                         <td style="padding: 10px; width: 50%; text-align: left;">BRL per Merchant Account</td>
                     </tr>
                     <br/>
-                    <tr>
+                    <tr class="group no-margin">
                         <td style="padding: 10px; width: 49%; text-align: left; vertical-align: top;border-bottom: 0px">Eligible settlement date</td>
                         <td colspan="2" style="width: 60%; text-align: left;border-bottom: 0px">
                             <p>
@@ -423,36 +430,38 @@
                     </tr>
                     
                     <apex:panelGroup rendered="{!isFluxoMedio}">
-                    <tr>
-                        <td style="border:0px; width:0%"></td>
-                        <td style="border:0px; width:30%; text-align: left;">One-off: D*+31</td>
-                        <td style="border:0px; text-align: left;">7 parcelas: D*+121</td>
-                    </tr>
-                    <tr>
-                        <td style="border:0px;"></td>
-                        <td style="border:0px;width:30%; text-align: left;">2 parcelas: D*+46</td>
-                        <td style="border:0px; width:30%; text-align: left;">8 parcelas: D*+136</td>
-                    </tr>
-                    <tr>
-                        <td style="border:0px;"></td>
-                        <td style="border:0px;width:30%; text-align: left;">3 parcelas: D*+61</td>
-                        <td style="border:0px;width:30%; text-align: left;">9 parcelas: D*+151</td>
-                    </tr>
-                    <tr>
-                        <td style="border:0px;"></td>
-                        <td style="border:0px;width:30%; text-align: left;">4 parcelas: D*+76</td>
-                        <td style="border:0px;width:30%; text-align: left;">10 parcelas: D*+166</td>
-                    </tr>
-                    <tr>
-                        <td style="border:0px;"></td>
-                        <td style="border:0px;width:30%; text-align: left;">5 parcelas: D*+91</td>
-                        <td style="border:0px;width:30%; text-align: left;">11 parcelas: D*+181</td>
-                    </tr>
-                    <tr>
-                        <td style="border:0px;"></td>
-                        <td style="border:0px;width:30%; text-align: left;">6 parcelas: D*+106</td>
-                        <td style="border:0px;width:30%; text-align: left;">12 parcelas: D*+196</td>
-                    </tr>
+                    <div class="group no-margin">
+                        <tr>
+                            <td style="border:0px; width:0%"></td>
+                            <td style="border:0px; width:30%; text-align: left;">One-off: D*+31</td>
+                            <td style="border:0px; text-align: left;">7 parcelas: D*+121</td>
+                        </tr>
+                        <tr>
+                            <td style="border:0px;"></td>
+                            <td style="border:0px;width:30%; text-align: left;">2 parcelas: D*+46</td>
+                            <td style="border:0px; width:30%; text-align: left;">8 parcelas: D*+136</td>
+                        </tr>
+                        <tr>
+                            <td style="border:0px;"></td>
+                            <td style="border:0px;width:30%; text-align: left;">3 parcelas: D*+61</td>
+                            <td style="border:0px;width:30%; text-align: left;">9 parcelas: D*+151</td>
+                        </tr>
+                        <tr>
+                            <td style="border:0px;"></td>
+                            <td style="border:0px;width:30%; text-align: left;">4 parcelas: D*+76</td>
+                            <td style="border:0px;width:30%; text-align: left;">10 parcelas: D*+166</td>
+                        </tr>
+                        <tr>
+                            <td style="border:0px;"></td>
+                            <td style="border:0px;width:30%; text-align: left;">5 parcelas: D*+91</td>
+                            <td style="border:0px;width:30%; text-align: left;">11 parcelas: D*+181</td>
+                        </tr>
+                        <tr>
+                            <td style="border:0px;"></td>
+                            <td style="border:0px;width:30%; text-align: left;">6 parcelas: D*+106</td>
+                            <td style="border:0px;width:30%; text-align: left;">12 parcelas: D*+196</td>
+                        </tr>
+                    </div>
                 </apex:panelGroup>
                 </tbody>
             </table>            
@@ -549,7 +558,7 @@
             <apex:variable var="startNumber" value="{!VALUE(startNumber) + 1}"/>
             Boleto Flash®, Pix and<span style="vertical-align: super; font-size: 0.8em;">®</span> Payment Link confirmation and/or reminder messages 
             <br/>
-            <table style="margin-top: -1% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
+            <table style=" border-top: 0px !important; margin-top: 0% !important; width: 100%; margin: 20px auto; border-collapse: collapse; table-layout: auto; text-align: left;">
                 <tbody>
                     <tr>
                         <apex:panelGroup rendered="{!NOT (containsPagBrasilDefinition)}">

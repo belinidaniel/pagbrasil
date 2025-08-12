@@ -220,10 +220,6 @@
             <outputField>PSP__c</outputField>
         </mappingFields>
         <mappingFields>
-            <inputField>Qualificador__c</inputField>
-            <outputField>Qualificador__c</outputField>
-        </mappingFields>
-        <mappingFields>
             <inputField>Receita_Global__c</inputField>
             <outputField>Receita_Global__c</outputField>
         </mappingFields>

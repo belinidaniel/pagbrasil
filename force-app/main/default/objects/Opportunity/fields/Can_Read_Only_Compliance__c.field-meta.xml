@@ -2,15 +2,60 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Can_Read_Only_Compliance__c</fullName>
     <formula>OR(
-    ISPICKVAL(StageName, &quot;Compliance&quot;),
-    ISPICKVAL(StageName, &quot;Contract&quot;),
-    ISPICKVAL(StageName, &quot;Homologation&quot;),
-    ISPICKVAL(StageName, &quot;Go Live&quot;),
-    ISPICKVAL(StageName, &quot;Frozen&quot;),
-    ISPICKVAL(StageName, &quot;Processing&quot;),
-    ISPICKVAL(StageName, &quot;Closed Lost&quot;),
-    ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
-  )</formula>
+    AND(
+        $Permission.Can_View_Operations_Support_Opportunity_Stages,
+        OR(
+            ISPICKVAL(StageName, &quot;Go Live&quot;),
+            ISPICKVAL(StageName, &quot;Processing&quot;),
+            ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+            ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+        )
+    ),
+				 AND(
+        $Permission.Can_View_General_Business_Opportunity_Stages,
+        OR(
+            ISPICKVAL(StageName, &quot;Frozen&quot;),
+            ISPICKVAL(StageName, &quot;Processing&quot;),
+            ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+            ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+        )
+    ),
+						AND(
+        $Permission.Can_View_New_Business_Team_Opportunity_Stages,
+        OR(
+            ISPICKVAL(StageName, &quot;Frozen&quot;),
+            ISPICKVAL(StageName, &quot;Processing&quot;),
+            ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+            ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+        )
+    ),
+						AND(
+        $Permission.Can_View_New_Business_Management_Opportunity_Stages,
+        OR(
+            ISPICKVAL(StageName, &quot;Frozen&quot;),
+            ISPICKVAL(StageName, &quot;Processing&quot;),
+            ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+            ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+        )
+    ),
+
+    AND(
+        NOT($Permission.Can_View_Operations_Support_Opportunity_Stages),
+								NOT($Permission.Can_View_General_Business_Opportunity_Stages),
+								NOT($Permission.Can_View_New_Business_Team_Opportunity_Stages),
+								NOT($Permission.Can_View_New_Business_Management_Opportunity_Stages),
+        OR(
+            ISPICKVAL(StageName, &quot;Compliance&quot;),
+            ISPICKVAL(StageName, &quot;Contract&quot;),
+            ISPICKVAL(StageName, &quot;Homologation&quot;),
+            ISPICKVAL(StageName, &quot;Go Live&quot;),
+            ISPICKVAL(StageName, &quot;Frozen&quot;),
+            ISPICKVAL(StageName, &quot;Processing&quot;),
+            ISPICKVAL(StageName, &quot;Closed Lost&quot;),
+            ISPICKVAL(StageName, &quot;Closed Terminated&quot;)
+        )
+    )
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Can Read Only Compliance</label>
     <type>Checkbox</type>

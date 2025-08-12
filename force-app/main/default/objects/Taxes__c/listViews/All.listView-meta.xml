@@ -17,10 +17,5 @@
     <columns>IsPercent__c</columns>
     <columns>ProductClass__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>RecordTypeName__c</field>
-        <operation>contains</operation>
-        <value>token</value>
-    </filters>
     <label>All</label>
 </ListView>

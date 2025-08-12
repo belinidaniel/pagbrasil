@@ -44,7 +44,7 @@
                                 <criteria>
                                     <leftValue>{!Record.Status}</leftValue>
                                     <operator>EQUAL</operator>
-                                    <rightValue>Approved</rightValue>
+                                    <rightValue>Draft</rightValue>
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!Record.Status}</leftValue>

@@ -482,16 +482,6 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Probability</fieldItem>
-                <identifier>RecordProbabilityField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.RecordTypeId</fieldItem>
@@ -526,6 +516,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Discovery_Completed__c</fieldItem>
                 <identifier>RecordDiscovery_Completed_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.StageName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Discovery</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -536,6 +533,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Negotiation_Completed__c</fieldItem>
                 <identifier>RecordNegotiation_Completed__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.StageName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Negotiation</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -546,6 +550,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Signed_Contract__c</fieldItem>
                 <identifier>RecordSigned_Contract__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.StageName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Contract</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -556,6 +567,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Homologation_Completed__c</fieldItem>
                 <identifier>RecordHomologation_Completed_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.StageName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Homologation</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-f2e58e27-f3c9-4124-a278-f00ec31d2865</name>
@@ -793,6 +811,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Cartao_Credito_Mensal__c</fieldItem>
                 <identifier>RecordCartao_Credito_Mensal_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -803,6 +828,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Cartao_Debito_Mensal__c</fieldItem>
                 <identifier>RecordCartao_Debito_Mensal__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -813,6 +845,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Boleto_Share__c</fieldItem>
                 <identifier>RecordBoleto_Share_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -823,6 +862,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.PixMensal__c</fieldItem>
                 <identifier>RecordPixMensal_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Pix_International_Pix_Roaming</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-8e384e2b-5224-4f47-8d73-477fac01775f</name>

@@ -6,6 +6,6 @@
     <enableLocalNamesForStdObjects>false</enableLocalNamesForStdObjects>
     <enableLocaleInsensitiveFiltering>false</enableLocaleInsensitiveFiltering>
     <enablePlatformLanguages>true</enablePlatformLanguages>
-    <enableTranslationWorkbench>true</enableTranslationWorkbench>
+    <enableTranslationWorkbench>false</enableTranslationWorkbench>
     <useLanguageFallback>false</useLanguageFallback>
 </LanguageSettings>

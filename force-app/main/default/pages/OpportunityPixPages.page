@@ -134,7 +134,6 @@
 					<th>Label</th>
 					<th>Value</th>
 				</tr>
-				<tr><td>ID</td><td>{!wrapper.id}</td></tr>
 				<tr><td>Request Date</td><td>{!wrapper.homologationForms[0].requestDate}</td></tr>
 				<tr><td>Integration Type</td><td>{!wrapper.integrationType}</td></tr>
 				<tr><td>Tier</td><td>{!wrapper.tierCs}</td></tr>
@@ -155,11 +154,6 @@
 					<tr><td>Login</td><td>{!form.login}</td></tr>
 					<tr><td>Password</td><td>{!form.senha}</td></tr>
 					<tr><td>Main contact email for the operation</td><td>{!form.mainContactEmail}</td></tr>
-
-					<apex:outputPanel rendered="{!wrapper.isCrossBorder}">
-						<tr><td>Emails POD Manager</td><td>{!form.emailsPodManager}</td></tr>
-						<tr><td>POD Manager</td><td>{!form.podReminder}</td></tr>
-					</apex:outputPanel>
 				</apex:repeat>  
 
 				<apex:repeat value="{!kycWrapper.kycContacts}" var="contact">
@@ -213,7 +207,7 @@
 				</tr>
 				<apex:repeat value="{!wrapper.homologationForms}" var="form">
 					<tr><td>Block Refund</td><td>{!form.blockRefund}</td></tr>
-                    <tr><td>Verify CPF/CNPJ</td><td>{!form.blockRefund}</td></tr>
+                    <tr><td>Verify CPF/CNPJ</td><td>{!form.verifyCpfCnpj}</td></tr>
 				</apex:repeat>
 			</table>
 

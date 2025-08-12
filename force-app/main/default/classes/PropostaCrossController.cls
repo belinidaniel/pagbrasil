@@ -3,7 +3,7 @@
  * @author            : Hersilio Belini de Oliveira
  * @group             :
 
- * @last modified on  : 08-08-2025
+ * @last modified on  : 07-30-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -122,7 +122,7 @@ public class PropostaCrossController {
                 'Account.Name', 'Account.Website','Opportunity.Name','Opportunity.Owner.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
                 'Opportunity.Product_Type__c', 'Opportunity.Payout__c', 'Opportunity.ApplePay__c', 'Opportunity.GooglePay__c', 'Opportunity.Antecipation_Frequency_1__c', 'Opportunity.Antecipation_Frequency_2__c',
                 'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.Pix_Automatico__c',
-                'Opportunity.Moeda__c', 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.RecordType.DeveloperName' });
+                'Opportunity.Moeda__c', 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
         }
 
         Quote quote = (Quote) stdController.getRecord();
@@ -423,8 +423,8 @@ public class PropostaCrossController {
         if (page == 'One') {
             this.frequencyOneValues = new List<String>();
             String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
-            String typeFrenquency = quote.opportunity.RecordType.DeveloperName == 'Crossborder' ? 'Crossborder' : 'National';
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = 'Biweekly' AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true and type__c = :typeFrenquency];
+
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true];
             for(Taxes__c tax : taxes) {
                 switch on tax.InstallmentNumber__c{
                     when '1' {
@@ -470,8 +470,7 @@ public class PropostaCrossController {
         if (page == 'Two') {
             this.frequencyTwoValues = new List<String>();
             String antecipation = quote.Opportunity.Antecipation_Frequency_2__c;
-            String typeFrequency = quote.opportunity.RecordType.DeveloperName == 'Crossborder' ? 'Crossborder' : 'National';
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true AND Type__c = :typeFrequency];
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true];
 
             for(Taxes__c tax : taxes) {
                 switch on tax.InstallmentNumber__c{

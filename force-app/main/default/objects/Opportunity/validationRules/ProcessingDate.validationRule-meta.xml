@@ -2,9 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ProcessingDate</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(ISPICKVAL(StageName, &apos;Processing&apos;), ISBLANK(DataConversaoProcessing__c),
+    <errorConditionFormula>AND( NOT ( AND ( $Profile.Name = &apos;System Administrator&apos; , CreatedDate &lt;= DATETIMEVALUE(DATE(2025,8,10)) ) ) ,
+AND(ISPICKVAL(StageName, &apos;Processing&apos;), ISBLANK(DataConversaoProcessing__c),
 RecordType.DeveloperName != &apos;National&apos;,
-RecordType.DeveloperName != &apos;Crossborder&apos;)</errorConditionFormula>
+RecordType.DeveloperName != &apos;Crossborder&apos;) )</errorConditionFormula>
     <errorDisplayField>DataConversaoProcessing__c</errorDisplayField>
     <errorMessage>Fill in the &quot;Processing Date&quot; field before closing the Opportunity</errorMessage>
 </ValidationRule>

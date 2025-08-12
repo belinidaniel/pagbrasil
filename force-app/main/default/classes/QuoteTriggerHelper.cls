@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 08-08-2025
+ * @last modified on  : 08-11-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -243,7 +243,7 @@ public with sharing class QuoteTriggerHelper {
         }
 
         if(isPackage){
-            if(isPlugin(opportunity.integrationType__c) && opportunity.IntegrationType__c == 'PB Checkout'){
+            if(isPlugin(opportunity.integrationType__c) || opportunity.IntegrationType__c == 'PB Checkout'){
                 return true;
             }
         }

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>KYC_NB_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KYC NB URL</shortDescription>
+        <value>https://kyc.pagbrasil.com</value>
+    </labels>
+    <labels>
         <fullName>KYC_Staging_URL</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -13,6 +20,13 @@
         <protected>false</protected>
         <shortDescription>Crossborder KYC Form</shortDescription>
         <value>https://kyc-xb-staging.pagbrasil.com</value>
+    </labels>
+    <labels>
+        <fullName>KYC_XB_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KYC XB URL</shortDescription>
+        <value>https://kyc-xb.pagbrasil.com</value>
     </labels>
     <labels>
         <fullName>Opportunity_Additional_Information_Section</fullName>

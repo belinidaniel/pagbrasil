@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-05-2025
+ * @last modified on  : 08-09-2025
  * @last modified by  : Daniel Belini
 **/
 @isTest
@@ -53,7 +53,9 @@ public class ContractControllerTest {
                 ProductClass__c = '5331',
                 Integracao__c = 'Salesforce CC',
                 Recorrencia__c = 'Yes',
-                Ticket_Medio__c = 123
+                Ticket_Medio__c = 123,
+                ownerId = UserInfo.getUserId()
+
             ),
             new Opportunity(
                 Name = 'Opp4',
@@ -83,7 +85,9 @@ public class ContractControllerTest {
                 ProductClass__c = '5331',
                 Integracao__c = 'Salesforce CC',
                 Recorrencia__c = 'Yes',
-                Ticket_Medio__c = 123
+                Ticket_Medio__c = 123,
+                ownerId = UserInfo.getUserId()
+
             ),
             new Opportunity(
                 Name = 'Opp5',
@@ -113,7 +117,9 @@ public class ContractControllerTest {
                 ProductClass__c = '5331',
                 Integracao__c = 'Salesforce CC',
                 Recorrencia__c = 'Yes',
-                Ticket_Medio__c = 123
+                Ticket_Medio__c = 123,
+                ownerId = UserInfo.getUserId()
+
             ),
             new Opportunity(
                 Name = 'Opp6',
@@ -143,7 +149,9 @@ public class ContractControllerTest {
                 ProductClass__c = '5331',
                 Integracao__c = 'Salesforce CC',
                 Recorrencia__c = 'Yes',
-                Ticket_Medio__c = 123
+                Ticket_Medio__c = 123,
+                ownerId = UserInfo.getUserId()
+
             ),
             new Opportunity(
                 Name = 'Opp7',
@@ -173,7 +181,9 @@ public class ContractControllerTest {
                 ProductClass__c = '5331',
                 Integracao__c = 'Salesforce CC',
                 Recorrencia__c = 'Yes',
-                Ticket_Medio__c = 123
+                Ticket_Medio__c = 123,
+                ownerId = UserInfo.getUserId()
+
             ),
             new Opportunity(
                 Name = 'Opp7',
@@ -203,7 +213,41 @@ public class ContractControllerTest {
                 ProductClass__c = '5331',
                 Integracao__c = 'Salesforce CC',
                 Recorrencia__c = 'Yes',
-                Ticket_Medio__c = 123
+                Ticket_Medio__c = 123,
+                ownerId = UserInfo.getUserId()
+
+            ),
+            new Opportunity(
+                Name = 'Opp8',
+                StageName = 'Contact',
+                CloseDate = datClose,
+                ForecastCategoryName = 'Pipeline',
+                CurrencyIsoCode = UserInfo.getDefaultCurrency(),
+                Probability = 10,
+                AccountId = acct.Id,
+                AverageSalesTicket__c = 10000,
+                nb_receita_mensal__c = 50000,
+                previs_fat_rs__c = 1,
+                Antecipation_Frequency_1__c = 'Weekly',
+                Antecipation_Frequency_2__c = 'Monthly',
+                Settlement_Frequency_1__c = 'Weekly',
+                Settlement_Frequency_2__c = 'Monthly',
+                Segmento__c = 'Gaming',
+                Product_Type__c = 'Digital',
+                BusinessModel__c = 'Intermediation',
+                BusinessModelType__c = 'B2C',
+                NationalPaymentMethod__c = 'Débito Flash',
+                PaymentRecurrence__c = 'Sim',
+                IntegrationType__c = 'Salesforce',
+                RecordTypeId = crossRT,
+                Product_or_service_website_URL__c = 'www.google.com',
+                Transacoes_Mensais__c = 1213,
+                ProductClass__c = '5331',
+                Integracao__c = 'Salesforce CC',
+                Recorrencia__c = 'Yes',
+                Ticket_Medio__c = 123,
+                Moeda__c = 'USD',
+                ownerId = UserInfo.getUserId()
             )
 
             // // cenarios cross
@@ -400,10 +444,19 @@ public class ContractControllerTest {
 
         Id recordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('Crossborder').getRecordTypeId();
 
-        List<Quote> quotes = [SELECT Id, Account.Name, Account.Website, Opportunity.Name, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Settlement_Frequency_Test__c,
-        Opportunity.Product_Type__c, Opportunity.Payout__c, Opportunity.GooglePay__c,Opportunity.ApplePay__c , Opportunity.Antecipation_Frequency_1__c, Opportunity.Antecipation_Frequency_2__c,Opportunity.RequestChangeClause__c,
-        Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c, Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c, Opportunity.UsePagstream__c, Opportunity.PagShield__c ,
-        Opportunity.Moeda__c, Account.Owner.Name, Account.Owner.Email, Account.Owner.MobilePhone FROM Quote WHERE Opportunity.RecordTypeId = :recordTypeId];
+        List<Quote> quotes = [
+            SELECT Id,
+                Account.Id, Account.Name, Account.Website, Account.Owner.Name, Account.Owner.Email, Account.Owner.MobilePhone,
+                Opportunity.Id, Opportunity.Name, Opportunity.Owner.Name, Opportunity.Moeda__c, Opportunity.Product_Type__c,
+                Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
+                Opportunity.BusinessModel__c, Opportunity.Pix_Automatico__c, Opportunity.IntegrationType__c,
+                Opportunity.Antecipation_Frequency_1__c, Opportunity.Antecipation_Frequency_2__c,
+                Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c,
+                Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c,
+                Opportunity.RecordType.DeveloperName, Opportunity.Previs_Fat_Rs__c
+            FROM Quote
+            WHERE Opportunity.RecordTypeId = :recordTypeId
+        ];
 
         insert new List<Taxes__c>{
             new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '1', PercentValue__c = 0, IsActive__c = true),

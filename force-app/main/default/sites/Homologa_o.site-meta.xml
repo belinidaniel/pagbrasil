@@ -25,7 +25,7 @@
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
     <serverIsDown>SNA_pgcx6_sf_default_cdn_Homologa_o1</serverIsDown>
     <siteAdmin>guilherme.borges@srconsulting.io</siteAdmin>
-    <siteGuestRecordDefaultOwner>guilherme.borges@srconsulting.io</siteGuestRecordDefaultOwner>
+    <siteGuestRecordDefaultOwner>mgr.salesforce@pagbrasil.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
     <urlPathPrefix>homologacao</urlPathPrefix>
 </CustomSite>

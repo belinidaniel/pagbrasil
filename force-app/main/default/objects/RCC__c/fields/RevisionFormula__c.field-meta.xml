@@ -4,11 +4,11 @@
     <externalId>false</externalId>
     <formula>CASE(
 Final_Risk__c,
-&quot;Low&quot;, &quot;1 Year&quot;,
-&quot;Medium&quot;, &quot;6 Months&quot;,
-&quot;High&quot;, &quot;3 Months&quot;,
-&quot;Extreme&quot;, &quot;1 Month&quot;,
-&quot;&quot;
+&quot;Baixo&quot;, &quot;1 Year&quot;,
+&quot;Médio&quot;, &quot;6 Months&quot;,
+&quot;Alto&quot;, &quot;3 Months&quot;,
+&quot;Extremo&quot;, &quot;1 Month&quot;,
+&quot;Undefined&quot;
 )</formula>
     <label>Revision</label>
     <required>false</required>

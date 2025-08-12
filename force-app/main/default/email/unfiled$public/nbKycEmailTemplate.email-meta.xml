@@ -9,7 +9,7 @@
 
 Por favor, preencha o formulário KYC o mais breve possível para prosseguir com nosso processo de integração:
 
-Formulário KYC: {!$Label.KYC_Staging_URL}/?id={!KYC_XB__c.Unique_Link__c}
+Formulário KYC: {!$Label.KYC_NB_URL}/?id={!KYC_XB__c.Unique_Link__c}
 
 Caso tenha alguma dúvida, entre em contato conosco.
 

@@ -2,10 +2,11 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ValidationRemittanceCurrency</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(
+    <errorConditionFormula>AND( NOT ( AND ( $Profile.Name = &apos;System Administrator&apos; , CreatedDate &lt;= DATETIMEVALUE(DATE(2025,8,10)) ) ) ,
+AND(
 LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;,
 ISPICKVAL(Moeda__c,&quot;&quot;),
 NOT(ISPICKVAL(StageName, &quot;Discovery&quot;))
-)</errorConditionFormula>
+) )</errorConditionFormula>
     <errorMessage>The Remittance Currency field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

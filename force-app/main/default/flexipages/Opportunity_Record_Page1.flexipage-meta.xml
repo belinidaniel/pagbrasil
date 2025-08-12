@@ -1470,7 +1470,7 @@
                 <fieldItem>Record.Product_Type__c</fieldItem>
                 <identifier>RecordProduct_Type__cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Can_Read_Only_Compliance__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -4157,11 +4157,6 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>adminFilters</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>Type__c|INCLUDES|[&quot;Representante Legal&quot;]</value>
-                        </valueListItems>
-                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>maxRecordsToDisplay</name>

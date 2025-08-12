@@ -3,7 +3,7 @@
     <fullName>MerchantDemand__c</fullName>
     <description>Como a demanda do merchant é gerada?</description>
     <externalId>false</externalId>
-    <label>Merchant Demand</label>
+    <label>How is the merchant&apos;s demand generated?</label>
     <length>255</length>
     <required>false</required>
     <trackHistory>false</trackHistory>

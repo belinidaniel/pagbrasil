@@ -242,7 +242,8 @@ export default class GenerateContract extends LightningElement {
             await updateRecord({
                 fields: {
                     Id: this.recordId,
-                    Contract_File_Id__c: contentDocumentId
+                    Contract_File_Id__c: contentDocumentId,
+                    Date_of_First_Review__c: `${this.month}/${this.selectedYear}`
                 }
             });
 

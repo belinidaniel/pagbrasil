@@ -29,6 +29,11 @@
                 <default>false</default>
                 <label>Low Touch</label>
             </value>
+            <value>
+                <fullName>PB Eleva</fullName>
+                <default>false</default>
+                <label>PB Eleva</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

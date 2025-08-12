@@ -8,5 +8,10 @@
     <columns>IsCrossBoard__c</columns>
     <columns>BusinessModel__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRICEBOOK2.IS_ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
     <label>All Price Books</label>
 </ListView>

@@ -3,7 +3,7 @@
     <fullName>WhoNegotiated__c</fullName>
     <description>Com quem foi realizada a negociação?</description>
     <externalId>false</externalId>
-    <label>Who Negotiated</label>
+    <label>Who was the negotiation with?</label>
     <length>255</length>
     <required>false</required>
     <trackHistory>false</trackHistory>

@@ -4,7 +4,7 @@
         <name>Send_Email_NB</name>
         <label>Send email NB</label>
         <locationX>50</locationX>
-        <locationY>782</locationY>
+        <locationY>890</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -29,7 +29,7 @@
         <inputParameters>
             <name>emailTemplateId</name>
             <value>
-                <stringValue>00XVA000001lqXF2AY</stringValue>
+                <elementReference>Get_Email_Template_NB.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -55,7 +55,7 @@
         <name>Send_Email_XB</name>
         <label>Send Email XB</label>
         <locationX>314</locationX>
-        <locationY>782</locationY>
+        <locationY>890</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -80,7 +80,7 @@
         <inputParameters>
             <name>emailTemplateId</name>
             <value>
-                <stringValue>00XVA000001lqSP2AY</stringValue>
+                <stringValue>{!Get_Email_Template_XB.Id}</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -220,6 +220,48 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Email_Template_NB</name>
+        <label>Get Email Template NB</label>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email_NB</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>nbKycEmailTemplate</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EmailTemplate</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Email_Template_XB</name>
+        <label>Get Email Template XB</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email_XB</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>xbKycEmailTemplate</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EmailTemplate</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>get_KYC_NB</name>
         <label>get KYC_NB</label>
         <locationX>50</locationX>
@@ -316,7 +358,7 @@
         <locationX>50</locationX>
         <locationY>674</locationY>
         <connector>
-            <targetReference>Send_Email_NB</targetReference>
+            <targetReference>Get_Email_Template_NB</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -340,7 +382,7 @@
         <locationX>314</locationX>
         <locationY>674</locationY>
         <connector>
-            <targetReference>Send_Email_XB</targetReference>
+            <targetReference>Get_Email_Template_XB</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -373,14 +415,6 @@
             <name>Copy_1_of_testoppname</name>
             <fieldText>&lt;p&gt;{!get_opportunity.Name}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Copy_1_of_Send_To</name>
@@ -390,27 +424,11 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Copy_1_of_Display_Url_Else</name>
             <fieldText>&lt;p&gt;{!$Label.KYC_XB_Staging_URL}/?id={!get_KYC_XB.Unique_Link__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Send</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -431,14 +449,6 @@
             <name>testoppname</name>
             <fieldText>&lt;p&gt;{!get_opportunity.Name}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Send_To</name>
@@ -448,27 +458,11 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Display_Url_National</name>
             <fieldText>&lt;p&gt;{!$Label.KYC_Staging_URL}/?id={!get_KYC_NB.Unique_Link__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Send</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

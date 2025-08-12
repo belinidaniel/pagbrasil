@@ -153,7 +153,6 @@ private class AccountTriggerHandlerTest {
 		System.assert(fields.contains('product_type__c'), 'A lista deve conter o campo product_type__c');
 		System.assert(fields.contains('teseprospeccao__c'), 'A lista deve conter o campo teseprospeccao__c');
 		System.assert(fields.contains('psp__c'), 'A lista deve conter o campo psp__c');
-		System.assert(fields.contains('qualificador__c'), 'A lista deve conter o campo qualificador__c');
 		System.assert(fields.contains('receita_mensal_cross_border__c'), 'A lista deve conter o campo receita_mensal_cross_border__c');
 		System.assert(fields.contains('paymentrecurrence__c'), 'A lista deve conter o campo paymentrecurrence__c');
 		System.assert(fields.contains('data_de_indicacao__c'), 'A lista deve conter o campo data_de_indicacao__c');

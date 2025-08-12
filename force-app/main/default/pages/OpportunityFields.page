@@ -104,6 +104,7 @@
                         <tr><th>Product Type</th> <td>{!wrapper.productType}</td></tr>
                         <tr><th>Business Model</th> <td>{!wrapper.businessModel}</td></tr>
                         <tr><th>Integration Type</th> <td>{!wrapper.integrationType}</td></tr>
+                        <tr><th>Tier CS</th> <td>{!wrapper.tierCs}</td></tr>
                     </table>
                 </div>
             </apex:outputPanel>
@@ -112,7 +113,6 @@
             <apex:outputPanel >
                 <div class="section-wrapper">
                     <h1>CONFIGURATION</h1>
-
 
                     <h2>Main</h2>
                     <table>
@@ -126,6 +126,17 @@
                             <tr><th>POD Manager email(s)</th><td>{!form.EmailsPodManager__c}</td></tr>
                             <tr><th>POD Reminder</th><td>{!form.PodReminder__c}</td></tr>
                         </apex:outputPanel>
+                        <tr><th>Email(s) to Receive Account Instructions</th><td>{!form.Email_to_Receive_Account_Instructions__c}</td></tr>
+                        <tr><th>Email(s) for notification of pre-auths</th><td>{!form.Email_s_for_notification_of_pre_auths__c}</td></tr>
+                        <tr><th>Technical contact email(s)</th>
+                            <td>
+                                <apex:repeat value="{!kycWrapper.kycContacts}" var="contact">
+                                    <apex:outputPanel rendered="{!IF(CONTAINS(contact.Type__c, 'Technical'), true, false)}">
+                                        {!contact.Email};
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </apex:outputPanel>
@@ -135,7 +146,6 @@
                 <div class="section-wrapper">
                     <h2>Billing Information (invoice)</h2>
                     <table>
-                        <tr><th>Category</th><td>{!form.Category__c}</td></tr>
                         <tr><th>MCC Code</th><td>{!form.MccCode__c}</td></tr>
                         <tr><th>VAT/CNPJ</th><td>{!kycWrapper.fiscalRegistration}</td></tr>
                         <tr><th>Business Name</th><td>{!kycWrapper.legalName}</td></tr>
@@ -146,6 +156,7 @@
                         <tr><th>Billing Number</th><td>{!kycWrapper.streetNumber}</td></tr>
                         <tr><th>Billing Complement</th><td>{!kycWrapper.complement}</td></tr>
                         <tr><th>Contract Start Date</th><td>{!wrapper.contractStartDateCharge}</td></tr>
+                        <tr><th>Date of First Review</th><td>{!wrapper.dateOfFirstReview}</td></tr>
                         <tr><th>KYC Last Modified Date</th><td>{!kycWrapper.lastModifiedDate}</td></tr>
                         <tr><th>Financial contact email(s)</th>
                             <td>
@@ -216,63 +227,63 @@
                             <td>0</td>
                         </tr>
                         <tr>
-                            <td>Bank Billet</td>
+                            <td>Boleto Bancário</td>
                             <td>0</td>
                         </tr>
                         <tr>
-                            <td>Flash Billet</td>
+                            <td>Boleto Flash</td>
                             <td>0</td>
                         </tr>
                         <tr>
-                            <td>Flash Debit</td>
+                            <td>Débito Flash</td>
                             <td>0</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 1x</td>
+                            <td>Cartão de Crédito 1x</td>
                             <td>31</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 2x</td>
+                            <td>Cartão de Crédito 2x</td>
                             <td>46</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 3x</td>
+                            <td>Cartão de Crédito 3x</td>
                             <td>61</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 4x</td>
+                            <td>Cartão de Crédito 4x</td>
                             <td>76</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 5x</td>
+                            <td>Cartão de Crédito 5x</td>
                             <td>91</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 6x</td>
+                            <td>Cartão de Crédito 6x</td>
                             <td>106</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 7x</td>
+                            <td>Cartão de Crédito 7x</td>
                             <td>121</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 8x</td>
+                            <td>Cartão de Crédito 8x</td>
                             <td>136</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 9x</td>
+                            <td>Cartão de Crédito 9x</td>
                             <td>151</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 10x</td>
+                            <td>Cartão de Crédito 10x</td>
                             <td>166</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 11x</td>
+                            <td>Cartão de Crédito 11x</td>
                             <td>181</td>
                         </tr>
                         <tr>
-                            <td>Credit Card 12x</td>
+                            <td>Cartão de Crédito 12x</td>
                             <td>196</td>
                         </tr>
                     </table>
@@ -296,7 +307,11 @@
                 <div class="section-wrapper">
                     <h2>Shipment</h2>
                     <table>
-                        <tr><th>Closing Frequency</th><td>{!wrapper.settlementFrequency}</td></tr>
+                        <tr><th>Closing Frequency</th>
+                            <td>
+                                {!IF(wrapper.selectedCreditFrequency == '1', wrapper.settlementFrequencyOne, wrapper.settlementFrequencyTwo)}
+                            </td>
+                        </tr>
                         <apex:outputPanel rendered="{!isCross}">
                             <tr><th>Spread on transaction value (as fee)</th><td><i>{!wrapper.currencyMarkupSpread.percentValue}</i></td></tr>
                             <tr><th>Spread in net value (in exchange rate)</th><td>{!wrapper.currencyMarkupSpread.percentValue}%</td></tr>
@@ -373,6 +388,16 @@
                             <tr><th>Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
                             <tr><th>PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
                         </table>
+                        <table>
+                            <tr>
+                                <th>Activate Wallet</th>
+                                <td>
+                                    {!IF(AND(wrapper.applePay, wrapper.googlePay), 'Both', 
+                                        IF(wrapper.applePay, 'Apple Pay', 
+                                            IF(wrapper.googlePay, 'Google Pay', 'None')))}
+                                </td>
+                            </tr>
+                        </table>
                     </apex:outputPanel>
 
 
@@ -403,7 +428,14 @@
                     <apex:outputPanel >
                         <h2>Monthly Anticipation Fee</h2>
                         <table>
-                            <h3>Frequency for Credit Card Interest</h3>
+                            <tr>
+                                <th>Frequency for Credit Card Interest</th>
+                                <td>
+                                    <apex:outputText rendered="{!AND(CONTAINS(wrapper.nationalPaymentMethod, 'Cartão de Crédito'), CONTAINS(wrapper.businessModel, 'Intermediation'))}">
+                                        {!IF(wrapper.selectedCreditFrequency == '1', wrapper.antecipationFrequencyOne, wrapper.antecipationFrequencyTwo)}
+                                    </apex:outputText>
+                                </td>
+                            </tr>
                             <tr><th>Base Anticipation Fee</th><td>{!wrapper.taxaBaseAntecipacao.totalPrice}</td></tr>
                         </table>
                     </apex:outputPanel>
@@ -435,6 +467,25 @@
                             <tr><th>Chargeback fee type</th><td style="background:#b7fcb7">Fixed</td></tr>
                         </table>
                     </apex:outputPanel>
+                </div>
+            </apex:outputPanel>
+
+
+            <apex:outputPanel >
+                <div class="section-wrapper">
+                    <h1>SHOPIFY</h1>
+                    <table>
+                        <tr><th>URL My Shopify</th><td>{!form.URL_My_Shopify__c}</td></tr>
+                        <tr><th>Allow CPF/CNPJ</th><td>{!form.Allow_CPF_CNPJ__c}</td></tr>
+                        <tr><th>One-Click Buying / Tokenization</th><td>{!form.OneClickBuyingTokenization__c}</td></tr>
+                    </table>
+                    <h2>Shopify Discount</h2>
+                    <table>
+                        <tr><th>Discount per payment method</th><td>{!form.ShopifyDiscount__c}</td></tr>
+                        <tr><th>Discount – Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
+                        <tr><th>Discount – PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
+                        <tr><th>Pix Pending</th><td>{!form.PixPending__c}</td></tr>
+                    </table>
                 </div>
             </apex:outputPanel>
 
@@ -507,23 +558,6 @@
                 </div>
             </apex:outputPanel>
 
-
-            <apex:outputPanel >
-                <div class="section-wrapper">
-                    <h1>SHOPIFY</h1>
-                    <table>
-                        <tr><th>Allow CPF/CNPJ</th><td>{!form.Allow_CPF_CNPJ__c}</td></tr>
-                        <tr><th>One-Click Buying / Tokenization</th><td>{!form.OneClickBuyingTokenization__c}</td></tr>
-                    </table>
-                    <h2>Shopify Discount</h2>
-                    <table>
-                        <tr><th>Discount per payment method</th><td>{!form.ShopifyDiscount__c}</td></tr>
-                        <tr><th>Discount – Flash Billet</th><td>{!form.FlashBoleto__c}</td></tr>
-                        <tr><th>Discount – PagBrasil Pix</th><td>{!form.PagBrasilPix__c}</td></tr>
-                        <tr><th>Pix Pending</th><td>{!form.PixPending__c}</td></tr>
-                    </table>
-                </div>
-            </apex:outputPanel>
 
 
             <apex:outputPanel >

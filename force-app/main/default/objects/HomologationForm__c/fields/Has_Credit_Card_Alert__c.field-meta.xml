@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Has_Credit_Card_Alert__c</fullName>
     <defaultValue>false</defaultValue>
-    <label>C = Credit Card</label>
+    <label>C = Cartão de Crédito</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

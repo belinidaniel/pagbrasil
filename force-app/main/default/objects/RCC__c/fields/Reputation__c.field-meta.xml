@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Reputation__c</fullName>
     <description>O merchant tem boa reputação no mercado?</description>
-    <label>Reputation</label>
+    <label>Merchant has good reputation in market?</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

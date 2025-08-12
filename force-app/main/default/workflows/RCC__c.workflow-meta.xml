@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>Rejected_Approval_Process_Field</fullName>
+        <field>Rejected_Approval_Process__c</field>
+        <literalValue>1</literalValue>
+        <name>Rejected Approval Process Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Status_to_Approved</fullName>
         <field>LegalApprovalStatus__c</field>
         <literalValue>Approved</literalValue>

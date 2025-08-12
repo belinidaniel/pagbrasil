@@ -131,7 +131,7 @@
             <apex:outputText value="{!termClauses}" escape="false" />
             
             
-            <apex:panelGroup>
+            <apex:panelGroup >
                 <p style="font-weight: bold;">1. Taxas de processamento e Taxa da Solução PagBrasil:</p>
 
                 <p style="text-align: justify;">

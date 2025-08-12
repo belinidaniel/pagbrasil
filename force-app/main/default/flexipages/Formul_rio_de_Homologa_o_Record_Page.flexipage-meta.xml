@@ -736,7 +736,7 @@
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
+                        <operator>NE</operator>
                         <rightValue>Pix_International_Pix_Roaming</rightValue>
                     </criteria>
                 </visibilityRule>
@@ -2206,7 +2206,7 @@
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.Opportunity__r.RecordType.DeveloperName}</leftValue>
-                        <operator>EQUAL</operator>
+                        <operator>NE</operator>
                         <rightValue>Pix_International_Pix_Roaming</rightValue>
                     </criteria>
                 </visibilityRule>

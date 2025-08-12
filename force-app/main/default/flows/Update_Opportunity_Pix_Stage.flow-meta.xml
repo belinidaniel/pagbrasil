@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Copy_1_of_Create_Homologation</name>
+        <label>Copy 1 of Create Homologation</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>HomologationFormCreate</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>accountId</name>
+            <value>
+                <elementReference>Get_Opportunity.Account.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>opportunityId</name>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>url</name>
+            <value>
+                <elementReference>Get_KYC.Store_URL__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>HomologationFormCreate</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Copy_1_of_Create_Homologation_With_Opp_Name</name>
+        <label>Copy 1 of Create Homologation With Opp Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>HomologationFormCreate</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>accountId</name>
+            <value>
+                <elementReference>Get_Opportunity.Account.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>opportunityId</name>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>url</name>
+            <value>
+                <elementReference>Get_Opportunity.Name</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>HomologationFormCreate</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <name>Create_Homologation</name>
         <label>Create Homologation</label>
         <locationX>0</locationX>
@@ -24,6 +82,35 @@
             <name>url</name>
             <value>
                 <elementReference>Get_KYC.Store_URL__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>HomologationFormCreate</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Create_Homologation_With_Opp_Name</name>
+        <label>Create Homologation With Opp Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>HomologationFormCreate</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>accountId</name>
+            <value>
+                <elementReference>Get_Opportunity.Account.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>opportunityId</name>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>url</name>
+            <value>
+                <elementReference>Get_Opportunity.Name</elementReference>
             </value>
         </inputParameters>
         <nameSegment>HomologationFormCreate</nameSegment>
@@ -54,13 +141,63 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Check_Store_URL</name>
+        <label>Check Store URL</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Homologation</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Store URL Filled</defaultConnectorLabel>
+        <rules>
+            <name>If_Store_URL_Is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_KYC.Store_URL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Homologation_With_Opp_Name</targetReference>
+            </connector>
+            <label>If Store URL Is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Copy_1_of_Check_Store_URL</name>
+        <label>Copy 1 of Check Store URL</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Copy_1_of_Create_Homologation</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Store URL Filled</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_If_Store_URL_Is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_KYC.Store_URL__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Create_Homologation_With_Opp_Name</targetReference>
+            </connector>
+            <label>Copy 1 of If Store URL Is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Stage_Requires_Update_Is_Pix_Record_Type</name>
         <label>Stage Requires Update &amp; Is Pix Record Type</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>Else</defaultConnectorLabel>
         <rules>
-            <name>If_Both</name>
+            <name>If_Both_Early</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Opportunity.StageName</leftValueReference>
@@ -79,7 +216,44 @@
             <connector>
                 <targetReference>Update_Opportunity</targetReference>
             </connector>
-            <label>If Both</label>
+            <label>If Both Early</label>
+        </rules>
+        <rules>
+            <name>If_Only_Missing_Homologation_Form</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pix_International_Pix_Roaming</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Search_For_Homologation_Form</targetReference>
+            </connector>
+            <label>If Only Missing Homologation Form</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_A_Homologation_Form_Found</name>
+        <label>Was A Homologation Form Found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Homologation Found</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Search_For_Homologation_Form.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Check_Store_URL</targetReference>
+            </connector>
+            <label>Homologation Not Found</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -146,13 +320,34 @@
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Search_For_Homologation_Form</name>
+        <label>Search For Homologation Form</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_A_Homologation_Form_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>HomologationForm__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Opportunity</name>
         <label>Update Opportunity</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Create_Homologation</targetReference>
+            <targetReference>Check_Store_URL</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

@@ -3,7 +3,7 @@
  * @author            : Hersilio Belini de Oliveira
  * @group             :
 
- * @last modified on  : 08-12-2025
+ * @last modified on  : 08-13-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -98,7 +98,7 @@ public class PropostaCrossController {
     public String payoutSetupFee { get; set; }
     public String opportunityProductType { get; set; }
     public String custoPagshieldCross{ get;set;}
-
+    public String threeDSCreditCard { get; set; }
     public String opportunityCurrency { get; set; }
 
     // BILLING FORECAST
@@ -382,6 +382,9 @@ public class PropostaCrossController {
             }
             when 'TAXA_GATEWAY_BOLETO' {
                 this.boletoGateway = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
+            when '3DS_CREDIT_CARD' {
+                this.threeDSCreditCard = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
         }
     }

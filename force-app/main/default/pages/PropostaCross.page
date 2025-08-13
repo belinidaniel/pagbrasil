@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-30-2025
+  @last modified on  : 08-13-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page showHeader="false" 
@@ -540,10 +540,18 @@
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Notification Services</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!package10000Emails} BRL (10,000 e-mail notifications)<br/>{!package10000Sms} BRL (10,000 SMS notifications)</td>
                                 </tr>
-                                <tr>
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card <br/><span style="font-weight: normal;">(opcional)</span></td>
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">0.2% added to the Pix processing fee</td>
-                                </tr>
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(zeroAuthCreditCard))}">
+                                    <tr>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero-Auth <br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 80px; text-align: left; color: #323232; font-size: 14px"> {!zeroAuthCreditCard} BRL (per credit card transaction)</td>
+                                    </tr>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(threeDSCreditCard))}">
+                                    <tr>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card<br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 15px; text-align: left; color: #323232; font-size: 14px"> {!threeDSCreditCard} BRL (per credit card transaction)</td>
+                                    </tr>
+                                </apex:outputPanel>
                             </tbody>
                         </table>
                     </div>
@@ -585,14 +593,18 @@
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Notification Services</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">10,000 e-mail notifications and 100 SMS notifications included, no extra cost</td>
                                 </tr>
-                                <!-- <tr>
-                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Zero Auth</td>
-                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!zeroAuthCreditCard} BRL (per credit card transaction)</td>
-                                </tr> -->
-                                 <tr>
-                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">3DS2 for credit card</td>
-                                    <td style="border-top: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.2% added to the Pix processing fee</td>
-                                 </tr>
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(zeroAuthCreditCard))}">
+                                    <tr>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero-Auth <br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 80px; text-align: left; color: #323232; font-size: 14px"> {!zeroAuthCreditCard} BRL (per credit card transaction)</td>
+                                    </tr>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(threeDSCreditCard))}">
+                                    <tr>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card<br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 15px; text-align: left; color: #323232; font-size: 14px"> {!threeDSCreditCard} BRL (per credit card transaction)</td>
+                                    </tr>
+                                </apex:outputPanel>
                             </tbody>
                         </table>
                     </div>

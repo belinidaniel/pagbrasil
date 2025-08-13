@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Daniel Belini
  * @group             : 
- * @last modified on  : 08-11-2025
+ * @last modified on  : 08-13-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHelper {
@@ -273,7 +273,7 @@ public with sharing class QuoteTriggerHelper {
         // 3DS for Credit Cards (flag 3ds, intermediation/gateway, cross/nacional)
         if (is3DS) { //added
             // Não existe campo para 3DS, ajuste conforme necessário
-            if(!opportunity.ThreeDSCreditCard__c || !paymentMethod.contains('CARTAO DE CREDITO') ||  isClossBoard) {
+            if(!opportunity.ThreeDSCreditCard__c || !paymentMethod.contains('CARTAO DE CREDITO') ||  !isClossBoard) {
                 return true; //added
             }
         }

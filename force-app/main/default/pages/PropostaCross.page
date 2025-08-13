@@ -394,7 +394,7 @@
         <apex:panelGroup rendered="{!containsCreditCard}">
             <div class="page">
                 <div class="page-content" style="padding: 75px;">
-                    <p style="font-size: 40px;">Antecipation Fees | <strong>Credit Cards</strong></p>
+                    <p style="font-size: 40px;">Anticipation Fees | <strong>Credit Cards</strong></p>
                     <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyOne}</p>
                     <table style="border-collapse: collapse; margin-top: 15px;">
                         <thead>

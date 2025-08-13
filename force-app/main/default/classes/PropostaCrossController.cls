@@ -3,7 +3,7 @@
  * @author            : Hersilio Belini de Oliveira
  * @group             :
 
- * @last modified on  : 07-30-2025
+ * @last modified on  : 08-12-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -424,7 +424,7 @@ public class PropostaCrossController {
             this.frequencyOneValues = new List<String>();
             String antecipation = quote.Opportunity.Antecipation_Frequency_1__c;
 
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true];
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true AND  Type__c = 'crossborder'];
             for(Taxes__c tax : taxes) {
                 switch on tax.InstallmentNumber__c{
                     when '1' {
@@ -470,7 +470,8 @@ public class PropostaCrossController {
         if (page == 'Two') {
             this.frequencyTwoValues = new List<String>();
             String antecipation = quote.Opportunity.Antecipation_Frequency_2__c;
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true];
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipation AND TaxaBaseAntecipacao__c = :this.anticipationFees AND IsActive__c = true
+            AND  Type__c = 'crossborder'];
 
             for(Taxes__c tax : taxes) {
                 switch on tax.InstallmentNumber__c{

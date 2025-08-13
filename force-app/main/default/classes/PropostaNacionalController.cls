@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 08-08-2025
+ * @last modified on  : 08-12-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -13,6 +13,7 @@ public class PropostaNacionalController {
     public String accountOwnerName { get; set; }
     public String accountOwnerEmail { get; set; }
     public String accountOwnerMobilePhone { get; set; }
+    public String opportunityOwnerName { get; set; }
     public Boolean containsShopify { get; set; }
     public Boolean containsGateway { get; set; }
     public Boolean containsCreditCard { get; set; }
@@ -39,6 +40,8 @@ public class PropostaNacionalController {
     public Boolean showZeroReserveOption { get; set; }
     public Boolean isGoogleOrApplePay { get; set; }
     public Boolean isFrequency { get; set; }
+    public String oppNationalPaymentMethod { get; set; }
+    public String pagshieldFraudeOpcionalOuMandatorio { get; set; }
 
 
     //Taxes
@@ -211,7 +214,7 @@ public class PropostaNacionalController {
                 'Opportunity.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c',
                 'Opportunity.Settlement_Frequency_Test__c', 'Opportunity.Payout__c', 'Opportunity.Antecipation_Frequency_1__c',
                 'Opportunity.Antecipation_Frequency_2__c', 'Opportunity.Settlement_Frequency_1__c','Opportunity.Other_Payments_Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c',
-                'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c',
+                'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.PagShield__c', 'Opportunity.Owner.Name',
                 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone', 'Opportunity.GooglePay__c', 'Opportunity.Other_Payments_Settlement_Frequency_2__c','Opportunity.Selected_Credit_Frequency__c', 'Opportunity.Selected_Credit_Frequency__c', 'Opportunity.Selected_Others_Frequency__c', 'Opportunity.ApplePay__c', 'Opportunity.Visible_Settlement_Frequency__c', 'Opportunity.Visible_Anticipation_Frequency__c' });
         }
 
@@ -257,6 +260,7 @@ public class PropostaNacionalController {
         this.accountOwnerName = quote.Account.Owner.Name;
         this.accountOwnerEmail = quote.Account.Owner.Email;
         this.accountOwnerMobilePhone = quote.Account.Owner.MobilePhone;
+        this.opportunityOwnerName = quote.Opportunity.Owner.Name;
         this.isPagShield = quote.Opportunity.PagShield__c;
         this.isGoogleOrApplePay = quote.opportunity.GooglePay__c  || quote.opportunity.ApplePay__c ? true: false;
         System.debug('isGoogleOrApplePay: ' + this.isGoogleOrApplePay);
@@ -271,6 +275,8 @@ public class PropostaNacionalController {
         this.isVisibleAnticipationFrequency = quote.Opportunity.Visible_Anticipation_Frequency__c;
         this.isVisibleSettlementFrequency = quote.Opportunity.Visible_Settlement_Frequency__c;
         tableTaxPaymentPopulation(quote);
+        this.oppNationalPaymentMethod = quote.Opportunity.NationalPaymentMethod__c;
+        this.pagshieldFraudeOpcionalOuMandatorio = this.isPagShield ? (this.containsGateway ? (this.oppNationalPaymentMethod.contains('Cartão de Crédito') ? '(opcional)' : '(mandatório)') : '(mandatório)') : '';
     }
 
     private void tableTaxPaymentPopulation(Quote quote) {
@@ -1216,7 +1222,7 @@ public class PropostaNacionalController {
             System.debug('getParcelas page: ' + this.taxaAntecipacao);
             String settlementFrequency = quote.Opportunity.Settlement_Frequency_1__c;
             System.debug('getParcelas settlementFrequency: ' + settlementFrequency);
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true and Type__c = 'national'];
             if(!taxes.isEmpty()) {
                 this.isFrequency = true;
             }
@@ -1266,7 +1272,7 @@ public class PropostaNacionalController {
 
         if (page == 'Two') {
             String settlementFrequency = quote.Opportunity.Settlement_Frequency_2__c;
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true];
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true AND  Type__c = 'national'];
             if(!taxes.isEmpty()) {
                 this.isFrequency = true;
             }

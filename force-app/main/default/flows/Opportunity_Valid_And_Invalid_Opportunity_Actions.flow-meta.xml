@@ -80,7 +80,7 @@
     </choices>
     <choices>
         <name>Make_other_valid_opportunities_invalid</name>
-        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Make other &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;VALID&lt;/strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; opportunities on this account &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;INVALID&lt;/strong&gt;</choiceText>
+        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Turn this opportunity &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;VALID&lt;/strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; and other opportunities &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;INVALID&lt;/strong&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue> Make other valid opportunities invalid</stringValue>

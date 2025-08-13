@@ -20,6 +20,7 @@
 <apex:variable var="accountOwnerName" value="{!accountOwnerName}" />
 <apex:variable var="accountOwnerEmail" value="{!accountOwnerEmail}" />
 <apex:variable var="accountOwnerMobilePhone" value="{!accountOwnerMobilePhone}" />
+<apex:variable var="opportunityOwnerName" value="{!opportunityOwnerName}" />
 <apex:variable var="containsShopify" value="{!containsShopify}" />
 <apex:variable var="containsSalesforce" value="{!isSalesforce}" />
 <apex:variable var="containsGateway" value="{!containsGateway}" />
@@ -1726,7 +1727,7 @@
                     <apex:outputText value="com geração de" style="position: absolute; top: 261px; left: 370px; white-space: nowrap; color: #707070; font-size: 15px;"/>
                     <apex:outputText value="pontuação instantânea" style="position: absolute; top: 280px; left: 80px; white-space: nowrap; color: #707070; font-size: 15px;"/>
 
-                    <apex:outputText value="PagShield®️ prevenção de fraude (mandatório)" style="position: absolute; top: 400px; left: 120px; white-space: nowrap; color: #0058B5; font-size: 16px; font-weight: bold"/>
+                    <apex:outputText value="PagShield®️ prevenção de fraude {!pagshieldFraudeOpcionalOuMandatorio}" style="position: absolute; top: 400px; left: 120px; white-space: nowrap; color: #0058B5; font-size: 16px; font-weight: bold"/>
                     <apex:outputText value="PagShield®️ Premium (opcional)" style="position: absolute; top: 450px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
                     <apex:outputText value="PagShield®️ Premium On-Demand (mediante solicitação pontual)" style="position: absolute; top: 500px; left: 120px; white-space: nowrap; color: #161716; font-size: 16px;"/>
 
@@ -1836,7 +1837,7 @@
                 <p style="position: absolute; top: 220px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color:#030303">{!oppName}</p>
                 <p style="position: absolute; top: 285px; left: 58px; font-weight: bold; font-size: 20px; white-space: nowrap; color: #030303;">{!stringDate}</p>
                 <p style="position: absolute; top: 350px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #828181;">*Esta proposta é válida por 30 dias após a data do envio.</p>
-                <p style="position: absolute; top: 220px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerName}</p>
+                <p style="position: absolute; top: 220px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!opportunityOwnerName}</p>
                 <p style="position: absolute; top: 250px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">Account Manager</p>
                 <img src="{!$Resource.PNLocationIcon}" style="position: absolute; top: 345px; left: 680px; width: 35px;"/>
                 <p style="position: absolute; top: 320px; left: 780px; font-size: 16px; white-space: nowrap; color:#030303;">

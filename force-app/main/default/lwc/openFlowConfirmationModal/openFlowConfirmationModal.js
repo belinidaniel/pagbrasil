@@ -3,6 +3,7 @@ import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import { getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import shouldShowModal from '@salesforce/apex/OpportunityUtils.shouldShowModal';
 
 import SETTLEMENT_1 from '@salesforce/schema/Opportunity.Settlement_Frequency_1__c';
 import SETTLEMENT_2 from '@salesforce/schema/Opportunity.Settlement_Frequency_2__c';
@@ -17,8 +18,6 @@ import SYNCED_QUOTE_ID from '@salesforce/schema/Opportunity.SyncedQuoteId';
 import RECORD_TYPE_ID from '@salesforce/schema/Opportunity.RecordTypeId';
 import IS_OPPORTUNITY_VALID from '@salesforce/schema/Opportunity.Is_Opportunity_Valid__c';
 import VISIBLE_SETTLEMENT from '@salesforce/schema/Opportunity.Visible_Settlement_Frequency__c';
-import SELECTED_CREDIT_FREQ from '@salesforce/schema/Opportunity.Selected_Credit_Frequency__c';
-import SELECTED_OTHERS_FREQ from '@salesforce/schema/Opportunity.Selected_Others_Frequency__c';
 
 const FIELDS = [
     SETTLEMENT_1, SETTLEMENT_2, ANTECIPATION_1, ANTECIPATION_2,
@@ -48,33 +47,38 @@ export default class OpenFlowModal extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
     wiredRecord({ data }) {
         if (data) {
-            const stage = getFieldValue(data, STAGE_NAME);
-            const responded = getFieldValue(data, ANSWERED);
             this.recordTypeId = getFieldValue(data, RECORD_TYPE_ID);
             this.isOpportunityValid = getFieldValue(data, IS_OPPORTUNITY_VALID);
             this.visibleSettlement = getFieldValue(data, VISIBLE_SETTLEMENT);
             this.visibleOthersSettlement = getFieldValue(data, VISIBLE_OTHERS_SETTLEMENT);
 
-            if (stage === 'Contract' && !responded) {
-                this.showModal = true;
-                this.confirmStep = 'chooseFrequencies';
-                this.originalValues = {
-                    s1: getFieldValue(data, SETTLEMENT_1),
-                    s2: getFieldValue(data, SETTLEMENT_2),
-                    a1: getFieldValue(data, ANTECIPATION_1),
-                    a2: getFieldValue(data, ANTECIPATION_2),
-                    osf1: getFieldValue(data, OTHER_SETTLEMENT_1)
-                };
-                this.selectedValues = {
-                    s1: getFieldValue(data, SETTLEMENT_1) || '',
-                    s2: getFieldValue(data, SETTLEMENT_2) || '',
-                    a1: getFieldValue(data, ANTECIPATION_1) || '',
-                    a2: getFieldValue(data, ANTECIPATION_2) || '',
-                    osf1: getFieldValue(data, OTHER_SETTLEMENT_1) || ''
-                };
-                this.selectedCreditFrequency = '1';
-                this.selectedOthersFrequency = '1';
-            }
+            // Chama Apex para validar regra completa
+            shouldShowModal({ opportunityId: this.recordId })
+                .then(canShow => {
+                    if (canShow) {
+                        this.showModal = true;
+                        this.confirmStep = 'chooseFrequencies';
+                        this.originalValues = {
+                            s1: getFieldValue(data, SETTLEMENT_1),
+                            s2: getFieldValue(data, SETTLEMENT_2),
+                            a1: getFieldValue(data, ANTECIPATION_1),
+                            a2: getFieldValue(data, ANTECIPATION_2),
+                            osf1: getFieldValue(data, OTHER_SETTLEMENT_1)
+                        };
+                        this.selectedValues = {
+                            s1: getFieldValue(data, SETTLEMENT_1) || '',
+                            s2: getFieldValue(data, SETTLEMENT_2) || '',
+                            a1: getFieldValue(data, ANTECIPATION_1) || '',
+                            a2: getFieldValue(data, ANTECIPATION_2) || '',
+                            osf1: getFieldValue(data, OTHER_SETTLEMENT_1) || ''
+                        };
+                        this.selectedCreditFrequency = '1';
+                        this.selectedOthersFrequency = '1';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao verificar modal:', error);
+                });
         }
     }
 

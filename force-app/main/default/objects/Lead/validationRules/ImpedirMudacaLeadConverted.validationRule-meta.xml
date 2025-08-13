@@ -6,7 +6,8 @@
     <errorConditionFormula>AND(
   ISPICKVAL(Status, &quot;Closed - Converted&quot;),
 		$Profile.Name &lt;&gt; &quot;System Administrator&quot;,
-  NOT(ISNEW())
+  NOT(ISNEW()),
+  NOT(ISCHANGED(IsConverted)) 
 )</errorConditionFormula>
     <errorMessage>O Lead se encontra com o &apos;Lead Status&apos; como &apos;Closed - Converted&apos; não sendo possível modifica-lo</errorMessage>
 </ValidationRule>

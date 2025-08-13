@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>KYC_NB_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KYC NB URL</shortDescription>
+        <value>https://kyc.pagbrasil.com</value>
+    </labels>
+    <labels>
+        <fullName>KYC_Staging_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>National KYC Form</shortDescription>
+        <value>https://kyc-staging.pagbrasil.com</value>
+    </labels>
+    <labels>
+        <fullName>KYC_XB_Staging_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Crossborder KYC Form</shortDescription>
+        <value>https://kyc-xb-staging.pagbrasil.com</value>
+    </labels>
+    <labels>
+        <fullName>KYC_XB_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KYC XB URL</shortDescription>
+        <value>https://kyc-xb.pagbrasil.com</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Additional_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Additional Information Section</shortDescription>
+        <value>Informações Adicionais</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Business_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Business Information Section</shortDescription>
+        <value>Informações de Negócio</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Dates_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Dates Section</shortDescription>
+        <value>Datas</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Information Section</shortDescription>
+        <value>Informações da Oportunidade</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Products_and_Services_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Products and Services Section</shortDescription>
+        <value>Produtos e Serviços</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Settlement_and_Antecipation_Frequency_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Settlement and Antecipation Frequency Section</shortDescription>
+        <value>Modelo de Repasse e Antecipação</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_System_Information_Section</fullName>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity System Information Section</shortDescription>
+        <value>Informações do Sistema</value>
+    </labels>
+    <labels>
         <fullName>RCC_Question_1</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -83,5 +160,12 @@
         <protected>false</protected>
         <shortDescription>False</shortDescription>
         <value>Com quem foi realizada a negociação?</value>
+    </labels>
+    <labels>
+        <fullName>Teste</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RCC Question1</shortDescription>
+        <value>Nenhuma atividade praticada com produtos/serviços restritos pelas políticas da PagBrasil?</value>
     </labels>
 </CustomLabels>

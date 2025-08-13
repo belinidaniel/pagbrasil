@@ -9,33 +9,44 @@
 public class ApprovalKYCHandlerTest {
 	@testSetup
 	static void setupTestData() {
-		Account acct = new Account(Name = 'Test Account', Type = 'Customer');
+		Account acct = new Account(
+			Name = 'Conta teste',
+            Filial_no_Brasil__c = 'Sim',
+            Nome_Empresarial__c = 'Empresa X',
+            BillingCountry = 'Brasil'
+		);
 		insert acct;
 
 		Contact c = new Contact(FirstName = 'Test', LastName = 'User', AccountId = acct.Id, Email = 'test@example.com');
 		insert c;
 
+		Id nationalRT = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('NaTional').getRecordTypeId();
+
 		Opportunity opp = new Opportunity(
-			Name='Test Opp',
-			StageName='Prospecting',
-			CloseDate=Date.today(),
-			ForecastCategoryName = 'Pipeline',
-			Probability = 10,
+			Name = 'Opp1',
+			CloseDate = Date.today().addDays(30),
 			AccountId = acct.Id,
-			AverageSalesTicket__c = 1000,
+			RecordTypeId = nationalRT,
+			StageName = 'Contact',
+			Product_or_service_website_URL__c = 'www.google.com',
+			Transacoes_Mensais__c = 1213,
+			BusinessModel__c = 'Intermediation',
+			NationalPaymentMethod__c = 'Pix',
+			AverageSalesTicket__c = 15000.00,
+			ProductClass__c = '5331',
+			previs_fat_rs__c = 5000.00,
 			nb_receita_mensal__c = 50000,
-			previs_fat_rs__c = 40000,
+			Integracao__c = 'Salesforce CC',
+			Recorrencia__c = 'Yes',
+			Ticket_Medio__c = 123,
+			Product_Type__c = 'Digital',
 			Antecipation_Frequency_1__c = 'Weekly',
 			Antecipation_Frequency_2__c = 'Monthly',
 			Settlement_Frequency_1__c = 'Weekly',
 			Settlement_Frequency_2__c = 'Monthly',
 			Segmento__c = 'Gaming',
-			Product_Type__c = 'Digital',
-			BusinessModel__c = 'Intermediation',
-			BusinessModelType__c = 'B2C',
-			NationalPaymentMethod__c = 'Pix',
-			PaymentRecurrence__c = 'Sim',
-			IntegrationType__c = 'API'
+			IntegrationType__c = 'API',
+			PaymentRecurrence__c = 'Sim'
 		);
 		insert opp;
 

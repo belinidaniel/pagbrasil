@@ -3,7 +3,7 @@
     <fullName>ForecastSales__c</fullName>
     <description>Como será alcançado o forecast de vendas?</description>
     <externalId>false</externalId>
-    <label>ForecastSales</label>
+    <label>How will the sales forecast be achieved?</label>
     <length>255</length>
     <required>false</required>
     <trackHistory>false</trackHistory>

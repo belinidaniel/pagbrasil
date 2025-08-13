@@ -71,6 +71,38 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;strong style=&quot;color: rgb(212, 0, 0); font-size: 18px;&quot;&gt;You must complete and check the &lt;u&gt;Final Risk&lt;/u&gt; field before approving or refusing.&lt;/strong&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.LegalApprovalStatus__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Pending Approval Legal</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Legal &amp; Compliance</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>System Administrator</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>force:detailPanel</componentName>
                 <identifier>force_detailPanel</identifier>
             </componentInstance>
@@ -160,6 +192,29 @@
                 </componentInstanceProperties>
                 <componentName>force:relatedListSingleContainer</componentName>
                 <identifier>force_relatedListSingleContainer</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Final_Risk__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Baixo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Final_Risk__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Médio</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Final_Risk__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Alto</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Final_Risk__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Extremo</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>Facet-cd2723b4-3d7b-4d35-9d3d-8abef02634a4</name>

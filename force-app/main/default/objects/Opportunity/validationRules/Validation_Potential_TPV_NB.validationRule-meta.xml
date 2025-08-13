@@ -6,9 +6,10 @@
 LOWER($RecordType.DeveloperName) = &quot;national&quot;,
 ISBLANK(nb_receita_mensal__c)
 )</description>
-    <errorConditionFormula>AND(
+    <errorConditionFormula>AND( NOT ( AND ( $Profile.Name = &apos;System Administrator&apos; , CreatedDate &lt;= DATETIMEVALUE(DATE(2025,8,10)) ) ) ,
+AND(
 LOWER($RecordType.DeveloperName) = &quot;national&quot;,
 ISBLANK(nb_receita_mensal__c)
-)</errorConditionFormula>
+) )</errorConditionFormula>
     <errorMessage>The Potential TPV field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

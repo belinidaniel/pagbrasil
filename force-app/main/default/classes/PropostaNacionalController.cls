@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-29-2025
+ * @last modified on  : 08-08-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaNacionalController {
@@ -239,6 +239,7 @@ public class PropostaNacionalController {
         this.page10 = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina10DF';
 
         this.stringDate = formatStringDate();
+        this.isFrequency = quote.Opportunity.Visible_Settlement_Frequency__c;
     }
 
     private String validateNumbersWithRegex(String value) {
@@ -278,41 +279,49 @@ public class PropostaNacionalController {
     }
 
     private void setTaxValues(Quote quote ) {
-        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 5000000) {
+        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 500000) {
             this.valueOne = '> R$ 1M';
             this.valueTwo = 'R$ 500k - R$ 1M';
             this.valueThree = 'R$ 100k - R$ 500k';
             this.valueFour = '< R$ 100k';
 
-            if (quote.Opportunity.previs_fat_rs__c != null) {
-                Decimal revenue = quote.Opportunity.previs_fat_rs__c;
-                if (revenue >= 1000000) {
-                    this.highlightedLineOne = true;
-                } else if (revenue >= 500000) {
-                    this.highlightedLineTwo = true;
-                } else if (revenue >= 100000) {
-                    this.highlightedLineThree = true;
-                } else if (revenue < 100000) {
-                    this.highlightedLineFour = true;
-                } // If you want to handle < 500K, you can add another flag
+            Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+            if (revenue >= 100000) {
+                this.highlightedLineThree = true;
+            } else if (revenue < 100000) {
+                this.highlightedLineFour = true;
             }
-        }else if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c >= 5000000) {
+
+        } else if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 5000000) {
+            this.valueOne = '> R$ 5M';
+            this.valueTwo = 'R$ 1M - R$ 5M';
+            this.valueThree = 'R$ 500k - R$ 1M';
+            this.valueFour = '< R$ 500k';
+
+            Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+            if (revenue >= 1000000) {
+                this.highlightedLineTwo = true;
+            } else if (revenue >= 500000) {
+                this.highlightedLineThree = true;
+            } else if (revenue < 500000) {
+                this.highlightedLineFour = true;
+            }
+
+        } else if (quote.Opportunity.previs_fat_rs__c != null) {
             this.valueOne = '> R$ 10M';
             this.valueTwo = 'R$ 5M - R$ 10M';
             this.valueThree = 'R$ 1M - R$ 5M';
             this.valueFour = 'R$ 500K - R$ 1M';
 
-            if (quote.Opportunity.previs_fat_rs__c != null) {
-                Decimal revenue = quote.Opportunity.previs_fat_rs__c;
-                if (revenue >= 10000000) {
-                    this.highlightedLineOne = true;
-                } else if (revenue >= 5000000) {
-                    this.highlightedLineTwo = true;
-                } else if (revenue >= 1000000) {
-                    this.highlightedLineThree = true;
-                } else if (revenue >= 500000) {
-                    this.highlightedLineFour = true;
-                } // If you want to handle < 500K, you can add another flag
+            Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+            if (revenue >= 10000000) {
+                this.highlightedLineOne = true;
+            } else if (revenue >= 5000000) {
+                this.highlightedLineTwo = true;
+            } else if (revenue >= 1000000) {
+                this.highlightedLineThree = true;
+            } else if (revenue >= 500000) {
+                this.highlightedLineFour = true;
             }
         } 
     }

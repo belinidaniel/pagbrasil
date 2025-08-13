@@ -2641,7 +2641,7 @@
         </values>
         <values>
             <fullName>Pix</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -4746,6 +4746,10 @@
         </values>
         <values>
             <fullName>Middle Touch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PB Eleva</fullName>
             <default>false</default>
         </values>
         <values>

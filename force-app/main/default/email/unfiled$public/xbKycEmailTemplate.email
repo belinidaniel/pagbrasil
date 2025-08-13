@@ -40,7 +40,7 @@
                     </span>
                     <span style="display:block;font-family:Calibri,Arial,sans-serif;font-size:13px;margin-top:10px;">
                       Please complete the KYC form as soon as possible so we can proceed with your onboarding process:<br><br>
-                      <a href="{!$Label.KYC_XB_Staging_URL}/?id={!KYC_XB__c.Unique_Link__c}"
+                      <a href="{!$Label.KYC_XB_URL}/?id={!KYC_XB__c.Unique_Link__c}"
                          style="display:inline-block;padding:6px 18px;background-color:#238c45;color:#fff;font-family:Calibri,Arial,sans-serif;font-size:12px;font-weight:bold;text-decoration:none;border-radius:6px;box-shadow:0 2px 8px rgba(35,140,69,0.12);transition:background 0.2s;border:none;">
                         KYC Form
                       </a><br><br>

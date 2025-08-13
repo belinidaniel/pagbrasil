@@ -3,7 +3,7 @@
     <fullName>CheckID__c</fullName>
     <description>Como foi realizado ID Check com o representante legal?</description>
     <externalId>false</externalId>
-    <label>CheckID</label>
+    <label>ID check method with legal rep?</label>
     <length>255</length>
     <required>false</required>
     <trackHistory>false</trackHistory>

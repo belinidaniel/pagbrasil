@@ -18,6 +18,14 @@
         </approvalActions>
         <assignedApprover>
             <approver>
+                <name>fernanda.martins@pagbrasil.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>gustavo.pias@srconsulting.io.sandboxsr</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>lucas.nannini@pagbrasil.com</name>
                 <type>user</type>
             </approver>

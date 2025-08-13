@@ -91,8 +91,8 @@ public class OpportunityWrapperTest {
             NotInterestedInOfferingDiscount__c = 'Yes',
             RequirementResponseTime__c = 'Yes',
             RequirementPriceFormat__c = 'Yes',
-            RequirementZipCodeValidator__c = 'Yes',
-            RequirementInfoValidator__c = 'Yes',
+            RequirementZipCodeValidator__c = 'Integration is not API, a validator already exists',
+            RequirementInfoValidator__c = 'Integration is not API, a validator already exists',
             AlreadyRequestedReclameAqui__c = 'Yes',
             Opportunity__c = testOpportunity.Id,
             Account__c = testAccount.Id

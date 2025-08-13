@@ -50,11 +50,6 @@
                 <label>Cryptocurrencies</label>
             </value>
             <value>
-                <fullName>D2C</fullName>
-                <default>false</default>
-                <label>D2C</label>
-            </value>
-            <value>
                 <fullName>Decoração</fullName>
                 <default>false</default>
                 <label>Decoration &amp; Home</label>
@@ -155,11 +150,6 @@
                 <label>Pet Products &amp; Services</label>
             </value>
             <value>
-                <fullName>Produtos físicos</fullName>
-                <default>false</default>
-                <label>Physical Products</label>
-            </value>
-            <value>
                 <fullName>Restaurantes</fullName>
                 <default>false</default>
                 <label>Restaurants</label>
@@ -173,11 +163,6 @@
                 <fullName>Software/Saas B2B</fullName>
                 <default>false</default>
                 <label>Software &amp; SaaS</label>
-            </value>
-            <value>
-                <fullName>Sports Betting</fullName>
-                <default>false</default>
-                <label>Sports Betting</label>
             </value>
             <value>
                 <fullName>Papelaria</fullName>
@@ -209,6 +194,24 @@
                 <default>false</default>
                 <isActive>false</isActive>
                 <label>AdultContent</label>
+            </value>
+            <value>
+                <fullName>D2C</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>D2C</label>
+            </value>
+            <value>
+                <fullName>Produtos físicos</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Physical Products</label>
+            </value>
+            <value>
+                <fullName>Sports Betting</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sports Betting</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-23-2025
+  @last modified on  : 07-30-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page showHeader="false" 
@@ -541,7 +541,7 @@
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!package10000Emails} BRL (10,000 e-mail notifications)<br/>{!package10000Sms} BRL (10,000 SMS notifications)</td>
                                 </tr>
                                 <tr>
-                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card</td>
+                                    <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card <br/><span style="font-weight: normal;">(opcional)</span></td>
                                     <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">0.2% added to the Pix processing fee</td>
                                 </tr>
                             </tbody>
@@ -830,7 +830,7 @@
                                         <strong>PagShield®</strong><br/>
                                         {!IF(opportunityProductType = 'Physical', 'Required', 'Optional')} for credit card processing
                                     </td>
-                                    <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">{!pagShieldFraudPrevention} BRL per analysis</td>
+                                    <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">{!custoPagshieldCross} BRL per analysis</td>
                                 </tr>
                                 <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px;">
@@ -838,9 +838,15 @@
                                         Pre-authorizations analysis by the PagBrasil fraud prevention team
                                     </td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
-                                        {!pagShieldPremiumFixedFee} BRL per analysis +<br/>
-                                        {!pagShieldPremiumVariableFee}% of the transactional value +<br/>
-                                        {!pagShieldFraudPrevention} BRL (service fee)
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumFixedFee))}">
+                                            {!pagShieldPremiumFixedFee} BRL per analysis<br/>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumVariableFee))}">
+                                            {!pagShieldPremiumVariableFee}% of the transactional value<br/>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldFraudPrevention))}">
+                                            {!pagShieldFraudPrevention} BRL (service fee)
+                                        </apex:outputPanel>
                                     </td>
                                 </tr>
                             </tbody>

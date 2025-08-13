@@ -23,7 +23,7 @@ private class ContentDocumentLinkHandlerTest {
 
 		nationalOpp = new Opportunity(
 			Name = 'National Opp',
-			StageName = 'Prospecting',
+			StageName = 'Discovery',
 			CloseDate = Date.today(),
 			ForecastCategoryName = 'Pipeline',
 			CurrencyIsoCode = UserInfo.getDefaultCurrency(),
@@ -32,10 +32,6 @@ private class ContentDocumentLinkHandlerTest {
 			AverageSalesTicket__c = 1000,
 			nb_receita_mensal__c = 50000,
 			previs_fat_rs__c = 40000,
-			Antecipation_Frequency_1__c = 'Weekly',
-			Antecipation_Frequency_2__c = 'Monthly',
-			Settlement_Frequency_1__c = 'Weekly',
-			Settlement_Frequency_2__c = 'Monthly',
 			Segmento__c = 'Gaming',
 			Product_Type__c = 'Digital',
 			BusinessModel__c = 'Intermediation',
@@ -43,12 +39,41 @@ private class ContentDocumentLinkHandlerTest {
 			NationalPaymentMethod__c = 'Pix',
 			PaymentRecurrence__c = 'Sim',
 			IntegrationType__c = 'API',
-			RecordTypeId = nationalRecordTypeId
+			RecordTypeId = nationalRecordTypeId,
+			Product_or_service_website_URL__c = 'www.google.com',
+			Transacoes_Mensais__c = 1213,
+			ProductClass__c = '5331',
+			Integracao__c = 'Salesforce CC',
+			Recorrencia__c = 'Yes',
+			Ticket_Medio__c = 123
         );
 
-		otherOpp = nationalOpp.clone(false);
-		otherOpp.Name = 'Other Opp';
-		otherOpp.RecordTypeId = nonNationalRecordTypeId;
+		otherOpp = new Opportunity(
+			Name = 'Crossborder Opp',
+			StageName = 'Discovery',
+			CloseDate = Date.today(),
+			ForecastCategoryName = 'Pipeline',
+			CurrencyIsoCode = UserInfo.getDefaultCurrency(),
+			Probability = 10,
+			AccountId = acct.Id,
+			AverageSalesTicket__c = 1000,
+			nb_receita_mensal__c = 50000,
+			previs_fat_rs__c = 40000,
+			Segmento__c = 'Gaming',
+			Product_Type__c = 'Digital',
+			BusinessModel__c = 'Intermediation',
+			BusinessModelType__c = 'B2C',
+			NationalPaymentMethod__c = 'Pix',
+			PaymentRecurrence__c = 'Sim',
+			IntegrationType__c = 'API',
+			RecordTypeId = nonNationalRecordTypeId,
+			Product_or_service_website_URL__c = 'www.google.com',
+			Transacoes_Mensais__c = 1213,
+			ProductClass__c = '5331',
+			Integracao__c = 'Salesforce CC',
+			Recorrencia__c = 'Yes',
+			Ticket_Medio__c = 123
+        );
 		insert new List<Opportunity>{ nationalOpp, otherOpp };
 
 		ContentVersion cv1 = new ContentVersion(Title = 'Doc 1', PathOnClient = 'doc1.pdf', VersionData = Blob.valueOf('content1'));
@@ -74,7 +99,7 @@ private class ContentDocumentLinkHandlerTest {
 
 	@isTest
 	static void testAfterInsert_WithNonNational() {
-		Id oppId = [SELECT Id FROM Opportunity WHERE Name = 'Other Opp' LIMIT 1].Id;
+		Id oppId = [SELECT Id FROM Opportunity WHERE Name = 'Crossborder Opp' LIMIT 1].Id;
 		Id docId = [SELECT ContentDocumentId FROM ContentVersion WHERE Title = 'Doc 2' LIMIT 1].ContentDocumentId;
 		ContentDocumentLink link = new ContentDocumentLink(ContentDocumentId = docId, LinkedEntityId = oppId, ShareType = 'V', Visibility = 'AllUsers');
 		insert link;
@@ -111,33 +136,49 @@ private class ContentDocumentLinkHandlerTest {
     @isTest
     static void testHandleOrderCompleteCalled() {
         // Criação de conta e oportunidade com todos os campos preenchidos
-        Account acc = new Account(Name = 'Test Account');
+        Account acc = new Account(Name = 'Test Account', Type = 'Customer');
         insert acc;
 
+		Id nbRecordTypeId;
+		Id xbRecordTypeId;
+
+		List<RecordType> rts = [SELECT Id, Name FROM RecordType WHERE SObjectType = 'Opportunity'];
+		for (RecordType rt : rts) {
+			if (rt.Name == 'National') {
+				nbRecordTypeId = rt.Id;
+			} else {
+				xbRecordTypeId = rt.Id;
+			}
+		}
+
         Opportunity opp = new Opportunity(
-            Name = 'Test Opportunity with QuoteLineItems',
-            StageName = 'Negotiation',
-            CloseDate = Date.today().addDays(30),
-            BusinessModel__c = 'Intermediation',
-            NationalPaymentMethod__c = 'Cartão de Crédito',
-            Product_or_service_website_URL__c = 'www.site.com',
-            AverageSalesTicket__c = 15000.00,
-            ProductClass__c = '5331',
-            previs_fat_rs__c = 5000.00,
-            Integracao__c = 'API',
-            IntegrationType__c = 'Salesforce',
-            Recorrencia__c = 'Yes',
-            Transacoes_Mensais__c = 123,
-            Ticket_Medio__c = 123,
-            PaymentRecurrence__c = 'Não',
-            Product_Type__c = 'Physical',
-            Segmento__c = 'Gaming',
-            nb_receita_mensal__c = 5000.00,
-            AccountId = acc.Id,
-            Antecipation_Frequency_1__c = 'Monthly',
-            Antecipation_Frequency_2__c = 'Monthly',
-            Settlement_Frequency_1__c = 'Monthly',
-            Settlement_Frequency_2__c = 'Monthly'
+            Name = 'National Opp',
+			StageName = 'Discovery',
+			CloseDate = Date.today(),
+			ForecastCategoryName = 'Pipeline',
+			Probability = 10,
+			AccountId = acc.Id,
+			AverageSalesTicket__c = 1000,
+			nb_receita_mensal__c = 50000,
+			previs_fat_rs__c = 40000,
+			Antecipation_Frequency_1__c = 'Monthly',
+			Antecipation_Frequency_2__c = 'Monthly',
+			Settlement_Frequency_1__c = 'Monthly',
+			Settlement_Frequency_2__c = 'Monthly',
+			Segmento__c = 'Gaming',
+			Product_Type__c = 'Digital',
+			BusinessModel__c = 'Intermediation',
+			BusinessModelType__c = 'B2C',
+			NationalPaymentMethod__c = 'Pix',
+			PaymentRecurrence__c = 'Sim',
+			IntegrationType__c = 'API',
+			RecordTypeId = nbRecordTypeId,
+			Product_or_service_website_URL__c = 'www.google.com',
+			Transacoes_Mensais__c = 1213,
+			ProductClass__c = '5331',
+			Integracao__c = 'Salesforce CC',
+			Recorrencia__c = 'Yes',
+			Ticket_Medio__c = 123
         );
         insert opp;
 

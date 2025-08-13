@@ -17,6 +17,7 @@
     <permissionSets>Lead_Can_Edit</permissionSets>
     <permissionSets>Lead_Converter_Permission</permissionSets>
     <permissionSets>Opportunities_Can_Edit</permissionSets>
+    <permissionSets>Opportunity_Can_Create</permissionSets>
     <permissionSets>Opportunity_Edit_All_Stages</permissionSets>
     <permissionSets>Price_Book_Can_View_All</permissionSets>
     <permissionSets>Product_Can_View_All</permissionSets>

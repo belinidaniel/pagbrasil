@@ -1,50 +1,134 @@
-<messaging:emailTemplate subject="Aprovação flex" recipientType="User" relatedToType="Quote">
-<messaging:htmlEmailBody >
+<messaging:emailTemplate subject="Aprovação de Cotação - { !relatedTo.Name }" recipientType="User" relatedToType="Quote">
+  <messaging:htmlEmailBody >
     <html>
-        <head>
-            <style>
-                table, th, td {
-                  border: 1px solid black;
-                  border-collapse: collapse;
-                }
-                .titulo {
-                   font-weight: bold;
-                }
-            </style>
-        </head>
-        <body>
-           <p>Olá,</p>
-           <p>Você precisa aprovar a cotação <b>{!relatedTo.Name}</b> número <b>{!relatedTo.quoteNumber}</b>, referente à oportunidade <b>{!relatedTo.Opportunity.Name}</b>, do cliente <b>{!relatedTo.Account.Name}</b>.</p>
-           <p>Faturamento: {!relatedTo.Opportunity.previs_fat_rs__c}</p>
-           <table>
-                <tr>
-                    <td class="titulo">Número</td>
-                    <td class="titulo">Valor Informado</td>
-                    <td class="titulo">Valor Board</td>
-                    <td class="titulo">Valor Head</td>
-                    <td class="titulo">Nível de Aprovação</td>
-                </tr>
-                <apex:repeat var="item" value="{!relatedTo.QuoteLineItems}">
-                <apex:outputPanel layout="block" rendered="{!item.NeedsApproval__c == 'Board' || item.NeedsApproval__c == 'Head'}">
-                <tr>
-                    <td><apex:outputField value="{!item.LineNumber}"/></td>
-                    <td>
-                        <apex:outputField rendered="{!item.PercentValue__c != NULL && item.PercentValue__c != 0}" value="{!item.PercentValue__c }"/> 
-<apex:outputText rendered="{!item.UnitPrice != NULL && item.UnitPrice != 0}" value="{0,number,###,##0.00}">
-    <apex:param value="{!item.UnitPrice}" />
-</apex:outputText>
-                    </td>
-                    <td><apex:outputField value="{!item.Board__c}"/></td>
-                    <td><apex:outputField value="{!item.Head__c}"/></td>
-                    <td><apex:outputField value="{!item.NeedsApproval__c}"/></td>
-                </tr>
-                </apex:outputPanel>
-            </apex:repeat>
-            </table>
-           <br>Para aprovar, reprovar ou sugerir uma reanálise, clique no <b>link abaixo</b> e acesse o painel de controle da plataforma.</br>
-            <p><apex:outputLink value="https://pagbrasil--sandboxsr1.sandbox.lightning.force.com/lightning/r/Quote/{!relatedTo.Id}/view">Acessar Proposta</apex:outputLink></p>  
-        </body>
-     </html>
+      <head>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+          }
+          .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+          }
+          h2 {
+            color: #333;
+          }
+          p {
+            color: #555;
+            line-height: 1.5;
+          }
+          .highlight {
+            font-weight: bold;
+            color: #0070d2;
+          }
+          .table-container {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
+          .table-container th, .table-container td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+          }
+          .table-container th {
+            background-color: #f3f3f3;
+            color: #333;
+          }
+          .table-container td {
+            background-color: #fafafa;
+          }
+          .approved-value {
+            font-weight: bold;
+            color: #28a745;
+          }
+          .pending-value {
+            font-weight: bold;
+            color: #ffc107;
+          }
+          .rejected-value {
+            font-weight: bold;
+            color: #dc3545;
+          }
+          .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0070d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+          }
+          .currency-symbol {
+            font-weight: bold;
+            color: #333;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h2>Aprovação de Cotação - {!relatedTo.Name}</h2>
+          <p>Olá,</p>
+          <p>Você precisa aprovar a cotação <span class="highlight">{!relatedTo.Name}</span>, número <span class="highlight">{!relatedTo.quoteNumber}</span>, referente à oportunidade <span class="highlight">{!relatedTo.Opportunity.Name}</span>, do cliente <span class="highlight">{!relatedTo.Account.Name}</span>.</p>
 
-</messaging:htmlEmailBody>
+          <!-- TPV PagBrasil e Faturamento formatados como R$ -->
+          <p><strong>TPV PagBrasil:</strong> <span class="highlight">
+            R$ {!IF(relatedTo.Opportunity.previs_fat_rs__c != NULL, TEXT(relatedTo.Opportunity.previs_fat_rs__c), '0,00')}
+          </span></p>         
+          <table class="table-container">
+            <thead>
+              <tr>
+                <th>Nome da Taxa</th>
+                <th>Valor Informado</th>
+                <th>Valor CEO</th>
+                <th>Valor Director</th>
+                <th>Nível de Aprovação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <apex:repeat var="item" value="{!relatedTo.QuoteLineItems}">
+                <apex:outputPanel layout="block" rendered="{!item.NeedsApproval__c == 'Board' || item.NeedsApproval__c == 'Head'}">
+                  <tr>
+                    <td>
+                      <apex:outputField value="{!item.Product2.Name}" />
+                    </td>
+                    <td>
+                      <apex:outputField rendered="{!item.PercentValue__c != NULL && item.PercentValue__c != 0}" value="{!item.PercentValue__c}" />
+                      <apex:outputText rendered="{!item.PercentValue__c == NULL || item.PercentValue__c == 0}" value="{0,number,###,##0.00}">
+                        <apex:param value="{!item.UnitPrice}" />
+                      </apex:outputText>
+                    </td>
+                    <td>
+                      <span class="approved-value">{!item.Board__c}</span>
+                    </td>
+                    <td>
+                      <span class="approved-value">{!item.Head__c}</span>
+                    </td>
+                    <td>
+                      <span class="{!IF(item.NeedsApproval__c == 'Board', 'pending-value', 'approved-value')}">
+                        {!IF(item.NeedsApproval__c == 'Board', 'CEO', 
+                        IF(item.NeedsApproval__c == 'Head', 'Director', item.NeedsApproval__c))}
+                      </span>
+                    </td>
+                  </tr>
+                </apex:outputPanel>
+              </apex:repeat>
+            </tbody>
+          </table>
+
+          <p>Para aprovar, reprovar ou sugerir uma reanálise, clique no <b>link abaixo</b> e acesse o painel de controle da plataforma.</p>
+          <p>
+            <a class="cta-button" href="https://pagbrasil--sandboxsr1.sandbox.lightning.force.com/lightning/r/Quote/{!relatedTo.Id}/view">Acessar Proposta</a>
+          </p>
+        </div>
+      </body>
+    </html>
+  </messaging:htmlEmailBody>
 </messaging:emailTemplate>

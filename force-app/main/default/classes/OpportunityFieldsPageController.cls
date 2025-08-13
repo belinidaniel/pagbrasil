@@ -77,7 +77,7 @@ public with sharing class OpportunityFieldsPageController {
 
     public Boolean hasShipment {
         get {
-            return wrapper != null && (wrapper.settlementFrequency != null || (wrapper.currencyMarkupSpread != null && wrapper.currencyMarkupSpread.percentValue != null));
+            return wrapper != null && ((wrapper.settlementFrequencyOne != null || wrapper.settlementFrequencyTwo != null) || (wrapper.currencyMarkupSpread != null && wrapper.currencyMarkupSpread.percentValue != null));
         }
     }
 

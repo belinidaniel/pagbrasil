@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Belini
   @group             : 
-  @last modified on  : 07-29-2025
+  @last modified on  : 08-06-2025
   @last modified by  : Daniel Belini
 -->
 <apex:page pageStyle=""
@@ -771,13 +771,13 @@
                     <p style="position: absolute; top: 15px; left: 135px; white-space: nowrap;color: #595959;"><strong>{!oppName}</strong></p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 487px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 487px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 487px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 487px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilOne}</p>
@@ -815,15 +815,15 @@
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 100px; font-size:20px; white-space: nowrap;">{!valueOne}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 390px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 620px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 390px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 620px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 390px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 620px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 390px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 620px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
@@ -864,17 +864,17 @@
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 405px; font-size:20px; white-space: nowrap;">{!valueFourFirstOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 550px; font-size:20px; white-space: nowrap;">{!valueFourSecondOption}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 700px; font-size:20px; white-space: nowrap;">{!valueFourThirdOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 405px; font-size:20px; white-space: nowrap;">{!valueThreeFirstOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 550px; font-size:20px; white-space: nowrap;">{!valueThreeSecondOption}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 700px; font-size:20px; white-space: nowrap;">{!valueThreeThirdOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 405px; font-size:20px; white-space: nowrap;">{!valueTwoFirstOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 550px; font-size:20px; white-space: nowrap;">{!valueTwoSecondOption}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 700px; font-size:20px; white-space: nowrap;">{!valueTwoThirdOption}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 405px; font-size:20px; white-space: nowrap;">{!valueOneFirstOption}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 550px; font-size:20px; white-space: nowrap;">{!valueOneSecondOption}</p>
@@ -918,19 +918,19 @@
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardFour}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardFour}</p>
                     <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoFour}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
+                    <p class="{!IF(highlightedLineOne, 'cor-alternative', 'cor')}" style="position: absolute; top: 255px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilFour}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 100px; font-size:20px; white-space: nowrap;">{!valueTwo}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 400px; font-size:20px; white-space: nowrap;">{!pixThree}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardThree}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardThree}</p>
                     <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoThree}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
+                    <p class="{!IF(highlightedLineTwo, 'cor-alternative', 'cor')}" style="position: absolute; top: 305px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 100px; font-size:20px; white-space: nowrap;">{!valueThree}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 400px; font-size:20px; white-space: nowrap;">{!pixTwo}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardTwo}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 640px; font-size:20px; white-space: nowrap;">{!debitCardTwo}</p>
                     <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 750px; font-size:20px; white-space: nowrap;">{!boletoTwo}</p>
-                    <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
+                    <p class="{!IF(highlightedLineThree, 'cor-alternative', 'cor')}" style="position: absolute; top: 360px; left: 890px; font-size:20px; white-space: nowrap;">{!TaxaBrasilTwo}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 100px; font-size:20px; white-space: nowrap;">{!valueFour}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 400px; font-size:20px; white-space: nowrap;">{!pixOne}</p>
                     <p class="{!IF(highlightedLineFour, 'cor-alternative', 'cor')}" style="position: absolute; top: 415px; left: 530px; font-size:20px; white-space: nowrap;">{!creditCardOne}</p>
@@ -1760,7 +1760,9 @@
                 <img src="{!$Resource.GoogleEApplePayPage}" class="background-image"/>
                 <img src="{!$Resource.Logo2025Preta}" style="background-color: #ffffff; position:absolute; z-index: 3; top:575px; left: 10px; width: 133px;"/>
             </div>
-
+            <apex:outputText value="© {!YEAR(TODAY())} PagBrasil" style="z-index: 3; position: absolute; top: 590px; left: 1010px; white-space: nowrap; color: #505050; font-size: 13px; font-weight: bold;" escape="false"/>
+            <apex:outputText value="informação confidencial - " style="z-index: 3; position: absolute; top: 610px; left: 956px; white-space: nowrap; color: #909090; font-size: 9px;" escape="false"/>
+            <apex:outputText value="Não divulgar" style="z-index: 3; position: absolute; top: 610px; left: 1060px; white-space: nowrap; color: #808080; font-size: 9px; font-weight: bold;"/>
         </apex:panelGroup>
     
         <!-- Page 19 -->

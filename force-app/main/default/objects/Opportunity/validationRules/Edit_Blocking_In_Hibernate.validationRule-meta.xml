@@ -2,6 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Edit_Blocking_In_Hibernate</fullName>
     <active>true</active>
-    <errorConditionFormula>AND ( Hibernate__c = TRUE , NOT ( ISCHANGED ( Hibernate__c ) ) )</errorConditionFormula>
+    <errorConditionFormula>AND( NOT ( AND ( $Profile.Name = &apos;System Administrator&apos; , CreatedDate &lt;= DATETIMEVALUE(DATE(2025,8,10)) ) ) ,
+AND ( Hibernate__c = TRUE , NOT ( ISCHANGED ( Hibernate__c ) ) ) )</errorConditionFormula>
     <errorMessage>This opportunity cannot be edited as it is hibernating.</errorMessage>
 </ValidationRule>

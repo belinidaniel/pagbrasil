@@ -11,7 +11,7 @@
     <filters>
         <field>PRODUCT2.NAME</field>
         <operation>contains</operation>
-        <value>antec</value>
+        <value>charge</value>
     </filters>
     <label>All Products</label>
 </ListView>

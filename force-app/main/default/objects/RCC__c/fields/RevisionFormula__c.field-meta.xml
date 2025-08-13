@@ -3,14 +3,13 @@
     <fullName>RevisionFormula__c</fullName>
     <externalId>false</externalId>
     <formula>CASE(
-    Final_Risk__c,
-    &quot;Baixo&quot;, &quot;1 Ano&quot;,
-    &quot;Médio&quot;, &quot;6 Meses&quot;,
-    &quot;Alto&quot;, &quot;3 Meses&quot;,
-    &quot;Extremo&quot;, &quot;1 Mês&quot;,
-				&quot;&quot;
+Final_Risk__c,
+&quot;Baixo&quot;, &quot;1 Year&quot;,
+&quot;Médio&quot;, &quot;6 Months&quot;,
+&quot;Alto&quot;, &quot;3 Months&quot;,
+&quot;Extremo&quot;, &quot;1 Month&quot;,
+&quot;Undefined&quot;
 )</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Revision</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

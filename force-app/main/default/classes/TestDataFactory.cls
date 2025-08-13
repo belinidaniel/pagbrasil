@@ -9,7 +9,7 @@ public class TestDataFactory {
             Email = 'apexnbtest@srconsulting.io',
             LeadSource = 'Outras publicidades',
             Status = 'Pre prospection',
-            RecordTypeId = '012VA000000nOZ4YAM',
+            RecordTypeId = getLeadRecordTypeIdByName('National'),
             AtendimentoWhatsApp__c = 'Não',
             DataAgendamento__c = Date.newInstance(2025, 8, 22),
             LinkedInContato__c = 'linkedin.com/in/apexnbtest',
@@ -53,7 +53,8 @@ public class TestDataFactory {
             Use_Payout__c = true,
             Contact_City__c = 'contactcity',
             Integration_Type__c = 'JS',
-            Payment_Methods__c = 'Pix'
+            Payment_Methods__c = 'Pix',
+            Product_Category__c = '5122'
         );
         insert leadNB;
         return leadNB;
@@ -68,7 +69,7 @@ public class TestDataFactory {
             Email = 'apexxbtest@srconsulting.io',
             LeadSource = 'Social | LinkedIn',
             Status = 'Pre prospection',
-            RecordTypeId = '012VA000000nOZ3YAM',
+            RecordTypeId = getLeadRecordTypeIdByName('Cross-border'),
             AtendimentoWhatsApp__c = 'Não',
             DataAgendamento__c = Date.newInstance(2025, 8, 22),
             LinkedInContato__c = 'linkedin.com/in/apexnbtest',
@@ -110,9 +111,22 @@ public class TestDataFactory {
             Use_Payout__c = false,
             VAT__c = '793198392345673',
             Integration_Type__c = 'Vtex',
-            Payment_Methods__c = 'Cartão de Crédito'
+            Payment_Methods__c = 'Cartão de Crédito',
+            Product_Category__c = '5122'
         );
         insert leadXB;
         return leadXB;
     }
+
+    public static Id getLeadRecordTypeIdByName(String recordTypeName) {
+        Map<String, Schema.RecordTypeInfo> recordTypeMap = Schema.SObjectType.Lead.getRecordTypeInfosByName();
+
+        if (recordTypeMap.containsKey(recordTypeName)) {
+            return recordTypeMap.get(recordTypeName).getRecordTypeId();
+        } else {
+            throw new RecordTypeNotFoundException('RecordType "' + recordTypeName + '" não encontrado para Lead.');
+        }
+    }
+
+    public class RecordTypeNotFoundException extends Exception {}
 }

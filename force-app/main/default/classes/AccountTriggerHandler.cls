@@ -19,6 +19,9 @@ public class AccountTriggerHandler {
     public static void handleUpdate(List<Account> newAccounts, Map<Id, Account> oldMap) {
         if (RecursionControl.isAccountTriggerRunning) return;
         RecursionControl.isAccountTriggerRunning = true;
+
+        // DATA DA ATUALIZAÇÃO DA ORG DE PRODUÇÃO (11/08/2025)
+        Date cutoffDate = Date.newInstance(2025, 8, 11);
         
         List<Opportunity> newOpportunities = new List<Opportunity>();
         Set<Id> accountIds = new Set<Id>();
@@ -29,22 +32,24 @@ public class AccountTriggerHandler {
             }
         }
         
-        if(!accountIds.isEmpty()) {
+        if (!accountIds.isEmpty()) {
             String query = 'SELECT ' + String.join(getAllOpportunityFields(), ',') + 
-                         ' FROM Opportunity WHERE AccountId IN :accountIds ORDER BY CreatedDate DESC';
+                        ' FROM Opportunity WHERE AccountId IN :accountIds ORDER BY CreatedDate DESC';
             
             Map<Id, Opportunity> lastOppsMap = new Map<Id, Opportunity>();
-            for(Opportunity opp : Database.query(query)) {
-                if(!lastOppsMap.containsKey(opp.AccountId)) {
+            for (Opportunity opp : Database.query(query)) {
+                if (!lastOppsMap.containsKey(opp.AccountId)) {
                     lastOppsMap.put(opp.AccountId, opp);
                 }
             }
             
-            for(Account acc : newAccounts) {
-                if(acc.Type != oldMap.get(acc.Id).Type) {
+            for (Account acc : newAccounts) {
+                // Valida mudança de tipo E data de criação >= 11/08/2025
+                if (acc.Type != oldMap.get(acc.Id).Type && acc.CreatedDate.date() >= cutoffDate) {
+                    
                     Opportunity templateOpp = lastOppsMap.get(acc.Id);
                     
-                    List<Lead>  sourceLeadList = [
+                    List<Lead> sourceLeadList = [
                         SELECT
                             Use_One_Click_Pix__c,
                             Ag_ncia__c,
@@ -87,10 +92,9 @@ public class AccountTriggerHandler {
                             Possui_CNPJ__c,
                             Product_Category__c,
                             Product_or_service_website_URL__c,
-                        	Product_Type__c,
+                            Product_Type__c,
                             TeseProspeccao__c,
                             PSP__c,
-                            Qualificador__c,
                             Receita_Global__c,
                             Recurring_Payments__c,
                             Sede_da_Empresa__c,
@@ -105,7 +109,7 @@ public class AccountTriggerHandler {
                         LIMIT 1
                     ];
                     
-                    if(sourceLeadList.isEmpty()) {
+                    if (sourceLeadList.isEmpty()) {
                         continue;
                     }
                     Lead sourceLead = sourceLeadList[0];
@@ -154,7 +158,6 @@ public class AccountTriggerHandler {
                         Product_Type__c = sourceLead.Product_Type__c,
                         TeseProspeccao__c = sourceLead.TeseProspeccao__c,
                         PSP__c = sourceLead.PSP__c,
-                        Qualificador__c = sourceLead.Qualificador__c,
                         Receita_Global__c = sourceLead.Receita_Global__c,
                         PaymentRecurrence__c = sourceLead.Recurring_Payments__c,
                         Sede_da_Empresa__c = sourceLead.Sede_da_Empresa__c,
@@ -176,7 +179,7 @@ public class AccountTriggerHandler {
                 }
             }
             
-            if(!newOpportunities.isEmpty()) {
+            if (!newOpportunities.isEmpty()) {
                 insert newOpportunities;
             }
         }

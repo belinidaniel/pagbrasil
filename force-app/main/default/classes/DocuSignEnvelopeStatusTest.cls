@@ -47,40 +47,35 @@ private with sharing class DocuSignEnvelopeStatusTest {
         );
         insert opp;
 
-        Test.startTest();
+        dfsle__EnvelopeStatus__c mockEnv = new dfsle__EnvelopeStatus__c(
+            dfsle__Status__c = 'Sent',
+            dfsle__SourceId__c = opp.Id
+        );
+        insert mockEnv;
 
         List<dfsle__EnvelopeStatus__c> testEnvelopes = new List<dfsle__EnvelopeStatus__c>();
         Map<Id, dfsle__EnvelopeStatus__c> testOldMap = new Map<Id, dfsle__EnvelopeStatus__c>();
 
-        dfsle__EnvelopeStatus__c mockEnv = new dfsle__EnvelopeStatus__c(
-            Id = 'a0JVA000004ryBp2AJ',
-            dfsle__Status__c = 'Completed',
-            dfsle__SourceId__c = opp.Id
-        );
+        mockEnv.dfsle__Status__c = 'Completed';
         testEnvelopes.add(mockEnv);
+
         testOldMap.put(mockEnv.Id, new dfsle__EnvelopeStatus__c(dfsle__Status__c = 'Sent'));
 
-        DocuSignEnvelopeStatusHelper.hasContractBeenSignedAndHomologationCompleted(testEnvelopes, testOldMap);
+        Test.startTest();
 
+        DocuSignEnvelopeStatusHelper.hasContractBeenSignedAndHomologationCompleted(testEnvelopes, testOldMap);
+        
         Test.stopTest();
 
-        dfsle__EnvelopeStatus__c env = new dfsle__EnvelopeStatus__c(
-            dfsle__Opportunity__c = opp.Id,
-            dfsle__SourceId__c    = opp.Id,
-            dfsle__Status__c      = 'Sent'
-        );
-        insert env;
-
-        env.dfsle__Status__c = 'Completed';
-        update env;
-
+        // Validar que a Opportunity foi atualizada de acordo
         Opportunity oppAfter = [
             SELECT StageName
             FROM Opportunity
             WHERE Id = :opp.Id
         ];
+
         System.assertEquals('Discovery', oppAfter.StageName,
-            'O estágio da oportunidade deveria ter sido atualizado para Homologation');
+            'O estágio da oportunidade deveria ter sido atualizado para Discovery');
     }
 
     @isTest static void testAsyncClasses() {

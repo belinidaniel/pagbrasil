@@ -22,7 +22,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Opportunity_NB</targetReference>
+                <targetReference>National_or_Crossborder_Opportunity</targetReference>
             </connector>
             <label>Created</label>
         </rules>
@@ -48,6 +48,31 @@
             </conditions>
             <connector>
                 <targetReference>Update_to_NB_Account</targetReference>
+            </connector>
+            <label>National</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>National_or_Crossborder_Opportunity</name>
+        <label>National or Crossborder Opportunity</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Opportunity_XB</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Crossborder</defaultConnectorLabel>
+        <rules>
+            <name>National1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>NaTional</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_NB</targetReference>
             </connector>
             <label>National</label>
         </rules>
@@ -95,6 +120,7 @@
             <label>Same of the Opportunity Type</label>
         </rules>
     </decisions>
+    <description>retiradas referências diretas de recordtype ids</description>
     <environments>Default</environments>
     <interviewLabel>Update Account Type After Opp Creation {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Account Type After Opp Creation</label>
@@ -165,16 +191,9 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_Opportunity_XB</targetReference>
+            <targetReference>Get_Account</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3 OR 4)</filterLogic>
-        <filters>
-            <field>RecordTypeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>012Rn0000001oagIAA</stringValue>
-            </value>
-        </filters>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>UsePagstream__c</field>
             <operator>NotEqualTo</operator>
@@ -224,14 +243,7 @@
         <connector>
             <targetReference>Get_Account</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3)</filterLogic>
-        <filters>
-            <field>RecordTypeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>012Rn0000001oafIAA</stringValue>
-            </value>
-        </filters>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>Antecipacao__c</field>
             <operator>NotEqualTo</operator>

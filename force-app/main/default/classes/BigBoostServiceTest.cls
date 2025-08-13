@@ -17,7 +17,7 @@ private class BigBoostServiceTest {
             Legal_Name__c = 'Test Legal Name'
         );
         insert kyc;
-        
+
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
 
         String dataset = 'basic_data';
@@ -30,7 +30,7 @@ private class BigBoostServiceTest {
 
         System.assert(true, 'Callout completed without exception.');
     }
-    
+
     @IsTest
     static void testGetDatasetQueryFilter() {
         System.assertEquals(
@@ -53,6 +53,9 @@ private class BigBoostServiceTest {
             '{TotalLawsuits,TotalLawsuitsAsAuthor,TotalLawsuitsAsDefendant,LastLawsuitDate,FirstLawsuitDate,Lawsuits.Number,Lawsuits.Type,Lawsuits.MainSubject,Lawsuits.Status,Lawsuits.PublicationDate}',
             BigBoostService.getDatasetQueryFilter('processes')
         );
-        System.assertEquals('', BigBoostService.getDatasetQueryFilter('unknown_dataset'));
+        System.assertEquals(
+            '',
+            BigBoostService.getDatasetQueryFilter('unknown_dataset')
+        );
     }
 }

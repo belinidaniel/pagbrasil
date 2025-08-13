@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImpedirMudacaLeadConverted</fullName>
+    <active>true</active>
+    <description>Impede a modificações no Lead quando o &apos;Lead Status&apos; está como &apos;Closed - Converted&apos;</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(Status, &quot;Closed - Converted&quot;),
+		$Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+  NOT(ISNEW())
+)</errorConditionFormula>
+    <errorMessage>O Lead se encontra com o &apos;Lead Status&apos; como &apos;Closed - Converted&apos; não sendo possível modifica-lo</errorMessage>
+</ValidationRule>

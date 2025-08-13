@@ -2,8 +2,8 @@
  * @description			:
  * @author				: Hersilio Belini de Oliveira
  * @group				:
- * @last modified on	: 07-29-2025
- * @last modified by	: Daniel Belini
+ * @last modified on	: 2025-01-14
+ * @last modified by	: Hersilio Belini de Oliveira
 **/
 public class OpportunityWrapper {
 	public String id { get; set; }
@@ -14,11 +14,9 @@ public class OpportunityWrapper {
 	public String integrationType { get; set; }
 	public String tierCs { get; set; }
 	public Decimal monthlyPix { get; set; }
-	public String businessModel { get; set; }
 	public String integrationTypeSpecify { get; set; }
 	public String contractStartDateCharge { get; set; }
 	public Boolean usePagstream { get; set; }
-	public String settlementFrequency { get; set; }
 	public Boolean isCrossBorder { get; set; }
 	public Boolean containsShopify { get; set; }
 	public Boolean containsGateway { get; set; }
@@ -29,12 +27,20 @@ public class OpportunityWrapper {
 	public Boolean pagShieldPremium { get; set; }
 	public Boolean pagShieldPremiumOnDemand { get; set; }
 	public String recordType { get; set; }
+	public String settlementFrequencyOne { get; set; }
+	public String settlementFrequencyTwo { get; set; }
+	public String antecipationFrequencyOne { get; set; }
+	public String antecipationFrequencyTwo { get; set; }
+	public String selectedCreditFrequency { get; set; }
+	public String businessModel { get; set; }
+	public String nationalPaymentMethod { get; set; }
 	public AccountWrapper account { get; set; }
 	public List<HomologationFormWrapper> homologationForms { get; set; }
 	public List<ContactWrapper> contacts { get; set; }
 	public List<QuoteLineItemWrapper> contracts { get; set; }
 	public Rcc__c rcc { get; set; }
 	public String moeda { get; set; }
+	public String dateOfFirstReview { get; set; }
 	public QuoteLineItemWrapper taxaPagShieldItem { get; set; }
 	public QuoteLineItemWrapper taxaMinimaManutencaoSF { get; set; }
 	public QuoteLineItemWrapper taxaMinimaManutencaoPagStream { get; set; }
@@ -71,7 +77,11 @@ public class OpportunityWrapper {
 	public QuoteLineItemWrapper pixRefund { get; set; }
 	public QuoteLineItemWrapper chargeback { get; set; }
 	public QuoteLineItemWrapper solucaoCarteiraDigital { get; set; }
-
+	public QuoteLineItemWrapper taxaGatewayPix { get; set; }
+	public QuoteLineItemWrapper taxaGatewayDebito { get; set; }
+	public QuoteLineItemWrapper taxaGatewayCredito { get; set; }
+	public QuoteLineItemWrapper taxaGatewayBoleto { get; set; }
+	public QuoteLineItemWrapper taxaChargeback { get; set; }
 	
 
 	// Constructor
@@ -93,13 +103,19 @@ public class OpportunityWrapper {
 		this.pagShieldPremiumOnDemand = opp.PagShield_Premium_On_Demand__c;
 		this.recordType = opp.RecordType.Name;
 		this.moeda = opp.Moeda__c;
-		this.settlementFrequency = opp.Settlement_Frequency_1__c;
+		this.settlementFrequencyOne = opp.Settlement_Frequency_1__c;
+		this.settlementFrequencyTwo = opp.Settlement_Frequency_2__c;
+		this.antecipationFrequencyOne = opp.Antecipation_Frequency_1__c;
+		this.antecipationFrequencyTwo = opp.Antecipation_Frequency_2__c;
+		this.selectedCreditFrequency = opp.Selected_Credit_Frequency__c;
+		this.nationalPaymentMethod = opp.NationalPaymentMethod__c;
 		this.contractStartDateCharge = opp.Contract_Start_Fee_Date__c;
 		this.isCrossBorder = opp.RecordType.Name == 'Crossborder';
 		this.containsShopify = opp.IntegrationType__c != null ? opp.IntegrationType__c.contains('Shopify') : false;
 		this.containsGateway = opp.BusinessModel__c != null ? opp.BusinessModel__c.contains('Gateway') : false;
 		this.pagShield = opp.PagShield__c;
 		this.pagShieldPremium = opp.PagShield_Premium__c;
+		this.dateOfFirstReview = opp.Date_of_First_Review__c;
 
 
 		// Map Account properties
@@ -144,9 +160,7 @@ public class OpportunityWrapper {
 					this.taxaMinimaPagStream = new QuoteLineItemWrapper(qli);
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_ANTECIPACAO') {
-					if(qli.IsMain__c){
-						this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
-					}
+					this.taxaBaseAntecipacao = new QuoteLineItemWrapper(qli);
 				}
 				else if (qli.Product2.ProductCode == 'TAXA_PROCESS_BOLETO' && qli.IsMain__c == true) {
 					this.taxaProcessamentoBoleto = new QuoteLineItemWrapper(qli);
@@ -237,6 +251,21 @@ public class OpportunityWrapper {
 				}
 				else if (qli.Product2.ProductCode == 'SOLUCAO_CARTEIRA_DIGITAL') {
 					this.solucaoCarteiraDigital = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_PIX') {
+					this.taxaGatewayPix = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_CREDITO') {
+					this.taxaGatewayCredito = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_DEBITO') {
+					this.taxaGatewayDebito = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_GATEWAY_BOLETO') {
+					this.taxaGatewayBoleto = new QuoteLineItemWrapper(qli);
+				}
+				else if (qli.Product2.ProductCode == 'TAXA_CHARGEBACK') {
+					this.taxaChargeback = new QuoteLineItemWrapper(qli);
 				}
 			}
 		}
@@ -389,6 +418,7 @@ public class OpportunityWrapper {
 		public String pagStream { get; set; }
 		public String subscriberArea { get; set; }
 		public String allowCpfCnpj { get; set; }
+        public Boolean verifyCpfCnpj { get; set; }
 		public String pixPending2 { get; set; }
 		public Date requestDate { get; set; }
 		public String accountMode { get; set; }
@@ -491,6 +521,7 @@ public class OpportunityWrapper {
 			this.pagStream = form.PagStream__c;
 			this.subscriberArea = form.Subscriber_Area__c;
 			this.allowCpfCnpj = form.Allow_CPF_CNPJ__c;
+            this.verifyCpfCnpj = form.Verify_CPF_CNPJ__c;
 			this.pixPending2 = form.PixPending__c;
 			this.requestDate = form.Account_Request_Date__c;
 			this.accountMode = form.Account_in_Mode__c;
@@ -769,6 +800,17 @@ public class OpportunityWrapper {
 			List<String> emails = new List<String>();
 			for (Contact c : this.kycContacts) {
 				if (c.Type__c != null && c.Type__c.contains('Financeiro') && c.Email != null) {
+					emails.add(c.Email);
+				}
+			}
+			return String.join(emails, '; ');
+		}
+
+		public String getTechnicalEmails() {
+			if (this.kycContacts == null) return '';
+			List<String> emails = new List<String>();
+			for (Contact c : this.kycContacts) {
+				if (c.Type__c != null && c.Type__c.contains('Technical') && c.Email != null) {
 					emails.add(c.Email);
 				}
 			}

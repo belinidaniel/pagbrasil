@@ -2,7 +2,8 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 07-29-2025
+
+ * @last modified on  : 07-30-2025
  * @last modified by  : Daniel Belini
 **/
 public class PropostaCrossController {
@@ -96,6 +97,7 @@ public class PropostaCrossController {
     public String payoutServiceFee { get; set; }
     public String payoutSetupFee { get; set; }
     public String opportunityProductType { get; set; }
+    public String custoPagshieldCross{ get;set;}
 
     public String opportunityCurrency { get; set; }
 
@@ -335,6 +337,9 @@ public class PropostaCrossController {
             }
             when 'PAGSHIELD_FRAUD_PREVENTION' {
                 this.pagShieldFraudPrevention = validateNumbersWithRegex(quoteLineItem.Price__c);
+            }
+            when 'CUSTO_PAGSHIELD_CROSS'{
+                this.custoPagshieldCross = validateNumbersWithRegex(quoteLineItem.Price__c);
             }
             when 'PAGSHIELD_PREMIUM_FIXED_FEE' {
                 this.pagShieldPremiumFixedFee = validateNumbersWithRegex(quoteLineItem.Price__c);

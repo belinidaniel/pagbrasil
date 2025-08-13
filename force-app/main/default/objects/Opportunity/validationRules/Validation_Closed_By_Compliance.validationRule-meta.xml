@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Closed_By_Compliance</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT ( AND ( $Profile.Name = &apos;System Administrator&apos; , CreatedDate &lt;= DATETIMEVALUE(DATE(2025,8,10)) ) ) ,
+				AND(
+    ISCHANGED(Closed_By_Compliance__c) = FALSE,
+    Closed_By_Compliance__c = TRUE
+) )</errorConditionFormula>
+    <errorMessage>This opportunity has been closed by the Compliance team and cannot be edited.</errorMessage>
+</ValidationRule>

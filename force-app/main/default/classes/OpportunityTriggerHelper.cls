@@ -2,8 +2,8 @@
  * @description       : 
  * @author            : aydhan.passos
  * @group             : 
- * @last modified on  : 04-10-2025
- * @last modified by  : aydhan.passos
+ * @last modified on  : 08-08-2025
+ * @last modified by  : marcelo.aguiar
 **/
 public with sharing class OpportunityTriggerHelper {
    
@@ -47,7 +47,7 @@ public with sharing class OpportunityTriggerHelper {
             if(OpportunityTriggerHelper.hasFieldModified(opp, oldOppMap)){
 
                 if(opp.StageName != 'Hibernate' && opp.StageName != 'Discovery' && opp.StageName != 'Negotiation' && oldOppMap.get(opp.Id).Contract_Start_Fee_Date__c == opp.Contract_Start_Fee_Date__c){
-                    opp.addError('Status da oportunidade não permite alteração de campos');
+                    opp.addError('Opportunity status does not allow field changes');
                     break;
                 }
 
@@ -115,13 +115,19 @@ public with sharing class OpportunityTriggerHelper {
         opp.Payout__c != oldOpp.Payout__c ||
         opp.GooglePay__c != oldOpp.GooglePay__c ||
         opp.ApplePay__c != oldOpp.ApplePay__c ||
-        opp.TierCS__c != oldOpp.TierCS__c ||
         opp.ProductClass__c != oldOpp.ProductClass__c ||
         opp.AverageSalesTicket__c != oldOpp.AverageSalesTicket__c ||
         opp.Transacoes_Mensais__c != oldOpp.Transacoes_Mensais__c ||
         opp.previs_fat_rs__c != oldOpp.previs_fat_rs__c ||
         opp.nb_receita_mensal__c != oldOpp.nb_receita_mensal__c ||
-        opp.BusinessModelType__c != oldOpp.BusinessModelType__c;
+        opp.BusinessModelType__c != oldOpp.BusinessModelType__c ||
+        opp.Settlement_Frequency_1__c != oldOpp.Settlement_Frequency_1__c ||
+        opp.Settlement_Frequency_2__c != oldOpp.Settlement_Frequency_2__c ||
+        opp.Antecipation_Frequency_1__c != oldOpp.Antecipation_Frequency_1__c ||
+        opp.Antecipation_Frequency_2__c != oldOpp.Antecipation_Frequency_2__c ||
+        opp.Other_Payments_Settlement_Frequency_1__c != oldOpp.Other_Payments_Settlement_Frequency_1__c ||
+        opp.Other_Payments_Settlement_Frequency_2__c != oldOpp.Other_Payments_Settlement_Frequency_2__c
+        ;
     }
 
     /**

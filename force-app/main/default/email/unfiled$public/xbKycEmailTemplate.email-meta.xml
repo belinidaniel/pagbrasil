@@ -9,7 +9,7 @@
 
 Please complete the KYC form at your earliest convenience to proceed with our onboarding process:
 
-KYC Form: {!$Label.KYC_XB_Staging_URL}/?id={!KYC_XB__c.Unique_Link__c}
+KYC Form: {!$Label.KYC_XB_URL}/?id={!KYC_XB__c.Unique_Link__c}
 
 If you have any questions, feel free to contact us.
 

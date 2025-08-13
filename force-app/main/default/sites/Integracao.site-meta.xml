@@ -23,8 +23,8 @@
     <masterLabel>Integracao</masterLabel>
     <redirectToCustomDomain>true</redirectToCustomDomain>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
-    <siteAdmin>diego_lopes@pagbrasil.com.br</siteAdmin>
-    <siteGuestRecordDefaultOwner>diego_lopes@pagbrasil.com.br</siteGuestRecordDefaultOwner>
+    <siteAdmin>mgr.salesforce@pagbrasil.com</siteAdmin>
+    <siteGuestRecordDefaultOwner>mgr.salesforce@pagbrasil.com</siteGuestRecordDefaultOwner>
     <siteTemplate>SiteTemplate</siteTemplate>
     <siteType>Visualforce</siteType>
     <urlPathPrefix>integracao</urlPathPrefix>

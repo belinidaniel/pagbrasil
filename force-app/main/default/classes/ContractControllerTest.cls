@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 08-09-2025
+ * @last modified on  : 08-14-2025
  * @last modified by  : Daniel Belini
 **/
 @isTest
@@ -247,7 +247,9 @@ public class ContractControllerTest {
                 Recorrencia__c = 'Yes',
                 Ticket_Medio__c = 123,
                 Moeda__c = 'USD',
-                ownerId = UserInfo.getUserId()
+                ownerId = UserInfo.getUserId(),
+                ThreeDSCreditCard__c = true,
+                ZeroAuthCreditCard__c = true
             )
 
             // // cenarios cross
@@ -339,7 +341,7 @@ public class ContractControllerTest {
 
         Id recordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('NaTional').getRecordTypeId();
 
-        List<Quote> quotes = [SELECT Id, Opportunity.Name, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c,
+        List<Quote> quotes = [SELECT Id, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c,
         Opportunity.Settlement_Frequency_Test__c, Opportunity.Payout__c, Opportunity.Antecipation_Frequency_1__c, Opportunity.GooglePay__c,Opportunity.ApplePay__c ,
         Opportunity.Antecipation_Frequency_2__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c,Opportunity.PagShield__c,Opportunity.RequestChangeClause__c,
         Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c, Opportunity.UsePagstream__c, Opportunity.Visible_Anticipation_Frequency__c, Opportunity.Moeda__c,
@@ -459,18 +461,18 @@ public class ContractControllerTest {
         ];
 
         insert new List<Taxes__c>{
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '1', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '2', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '3', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '4', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '5', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '6', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '7', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '8', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '9', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '10', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '11', PercentValue__c = 0, IsActive__c = true),
-            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '12', PercentValue__c = 0, IsActive__c = true)
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '1', PercentValue__c = 1.33, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '2', PercentValue__c = 2.08, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '3', PercentValue__c = 2.83, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '4', PercentValue__c = 3.58, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '5', PercentValue__c = 4.33, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '6', PercentValue__c = 5.08, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '7', PercentValue__c = 5.83, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '8', PercentValue__c = 6.58, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '9', PercentValue__c = 7.33, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '10', PercentValue__c = 8.08, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '11', PercentValue__c = 8.83, type__c = 'crossborder', IsActive__c = true),
+            new Taxes__c(AntecipationFrequency__c = 'Weekly', TaxaBaseAntecipacao__c = '1.50', InstallmentNumber__c = '12', PercentValue__c = 9.58, type__c = 'crossborder', IsActive__c = true)
         };
 
         for(Quote quote : quotes){

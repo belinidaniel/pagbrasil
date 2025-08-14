@@ -31,16 +31,20 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
         get{
             if(taxMap == null){
                 taxMap = new Map<String, List<Taxes__c>>();
+				System.debug('taxMapBeforeLoop: ' + taxMap);
 
                 for(Taxes__c tax : [SELECT Id, ProductClass__c, TaxRegion__c, Product__c,Product__r.ProductCode, PercentValue__c, UnitPrice__c, RecordTypeName__c, BusinessModel__c, IntegrationType__c, ProcessingType__c, RangeFaixaInicial__c, RangeFaixaFinal__c, TicketInicial__c, TicketFinal__c, ReceitaMensalInicial__c, ReceitaMensalFinal__c, Type__c FROM Taxes__c WHERE IsActive__c = true]){
-                    if(taxMap.containsKey(tax.Product__c)){
+                    System.debug('taxInsideLoop: ' + tax);
+					if(taxMap.containsKey(tax.Product__c)){
+						System.debug('entered if');
                         taxMap.get(tax.Product__c).add(tax);
                     } else {
+						System.debug('entered else');
                         taxMap.put(tax.Product__c, new List<Taxes__c>{ tax });
                     }
                 }
             }
-
+			System.debug('taxMapBeforeReturn: ' + taxMap);
             return taxMap;
         }
 
@@ -213,14 +217,20 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
 
         System.debug('PricebookEntry - ' + priceBookEntry);
         List<Taxes__c> taxes = taxMap.get(priceBookEntry.Product2Id);
+		System.debug('taxes: ' + taxes);
         Decimal percentValue = 0;
         Decimal unitPrice = 0;
         Boolean isTaxMain = false;
         Id taxId;
 
-        String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
-        for(Taxes__c tax : taxes){
+        System.debug('taxId: ' + taxId);
 
+        String paymentMethod = QuoteTriggerHelper.getPaymentMethod(opportunity);
+        
+		System.debug('paymentMethod: ' + paymentMethod);
+
+        for(Taxes__c tax : taxes){
+			System.debug('single tax: ' + tax);
             Boolean isTicketRange = tax.TicketInicial__c <= opportunity.AverageSalesTicket__c && (tax.TicketFinal__c > opportunity.AverageSalesTicket__c || tax.TicketFinal__c == null);
             Boolean isInsideRange = 
                 (opportunity.previs_fat_rs__c >= tax.RangeFaixaInicial__c) &&

@@ -20,23 +20,15 @@ global without sharing class FileXBService {
 					ContentDocument.Title, 
 					ContentDocument.FileType, 
 					ContentDocument.LatestPublishedVersion.CreatedDate, 
-					ContentDocument.LatestPublishedVersion.PathOnClient,
-					ContentDocument.LatestPublishedVersion.VersionData
+					ContentDocument.LatestPublishedVersion.PathOnClient
 				FROM 
 					ContentDocumentLink 
 				WHERE 
 					LinkedEntityId = :kycId
 			];
 
-			List<FileDTO> dtoList = new List<FileDTO>();
-
-			for(ContentDocumentLink cdl : files){
-				dtoList.add(new FileDTO(cdl));
-			}
-
 			res.statusCode = 200;
-			return JSON.serialize(dtoList);
-			
+			return JSON.serialize(files);
 		} catch (Exception e) {
 			res.statusCode = 500;
 			return JSON.serialize(new Map<String, Object>{ 'error' => 'An unexpected error occurred: ' + e.getMessage() });
@@ -69,24 +61,6 @@ global without sharing class FileXBService {
 		} catch (Exception e) {
 			res.statusCode = 500;
 			return JSON.serialize(new Map<String, Object>{ 'error' => 'An unexpected error occurred: ' + e.getMessage() });
-		}
-	}
-
-	public class FileDTO {
-		public String id;
-		public String documentId;
-		public String title;
-		public String fileType;
-		public String createdDate;
-		public String pathOnClient;
-
-		public FileDTO(ContentDocumentLink cdl) {
-			this.id = cdl.Id;
-			this.documentId = cdl.ContentDocumentId;
-			this.title = cdl.ContentDocument.Title;
-			this.fileType = cdl.ContentDocument.FileType;
-			this.createdDate = String.valueOf(cdl.ContentDocument.LatestPublishedVersion.CreatedDate);
-			this.pathOnClient = cdl.ContentDocument.LatestPublishedVersion.PathOnClient;
 		}
 	}
 }

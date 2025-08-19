@@ -7,6 +7,7 @@ public with sharing class KYCPdfController {
     public List<Contact> contractContacts { get; set; }
     public List<Contact> billingContacts { get; set; }
     public List<Contact> technicalContacts { get; set; }
+    public List<Contact> supportContacts { get; set; }
     public List<Contact> channelContacts { get; set; }
     public List<Contact> refundContacts { get; set; }
     public Contact personalContact { get; set; }
@@ -79,6 +80,13 @@ public with sharing class KYCPdfController {
                                         + ' ORDER BY KYC_Role__c';
 			technicalContacts = Database.query(technicalQuery);
 
+			wordQuery = 'support';
+			String supportQuery = 'SELECT ' 
+                                        + String.join(contactFields, ',') 
+                                        + ' FROM Contact WHERE Related_KYC__c = :recordId AND KYC_Role__c = :wordQuery'
+                                        + ' ORDER BY KYC_Role__c';
+			supportContacts = Database.query(supportQuery);
+
 			wordQuery = 'channel';
 			String channelQuery = 'SELECT ' 
                                         + String.join(contactFields, ',') 
@@ -129,7 +137,7 @@ public with sharing class KYCPdfController {
                 		cpfFiles.add(file);
 	            	} else if (file.fileName.startsWith('address_partners')) {
     	            	addressPartnersFiles.add(file);
-        	    	} else if (file.fileName.startsWith('cnpj')) {
+        	    	} else if (file.fileName.startsWith('taxId')) {
             		    cnpjFiles.add(file);
         	    	} else if (file.fileName.startsWith('address') && !file.fileName.startsWith('address_partners')) {
     	            	addressFiles.add(file);

@@ -16,10 +16,21 @@
         <accessLevel>Read</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Cliet_Management</role>
+            <role>Client_Management</role>
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Client_Management_Roles</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Client Management Roles</label>
+        <sharedTo>
+            <role>Client_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Client_Management</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

@@ -103,15 +103,32 @@ public with sharing class QuotePdfService {
     }
 
     @AuraEnabled
-    public static void sendToEmail(Id quoteId) {
+    public static void sendToEmail(Id quoteId, String recipientEmail) {
         Quote proposta = getOpportunityType(quoteId);
+
+        Opportunity opp = [SELECT Id, Name, RecordType.DeveloperName, AccountId FROM Opportunity WHERE Id = :proposta.OpportunityId LIMIT 1];
+        String oppType = opp.RecordType.DeveloperName;
+
+        Contact recipientContact = [
+            SELECT Id, Email
+            FROM Contact 
+            WHERE AccountId = :opp.AccountId AND Email = :recipientEmail LIMIT 1
+        ];
+
+        if(recipientContact == null) {
+            throw new AuraHandledException('No contact found with the specified email on the opportunity account.');
+        }
 
         // Validate Opportunity relationship exists
         if(proposta.OpportunityId == null) {
             throw new AuraHandledException('Quote is not associated with an Opportunity');
         }
 
-        PageReference pdfPage = (proposta.Opportunity.RecordType.DeveloperName == 'Crossborder')
+        if (String.isBlank(recipientEmail)) {
+            throw new AuraHandledException('No recipient email specified.');
+        }
+
+        PageReference pdfPage = (oppType == 'Crossborder')
             ? Page.PropostaCross
             : Page.PropostaNacional;
         pdfPage.getParameters().put('id', quoteId);
@@ -127,18 +144,19 @@ public with sharing class QuotePdfService {
         String baseName = proposta.Name != null ? proposta.Name.replace(' ', '_') : 'Quote';
         String fileName = 'Proposal_' + baseName + '.pdf';
 
-        // Use Opportunity Owner instead of Quote Owner
-        String ownerEmail = proposta.Opportunity.Owner.Email;
-        if (String.isBlank(ownerEmail)) {
-            throw new AuraHandledException('Opportunity owner does not have an email address.');
-        }
-
         // Prepare and send email
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setToAddresses(new String[] { ownerEmail });
-        mail.setSubject('Proposal PDF for Quote: ' + proposta.Name);
-        mail.setPlainTextBody('Please find attached the proposal PDF for quote: ' + proposta.Name);
-        
+        mail.setToAddresses(new String[] { recipientEmail });
+        Id templateId;
+        if (oppType == 'Crossborder') {
+            templateId = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'propostaCross' LIMIT 1].Id;
+        } else {
+            templateId = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'propostaNacional' LIMIT 1].Id;
+        }
+        mail.setTemplateId(templateId);
+        mail.setTargetObjectId(recipientContact.Id);
+        mail.setSaveAsActivity(false);
+
         Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         attachment.setFileName(fileName);
         attachment.setBody(pdfBlob);
@@ -146,5 +164,17 @@ public with sharing class QuotePdfService {
         mail.setFileAttachments(new Messaging.EmailFileAttachment[] { attachment });
 
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+    }
+
+    @AuraEnabled
+    public static List<String> getAccountContactEmails(Id quoteId) {
+        List<String> emails = new List<String>();
+        Quote q = [SELECT Opportunity.AccountId FROM Quote WHERE Id = :quoteId LIMIT 1];
+        if (q.Opportunity.AccountId != null) {
+            for (Contact c : [SELECT Email FROM Contact WHERE AccountId = :q.Opportunity.AccountId AND Email != null]) {
+                emails.add(c.Email);
+            }
+        }
+        return emails;
     }
 }

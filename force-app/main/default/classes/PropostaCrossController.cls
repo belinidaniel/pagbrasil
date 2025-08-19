@@ -22,7 +22,8 @@ public class PropostaCrossController {
     public Boolean containsPagStream { get; set; }
     public Boolean shopifyWoocommerceSalesforcePBCheckoutTerms { get; set; }
     public String currentIntegrationTypeInCheckoutList { get; set; }
-    public Boolean jsAPIVTexTerms { get; set; }
+    public Boolean jsAPITerms { get; set; }
+    public Boolean isPlugin { get; set; }
 
     public String frequencyOne { get; set; }
     public String frequencyTwo { get; set; }
@@ -113,7 +114,17 @@ public class PropostaCrossController {
     public String boletoGateway { get; set; }
 
     public List<String> integrationTypeShopifyWoocommerceSalesforcePBCheckoutList = new List<String>{'Shopify','Woocommerce','Salesforce','PB Checkout'};
-    public List<String> integrationTypeJSAPIVTex = new List<String>{'JS','API','Vtex'};
+    public List<String> integrationTypeJSAPI = new List<String>{'JS','API'};
+    List<String> pluginTypes = new List<String> {
+        'Vtex',
+        'Shopify',
+        'Shopify with Buda',
+        'Shopify with Yampi',
+        'Shopify with Cart Panda',
+        'Salesforce',
+        'PB Checkout',
+        'Woocommerce'
+    };
 
     public PropostaCrossController(ApexPages.StandardController stdController) {
 
@@ -177,8 +188,9 @@ public class PropostaCrossController {
         this.containsPixAutomatico = quote.Opportunity.Pix_Automatico__c;
 
         this.shopifyWoocommerceSalesforcePBCheckoutTerms = quote.Opportunity.IntegrationType__c != null ? this.integrationTypeShopifyWoocommerceSalesforcePBCheckoutList.contains(quote.Opportunity.IntegrationType__c) : false;
-        this.currentIntegrationTypeInCheckoutList = this.shopifyWoocommerceSalesforcePBCheckoutTerms ? quote.Opportunity.IntegrationType__c : null;
-        this.jsAPIVTexTerms = quote.Opportunity.IntegrationType__c != null ? this.integrationTypeJSAPIVTex.contains(quote.Opportunity.IntegrationType__c) : false;
+        this.currentIntegrationTypeInCheckoutList = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c : null;
+        this.jsAPITerms = quote.Opportunity.IntegrationType__c != null ? this.integrationTypeJSAPI.contains(quote.Opportunity.IntegrationType__c) : false;
+        this.isPlugin = quote.Opportunity.IntegrationType__c != null ? this.pluginTypes.contains(quote.Opportunity.IntegrationType__c) : (quote.Opportunity.IntegrationType__c == 'PB Checkout' ? true : false);
 
         this.settlementFrequency = '0';
 

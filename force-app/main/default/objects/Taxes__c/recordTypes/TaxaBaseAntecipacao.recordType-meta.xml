@@ -134,6 +134,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Salesforce CC</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Shopify</fullName>
             <default>false</default>
         </values>

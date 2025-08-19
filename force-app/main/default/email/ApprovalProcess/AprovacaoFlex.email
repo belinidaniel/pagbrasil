@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="Aprovação de Cotação - { !relatedTo.Name }" recipientType="User" relatedToType="Quote">
+<messaging:emailTemplate subject="Aprovação de Cotação - {!relatedTo.Name}" recipientType="User" relatedToType="Quote">
   <messaging:htmlEmailBody >
     <html>
       <head>

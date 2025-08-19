@@ -14,6 +14,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Fluxo médio</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Four per month</fullName>
             <default>false</default>
         </values>
@@ -114,6 +118,10 @@
     <picklistValues>
         <picklist>IntegrationType__c</picklist>
         <values>
+            <fullName>API</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>JS</fullName>
             <default>false</default>
         </values>
@@ -122,7 +130,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>PB Checkout</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Salesforce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce CC</fullName>
             <default>false</default>
         </values>
         <values>
@@ -131,6 +147,14 @@
         </values>
         <values>
             <fullName>Shopify with Buda</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shopify with Cart Panda</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shopify with Yampi</fullName>
             <default>false</default>
         </values>
         <values>
@@ -197,6 +221,10 @@
         </values>
         <values>
             <fullName>5977</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7299</fullName>
             <default>false</default>
         </values>
         <values>

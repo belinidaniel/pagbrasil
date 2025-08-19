@@ -32,8 +32,8 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>Legal_Compliance</name>
-                <type>queue</type>
+                <name>legal.salesforce@pagbrasil.com</name>
+                <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

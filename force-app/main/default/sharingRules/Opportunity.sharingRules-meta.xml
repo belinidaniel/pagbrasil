@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
+        <fullName>Client_Management_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Client Management Acess</label>
+        <sharedTo>
+            <role>Client_Management</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Pix International &amp; Pix Roaming</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Legal_Compliance_Role_Edit</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Legal &amp; Compliance Role Edit</label>
@@ -59,6 +84,40 @@
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sales_NB_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales NB Acess</label>
+        <sharedTo>
+            <role>Sales_NB</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sales_XB_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales XB Acess</label>
+        <sharedTo>
+            <role>Sales_XB</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Pix International &amp; Pix Roaming</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
     <sharingOwnerRules>
         <fullName>AccountFPreSales_HeadsManager</fullName>
         <accessLevel>Read</accessLevel>
@@ -97,10 +156,21 @@
         <accessLevel>Read</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Cliet_Management</role>
+            <role>Client_Management</role>
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Client_Management_Roles</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Client Management Roles</label>
+        <sharedTo>
+            <role>Client_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Client_Management</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

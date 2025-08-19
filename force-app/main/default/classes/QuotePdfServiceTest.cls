@@ -93,6 +93,15 @@ private class QuotePdfServiceTest {
             Status = 'Added'
         );
         insert new List<Quote>{quoteXB, quoteNB};
+
+        Contact contact = new Contact(
+            FirstName = 'Test',
+            LastName = 'Contact',
+            Email = 'testuser@example.com',
+            AccountId = acc2.Id
+        );
+        insert contact;
+
     }
 
     @IsTest
@@ -153,7 +162,7 @@ private class QuotePdfServiceTest {
         Quote quote = [SELECT Id, OpportunityId, Opportunity.Owner.Email, Opportunity.Owner.Name FROM Quote WHERE OpportunityId = :opp.Id];
         
         Test.startTest();
-        QuotePdfService.sendToEmail(quote.Id);
+        QuotePdfService.sendToEmail(quote.Id, 'testuser@example.com');
         Test.stopTest();
         
         // Verify email was sent

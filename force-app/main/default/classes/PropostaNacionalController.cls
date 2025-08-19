@@ -7,8 +7,6 @@
 **/
 public class PropostaNacionalController {
 
-    public Boolean testeNew { get; set; }
-
     public String opportunityName { get; set; }
     public String accountOwnerName { get; set; }
     public String accountOwnerEmail { get; set; }
@@ -180,10 +178,10 @@ public class PropostaNacionalController {
     public Boolean containsDebitCard { get; set; }
     public Boolean containsPagBrasilSolution { get; set; }
 
-    public string getewayOne { get; set; }
-    public string getewayTwo { get; set; }
-    public string getewaythree { get; set; }
-    public string getewayFour { get; set; }
+    public string gatewayOne { get; set; }
+    public string gatewayTwo { get; set; }
+    public string gatewaythree { get; set; }
+    public string gatewayFour { get; set; }
 
     public List<String> pacotesSms { get; set; }
     public List<String> pacotesEmails { get; set; }
@@ -285,51 +283,45 @@ public class PropostaNacionalController {
     }
 
     private void setTaxValues(Quote quote ) {
-        if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 500000) {
-            this.valueOne = '> R$ 1M';
-            this.valueTwo = 'R$ 500k - R$ 1M';
-            this.valueThree = 'R$ 100k - R$ 500k';
-            this.valueFour = '< R$ 100k';
+        this.highlightedLineOne = false;
+        this.highlightedLineTwo = false;
+        this.highlightedLineThree = false;
+        this.highlightedLineFour = false;
 
-            Decimal revenue = quote.Opportunity.previs_fat_rs__c;
-            if (revenue >= 100000) {
-                this.highlightedLineThree = true;
-            } else if (revenue < 100000) {
-                this.highlightedLineFour = true;
+        Decimal revenue = quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            if (revenue < 500000) {
+                this.valueOne = '> R$ 1M';
+                this.valueTwo = 'R$ 500k - R$ 1M';
+                this.valueThree = 'R$ 100k - R$ 500k';
+                this.valueFour = '< R$ 100k';
+
+                this.highlightedLineThree = (revenue >= 100000);
+                this.highlightedLineFour = (revenue < 100000);
+
+            } else if (revenue < 5000000) {
+                this.valueOne = '> R$ 5M';
+                this.valueTwo = 'R$ 1M - R$ 5M';
+                this.valueThree = 'R$ 500k - R$ 1M';
+                this.valueFour = '< R$ 500k';
+
+                this.highlightedLineTwo = (revenue >= 1000000);
+                this.highlightedLineThree = (revenue >= 500000 && revenue < 1000000);
+                this.highlightedLineFour = (revenue < 500000);
+
+            } else {
+                this.valueOne = '> R$ 10M';
+                this.valueTwo = 'R$ 5M - R$ 10M';
+                this.valueThree = 'R$ 1M - R$ 5M';
+                this.valueFour = '< R$ 1M';
+
+                this.highlightedLineOne = (revenue >= 10000000);
+                this.highlightedLineTwo = (revenue >= 5000000 && revenue < 10000000);
+                this.highlightedLineThree = (revenue >= 1000000 && revenue < 5000000);
+                this.highlightedLineFour = (revenue >= 500000 && revenue < 1000000);
             }
-
-        } else if (quote.Opportunity.previs_fat_rs__c != null && quote.Opportunity.previs_fat_rs__c < 5000000) {
-            this.valueOne = '> R$ 5M';
-            this.valueTwo = 'R$ 1M - R$ 5M';
-            this.valueThree = 'R$ 500k - R$ 1M';
-            this.valueFour = '< R$ 500k';
-
-            Decimal revenue = quote.Opportunity.previs_fat_rs__c;
-            if (revenue >= 1000000) {
-                this.highlightedLineTwo = true;
-            } else if (revenue >= 500000) {
-                this.highlightedLineThree = true;
-            } else if (revenue < 500000) {
-                this.highlightedLineFour = true;
-            }
-
-        } else if (quote.Opportunity.previs_fat_rs__c != null) {
-            this.valueOne = '> R$ 10M';
-            this.valueTwo = 'R$ 5M - R$ 10M';
-            this.valueThree = 'R$ 1M - R$ 5M';
-            this.valueFour = 'R$ 500K - R$ 1M';
-
-            Decimal revenue = quote.Opportunity.previs_fat_rs__c;
-            if (revenue >= 10000000) {
-                this.highlightedLineOne = true;
-            } else if (revenue >= 5000000) {
-                this.highlightedLineTwo = true;
-            } else if (revenue >= 1000000) {
-                this.highlightedLineThree = true;
-            } else if (revenue >= 500000) {
-                this.highlightedLineFour = true;
-            }
-        } 
+        }
     }
 
     private void setPaymentMethods(Quote quote) {
@@ -357,10 +349,10 @@ public class PropostaNacionalController {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PD';
                 this.showTwo = true;
                 populateOptionsController('Pix','DebitCard',null);
-            } else if (containsPix && containsDebitCard && containsCreditCard && !containsBoleto) {
+            } else if (containsPix && containsCreditCard && containsDebitCard && !containsBoleto) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PCD';
                 this.showThree = true;
-                populateOptionsController('Pix','DebitCard','CreditCard');
+                populateOptionsController('Pix','CreditCard','DebitCard');
             } else if (containsPix && containsDebitCard && !containsCreditCard && containsBoleto) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7PBD';
                 this.showThree = true;
@@ -389,10 +381,10 @@ public class PropostaNacionalController {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7CB';
                 this.showTwo = true;
                 populateOptionsController('CreditCard','Boleto',null);
-            } else if (containsCreditCard && containsDebitCard && !containsPix && containsBoleto) {
+            } else if (containsCreditCard && containsBoleto && !containsPix && containsDebitCard) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7CBD';
                 this.showThree = true;
-                populateOptionsController('CreditCard','DebitCard','Boleto');
+                populateOptionsController('CreditCard','Boleto','DebitCard');
             } else if (containsBoleto && !containsDebitCard && !containsPix && !containsCreditCard) {
                 this.tablePaymentValue = URL.getOrgDomainUrl().toExternalForm() + '/resource/PNPagina7B';
                 this.showOne = true;
@@ -412,8 +404,8 @@ public class PropostaNacionalController {
     private void productsPopulation(Quote quote) {
         pacotesSms = new List<String>();
         pacotesEmails = new List<String>();
-        
-        List<QuoteLineItem> quoteLineItems = [SELECT Id,IsMain__c,quoteLineItem.quote.opportunity.BusinessModel__c,Description,PercentValue__c,Product2.Family,Product2.Name,Product2.IsActive,Price__c,Product2.ProductCode,MonthlyRevenue__c,MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
+
+        List<QuoteLineItem> quoteLineItems = [SELECT Id, IsMain__c, quoteLineItem.quote.opportunity.BusinessModel__c, quoteLineItem.quote.opportunity.previs_fat_rs__c, Description, PercentValue__c, Product2.Family, Product2.Name, Product2.IsActive, Price__c, Product2.ProductCode, MonthlyRevenue__c, MonthlyRevenueCode__c FROM QuoteLineItem WHERE QuoteId = :quote.Id];
         for(QuoteLineItem quoteLineItem : quoteLineItems) {
             if(quoteLineItem.Product2.ProductCode == 'PACOTE_1000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_10000_SMS' || quoteLineItem.Product2.ProductCode == 'PACOTE_500_SMS') {
                 pacotesSms.add(quoteLineItem.Product2.Name + ':' + String.valueOf(quoteLineItem.Price__c).replace('.',','));
@@ -523,45 +515,281 @@ public class PropostaNacionalController {
     }
 
     private void processPix(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        Decimal revenue = quoteLineItem.quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            
+            // -------------------
+            // revenue < 500k
+            // -------------------
+            if (revenue < 500000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; // maior
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; 
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; 
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00')
+                    this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; // menor
+            }
+
+            // -------------------
+            // 500k <= revenue < 5M
+            // -------------------
+            else if (revenue < 5000000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; // maior
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; // menor
+            }
+
+            // -------------------
+            // revenue >= 5M
+            // -------------------
+            else {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 10000000,00 ~ R$ 50000000,00')
+                    this.pixOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; // maior
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.pixTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.pixThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.pixFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%'; // menor
+            }
+        }
     }
 
     private void processCreditCard(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        Decimal revenue = quoteLineItem.quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            if (revenue < 500000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00')
+                    this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else if (revenue < 5000000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 10000000,00 ~ R$ 50000000,00')
+                    this.creditCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.creditCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.creditCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.creditCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            }
+        }
     }
 
     private void processDebitCard(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        Decimal revenue = quoteLineItem.quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            if (revenue < 500000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00')
+                    this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else if (revenue < 5000000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 10000000,00 ~ R$ 50000000,00')
+                    this.debitCardOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.debitCardTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.debitCardThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.debitCardFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            }
+        }
     }
 
     private void processBoleto(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        Decimal revenue = quoteLineItem.quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            if (revenue < 500000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00')
+                    this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else if (revenue < 5000000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 10000000,00 ~ R$ 50000000,00')
+                    this.boletoOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.boletoTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.boletoThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.boletoFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            }
+        }
     }
 
     private void processTaxaPagBrasil(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.TaxaBrasilOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.TaxaBrasilTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.TaxaBrasilThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.TaxaBrasilFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        Decimal revenue = quoteLineItem.quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            if (revenue < 500000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.TaxaBrasilOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.TaxaBrasilTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.TaxaBrasilThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00')
+                    this.TaxaBrasilFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else if (revenue < 5000000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.TaxaBrasilOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.TaxaBrasilTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.TaxaBrasilThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.TaxaBrasilFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 10000000,00 ~ R$ 50000000,00')
+                    this.TaxaBrasilOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.TaxaBrasilTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.TaxaBrasilThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.TaxaBrasilFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            }
+        }
     }
 
     private void processTaxaPagBrasilGateway(QuoteLineItem quoteLineItem) {
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00') this.getewayOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00') this.getewayTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00') this.getewaythree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
-        if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00') this.getewayFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+        Decimal revenue = quoteLineItem.quote.Opportunity.previs_fat_rs__c;
+
+        if (revenue != null) {
+            if (revenue < 500000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.gatewayOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.gatewayTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.gatewayThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 0,00 ~ R$ 100000,00')
+                    this.gatewayFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else if (revenue < 5000000) {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.gatewayOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.gatewayTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.gatewayThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 100000,00 ~ R$ 500000,00')
+                    this.gatewayFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            } else {
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 10000000,00 ~ R$ 50000000,00')
+                    this.gatewayOne = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 5000000,00 ~ R$ 10000000,00')
+                    this.gatewayTwo = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 1000000,00 ~ R$ 5000000,00')
+                    this.gatewayThree = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+
+                if (quoteLineItem.MonthlyRevenueCode__c == 'R$ 500000,00 ~ R$ 1000000,00')
+                    this.gatewayFour = validateNumbersWithRegex(quoteLineItem.Price__c) + '%';
+            }
+        }
     }
 
     private void frequencyPopulation(Quote quote) {
@@ -1221,8 +1449,9 @@ public class PropostaNacionalController {
         if (page == 'One') {
             System.debug('getParcelas page: ' + this.taxaAntecipacao);
             String settlementFrequency = quote.Opportunity.Settlement_Frequency_1__c;
+            String antecipationFrequency = quote.Opportunity.Antecipation_Frequency_1__c;
             System.debug('getParcelas settlementFrequency: ' + settlementFrequency);
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true and Type__c = 'national'];
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipationFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true and Type__c = 'national'];
             if(!taxes.isEmpty()) {
                 this.isFrequency = true;
             }
@@ -1272,7 +1501,8 @@ public class PropostaNacionalController {
 
         if (page == 'Two') {
             String settlementFrequency = quote.Opportunity.Settlement_Frequency_2__c;
-            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :settlementFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true AND  Type__c = 'national'];
+            String antecipationFrequency = quote.Opportunity.Antecipation_Frequency_2__c;
+            List<Taxes__c> taxes = [SELECT InstallmentNumber__c,PercentValue__c FROM Taxes__c WHERE AntecipationFrequency__c = :antecipationFrequency AND TaxaBaseAntecipacao__c = :this.taxaAntecipacao AND IsActive__c = true AND  Type__c = 'national'];
             if(!taxes.isEmpty()) {
                 this.isFrequency = true;
             }

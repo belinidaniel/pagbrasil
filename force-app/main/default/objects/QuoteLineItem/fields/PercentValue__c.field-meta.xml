@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PercentValue__c</fullName>
     <description>Valor Porcentual</description>
+    <inlineHelpText>Be careful when using commas, they disappear and are not considered as decimal separators.</inlineHelpText>
     <label>Percent Value</label>
     <precision>18</precision>
     <required>false</required>

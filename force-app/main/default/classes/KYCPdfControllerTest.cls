@@ -19,7 +19,7 @@ private class KYCPdfControllerTest {
         insert contacts;
 
         List<String> filePrefixes = new List<String>{
-            'cpf', 'address_partners', 'cnpj', 'address', 'sec', 'con', 'rep'
+            'cpf', 'address_partners', 'taxId', 'address', 'sec', 'con', 'rep'
         };
 
         List<ContentVersion> contentVersions = new List<ContentVersion>();

@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Client_Management_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Client Management Acess</label>
+        <sharedTo>
+            <role>Client_Management</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sales_NB_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales NB Acess</label>
+        <sharedTo>
+            <role>Sales_NB</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sales_XB_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales XB Acess</label>
+        <sharedTo>
+            <role>Sales_XB</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Client_Management_Role</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Client Management Role</label>
+        <sharedTo>
+            <role>Client_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Client_Management</role>
+        </sharedFrom>
+    </sharingOwnerRules>
     <sharingOwnerRules>
         <fullName>CompartilhamentoAccountHead</fullName>
         <accessLevel>Read</accessLevel>
@@ -83,28 +142,6 @@
         <label>General - Business XB Role</label>
         <sharedTo>
             <role>General_Business</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_XB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Grow_Customer_Sucess_NB_Roles</fullName>
-        <accessLevel>Read</accessLevel>
-        <label>Grow &amp; Customer Sucess NB Roles</label>
-        <sharedTo>
-            <role>Cliet_Management</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Sales_NB</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Grow_Customer_Sucess_XB_Roles</fullName>
-        <accessLevel>Read</accessLevel>
-        <label>Grow &amp; Customer Sucess XB Roles</label>
-        <sharedTo>
-            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <role>Sales_XB</role>

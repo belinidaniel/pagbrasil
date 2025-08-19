@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 08-07-2025
+ * @last modified on  : 08-14-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -254,9 +254,9 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                 }
                 when 'TaxaSolucaoPagBrasil' {
                     if(
-                        (opportunity.BusinessModel__c.contains('Intermediation') && tax.Product__r.ProductCode == 'TAXA_PAGBRASIL')
+                        (opportunity.BusinessModel__c.contains('Intermediation') && tax.Product__r.ProductCode == 'TAXA_PAGBRASIL' && tax.BusinessModel__c == 'Intermediation')
                      || 
-                     (opportunity.BusinessModel__c.contains('Gateway') && tax.IntegrationType__c !=null && tax.IntegrationType__c.contains(opportunity.IntegrationType__c))) {
+                     (opportunity.BusinessModel__c.contains('Gateway') && tax.BusinessModel__c == 'Gateway' && tax.IntegrationType__c !=null && tax.IntegrationType__c.contains(opportunity.IntegrationType__c))) {
                         percentValue = tax.PercentValue__c;
                         if(isInsideRange){
                             isTaxMain = true;

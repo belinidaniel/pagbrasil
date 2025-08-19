@@ -404,6 +404,26 @@
                 <identifier>RecordOtherQuoteAccepted__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CEOApprover__c</fieldItem>
+                <identifier>RecordCEOApprover__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.DirectorApprover__c</fieldItem>
+                <identifier>RecordDirectorApprover__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3eb47537-4474-4f78-9e57-01802b869950</name>
         <type>Facet</type>
     </flexiPageRegions>

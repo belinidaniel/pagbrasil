@@ -281,7 +281,7 @@ public class PropostaCrossControllerTest {
     // 
     }
     @IsTest
-    static void testFieldsPopulationWithJSAPIVTexAndNulls() {
+    static void testFieldsPopulationWithJSAPIAndNulls() {
         // Update opportunity with JS integration type and nulls for some fields
         Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
         opp.IntegrationType__c = 'JS';
@@ -303,7 +303,7 @@ public class PropostaCrossControllerTest {
         Test.stopTest();
         
         System.assertEquals(false, controller.shopifyWoocommerceSalesforcePBCheckoutTerms, 'Should not match checkout integration types');
-        System.assertEquals(true, controller.jsAPIVTexTerms, 'Should match JS/API/Vtex integration types');
+        System.assertEquals(true, controller.jsAPITerms, 'Should match JS/API/Vtex integration types');
         System.assertEquals(false, controller.containsPixRoaming, 'Should be false when BusinessModel__c is null');
         System.assertEquals(false, controller.containsPixInternational, 'Should be false when BusinessModel__c is null');
         System.assertEquals(true, controller.containsPixAutomatico, 'Should be null when Pix_Automatico__c is null');

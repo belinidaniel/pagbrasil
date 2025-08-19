@@ -128,7 +128,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Legal_Business_Name__c</fieldItem>
                 <identifier>RecordLegal_Business_Name_cField</identifier>
@@ -153,6 +153,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Linkedin__c</fieldItem>
                 <identifier>RecordLinkedin__cField</identifier>
             </fieldInstance>

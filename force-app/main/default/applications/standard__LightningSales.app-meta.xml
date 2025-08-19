@@ -659,7 +659,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.National</recordType>
         <type>Flexipage</type>
-        <profile>Cliet Management</profile>
+        <profile>Client Management</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -758,7 +758,7 @@
         <pageOrSobjectType>Lead</pageOrSobjectType>
         <recordType>Lead.Cross_border</recordType>
         <type>Flexipage</type>
-        <profile>Cliet Management</profile>
+        <profile>Client Management</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>

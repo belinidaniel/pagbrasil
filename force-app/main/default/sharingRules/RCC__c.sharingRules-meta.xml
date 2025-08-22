@@ -1,5 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Director_Acess_All</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director Acess All</label>
+        <sharedTo>
+            <role>Director</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Added</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approval Requested</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Pending Approval Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Legal_Compliance_Acess_All</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Legal &amp; Compliance Acess All</label>
+        <sharedTo>
+            <role>Legal_and_Compliance</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Added</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approval Requested</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Pending Approval Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sales_NB_Acess_All</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales NB Acess All</label>
+        <sharedTo>
+            <role>Sales_NB</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Added</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approval Requested</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Pending Approval Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sales_XB_Acess_All</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales XB Acess All</label>
+        <sharedTo>
+            <role>Sales_XB</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Added</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approval Requested</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Pending Approval Legal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LegalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
     <sharingOwnerRules>
         <fullName>Board_CEO_Roles</fullName>
         <accessLevel>Edit</accessLevel>
@@ -16,7 +176,7 @@
         <accessLevel>Read</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
@@ -27,7 +187,7 @@
         <accessLevel>Edit</accessLevel>
         <label>Client Management Roles</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <role>CEO</role>
@@ -67,14 +227,14 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Legal_Compliance_Role_Edit</fullName>
+        <fullName>Legal_Compliance_Acess</fullName>
         <accessLevel>Edit</accessLevel>
-        <label>Legal &amp; Compliance Role Edit</label>
+        <label>Legal &amp; Compliance Acess</label>
         <sharedTo>
             <role>Legal_and_Compliance</role>
         </sharedTo>
         <sharedFrom>
-            <role>Director</role>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -166,6 +326,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Sales_NB_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales NB Acess</label>
+        <sharedTo>
+            <role>Sales_NB</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Sales_NB_Role</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Sales NB Role</label>
@@ -174,6 +345,17 @@
         </sharedTo>
         <sharedFrom>
             <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_XB_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales XB Acess</label>
+        <sharedTo>
+            <role>Sales_XB</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
 </SharingRules>

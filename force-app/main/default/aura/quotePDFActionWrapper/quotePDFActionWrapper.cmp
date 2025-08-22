@@ -6,7 +6,7 @@
   @last modified by  : Daniel Belini
 -->
 <aura:component  controller="QuotePdfService" implements="force:lightningQuickAction,force:hasRecordId" access="global" >
-    <!--  flexipage:availableForRecordAction, force:lightningQuickAction, lightning:actionOverride-->
+    <!--  flexipage:availableForRecordAction, force:lightningQuickAction, aura:actionOverride-->
 
     <!-- Attributes -->
     <aura:attribute name="vfUrl" type="String" />
@@ -15,6 +15,8 @@
     <aura:attribute name="quoteValidationMessage" type="String" />
     <aura:attribute name="canGenerateProposal" type="Boolean" default="false" />
     <aura:attribute name="quoteStatus" type="String" />
+    <aura:attribute name="emailOptions" type="List" default="[]" />
+    <aura:attribute name="selectedEmail" type="String" />
 
     <!-- On init, define VF URL -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
@@ -27,7 +29,7 @@
                 <div class="slds-modal__content" style="height:550px;">
                     <aura:if isTrue="{!v.isLoading}">
                         <div class="slds-spinner slds-is-fixed">
-                            <lightning:spinner alternativeText="Carregando..." size="medium" />
+                            <lightning:spinner alternativeText="Loading..." size="medium" />
                         </div>
                     </aura:if>
 
@@ -44,10 +46,22 @@
                 </div>
                 <aura:if isTrue="{!not(v.isLoading)}">
                     <div class="slds-modal__footer slds-grid slds-grid_align-center">
-                        <lightning:button label="Cancel" variant="neutral" onclick="{!c.closeModal}" />
                         <aura:if isTrue="{!v.quoteStatus == 'Approved'}">
-                            <lightning:button variant="neutral" label="Send by Email" onclick="{!c.handleSendEmail}" />
-                            <lightning:button disabled="{!not(v.canGenerateProposal)}"   label="Save" variant="brand" onclick="{!c.handleSave}" />
+                            <lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}" />
+                            <aura:if isTrue="{!not(empty(v.emailOptions))}">
+                                <lightning:select name="emailSelect"
+                                                label="Choose Contact"
+                                                value="{!v.selectedEmail}">
+                                    <aura:iteration items="{!v.emailOptions}" var="email">
+                                        <option value="{!email}">{!email}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                                <lightning:button disabled="{!empty(v.selectedEmail)}"
+                                                label="Send by Email"
+                                                variant="neutral"
+                                                onclick="{!c.handleSendEmail}" />
+                            </aura:if>
+                            <lightning:button disabled="{!not(v.canGenerateProposal)}" label="Save" variant="brand" onclick="{!c.handleSave}" />
                         </aura:if>
                     </div>
                 </aura:if>

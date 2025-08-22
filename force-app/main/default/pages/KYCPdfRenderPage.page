@@ -459,6 +459,22 @@
 			</div>
 			<div class="no-break">
 				<h3 style="color: #ababab; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif !important; padding-left: 8px;">CANAL DE SUPORTE AO CLIENTE FINAL</h3>
+				<apex:repeat value="{!supportContacts}" var="c">
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(c.Email))}">
+						<span class="contact-container">
+							<table class="data-container" style="padding-left: 12px;" width="100%">
+								<tr>
+									<td class="field" width="45%">
+										<strong class="label" style=" font-family: Arial, sans-serif !important;">Email:</strong>
+										<p class="value" style="font-family: Arial, sans-serif !important;">{!c.Email}</p>
+									</td>
+									<td width="10%"></td>
+									<td class="field" width="45%"></td>
+								</tr>
+							</table>
+						</span>
+                    </apex:outputPanel>
+				</apex:repeat>
 				<apex:repeat value="{!channelContacts}" var="c">
 					<span class="contact-container">
 						<table class="data-container" style="padding-left: 12px;" width="100%">
@@ -505,7 +521,7 @@
 					<td class="field" width="45%">
 						<strong class="label" style=" font-family: Arial, sans-serif !important;">Empresa em conformidade?</strong>
 						<p class="value" style="font-family: Arial, sans-serif !important;">
-							<apex:outputText value="{!IF(kyc.Conformity__c == true, 'Sim', 'Não')}" />
+							<apex:outputText value="{!IF(OR(kyc.Integration_Type__c == 'API', kyc.Integration_Type__c == 'Magento 2.3', kyc.Integration_Type__c == 'PagBrasil.JS'), IF(kyc.Conformity__c == true, 'Sim', 'Não'), 'Sim')}" />
 						</p>
 					</td>
 				</tr>

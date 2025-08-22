@@ -50,6 +50,10 @@
                 <behavior>Readonly</behavior>
                 <field>Flexibility__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProductCode__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

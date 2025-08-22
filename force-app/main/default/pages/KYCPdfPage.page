@@ -223,11 +223,11 @@
             <article class="data-container">
                 <div class="field">
                     <strong class="label">Endereço físico é o mesmo endereço do registrado?</strong>
-                    <p class="value">{!kyc.Unique_Address__c}</p>
+                    <p class="value">{!IF(kyc.Unique_Address__c, 'Sim', 'Não')}</p>
                 </div>
                 <div class="field">
                     <strong class="label">A empresa faz parte de algum grupo econômico?</strong>
-                    <p class="value">{!kyc.Corporate_Group__c}</p>
+                    <p class="value">{!IF(kyc.Corporate_Group__c, 'Sim', 'Não')}</p>
                 </div>
             </article>
             <h3>OUTROS DADOS</h3>
@@ -404,6 +404,18 @@
             </div>
             <div class="no-break">
                 <h3>CANAL DE SUPORTE AO CLIENTE FINAL</h3>
+                <apex:repeat value="{!supportContacts}" var="c">
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(c.Email))}">
+        	            <span class="contact-container">
+    	                    <article class="data-container">
+	                            <div class="field">
+                                	<strong>Email:</strong>
+                                	<p class="value">{!c.Email}</p>
+                            	</div>
+                        	</article>
+                    	</span>
+                    </apex:outputPanel>
+                </apex:repeat>
                 <apex:repeat value="{!channelContacts}" var="c">
                     <span class="contact-container">
                         <article class="data-container">
@@ -442,7 +454,7 @@
                 <div class="field">
                     <strong class="label">Empresa em conformidade?</strong>
                     <p class="value">
-                        <apex:outputText value="{!IF(kyc.Conformity__c == true, 'Sim', 'Não')}"
+                        <apex:outputText value="{!IF(OR(kyc.Integration_Type__c == 'API', kyc.Integration_Type__c == 'Magento 2.3', kyc.Integration_Type__c == 'PagBrasil.JS'), IF(kyc.Conformity__c == true, 'Sim', 'Não'), 'Sim')}"
                                          />
                     </p>
                 </div>

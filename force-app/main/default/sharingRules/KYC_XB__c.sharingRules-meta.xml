@@ -16,7 +16,7 @@
         <accessLevel>Read</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
@@ -45,6 +45,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Legal_Compliance_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Legal &amp; Compliance Acess</label>
+        <sharedTo>
+            <role>Legal_and_Compliance</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Legal_Compliance_Role</fullName>
         <accessLevel>Read</accessLevel>
         <label>Legal &amp; Compliance Role</label>
@@ -53,17 +64,6 @@
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Legal_Compliance_Roles</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Legal &amp; Compliance Roles</label>
-        <sharedTo>
-            <role>Legal_and_Compliance</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>Director</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

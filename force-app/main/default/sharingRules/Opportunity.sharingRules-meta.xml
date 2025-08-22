@@ -2,10 +2,10 @@
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
         <fullName>Client_Management_Acess</fullName>
-        <accessLevel>Edit</accessLevel>
+        <accessLevel>Read</accessLevel>
         <label>Client Management Acess</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
@@ -26,12 +26,33 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>General_Business_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>General - Business Acess</label>
+        <sharedTo>
+            <role>General_Business</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Pix International &amp; Pix Roaming</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Legal_Compliance_Role_Edit</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Legal &amp; Compliance Role Edit</label>
         <sharedTo>
             <role>Legal_and_Compliance</role>
         </sharedTo>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <criteriaItems>
             <field>StageName</field>
             <operation>equals</operation>
@@ -81,6 +102,20 @@
             <field>StageName</field>
             <operation>equals</operation>
             <value>Closed Lost</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>New_Business_Management_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>New Business Management Access</label>
+        <sharedTo>
+            <role>New_Business_Management</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National,Pix International &amp; Pix Roaming,Cross-border</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
@@ -156,7 +191,7 @@
         <accessLevel>Read</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
@@ -167,10 +202,21 @@
         <accessLevel>Edit</accessLevel>
         <label>Client Management Roles</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Director_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director Acess</label>
+        <sharedTo>
+            <role>Director</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -207,6 +253,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>New_Business_Management_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>New Business Management Acess</label>
+        <sharedTo>
+            <role>New_Business_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>New_Business_Management_Role</fullName>
         <accessLevel>Edit</accessLevel>
         <label>New Business Management Role</label>
@@ -237,6 +294,17 @@
         </sharedTo>
         <sharedFrom>
             <role>New_Business_Team</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>New_Business_Team_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>New Business Team Acess</label>
+        <sharedTo>
+            <role>New_Business_Team</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

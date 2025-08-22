@@ -5,6 +5,7 @@
   $Permission.Can_View_All_Opportunity_Stages,
 		$Permission.Can_View_Grow_Costomer_Success_Opportunity_Stages,
 		$Permission.Can_View_Process_Opportunity_Stages,
+		$Permission.Can_View_New_Business_Team_Opportunity_Stages,
 IF(
   AND(
     $Permission.Can_View_Operations_Support_Opportunity_Stages,
@@ -39,6 +40,10 @@ IF(
     $Permission.Can_View_New_Business_Management_Opportunity_Stages,
     OR(
       ISPICKVAL(StageName, &quot;Negotiation&quot;),
+						ISPICKVAL(StageName, &quot;Compliance&quot;),
+						ISPICKVAL(StageName, &quot;Contract&quot;),
+      ISPICKVAL(StageName, &quot;Homologation&quot;),
+      ISPICKVAL(StageName, &quot;Homologation&quot;),
       ISPICKVAL(StageName, &quot;Processing&quot;),
 						ISPICKVAL(StageName, &quot;Closed Lost&quot;),
 						ISPICKVAL(StageName, &quot;Closed Terminated&quot;),
@@ -50,25 +55,10 @@ IF(
 ),
 IF(
   AND(
-    $Permission.Can_View_New_Business_Team_Opportunity_Stages,
-    OR(
-        ISPICKVAL(StageName, &quot;Discovery&quot;),
-        ISPICKVAL(StageName, &quot;Negotiation&quot;),
-        ISPICKVAL(StageName, &quot;Processing&quot;),
-								ISPICKVAL(StageName, &quot;Closed Lost&quot;),
-								ISPICKVAL(StageName, &quot;Closed Terminated&quot;),
-        ISPICKVAL(StageName, &quot;Frozen&quot;)
-    )
-  ),
-  true,
-  false
-),
-IF(
-  AND(
     $Permission.Can_View_General_Business_Opportunity_Stages,
     OR(
         ISPICKVAL(StageName, &quot;Discovery&quot;),
-								ISPICKVAL(StageName, &quot;Homologation&quot;),
+		      ISPICKVAL(StageName, &quot;Negotiation&quot;),
         ISPICKVAL(StageName, &quot;Processing&quot;),
 								ISPICKVAL(StageName, &quot;Closed Lost&quot;),
 								ISPICKVAL(StageName, &quot;Closed Terminated&quot;),

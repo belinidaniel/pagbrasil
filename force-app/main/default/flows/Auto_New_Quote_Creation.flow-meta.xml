@@ -4,7 +4,7 @@
         <name>Unsychronize_Quote</name>
         <label>Unsychronize Quote</label>
         <locationX>50</locationX>
-        <locationY>2306</locationY>
+        <locationY>2414</locationY>
         <actionName>OpportunityUtils</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -26,7 +26,7 @@
         <name>Quote_Version</name>
         <label>Quote Version</label>
         <locationX>182</locationX>
-        <locationY>1874</locationY>
+        <locationY>1982</locationY>
         <assignmentItems>
             <assignToReference>QuoteVersionNumber</assignToReference>
             <operator>AssignCount</operator>
@@ -112,10 +112,84 @@
         </value>
     </choices>
     <decisions>
+        <name>All_required_fields_filled</name>
+        <label>All required fields filled?</label>
+        <locationX>916</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Unfilled_Fields_Warning</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>One or more unfilled</defaultConnectorLabel>
+        <rules>
+            <name>All_filled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.BusinessModelType__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.PaymentRecurrence__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Product_Type__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.IntegrationType__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Segmento__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.ProductClass__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.NationalPaymentMethod__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.BusinessModel__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>First_Appointment_Status</targetReference>
+            </connector>
+            <label>All filled</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Are_Required_Frequency_Fields_Filled</name>
         <label>Are Required Frequency Fields Filled?</label>
         <locationX>182</locationX>
-        <locationY>1574</locationY>
+        <locationY>1682</locationY>
         <defaultConnector>
             <targetReference>Set_Opportunity_Frequencies</targetReference>
         </defaultConnector>
@@ -179,10 +253,49 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Filled_TPVs_and_Average_Order_Value</name>
+        <label>Filled TPVs and Average Order Value?</label>
+        <locationX>413</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>TPVs_and_Order_Value_Warning</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Filled</defaultConnectorLabel>
+        <rules>
+            <name>Filled1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.AverageSalesTicket__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.previs_fat_rs__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opportunity.nb_receita_mensal__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_Opportunity_Crossborder</targetReference>
+            </connector>
+            <label>Filled</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>First_Appointment_Status</name>
         <label>First Appointment Status</label>
         <locationX>660</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>First_Appointment_Status_Warning</targetReference>
         </defaultConnector>
@@ -198,7 +311,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Product_Category</targetReference>
+                <targetReference>Filled_TPVs_and_Average_Order_Value</targetReference>
             </connector>
             <label>Filled</label>
         </rules>
@@ -207,7 +320,7 @@
         <name>Is_Opportunity_Crossborder</name>
         <label>Is Opportunity Crossborder</label>
         <locationX>182</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <defaultConnector>
             <targetReference>Get_Actual_Quotes</targetReference>
         </defaultConnector>
@@ -239,7 +352,7 @@
         <name>Is_the_proposal_acceptable</name>
         <label>Is the proposal acceptable?</label>
         <locationX>336</locationX>
-        <locationY>1082</locationY>
+        <locationY>1190</locationY>
         <defaultConnector>
             <targetReference>Are_Required_Frequency_Fields_Filled</targetReference>
         </defaultConnector>
@@ -264,7 +377,7 @@
         <name>Is_there_a_synchronized_quote</name>
         <label>Is there a synchronized quote?</label>
         <locationX>182</locationX>
-        <locationY>2090</locationY>
+        <locationY>2198</locationY>
         <defaultConnector>
             <targetReference>get_Director_approval</targetReference>
         </defaultConnector>
@@ -286,42 +399,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Product_Category</name>
-        <label>Product Category</label>
-        <locationX>413</locationX>
-        <locationY>350</locationY>
-        <defaultConnector>
-            <targetReference>Product_Category_Warning</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not exists</defaultConnectorLabel>
-        <rules>
-            <name>Exists</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_Opportunity.ProductClass__c</leftValueReference>
-                <operator>WasSet</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Get_Opportunity.RecordType.DeveloperName</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Crossborder</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Is_Opportunity_Crossborder</targetReference>
-            </connector>
-            <label>Exists</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Quotes_Amount</name>
         <label>Quotes Amount</label>
         <locationX>182</locationX>
-        <locationY>974</locationY>
+        <locationY>1082</locationY>
         <defaultConnector>
             <targetReference>Is_the_proposal_acceptable</targetReference>
         </defaultConnector>
@@ -373,7 +454,7 @@
         <name>Create_Quote</name>
         <label>Create Quote</label>
         <locationX>182</locationX>
-        <locationY>2930</locationY>
+        <locationY>3038</locationY>
         <connector>
             <targetReference>Redirect_To_New_Quote</targetReference>
         </connector>
@@ -408,7 +489,7 @@
         <name>Get_Actual_Quotes</name>
         <label>Get Actual Quotes</label>
         <locationX>182</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Quotes_Amount</targetReference>
@@ -430,7 +511,7 @@
         <name>get_CEO</name>
         <label>get CEO</label>
         <locationX>182</locationX>
-        <locationY>2606</locationY>
+        <locationY>2714</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>GetUserCEO</targetReference>
@@ -458,7 +539,7 @@
         <name>get_Director_approval</name>
         <label>get Director approval</label>
         <locationX>182</locationX>
-        <locationY>2498</locationY>
+        <locationY>2606</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>get_CEO</targetReference>
@@ -485,11 +566,11 @@
     <recordLookups>
         <name>Get_Opportunity</name>
         <label>Get Opportunity</label>
-        <locationX>660</locationX>
+        <locationX>916</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>First_Appointment_Status</targetReference>
+            <targetReference>All_required_fields_filled</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -507,7 +588,7 @@
         <name>Get_User_Director</name>
         <label>Get User Director</label>
         <locationX>182</locationX>
-        <locationY>2822</locationY>
+        <locationY>2930</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Quote</targetReference>
@@ -528,7 +609,7 @@
         <name>GetUserCEO</name>
         <label>Get user CEO</label>
         <locationX>182</locationX>
-        <locationY>2714</locationY>
+        <locationY>2822</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_User_Director</targetReference>
@@ -548,8 +629,8 @@
     <recordUpdates>
         <name>Update_Opportunity</name>
         <label>Update Opportunity</label>
-        <locationX>908</locationX>
-        <locationY>458</locationY>
+        <locationX>916</locationX>
+        <locationY>3614</locationY>
         <connector>
             <isGoTo>true</isGoTo>
             <targetReference>Get_Opportunity</targetReference>
@@ -557,21 +638,10 @@
         <inputReference>Get_Opportunity</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Opportunity_ProdCateg</name>
-        <label>Update Opportunity ProdCateg</label>
-        <locationX>644</locationX>
-        <locationY>566</locationY>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Product_Category</targetReference>
-        </connector>
-        <inputReference>Get_Opportunity</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <name>Update_Opportunity_Remittance_Currency</name>
         <label>Update Opportunity Remittance Currency</label>
         <locationX>50</locationX>
-        <locationY>674</locationY>
+        <locationY>782</locationY>
         <connector>
             <targetReference>Get_Actual_Quotes</targetReference>
         </connector>
@@ -595,7 +665,7 @@
         <name>First_Appointment_Status_Warning</name>
         <label>First Appointment Status Warning</label>
         <locationX>908</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -606,28 +676,12 @@
             <name>Text2</name>
             <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;The First Appointment Status field must be filled in to generate a quote&lt;/em&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <fieldType>ObjectProvided</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <objectFieldReference>Get_Opportunity.First_Appointment_Status__c</objectFieldReference>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Update</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -637,7 +691,7 @@
         <name>Moeda_c_Set</name>
         <label>Moeda__c Set</label>
         <locationX>50</locationX>
-        <locationY>566</locationY>
+        <locationY>674</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -648,14 +702,6 @@
             <name>Text1</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Choose a value for the Remittance Currency field:&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Remittance_Currency</name>
@@ -670,14 +716,6 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Update Field</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -687,7 +725,7 @@
         <name>New_Quote</name>
         <label>New Quote</label>
         <locationX>182</locationX>
-        <locationY>1982</locationY>
+        <locationY>2090</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -698,58 +736,8 @@
             <name>New_Quote_Message</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;The following quote will be created:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;{!QuoteName}&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Create Quote</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>Product_Category_Warning</name>
-        <label>Product Category Warning</label>
-        <locationX>644</locationX>
-        <locationY>458</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Update_Opportunity_ProdCateg</targetReference>
-        </connector>
-        <fields>
-            <name>Copy_1_of_Text2</name>
-            <fieldText>&lt;p&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;The Product Category field must be filled in to generate a quote&lt;/em&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
-        </fields>
-        <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Get_Opportunity.ProductClass__c</objectFieldReference>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
-        </fields>
-        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -757,7 +745,7 @@
         <name>Redirect_To_New_Quote</name>
         <label>Redirect To New Quote</label>
         <locationX>182</locationX>
-        <locationY>3038</locationY>
+        <locationY>3146</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -774,23 +762,180 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>TPVs_and_Order_Value_Warning</name>
+        <label>TPVs and Order Value Warning</label>
+        <locationX>644</locationX>
+        <locationY>566</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Copy_2_of_Text2</name>
+            <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;The &apos;PagBrasil TPV&apos;, &apos;Potential TPV&apos; and &apos;Average Order Value&apos; fields must be filled in to generate a quote&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Unfilled_Fields_Warning</name>
+        <label>Unfilled Fields Warning</label>
+        <locationX>1172</locationX>
+        <locationY>350</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Opportunity</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_1_of_Text2</name>
+            <fieldText>&lt;p&gt;&lt;em style=&quot;background-color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;⚠️ &lt;/em&gt;&lt;em style=&quot;font-size: 16px;&quot;&gt;You need to fill in the field(s) below to create a new quote&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.BusinessModelType__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.BusinessModelType__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.PaymentRecurrence__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.PaymentRecurrence__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.Product_Type__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Product_Type__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.IntegrationType__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.IntegrationType__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.Segmento__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.Segmento__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.ProductClass__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.ProductClass__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.NationalPaymentMethod__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.NationalPaymentMethod__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Get_Opportunity.BusinessModel__c</objectFieldReference>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Opportunity.BusinessModel__c</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <nextOrFinishButtonLabel>Update</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
         <name>Warning</name>
         <label>Warning</label>
         <locationX>50</locationX>
-        <locationY>2198</locationY>
+        <locationY>2306</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -801,14 +946,6 @@
             <name>WarningText</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 204, 0); font-size: 18px;&quot;&gt;The current synchronized quote will be desynchronized.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 204, 0); font-size: 18px;&quot;&gt;You can manually sync it again.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -817,7 +954,7 @@
         <name>You_Can_Not_Create_a_New_Quote</name>
         <label>You Can&apos;t Create a New Quote</label>
         <locationX>204</locationX>
-        <locationY>1190</locationY>
+        <locationY>1298</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -825,21 +962,13 @@
             <name>Sorry</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 0, 0); font-size: 18px;&quot;&gt;It is not possible to create a new quote, as there is another already synchronized with the current opportunity that can be accepted at the moment.&lt;/strong&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Back to Opportunity</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>534</locationX>
+        <locationX>790</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Opportunity</targetReference>
@@ -850,7 +979,7 @@
         <name>Set_Opportunity_Frequencies</name>
         <label>Set Opportunity Frequencies</label>
         <locationX>270</locationX>
-        <locationY>1682</locationY>
+        <locationY>1790</locationY>
         <connector>
             <targetReference>Quote_Version</targetReference>
         </connector>

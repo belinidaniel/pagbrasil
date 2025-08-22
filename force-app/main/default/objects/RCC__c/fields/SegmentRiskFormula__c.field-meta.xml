@@ -2,61 +2,45 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SegmentRiskFormula__c</fullName>
     <externalId>false</externalId>
-    <formula>(
-    CASE(
-        Opportunity__r.Segmento__c,
-        &quot;Acessórios&quot;, 2,
-        &quot;Conteúdo Adulto&quot;, 150,
-        &quot;Bares e Restaurantes&quot;, 2,
-        &quot;Bebidas&quot;, 1,
-        &quot;Vestuário&quot;, 2,
-        &quot;Construção civil&quot;, 2,
-        &quot;Cosméticos&quot;, 2,
-        &quot;Criptomoedas&quot;, 150,
-        &quot;Decoração&quot;, 2,
-        &quot;Digital&quot;, 1,
-        &quot;Dropshipping&quot;, 2,
-        &quot;Educação&quot;, 1,
-        &quot;E-learning&quot;, 1,
-        &quot;Eletronics&quot;, 5,
-        &quot;Eventos&quot;, 150,
-        &quot;Alimentos&quot;, 1,
-        &quot;Food &amp; Beverage&quot;, 1,
-        &quot;Calçados&quot;, 1,
-        &quot;Móveis e/ou eletrodomésticos&quot;, 2,
-        &quot;Jogos de azar e apostas&quot;, 150,
-        &quot;Gaming&quot;, 2,
-        &quot;Grocery&quot;, 1,
-        &quot;Home Appliances&quot;, 2,
-        &quot;Hotéis&quot;, 5,
-        &quot;Joias/Relógios&quot;, 2,
-        &quot;Marketplace&quot;, 2,
-        &quot;PSP&quot;, 2,
-        &quot;Pet&quot;, 1,
-        &quot;Restaurantes&quot;, 1,
-        &quot;Sexshop&quot;, 1,
-        &quot;Software/Saas B2B&quot;, 1,
-        &quot;Papelaria&quot;, 1,
-        &quot;Suplementos/Farmacêuticos&quot;, 2,
-        &quot;Integrador Técnico&quot;, 1,
-        &quot;Turismo&quot;, 5,
-        &quot;Outros&quot;, 5,
-        0
-    )
-)
-*
-(
-    CASE(DescriptionIsClear__c, &quot;Sim&quot;, 1, &quot;Yes&quot;, 1, &quot;Não&quot;, 5, &quot;No&quot;, 5, &quot;Em Partes&quot;, 2, &quot;In Parts&quot;, 2, 0)
-    +
-    CASE(QualityProduct__c, &quot;Sim&quot;, 1, &quot;Yes&quot;, 1, &quot;Não&quot;, 5, &quot;No&quot;, 5, &quot;Em Partes&quot;, 2, &quot;In Parts&quot;, 2, 0)
-    +
-    CASE(ActivityRestricted__c, &quot;Sim&quot;, 1, &quot;Yes&quot;, 1, &quot;Não&quot;, 5, &quot;No&quot;, 5, &quot;Em Partes&quot;, 2, &quot;In Parts&quot;, 2, 0)
-    +
-    CASE(PresenceMarket__c, &quot;Sim&quot;, 1, &quot;Yes&quot;, 1, &quot;Não&quot;, 5, &quot;No&quot;, 5, &quot;Em Partes&quot;, 2, &quot;In Parts&quot;, 2, 0)
-    +
-    CASE(Reputation__c, &quot;Sim&quot;, 1, &quot;Yes&quot;, 1, &quot;Não&quot;, 5, &quot;No&quot;, 5, &quot;Em Partes&quot;, 2, &quot;In Parts&quot;, 2, 0)
-    +
-    CASE(RealisticForecast__c, &quot;Sim&quot;, 1, &quot;Yes&quot;, 1, &quot;Não&quot;, 5, &quot;No&quot;, 5, &quot;Em Partes&quot;, 2, &quot;In Parts&quot;, 2, 0)
+    <formula>CASE(
+				Opportunity__r.Segmento__c,
+				&quot;Acessórios&quot;, 2,
+				&quot;Conteúdo Adulto&quot;, 150,
+				&quot;Bares e Restaurantes&quot;, 2,
+				&quot;Bebidas&quot;, 1,
+				&quot;Vestuário&quot;, 2,
+				&quot;Construção civil&quot;, 2,
+				&quot;Cosméticos&quot;, 2,
+    &quot;Criptomoedas&quot;, 150,
+    &quot;Decoração&quot;, 2,
+    &quot;Digital&quot;, 1,
+    &quot;Dropshipping&quot;, 2,
+    &quot;Educação&quot;, 1,
+    &quot;E-learning&quot;, 1,
+    &quot;Eletronics&quot;, 5,
+    &quot;Eventos&quot;, 150,
+    &quot;Alimentos&quot;, 1,
+    &quot;Food &amp; Beverage&quot;, 1,
+    &quot;Calçados&quot;, 1,
+    &quot;Móveis e/ou eletrodomésticos&quot;, 2,
+    &quot;Jogos de azar e apostas&quot;, 150,
+    &quot;Gaming&quot;, 2,
+    &quot;Grocery&quot;, 1,
+    &quot;Home Appliances&quot;, 2,
+    &quot;Hotéis&quot;, 5,
+    &quot;Joias/Relógios&quot;, 2,
+    &quot;Marketplace&quot;, 2,
+    &quot;PSP&quot;, 2,
+    &quot;Pet&quot;, 1,
+    &quot;Restaurantes&quot;, 1,
+    &quot;Sexshop&quot;, 1,
+    &quot;Software/Saas B2B&quot;, 1,
+    &quot;Papelaria&quot;, 1,
+    &quot;Suplementos/Farmacêuticos&quot;, 2,
+    &quot;Integrador Técnico&quot;, 1,
+    &quot;Turismo&quot;, 5,
+    &quot;Outros&quot;, 5,
+    0
 )</formula>
     <label>Segment Risk</label>
     <precision>18</precision>

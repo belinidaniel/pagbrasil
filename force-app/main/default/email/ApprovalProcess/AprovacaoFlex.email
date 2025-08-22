@@ -80,8 +80,34 @@
 
           <!-- TPV PagBrasil e Faturamento formatados como R$ -->
           <p><strong>TPV PagBrasil:</strong> <span class="highlight">
-            R$ {!IF(relatedTo.Opportunity.previs_fat_rs__c != NULL, TEXT(relatedTo.Opportunity.previs_fat_rs__c), '0,00')}
-          </span></p>         
+            R$ {!IF(
+              ISBLANK(relatedTo.Opportunity.previs_fat_rs__c),
+              "0,00",
+            
+              IF(relatedTo.Opportunity.previs_fat_rs__c < 1000,
+                 SUBSTITUTE(TEXT(ROUND(relatedTo.Opportunity.previs_fat_rs__c, 2)), ".", ","),
+            
+              IF(relatedTo.Opportunity.previs_fat_rs__c < 1000000,
+                 /* milhar */
+                 LEFT(TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c / 1000)), LEN(TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c / 1000)))) + "." +
+                 RIGHT("000" & TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c)), 3) + "," +
+                 RIGHT(TEXT(ROUND(relatedTo.Opportunity.previs_fat_rs__c * 100, 0)), 2),
+            
+              IF(relatedTo.Opportunity.previs_fat_rs__c < 1000000000,
+                 /* milhões */
+                 LEFT(TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c / 1000000)), LEN(TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c / 1000000)))) + "." +
+                 RIGHT("000" & TEXT(FLOOR(MOD(relatedTo.Opportunity.previs_fat_rs__c / 1000, 1000))), 3) + "." +
+                 RIGHT("000" & TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c)), 3) + "," +
+                 RIGHT(TEXT(ROUND(relatedTo.Opportunity.previs_fat_rs__c * 100, 0)), 2),
+            
+              /* bilhões */
+                 LEFT(TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c / 1000000000)), LEN(TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c / 1000000000)))) + "." +
+                 RIGHT("000" & TEXT(FLOOR(MOD(relatedTo.Opportunity.previs_fat_rs__c / 1000000, 1000))), 3) + "." +
+                 RIGHT("000" & TEXT(FLOOR(MOD(relatedTo.Opportunity.previs_fat_rs__c / 1000, 1000))), 3) + "." +
+                 RIGHT("000" & TEXT(FLOOR(relatedTo.Opportunity.previs_fat_rs__c)), 3) + "," +
+                 RIGHT(TEXT(ROUND(relatedTo.Opportunity.previs_fat_rs__c * 100, 0)), 2)
+              ))))}
+            </span></p>
           <table class="table-container">
             <thead>
               <tr>

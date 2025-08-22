@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 08-14-2025
+ * @last modified on  : 08-19-2025
  * @last modified by  : Daniel Belini
 **/
 public with sharing class QuoteTriggerHandler extends TriggerHandler {
@@ -156,12 +156,13 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
                         PercentValue__c  = priceBookEntry.PercentValue__c,
                         QuoteId = quote.Id,
                         Discount = discount,
-                        IsMain__c = true
+                        IsMain__c = true,
+                        ProductCode__c = priceBookEntry.Product2.ProductCode
                     ));
                 }
             }
         }
-        
+        adjustPixOneClickFee(quoteLineItems, '');
         if(!quoteLineItems.isEmpty()){
             insert quoteLineItems;
         }
@@ -170,22 +171,22 @@ public with sharing class QuoteTriggerHandler extends TriggerHandler {
     /**
     * Adjusts the 1-Click Pix Fixed Fee so that Pix Fixed Fee + 1-Click = R$1.90 if both are present and Pix Fixed Fee < 1.90
     */
-    private void adjustPixOneClickFee(List<QuoteLineItem> quoteLineItems) {
-        QuoteLineItem pixFixedFee;
-        QuoteLineItem oneClickFee;
+    private void adjustPixOneClickFee(List<QuoteLineItem> quoteLineItems, String type) {
+
+        decimal taxaProcessGateway = 0;
         for (QuoteLineItem item : quoteLineItems) {
-            if (item.Product2Id != null) {
-                Product2 p = [SELECT Id, ProductCode FROM Product2 WHERE Id = :item.Product2Id LIMIT 1];
-                if (p.ProductCode != null && p.ProductCode.contains('TAXA_GATEWAY_PIX')) {
-                    pixFixedFee = item;
-                }
-                if (p.ProductCode != null && p.ProductCode.contains('ONE_PIX_FIXED_FEE')) {
-                    oneClickFee = item;
-                }
+            System.debug(item.ProductCode__c);
+            if(item.product2Id != null && item.ProductCode__c == 'TAXA_PROCESS_GATEWAY') {
+                taxaProcessGateway = item.UnitPrice;
             }
         }
-        if (pixFixedFee != null && oneClickFee != null && pixFixedFee.UnitPrice < 1.90) {
-            oneClickFee.UnitPrice = 1.90 - pixFixedFee.UnitPrice;
+        System.debug('taxaProcessGateway: ' + taxaProcessGateway);
+        
+        for(QuoteLineItem item : quoteLineItems) {
+            if(item.product2Id != null && item.ProductCode__c == 'PIX_AUTO' || item.product2Id != null && item.ProductCode__c == 'ONE_PIX_FIXED_FEE') {
+                    item.UnitPrice = item.UnitPrice - taxaProcessGateway;
+            }
+            item.UnitPrice = item.UnitPrice < 0 ? 0 : item.UnitPrice;
         }
     }
 

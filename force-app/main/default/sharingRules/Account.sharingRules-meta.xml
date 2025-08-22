@@ -2,15 +2,85 @@
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
         <fullName>Client_Management_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Read</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>Read</opportunityAccessLevel>
+        </accountSettings>
+        <label>Client Management Acess</label>
+        <sharedTo>
+            <role>Cliet_Management</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>Nacional (NB)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>Cross Border (XB)</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>General_Business_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Read</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>Read</opportunityAccessLevel>
+        </accountSettings>
+        <label>General - Business Acess</label>
+        <sharedTo>
+            <role>General_Business</role>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>Cross Border (XB)</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Legal_Compliance_Acess</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
             <caseAccessLevel>Edit</caseAccessLevel>
             <contactAccessLevel>Edit</contactAccessLevel>
             <opportunityAccessLevel>Edit</opportunityAccessLevel>
         </accountSettings>
-        <label>Client Management Acess</label>
+        <label>Legal &amp; Compliance Acess</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Legal_and_Compliance</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>Nacional (NB)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>Cross Border (XB)</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>New_Business_Management_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>New Business Management Acess</label>
+        <sharedTo>
+            <role>New_Business_Management</role>
         </sharedTo>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
@@ -112,22 +182,6 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-        <fullName>Client_Management_Role</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>Read</opportunityAccessLevel>
-        </accountSettings>
-        <label>Client Management Role</label>
-        <sharedTo>
-            <role>Client_Management</role>
-        </sharedTo>
-        <sharedFrom>
-            <group>leaves_of_the_hierarchy_tree</group>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
         <fullName>Client_Management_Roles</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -137,10 +191,10 @@
         </accountSettings>
         <label>Client Management Roles</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -189,6 +243,22 @@
         </sharedTo>
         <sharedFrom>
             <group>Heads</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Legal_Compliance_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Legal &amp; Compliance Acess</label>
+        <sharedTo>
+            <role>Legal_and_Compliance</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -320,6 +390,22 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Sales_NB_New_Business</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sales NB New Business</label>
+        <sharedTo>
+            <role>Sales_NB</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>NewBusiness</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Sales_NB_Role</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -333,6 +419,22 @@
         </sharedTo>
         <sharedFrom>
             <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_XB_New_Business</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sales XB New Business</label>
+        <sharedTo>
+            <role>Sales_XB</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>NewBusiness</group>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

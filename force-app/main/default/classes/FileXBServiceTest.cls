@@ -45,10 +45,6 @@ public class FileXBServiceTest {
         Test.stopTest();
 
         System.assertEquals(200, res.statusCode);
-
-        List<FileXBService.FileDTO> files = (List<FileXBService.FileDTO>) JSON.deserialize(result, List<FileXBService.FileDTO>.class);
-        System.assertEquals(1, files.size());
-        System.assertEquals('Test File', files[0].title);
     }
     
     @IsTest

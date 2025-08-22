@@ -37,6 +37,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Quote.CEOApprover__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Quote.ContactId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -53,6 +58,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Quote.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Quote.DirectorApprover__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtlClntAppOauthConfigurablePolicies xmlns="http://soap.sforce.com/2006/04/metadata">
-    <commaSeparatedProfile>System Administrator with restrictions,Board - CEOs,SDR,Pre-Sales Manager,Sales XB,Homologação Profile,Pre-Sales Analyst,Identity User,Head,CEO,Account Manager Farmer,Account Manager,New Business Management,New Sales,Process,Default,Minimum Access - API Only Integrations,General - Business,Sales Management NB,Chatter External User,Chatter Moderator User,Operations &amp; Support,Contract Manager,Marketing User,Solution Manager,Read Only,Standard User,Chatter Free User,Product,System Administrator,Integracao Perfil,zendeskteste,Anypoint Integration,New Business Team,Legal &amp; Compliance,Sales Insights Integration User,SalesforceIQ Integration User,Salesforce API Only System Integrations,Minimum Access - Salesforce,Sales Management XB,Guest License User,Analytics Cloud Integration User,Analytics Cloud Security User,teste Profile,Sales NB,Client Management</commaSeparatedProfile>
+    <commaSeparatedProfile>Process,Default,Minimum Access - API Only Integrations,General - Business,Sales Management NB,Chatter External User,Chatter Moderator User,Operations &amp; Support,Contract Manager,Marketing User,Solution Manager,Read Only,Standard User,Chatter Free User,Product,System Administrator,Integracao Perfil,zendeskteste,Anypoint Integration,New Business Team,Legal &amp; Compliance,Sales Insights Integration User,SalesforceIQ Integration User,Salesforce API Only System Integrations,Minimum Access - Salesforce,Sales Management XB,Guest License User,Analytics Cloud Integration User,Analytics Cloud Security User,teste Profile,Sales NB,Client Management,System Administrator with restrictions,Board - CEOs,SDR,Pre-Sales Manager,Sales XB,Homologação Profile,Pre-Sales Analyst,Identity User,Head,CEO,Account Manager Farmer,Account Manager,New Business Management,New Sales</commaSeparatedProfile>
     <externalClientApplication>Integracao_SR</externalClientApplication>
     <guestJwtTimeout>5</guestJwtTimeout>
     <ipRelaxationPolicyType>Bypass</ipRelaxationPolicyType>
     <isClientCredentialsFlowEnabled>false</isClientCredentialsFlowEnabled>
     <isGuestCodeCredFlowEnabled>false</isGuestCodeCredFlowEnabled>
+    <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
     <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
     <label>Integracao_SR_oauthPlcy</label>
     <permittedUsersPolicyType>AdminApprovedPreAuthorized</permittedUsersPolicyType>

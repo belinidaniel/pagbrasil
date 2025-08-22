@@ -165,7 +165,7 @@
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isIntermediation}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <th style="color: #0058B5;font-size:12px">
                                     Taxa da Solução PagBrasil<br/>Intermediação
                                 </th>
@@ -199,13 +199,13 @@
                             <td>{!boletoOne}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilOne}</td>
                             </apex:panelGroup>
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilOne}</td>
                             </apex:panelGroup>                            
                             <td>{!pagBrasilGatewayOne}</td>
@@ -230,14 +230,14 @@
                             <td>{!boletoTwo}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilTwo}</td>
                             </apex:panelGroup>   
                         
                             <td>{!pagBrasilGatewayTwo}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilTwo}</td>
                             </apex:panelGroup>       
                         </apex:panelGroup>
@@ -264,13 +264,13 @@
 
 
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilThree}</td>
                             </apex:panelGroup>   
                             <td>{!pagBrasilGatewayThree}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilThree}</td>
                             </apex:panelGroup>   
                         </apex:panelGroup>     
@@ -296,13 +296,13 @@
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilFour}</td>
                             </apex:panelGroup>   
                             <td>{!pagBrasilGatewayFour}</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                                 <td>{!pagBrasilFour}</td>
                             </apex:panelGroup>   
                         </apex:panelGroup>     
@@ -328,13 +328,13 @@
                         </apex:panelGroup>
                         
                         <apex:panelGroup rendered="{!isGatewayAndIntermediation}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                             <td>-</td>
                             </apex:panelGroup>   
                             <td>-</td>
                         </apex:panelGroup>
                         <apex:panelGroup rendered="{!NOT(isGatewayAndIntermediation)}">
-                            <apex:panelGroup rendered="{!isPluginAndPbChekout}">
+                            <apex:panelGroup rendered="{!isPlugin}">
                             <td>-</td>
                             </apex:panelGroup> 
                         </apex:panelGroup>     

@@ -10,6 +10,7 @@
     <permissionSets>Homologation_Forms_Can_View</permissionSets>
     <permissionSets>KYC_NB_Can_View</permissionSets>
     <permissionSets>KYC_XB_Can_View</permissionSets>
+    <permissionSets>Notes_Attachments_Can_View</permissionSets>
     <permissionSets>Opportunities_Can_View</permissionSets>
     <permissionSets>Opportunity_View_Operations_and_Support</permissionSets>
     <permissionSets>Price_Book_Can_View_All</permissionSets>

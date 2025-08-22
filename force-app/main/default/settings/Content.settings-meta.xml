@@ -16,7 +16,6 @@
     <enableFilesUsrShareNetRestricted>false</enableFilesUsrShareNetRestricted>
     <enableJPGPreviews>false</enableJPGPreviews>
     <enableLWCFileUpload>true</enableLWCFileUpload>
-    <enableLWCFileUploadInFlows>false</enableLWCFileUploadInFlows>
     <enableLibraryManagedFiles>false</enableLibraryManagedFiles>
     <enableSiteGuestUserToUploadFiles>true</enableSiteGuestUserToUploadFiles>
     <enableUploadFilesOnAttachments>false</enableUploadFilesOnAttachments>

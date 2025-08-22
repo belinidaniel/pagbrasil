@@ -9,7 +9,7 @@ AND(
         LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;
     ),
     ISPICKVAL(IntegrationType__c, &quot;&quot;)
-) )</errorConditionFormula>
+), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorDisplayField>IntegrationType__c</errorDisplayField>
     <errorMessage>The Integration Type field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

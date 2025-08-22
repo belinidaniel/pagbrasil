@@ -5,7 +5,81 @@
         <accessLevel>Edit</accessLevel>
         <label>Client Management Acess</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Director_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director Acess</label>
+        <sharedTo>
+            <role>Director</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>General_Business_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>General - Business Acess</label>
+        <sharedTo>
+            <role>General_Business</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>New_Business_Management_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>New Business Management Acess</label>
+        <sharedTo>
+            <role>New_Business_Management</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>National</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Cross-border</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>New_Business_Team_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>New Business Team Acess</label>
+        <sharedTo>
+            <role>New_Business_Team</role>
         </sharedTo>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
@@ -53,10 +127,10 @@
         <accessLevel>Edit</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

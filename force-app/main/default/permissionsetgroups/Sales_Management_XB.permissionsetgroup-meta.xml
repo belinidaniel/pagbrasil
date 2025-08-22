@@ -16,6 +16,7 @@
     <permissionSets>KYC_XB_Can_Edit</permissionSets>
     <permissionSets>Lead_Can_Edit</permissionSets>
     <permissionSets>Lead_Converter_Permission</permissionSets>
+    <permissionSets>Notes_Attachments_Can_View</permissionSets>
     <permissionSets>Opportunities_Can_Edit</permissionSets>
     <permissionSets>Opportunity_Can_Create</permissionSets>
     <permissionSets>Opportunity_Edit_All_Stages</permissionSets>

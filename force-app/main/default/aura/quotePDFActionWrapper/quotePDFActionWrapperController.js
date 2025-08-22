@@ -4,6 +4,7 @@
         component.set("v.isLoading", true);
 
         helper.loadVFUrl(component);
+        helper.loadContactEmails(component);
 
         // Simula tempo de carregamento (3 a 4 segundos)
         window.setTimeout($A.getCallback(function() {            
@@ -30,7 +31,7 @@
     },
     
     handleSendEmail : function(component, event, helper) {
-        helper.sendPDFByEmail(component);
+        helper.sendPDFByEmail(component, component.get("v.selectedEmail"));
     }
 
 });

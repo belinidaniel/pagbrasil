@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Hersilio Belini de Oliveira
  * @group             :
- * @last modified on  : 08-08-2025
+ * @last modified on  : 08-19-2025
  * @last modified by  : Daniel Belini
 **/
 public class ContractController {
@@ -23,7 +23,7 @@ public class ContractController {
     public Boolean isFluxoMedio { get; set; }
     public Boolean isPayout { get; set; }
     public Boolean isPhysical { get; set; }
-    public Boolean isPluginAndPbChekout { get; set; }
+    public Boolean isPlugin { get; set; }
     public Boolean pixGatewayBelowMinimum { get; set; }
     public String antecipationFrequency { get; set; }
     public Boolean containsPagBrasilDefinition { get; set; }
@@ -179,7 +179,7 @@ public class ContractController {
         this.link = String.isBlank(ApexPages.currentPage().getParameters().get('link')) ? 'Link não fornecido' : ApexPages.currentPage().getParameters().get('link');
         this.opportunity = opp;
 
-        this.isPluginAndPbChekout = isPluginAndPbChekout(opp.IntegrationType__c);
+        this.isPlugin = isPlugin(opp.IntegrationType__c);
 
         if (!this.isCrossBorder){
             KYC__c kyc = [SELECT Id, Legal_Name__c FROM KYC__c WHERE Opportunity__c =: opp.Id LIMIT 1];
@@ -928,9 +928,6 @@ public class ContractController {
         if(pixGatewayValue < minValue){
             oneClickFee = minValue - pixGatewayValue;
         }
-        // Only set if > 0
-        this.oneClickFeeFixed = (oneClickFee > 0) ? String.valueOf(oneClickFee.setScale(2)) : '0.0';
-        this.pixAuto = (oneClickFee > 0) ? String.valueOf(pixGatewayValue.setScale(2)) : '0.0';
     }
 
     @AuraEnabled
@@ -954,7 +951,7 @@ public class ContractController {
         return cv.ContentDocumentId;
     }
 
-    public static Boolean isPluginAndPbChekout(String integrationType) {
+    public static Boolean isPlugin(String integrationType) {
         if (String.isBlank(integrationType)) return false;
         List<String> pluginTypes = new List<String>{
             'Vtex',
@@ -962,8 +959,7 @@ public class ContractController {
             'Shopify with Buda',
             'Shopify with Yampi',
             'Shopify with Cart Panda',
-            'Salesforce',
-            'PB Checkout'
+            'Salesforce'
         };
         for (String type : pluginTypes) {
             if (integrationType.contains(type)) {

@@ -12,11 +12,22 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Client_Management_Acess</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Client Management Acess</label>
+        <sharedTo>
+            <role>Cliet_Management</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Client_Management_Role</fullName>
         <accessLevel>Read</accessLevel>
         <label>Client Management Role</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
             <group>leaves_of_the_hierarchy_tree</group>
@@ -27,10 +38,21 @@
         <accessLevel>Edit</accessLevel>
         <label>Client Management Roles</label>
         <sharedTo>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
         </sharedTo>
         <sharedFrom>
-            <role>Client_Management</role>
+            <role>Cliet_Management</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Director_Acess</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Director Acess</label>
+        <sharedTo>
+            <role>Director</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEO</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -155,6 +177,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Sales_NB_New_Business</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales NB New Business</label>
+        <sharedTo>
+            <role>Sales_NB</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>NewBusiness</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Sales_NB_Role</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Sales NB Role</label>
@@ -163,6 +196,17 @@
         </sharedTo>
         <sharedFrom>
             <role>Sales_NB</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_XB_New_Business</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales XB New Business</label>
+        <sharedTo>
+            <role>Sales_XB</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>NewBusiness</group>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

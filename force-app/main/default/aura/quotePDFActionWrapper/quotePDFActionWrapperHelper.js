@@ -110,24 +110,27 @@
         $A.enqueueAction(action);
     }, 
 
-    sendPDFByEmail : function(component) {
-        component.set("v.isLoading", true); // Start spinner
+    sendPDFByEmail : function(component, recipientEmail) {
+        component.set("v.isLoading", true);
         const action = component.get("c.sendToEmail");
-        action.setParams({ quoteId: component.get("v.recordId") });
+        action.setParams({
+            quoteId: component.get("v.recordId"),
+            recipientEmail: recipientEmail
+        });
         action.setCallback(this, function(response) {
-            component.set("v.isLoading", false); // Stop spinner
+            component.set("v.isLoading", false);
             const state = response.getState();
             if (state === "SUCCESS") {
                 $A.get("e.force:showToast").setParams({
                     title: "Success",
-                    message: "PDF sent to quote owner successfully!",
+                    message: "PDF sent to " + recipientEmail + " successfully!",
                     type: "success",
                     mode: "dismissible"
                 }).fire();
                 $A.get("e.force:closeQuickAction").fire();
             } else {
                 const errors = response.getError();
-                const message = errors && errors[0] && errors[0].message ? errors[0].message : "Error sending PDF by email";
+                const message = errors && errors[0] && errors.message ? errors.message : "Error sending PDF by email";
                 $A.get("e.force:showToast").setParams({
                     title: "Error",
                     message: message,
@@ -169,6 +172,24 @@
         };
     
         tryInject();
+    },
+
+    loadContactEmails : function(component) {
+        const action = component.get("c.getAccountContactEmails");
+        action.setParams({ quoteId: component.get("v.recordId") });
+        action.setCallback(this, function(response) {
+            if (response.getState() === "SUCCESS") {
+                const emails = response.getReturnValue() || [];
+                component.set("v.emailOptions", emails);
+                // inicializa já com o primeiro e-mail selecionado, se houver
+                if (emails.length > 0) component.set("v.selectedEmail", emails[0]);
+            } else {
+                // Em produção, seria interessante tratar erro aqui
+                component.set("v.emailOptions", []);
+                component.set("v.selectedEmail", "");
+            }
+        });
+        $A.enqueueAction(action);
     }
     
 })

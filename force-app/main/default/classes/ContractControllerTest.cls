@@ -341,7 +341,7 @@ public class ContractControllerTest {
 
         Id recordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByDeveloperName().get('NaTional').getRecordTypeId();
 
-        List<Quote> quotes = [SELECT Id, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c,
+        List<Quote> quotes = [SELECT Id, Opportunity.Name, Opportunity.Owner.Name, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone, Opportunity.IntegrationType__c, Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c,
         Opportunity.Settlement_Frequency_Test__c, Opportunity.Payout__c, Opportunity.Antecipation_Frequency_1__c, Opportunity.GooglePay__c,Opportunity.ApplePay__c ,
         Opportunity.Antecipation_Frequency_2__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Settlement_Frequency_2__c,Opportunity.PagShield__c,Opportunity.RequestChangeClause__c,
         Opportunity.NationalPaymentMethod__c, Opportunity.TaxaBaseDeAntecipacao__c, Opportunity.UsePagstream__c, Opportunity.Visible_Anticipation_Frequency__c, Opportunity.Moeda__c,
@@ -449,7 +449,7 @@ public class ContractControllerTest {
         List<Quote> quotes = [
             SELECT Id,
                 Account.Id, Account.Name, Account.Website, Account.Owner.Name, Account.Owner.Email, Account.Owner.MobilePhone,
-                Opportunity.Id, Opportunity.Name, Opportunity.Owner.Name, Opportunity.Moeda__c, Opportunity.Product_Type__c,
+                Opportunity.Id, Opportunity.Name, Opportunity.Owner.Name, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone, Opportunity.Moeda__c, Opportunity.Product_Type__c,
                 Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
                 Opportunity.BusinessModel__c, Opportunity.Pix_Automatico__c, Opportunity.IntegrationType__c,
                 Opportunity.Antecipation_Frequency_1__c, Opportunity.Antecipation_Frequency_2__c,

@@ -89,7 +89,7 @@
 <apex:variable var="pagBrasilCheckoutServiceFee" value="{!pagBrasilCheckoutServiceFee}" />
 <apex:variable var="opportunityProductType" value="{!opportunityProductType}" />
 
-<apex:variable var="jsAPIVTexTerms"  value="{!jsAPIVTexTerms}" />
+<apex:variable var="jsAPITerms"  value="{!jsAPITerms}" />
 <apex:variable var="shopifyWoocommerceSalesforcePBCheckoutTerms"  value="{!shopifyWoocommerceSalesforcePBCheckoutTerms}" />
 
 <apex:stylesheet value="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"/>
@@ -395,7 +395,7 @@
             <div class="page">
                 <div class="page-content" style="padding: 75px;">
                     <p style="font-size: 40px;">Anticipation Fees | <strong>Credit Cards</strong></p>
-                    <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyOne}</p>
+                    <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyOne} Settlement</p>
                     <table style="border-collapse: collapse; margin-top: 15px;">
                         <thead>
                             <tr>
@@ -423,7 +423,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyTwo}</p>
+                    <p style="margin-top: 75px; font-size: 18px; font-weight: bold; margin-left: 10px;">{!frequencyTwo} Settlement</p>
                     <table style="border-collapse: collapse; margin-top: 15px;">
                         <thead>
                             <tr>
@@ -515,41 +515,116 @@
         </div>
         
         <!-- Page 12 -->
-        <apex:panelGroup rendered="{!jSAPIVTexTerms}">
+        <apex:panelGroup >
             <div class="page">
                 <img src="{!$Resource.CrossMulherCelularNotebook}" class="page-background-image" />
                 <div class="page-content">
-                    <div style="position: absolute; top: 0; left: 526px; padding: 30px 0 0 60px; width: 555px;">
-                        <p style="font-size: 36px;">Additional <strong>Terms</strong></p>
-                        <p style="font-size: 16px; margin-top: 20px; width: 500px;"><strong>Rates and Fees</strong></p>
-                        <table style="border-collapse: collapse; margin-top: 10px;">
+                    <div style="position: absolute; top: 0; left: 465px; padding: 30px 0 0 60px; width: 555px;">
+                        <p style="font-size: 40px;">Additional <strong>Terms</strong></p>
+                        <p style="font-size: 17px; margin-bottom: 20px; width: 500px;"><strong>Rates and Fees</strong></p>
+                        <table class="table-terms" style="width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed;">
                             <tbody>
                                 <tr>
-                                    <td style="border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Setup Fee</td>
-                                    <td style="border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!setupFee} {!opportunityCurrency}</td>
+                                    <td style="width: 180px; padding: 16px 5px; font-size: 14px; font-weight: 600; color: #000;">Setup Fee</td>
+                                    <td style="width: 10px;"></td>
+                                    <td style="width: 360px; padding: 16px 0; color: #323232; font-size: 14px;">{!setupFee} {!opportunityCurrency}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Chargeback Fee</td>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!chargeback} BRL (according to chargeback rate)</td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
                                 </tr>
-                                <tr>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Refund Fee</td>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!refundCardAcquirerPix} BRL (via acquirer or Pix)<br/>{!refundBankTransfer} BRL (via wire transfer)</td>
-                                </tr>
-                                <tr>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Notification Services</td>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 26px 8px; text-align: left; color: #323232; font-size: 14px">{!package10000Emails} BRL (10,000 e-mail notifications)<br/>{!package10000Sms} BRL (10,000 SMS notifications)</td>
-                                </tr>
-                                <apex:outputPanel rendered="{!NOT(ISBLANK(zeroAuthCreditCard))}">
+
+                                <apex:outputPanel rendered="{!isPlugin}">
                                     <tr>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero-Auth <br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 80px; text-align: left; color: #323232; font-size: 14px"> {!zeroAuthCreditCard} BRL (per credit card transaction)</td>
+                                        <td style="width: 180px; padding: 16px 5px; font-size: 14px; font-weight: 600;">Service Fee - {!currentIntegrationTypeInCheckoutList}</td>
+                                        <td></td>
+                                        <td style="width: 360px; padding: 16px 0; color: #323232; font-size: 14px;">0.5% on the total amount processed</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
                                     </tr>
                                 </apex:outputPanel>
+
+                                <apex:outputPanel rendered="{!containsCreditCard}">
+                                    <tr>
+                                        <td style="width: 180px; padding: 22px 5px; font-size: 15px; font-weight: bold;">Chargeback Fee</td>
+                                        <td></td>
+                                        <td style="width: 360px; padding: 22px 0; color: #323232; font-size: 14px;">{!chargeback} BRL (according to chargeback rate)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    </tr>
+                                </apex:outputPanel>
+
+                                <tr>
+                                    <td style="width: 180px; padding: 22px 5px; font-size: 15px; font-weight: bold;">Refund Fee</td>
+                                    <td></td>
+                                    <td style="width: 360px; padding: 22px 0; color: #323232; font-size: 14px;">
+                                        {!refundCardAcquirerPix} BRL (via acquirer or Pix)<br/>
+                                        {!refundBankTransfer} BRL (via wire transfer)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px; padding: 16px 5px 4px 5px; font-size: 15px; font-weight: bold; line-height: 1.2;">
+                                        Notification Services<br/>
+                                        <apex:outputPanel rendered="{!isPlugin}" style="font-weight: normal; font-size: 13px;">(courtesy)</apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(isPlugin)}" style="font-weight: normal; font-size: 13px;">(optional)</apex:outputPanel>
+                                    </td>
+                                    <td></td>
+                                    <td style="width: 360px; padding: 16px 0; color: #323232; font-size: 14px;">
+                                        {!IF(AND(NOT(ISBLANK(package10000Emails)), VALUE(package10000Emails) > 0),
+                                            package10000Emails & " BRL (10,000 e-mail notifications)",
+                                            "10,000 e-mail notifications"
+                                        )}
+                                        <br/>
+                                        {!IF(AND(NOT(ISBLANK(package10000Sms)), VALUE(package10000Sms) > 0),
+                                            package10000Sms & " BRL (10,000 SMS notifications)",
+                                            "10,000 SMS notifications"
+                                        )}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    <td style="height:1px; background:#ccc; padding:0;"></td>
+                                </tr>
+
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(zeroAuthCreditCard))}">
+                                    <tr>
+                                        <td style="width: 180px; padding: 16px 5px; font-size: 15px; font-weight: bold;">
+                                            Zero-Auth<br/>
+                                            <apex:outputPanel style="font-weight: normal; font-size: 13px;">(optional)</apex:outputPanel>
+                                        </td>
+                                        <td></td>
+                                        <td style="width: 360px; padding: 16px 0; color: #323232; font-size: 14px;">{!zeroAuthCreditCard} BRL (per credit card transaction)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                        <td style="height:1px; background:#ccc; padding:0;"></td>
+                                    </tr>
+                                </apex:outputPanel>
+
                                 <apex:outputPanel rendered="{!NOT(ISBLANK(threeDSCreditCard))}">
                                     <tr>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card<br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 15px; text-align: left; color: #323232; font-size: 14px"> {!threeDSCreditCard} BRL (per credit card transaction)</td>
+                                        <td style="width: 180px; padding: 16px 5px; font-size: 15px; font-weight: bold;">
+                                            3DS2 for Credit Cards<br/>
+                                            <span style="font-weight: normal; font-size: 13px;">(optional)</span>
+                                        </td>
+                                        <td></td>
+                                        <td style="width: 360px; padding: 16px 0; color: #323232; font-size: 14px;">
+                                            {!threeDSCreditCard}% (per credit card transaction)
+                                        </td>
                                     </tr>
                                 </apex:outputPanel>
                             </tbody>
@@ -563,7 +638,7 @@
             </div>
         </apex:panelGroup>
 
-        <!-- Page 13 -->
+        <!-- Page 13 --> <!--
         <apex:panelGroup rendered="{!shopifyWoocommerceSalesforcePBCheckoutTerms}">
             <div class="page">
                 <img src="{!$Resource.CrossMulherCelularNotebook}" class="page-background-image" />
@@ -577,10 +652,12 @@
                                     <td style="border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Setup Fee</td>
                                     <td style="border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!setupFee} {!opportunityCurrency}</td>
                                 </tr>
-                                <tr>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Service Fee - {!currentIntegrationTypeInCheckoutList}</td>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.5 on the total amount processed</td>
-                                </tr>
+                                <apex:outputPanel rendered="{!isPlugin}">
+                                    <tr>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Service Fee - {!currentIntegrationTypeInCheckoutList}</td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">0.5% on the total amount processed</td>
+                                    </tr>
+                                </apex:outputPanel>
                                 <tr>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; font-size: 13px; font-weight: bold;">Chargeback Fee</td>
                                     <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 22px 12px; text-align: left; color: #323232; font-size: 13px">{!chargeback} BRL (according to chargeback rate)</td>
@@ -595,14 +672,14 @@
                                 </tr>
                                 <apex:outputPanel rendered="{!NOT(ISBLANK(zeroAuthCreditCard))}">
                                     <tr>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero-Auth <br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">Zero-Auth <br/><span style="font-weight: normal; margin-top: -2px">(optional)</span></td>
                                         <td style="border-top: 1px solid #ccc; padding: 26px 80px; text-align: left; color: #323232; font-size: 14px"> {!zeroAuthCreditCard} BRL (per credit card transaction)</td>
                                     </tr>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!NOT(ISBLANK(threeDSCreditCard))}">
                                     <tr>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card<br/><span style="font-weight: normal; margin-top: -2px">(opcional)</span></td>
-                                        <td style="border-top: 1px solid #ccc; padding: 26px 15px; text-align: left; color: #323232; font-size: 14px"> {!threeDSCreditCard} BRL (per credit card transaction)</td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 8px; text-align: left; font-size: 15px; font-weight: bold;">3DS2 for credit card<br/><span style="font-weight: normal; margin-top: -2px">(optional)</span></td>
+                                        <td style="border-top: 1px solid #ccc; padding: 26px 15px; text-align: left; color: #323232; font-size: 14px"> {!threeDSCreditCard}% (per credit card transaction)</td>
                                     </tr>
                                 </apex:outputPanel>
                             </tbody>
@@ -614,7 +691,7 @@
                     <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
                 </div>
             </div>
-        </apex:panelGroup>
+        </apex:panelGroup> -->
 
         <!-- Page 14 -->
         <div class="page">
@@ -624,10 +701,10 @@
         <div class="page">
             <img src="{!$Resource.OneClickPixPage}" class="page-background-image" />
             <div class="page-content">
-                <p style="font-size: 14px; margin-top: 498px; margin-left: 180px; width: 500px; color: #505050; font-weight: 300">BRL 1.90 + 0.2% added to the Pix processing fees​</p>
+                <p style="font-size: 14px; margin-top: 498px; margin-left: 180px; width: 500px; color: #505050; font-weight: 300"> BRL 1.90 + 0.2% added to the Pix processing fees​</p>
             </div>
             <div class="page-footer">
-                    <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
+                <p style="float: right; color: #505050; font-size: 13px; font-weight: bold; margin-top: 15px; margin-right: 25px">© {!YEAR(TODAY())} PagBrasil</p>
             </div>
         </div>
 
@@ -792,7 +869,7 @@
                     <div style="position: absolute; top: 0; left: 526px; padding: 120px 0 0 60px; width: 555px;">
                     <p style="font-size: 14px; margin-top: 203px; margin-left: 65px; width: 500px; color: #505050; font-weight: 600">{!setupFee} {!opportunityCurrency}</p>
                     <p style="font-size: 14px; margin-top: 40px; margin-left: 67px; width: 500px; color: #505050; font-weight: 600">{!payoutServiceFee}% of the total payout amount processed by PagBrasil</p>
-                    <p style="font-size: 14px; margin-top: 37px; margin-left: 67px; width: 500px; color: #505050; font-weight: 600">3.50 BRL per payout (TO REVIEW)</p>
+                    <p style="font-size: 14px; margin-top: 37px; margin-left: 67px; width: 500px; color: #505050; font-weight: 600">3.50 BRL per payout</p>
                 </div>
                 </div>
                 <div class="page-footer">
@@ -844,23 +921,25 @@
                                     </td>
                                     <td style="border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">{!custoPagshieldCross} BRL per analysis</td>
                                 </tr>
-                                <tr>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px;">
-                                        <strong>PagShield® Premium</strong><br/>
-                                        Pre-authorizations analysis by the PagBrasil fraud prevention team
-                                    </td>
-                                    <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
-                                        <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumFixedFee))}">
-                                            {!pagShieldPremiumFixedFee} BRL per analysis<br/>
-                                        </apex:outputPanel>
-                                        <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumVariableFee))}">
-                                            {!pagShieldPremiumVariableFee}% of the transactional value<br/>
-                                        </apex:outputPanel>
-                                        <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldFraudPrevention))}">
-                                            {!pagShieldFraudPrevention} BRL (service fee)
-                                        </apex:outputPanel>
-                                    </td>
-                                </tr>
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumFixedFee)) || NOT(ISBLANK(pagShieldPremiumVariableFee)) || NOT(ISBLANK(pagShieldFraudPrevention))}">
+                                    <tr>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; font-size: 14px;">
+                                            <strong>PagShield® Premium</strong><br/>
+                                            Pre-authorizations analysis by the PagBrasil fraud prevention team
+                                        </td>
+                                        <td style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 30px 12px; text-align: left; color: #323232; font-size: 14px;">
+                                            <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumFixedFee))}">
+                                                {!pagShieldPremiumFixedFee} BRL per analysis<br/>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldPremiumVariableFee))}">
+                                                {!pagShieldPremiumVariableFee}% of the transactional value<br/>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!NOT(ISBLANK(pagShieldFraudPrevention))}">
+                                                {!custoPagshieldCross} BRL (service fee)
+                                            </apex:outputPanel>
+                                        </td>
+                                    </tr>
+                                </apex:outputPanel>
                             </tbody>
                         </table>
                     </div>
@@ -934,7 +1013,7 @@
                 <p style="position: absolute; top: 360px; left: 58px; font-weight: bold; font-size: 14px; white-space: nowrap; color: #fff;"><i>*This proposal is valid for 30 days.</i></p>
                 
                 <p style="position: absolute; top: 100px; left: 680px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!opportunityOwnerName}</p>
-                <p style="position: absolute; top: 125px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">International Account Manager</p>
+                <p style="position: absolute; top: 125px; left: 680px; font-size: 16px; white-space: nowrap; color:#030303;">Business Development Executive</p>
                 
                 <img src="{!$Resource.PNLocationIcon}" style="position: absolute; top: 200px; left: 680px; width: 35px;"/>
                 <p style="position: absolute; top: 200px; left: 780px; font-size: 16px; white-space: nowrap; color:#030303;">
@@ -949,10 +1028,10 @@
                 <img src="{!$Resource.CrossHeadsetIcon}" style="position: absolute; top: 400px; left: 680px; width: 40px;"/>
 
                 <img src="{!$Resource.CrossWhatsAppIcon}" style="position: absolute; top: 400px; left: 780px; width: 20px;"/>
-                <p style="position: absolute; top: 400px; left: 805px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerMobilePhone}</p>
+                <p style="position: absolute; top: 400px; left: 805px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!opportunityOwnerMobilePhone}</p>
                 
                 <img src="{!$Resource.CrossEmailIcon}" style="position: absolute; top: 425px; left: 780px; width: 20px;"/>
-                <p style="position: absolute; top: 425px; left: 805px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!accountOwnerEmail}</p>
+                <p style="position: absolute; top: 425px; left: 805px; font-weight: bold; font-size: 16px; white-space: nowrap; color:#030303;">{!opportunityOwnerEmail}</p>
             </div>  
         </div>
     </body>

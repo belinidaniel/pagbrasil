@@ -10,6 +10,6 @@ ISBLANK(nb_receita_mensal__c)
 AND(
 LOWER($RecordType.DeveloperName) = &quot;national&quot;,
 ISBLANK(nb_receita_mensal__c)
-) )</errorConditionFormula>
+), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorMessage>The Potential TPV field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

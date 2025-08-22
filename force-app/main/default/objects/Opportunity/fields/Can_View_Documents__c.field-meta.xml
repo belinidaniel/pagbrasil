@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Can_View_Documents__c</fullName>
+    <description>Retorna &apos;True&apos; caso o usuário seja system admin ou tenha a permissão para visualizar documentos (notes &amp; attachements)</description>
+    <formula>OR(
+  $Profile.Name = &quot;System Administrator&quot;,
+  $Permission.Can_View_Documents
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Can View Documents</label>
+    <type>Checkbox</type>
+</CustomField>

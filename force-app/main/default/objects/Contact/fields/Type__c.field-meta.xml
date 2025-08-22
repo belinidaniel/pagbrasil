@@ -32,7 +32,7 @@
             <value>
                 <fullName>Notificação</fullName>
                 <default>false</default>
-                <label>Notification</label>
+                <label>Contract Notifications</label>
             </value>
             <value>
                 <fullName>Financeiro</fullName>
@@ -47,7 +47,17 @@
             <value>
                 <fullName>Suporte</fullName>
                 <default>false</default>
-                <label>Support</label>
+                <label>End Customer Support</label>
+            </value>
+            <value>
+                <fullName>Shareholder</fullName>
+                <default>false</default>
+                <label>Shareholder</label>
+            </value>
+            <value>
+                <fullName>Personal</fullName>
+                <default>false</default>
+                <label>KYC Form Filling</label>
             </value>
         </valueSetDefinition>
     </valueSet>

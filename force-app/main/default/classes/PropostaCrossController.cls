@@ -15,6 +15,8 @@ public class PropostaCrossController {
     public String accountOwnerMobilePhone { get; set; }
 	public String opportunityOwnerName { get; set; }
     public String opportunityName { get; set; }
+    public String opportunityOwnerMobilePhone { get; set; }
+    public String opportunityOwnerEmail { get; set; }
     public String quoteCreatedDate { get; set; }
     public Boolean containsPayout { get; set; }
     public Boolean containsApplePay { get; set; }
@@ -122,7 +124,6 @@ public class PropostaCrossController {
         'Shopify with Yampi',
         'Shopify with Cart Panda',
         'Salesforce',
-        'PB Checkout',
         'Woocommerce'
     };
 
@@ -132,7 +133,7 @@ public class PropostaCrossController {
             stdController.addFields(new List<String>{
                 'Account.Name', 'Account.Website','Opportunity.Name','Opportunity.Owner.Name', 'Opportunity.IntegrationType__c', 'Opportunity.BusinessModel__c', 'Opportunity.previs_fat_rs__c', 'Opportunity.Settlement_Frequency_Test__c',
                 'Opportunity.Product_Type__c', 'Opportunity.Payout__c', 'Opportunity.ApplePay__c', 'Opportunity.GooglePay__c', 'Opportunity.Antecipation_Frequency_1__c', 'Opportunity.Antecipation_Frequency_2__c',
-                'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.Pix_Automatico__c',
+                'Opportunity.Settlement_Frequency_1__c', 'Opportunity.Settlement_Frequency_2__c', 'Opportunity.NationalPaymentMethod__c', 'Opportunity.TaxaBaseDeAntecipacao__c', 'Opportunity.UsePagstream__c', 'Opportunity.Pix_Automatico__c', 'Opportunity.Owner.Email', 'Opportunity.Owner.MobilePhone',
                 'Opportunity.Moeda__c', 'Account.Owner.Name', 'Account.Owner.Email', 'Account.Owner.MobilePhone' });
         }
 
@@ -175,6 +176,8 @@ public class PropostaCrossController {
 
         this.opportunityName = quote.Opportunity.Name;
 		this.opportunityOwnerName = quote.Opportunity.Owner.Name;
+        this.opportunityOwnerEmail = quote.Opportunity.Owner.Email;
+        this.opportunityOwnerMobilePhone = quote.Opportunity.Owner.MobilePhone;
         this.opportunityCurrency = quote.Opportunity.Moeda__c;
         this.opportunityProductType = quote.Opportunity.Product_Type__c;
 
@@ -190,7 +193,7 @@ public class PropostaCrossController {
         this.shopifyWoocommerceSalesforcePBCheckoutTerms = quote.Opportunity.IntegrationType__c != null ? this.integrationTypeShopifyWoocommerceSalesforcePBCheckoutList.contains(quote.Opportunity.IntegrationType__c) : false;
         this.currentIntegrationTypeInCheckoutList = quote.Opportunity.IntegrationType__c != null ? quote.Opportunity.IntegrationType__c : null;
         this.jsAPITerms = quote.Opportunity.IntegrationType__c != null ? this.integrationTypeJSAPI.contains(quote.Opportunity.IntegrationType__c) : false;
-        this.isPlugin = quote.Opportunity.IntegrationType__c != null ? this.pluginTypes.contains(quote.Opportunity.IntegrationType__c) : (quote.Opportunity.IntegrationType__c == 'PB Checkout' ? true : false);
+        this.isPlugin = quote.Opportunity.IntegrationType__c != null ? this.pluginTypes.contains(quote.Opportunity.IntegrationType__c) : false;
 
         this.settlementFrequency = '0';
 

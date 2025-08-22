@@ -5,7 +5,7 @@
     <errorConditionFormula>AND( NOT ( AND ( $Profile.Name = &apos;System Administrator&apos; , CreatedDate &lt;= DATETIMEVALUE(DATE(2025,8,10)) ) ) ,
 AND(ISPICKVAL(StageName, &apos;Processing&apos;), ISBLANK(DataConversaoProcessing__c),
 RecordType.DeveloperName != &apos;NaTional&apos;,
-RecordType.DeveloperName != &apos;Crossborder&apos;) )</errorConditionFormula>
+RecordType.DeveloperName != &apos;Crossborder&apos;), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorDisplayField>DataConversaoProcessing__c</errorDisplayField>
     <errorMessage>Fill in the &quot;Processing Date&quot; field before closing the Opportunity</errorMessage>
 </ValidationRule>

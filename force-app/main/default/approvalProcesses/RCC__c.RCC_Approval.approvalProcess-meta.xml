@@ -5,6 +5,18 @@
     <allowedSubmitters>
         <type>owner</type>
     </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>Director</submitter>
+        <type>role</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>Sales_NB</submitter>
+        <type>role</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>Sales_XB</submitter>
+        <type>role</type>
+    </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
         <field>Owner</field>
@@ -19,8 +31,8 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>Legal_Compliance</name>
-                <type>queue</type>
+                <name>legal.salesforce@pagbrasil.com</name>
+                <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

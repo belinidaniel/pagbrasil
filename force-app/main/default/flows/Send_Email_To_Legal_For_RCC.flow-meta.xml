@@ -11,19 +11,16 @@
         <inputParameters>
             <name>emailAddresses</name>
             <value>
-                <stringValue>lucas.nannini@pagbrasil.com</stringValue>
+                <stringValue>legal.salesforce@pagbrasil.com</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
-            <value>
-                <stringValue>DefaultWorkflowUser</stringValue>
-            </value>
         </inputParameters>
         <inputParameters>
             <name>senderAddress</name>
             <value>
-                <stringValue>naoresponda@pagbrasil.com</stringValue>
+                <elementReference>Get_Opportunity.Owner.Email</elementReference>
             </value>
         </inputParameters>
         <inputParameters>

@@ -152,6 +152,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.Can_View_Documents__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.Can_View_Opportunity_Fields__c</field>
         <readable>true</readable>
     </fieldPermissions>

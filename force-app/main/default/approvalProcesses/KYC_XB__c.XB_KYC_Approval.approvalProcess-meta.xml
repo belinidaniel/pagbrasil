@@ -52,6 +52,6 @@
     </initialSubmissionActions>
     <label>XB KYC Approval</label>
     <processOrder>1</processOrder>
-    <recordEditability>AdminOnly</recordEditability>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>false</showApprovalHistory>
 </ApprovalProcess>

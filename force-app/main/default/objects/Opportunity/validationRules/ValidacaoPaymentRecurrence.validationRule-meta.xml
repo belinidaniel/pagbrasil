@@ -9,7 +9,7 @@ AND(
         LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;
     ),
     ISPICKVAL(PaymentRecurrence__c, &quot;&quot;)
-) )</errorConditionFormula>
+), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorDisplayField>PaymentRecurrence__c</errorDisplayField>
     <errorMessage>The &apos;Recurring Payments?&apos; field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

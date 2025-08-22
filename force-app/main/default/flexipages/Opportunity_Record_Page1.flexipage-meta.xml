@@ -235,7 +235,7 @@
                         <valueListItems>
                             <value>CustomButton.Opportunity.View_Quotes</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
+                                <booleanFilter>(1 AND 5) AND (2 OR 3 OR 4)</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.Quotes_Amount__c}</leftValue>
                                     <operator>GT</operator>
@@ -255,6 +255,11 @@
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Compliance</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_View_Documents__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -323,7 +328,7 @@
                         <valueListItems>
                             <value>CustomButton.Opportunity.View_Contract</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
+                                <booleanFilter>1 AND 2 AND 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.StageName}</leftValue>
                                     <operator>EQUAL</operator>
@@ -331,6 +336,11 @@
                                 </criteria>
                                 <criteria>
                                     <leftValue>{!Record.Was_Contract_PDF_Generated__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Can_View_Documents__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
@@ -870,7 +880,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.BusinessModelType__c</fieldItem>
                 <identifier>RecordBusinessModelType_cField2</identifier>
@@ -920,7 +930,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.nb_receita_mensal__c</fieldItem>
                 <identifier>Recordnb_receita_mensal_cField</identifier>
@@ -964,7 +974,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.previs_fat_rs__c</fieldItem>
                 <identifier>Recordprevis_fat_rs_cField2</identifier>
@@ -1014,7 +1024,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.AverageSalesTicket__c</fieldItem>
                 <identifier>RecordAverageSalesTicket_cField</identifier>
@@ -1381,7 +1391,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.PaymentRecurrence__c</fieldItem>
                 <identifier>RecordPaymentRecurrence_cField</identifier>
@@ -1491,7 +1501,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Product_Type__c</fieldItem>
                 <identifier>RecordProduct_Type_cField</identifier>
@@ -1541,7 +1551,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.IntegrationType__c</fieldItem>
                 <identifier>RecordIntegrationType_cField2</identifier>
@@ -1751,7 +1761,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Segmento__c</fieldItem>
                 <identifier>RecordSegmento_cField2</identifier>
@@ -1871,7 +1881,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.ProductClass__c</fieldItem>
                 <identifier>RecordProductClass_cField</identifier>
@@ -2150,7 +2160,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.NationalPaymentMethod__c</fieldItem>
                 <identifier>RecordNationalPaymentMethod_cField2</identifier>
@@ -2354,7 +2364,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.BusinessModel__c</fieldItem>
                 <identifier>RecordBusinessModel_cField2</identifier>
@@ -3972,7 +3982,7 @@
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+                    <booleanFilter>(1 OR 2 OR 3 OR 4 OR 5 OR 6) AND (7 OR 8)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>EQUAL</operator>
@@ -4002,6 +4012,16 @@
                         <leftValue>{!Record.StageName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Processing</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_Edit_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Opportunity_Fields__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -4112,6 +4132,13 @@
                 </componentInstanceProperties>
                 <componentName>force:relatedListSingleContainer</componentName>
                 <identifier>force_relatedListSingleContainer2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Can_View_Documents__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

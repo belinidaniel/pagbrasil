@@ -15,6 +15,7 @@
     <permissionSets>KYC_NB_Can_Edit</permissionSets>
     <permissionSets>Lead_Can_Edit_NB</permissionSets>
     <permissionSets>Lead_Converter_Permission</permissionSets>
+    <permissionSets>Notes_Attachments_Can_View</permissionSets>
     <permissionSets>Opportunity_Can_Edit_NB</permissionSets>
     <permissionSets>Opportunity_Edit_All_Stages</permissionSets>
     <permissionSets>Price_Book_Can_View_All</permissionSets>

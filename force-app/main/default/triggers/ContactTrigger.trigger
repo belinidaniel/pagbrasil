@@ -1,5 +1,7 @@
 trigger ContactTrigger on Contact (before insert) {
 	Map<String, String> roleToTypeMap = new Map<String, String>{
+        'personal' 			=> 'Personal',
+        'owner' 			=> 'Shareholder',
 		'technical' 		=> 'Técnico',
 		'emergency' 		=> 'Técnico',
 		'billing' 			=> 'Financeiro',

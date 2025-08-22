@@ -15,7 +15,7 @@ AND(
 
     ISBLANK(NationalPaymentMethod__c)
 
-) )</errorConditionFormula>
+), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorDisplayField>NationalPaymentMethod__c</errorDisplayField>
     <errorMessage>The Payment Methods field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

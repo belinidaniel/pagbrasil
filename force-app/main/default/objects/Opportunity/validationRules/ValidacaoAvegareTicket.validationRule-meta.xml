@@ -9,7 +9,7 @@ AND(
         LOWER($RecordType.DeveloperName) = &quot;crossborder&quot;
     ),
     ISBLANK(AverageSalesTicket__c)
-) )</errorConditionFormula>
+), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorDisplayField>AverageSalesTicket__c</errorDisplayField>
     <errorMessage>The Average Order Value field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>

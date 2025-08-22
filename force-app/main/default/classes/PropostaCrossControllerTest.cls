@@ -38,7 +38,7 @@ public class PropostaCrossControllerTest {
                           Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                           Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                           Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                           Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         Test.startTest();
@@ -188,7 +188,7 @@ public class PropostaCrossControllerTest {
                           Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                           Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                           Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                           Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         
         // Create standard controller
@@ -294,7 +294,7 @@ public class PropostaCrossControllerTest {
                           Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                           Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                           Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                           Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -321,7 +321,7 @@ public class PropostaCrossControllerTest {
                           Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                           Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                           Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                          Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                           Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -346,7 +346,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -373,7 +373,7 @@ public class PropostaCrossControllerTest {
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
                     Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c,
-                    Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
+                    Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone FROM Quote LIMIT 1]; 
 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -390,7 +390,7 @@ public class PropostaCrossControllerTest {
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
                     Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c,
-                    Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
+                    Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone FROM Quote LIMIT 1]; 
         stdController = new ApexPages.StandardController(testQuote);
 
         controller = new PropostaCrossController(stdController);
@@ -404,7 +404,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         stdController = new ApexPages.StandardController(testQuote);
         
@@ -419,7 +419,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c ,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c , Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -445,7 +445,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
@@ -464,7 +464,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,Opportunity.Antecipation_Frequency_2__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
@@ -486,7 +486,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c ,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c , Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         PropostaCrossController controller = new PropostaCrossController(stdController);
@@ -505,7 +505,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c ,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c , Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -525,7 +525,7 @@ public class PropostaCrossControllerTest {
                     Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                     Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                     Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c ,
+                    Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                     Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         Product2 pixProduct = [SELECT Id FROM Product2 WHERE ProductCode = 'PROCESSING_FEES_PIX' LIMIT 1];
         PricebookEntry pbe = [SELECT Id FROM PricebookEntry WHERE Product2Id = :pixProduct.Id LIMIT 1];
@@ -569,7 +569,7 @@ public class PropostaCrossControllerTest {
                             Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                             Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                             Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                            Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c ,
+                            Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                             Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
         ApexPages.StandardController stdController = new ApexPages.StandardController(testQuote);
         
@@ -595,7 +595,7 @@ public class PropostaCrossControllerTest {
                             Account.Owner.MobilePhone, Opportunity.Name, Opportunity.Owner.Name, Opportunity.IntegrationType__c,
                             Opportunity.BusinessModel__c, Opportunity.previs_fat_rs__c, Opportunity.Product_Type__c, Opportunity.Pix_Automatico__c,
                             Opportunity.Payout__c, Opportunity.ApplePay__c, Opportunity.GooglePay__c, Opportunity.UsePagstream__c,
-                            Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c ,
+                            Opportunity.Antecipation_Frequency_1__c, Opportunity.Settlement_Frequency_1__c,Opportunity.Antecipation_Frequency_2__c, Opportunity.Owner.Email, Opportunity.Owner.MobilePhone,
                             Opportunity.NationalPaymentMethod__c, Opportunity.Moeda__c FROM Quote LIMIT 1]; 
 
                             // Query the Quote with the updated opportunity

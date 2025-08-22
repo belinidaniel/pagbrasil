@@ -11,14 +11,16 @@
     <permissionSets>Documents_Can_Edit_All</permissionSets>
     <permissionSets>Homologation_Forms_Can_Edit</permissionSets>
     <permissionSets>KYC_NB_Can_Edit</permissionSets>
-    <permissionSets>KYC_XB_Can_Edit</permissionSets>
+    <permissionSets>KYC_NB_Can_Edit_All</permissionSets>
+    <permissionSets>KYC_XB_Can_Edit_All</permissionSets>
+    <permissionSets>Notes_Attachments_Can_View</permissionSets>
     <permissionSets>Opportunities_Can_Edit</permissionSets>
     <permissionSets>Opportunity_Edit_Legal_Stages</permissionSets>
     <permissionSets>Opportunity_View_Legal_and_Compliance_Stages</permissionSets>
     <permissionSets>Price_Book_Can_View_All</permissionSets>
     <permissionSets>Product_Can_View_All</permissionSets>
     <permissionSets>Quote_Can_Edit</permissionSets>
-    <permissionSets>RCC_Can_Edit</permissionSets>
+    <permissionSets>RCC_Can_Edit_All</permissionSets>
     <permissionSets>Send_Email</permissionSets>
     <permissionSets>Taxes_Can_View_All</permissionSets>
     <permissionSets>dfsle__DocuSign_User</permissionSets>

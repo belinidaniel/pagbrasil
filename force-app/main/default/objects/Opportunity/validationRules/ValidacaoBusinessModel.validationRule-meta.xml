@@ -9,7 +9,7 @@ AND(
         $RecordType.Name = &quot;Nacional&quot;,
         $RecordType.Name = &quot;Cross Border&quot;
     )
-) )</errorConditionFormula>
+), NOT(ISPICKVAL(StageName, &quot;Discovery&quot;)) )</errorConditionFormula>
     <errorDisplayField>BusinessModelType__c</errorDisplayField>
     <errorMessage>The Business Model Type field is empty, fill it in to continue.</errorMessage>
 </ValidationRule>
